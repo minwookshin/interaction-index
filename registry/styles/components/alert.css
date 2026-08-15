@@ -16,7 +16,9 @@
   color: var(--ix-fg-default);
 }
 
-.ix-alert[data-variant="critical"] { box-shadow: inset 2px 0 0 var(--ix-fg-default); }
+.ix-alert[data-variant="critical"] { background: color-mix(in oklch, var(--ix-fg-danger) 7%, var(--ix-bg-subtle)); box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--ix-fg-danger) 24%, transparent); }
+
+.ix-alert[data-variant="critical"] .ix-alert__icon { color: var(--ix-fg-danger); }
 
 .ix-alert__icon { display: grid; width: 18px; height: 18px; place-items: center; color: var(--ix-fg-muted); }
 

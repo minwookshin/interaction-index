@@ -37,9 +37,9 @@
 .ix-context-switcher:not([data-disabled]):hover,
 .ix-context-switcher[data-popup-open] { border-color: var(--ix-control-border-hover); background: var(--ix-bg-control); box-shadow: var(--ix-shadow-float); }
 
-.ix-context-switcher:active:not([data-disabled]) { transform: scale(.99); }
+.ix-context-switcher:active:not([data-disabled]) { transform: scale(.985); }
 
-.ix-context-switcher:focus-visible { outline: 2px solid var(--ix-focus-control); outline-offset: 2px; }
+.ix-context-switcher:focus-visible { outline: 0; border-color: var(--ix-control-border-hover); background: var(--ix-bg-control); box-shadow: var(--ix-shadow-control); }
 
 .ix-context-switcher[data-disabled] { color: var(--ix-fg-disabled); cursor: not-allowed; box-shadow: none; }
 

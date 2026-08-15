@@ -7,7 +7,7 @@
 @layer index.tokens {
 :root {
   color-scheme: light;
-  font-family: "Inter Variable", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--ix-font-ui);
   font-synthesis: none;
   font-optical-sizing: auto;
   text-rendering: optimizeLegibility;
@@ -16,28 +16,41 @@
   --ix-sidebar-l: 0.982;
   --ix-stage-l: 0.986;
   --ix-border-alpha: 0.078;
-  --ix-gray-50: #f7f7f8;
-  --ix-gray-100: #f2f2f3;
-  --ix-gray-200: #e5e5e7;
-  --ix-gray-300: #d1d1d4;
-  --ix-gray-400: #aeaeb1;
-  --ix-gray-500: #8e8e93;
-  --ix-gray-600: #636366;
-  --ix-gray-700: #48484a;
-  --ix-gray-800: #2c2c2e;
-  --ix-gray-900: #1c1c1e;
+  --ix-font-ui: "Inter Variable", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --ix-font-code: SFMono-Regular, "Geist Mono", Consolas, "Liberation Mono", ui-monospace, monospace;
   --ix-type-metadata: 11.5px;
   --ix-type-label: 12px;
   --ix-type-ui: 13.5px;
-  --ix-type-body: 14px;
+  --ix-type-body: 14.5px;
   --ix-type-row: 14.5px;
   --ix-type-section: 20px;
-  --ix-type-title: 28px;
+  --ix-type-title: 32px;
+  --ix-line-metadata: 16px;
+  --ix-line-label: 16px;
+  --ix-line-ui: 18px;
+  --ix-line-row: 20px;
+  --ix-line-body: 23px;
+  --ix-line-section: 26px;
+  --ix-line-title: 36px;
+  --ix-ui-weight: 470;
+  --ix-label-weight: 560;
+  --ix-heading-weight: 580;
+  --ix-ui-tracking: -0.006em;
+  --ix-space-0: 0px;
+  --ix-space-1: 4px;
+  --ix-space-2: 8px;
+  --ix-space-3: 12px;
+  --ix-space-4: 16px;
+  --ix-space-5: 20px;
+  --ix-space-6: 24px;
+  --ix-space-7: 28px;
+  --ix-space-8: 32px;
+  --ix-space-10: 40px;
+  --ix-space-12: 48px;
+  --ix-space-16: 64px;
   --ix-space-page-x: 28px;
   --ix-space-page-y: 24px;
   --ix-space-section: 22px;
-  --ix-ui-weight: 470;
-  --ix-ui-tracking: -0.006em;
   --ix-icon-size: 14px;
   --ix-icon-offset-y: 0px;
   --ix-control-height-sm: 28px;
@@ -51,25 +64,50 @@
   --ix-radius-overlay: 10px;
   --ix-radius-pill: 999px;
   --ix-row-height-menu: 30px;
-  --ix-row-height-table: 42px;
+  --ix-row-height-table: 46px;
   --ix-focus-width: 2px;
   --ix-focus-offset: 1px;
+  --ix-radius-xs: 4px;
+  --ix-radius-sm: var(--ix-radius-control);
+  --ix-radius-md: var(--ix-radius-container);
+  --ix-radius-lg: var(--ix-radius-overlay);
   --ix-hover-duration: 120ms;
   --ix-press-duration: 110ms;
   --ix-enter-duration: 180ms;
   --ix-exit-duration: 120ms;
-  /* Semantic surfaces: raw grays are implementation detail, roles are the public API. */
-  --ix-bg-canvas: #fff;
+  --ix-fast: var(--ix-hover-duration);
+  --ix-medium: var(--ix-enter-duration);
+  --ix-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ix-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ix-ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ix-ease: var(--ix-ease-out);
+  --ix-layer-sticky: 20;
+  --ix-layer-modal-backdrop: 100;
+  --ix-layer-modal: 110;
+  --ix-layer-flyout: 120;
+  --ix-layer-toast: 130;
+  --ix-layer-navigation: 150;
+  --ix-gray-50: #f7f7f8;
+  --ix-gray-100: #f2f2f3;
+  --ix-gray-200: #e5e5e7;
+  --ix-gray-300: #d1d1d4;
+  --ix-gray-400: #aeaeb1;
+  --ix-gray-500: #8e8e93;
+  --ix-gray-600: #636366;
+  --ix-gray-700: #48484a;
+  --ix-gray-800: #2c2c2e;
+  --ix-gray-900: #1c1c1e;
+  --ix-bg-canvas: #ffffff;
   --ix-bg-sidebar: rgb(247 247 248 / 0.9);
   --ix-bg-stage: rgb(28 28 30 / 0.026);
   --ix-bg-subtle: rgb(28 28 30 / 0.043);
   --ix-bg-surface: rgb(255 255 255 / 0.94);
   --ix-bg-control: rgb(255 255 255 / 0.98);
-  --ix-bg-raised: #fff;
-  --ix-bg-overlay: #fff;
+  --ix-bg-raised: #ffffff;
+  --ix-bg-overlay: #ffffff;
   --ix-bg-float: var(--ix-bg-raised);
   --ix-bg-flyout: var(--ix-bg-overlay);
-  --ix-bg-modal: #fff;
+  --ix-bg-modal: #ffffff;
   --ix-bg-scrim: rgb(0 0 0 / 0.18);
   --ix-bg-code: rgb(28 28 30 / 0.02);
   --ix-canvas: var(--ix-bg-canvas);
@@ -93,6 +131,7 @@
   --ix-fg-muted: var(--ix-gray-600);
   --ix-fg-subtle: var(--ix-gray-600);
   --ix-fg-disabled: var(--ix-gray-400);
+  --ix-fg-danger: #b42318;
   --ix-ink: var(--ix-fg-default);
   --ix-ink-secondary: var(--ix-fg-muted);
   --ix-ink-tertiary: var(--ix-fg-subtle);
@@ -107,32 +146,16 @@
   --ix-focus-navigation: #77777d;
   --ix-focus-documentation: #85858b;
   --ix-focus-halo: rgb(28 28 30 / 0.14);
-  --ix-switch-track: #d1d1d4;
-  --ix-switch-thumb: #fff;
+  --ix-switch-track: var(--ix-gray-300);
+  --ix-switch-thumb: #ffffff;
   --ix-focus: var(--ix-focus-control);
-  --ix-radius-xs: 4px;
-  --ix-radius-sm: var(--ix-radius-control);
-  --ix-radius-md: var(--ix-radius-container);
-  --ix-radius-lg: var(--ix-radius-overlay);
-  --ix-shadow-control: 0 1px 1px oklch(0.17 0.004 var(--ix-neutral-h) / 0.025), inset 0 1px 0 rgb(255 255 255 / 0.62);
-  --ix-shadow-float: 0 4px 16px -8px rgb(28 28 30 / 0.08), 0 1px 2px rgb(28 28 30 / 0.04), 0 0 0 1px var(--ix-separator);
-  --ix-shadow-float-focus: 0 6px 24px -8px rgb(28 28 30 / 0.12), 0 1px 2px rgb(28 28 30 / 0.05), 0 0 0 1px var(--ix-control-border);
-  --ix-shadow-flyout: 0 16px 34px -10px rgb(28 28 30 / 0.16), 0 4px 10px -4px rgb(28 28 30 / 0.09), 0 0 0 1px var(--ix-separator);
+  --ix-shadow-control: 0px 1px 1px 0px oklch(0.17 0.004 275 / 0.025), inset 0px 1px 0px 0px rgb(255 255 255 / 0.62);
+  --ix-shadow-float: 0px 4px 16px -8px rgb(28 28 30 / 0.08), 0px 1px 2px 0px rgb(28 28 30 / 0.04), 0px 0px 0px 1px var(--ix-separator);
+  --ix-shadow-float-focus: 0px 6px 24px -8px rgb(28 28 30 / 0.12), 0px 1px 2px 0px rgb(28 28 30 / 0.05), 0px 0px 0px 1px var(--ix-control-border);
+  --ix-shadow-flyout: 0px 16px 34px -10px rgb(28 28 30 / 0.16), 0px 4px 10px -4px rgb(28 28 30 / 0.09), 0px 0px 0px 1px var(--ix-separator);
   --ix-shadow-popover: var(--ix-shadow-flyout);
-  --ix-shadow-modal: 0 36px 110px oklch(0.17 0.004 var(--ix-neutral-h) / 0.15), 0 8px 24px oklch(0.17 0.004 var(--ix-neutral-h) / 0.065), 0 0 0 1px var(--ix-border);
+  --ix-shadow-modal: 0px 36px 110px 0px oklch(0.17 0.004 275 / 0.15), 0px 8px 24px 0px oklch(0.17 0.004 275 / 0.065), 0px 0px 0px 1px var(--ix-border);
   --ix-shadow-dialog: var(--ix-shadow-modal);
-  --ix-layer-sticky: 20;
-  --ix-layer-modal-backdrop: 100;
-  --ix-layer-modal: 110;
-  --ix-layer-flyout: 120;
-  --ix-layer-toast: 130;
-  --ix-layer-navigation: 150;
-  --ix-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --ix-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-  --ix-ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
-  --ix-ease: var(--ix-ease-out);
-  --ix-fast: var(--ix-hover-duration);
-  --ix-medium: var(--ix-enter-duration);
 }
 
 :root[data-theme="dark"] {
@@ -155,20 +178,10 @@
   --ix-bg-control: #1a1a1c;
   --ix-bg-raised: #1e1e20;
   --ix-bg-overlay: #222225;
-  --ix-bg-float: var(--ix-bg-raised);
   --ix-bg-flyout: #262629;
   --ix-bg-modal: var(--ix-bg-overlay);
   --ix-bg-scrim: rgb(0 0 0 / 0.44);
   --ix-bg-code: rgb(255 255 255 / 0.025);
-  --ix-canvas: var(--ix-bg-canvas);
-  --ix-sidebar: var(--ix-bg-sidebar);
-  --ix-surface: var(--ix-bg-surface);
-  --ix-control-surface: var(--ix-bg-control);
-  --ix-elevated-surface: var(--ix-bg-raised);
-  --ix-overlay-surface: var(--ix-bg-overlay);
-  --ix-code-surface: var(--ix-bg-code);
-  --ix-stage: var(--ix-bg-stage);
-  --ix-subtle: var(--ix-bg-subtle);
   --ix-hover: rgb(255 255 255 / 0.064);
   --ix-active: rgb(255 255 255 / 0.112);
   --ix-selected: rgb(255 255 255 / 0.088);
@@ -177,58 +190,21 @@
   --ix-on-inverse: #111315;
   --ix-scrollbar-thumb: rgb(255 255 255 / 0.2);
   --ix-scrollbar-thumb-hover: rgb(255 255 255 / 0.34);
-  --ix-fg-default: var(--ix-gray-900);
-  --ix-fg-muted: var(--ix-gray-600);
-  --ix-fg-subtle: var(--ix-gray-500);
-  --ix-fg-disabled: var(--ix-gray-400);
-  --ix-ink: var(--ix-fg-default);
-  --ix-ink-secondary: var(--ix-fg-muted);
-  --ix-ink-tertiary: var(--ix-fg-subtle);
-  --ix-ink-disabled: var(--ix-fg-disabled);
+  --ix-fg-subtle: #8e8e93;
+  --ix-fg-danger: #ff8a80;
   --ix-separator: rgb(255 255 255 / 0.072);
   --ix-control-border: rgb(255 255 255 / 0.13);
   --ix-control-border-hover: rgb(255 255 255 / 0.26);
-  --ix-border-subtle: var(--ix-separator);
-  --ix-border: var(--ix-control-border);
-  --ix-border-strong: var(--ix-control-border-hover);
   --ix-focus-control: #a4a4aa;
   --ix-focus-navigation: #adadb3;
   --ix-focus-documentation: #a4a4aa;
   --ix-focus-halo: rgb(255 255 255 / 0.18);
-  --ix-switch-track: #323235;
-  --ix-switch-thumb: #e5e5e8;
-  --ix-focus: var(--ix-focus-control);
-  --ix-shadow-control: inset 0 1px 0 rgb(255 255 255 / 0.055), 0 1px 1px rgb(0 0 0 / 0.2);
-  --ix-shadow-float: 0 4px 16px -8px rgb(0 0 0 / 0.48), 0 1px 2px rgb(0 0 0 / 0.28), 0 0 0 1px var(--ix-separator);
-  --ix-shadow-float-focus: 0 8px 26px -8px rgb(0 0 0 / 0.56), 0 1px 2px rgb(0 0 0 / 0.34), 0 0 0 1px var(--ix-control-border);
-  --ix-shadow-flyout: 0 20px 44px -10px rgb(0 0 0 / 0.68), 0 5px 14px -4px rgb(0 0 0 / 0.42), 0 0 0 1px var(--ix-separator);
-  --ix-shadow-popover: var(--ix-shadow-flyout);
-  --ix-shadow-modal: 0 42px 120px rgb(0 0 0 / 0.58), 0 10px 30px rgb(0 0 0 / 0.34), 0 0 0 1px var(--ix-border);
-  --ix-shadow-dialog: var(--ix-shadow-modal);
-}
-
-@media (prefers-contrast: more) {
-:root {
-    --ix-border-subtle: rgba(13, 13, 13, 0.18);
-    --ix-border: rgba(13, 13, 13, 0.32);
-    --ix-border-strong: rgba(13, 13, 13, 0.58);
-    --ix-ink-secondary: #383836;
-    --ix-ink-tertiary: #4f4f4c;
-  }
-}
-
-@media (prefers-reduced-transparency: reduce) {
-:root {
-    --ix-sidebar: #f7f7f8;
-    --ix-surface: #fff;
-    --ix-control-surface: #fff;
-  }
-
-:root[data-theme="dark"] {
-    --ix-sidebar: #121315;
-    --ix-surface: #17191b;
-    --ix-control-surface: #1a1c1e;
-  }
+  --ix-switch-thumb: var(--ix-gray-800);
+  --ix-shadow-control: inset 0px 1px 0px 0px rgb(255 255 255 / 0.055), 0px 1px 1px 0px rgb(0 0 0 / 0.2);
+  --ix-shadow-float: 0px 4px 16px -8px rgb(0 0 0 / 0.48), 0px 1px 2px 0px rgb(0 0 0 / 0.28), 0px 0px 0px 1px var(--ix-separator);
+  --ix-shadow-float-focus: 0px 8px 26px -8px rgb(0 0 0 / 0.56), 0px 1px 2px 0px rgb(0 0 0 / 0.34), 0px 0px 0px 1px var(--ix-control-border);
+  --ix-shadow-flyout: 0px 20px 44px -10px rgb(0 0 0 / 0.68), 0px 5px 14px -4px rgb(0 0 0 / 0.42), 0px 0px 0px 1px var(--ix-separator);
+  --ix-shadow-modal: 0px 42px 120px 0px rgb(0 0 0 / 0.58), 0px 10px 30px 0px rgb(0 0 0 / 0.34), 0px 0px 0px 1px var(--ix-border);
 }
 }
 

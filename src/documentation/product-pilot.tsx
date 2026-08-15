@@ -3,13 +3,16 @@ import {
   CalendarBlank,
   CheckCircle,
   Circle,
+  Command,
   DotsThree,
   Plus,
   Rows,
   UserCircle,
 } from "@phosphor-icons/react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
+  ActionList,
+  type ActionListItem,
   Badge,
   Button,
   Dialog,
@@ -68,12 +71,20 @@ const initialIssues: PilotIssue[] = [
 
 const statusOptions = ["Backlog", "In progress", "Done"].map((value) => ({ label: value, value }));
 const priorityOptions = ["Low", "Medium", "High"].map((value) => ({ label: value, value }));
+const proofSteps = [
+  ["Find", "Filter issue"],
+  ["Inspect", "Select row"],
+  ["Act", "Archive via ⌘K"],
+  ["Recover", "Choose Undo"],
+] as const;
 
-function PilotWorkspaceInner() {
+function PilotWorkspaceInner({ onReset }: { onReset: () => void }) {
   const [issues, setIssues] = useState(initialIssues);
   const [selectedId, setSelectedId] = useState<string | null>(initialIssues[0].id);
   const [query, setQuery] = useState("");
   const [createOpen, setCreateOpen] = useState(false);
+  const [actionsOpen, setActionsOpen] = useState(false);
+  const [proofStep, setProofStep] = useState(0);
   const [draftTitle, setDraftTitle] = useState("");
   const [draftDescription, setDraftDescription] = useState("");
   const { pushUndo } = useUndoStack();
@@ -82,23 +93,61 @@ function PilotWorkspaceInner() {
   const selected = issues.find((issue) => issue.id === selectedId);
   const sharedItems = filtered.map((issue) => ({ id: issue.id, title: issue.title, meta: `${issue.code} · ${issue.updated}`, description: issue.description, status: issue.status }));
 
+  const selectIssue = (id: string | null) => {
+    setSelectedId(id);
+    if (id) setProofStep((current) => Math.max(current, 2));
+  };
+
+  const actionItems = useMemo<readonly ActionListItem[]>(() => selected ? [
+    { id: "toggle-status", label: selected.status === "Done" ? "Reopen issue" : "Mark issue done", description: `Update ${selected.code} without leaving the detail`, icon: selected.status === "Done" ? <Circle /> : <CheckCircle />, shortcut: "D" },
+    { id: "priority", label: "Set high priority", description: `Move ${selected.code} to the active review queue`, icon: <Rows />, shortcut: "P" },
+    { id: "archive", label: "Archive issue", description: "Remove it now and keep recovery available", icon: <Archive />, shortcut: "E", variant: "danger" },
+  ] : [], [selected]);
+
+  useEffect(() => {
+    const openActions = (event: KeyboardEvent) => {
+      if (!(event.metaKey || event.ctrlKey) || event.key.toLocaleLowerCase() !== "k" || !selected) return;
+      event.preventDefault();
+      setActionsOpen(true);
+      setProofStep((current) => Math.max(current, 2));
+    };
+    window.addEventListener("keydown", openActions);
+    return () => window.removeEventListener("keydown", openActions);
+  }, [selected]);
+
   const updateIssue = (id: string, update: Partial<PilotIssue>) => setIssues((current) => current.map((issue) => issue.id === id ? { ...issue, ...update, updated: "Now" } : issue));
 
-  const archiveIssue = (id: string) => {
+  const archiveIssue = (id: string, source: "menu" | "action-list" = "menu") => {
     const index = issues.findIndex((issue) => issue.id === id);
     const issue = issues[index];
     if (!issue) return;
     const remaining = issues.filter((item) => item.id !== id);
     setIssues(remaining);
     setSelectedId(remaining[Math.min(index, Math.max(remaining.length - 1, 0))]?.id ?? null);
+    if (source === "action-list") setProofStep(3);
     pushUndo({
       label: `Archived ${issue.code}`,
       undo: () => {
         setIssues((current) => current.some((item) => item.id === issue.id) ? current : [...current.slice(0, index), issue, ...current.slice(index)]);
         setSelectedId(issue.id);
+        if (source === "action-list") setProofStep(4);
       },
     });
-    toast("Issue archived", { description: `${issue.code} can be restored from the undo bar.` });
+  };
+
+  const runAction = (item: ActionListItem) => {
+    if (!selected) return;
+    setActionsOpen(false);
+    if (item.id === "toggle-status") {
+      const nextStatus = selected.status === "Done" ? "In progress" : "Done";
+      updateIssue(selected.id, { status: nextStatus });
+      toast(nextStatus === "Done" ? "Issue completed" : "Issue reopened", { id: "pilot-feedback" });
+    }
+    if (item.id === "priority") {
+      updateIssue(selected.id, { priority: "High" });
+      toast("Priority updated", { id: "pilot-feedback", description: `${selected.code} is now high priority.` });
+    }
+    if (item.id === "archive") archiveIssue(selected.id, "action-list");
   };
 
   const createIssue = () => {
@@ -119,7 +168,7 @@ function PilotWorkspaceInner() {
     setDraftTitle("");
     setDraftDescription("");
     setCreateOpen(false);
-    toast("Issue created", { description: `${next.code} is ready for refinement.` });
+    toast("Issue created", { id: "pilot-feedback", description: `${next.code} is ready for refinement.` });
   };
 
   return (
@@ -127,9 +176,16 @@ function PilotWorkspaceInner() {
       <header className="pilot-workspace__header">
         <div className="pilot-workspace__identity"><span><Rows aria-hidden="true" /></span><div><strong>Interface quality</strong><small>Cycle 08 · {issues.length} issues</small></div></div>
         <div className="pilot-workspace__actions">
-          <SearchInput label="Search pilot issues" value={query} onChange={(event) => setQuery(event.target.value)} onClear={() => setQuery("")} placeholder="Search issues…" shortcut="/" />
+          <SearchInput label="Search pilot issues" value={query} onChange={(event) => { setQuery(event.target.value); if (event.target.value.trim()) setProofStep((current) => Math.max(current, 1)); }} onClear={() => setQuery("")} placeholder="Search issues…" shortcut="/" />
+          <Dialog open={actionsOpen} onOpenChange={(open) => { setActionsOpen(open); if (open) setProofStep((current) => Math.max(current, 2)); }}>
+            <DialogTrigger render={<Button variant="secondary" size="small" leadingIcon={<Command />} aria-label="Open issue actions (Command K)">Actions</Button>} />
+            <DialogContent className="pilot-action-dialog">
+              <DialogHeader><DialogTitle>Act on {selected?.code ?? "selected issue"}</DialogTitle><DialogDescription>Find one action without losing the selected issue or its place in the list.</DialogDescription></DialogHeader>
+              <ActionList items={actionItems} onAction={runAction} autoFocus placeholder="Search issue actions…" />
+            </DialogContent>
+          </Dialog>
           <Dialog open={createOpen} onOpenChange={setCreateOpen}>
-            <DialogTrigger render={<Button variant="primary" size="small" leadingIcon={<Plus />}>New issue</Button>} />
+            <DialogTrigger render={<Button variant="primary" size="small" leadingIcon={<Plus />} aria-label="New issue">New issue</Button>} />
             <DialogContent>
               <DialogHeader><DialogTitle>Create issue</DialogTitle><DialogDescription>Add a small, concrete piece of interface work to the active cycle.</DialogDescription></DialogHeader>
               <form className="pilot-create-form" onSubmit={(event) => { event.preventDefault(); createIssue(); }}>
@@ -142,6 +198,14 @@ function PilotWorkspaceInner() {
         </div>
       </header>
 
+      <div className="pilot-proof" aria-label="Authored interaction proof task">
+        <div><strong>Proof task</strong><span>Find → inspect → act → recover</span><button type="button" onClick={onReset}>Reset</button></div>
+        <ol>{proofSteps.map(([label, description], index) => {
+          const step = index + 1;
+          return <li key={label} data-complete={proofStep >= step || undefined} aria-current={proofStep === index ? "step" : undefined}><span>{step}</span><div><strong>{label}</strong><small>{description}</small></div></li>;
+        })}</ol>
+      </div>
+
       <Tabs defaultValue="issues" className="pilot-tabs">
         <div className="pilot-tabs__bar"><TabsList aria-label="Pilot views"><TabsTrigger value="issues">Issues</TabsTrigger><TabsTrigger value="cycle">Cycle</TabsTrigger></TabsList><span>{filtered.length} visible</span></div>
         <TabsContent value="issues" className="pilot-tabs__panel">
@@ -149,7 +213,7 @@ function PilotWorkspaceInner() {
             className="pilot-shared-detail"
             items={sharedItems}
             selectedId={filtered.some((issue) => issue.id === selectedId) ? selectedId : null}
-            onSelectedIdChange={setSelectedId}
+            onSelectedIdChange={selectIssue}
             focusOnOpen={false}
             regionLabel="Selected issue detail"
             renderDetail={(item) => {
@@ -162,7 +226,7 @@ function PilotWorkspaceInner() {
                 </div>
                 <dl className="pilot-detail-meta"><div><dt><UserCircle aria-hidden="true" />Assignee</dt><dd>{issue.assignee}</dd></div><div><dt><CalendarBlank aria-hidden="true" />Updated</dt><dd>{issue.updated}</dd></div></dl>
                 <div className="pilot-detail-title"><span>Title</span><InlineEdit value={issue.title} label="Edit issue title" onSave={(title) => updateIssue(issue.id, { title })} validate={(title) => title.length < 4 ? "Use at least four characters." : undefined} /></div>
-                <div className="pilot-detail-actions"><Button size="small" variant="secondary" onClick={() => { updateIssue(issue.id, { status: issue.status === "Done" ? "In progress" : "Done" }); toast(issue.status === "Done" ? "Issue reopened" : "Issue completed"); }}>{issue.status === "Done" ? "Reopen" : "Mark done"}</Button><Menu><MenuTrigger render={<IconButton size="small" variant="ghost" aria-label="More issue actions"><DotsThree /></IconButton>} /><MenuContent align="end"><MenuLabel>{issue.code}</MenuLabel><MenuItem onClick={() => updateIssue(issue.id, { priority: "High" })}>Set high priority</MenuItem><MenuSeparator /><MenuItem className="ix-menu__item--danger" onClick={() => archiveIssue(issue.id)}><Archive aria-hidden="true" />Archive issue</MenuItem></MenuContent></Menu></div>
+                <div className="pilot-detail-actions"><Button size="small" variant="secondary" onClick={() => { updateIssue(issue.id, { status: issue.status === "Done" ? "In progress" : "Done" }); toast(issue.status === "Done" ? "Issue reopened" : "Issue completed", { id: "pilot-feedback" }); }}>{issue.status === "Done" ? "Reopen" : "Mark done"}</Button><Menu><MenuTrigger render={<IconButton size="small" variant="ghost" aria-label="More issue actions"><DotsThree /></IconButton>} /><MenuContent align="end"><MenuLabel>{issue.code}</MenuLabel><MenuItem onClick={() => updateIssue(issue.id, { priority: "High" })}>Set high priority</MenuItem><MenuSeparator /><MenuItem className="ix-menu__item--danger" onClick={() => archiveIssue(issue.id)}><Archive aria-hidden="true" />Archive issue</MenuItem></MenuContent></Menu></div>
               </div>;
             }}
           /> : <div className="pilot-empty"><strong>No matching issues</strong><p>Try a different query or create a new issue.</p><Button size="small" onClick={() => setQuery("")}>Clear search</Button></div>}
@@ -181,5 +245,6 @@ function PilotWorkspaceInner() {
 }
 
 export function ProductPilot() {
-  return <UndoStackProvider><PilotWorkspaceInner /></UndoStackProvider>;
+  const [run, setRun] = useState(0);
+  return <UndoStackProvider key={run}><PilotWorkspaceInner onReset={() => setRun((current) => current + 1)} /></UndoStackProvider>;
 }

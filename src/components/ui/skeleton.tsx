@@ -1,7 +1,7 @@
-import type { HTMLAttributes } from "react";
+import type { ComponentPropsWithRef } from "react";
 import { cn } from "../../lib/cn";
 
-export type SkeletonProps = HTMLAttributes<HTMLDivElement> & {
+export type SkeletonProps = ComponentPropsWithRef<"div"> & {
   width?: number | string;
   height?: number | string;
   radius?: "small" | "medium" | "round";

@@ -1,9 +1,9 @@
 import "../../styles/index-base.css";
 import "../../styles/components/spinner.css";
-import type { HTMLAttributes } from "react";
+import type { ComponentPropsWithRef } from "react";
 import { cn } from "../../lib/cn";
 
-export type SpinnerProps = HTMLAttributes<HTMLSpanElement> & {
+export type SpinnerProps = ComponentPropsWithRef<"span"> & {
   size?: "small" | "medium" | "large";
   label?: string;
 };

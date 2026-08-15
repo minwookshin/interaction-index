@@ -28,7 +28,7 @@
 
 .ix-segmented-control__item:focus-visible { z-index: 1; outline: 2px solid var(--ix-focus-control); outline-offset: 1px; }
 
-.ix-segmented-control__item:active { transform: scale(.96); }
+.ix-segmented-control__item:active { transform: scale(.97); }
 
 .ix-segmented-control__item[data-disabled] { color: var(--ix-fg-disabled); cursor: not-allowed; }
 

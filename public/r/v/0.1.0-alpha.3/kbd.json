@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kbd",
+  "title": "Kbd",
+  "description": "Presentational keyboard hints for keys, chords, and sequences.",
+  "registryDependencies": [
+    "@index/interaction-index-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/kbd.tsx",
+      "content": "import \"../../styles/index-base.css\";\nimport \"../../styles/components/kbd.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type KbdProps = ComponentPropsWithRef<\"kbd\">;\n\nexport function Kbd({ className, ...props }: KbdProps) {\n  return <kbd className={cn(\"ix-kbd\", className)} {...props} />;\n}\n\nexport type KbdGroupProps = ComponentPropsWithRef<\"span\">;\n\nexport function KbdGroup({ className, ...props }: KbdGroupProps) {\n  return <span className={cn(\"ix-kbd-group\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/kbd.tsx"
+    },
+    {
+      "path": "registry/styles/components/kbd.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer index.tokens, index.base, index.components;\n\n@layer index.components {\n.ix-kbd-group { display: inline-flex; align-items: center; gap: 3px; color: var(--ix-fg-muted); font-size: 11px; white-space: nowrap; }\n\n.ix-kbd {\n  display: inline-flex;\n  min-width: 20px;\n  height: 20px;\n  align-items: center;\n  justify-content: center;\n  padding: 0 5px;\n  border: 0;\n  border-radius: 4px;\n  background: var(--ix-bg-subtle);\n  box-shadow: inset 0 0 0 1px var(--ix-separator), 0 1px 0 color-mix(in oklch, var(--ix-fg-default) 8%, transparent);\n  color: var(--ix-fg-muted);\n  font-family: var(--ix-font-code);\n  font-size: 10.5px;\n  font-weight: 500;\n  line-height: 1;\n  white-space: nowrap;\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/kbd.css"
+    }
+  ],
+  "type": "registry:ui"
+}

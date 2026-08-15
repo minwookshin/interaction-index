@@ -13,4 +13,19 @@ Interaction Index is pre-1.0. Public APIs may change, but every breaking alpha c
 
 ## Current migrations
 
-None. `0.1.0-alpha.0` is the initial recorded API baseline.
+### Unreleased: explicit toast facade
+
+The registry previously re-exported Sonner's entire `toast` object by inference. Interaction Index now owns a smaller, nameable API that matches its documentation and declaration output.
+
+```ts
+// Before: implementation-specific helpers were reachable through @index/ui.
+import { toast } from "@index/ui";
+toast.promise(save(), { loading: "Saving…", success: "Saved" });
+
+// After: use the stable Interaction Index notification surface.
+import { toast } from "@index/ui";
+toast.loading("Saving…");
+toast.success("Saved");
+```
+
+If an advanced Sonner-only helper is required during alpha, import it explicitly from `sonner`. This keeps the dependency boundary visible while the Interaction Index promise contract is designed.

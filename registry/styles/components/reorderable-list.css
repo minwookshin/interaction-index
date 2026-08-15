@@ -1,0 +1,56 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-reorderable { display: grid; width: min(520px, 100%); gap: 4px; outline: 0; }
+
+.ix-reorderable__item {
+  display: grid;
+  min-height: 46px;
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px 6px 6px;
+  border-radius: 8px;
+  background: var(--ix-bg-subtle);
+  color: var(--ix-fg-default);
+  outline: 0;
+  transition: background-color var(--ix-hover-duration), box-shadow var(--ix-hover-duration), opacity var(--ix-exit-duration), transform var(--ix-press-duration) var(--ix-ease-out);
+}
+
+.ix-reorderable__item[data-hovered] { background: var(--ix-hover); }
+
+.ix-reorderable__item[data-focus-visible],
+.ix-reorderable__item[data-focus-visible-within] { box-shadow: inset 0 0 0 1px var(--ix-focus-control); }
+
+.ix-reorderable__item[data-dragging] { opacity: .48; transform: scale(.985); }
+
+.ix-reorderable__item[data-drop-target] { background: var(--ix-selection); }
+
+.ix-reorderable__item[data-disabled] { color: var(--ix-fg-disabled); }
+
+.ix-reorderable__handle { display: grid; width: 28px; height: 28px; place-items: center; border: 0; border-radius: 6px; background: transparent; color: var(--ix-fg-subtle); cursor: grab; }
+
+.ix-reorderable__handle:hover { background: var(--ix-hover); color: var(--ix-fg-default); }
+
+.ix-reorderable__handle:focus-visible { outline: 0; box-shadow: inset 0 0 0 1px var(--ix-focus-control); }
+
+.ix-reorderable__handle svg { width: 16px; height: 16px; }
+
+.ix-reorderable__copy { display: grid; min-width: 0; gap: 2px; }
+
+.ix-reorderable__label { overflow: hidden; font-size: var(--ix-type-ui); font-weight: 550; text-overflow: ellipsis; white-space: nowrap; }
+
+.ix-reorderable__description { overflow: hidden; color: var(--ix-fg-subtle); font-size: var(--ix-type-metadata); text-overflow: ellipsis; white-space: nowrap; }
+
+.ix-reorderable__drop-indicator { height: 2px; margin: -1px 8px; border-radius: 999px; background: transparent; }
+
+.ix-reorderable__drop-indicator[data-drop-target] { background: var(--ix-fg-default); }
+
+.ix-reorderable__preview { max-width: 260px; padding: 8px 10px; border-radius: 7px; background: var(--ix-bg-flyout); box-shadow: var(--ix-shadow-flyout); color: var(--ix-fg-default); font-size: var(--ix-type-ui); }
+
+@media (prefers-reduced-motion: reduce) {
+.ix-reorderable__item { transition-duration: 0.01ms; }
+}
+}

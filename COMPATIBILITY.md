@@ -1,47 +1,64 @@
 # Compatibility
 
-Interaction Index is an MIT-licensed alpha. The table below records the environment verified on 2026-08-14; it is evidence, not a broad support promise.
+Interaction Index `0.1.0-rc.1` is an MIT-licensed, unpublished release candidate. The table below records the environment verified on 2026-08-15; it is evidence, not a broad support promise.
 
 ## Verified stack
 
 | Layer | Verified version |
 | --- | --- |
 | Node.js | 22.14.0 |
+| npm | 10.9.2 |
 | React / React DOM | 19.2.0 |
 | TypeScript | 7.0.2 |
 | Base UI | 1.7.0 |
+| React Aria Components | 1.20.0 |
+| Internationalized Date | 3.12.3 |
 | Motion | 13.1.0 |
 | shadcn CLI | 4.18.0 |
-| Vite | 6.4.2 |
+| Vite | 6.4.3 |
 | Vitest | 4.1.10 |
+| Playwright | 1.62.1 |
 
 The lockfile is the reproducible source for every direct and transitive version used by this verification.
 
-## Verified behavior
+## Verified public contract
 
-- 108 component, documentation, keyboard, state, and accessibility tests.
-- TypeScript strict no-emit checking and a Vite production build.
-- shadcn-compatible generation for 35 individual component items and the complete system item.
-- Fresh Vite consumer builds for a Button-only install and the complete-system item, in addition to the full generated registry validation.
-- A clean public canary installed `@index/button` from the live GitHub Pages registry with `shadcn@latest`, received its base and component-scoped styles, and passed a production TypeScript/Vite build.
-- Consumer TypeScript and production builds with generated source, per-component CSS, the shared cascade contract, and bundled Inter variable font.
-- Light and dark visual review at 1280 x 720 in the in-app Chromium browser.
-- Representative pointer, keyboard, focus-return, overlay dismissal, sorting, filtering, selection, pagination, and reduced-motion paths.
-- The full Playwright suite executed locally across Chromium, Firefox, WebKit, mobile Chromium, and mobile WebKit: 66 passed and 19 intentionally skipped by visual-baseline ownership and desktop/mobile gating.
-- All 53 documentation routes, including the Product pilot, were checked per browser project for their expected H1, page errors, and document-level horizontal overflow.
-- Desktop disclosure and theme persistence passed in Chromium, Firefox, and WebKit; mobile drawer navigation passed in Pixel 5 and iPhone 12 emulation.
-- Axe anchor-route checks report no serious or critical violations on Introduction, Button, and Product pilot after correcting the subtle-text contrast token.
-- The Product pilot passes automated structural checks in RTL, forced colors, reduced motion, and a 640 px viewport used as a 200% layout proxy.
-- Eight cross-platform visual baselines cover light/dark entry, Button product/focus/loading, Text Field error, and Product pilot light/dark.
-- Branded Chrome 151 passed Button keyboard focus and confirmed 200% zoom without content loss on macOS 26.5.2.
+- 45 frozen public components, 210 compiler-extracted exports, and 145 semantic tokens.
+- 151 source tests across component, documentation, keyboard, state, and accessibility behavior.
+- 90 light/dark Storybook Product/State contract runs for all 45 components.
+- 312 visual baselines: 132 full-viewport public-route screenshots plus 180 isolated Product/State screenshots.
+- 66 public routes: 11 documentation pages, 5 foundation routes, 45 component routes, and 5 pattern routes.
+- TypeScript strict no-emit checking, Storybook production build, Vite documentation build, and Sites worker contract.
+
+## Verified distribution boundaries
+
+- shadcn-compatible generation for every component, the shared base, and the complete-system item.
+- Deterministic SHA-256 metadata for registry JSON, copied files, compiler-extracted APIs, and semantic tokens.
+- A byte-locked versioned registry at `/r/v/0.1.0-rc.1/` that rejects same-version rewrites.
+- Fresh source-consumer builds for a Button-only install, every individual item, the complete system, and the staged upgrade/accept flow.
+- A packed private npm candidate with explicit exports, tarball allowlisting, integrity metadata, and a fresh TypeScript/Vite consumer build.
+- A realistic issue workspace built only from `interaction-index` and `interaction-index/styles.css`; no private source imports are permitted by its verifier.
+- `npm audit` reports zero known vulnerabilities for the verified lockfile.
+
+## Verified browser and accessibility behavior
+
+- The five-project Playwright matrix covers Chromium, Firefox, WebKit, mobile Chromium, and mobile WebKit. The final run reported 161 applicable checks passed and 324 intentional project-ownership skips.
+- All 66 routes are scanned for serious/critical axe violations, 200% equivalent reflow, visible keyboard-hint atomicity, translated-content expansion, forced-colors structure, reduced-motion structure, and document overflow.
+- All 45 Product previews preserve a 24 CSS pixel effective target floor in mobile Chromium and mobile WebKit emulation.
+- Text Field, Tabs, Menu, and Dialog complete representative touch paths in both mobile engines; the virtual-keyboard viewport proxy preserves field visibility and focus.
+- Pointer, keyboard, focus-return, overlay dismissal, sorting, filtering, selection, pagination, RTL, responsive navigation, state-menu, layer, and authored Product-pilot paths are covered.
+- Product-pilot interaction measurements stayed below the 750 ms budget in every local browser project; the recorded slowest run was 576 ms for Shared Detail selection and 315 ms for Dialog open in mobile WebKit.
+- Branded Chrome 151 passed Button keyboard focus and 200% zoom without content loss on macOS 26.5.2.
 - Branded Safari 26.5.2 passed Button keyboard/zoom plus a live VoiceOver Dialog and Menu anchor review on macOS 26.5.2.
 
-## Not yet verified
+## External gates not yet verified
 
-- Microsoft Edge; it was not installed in the current manual-test environment.
-- Physical touch devices, virtual keyboards, safe areas, zoom, and narrow viewports as a complete catalog-wide matrix.
-- Translated content expansion; RTL structure is automated, but semantic icon mirroring still requires manual review.
+- Microsoft Edge on Windows, including Windows High Contrast.
+- Physical iOS and Android devices, real software keyboards, safe areas, orientation changes, and device zoom.
+- macOS Increase Contrast and Reduce Transparency on the final candidate.
+- Human review of a verbose translation and an RTL translation, including semantic icon direction.
 - Server rendering outside the current Vite application.
-- Production usage, long-running performance, or installs outside the verified Vite consumer.
+- External production adoption, long-running product performance, or independent installs outside the verified consumers.
+- npm publication, trusted-publisher configuration, remote provenance attestation, a public release tag, or a GitHub Release for this candidate.
 
-These gaps block a stable compatibility promise. Until they are closed, APIs and visual contracts may change between alpha versions.
+`RC_EXTERNAL_GATES.md` defines the exact procedures and evidence record. These gaps do not invalidate the local candidate artifact, but they block a stable compatibility promise and any claim of external production readiness.

@@ -1,0 +1,12 @@
+import { Menu as MenuPrimitive } from "@base-ui/react/menu";
+import type { ComponentPropsWithRef } from "react";
+export declare const Menu: <Payload>(props: MenuPrimitive.Root.Props<Payload>) => import("react").JSX.Element;
+export declare function MenuTrigger(props: MenuPrimitive.Trigger.Props): import("react").JSX.Element;
+export type MenuContentProps = MenuPrimitive.Popup.Props & Pick<MenuPrimitive.Positioner.Props, "align" | "alignOffset" | "collisionAvoidance" | "side" | "sideOffset">;
+export declare function MenuContent({ className, align, alignOffset, collisionAvoidance, side, sideOffset, ...props }: MenuContentProps): import("react").JSX.Element;
+export declare function MenuLabel({ className, ...props }: ComponentPropsWithRef<"div">): import("react").JSX.Element;
+export declare function MenuItem({ className, ...props }: MenuPrimitive.Item.Props): import("react").JSX.Element;
+export declare function MenuSeparator(props: MenuPrimitive.Separator.Props): import("react").JSX.Element;
+export declare function MenuCheckboxItem({ className, children, ...props }: MenuPrimitive.CheckboxItem.Props): import("react").JSX.Element;
+export declare const MenuRadioGroup: import("react").NamedExoticComponent<Omit<import("@base-ui/react").ContextMenuRadioGroupProps, "ref"> & import("react").RefAttributes<HTMLDivElement>>;
+export declare function MenuRadioItem({ className, children, closeOnClick, ...props }: MenuPrimitive.RadioItem.Props): import("react").JSX.Element;

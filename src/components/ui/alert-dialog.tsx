@@ -1,5 +1,5 @@
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
-import type { HTMLAttributes } from "react";
+import type { ComponentPropsWithRef } from "react";
 import { cn } from "../../lib/cn";
 
 export const AlertDialog = AlertDialogPrimitive.Root;
@@ -21,10 +21,10 @@ export function AlertDialogContent({ className, children, ...props }: AlertDialo
   );
 }
 
-export function AlertDialogHeader({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
+export function AlertDialogHeader({ className, ...props }: ComponentPropsWithRef<"div">) {
   return <div className={cn("ix-dialog__header", className)} {...props} />;
 }
 
-export function AlertDialogFooter({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
+export function AlertDialogFooter({ className, ...props }: ComponentPropsWithRef<"div">) {
   return <div className={cn("ix-dialog__footer", className)} {...props} />;
 }

@@ -1,0 +1,16 @@
+audit/
+artifacts/
+dist/
+node_modules/
+playwright-report/
+registry/
+storybook-static/
+test-results/
+tests/
+.github/
+AGENTS.md
+design-qa.md
+design-qa-*.png
+design-qa-current.png
+design-qa-comparison.png
+performance-report.json

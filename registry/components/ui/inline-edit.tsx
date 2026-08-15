@@ -1,7 +1,7 @@
 import "../../styles/index-base.css";
 import "../../styles/components/inline-edit.css";
 import { PencilSimple } from "@phosphor-icons/react";
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
 import type { BehaviorContract } from "../../lib/behavior-contract";
 import { cn } from "../../lib/cn";
 
@@ -35,6 +35,8 @@ export function InlineEdit({ value, onSave, label = "Edit value", placeholder, c
   const inputRef = useRef<HTMLInputElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const committingRef = useRef(false);
+  const generatedId = useId();
+  const errorId = `${generatedId}-error`;
 
   useEffect(() => setDraft(value), [value]);
 
@@ -114,7 +116,7 @@ export function InlineEdit({ value, onSave, label = "Edit value", placeholder, c
               placeholder={placeholder}
               aria-label={label}
               aria-invalid={status === "error" || undefined}
-              aria-describedby={error ? `${label.replace(/\s+/g, "-").toLocaleLowerCase()}-error` : undefined}
+              aria-describedby={error ? errorId : undefined}
               disabled={status === "saving"}
               onChange={(event) => { setDraft(event.target.value); setStatus("idle"); setError(""); }}
               onKeyDown={onKeyDown}
@@ -122,7 +124,7 @@ export function InlineEdit({ value, onSave, label = "Edit value", placeholder, c
             />
             {status === "saving" && <span className="ix-inline-edit__saving" aria-hidden="true"><span className="ix-spinner" /></span>}
           </div>
-          {error && <span id={`${label.replace(/\s+/g, "-").toLocaleLowerCase()}-error`} className="ix-inline-edit__error">{error}</span>}
+          {error && <span id={errorId} className="ix-inline-edit__error">{error}</span>}
         </>
       ) : (
         <button

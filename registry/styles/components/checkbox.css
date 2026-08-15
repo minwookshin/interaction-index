@@ -19,7 +19,7 @@
 
 .ix-checkbox[data-disabled] { opacity: 0.42; cursor: not-allowed; }
 
-.ix-checkbox:active:not([data-disabled]) { transform: scale(0.92); }
+.ix-checkbox:active:not([data-disabled]) { transform: scale(0.96); }
 
 .ix-checkbox__indicator { display: grid; place-items: center; }
 

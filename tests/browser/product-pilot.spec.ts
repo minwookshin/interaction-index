@@ -36,3 +36,23 @@ test("product pilot selection responds within the interaction budget", async ({ 
   console.log(`[pilot-performance] dialog open: ${overlayMs}ms`);
   expect(overlayMs).toBeLessThan(750);
 });
+
+test("authored task composes Action List, Shared Detail, and Undo Stack", async ({ page, isMobile }) => {
+  test.skip(Boolean(isMobile), "The Command K proof path targets a hardware keyboard; the pointer trigger remains available on mobile.");
+  await page.goto("/#product-pilot");
+  await page.getByRole("button", { name: /Tune shared detail motion/ }).click();
+  await expect(page.getByRole("heading", { name: "Tune shared detail motion" })).toBeVisible();
+
+  await page.keyboard.press("Meta+K");
+  await expect(page.getByRole("dialog", { name: "Act on INT-198" })).toBeVisible();
+  const actionSearch = page.getByRole("combobox", { name: "Search actions" });
+  await expect(actionSearch).toBeFocused();
+  await actionSearch.fill("archive");
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("button", { name: "Undo" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Tune shared detail motion" })).not.toBeVisible();
+
+  await page.getByRole("button", { name: "Undo" }).click();
+  await expect(page.getByRole("heading", { name: "Tune shared detail motion" })).toBeVisible();
+  await expect(page.getByRole("listitem").filter({ hasText: "Choose Undo" })).toHaveAttribute("data-complete", "true");
+});

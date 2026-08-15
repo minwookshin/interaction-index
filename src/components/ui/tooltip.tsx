@@ -13,7 +13,7 @@ export function TooltipTrigger(props: TooltipPrimitive.Trigger.Props) {
   return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />;
 }
 
-type TooltipContentProps = TooltipPrimitive.Popup.Props &
+export type TooltipContentProps = TooltipPrimitive.Popup.Props &
   Pick<TooltipPrimitive.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">;
 
 export function TooltipContent({

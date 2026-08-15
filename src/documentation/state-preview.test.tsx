@@ -15,7 +15,7 @@ function renderState(id: ComponentGuidanceId, state: string, index = 0) {
 }
 
 describe("component state documentation", () => {
-  it("renders every documented state for all 35 public components", () => {
+  it("renders every documented state for every public component", () => {
     for (const [id, guidance] of Object.entries(componentGuidance) as [ComponentGuidanceId, (typeof componentGuidance)[ComponentGuidanceId]][]) {
       guidance.states.forEach((state, index) => {
         const { container, unmount } = renderState(id, state, index);

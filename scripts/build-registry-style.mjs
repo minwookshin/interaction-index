@@ -3,15 +3,39 @@ import { resolve } from "node:path";
 
 const root = process.cwd();
 const sourcePath = resolve(root, "src/styles.css");
+const tokenSourcePath = resolve(root, "src/tokens/generated.css");
 const registryPath = resolve(root, "registry.json");
 const generatedRoot = resolve(root, "registry");
 const source = await readFile(sourcePath, "utf8");
+const tokenSource = await readFile(tokenSourcePath, "utf8");
 const registry = JSON.parse(await readFile(registryPath, "utf8"));
+const packageJson = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
 const componentItems = registry.items.filter((item) => item.type === "registry:ui");
 
 const generatedHeader = "/* Generated from src/styles.css. Do not edit directly. */";
 const layerOrder = "@layer index.tokens, index.base, index.components;";
 const fontImport = source.match(/^@import\s+[^;]+;/m)?.[0] ?? "";
+
+function packageName(specifier) {
+  if (specifier.startsWith("@")) {
+    const separator = specifier.indexOf("@", specifier.indexOf("/") + 1);
+    return separator === -1 ? specifier : specifier.slice(0, separator);
+  }
+  const separator = specifier.indexOf("@");
+  return separator === -1 ? specifier : specifier.slice(0, separator);
+}
+
+function versionDependency(specifier) {
+  const name = packageName(specifier);
+  if (name !== specifier) return specifier;
+  const version = packageJson.dependencies?.[name];
+  if (!version) throw new Error(`Registry dependency ${name} is not declared in package.json dependencies.`);
+  return `${name}@${version}`;
+}
+
+for (const item of registry.items) {
+  if (item.dependencies) item.dependencies = item.dependencies.map(versionDependency);
+}
 
 function splitSelectors(value) {
   const selectors = [];
@@ -174,7 +198,7 @@ const baseSelector = (selector) => {
   return baseSelectors.has(normalized) || normalized.startsWith(".ix-sr-only");
 };
 
-const tokenRules = filterCss(source, rootSelector);
+const tokenRules = filterCss(tokenSource, rootSelector);
 const baseRules = filterCss(source, baseSelector);
 if (!tokenRules.includes("--ix-bg-canvas") || !baseRules.includes("box-sizing")) {
   throw new Error("Registry base extraction omitted required tokens or reset rules.");

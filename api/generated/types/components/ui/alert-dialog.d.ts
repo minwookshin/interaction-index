@@ -1,0 +1,10 @@
+import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
+import type { ComponentPropsWithRef } from "react";
+export declare const AlertDialog: typeof AlertDialogPrimitive.Root;
+export declare const AlertDialogTrigger: AlertDialogPrimitive.Trigger;
+export declare const AlertDialogClose: import("react").ForwardRefExoticComponent<Omit<import("@base-ui/react").AlertDialogCloseProps, "ref"> & import("react").RefAttributes<HTMLButtonElement>>;
+export declare const AlertDialogTitle: import("react").ForwardRefExoticComponent<Omit<import("@base-ui/react").AlertDialogTitleProps, "ref"> & import("react").RefAttributes<HTMLHeadingElement>>;
+export declare const AlertDialogDescription: import("react").ForwardRefExoticComponent<Omit<import("@base-ui/react").AlertDialogDescriptionProps, "ref"> & import("react").RefAttributes<HTMLParagraphElement>>;
+export declare function AlertDialogContent({ className, children, ...props }: AlertDialogPrimitive.Popup.Props): import("react").JSX.Element;
+export declare function AlertDialogHeader({ className, ...props }: ComponentPropsWithRef<"div">): import("react").JSX.Element;
+export declare function AlertDialogFooter({ className, ...props }: ComponentPropsWithRef<"div">): import("react").JSX.Element;

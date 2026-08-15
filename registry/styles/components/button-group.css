@@ -1,0 +1,31 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-button-group { display: inline-flex; min-width: 0; align-items: center; gap: 4px; }
+
+.ix-button-group[data-orientation="vertical"] { flex-direction: column; align-items: stretch; }
+
+.ix-button-group[data-attached] { gap: 0; }
+
+.ix-button-group[data-attached][data-orientation="horizontal"] > .ix-button:not(:first-child) { margin-left: -1px; }
+
+.ix-button-group[data-attached][data-orientation="horizontal"] > .ix-button:not(:first-child):not(:last-child) { border-radius: 0; }
+
+.ix-button-group[data-attached][data-orientation="horizontal"] > .ix-button:first-child:not(:last-child) { border-radius: var(--ix-radius-control) 0 0 var(--ix-radius-control); }
+
+.ix-button-group[data-attached][data-orientation="horizontal"] > .ix-button:last-child:not(:first-child) { border-radius: 0 var(--ix-radius-control) var(--ix-radius-control) 0; }
+
+.ix-button-group[data-attached][data-orientation="vertical"] > .ix-button:not(:first-child) { margin-top: -1px; }
+
+.ix-button-group[data-attached][data-orientation="vertical"] > .ix-button:first-child:not(:last-child) { border-radius: var(--ix-radius-control) var(--ix-radius-control) 0 0; }
+
+.ix-button-group[data-attached][data-orientation="vertical"] > .ix-button:last-child:not(:first-child) { border-radius: 0 0 var(--ix-radius-control) var(--ix-radius-control); }
+
+.ix-button-group__separator { display: block; align-self: stretch; flex: 0 0 auto; background: var(--ix-separator); }
+
+.ix-button-group__separator[aria-orientation="vertical"] { width: 1px; min-height: 20px; margin: 4px 2px; }
+
+.ix-button-group__separator[aria-orientation="horizontal"] { height: 1px; min-width: 20px; margin: 2px 4px; }
+}

@@ -1,7 +1,8 @@
 import { CaretLeft, CaretRight, DotsThree } from "@phosphor-icons/react";
+import type { ComponentPropsWithRef } from "react";
 import { cn } from "../../lib/cn";
 
-export type PaginationProps = {
+export type PaginationProps = Omit<ComponentPropsWithRef<"nav">, "children"> & {
   page: number;
   totalPages: number;
   onPageChange: (page: number) => void;
@@ -22,13 +23,16 @@ function pageRange(page: number, total: number, siblingCount: number) {
   return values;
 }
 
-export function Pagination({ page, totalPages, onPageChange, siblingCount = 1, className, label = "Pagination" }: PaginationProps) {
-  const setPage = (next: number) => onPageChange(Math.min(totalPages, Math.max(1, next)));
+export function Pagination({ page, totalPages, onPageChange, siblingCount = 1, className, label = "Pagination", ...props }: PaginationProps) {
+  const safeTotalPages = Math.max(1, Math.floor(totalPages));
+  const safePage = Math.min(safeTotalPages, Math.max(1, Math.floor(page)));
+  const safeSiblingCount = Math.max(0, Math.floor(siblingCount));
+  const setPage = (next: number) => onPageChange(Math.min(safeTotalPages, Math.max(1, next)));
   return (
-    <nav className={cn("ix-pagination", className)} aria-label={label}>
-      <button type="button" aria-label="Previous page" disabled={page <= 1} onClick={() => setPage(page - 1)}><CaretLeft /></button>
-      {pageRange(page, totalPages, siblingCount).map((item) => typeof item === "number" ? <button type="button" key={item} aria-label={`Page ${item}`} aria-current={item === page ? "page" : undefined} onClick={() => setPage(item)}>{item}</button> : <span key={item} aria-hidden="true"><DotsThree /></span>)}
-      <button type="button" aria-label="Next page" disabled={page >= totalPages} onClick={() => setPage(page + 1)}><CaretRight /></button>
+    <nav className={cn("ix-pagination", className)} aria-label={label} {...props}>
+      <button type="button" aria-label="Previous page" disabled={safePage <= 1} onClick={() => setPage(safePage - 1)}><CaretLeft /></button>
+      {pageRange(safePage, safeTotalPages, safeSiblingCount).map((item) => typeof item === "number" ? <button type="button" key={item} aria-label={`Page ${item}`} aria-current={item === safePage ? "page" : undefined} onClick={() => setPage(item)}>{item}</button> : <span key={item} aria-hidden="true"><DotsThree /></span>)}
+      <button type="button" aria-label="Next page" disabled={safePage >= safeTotalPages} onClick={() => setPage(safePage + 1)}><CaretRight /></button>
     </nav>
   );
 }

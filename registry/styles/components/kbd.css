@@ -1,0 +1,26 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-kbd-group { display: inline-flex; align-items: center; gap: 3px; color: var(--ix-fg-muted); font-size: 11px; white-space: nowrap; }
+
+.ix-kbd {
+  display: inline-flex;
+  min-width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--ix-bg-subtle);
+  box-shadow: inset 0 0 0 1px var(--ix-separator), 0 1px 0 color-mix(in oklch, var(--ix-fg-default) 8%, transparent);
+  color: var(--ix-fg-muted);
+  font-family: var(--ix-font-code);
+  font-size: 10.5px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+}

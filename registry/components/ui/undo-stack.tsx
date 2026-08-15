@@ -1,7 +1,7 @@
 import "../../styles/index-base.css";
 import "../../styles/components/undo-stack.css";
 import { ArrowCounterClockwise } from "@phosphor-icons/react";
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import type { BehaviorContract } from "../../lib/behavior-contract";
 import { Button } from "./button";
 
@@ -22,7 +22,7 @@ export type UndoAction = {
   undo: () => void;
 };
 
-type UndoContextValue = {
+export type UndoContextValue = {
   pushUndo: (action: UndoAction) => void;
   undoLatest: () => void;
   canUndo: boolean;
@@ -35,25 +35,30 @@ const UndoContext = createContext<UndoContextValue | null>(null);
 export function UndoStackProvider({ children }: { children: ReactNode }) {
   const [stack, setStack] = useState<UndoAction[]>([]);
   const [announcement, setAnnouncement] = useState("");
+  const stackRef = useRef<UndoAction[]>([]);
 
   const pushUndo = useCallback((action: UndoAction) => {
-    setStack((current) => [...current, { ...action, id: action.id ?? crypto.randomUUID() }]);
+    const next = [...stackRef.current, { ...action, id: action.id ?? crypto.randomUUID() }];
+    stackRef.current = next;
+    setStack(next);
     setAnnouncement(`${action.label}. Undo available.`);
   }, []);
 
   const undoLatest = useCallback(() => {
-    const latest = stack.at(-1);
+    const latest = stackRef.current.at(-1);
     if (!latest) return;
+    const next = stackRef.current.slice(0, -1);
+    stackRef.current = next;
+    setStack(next);
     latest.undo();
     setAnnouncement(`Undid ${latest.label}`);
-    setStack((current) => current.filter((action) => action.id !== latest.id));
-  }, [stack]);
+  }, []);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLocaleLowerCase() === "z" && !event.shiftKey) {
         const target = event.target as HTMLElement | null;
-        if (target?.matches("input, textarea, [contenteditable='true']")) return;
+        if (target?.matches("input, textarea, select, [contenteditable]:not([contenteditable='false'])")) return;
         event.preventDefault();
         undoLatest();
       }
@@ -88,7 +93,7 @@ export function UndoBar() {
   const { canUndo, latestLabel, undoLatest, count } = useUndoStack();
   if (!canUndo) return null;
   return (
-    <div className="ix-undo-bar" role="status">
+    <div className="ix-undo-bar" role="region" aria-label="Undo history">
       <span><strong>{latestLabel}</strong><small>{count > 1 ? `${count} actions in history` : "Action can be restored"}</small></span>
       <Button variant="ghost" size="small" leadingIcon={<ArrowCounterClockwise />} onClick={undoLatest}>Undo</Button>
     </div>

@@ -1,9 +1,9 @@
 import { CaretRight, DotsThree } from "@phosphor-icons/react";
-import type { HTMLAttributes, ReactNode } from "react";
+import type { ComponentPropsWithRef, ReactNode } from "react";
 import { cn } from "../../lib/cn";
 
 export type BreadcrumbItem = { label: string; href?: string; icon?: ReactNode };
-export type BreadcrumbsProps = HTMLAttributes<HTMLElement> & { items: readonly BreadcrumbItem[]; maxItems?: number; label?: string };
+export type BreadcrumbsProps = ComponentPropsWithRef<"nav"> & { items: readonly BreadcrumbItem[]; maxItems?: number; label?: string };
 
 export function Breadcrumbs({ items, maxItems = 4, label = "Breadcrumb", className, ...props }: BreadcrumbsProps) {
   const collapsed = items.length > maxItems;

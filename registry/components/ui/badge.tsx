@@ -1,10 +1,10 @@
 import "../../styles/index-base.css";
 import "../../styles/components/badge.css";
 import { X } from "@phosphor-icons/react";
-import type { HTMLAttributes, ReactNode } from "react";
+import type { ComponentPropsWithRef, ReactNode } from "react";
 import { cn } from "../../lib/cn";
 
-export type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
+export type BadgeProps = ComponentPropsWithRef<"span"> & {
   variant?: "neutral" | "strong" | "outline" | "success" | "warning" | "danger";
   leadingIcon?: ReactNode;
   removable?: boolean;

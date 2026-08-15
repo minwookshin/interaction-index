@@ -1,6 +1,11 @@
 export type ComponentDocId =
   | "button"
   | "icon-button"
+  | "field"
+  | "input-group"
+  | "kbd"
+  | "button-group"
+  | "toolbar"
   | "text-field"
   | "textarea"
   | "checkbox"
@@ -11,11 +16,14 @@ export type ComponentDocId =
   | "combobox"
   | "search-input"
   | "number-field"
+  | "date-picker"
   | "segmented-control"
   | "tooltip"
   | "popover"
   | "menu"
+  | "context-menu"
   | "dialog"
+  | "sheet"
   | "alert-dialog"
   | "tabs"
   | "breadcrumbs"
@@ -30,6 +38,8 @@ export type ComponentDocId =
   | "badge"
   | "avatar"
   | "table"
+  | "tree"
+  | "reorderable-list"
   | "inline-edit"
   | "action-list"
   | "shared-detail"
@@ -49,6 +59,67 @@ export function AddItemAction() {
     <IconButton aria-label="Create item" tooltip="Create item">
       <Plus />
     </IconButton>
+  );
+}`,
+  field: `import {
+  Field,
+  FieldControl,
+  FieldDescription,
+  FieldLabel,
+  Fieldset,
+  FieldsetLegend,
+} from "@index/ui";
+
+export function ProjectMetadata() {
+  return (
+    <Fieldset>
+      <FieldsetLegend>Project metadata</FieldsetLegend>
+      <Field>
+        <FieldLabel>Project name</FieldLabel>
+        <FieldControl defaultValue="Interaction Index" />
+        <FieldDescription>Visible to everyone in the workspace.</FieldDescription>
+      </Field>
+    </Fieldset>
+  );
+}`,
+  "input-group": `import { Copy } from "@phosphor-icons/react";
+import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "@index/ui";
+
+export function RepositoryField() {
+  return (
+    <InputGroup>
+      <InputGroupAddon>github.com/</InputGroupAddon>
+      <InputGroupInput aria-label="Repository path" />
+      <InputGroupButton aria-label="Copy repository path"><Copy /></InputGroupButton>
+    </InputGroup>
+  );
+}`,
+  kbd: `import { Kbd, KbdGroup } from "@index/ui";
+
+export function CommandShortcut() {
+  return <KbdGroup><Kbd>⌘</Kbd><Kbd>K</Kbd></KbdGroup>;
+}`,
+  "button-group": `import { Button, ButtonGroup } from "@index/ui";
+
+export function IssueActions() {
+  return (
+    <ButtonGroup aria-label="Issue actions" attached>
+      <Button size="small">Preview</Button>
+      <Button size="small">Open</Button>
+    </ButtonGroup>
+  );
+}`,
+  toolbar: `import { Plus } from "@phosphor-icons/react";
+import { Toolbar, ToolbarButton, ToolbarInput, ToolbarSeparator } from "@index/ui";
+
+export function FormattingToolbar() {
+  return (
+    <Toolbar aria-label="Formatting">
+      <ToolbarButton aria-label="Bold"><strong>B</strong></ToolbarButton>
+      <ToolbarButton aria-label="Add"><Plus /></ToolbarButton>
+      <ToolbarSeparator />
+      <ToolbarInput aria-label="Find" placeholder="Find…" />
+    </Toolbar>
   );
 }`,
   "text-field": `import { TextField } from "@index/ui";
@@ -140,6 +211,18 @@ export function CycleCapacity() {
     />
   );
 }`,
+  "date-picker": `import { parseDate } from "@internationalized/date";
+import { DatePicker } from "@index/ui";
+
+export function DueDate() {
+  return (
+    <DatePicker
+      label="Due date"
+      defaultValue={parseDate("2026-08-21")}
+      description="Dates follow the current locale."
+    />
+  );
+}`,
   "segmented-control": `import { SegmentedControl } from "@index/ui";
 
 export function IssueView() {
@@ -198,6 +281,24 @@ export function IssueActions() {
     </Menu>
   );
 }`,
+  "context-menu": `import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from "@index/ui";
+
+export function IssueContextMenu() {
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger>Motion contract</ContextMenuTrigger>
+      <ContextMenuContent>
+        <ContextMenuItem>Duplicate</ContextMenuItem>
+        <ContextMenuItem>Archive</ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
+  );
+}`,
   dialog: `import {
   Button,
   Dialog,
@@ -225,6 +326,34 @@ export function EditComponentMetadata() {
         </DialogFooter>
       </DialogContent>
     </Dialog>
+  );
+}`,
+  sheet: `import {
+  Button,
+  Sheet,
+  SheetBody,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@index/ui";
+
+export function IssueProperties() {
+  return (
+    <Sheet>
+      <SheetTrigger render={<Button>Properties</Button>} />
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Issue properties</SheetTitle>
+          <SheetDescription>Organize this issue without leaving the list.</SheetDescription>
+        </SheetHeader>
+        <SheetBody>{/* compact form fields */}</SheetBody>
+        <SheetFooter><SheetClose>Save changes</SheetClose></SheetFooter>
+      </SheetContent>
+    </Sheet>
   );
 }`,
   "alert-dialog": `import {
@@ -362,6 +491,31 @@ export function IssueTable({ issues }) {
       ))}</TableBody>
     </Table>
   );
+}`,
+  tree: `import { Tree } from "@index/ui";
+
+const items = [{
+  id: "workspace",
+  label: "Interaction Index",
+  children: [
+    { id: "foundations", label: "Foundations" },
+    { id: "components", label: "Components" },
+  ],
+}];
+
+export function ProjectTree() {
+  return <Tree aria-label="Project structure" items={items} defaultExpandedKeys={["workspace"]} />;
+}`,
+  "reorderable-list": `import { ReorderableList } from "@index/ui";
+
+const steps = [
+  { id: "capture", label: "Capture intent" },
+  { id: "compose", label: "Compose primitives" },
+  { id: "verify", label: "Verify behavior" },
+];
+
+export function ReleaseSequence() {
+  return <ReorderableList aria-label="Release sequence" defaultItems={steps} />;
 }`,
   "inline-edit": `import { useState } from "react";
 import { InlineEdit } from "@index/ui";

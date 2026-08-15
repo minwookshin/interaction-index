@@ -1,6 +1,6 @@
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { X } from "@phosphor-icons/react";
-import { useRef, type HTMLAttributes, type MutableRefObject, type Ref } from "react";
+import { useRef, type ComponentPropsWithRef, type MutableRefObject, type Ref } from "react";
 import { cn } from "../../lib/cn";
 import { IconButton } from "./icon-button";
 
@@ -10,12 +10,14 @@ export const DialogClose = DialogPrimitive.Close;
 export const DialogTitle = DialogPrimitive.Title;
 export const DialogDescription = DialogPrimitive.Description;
 
+export type DialogContentProps = DialogPrimitive.Popup.Props & { showClose?: boolean };
+
 function assignRef<T>(ref: Ref<T> | undefined, value: T | null) {
   if (typeof ref === "function") ref(value);
   else if (ref) (ref as MutableRefObject<T | null>).current = value;
 }
 
-export function DialogContent({ className, children, showClose = true, initialFocus, ref, ...props }: DialogPrimitive.Popup.Props & { showClose?: boolean }) {
+export function DialogContent({ className, children, showClose = true, initialFocus, ref, ...props }: DialogContentProps) {
   const popupRef = useRef<HTMLDivElement | null>(null);
   const setPopupRef = (node: HTMLDivElement | null) => {
     popupRef.current = node;
@@ -43,10 +45,10 @@ export function DialogContent({ className, children, showClose = true, initialFo
   );
 }
 
-export function DialogHeader({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
+export function DialogHeader({ className, ...props }: ComponentPropsWithRef<"div">) {
   return <div className={cn("ix-dialog__header", className)} {...props} />;
 }
 
-export function DialogFooter({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
+export function DialogFooter({ className, ...props }: ComponentPropsWithRef<"div">) {
   return <div className={cn("ix-dialog__footer", className)} {...props} />;
 }

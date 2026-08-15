@@ -1,0 +1,72 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-input-group {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  height: var(--ix-control-height-md);
+  align-items: center;
+  border: 1px solid var(--ix-control-border);
+  border-radius: var(--ix-radius-control);
+  background: var(--ix-bg-control);
+  box-shadow: var(--ix-shadow-control);
+  color: var(--ix-fg-default);
+  transition: background-color var(--ix-hover-duration), border-color var(--ix-hover-duration), box-shadow var(--ix-hover-duration);
+}
+
+.ix-input-group:hover:not([data-disabled]) { border-color: var(--ix-control-border-hover); }
+
+.ix-input-group:has(.ix-input-group__input:focus-visible) {
+  border-color: var(--ix-control-border-hover);
+  box-shadow: var(--ix-shadow-control), 0 0 0 2px var(--ix-focus-halo);
+}
+
+.ix-input-group[data-invalid] {
+  border-color: color-mix(in oklch, var(--ix-fg-danger) 42%, var(--ix-control-border));
+  box-shadow: var(--ix-shadow-control), 0 0 0 2px color-mix(in oklch, var(--ix-fg-danger) 10%, transparent);
+}
+
+.ix-input-group[data-disabled] { background: var(--ix-bg-subtle); box-shadow: none; color: var(--ix-fg-disabled); cursor: not-allowed; }
+
+.ix-input-group__input {
+  width: 100%;
+  min-width: 60px;
+  height: 100%;
+  flex: 1 1 auto;
+  padding: 0 9px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--ix-type-ui);
+}
+
+.ix-input-group__input::placeholder { color: var(--ix-fg-subtle); }
+
+.ix-input-group__input:disabled { cursor: not-allowed; }
+
+.ix-input-group__addon {
+  display: inline-flex;
+  height: 100%;
+  flex: 0 0 auto;
+  align-items: center;
+  padding-left: 9px;
+  color: var(--ix-fg-muted);
+  font-size: var(--ix-type-label);
+  white-space: nowrap;
+}
+
+.ix-input-group__addon[data-side="end"] { padding-right: 7px; padding-left: 0; }
+
+.ix-input-group__addon + .ix-input-group__input { padding-left: 6px; }
+
+.ix-input-group__button { height: 26px; margin: 0 2px; padding-inline: 6px; border: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+.ix-input-group { transition-duration: 0.01ms; }
+}
+}

@@ -3,7 +3,7 @@
 @layer index.tokens, index.base, index.components;
 
 @layer index.components {
-.ix-action-list kbd { font-family: inherit; font-size: 10px; color: var(--ix-ink-tertiary); }
+.ix-action-list kbd { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; color: var(--ix-ink-tertiary); font-family: inherit; font-size: 10px; line-height: 1; white-space: nowrap; }
 
 .ix-spinner { width: 13px; height: 13px; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: ix-spin 0.75s linear infinite; }
 
@@ -13,11 +13,11 @@
 
 .ix-action-list__search > svg { width: 14px; height: 14px; color: var(--ix-fg-subtle); }
 
-.ix-action-list__search input { width: 100%; min-width: 0; border: 0; outline: 0; color: var(--ix-ink); font-size: 13.5px; }
+.ix-action-list__search input { width: 100%; min-width: 0; height: 100%; border: 0; outline: 0; color: var(--ix-ink); font-size: 13.5px; }
 
 .ix-action-list__search input::placeholder { color: var(--ix-fg-subtle); }
 
-.ix-action-list__search kbd { padding: 2px 5px; border: 1px solid var(--ix-border); border-radius: 4px; background: #fafafa; }
+.ix-action-list__search kbd { min-width: 28px; height: 23px; padding: 0 5px; border: 1px solid var(--ix-border); border-radius: 4px; background: #fafafa; }
 
 .ix-action-list__items { display: grid; gap: 1px; padding: 4px; }
 
@@ -30,7 +30,7 @@
 .ix-action-list__item[data-loading] { color: var(--ix-fg-subtle); cursor: wait; }
 
 .ix-action-list__item[data-variant="danger"] .ix-action-list__copy > span,
-.ix-action-list__item[data-variant="danger"] .ix-action-list__icon { color: var(--ix-fg-default); font-weight: 560; }
+.ix-action-list__item[data-variant="danger"] .ix-action-list__icon { color: var(--ix-fg-danger); font-weight: 560; }
 
 .ix-action-list__icon { display: inline-flex; color: var(--ix-fg-muted); }
 
@@ -69,9 +69,6 @@
 .ix-action-list::-webkit-scrollbar-thumb:hover { background: var(--ix-scrollbar-thumb-hover); background-clip: padding-box; }
 
 .ix-action-list__search kbd { background: var(--ix-subtle); color: var(--ix-ink-secondary); }
-
-:root[data-theme="dark"] .ix-action-list__item[data-variant="danger"] .ix-action-list__copy > span,
-:root[data-theme="dark"] .ix-action-list__item[data-variant="danger"] .ix-action-list__icon { color: var(--ix-ink); }
 
 @media (forced-colors: active) {
 .ix-action-list { scrollbar-color: auto; }

@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: Candidate version, for example 0.1.0-alpha.1
+        description: Candidate version, for example 0.1.0-rc.1
         required: true
 
 jobs:
@@ -18,11 +18,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: npm run quality
-      - run: npm run test:consumer
-      - run: npm run test:a11y
-      - run: npm run test:pilot
-      - run: npm run test:visual
+      - run: npm run verify:rc:core
       - name: Verify requested version
         env:
           EXPECTED_VERSION: ${{ inputs.version }}
@@ -34,6 +30,8 @@ jobs:
             dist
             public/r
             performance-report.json
+            RELEASE_QA.md
+            RC_EXTERNAL_GATES.md
           if-no-files-found: error
 
   publication-remains-manual:

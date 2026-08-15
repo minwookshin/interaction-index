@@ -7,12 +7,18 @@ export default defineConfig({
     outDir: "dist/client",
     rollupOptions: {
       output: {
+        onlyExplicitManualChunks: true,
         manualChunks(id) {
-          if (id.includes("node_modules/react") || id.includes("node_modules/scheduler")) return "react";
-          if (id.includes("node_modules/@base-ui")) return "base-ui";
-          if (id.includes("node_modules/@phosphor-icons")) return "icons";
-          if (id.includes("node_modules/motion") || id.includes("node_modules/framer-motion")) return "motion";
-          if (id.includes("node_modules/sonner")) return "feedback";
+          const moduleId = id.replaceAll("\\", "/");
+          if (
+            moduleId.includes("/node_modules/react/")
+            || moduleId.includes("/node_modules/react-dom/")
+            || moduleId.includes("/node_modules/scheduler/")
+          ) return "react";
+          if (moduleId.includes("/node_modules/@base-ui/")) return "base-ui";
+          if (moduleId.includes("/node_modules/@phosphor-icons/")) return "icons";
+          if (moduleId.includes("/node_modules/motion/") || moduleId.includes("/node_modules/framer-motion/")) return "motion";
+          if (moduleId.includes("/node_modules/sonner/")) return "feedback";
         },
       },
     },

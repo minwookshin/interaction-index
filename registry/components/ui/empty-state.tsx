@@ -1,10 +1,10 @@
 import "../../styles/index-base.css";
 import "../../styles/components/empty-state.css";
 import { Package } from "@phosphor-icons/react";
-import { useId, type HTMLAttributes, type ReactNode } from "react";
+import { useId, type ComponentPropsWithRef, type ReactNode } from "react";
 import { cn } from "../../lib/cn";
 
-export type EmptyStateProps = Omit<HTMLAttributes<HTMLDivElement>, "title"> & {
+export type EmptyStateProps = Omit<ComponentPropsWithRef<"div">, "title"> & {
   title: ReactNode;
   description?: ReactNode;
   icon?: ReactNode;

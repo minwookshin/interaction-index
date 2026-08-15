@@ -1,16 +1,16 @@
 import "../../styles/index-base.css";
 import "../../styles/components/textarea.css";
-import { useId, useState, type TextareaHTMLAttributes } from "react";
+import { useId, useState, type ComponentPropsWithRef } from "react";
 import { cn } from "../../lib/cn";
 
-export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
+export type TextareaProps = ComponentPropsWithRef<"textarea"> & {
   label?: string;
   description?: string;
   error?: string;
   showCount?: boolean;
 };
 
-export function Textarea({ id: providedId, label, description, error, showCount, maxLength, className, value, defaultValue, onChange, ...props }: TextareaProps) {
+export function Textarea({ id: providedId, label, description, error, showCount, maxLength, className, value, defaultValue, onChange, ref, ...props }: TextareaProps) {
   const generatedId = useId();
   const id = providedId ?? generatedId;
   const descriptionId = description ? `${id}-description` : undefined;
@@ -24,6 +24,7 @@ export function Textarea({ id: providedId, label, description, error, showCount,
     <div className="ix-field ix-textarea-field" data-invalid={Boolean(error) || undefined}>
       {label && <label className="ix-field__label" htmlFor={id}>{label}</label>}
       <textarea
+        ref={ref}
         id={id}
         className={cn("ix-input ix-textarea", className)}
         aria-invalid={Boolean(error) || undefined}

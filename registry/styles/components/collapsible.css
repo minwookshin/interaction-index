@@ -13,7 +13,16 @@
 
 .ix-collapsible__trigger[data-disabled] { color: var(--ix-fg-disabled); cursor: not-allowed; }
 
-.ix-collapsible__panel { overflow: hidden; }
+.ix-collapsible__panel {
+  height: var(--collapsible-panel-height);
+  overflow: hidden;
+  transition: height var(--ix-enter-duration) var(--ix-ease-out);
+}
+
+.ix-collapsible__panel[data-starting-style],
+.ix-collapsible__panel[data-ending-style] { height: 0; }
+
+.ix-collapsible__panel[data-ending-style] { transition-duration: var(--ix-exit-duration); }
 
 .ix-collapsible__content { padding: 12px 11px 2px; color: var(--ix-fg-muted); font-size: var(--ix-type-ui); line-height: 1.55; }
 
@@ -22,6 +31,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+.ix-collapsible__panel,
 .ix-collapsible__trigger svg { transition-duration: 0.01ms; }
 }
 }

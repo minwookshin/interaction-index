@@ -1,0 +1,85 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-toolbar {
+  display: inline-flex;
+  min-width: 0;
+  min-height: 36px;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 8px;
+  background: var(--ix-bg-stage);
+  color: var(--ix-fg-default);
+}
+
+.ix-toolbar[data-orientation="vertical"] { flex-direction: column; align-items: stretch; }
+
+.ix-toolbar__group { display: inline-flex; align-items: center; gap: 2px; }
+
+.ix-toolbar[data-orientation="vertical"] .ix-toolbar__group { flex-direction: column; align-items: stretch; }
+
+.ix-toolbar__button,
+.ix-toolbar__link {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  outline: 0;
+  background: transparent;
+  color: var(--ix-fg-muted);
+  font: inherit;
+  font-size: var(--ix-type-label);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--ix-hover-duration), color var(--ix-hover-duration), transform var(--ix-press-duration) var(--ix-ease-out);
+}
+
+.ix-toolbar__button svg,
+.ix-toolbar__link svg { width: 14px; height: 14px; }
+
+.ix-toolbar__button:hover:not(:disabled),
+.ix-toolbar__link:hover { background: var(--ix-hover); color: var(--ix-fg-default); }
+
+.ix-toolbar__button:active:not(:disabled),
+.ix-toolbar__link:active { transform: scale(.97); }
+
+.ix-toolbar__button:focus-visible,
+.ix-toolbar__link:focus-visible { background: var(--ix-hover); box-shadow: 0 0 0 2px var(--ix-focus-halo); color: var(--ix-fg-default); }
+
+.ix-toolbar__button[data-popup-open] { background: var(--ix-active); color: var(--ix-fg-default); }
+
+.ix-toolbar__button:disabled { color: var(--ix-fg-disabled); cursor: not-allowed; }
+
+.ix-toolbar__input {
+  width: 116px;
+  height: 28px;
+  margin-left: 2px;
+  padding: 0 7px;
+  border: 1px solid var(--ix-control-border);
+  border-radius: 6px;
+  outline: 0;
+  background: var(--ix-bg-control);
+  box-shadow: var(--ix-shadow-control);
+  color: var(--ix-fg-default);
+  font: inherit;
+  font-size: var(--ix-type-label);
+}
+
+.ix-toolbar__input:focus-visible { border-color: var(--ix-control-border-hover); box-shadow: var(--ix-shadow-control), 0 0 0 2px var(--ix-focus-halo); }
+
+.ix-toolbar__separator { width: 1px; height: 20px; margin: 0 2px; background: var(--ix-separator); }
+
+.ix-toolbar[data-orientation="vertical"] .ix-toolbar__separator { width: auto; height: 1px; margin: 2px 0; }
+
+@media (prefers-reduced-motion: reduce) {
+.ix-toolbar__button,
+.ix-toolbar__link { transition-duration: 0.01ms; }
+}
+}

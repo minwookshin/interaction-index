@@ -3,7 +3,7 @@ import { Button, type ButtonProps } from "./button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 import { cn } from "../../lib/cn";
 
-type IconButtonProps = Omit<ButtonProps, "children" | "leadingIcon" | "trailingIcon"> & {
+export type IconButtonProps = Omit<ButtonProps, "children" | "leadingIcon" | "trailingIcon"> & {
   children?: ReactNode;
   "aria-label": string;
   tooltip?: string;

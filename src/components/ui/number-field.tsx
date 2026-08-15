@@ -37,7 +37,7 @@ export function NumberField({
       {label && <label className="ix-field__label" htmlFor={id}>{label}</label>}
       <NumberFieldPrimitive.Group className="ix-number-field__group">
         <NumberFieldPrimitive.Decrement className="ix-number-field__step" aria-label={`Decrease ${accessibleLabel}`}><Minus /></NumberFieldPrimitive.Decrement>
-        <NumberFieldPrimitive.Input id={id} className={cn("ix-number-field__input", inputClassName)} aria-invalid={Boolean(error) || undefined} aria-describedby={describedBy} {...inputProps} />
+        <NumberFieldPrimitive.Input className={cn("ix-number-field__input", inputClassName)} aria-invalid={Boolean(error) || undefined} aria-describedby={describedBy} {...inputProps} />
         {suffix && <span className="ix-number-field__suffix" aria-hidden="true">{suffix}</span>}
         <NumberFieldPrimitive.Increment className="ix-number-field__step" aria-label={`Increase ${accessibleLabel}`}><Plus /></NumberFieldPrimitive.Increment>
       </NumberFieldPrimitive.Group>

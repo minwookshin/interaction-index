@@ -1,5 +1,8 @@
-import { ArrowRight, Check, Copy, ShieldCheck } from "@phosphor-icons/react";
+import { ArrowCounterClockwise, ArrowRight, Check, CheckCircle, Circle, Copy, Cube, CursorClick, ShieldCheck, Stack } from "@phosphor-icons/react";
 import { useState, type ReactNode } from "react";
+import packageManifest from "../../package.json";
+import { componentMaturity, maturityDefinitions, readyCriteria } from "../component-maturity";
+import { Badge, Button } from "../components/ui";
 import { copyText } from "../lib/copy-text";
 import { ProductPilot } from "./product-pilot";
 
@@ -8,6 +11,7 @@ export const publicDocItems = [
   { id: "installation", label: "Installation", group: "Getting started", description: "Add the registry, install a component, and load the shared tokens." },
   { id: "choosing-components", label: "Choosing components", group: "Getting started", description: "Choose adjacent primitives by task, focus, and recovery contract instead of appearance." },
   { id: "product-pilot", label: "Product pilot", group: "Getting started", description: "A real issue-management slice that pressure-tests composition, state, continuity, and recovery." },
+  { id: "component-status", label: "Component status", group: "Quality", description: "The maturity level, promotion evidence, and migration contract for every public component." },
   { id: "accessibility", label: "Accessibility", group: "Quality", description: "Keyboard, focus, motion, contrast, and assistive-technology expectations." },
   { id: "browser-support", label: "Browser support", group: "Quality", description: "The support policy, automated browser targets, and manual release matrix." },
   { id: "security", label: "Security", group: "Quality", description: "How vulnerabilities are reported, assessed, fixed, and disclosed." },
@@ -34,6 +38,7 @@ export const publicDocOutlines: Record<PublicDocId, readonly { id: string; label
     { id: "load-styles", label: "Load styles" },
     { id: "theme-contract", label: "Theme contract" },
     { id: "cascade-contract", label: "Cascade contract" },
+    { id: "integrity-contract", label: "Integrity contract" },
     { id: "update-safely", label: "Update safely" },
   ],
   "choosing-components": [
@@ -47,6 +52,12 @@ export const publicDocOutlines: Record<PublicDocId, readonly { id: string; label
     { id: "pilot-purpose", label: "Why this exists" },
     { id: "pilot-coverage", label: "System coverage" },
     { id: "pilot-findings", label: "API findings" },
+  ],
+  "component-status": [
+    { id: "status-model", label: "Status model" },
+    { id: "promotion-gate", label: "Promotion gate" },
+    { id: "current-matrix", label: "Current matrix" },
+    { id: "migration-contract", label: "Migration contract" },
   ],
   accessibility: [
     { id: "baseline-contract", label: "Baseline contract" },
@@ -74,6 +85,7 @@ export const publicDocOutlines: Record<PublicDocId, readonly { id: string; label
   releases: [
     { id: "version-policy", label: "Version policy" },
     { id: "release-evidence", label: "Release evidence" },
+    { id: "package-candidate", label: "Package candidate" },
     { id: "deprecation", label: "Deprecation" },
     { id: "support-window", label: "Support window" },
   ],
@@ -95,7 +107,7 @@ function CodeBlock({ label, children }: { label: string; children: string }) {
     setCopied(result);
     window.setTimeout(() => setCopied(false), 1200);
   });
-  return <figure className="public-doc-code"><figcaption>{label}<button type="button" onClick={copy} aria-label={`Copy ${label}`}><Copy aria-hidden="true" />{copied ? "Copied" : "Copy"}</button></figcaption><pre><code>{children}</code></pre></figure>;
+  return <figure className="public-doc-code"><figcaption>{label}<button type="button" onClick={copy} aria-label={`Copy ${label}`}><Copy aria-hidden="true" />{copied ? "Copied" : "Copy"}</button></figcaption><pre tabIndex={0}><code>{children}</code></pre></figure>;
 }
 
 function CheckList({ items }: { items: readonly string[] }) {
@@ -106,54 +118,124 @@ function StatusTable({ label, rows }: { label: string; rows: readonly (readonly 
   return <div className="public-doc-table-wrap" role="region" aria-label={`${label} scroll area`} tabIndex={0}><table aria-label={label}><thead><tr><th scope="col">Target</th><th scope="col">Level</th><th scope="col">Evidence</th></tr></thead><tbody>{rows.map(([target, level, evidence]) => <tr key={target}><th scope="row">{target}</th><td>{level}</td><td>{evidence}</td></tr>)}</tbody></table></div>;
 }
 
+function MaturityTable() {
+  return <div className="public-doc-table-wrap public-doc-maturity-table" role="region" aria-label="Component maturity matrix scroll area" tabIndex={0}>
+    <table aria-label="Component maturity matrix">
+      <thead><tr><th scope="col">Component</th><th scope="col">Status</th><th scope="col">Verified evidence</th><th scope="col">Next gate</th></tr></thead>
+      <tbody>{componentMaturity.map((component) => <tr key={component.id}><th scope="row">{component.name}</th><td><span className="maturity-status" data-status={component.status.toLocaleLowerCase()}>{component.status}</span></td><td>{component.evidence}</td><td>{component.nextGate}</td></tr>)}</tbody>
+    </table>
+  </div>;
+}
+
 function DecisionTable({ label, rows }: { label: string; rows: readonly (readonly [string, string, string])[] }) {
   return <div className="public-doc-table-wrap public-doc-decision-table" role="region" aria-label={`${label} scroll area`} tabIndex={0}><table aria-label={label}><thead><tr><th scope="col">User need</th><th scope="col">Choose</th><th scope="col">Do not use it when</th></tr></thead><tbody>{rows.map(([need, choice, boundary]) => <tr key={need}><th scope="row">{need}</th><td><strong>{choice}</strong></td><td>{boundary}</td></tr>)}</tbody></table></div>;
 }
 
+const introductionIssues = [
+  { id: "motion", code: "INT-204", title: "Motion contracts", detail: "Keep repeated actions fast while preserving spatial context for temporary surfaces." },
+  { id: "focus", code: "INT-198", title: "Keyboard focus", detail: "Return focus to a predictable origin after menus, dialogs, and shared detail views close." },
+  { id: "registry", code: "INT-191", title: "Registry output", detail: "Confirm installed source, tokens, and local dependencies match the published contract." },
+] as const;
+
+function IntroductionProof() {
+  const [selectedId, setSelectedId] = useState<string>(introductionIssues[0].id);
+  const [completedId, setCompletedId] = useState<string | null>(null);
+  const selected = introductionIssues.find((issue) => issue.id === selectedId) ?? introductionIssues[0];
+  const completed = completedId === selected.id;
+  return <div className="entry-proof" aria-label="Interactive component composition">
+    <header><span>Live composition</span><Badge variant="outline">Interactive</Badge></header>
+    <div className="entry-proof__workspace">
+      <div className="entry-proof__list" aria-label="Issues">
+        {introductionIssues.map((issue) => {
+          const done = completedId === issue.id;
+          return <button type="button" key={issue.id} aria-pressed={selectedId === issue.id} data-selected={selectedId === issue.id || undefined} onClick={() => setSelectedId(issue.id)}>
+            {done ? <CheckCircle weight="fill" aria-hidden="true" /> : <Circle aria-hidden="true" />}
+            <span><strong>{issue.title}</strong><small>{issue.code}</small></span>
+          </button>;
+        })}
+      </div>
+      <article className="entry-proof__detail" aria-live="polite">
+        <span>{selected.code}</span>
+        <h3>{selected.title}</h3>
+        <p>{selected.detail}</p>
+        <div><Badge variant={completed ? "strong" : "outline"}>{completed ? "Done" : "In progress"}</Badge><Button size="small" variant="secondary" onClick={() => setCompletedId(completed ? null : selected.id)}>{completed ? "Reopen" : "Mark done"}</Button></div>
+      </article>
+    </div>
+    <footer>
+      <span>Stable geometry</span><span>Shared origin</span><span>Reversible completion</span>
+      {completedId && <button type="button" onClick={() => setCompletedId(null)}><ArrowCounterClockwise aria-hidden="true" />Undo</button>}
+    </footer>
+  </div>;
+}
+
 function Introduction({ onNavigate }: { onNavigate: (id: string) => void }) {
   return <>
-    <DocSection id="what-it-is" title="A product system, not a component gallery">
-      <p>Interaction Index combines compact UI primitives with authored behavior patterns. Components define reliable local states. Patterns define origin, continuity, interruption, keyboard behavior, and recovery across a product flow.</p>
-    </DocSection>
-    <DocSection id="system-map" title="Start with the system area you need">
-      <div className="public-doc-links">
-        <button type="button" onClick={() => onNavigate("foundations")}><span><strong>Foundations</strong><small>Color, typography, spacing, motion, and Component DNA.</small></span><ArrowRight aria-hidden="true" /></button>
-        <button type="button" onClick={() => onNavigate("button")}><span><strong>Components</strong><small>35 live primitives with states, usage, accessibility, and API contracts.</small></span><ArrowRight aria-hidden="true" /></button>
-        <button type="button" onClick={() => onNavigate("choosing-components")}><span><strong>Choosing components</strong><small>Decision boundaries for controls, temporary surfaces, feedback, and recovery.</small></span><ArrowRight aria-hidden="true" /></button>
-        <button type="button" onClick={() => onNavigate("patterns")}><span><strong>Patterns</strong><small>Four authored interactions for editing, finding, inspecting, and recovery.</small></span><ArrowRight aria-hidden="true" /></button>
-        <button type="button" onClick={() => onNavigate("product-pilot")}><span><strong>Product pilot</strong><small>A live issue workspace that proves components can survive composition.</small></span><ArrowRight aria-hidden="true" /></button>
+    <section className="entry-hero" id="what-it-is">
+      <div className="entry-hero__copy">
+        <h1 className="entry-hero__route">Introduction</h1>
+        <h2>Build interfaces that stay clear through change.</h2>
+        <p>Accessible React components and authored interaction patterns for compact, recoverable product workflows.</p>
+        <div className="entry-hero__actions"><Button variant="primary" trailingIcon={<ArrowRight />} onClick={() => onNavigate("installation")}>Get started</Button><button type="button" onClick={() => onNavigate("button")}>Explore components<ArrowRight aria-hidden="true" /></button></div>
+      </div>
+      <IntroductionProof />
+    </section>
+    <DocSection id="system-map" title="Start with the task in front of you">
+      <div className="entry-paths">
+        <button className="entry-paths__primary" type="button" onClick={() => onNavigate("installation")}><span className="entry-paths__icon"><Stack aria-hidden="true" /></span><span><strong>Start building</strong><small>Install one component, load the shared tokens, and understand source ownership.</small></span><ArrowRight aria-hidden="true" /></button>
+        <button type="button" onClick={() => onNavigate("button")}><span className="entry-paths__icon"><Cube aria-hidden="true" /></span><span><strong>Choose a component</strong><small>Compare live states, usage, accessibility, and API contracts.</small></span><ArrowRight aria-hidden="true" /></button>
+        <button type="button" onClick={() => onNavigate("patterns")}><span className="entry-paths__icon"><CursorClick aria-hidden="true" /></span><span><strong>Study behavior</strong><small>Explore four authored patterns for editing, inspecting, acting, and recovery.</small></span><ArrowRight aria-hidden="true" /></button>
       </div>
     </DocSection>
     <DocSection id="behavior-signature" title="Three rules make the system recognizable">
       <dl className="public-doc-principles"><div><dt>Stable geometry</dt><dd>Loading and state changes preserve the surrounding layout.</dd></div><div><dt>Shared origin</dt><dd>Overlays and detail surfaces reveal where they came from.</dd></div><div><dt>Reversible completion</dt><dd>Consequential actions expose a clear path back when the product allows it.</dd></div></dl>
     </DocSection>
     <DocSection id="current-status" title="Current status">
-      <StatusTable label="Current system status" rows={[["Components", "35 documented", "Live product and locked state specimens"], ["Themes", "Light and dark", "1280 x 720 route review"], ["Distribution", "Public preview", "GitHub source and HTTPS shadcn registry; npm unpublished"], ["License", "MIT", "License text included in the repository"]]} />
+      <StatusTable label="Current system status" rows={[["Components", `${componentMaturity.length} documented`, "Live product and locked state specimens"], ["Themes", "Light and dark", "1280 x 720 route review"], ["Distribution", "Public preview", "GitHub source and HTTPS shadcn registry; npm unpublished"], ["License", "MIT", "License text included in the repository"]]} />
     </DocSection>
   </>;
 }
 
 function ProductPilotPage() {
   return <>
-    <section className="public-doc-section public-doc-section--pilot" id="pilot-workspace" aria-labelledby="pilot-workspace-title"><h2 id="pilot-workspace-title">Live workspace</h2><p>Search, create, edit, complete, archive, and undo. The composition uses the same public components documented in the catalog.</p><ProductPilot /></section>
+    <section className="public-doc-section public-doc-section--pilot" id="pilot-workspace" aria-labelledby="pilot-workspace-title"><h2 id="pilot-workspace-title">Live workspace</h2><p>Find an issue, inspect it in Shared Detail, archive it from Action List, then restore it from Undo Stack. The same state model also supports create, edit, and completion.</p><ProductPilot /></section>
     <DocSection id="pilot-purpose" title="Prove the system inside a product">
-      <p>This is not a showcase dashboard. It is a compact issue-management task with search, creation, selection, editing, status changes, table density, feedback, and recovery sharing one state model.</p>
+      <p>This is not a showcase dashboard. It is one executable task: find and act, inspect without losing place, mutate, and recover. Search, selection, Action List, Shared Detail, and Undo Stack share one source of truth.</p>
     </DocSection>
-    <DocSection id="pilot-coverage" title="System coverage"><CheckList items={["Button, Icon Button, Text Field, Search Input, Select, Menu, Dialog, Tabs, Badge, Table, Toast, Inline Edit, Shared Detail, and Undo Stack compose in one task.", "Pointer and keyboard paths share the same selected issue and recovery state.", "Light, dark, reduced-motion, narrow viewport, and content-pressure states remain part of the release matrix."]} /></DocSection>
-    <DocSection id="pilot-findings" title="API findings"><p>The pilot exposed one concrete composition gap: Shared Detail previously owned its entire detail body. Its new renderDetail slot preserves the shared title and focus contract while allowing a real product to compose status, priority, metadata, editing, menus, and recovery beneath it.</p></DocSection>
+    <DocSection id="pilot-coverage" title="System coverage"><CheckList items={["Button, Icon Button, Text Field, Search Input, Select, Menu, Dialog, Tabs, Badge, Table, Toast, Inline Edit, Action List, Shared Detail, and Undo Stack compose in one task.", "The pointer path and Command K path operate on the same selected issue and recovery history.", "Light, dark, reduced-motion, narrow viewport, and content-pressure states remain part of the release matrix."]} /></DocSection>
+    <DocSection id="pilot-findings" title="API findings"><p>The pilot exposed two composition requirements: Shared Detail needs a product-owned detail slot, and Action List must execute against the selected object without taking ownership of that object. The composed task now verifies both boundaries and restores archived data through the real Undo Stack inverse.</p></DocSection>
+  </>;
+}
+
+function ComponentStatus() {
+  return <>
+    <DocSection id="status-model" title="Maturity is a support promise">
+      <p>Status describes whether a component is safe to depend on, not how polished its screenshot looks. Interaction Index follows the public Experimental, Ready, and Deprecated model while keeping every current component honest at Experimental during private alpha.</p>
+      <StatusTable label="Maturity definitions" rows={maturityDefinitions.map((item) => [item.status, item.meaning, item.releaseContract] as const)} />
+    </DocSection>
+    <DocSection id="promotion-gate" title="Ready requires the whole evidence chain">
+      <CheckList items={readyCriteria} />
+    </DocSection>
+    <DocSection id="current-matrix" title={`All ${componentMaturity.length} components remain Experimental`}>
+      <p>The matrix separates what the repository verifies today from the external evidence still missing. Passing internal tests is necessary, but it is not independent adoption or production readiness.</p>
+      <MaturityTable />
+    </DocSection>
+    <DocSection id="migration-contract" title="Changes keep a visible way forward">
+      <CheckList items={["Breaking alpha changes name every affected component, prop, token, and behavior in the changelog.", "A migration note shows the previous form, replacement form, and the last version that accepted the old contract.", "Deprecated components name a replacement, emit a consumer-visible warning when practical, and keep a defined removal window.", "A Ready component cannot return to Experimental silently; a major version and migration path are required."]} />
+    </DocSection>
   </>;
 }
 
 function Installation() {
   return <>
     <DocSection id="requirements" title="Requirements"><p>Use React 19, TypeScript, and a CSS pipeline that supports modern custom properties and color functions. The lockfile records the exact alpha verification stack.</p></DocSection>
-    <DocSection id="add-registry" title="Add the registry namespace"><CodeBlock label="Terminal">{"npx shadcn@latest registry add @index=https://minwookshin.github.io/interaction-index/r/{name}.json"}</CodeBlock><p>The HTTPS registry exposes the same generated items verified in this repository. Consumers may also install the complete system directly from GitHub with <code>minwookshin/interaction-index/interaction-index</code>.</p></DocSection>
-    <DocSection id="add-component" title="Add one component"><CodeBlock label="Terminal">npx shadcn@latest add @index/button</CodeBlock><p>Install only what the product needs. The complete item remains available for evaluation and internal prototypes.</p></DocSection>
+    <DocSection id="add-registry" title="Connect the Index Registry"><CodeBlock label="Mutable alpha channel">{`npx shadcn@latest registry add @index=${packageManifest.homepage}/r/{name}.json`}</CodeBlock><p><strong>Index Registry</strong> is the product and source boundary. The shadcn CLI is the compatible transport used to resolve and copy the files; it does not define the component API, tokens, visual language, or release policy. Use the mutable channel while evaluating active alpha work.</p><CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx shadcn@latest registry add @index-pinned=${packageManifest.homepage}/r/v/${packageManifest.version}/{name}.json`}</CodeBlock><p>Versioned JSON is a byte-for-byte release artifact. Its path is locked by the build and served with a one-year immutable cache policy; changing its contents requires a package-version bump.</p></DocSection>
+    <DocSection id="add-component" title="Install from Index"><CodeBlock label="Index Registry">npx shadcn@latest add @index/button</CodeBlock><p>The <code>@index</code> namespace keeps the source identity visible while using an established installer. Install only what the product needs; the complete item remains available for evaluation and internal prototypes.</p></DocSection>
     <DocSection id="source-ownership" title="Know what enters the product"><p>The registry copies component source, its scoped stylesheet, shared tokens and utilities, and declared package dependencies. The product owns those files after installation: review them, adapt them deliberately, and keep local changes visible during updates.</p></DocSection>
     <DocSection id="load-styles" title="Styles load with the component"><CodeBlock label="Component source">{'import "../../styles/index-base.css";\nimport "../../styles/components/button.css";'}</CodeBlock><p>Each generated component loads the shared contract and only its own CSS. The complete-system item also includes <code>styles/interaction-index.css</code> as a stable application-root entry for tokens and global defaults. Documentation workbench styles never enter the registry.</p></DocSection>
     <DocSection id="theme-contract" title="Set theme once, then override semantic roles"><CodeBlock label="Theme control">document.documentElement.dataset.theme = "dark";</CodeBlock><p>Light is the default. Set <code>data-theme="dark"</code> on the root element and override public <code>--ix-*</code> semantic roles after the shared stylesheet. Components should never require product-specific raw gray values.</p></DocSection>
     <DocSection id="cascade-contract" title="Override without specificity fights"><CodeBlock label="Public layer order">@layer index.tokens, index.base, index.components;</CodeBlock><p>Tokens, global defaults, and component rules have an explicit order. Ordinary unlayered product CSS takes precedence, so adopters can customize copied components without escalating selector specificity or depending on accidental import order.</p></DocSection>
-    <DocSection id="update-safely" title="Update with evidence"><CheckList items={["Review the changelog before replacing copied source.", "Diff public props, tokens, focus behavior, and motion contracts.", "Run the product's browser and accessibility checks after every update."]} /></DocSection>
+    <DocSection id="integrity-contract" title="Verify what changed"><CodeBlock label="Registry review">npm run diff:registry -- --from ./previous-manifest.json</CodeBlock><p>The public manifest records SHA-256 hashes for every registry artifact and copied file, plus compiler-extracted API and semantic-token contract hashes. The mutable channel proves what changed; the versioned channel adds an immutable path and matching release manifest.</p></DocSection>
+    <DocSection id="update-safely" title="Update with evidence"><CheckList items={["Commit product-owned customizations before fetching upstream source.", "Review the manifest diff, changelog, migration note, and staged registry candidate before accepting an overwrite.", "Keep locally modified files unchanged until the consumer explicitly accepts the upstream candidate.", "Run the product's type, browser, accessibility, interaction, and visual checks after every update."]} /></DocSection>
   </>;
 }
 
@@ -193,10 +275,10 @@ function ChoosingComponents() {
 
 function Accessibility() {
   return <>
-    <DocSection id="baseline-contract" title="Baseline contract"><CheckList items={["Semantic HTML and Base UI primitives provide the starting behavior.", "Every icon-only control requires an accessible name.", "Disabled, validation, loading, empty, and recovery states remain perceivable.", "Automated checks support manual review. They never replace it."]} /></DocSection>
+    <DocSection id="baseline-contract" title="Baseline contract"><CheckList items={["Semantic HTML, Base UI, and React Aria primitives provide the starting behavior.", "Every icon-only control requires an accessible name.", "Disabled, validation, loading, empty, and recovery states remain perceivable.", "Automated checks support manual review. They never replace it."]} /></DocSection>
     <DocSection id="keyboard-focus" title="Keyboard and focus"><p>Keyboard input must complete the same task as pointer input. Focus appears for keyboard navigation and explicit focus specimens, returns to the initiating control after dismissal, and never gets trapped outside a modal contract.</p></DocSection>
     <DocSection id="motion-contrast" title="Motion and contrast"><p>Reduced motion removes spatial travel while preserving state feedback. Light, dark, increased-contrast, and forced-color modes keep structure and meaning without depending on a brand accent.</p></DocSection>
-    <DocSection id="manual-review" title="Manual release review"><StatusTable label="Accessibility release review" rows={[["Keyboard", "Anchor verified", "Chrome and Safari Button focus; Safari Dialog/Menu dismissal and focus return"], ["VoiceOver", "Anchor verified", "Safari Dialog title/order/focus containment and Menu role/selection"], ["Contrast", "Partial", "Automated forced-colors structure; manual high-contrast review remains"], ["Motion", "Automated verified", "Reduced-motion path and interruption behavior"]]} /></DocSection>
+    <DocSection id="manual-review" title="Evidence matrix"><StatusTable label="Accessibility release review" rows={[[`${componentMaturity.length} component routes`, "Automated gate", "Serious and critical axe findings, overflow, and atomic shortcut geometry"], ["200% equivalent", "Automated + browser review", "All component routes at a 640px CSS viewport with no lost content or horizontal page overflow"], ["Forced colors / reduced motion", "Automated gate", "System colors preserve structure; non-essential spatial motion is removed or reduced"], ["Keyboard", "Automated task paths", "Menu and Dialog focus return plus the Product pilot Command K archive and Undo task"], ["Screen reader / physical devices", "External gate", "Manual assistive-technology and touch-device sign-off remains required before any component becomes Ready"]]} /></DocSection>
   </>;
 }
 
@@ -229,7 +311,8 @@ function Contributing() {
 function Releases() {
   return <>
     <DocSection id="version-policy" title="Version policy"><p>The project follows Semantic Versioning once a stable public API exists. During 0.x, every breaking change is still documented and paired with a migration path.</p></DocSection>
-    <DocSection id="release-evidence" title="Release evidence"><CheckList items={["All tests, types, registry checks, clean-consumer and production builds pass.", "Cross-browser and accessibility matrices match the support claim.", "Representative light, dark, focus, loading, error, and product visual baselines are reviewed.", "Bundle and interaction budgets pass in the Product pilot.", "The changelog, migration note, compatibility table, maintainer ownership, and security status are current."]} /></DocSection>
+    <DocSection id="release-evidence" title="Release evidence"><CheckList items={["All tests, types, registry checks, clean-consumer and production builds pass.", "The immutable version path matches the mutable release byte-for-byte and rejects changed content without a version bump.", "The clean consumer preserves a local modification, stages the upstream candidate, and builds after explicit acceptance.", "Cross-browser, 200% reflow, forced-colors, reduced-motion, keyboard, and accessibility matrices match the support claim.", "Representative light, dark, focus, loading, error, and product visual baselines are reviewed.", "The changelog, migration note, compatibility table, maintainer ownership, and security status are current."]} /></DocSection>
+    <DocSection id="package-candidate" title="Package candidate is not publication"><p>The private package candidate has explicit exports, React peer boundaries, an allowlisted tarball, and a fresh TypeScript/Vite consumer test. Its GitHub workflow can attest the tarball without an npm credential. npm publication and trusted-publisher configuration remain separate maintainer decisions.</p></DocSection>
     <DocSection id="deprecation" title="Deprecation"><p>Deprecated APIs remain documented for at least one minor release after 1.0. Warnings name the replacement and the last supported version.</p></DocSection>
     <DocSection id="support-window" title="Support window"><p>Alpha releases support only the latest version. The first stable release must publish a defined maintenance window before the package is described as production-ready.</p></DocSection>
   </>;
@@ -249,6 +332,7 @@ const contentById: Record<PublicDocId, (props: { onNavigate: (id: string) => voi
   installation: Installation,
   "choosing-components": ChoosingComponents,
   "product-pilot": ProductPilotPage,
+  "component-status": ComponentStatus,
   accessibility: Accessibility,
   "browser-support": BrowserSupport,
   security: Security,
@@ -260,5 +344,10 @@ const contentById: Record<PublicDocId, (props: { onNavigate: (id: string) => voi
 export function PublicDocPage({ id, onNavigate }: { id: PublicDocId; onNavigate: (id: string) => void }) {
   const doc = publicDocItems.find((item) => item.id === id)!;
   const Content = contentById[id];
-  return <div className={"system-detail__content public-doc-page" + (id === "product-pilot" ? " public-doc-page--pilot" : "")}><section className="system-overview" id="system-overview"><span className="public-doc-kicker">{doc.group}</span><h1>{doc.label}</h1><p>{doc.description}</p></section><div className="public-doc-body"><Content onNavigate={onNavigate} /></div><footer className="system-footer"><span>Interaction Index</span><span>Public system documentation</span></footer></div>;
+  const introduction = id === "introduction";
+  const pageMode = introduction ? " public-doc-page--editorial system-editorial-page" : " system-reference-page";
+  return <div className={"system-detail__content public-doc-page" + pageMode + (id === "product-pilot" ? " public-doc-page--pilot" : "")}>
+    {introduction ? <div className="public-doc-body public-doc-body--entry"><Content onNavigate={onNavigate} /></div> : <><section className="system-overview" id="system-overview"><span className="public-doc-kicker">{doc.group}</span><h1>{doc.label}</h1><p>{doc.description}</p></section><div className="public-doc-body"><Content onNavigate={onNavigate} /></div></>}
+    <footer className="system-footer"><span>Interaction Index</span><span>Public system documentation</span></footer>
+  </div>;
 }

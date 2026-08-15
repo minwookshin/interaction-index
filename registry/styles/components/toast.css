@@ -3,9 +3,9 @@
 @layer index.tokens, index.base, index.components;
 
 @layer index.components {
-.ix-toaster { z-index: var(--ix-layer-toast); }
+.ix-toaster { --width: 326px; z-index: var(--ix-layer-toast); }
 
-.ix-toast { position: relative; display: flex; width: 326px; min-height: 52px; align-items: center; gap: 10px; padding: 10px 40px 10px 12px; border-radius: 8px; background: var(--ix-bg-flyout); color: var(--ix-ink); box-shadow: var(--ix-shadow-flyout); font-family: inherit; }
+.ix-toast { position: relative; display: flex; width: 326px; max-width: calc(100vw - 32px); min-height: 52px; align-items: center; gap: 10px; padding: 10px 40px 10px 12px; border: 1px solid var(--ix-border-subtle); border-radius: 8px; background: var(--ix-bg-flyout); color: var(--ix-ink); box-shadow: var(--ix-shadow-flyout); font-family: inherit; }
 
 .ix-toast__content { display: grid; flex: 1; gap: 2px; }
 

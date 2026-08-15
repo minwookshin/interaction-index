@@ -7,7 +7,7 @@ Interaction Index is a dense, monochrome React component and interaction system 
 - /#introduction - system overview and behavior signature
 - /#installation - registry and stylesheet setup
 - /#foundations - color, typography, spacing, motion, and Component DNA
-- /#button - component documentation begins with Button; the sidebar lists all 35 components
+- /#button - component documentation begins with Button; the sidebar lists all 45 components
 - /#patterns - authored interaction patterns
 - /#accessibility - keyboard, focus, motion, contrast, and manual review
 - /#browser-support - browser and viewport support policy

@@ -1,11 +1,11 @@
 import "../../styles/index-base.css";
 import "../../styles/components/alert.css";
 import { Info, WarningCircle, X } from "@phosphor-icons/react";
-import type { HTMLAttributes, ReactNode } from "react";
+import type { ComponentPropsWithRef, ReactNode } from "react";
 import { cn } from "../../lib/cn";
 import { IconButton } from "./icon-button";
 
-export type AlertProps = Omit<HTMLAttributes<HTMLDivElement>, "title"> & {
+export type AlertProps = Omit<ComponentPropsWithRef<"div">, "title"> & {
   variant?: "neutral" | "critical";
   title: ReactNode;
   icon?: ReactNode;

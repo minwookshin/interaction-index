@@ -47,6 +47,15 @@ describe("extended component set", () => {
     expect(screen.getByRole("radio", { name: "Weekly" })).toBeChecked();
   });
 
+  it("keeps horizontal radio layouts operable with horizontal arrow keys", async () => {
+    const user = userEvent.setup();
+    render(<RadioGroup label="Layout" orientation="horizontal" defaultValue="list" options={[{ value: "list", label: "List" }, { value: "board", label: "Board" }]} />);
+    const list = screen.getByRole("radio", { name: "List" });
+    list.focus();
+    await user.keyboard("{ArrowRight}");
+    expect(screen.getByRole("radio", { name: "Board" })).toBeChecked();
+  });
+
   it("resolves the selected label from a short predefined Select list", () => {
     render(<Select label="Priority" defaultValue="high" options={[{ label: "Low", value: "low" }, { label: "High", value: "high" }]} />);
     expect(screen.getByRole("combobox", { name: "Priority" })).toHaveTextContent("High");
@@ -61,8 +70,16 @@ describe("extended component set", () => {
     const trigger = screen.getByRole("combobox", { name: "Platform" });
     expect(trigger).toHaveTextContent("Web");
     await user.click(trigger);
-    await user.click(screen.getByRole("option", { name: /Native/ }));
+    await user.click(await screen.findByRole("option", { name: /Native/ }));
     expect(trigger).toHaveTextContent("Native");
+  });
+
+  it("keeps an explicitly empty context honest instead of displaying a false selection", () => {
+    render(<ContextSwitcher aria-label="Platform" value={null} options={[
+      { value: "web", label: "Web", description: "Browser interfaces", icon: <Monitor /> },
+      { value: "native", label: "Native", description: "Mobile applications", icon: <DeviceMobile /> },
+    ]} />);
+    expect(screen.getByRole("combobox", { name: "Platform" })).toHaveTextContent("Choose context");
   });
 
   it("filters and selects a Combobox option", async () => {
@@ -85,6 +102,15 @@ describe("extended component set", () => {
     expect(screen.getByRole("searchbox", { name: "Search" })).toHaveValue("");
   });
 
+  it("tracks and clears a Search Input that owns its local value", async () => {
+    const user = userEvent.setup();
+    const onClear = vi.fn();
+    render(<SearchInput defaultValue="button" onClear={onClear} />);
+    await user.click(screen.getByRole("button", { name: "Clear search" }));
+    expect(screen.getByRole("searchbox", { name: "Search" })).toHaveValue("");
+    expect(onClear).toHaveBeenCalledOnce();
+  });
+
   it("clamps pagination at boundaries and marks the current page", async () => {
     const user = userEvent.setup();
     const onPageChange = vi.fn();
@@ -93,6 +119,12 @@ describe("extended component set", () => {
     expect(screen.getByRole("button", { name: "Page 1" })).toHaveAttribute("aria-current", "page");
     await user.click(screen.getByRole("button", { name: "Next page" }));
     expect(onPageChange).toHaveBeenCalledWith(2);
+  });
+
+  it("normalizes invalid pagination inputs without rendering an impossible current page", () => {
+    render(<Pagination page={99} totalPages={0} onPageChange={() => undefined} />);
+    expect(screen.getByRole("button", { name: "Page 1" })).toHaveAttribute("aria-current", "page");
+    expect(screen.getByRole("button", { name: "Next page" })).toBeDisabled();
   });
 
   it("uses semantic breadcrumbs and a non-link current page", () => {
@@ -109,9 +141,15 @@ describe("extended component set", () => {
     expect(container.querySelector(".ix-skeleton")).toHaveAttribute("aria-hidden", "true");
   });
 
+  it("maps Progress against its full min-to-max range", () => {
+    render(<Progress aria-label="Migration" min={50} max={150} value={100} />);
+    expect(screen.getByRole("progressbar", { name: "Migration" })).toHaveStyle({ "--ix-progress-scale": "0.5" });
+  });
+
   it("labels presence without turning the avatar into an action", () => {
-    render(<Avatar fallback="AS" status="online" />);
+    const { container } = render(<Avatar fallback="AS" status="online" />);
     expect(screen.getByLabelText("online presence")).toBeInTheDocument();
+    expect(container.querySelector(".ix-avatar")).toHaveAttribute("data-status", "online");
     expect(screen.queryByRole("button")).not.toBeInTheDocument();
   });
 });

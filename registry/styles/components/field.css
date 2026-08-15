@@ -1,0 +1,79 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-field-layout {
+  display: grid;
+  min-width: 0;
+  gap: 6px;
+}
+
+.ix-field-layout__label,
+.ix-fieldset__legend {
+  color: var(--ix-fg-default);
+  font-size: var(--ix-type-label);
+  font-weight: var(--ix-label-weight);
+  line-height: var(--ix-line-label);
+}
+
+.ix-field-layout__description,
+.ix-field-layout__error {
+  color: var(--ix-fg-muted);
+  font-size: var(--ix-type-metadata);
+  line-height: var(--ix-line-metadata);
+}
+
+.ix-field-layout__error { color: var(--ix-fg-danger); }
+
+.ix-field-layout__control {
+  width: 100%;
+  min-width: 0;
+  height: var(--ix-control-height-md);
+  padding: 0 9px;
+  border: 1px solid var(--ix-control-border);
+  border-radius: var(--ix-radius-control);
+  outline: 0;
+  background: var(--ix-bg-control);
+  box-shadow: var(--ix-shadow-control);
+  color: var(--ix-fg-default);
+  font: inherit;
+  font-size: var(--ix-type-ui);
+  transition: background-color var(--ix-hover-duration), border-color var(--ix-hover-duration), box-shadow var(--ix-hover-duration);
+}
+
+.ix-field-layout__control::placeholder { color: var(--ix-fg-subtle); }
+
+.ix-field-layout__control:hover:not(:disabled):not(:read-only) { border-color: var(--ix-control-border-hover); }
+
+.ix-field-layout__control:focus-visible {
+  border-color: var(--ix-control-border-hover);
+  box-shadow: var(--ix-shadow-control), 0 0 0 2px var(--ix-focus-halo);
+}
+
+.ix-field-layout[data-invalid] .ix-field-layout__control,
+.ix-field-layout__control[aria-invalid="true"] {
+  border-color: color-mix(in oklch, var(--ix-fg-danger) 42%, var(--ix-control-border));
+  box-shadow: var(--ix-shadow-control), 0 0 0 2px color-mix(in oklch, var(--ix-fg-danger) 10%, transparent);
+}
+
+.ix-field-layout[data-disabled] .ix-field-layout__control,
+.ix-field-layout__control:disabled { background: var(--ix-bg-subtle); box-shadow: none; color: var(--ix-fg-disabled); cursor: not-allowed; }
+
+.ix-field-layout__control:read-only { color: var(--ix-fg-muted); }
+
+.ix-fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.ix-fieldset__legend { margin: 0 0 8px; padding: 0; }
+
+.ix-field-group { display: grid; gap: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+.ix-field-layout__control { transition-duration: 0.01ms; }
+}
+}

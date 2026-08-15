@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "name": "interaction-index",
+  "version": "0.1.0-alpha.2",
+  "immutable": true,
+  "channel": "versioned",
+  "urlTemplate": "https://minwookshin.github.io/interaction-index/r/v/0.1.0-alpha.2/{name}.json",
+  "cacheControl": "public, max-age=31536000, immutable",
+  "sourceManifestSha256": "df4063ef07c42d7125f96227a789b3c0b50372896091257f22ce755282a555ea",
+  "artifacts": {
+    "action-list.json": {
+      "bytes": 10321,
+      "sha256": "6d4af6249065de42d1e87ed0c52e4c345c26b121ad5c0d91c4b988c3e955dc9c"
+    },
+    "alert-dialog.json": {
+      "bytes": 5161,
+      "sha256": "601298cbe198badd2833c76204c4ce8865a84a78a7e77b5ffd213d448b75f781"
+    },
+    "alert.json": {
+      "bytes": 3712,
+      "sha256": "af295466c48138ad5226d46ccca50adebe7bb7b2cd7db960a279d5855ae2aeb6"
+    },
+    "avatar.json": {
+      "bytes": 4106,
+      "sha256": "ec47caa0976f9a23a6323134bc464a9dca4a79fd4815b37f188073c933194fd0"
+    },
+    "badge.json": {
+      "bytes": 3387,
+      "sha256": "63590c1fbc88cd60deb37ce99ee5ee135b06e4cc6cb7a1a5a0b13c262e33a570"
+    },
+    "breadcrumbs.json": {
+      "bytes": 3459,
+      "sha256": "5a87106b601386b530f2e9fda9a446e5923838302b81fedb72104e2c83f1ad64"
+    },
+    "button.json": {
+      "bytes": 6795,
+      "sha256": "9ed463bf18d3d3282505ef1ae75433e34c24956400814d1dcb658785f6891158"
+    },
+    "checkbox.json": {
+      "bytes": 4987,
+      "sha256": "593637b7fbe72e79f08ff65bb76ad5537243d0074fe5bc482c9b76447bfc701b"
+    },
+    "collapsible.json": {
+      "bytes": 3742,
+      "sha256": "0574b4fc9618f17906c6a82f6942e8bc5dfcb2773d3bc967dead8902f09a910f"
+    },
+    "combobox.json": {
+      "bytes": 10223,
+      "sha256": "542bd2fef37eac3cecae414748bf6de1e24cd802cd6ddf6ad72c50ed851461a9"
+    },
+    "context-switcher.json": {
+      "bytes": 10489,
+      "sha256": "3e2bc3313288f5e86569d1c0531de0e383ae6cdcd1e48ac5b676a1cff67d1bcd"
+    },
+    "dialog.json": {
+      "bytes": 5084,
+      "sha256": "038d2cb2f32fe9d8e5f0614ff33fcc4a0d268f8a9f119da425523856add31cd9"
+    },
+    "empty-state.json": {
+      "bytes": 3218,
+      "sha256": "10b303963f2a522b9125ff0af1aec997d704d7bda3f194f18f01638e08532e2f"
+    },
+    "icon-button.json": {
+      "bytes": 2388,
+      "sha256": "dada148fa87cb8825948f912475d59c3557854a8adbc7bdb14d40a0e4ef04d8c"
+    },
+    "inline-edit.json": {
+      "bytes": 8509,
+      "sha256": "619ceba2f7f977b85cc0d58d20e278302614faeee961f2c814efe3e89cf5222c"
+    },
+    "interaction-index-base.json": {
+      "bytes": 9978,
+      "sha256": "70e94786c5a3be8443be825c7f1ad1ddccdc7e31fd158cadd6fefb87054a743f"
+    },
+    "interaction-index.json": {
+      "bytes": 194657,
+      "sha256": "ec03238e18c1d102542997877cb425bec12108cf8eab1d6484d4df9d84385126"
+    },
+    "manifest.json": {
+      "bytes": 123229,
+      "sha256": "df4063ef07c42d7125f96227a789b3c0b50372896091257f22ce755282a555ea"
+    },
+    "menu.json": {
+      "bytes": 6656,
+      "sha256": "5d75142836e03bdd6e0be2b491cc898fec8441713ffa549938772106ad70f55a"
+    },
+    "number-field.json": {
+      "bytes": 5918,
+      "sha256": "25b5d1a5199237027e20a0f8d0c959b1735119cd9a0245e2930858879ff5fda6"
+    },
+    "pagination.json": {
+      "bytes": 4609,
+      "sha256": "e96b177191e629a6d0db74acc5c546fa2c7adda10ab4b5b7bdc6181a9a594f5b"
+    },
+    "popover.json": {
+      "bytes": 2960,
+      "sha256": "dc7a84dba87ecaa4b26c0e8310786306bee34077c78b6b51cf3499800d02e783"
+    },
+    "progress.json": {
+      "bytes": 3723,
+      "sha256": "51d68a16570cdc413c47376ba9c40d61a0393d454efaa977ba38b99c5ffac527"
+    },
+    "radio-group.json": {
+      "bytes": 5748,
+      "sha256": "62abd8f0d994c79b3da9889c366fa0a83bd3da712f0e15bf98d3819017f35e10"
+    },
+    "registry.json": {
+      "bytes": 37911,
+      "sha256": "6cc6038de9a249703f38d10fbe1b22b7a98932abcd9b7b0d61acc9b297f8a2fa"
+    },
+    "search-input.json": {
+      "bytes": 5265,
+      "sha256": "f43fc6ced3e313e4c829f57efb5fbf0922555f21ea1c369d5dfe74ae06b47ca7"
+    },
+    "segmented-control.json": {
+      "bytes": 4983,
+      "sha256": "515c04b5555b7c89eb4e98e176612950a775ae02f18b8916e079f7066241138b"
+    },
+    "select.json": {
+      "bytes": 9220,
+      "sha256": "4eadfd067cefa4af4b6798807492db4abcf18fdfc69aeb55126973a36f28993f"
+    },
+    "shared-detail.json": {
+      "bytes": 20413,
+      "sha256": "0f6cf024fc6fc91bccd0a9ed95579fc520b221deebb6d915862ebb67291c8aa2"
+    },
+    "skeleton.json": {
+      "bytes": 2391,
+      "sha256": "ce7ab0c79fc087f133c6316c62b29fe41f10aa4071b009e9b15a73a9b707d790"
+    },
+    "spinner.json": {
+      "bytes": 1914,
+      "sha256": "53de22de2bc30a0ff437f28c7fc234b52c6b3378d8fcc1940e8f83902bfd38ff"
+    },
+    "switch.json": {
+      "bytes": 4033,
+      "sha256": "22bce3158ea59641d5a2a1c051929fc606d248d155929c62a2e6967cbab997f8"
+    },
+    "table.json": {
+      "bytes": 4654,
+      "sha256": "5cfd5b2a4b67bc22de14b52daa233ababfcc129a3a74921c66bc2bff9e916f33"
+    },
+    "tabs.json": {
+      "bytes": 3264,
+      "sha256": "efeec7e7d6b70f762dced7b96908093979319a76efd3ae799077da5640c2affb"
+    },
+    "text-field.json": {
+      "bytes": 4783,
+      "sha256": "ddea325181aac12c1bac5341ce3bdb9b88c6368bedc773879fffd7d2472334a3"
+    },
+    "textarea.json": {
+      "bytes": 4427,
+      "sha256": "49f341df2ac7db30ff78785a6dd3b161283c45ae5ff0ccf07a8d47ab19e5fe22"
+    },
+    "toast.json": {
+      "bytes": 4523,
+      "sha256": "b44af06d08a6c87a154f177a8ef8e9b3db1350c74affd23c2b1d39a0db2662ea"
+    },
+    "tooltip.json": {
+      "bytes": 3842,
+      "sha256": "39f1d183c3b90e5c9f6d6517e5e84edb0f1ce6cc6ad141032abb321137619484"
+    },
+    "undo-stack.json": {
+      "bytes": 6254,
+      "sha256": "6f018842bd420938e2cc722b38272252504fd45c3ff4801951f9bea66465cc9b"
+    }
+  }
+}

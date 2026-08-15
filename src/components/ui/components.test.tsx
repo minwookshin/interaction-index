@@ -5,6 +5,7 @@ import { describe, expect, it, vi } from "vitest";
 import { ActionList } from "./action-list";
 import { Button } from "./button";
 import { Checkbox } from "./checkbox";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./dialog";
 import { InlineEdit } from "./inline-edit";
 import { SharedDetail } from "./shared-detail";
 import { Switch } from "./switch";
@@ -30,6 +31,14 @@ describe("core controls", () => {
     toggle.focus();
     await user.keyboard(" ");
     expect(toggle).toBeChecked();
+  });
+
+  it("keeps choice descriptions out of the accessible name and in the description", () => {
+    render(<><Checkbox label="Include notes" description="Adds the authored contract." /><Switch label="Show previews" description="Updates immediately." /></>);
+    const checkbox = screen.getByRole("checkbox", { name: "Include notes" });
+    const toggle = screen.getByRole("switch", { name: "Show previews" });
+    expect(checkbox).toHaveAccessibleDescription("Adds the authored contract.");
+    expect(toggle).toHaveAccessibleDescription("Updates immediately.");
   });
 
   it("exposes an indeterminate checkbox as mixed", () => {
@@ -70,6 +79,7 @@ describe("authored interaction components", () => {
       { id: "delete", label: "Delete permanently", disabled: true },
     ]} onAction={onAction} />);
     const input = screen.getByRole("combobox");
+    expect(screen.getByText("⌘K")).toHaveAccessibleName("Command K");
     await user.type(input, "archive");
     expect(screen.getAllByRole("option")).toHaveLength(1);
     await user.keyboard("{Enter}");
@@ -85,7 +95,7 @@ describe("authored interaction components", () => {
     await user.clear(input);
     await user.type(input, "A{Enter}");
     expect(input).toHaveAttribute("aria-invalid", "true");
-    expect(document.getElementById("edit-value-error")).toHaveTextContent("Use at least 3 characters.");
+    expect(input).toHaveAccessibleDescription("Use at least 3 characters.");
   });
 
   it("commits an inline edit once when Enter also causes blur", async () => {
@@ -134,5 +144,21 @@ describe("authored interaction components", () => {
     expect(screen.getAllByRole("region")).toHaveLength(1);
     expect(screen.getByRole("button", { name: /Motion contract/ })).toHaveAttribute("aria-expanded", "false");
     expect(screen.getByRole("button", { name: /Focus map/ })).toHaveAttribute("aria-expanded", "true");
+  });
+
+  it("lets a nested overlay consume Escape before Shared Detail closes", async () => {
+    const user = userEvent.setup();
+    render(<SharedDetail items={[{ id: "one", title: "Motion contract", meta: "Updated now", description: "Details" }]} renderDetail={() => (
+      <Dialog>
+        <DialogTrigger render={<Button />}>Edit metadata</DialogTrigger>
+        <DialogContent><DialogTitle>Edit metadata</DialogTitle></DialogContent>
+      </Dialog>
+    )} />);
+    await user.click(screen.getByRole("button", { name: /Motion contract/ }));
+    await user.click(screen.getByRole("button", { name: "Edit metadata" }));
+    expect(await screen.findByRole("dialog", { name: "Edit metadata" })).toBeInTheDocument();
+    await user.keyboard("{Escape}");
+    await vi.waitFor(() => expect(screen.queryByRole("dialog", { name: "Edit metadata" })).not.toBeInTheDocument());
+    expect(screen.getByRole("region", { name: "Motion contract" })).toBeInTheDocument();
   });
 });

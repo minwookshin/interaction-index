@@ -1,0 +1,59 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-tree { display: grid; width: min(420px, 100%); gap: 1px; outline: 0; color: var(--ix-fg-default); }
+
+.ix-tree[data-focus-visible] { outline: 0; }
+
+.ix-tree [role="row"] { outline: 0; }
+
+.ix-tree__row {
+  display: grid;
+  min-height: 32px;
+  grid-template-columns: 16px 17px minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px 4px calc(8px + var(--ix-tree-indent, 0px));
+  border-radius: 7px;
+  color: var(--ix-fg-muted);
+  cursor: default;
+  transition: background-color var(--ix-hover-duration), color var(--ix-hover-duration), transform var(--ix-press-duration) var(--ix-ease-out);
+}
+
+.ix-tree [role="row"][data-hovered] > .ix-tree__row { background: var(--ix-hover); color: var(--ix-fg-default); }
+
+.ix-tree [role="row"][data-selected] > .ix-tree__row { background: var(--ix-selection); color: var(--ix-fg-default); }
+
+.ix-tree [role="row"][data-focus-visible] > .ix-tree__row { box-shadow: inset 0 0 0 1px var(--ix-focus-control); }
+
+.ix-tree [role="row"][data-pressed] > .ix-tree__row { transform: scale(.995); }
+
+.ix-tree [role="row"][data-disabled] > .ix-tree__row { color: var(--ix-fg-disabled); cursor: not-allowed; }
+
+.ix-tree__chevron { position: relative; display: grid; width: 16px; height: 16px; place-items: center; padding: 0; border: 0; border-radius: 4px; background: transparent; opacity: 0; color: var(--ix-fg-subtle); transition: transform var(--ix-enter-duration) var(--ix-ease-out); }
+
+.ix-tree__chevron[data-visible] { opacity: 1; }
+
+.ix-tree__chevron[data-visible]::after { position: absolute; inset: -4px; content: ""; }
+
+.ix-tree__chevron[data-expanded] { transform: rotate(90deg); }
+
+.ix-tree__chevron:focus-visible { outline: 0; box-shadow: inset 0 0 0 1px var(--ix-focus-control); }
+
+.ix-tree__chevron svg,
+.ix-tree__icon svg { width: 13px; height: 13px; }
+
+.ix-tree__icon { display: grid; width: 17px; height: 17px; place-items: center; color: var(--ix-fg-subtle); }
+
+.ix-tree__copy { display: grid; min-width: 0; gap: 1px; }
+
+.ix-tree__label { overflow: hidden; font-size: var(--ix-type-ui); line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
+
+.ix-tree__description { overflow: hidden; color: var(--ix-fg-subtle); font-size: var(--ix-type-metadata); line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+.ix-tree__chevron { transition-duration: 0.01ms; }
+}
+}

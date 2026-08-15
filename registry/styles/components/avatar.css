@@ -7,20 +7,32 @@
   position: relative;
   display: inline-grid;
   flex: 0 0 auto;
+  isolation: isolate;
   place-items: center;
   overflow: visible;
-  border: 1px solid var(--ix-control-border);
+  border: 1px solid color-mix(in oklch, var(--ix-control-border) 76%, transparent);
   border-radius: 50%;
   background: var(--ix-gray-100);
-  color: var(--ix-ink-secondary);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  color: var(--ix-fg-muted);
+  box-shadow: inset 0 1px 0 color-mix(in oklch, var(--ix-bg-surface) 72%, transparent);
+  font-weight: 570;
+  letter-spacing: -0.025em;
 }
+
+.ix-avatar[data-tone="0"] { background: var(--ix-gray-50); }
+
+.ix-avatar[data-tone="1"] { background: color-mix(in oklch, var(--ix-gray-100) 78%, var(--ix-gray-200)); }
+
+.ix-avatar[data-tone="2"] { background: color-mix(in oklch, var(--ix-gray-100) 58%, var(--ix-gray-200)); }
+
+.ix-avatar[data-tone="3"] { background: color-mix(in oklch, var(--ix-gray-100) 38%, var(--ix-gray-200)); }
 
 .ix-avatar img,
 .ix-avatar__fallback { width: 100%; height: 100%; border-radius: inherit; object-fit: cover; display: grid; place-items: center; }
 
-.ix-avatar__status { position: absolute; right: -1px; bottom: -1px; width: 8px; height: 8px; border: 2px solid var(--ix-bg-surface); border-radius: 50%; background: var(--ix-gray-700); }
+.ix-avatar__fallback { line-height: 1; text-align: center; }
+
+.ix-avatar__status { position: absolute; z-index: 2; right: -1px; bottom: -1px; width: 11px; height: 11px; border: 2px solid var(--ix-bg-surface); border-radius: 50%; background: var(--ix-gray-700); }
 
 .ix-avatar__status[data-status="away"] { background: var(--ix-gray-400); }
 
@@ -28,7 +40,11 @@
 
 .ix-avatar__status[data-status="offline"] { background: var(--ix-bg-control); box-shadow: inset 0 0 0 1px var(--ix-gray-400); }
 
-.ix-avatar-group { display: flex; align-items: center; padding-left: 6px; }
+.ix-avatar-group { display: flex; align-items: center; isolation: isolate; }
 
-.ix-avatar-group .ix-avatar { margin-left: -6px; box-shadow: 0 0 0 2px var(--ix-bg-surface); }
+.ix-avatar-group .ix-avatar { box-shadow: 0 0 0 2px var(--ix-bg-surface), inset 0 1px 0 color-mix(in oklch, var(--ix-bg-surface) 72%, transparent); }
+
+.ix-avatar-group .ix-avatar + .ix-avatar { margin-left: -7px; }
+
+.ix-avatar-group .ix-avatar[data-status] { z-index: 1; }
 }

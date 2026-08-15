@@ -28,11 +28,11 @@
 
 .ix-inline-edit__input { border-color: var(--ix-border-strong); outline: 0; background: var(--ix-control-surface); box-shadow: 0 0 0 2px var(--ix-border-subtle); }
 
-.ix-inline-edit[data-status="error"] .ix-inline-edit__input { border-color: var(--ix-control-border-hover); box-shadow: 0 0 0 2px var(--ix-focus-control), inset 3px 0 0 var(--ix-fg-default); }
+.ix-inline-edit[data-status="error"] .ix-inline-edit__input { border-color: color-mix(in oklch, var(--ix-fg-danger) 46%, var(--ix-control-border)); box-shadow: 0 0 0 2px color-mix(in oklch, var(--ix-fg-danger) 11%, transparent); }
 
 .ix-inline-edit__saving { position: absolute; top: 0; right: 10px; display: grid; height: 44px; place-items: center; color: var(--ix-fg-muted); }
 
-.ix-inline-edit__error { display: block; padding: 6px 10px 0; color: var(--ix-ink-secondary); font-size: 11.5px; font-weight: 520; }
+.ix-inline-edit__error { display: block; padding: 6px 10px 0; color: var(--ix-fg-danger); font-size: 11.5px; font-weight: 520; }
 
 @media (prefers-reduced-motion: reduce) {
 .ix-spinner { animation-duration: 2.4s; }

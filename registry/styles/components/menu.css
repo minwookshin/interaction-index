@@ -5,7 +5,7 @@
 @layer index.components {
 .ix-positioner { z-index: var(--ix-layer-flyout); }
 
-.ix-menu kbd { font-family: inherit; font-size: 10px; color: var(--ix-ink-tertiary); }
+.ix-menu kbd { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; color: var(--ix-ink-tertiary); font-family: inherit; font-size: 10px; line-height: 1; white-space: nowrap; }
 
 .ix-menu { min-width: 196px; max-height: var(--available-height); padding: 4px; overflow: auto; border-radius: var(--ix-radius-overlay); background: var(--ix-bg-flyout); box-shadow: var(--ix-shadow-flyout); outline: 0; transform-origin: var(--transform-origin); transition: opacity 150ms var(--ix-ease-out), transform 150ms var(--ix-ease-out); }
 

@@ -15,9 +15,10 @@ export type ComboboxProps = Omit<ComboboxPrimitive.Root.Props<ComboboxOption>, "
   placeholder?: string;
   options: readonly ComboboxOption[];
   className?: string;
+  ref?: ComboboxPrimitive.Input.Props["ref"];
 };
 
-export function Combobox({ label, "aria-label": ariaLabel, description, error, placeholder = "Search options…", options, className, ...props }: ComboboxProps) {
+export function Combobox({ label, "aria-label": ariaLabel, description, error, placeholder = "Search options…", options, className, ref, ...props }: ComboboxProps) {
   const id = useId();
   const descriptionId = description ? `${id}-description` : undefined;
   const errorId = error ? `${id}-error` : undefined;
@@ -26,7 +27,7 @@ export function Combobox({ label, "aria-label": ariaLabel, description, error, p
       {label && <label className="ix-field__label" htmlFor={id}>{label}</label>}
       <ComboboxPrimitive.Root items={[...options]} itemToStringLabel={(option) => option.label} itemToStringValue={(option) => option.value} {...props}>
         <ComboboxPrimitive.InputGroup className={cn("ix-combobox", className)}>
-          <ComboboxPrimitive.Input id={id} className="ix-combobox__input" placeholder={placeholder} aria-label={label ? undefined : ariaLabel} aria-describedby={[descriptionId, errorId].filter(Boolean).join(" ") || undefined} aria-invalid={Boolean(error) || undefined} />
+          <ComboboxPrimitive.Input ref={ref} id={id} className="ix-combobox__input" placeholder={placeholder} aria-label={label ? undefined : ariaLabel} aria-describedby={[descriptionId, errorId].filter(Boolean).join(" ") || undefined} aria-invalid={Boolean(error) || undefined} />
           <ComboboxPrimitive.Clear className="ix-combobox__action" aria-label="Clear selection"><X /></ComboboxPrimitive.Clear>
           <ComboboxPrimitive.Trigger className="ix-combobox__action ix-combobox__trigger" aria-label="Show options"><CaretDown /></ComboboxPrimitive.Trigger>
         </ComboboxPrimitive.InputGroup>
@@ -34,7 +35,7 @@ export function Combobox({ label, "aria-label": ariaLabel, description, error, p
           <ComboboxPrimitive.Positioner className="ix-positioner" sideOffset={5} align="start">
             <ComboboxPrimitive.Popup className="ix-combobox-popup" data-layer="flyout">
               <ComboboxPrimitive.Empty className="ix-combobox-empty">No matching options</ComboboxPrimitive.Empty>
-              <ComboboxPrimitive.List className="ix-combobox-list">
+              <ComboboxPrimitive.List className="ix-combobox-list" aria-label={`${label ?? ariaLabel ?? "Combobox"} options`}>
                 {(option: ComboboxOption, index: number) => (
                   <ComboboxPrimitive.Item className="ix-combobox-item" key={option.value} value={option} index={index} disabled={option.disabled}>
                     <span><strong>{option.label}</strong>{option.description && <small>{option.description}</small>}</span>

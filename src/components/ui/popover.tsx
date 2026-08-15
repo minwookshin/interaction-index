@@ -9,7 +9,7 @@ export function PopoverTrigger(props: PopoverPrimitive.Trigger.Props) {
   return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />;
 }
 
-type PopoverContentProps = PopoverPrimitive.Popup.Props &
+export type PopoverContentProps = PopoverPrimitive.Popup.Props &
   Pick<PopoverPrimitive.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">;
 
 export function PopoverContent({

@@ -6,30 +6,31 @@
 .ix-badge {
   display: inline-flex;
   min-width: 0;
-  height: 22px;
+  height: 21px;
   align-items: center;
-  gap: 5px;
-  padding: 0 7px;
+  gap: 4px;
+  padding: 0 6px;
   border: 1px solid transparent;
-  border-radius: 999px;
-  background: var(--ix-gray-100);
-  color: var(--ix-ink-secondary);
+  border-radius: 6px;
+  background: color-mix(in oklch, var(--ix-bg-subtle) 88%, transparent);
+  color: var(--ix-fg-muted);
   font-size: 11.5px;
-  font-weight: 520;
+  font-weight: 550;
   line-height: 1;
+  letter-spacing: -0.006em;
   white-space: nowrap;
 }
 
 .ix-badge__icon,
-.ix-badge__icon svg { width: 12px; height: 12px; flex: 0 0 auto; }
+.ix-badge__icon svg { width: 11px; height: 11px; flex: 0 0 auto; }
 
 .ix-badge__label { overflow: hidden; text-overflow: ellipsis; }
 
 .ix-badge__remove {
   display: grid;
-  width: 18px;
-  height: 18px;
-  margin-right: -5px;
+  width: 17px;
+  height: 17px;
+  margin-right: -4px;
   place-items: center;
   border: 0;
   border-radius: 999px;
@@ -48,7 +49,7 @@
 
 .ix-badge__remove { transition: color var(--ix-hover-duration), background-color var(--ix-hover-duration), transform var(--ix-press-duration) var(--ix-ease-out); }
 
-.ix-badge__remove:active { transform: scale(.9); }
+.ix-badge__remove:active { transform: scale(.96); }
 
 @media (prefers-reduced-motion: reduce) {
 .ix-badge__remove:active { transform: none; }

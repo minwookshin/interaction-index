@@ -2,6 +2,19 @@ import { ArrowLeft, ArrowRight, Check, Copy, Play } from "@phosphor-icons/react"
 import { useState } from "react";
 import { Button, Switch } from "../components/ui";
 import { copyText } from "../lib/copy-text";
+import { tokenByPath, type TokenPath } from "../tokens/generated";
+
+function token(path: TokenPath) {
+  return tokenByPath[path];
+}
+
+function resolvedToken(path: TokenPath, mode: "light" | "dark" = "light") {
+  return token(path).resolvedValues[mode];
+}
+
+function numericToken(path: TokenPath) {
+  return resolvedToken(path).replace(/(px|ms)$/, "");
+}
 
 export const foundationItems = [
   { id: "color", label: "Color", description: "Cool graphite roles that create hierarchy without decorative color." },
@@ -31,7 +44,7 @@ function CopyValue({ value, label = "Copy value" }: { value: string; label?: str
 
 export function FoundationOverview({ onSelect }: { onSelect: (id: FoundationRoute) => void }) {
   return (
-    <div className="system-detail__content system-foundations">
+    <div className="system-detail__content system-foundations system-reference-page">
       <section className="system-overview system-overview--foundation">
         <h1>Foundations</h1>
         <p>The semantic grammar shared by every component and interaction. Quiet enough for dense product work, explicit enough to implement without guessing.</p>
@@ -56,13 +69,13 @@ function FoundationIndexPreview({ id }: { id: FoundationId }) {
   if (id === "color") return <div className="foundation-index__swatches" aria-hidden="true"><i /><i /><i /><i /></div>;
   if (id === "typography") return <div className="foundation-index__type" aria-hidden="true"><strong>Aa</strong><span>Inter Variable</span></div>;
   if (id === "spacing") return <div className="foundation-index__space" aria-hidden="true">{[4, 8, 12, 16].map((value) => <i key={value} style={{ width: value * 2 }} />)}</div>;
-  return <div className="foundation-index__motion" aria-hidden="true"><i /><span>110</span><span>150</span><span>220</span></div>;
+  return <div className="foundation-index__motion" aria-hidden="true"><i /><span>{numericToken("foundation.motion.duration.press-duration")}</span><span>{numericToken("foundation.motion.duration.hover-duration")}</span><span>{numericToken("foundation.motion.duration.enter-duration")}</span></div>;
 }
 
 export function FoundationDetail({ id, onBack }: { id: FoundationId; onBack: () => void }) {
   const item = foundationItems.find((candidate) => candidate.id === id)!;
   return (
-    <div className="system-detail__content foundation-detail">
+    <div className="system-detail__content foundation-detail system-reference-page">
       <button className="foundation-back" type="button" onClick={onBack}><ArrowLeft aria-hidden="true" /> All foundations</button>
       <section className="system-overview foundation-detail__intro">
         <h1>{item.label}</h1>
@@ -77,22 +90,31 @@ export function FoundationDetail({ id, onBack }: { id: FoundationId; onBack: () 
   );
 }
 
-const graphiteScale = [
-  ["50", "#F7F7F8"], ["100", "#F2F2F7"], ["200", "#E5E5EA"], ["300", "#D1D1D6"], ["400", "#AEAEB2"],
-  ["500", "#8E8E93"], ["600", "#636366"], ["700", "#48484A"], ["800", "#2C2C2E"], ["900", "#1C1C1E"],
-] as const;
+const graphiteScale = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900].map((step) => {
+  const path = `theme.palette.gray-${step}` as TokenPath;
+  return [String(step), resolvedToken(path)] as const;
+});
 
-const semanticColors = [
-  ["--ix-canvas", "Canvas", "#FFFFFF", "#0E0F10", "The root reading surface"],
-  ["--ix-stage", "Stage", "rgba(28,28,30,.028)", "rgba(255,255,255,.035)", "Live examples and grouped controls"],
-  ["--ix-bg-float", "Float", "#FFFFFF", "#1E1E20", "Persistent raised compositions"],
-  ["--ix-bg-flyout", "Flyout", "#FFFFFF", "#262629", "Anchored temporary surfaces"],
-  ["--ix-bg-modal", "Modal", "#FFFFFF", "#222225", "Focus-trapping tasks"],
-  ["--ix-ink", "Primary ink", "#1C1C1E", "#F2F3F4", "Titles, actions, and essential content"],
-  ["--ix-ink-secondary", "Secondary ink", "#636366", "#B4B7BA", "Body copy and supporting labels"],
-  ["--ix-ink-tertiary", "Tertiary ink", "#8E8E93", "#85898D", "Metadata and nonessential hints"],
-  ["--ix-border", "Border", "rgba(28,28,30,.09)", "rgba(255,255,255,.10)", "Control definition, not page structure"],
-] as const;
+const semanticColorRoles = [
+  ["theme.surface.canvas", "Canvas", "The root reading surface"],
+  ["theme.surface.stage", "Stage", "Live examples and grouped controls"],
+  ["theme.surface.bg-float", "Float", "Persistent raised compositions"],
+  ["theme.surface.bg-flyout", "Flyout", "Anchored temporary surfaces"],
+  ["theme.surface.bg-modal", "Modal", "Focus-trapping tasks"],
+  ["theme.foreground.ink", "Primary ink", "Titles, actions, and essential content"],
+  ["theme.foreground.ink-secondary", "Secondary ink", "Body copy and supporting labels"],
+  ["theme.foreground.ink-tertiary", "Tertiary ink", "Metadata and nonessential hints"],
+  ["theme.foreground.fg-danger", "Danger", "Invalid values, errors, and destructive actions only"],
+  ["theme.border.border", "Border", "Control definition, not page structure"],
+] as const satisfies readonly (readonly [TokenPath, string, string])[];
+
+const semanticColors = semanticColorRoles.map(([path, role, usage]) => [
+  token(path).cssVariable,
+  role,
+  resolvedToken(path, "light"),
+  resolvedToken(path, "dark"),
+  usage,
+] as const);
 
 const elevationContract = [
   ["Canvas", "Page and persistent regions", "--ix-bg-canvas", "none", "document flow"],
@@ -103,10 +125,19 @@ const elevationContract = [
   ["Toast", "Non-blocking outcome feedback", "--ix-bg-flyout", "--ix-shadow-flyout", "130"],
 ] as const;
 
+const materialDecisionContract = [
+  ["Space", "Structure related content", "Page sections, navigation groups, guidance", "No edge by default"],
+  ["Tone", "Separate persistent regions", "Sidebar, specimen stage, state tiles", "Surface change only"],
+  ["Stroke", "Define a control or clipped boundary", "Inputs, tables, code disclosure", "One semantic pixel"],
+  ["Float", "Lift a persistent movable object", "Product composition, draggable item", "Float surface + shadow"],
+  ["Flyout", "Anchor temporary content to an origin", "Menu, Popover, Select, Combobox", "Flyout surface + shadow"],
+  ["Modal", "Suspend the page for a focused task", "Dialog, Alert Dialog, Sheet", "Scrim + modal surface + shadow"],
+] as const;
+
 function ColorFoundation() {
   return (
     <>
-      <FoundationSection eyebrow="Principle" title="Hierarchy before decoration" description="Monochrome does not mean flat. Depth comes from role, contrast, spacing, and state, not from unrelated hues.">
+      <FoundationSection eyebrow="Principle" title="Hierarchy before decoration" description="Monochrome does not mean flat. Depth comes from role, contrast, spacing, and state; danger red appears only when the interface must communicate risk or failure.">
         <div className="color-composition" aria-label="Layering model">
           <div className="color-composition__canvas"><span>Canvas</span><div className="color-composition__stage"><span>Stage</span><div className="color-composition__surface"><strong>Surface</strong><small>Primary and secondary ink</small><Button size="small" variant="primary">Primary action</Button></div></div></div>
         </div>
@@ -124,6 +155,21 @@ function ColorFoundation() {
             <td><code>{token}</code></td><td className="foundation-token-values"><span><small>Light</small><code>{light}</code></span><span><small>Dark</small><code>{dark}</code></span></td><td><CopyValue value={token} label={`Copy ${token}`} /></td>
           </tr>)}
         </tbody></table>
+      </FoundationSection>
+
+      <FoundationSection eyebrow="Material rule" title="Use the quietest sufficient signal" description="Start with spacing, then tone, then a semantic edge. Shadows are reserved for surfaces that actually sit above another surface; they never decorate ordinary document structure.">
+        <ol className="material-decision-contract" aria-label="Surface and elevation decision contract">
+          {materialDecisionContract.map(([signal, purpose, examples, treatment], index) => (
+            <li key={signal} data-elevated={index > 2 || undefined}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{signal}</strong>
+              <p>{purpose}</p>
+              <small>{examples}</small>
+              <code>{treatment}</code>
+            </li>
+          ))}
+        </ol>
+        <p className="foundation-note">Decision order: space → tone → stroke → elevation. Focus and error are state signals, so they may add a temporary ring even when the resting surface has no edge.</p>
       </FoundationSection>
 
       <FoundationSection eyebrow="Elevation" title="One layer contract" description="Surface, shadow, focus behavior, and stack order move together. Anchored flyouts remain above a modal when a field inside that modal opens; navigation remains above every product layer.">
@@ -144,15 +190,17 @@ function ColorFoundation() {
   );
 }
 
-const typeRoles = [
-  ["Page title", "28 / 32", "580", "The single subject of a documentation page"],
-  ["Section title", "20 / 26", "580", "Major page sections and guidance"],
-  ["Row title", "14.5 / 20", "470", "Dense lists and object identity"],
-  ["Body", "14 / 22", "470", "Reading and explanatory copy"],
-  ["UI", "13.5 / 18", "470", "Controls, tabs, and product labels"],
-  ["Label", "12 / 16", "560", "Compact hierarchy and field labels"],
-  ["Metadata", "11.5 / 16", "470", "Supporting information with a readable floor"],
-] as const;
+const typeRoleSpecs = [
+  ["Page title", "foundation.typography.sizes.type-title", "foundation.typography.sizes.line-title", "foundation.typography.heading-weight", "The single subject of a documentation page"],
+  ["Section title", "foundation.typography.sizes.type-section", "foundation.typography.sizes.line-section", "foundation.typography.heading-weight", "Major page sections and guidance"],
+  ["Row title", "foundation.typography.sizes.type-row", "foundation.typography.sizes.line-row", "foundation.typography.ui-weight", "Dense lists and object identity"],
+  ["Body", "foundation.typography.sizes.type-body", "foundation.typography.sizes.line-body", "foundation.typography.ui-weight", "Reading and explanatory copy"],
+  ["UI", "foundation.typography.sizes.type-ui", "foundation.typography.sizes.line-ui", "foundation.typography.ui-weight", "Controls, tabs, and product labels"],
+  ["Label", "foundation.typography.sizes.type-label", "foundation.typography.sizes.line-label", "foundation.typography.label-weight", "Compact hierarchy and field labels"],
+  ["Metadata", "foundation.typography.sizes.type-metadata", "foundation.typography.sizes.line-metadata", "foundation.typography.ui-weight", "Supporting information with a readable floor"],
+] as const satisfies readonly (readonly [string, TokenPath, TokenPath, TokenPath, string])[];
+
+const typeRoles = typeRoleSpecs.map(([role, size, line, weight, usage]) => [role, `${numericToken(size)} / ${numericToken(line)}`, resolvedToken(weight), usage] as const);
 
 function TypographyFoundation() {
   return (
@@ -175,7 +223,7 @@ function TypographyFoundation() {
   );
 }
 
-const spacingScale = [4, 8, 12, 16, 20, 24, 28, 32, 40, 48, 64] as const;
+const spacingScale = ["space-1", "space-2", "space-3", "space-4", "space-5", "space-6", "space-7", "space-8", "space-10", "space-12", "space-16"].map((name) => Number(numericToken(`foundation.layout.${name}` as TokenPath)));
 
 const componentDnaRoles = [
   ["Control geometry", "28 / 32 / 36", "Button, input, trigger, and compact actions share one height scale."],
@@ -214,11 +262,11 @@ function SpacingFoundation() {
 }
 
 const motionTokens = [
-  ["Press", "90ms", "Direct physical feedback"],
-  ["Hover", "120ms", "Subtle color and border response"],
-  ["Enter", "180ms", "Occasional overlay appearance"],
-  ["Exit", "120ms", "Faster removal after intent is known"],
-] as const;
+  ["Press", "foundation.motion.duration.press-duration", "Direct physical feedback"],
+  ["Hover", "foundation.motion.duration.hover-duration", "Subtle color and border response"],
+  ["Enter", "foundation.motion.duration.enter-duration", "Occasional overlay appearance"],
+  ["Exit", "foundation.motion.duration.exit-duration", "Faster removal after intent is known"],
+] as const satisfies readonly (readonly [string, TokenPath, string])[];
 
 function MotionFoundation() {
   const [replay, setReplay] = useState(0);
@@ -235,8 +283,8 @@ function MotionFoundation() {
         </div>
       </FoundationSection>
       <FoundationSection eyebrow="Cadence" title="Fast by default" description="Enter uses a strong ease-out. Movement within the screen uses ease-in-out. Keyboard-initiated repeated actions do not wait for animation.">
-        <div className="motion-token-grid">{motionTokens.map(([name, value, usage]) => <div key={name}><span>{name}</span><strong>{value}</strong><small>{usage}</small></div>)}</div>
-        <div className="easing-list"><div><span>Enter / exit</span><code>cubic-bezier(.23, 1, .32, 1)</code><CopyValue value="cubic-bezier(0.23, 1, 0.32, 1)" /></div><div><span>Spatial change</span><code>cubic-bezier(.77, 0, .175, 1)</code><CopyValue value="cubic-bezier(0.77, 0, 0.175, 1)" /></div></div>
+        <div className="motion-token-grid">{motionTokens.map(([name, path, usage]) => <div key={name}><span>{name}</span><strong>{resolvedToken(path)}</strong><small>{usage}</small></div>)}</div>
+        <div className="easing-list"><div><span>Enter / exit</span><code>{resolvedToken("foundation.motion.easing.ease-out")}</code><CopyValue value={resolvedToken("foundation.motion.easing.ease-out")} /></div><div><span>Spatial change</span><code>{resolvedToken("foundation.motion.easing.ease-in-out")}</code><CopyValue value={resolvedToken("foundation.motion.easing.ease-in-out")} /></div></div>
       </FoundationSection>
       <FoundationSection eyebrow="Accessibility" title="Reduced motion is a behavior contract" description="Remove translation, scaling, and layout choreography. Keep instant state changes, focus movement, and short opacity feedback.">
         <div className="foundation-code-line foundation-code-line--multiline"><code>{`@media (prefers-reduced-motion: reduce) {\n  .overlay { transition: opacity 120ms var(--ix-ease-out); transform: none; }\n}`}</code><CopyValue value={'@media (prefers-reduced-motion: reduce) {\n  .overlay { transition: opacity 120ms var(--ix-ease-out); transform: none; }\n}'} /></div>

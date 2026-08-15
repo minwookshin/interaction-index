@@ -2,10 +2,18 @@
 
 This project follows Semantic Versioning once a public API is released. During `0.x`, documented APIs may still change; every breaking alpha change must be called out here.
 
-## Unreleased
+## 0.1.0-rc.1 — 2026-08-15
 
 ### Added
 
+- DTCG token source with generated CSS, typed TypeScript, Figma handoff data, and a token-diff gate.
+- Executable Storybook contracts for all 45 components in light and dark themes, including interaction, axe, and targeted Product/State visual regression coverage.
+- Compiler-generated public API declarations, machine-readable metadata, a review report, and documentation export surfaces for 210 public exports.
+- Field & Fieldset, Input Group, Kbd, Button Group, Toolbar, Sheet, Calendar & Date Picker, Context Menu, Tree, and Reorderable List, with composed Command Palette and Data Table recipes instead of duplicate monoliths.
+- A documented Canvas, Stage, Float, Flyout, Modal, and Toast surface contract that keeps persistent structure tonal and reserves shadows for temporary elevation.
+- Deterministic registry integrity metadata for every artifact and copied file, plus API and token contract hashes and a reviewable update diff.
+- A private npm package candidate with explicit exports, React peer boundaries, tarball allowlisting, and a fresh TypeScript/Vite consumer test.
+- A non-publishing GitHub package-candidate workflow prepared to attest the verified tarball without npm credentials.
 - Assistant-ui-inspired public documentation shell with collapsible navigation, global search, a concise page outline, and mobile navigation.
 - Introduction, Installation, Accessibility, Browser support, Security, Contributing, Releases, and Licensing documents inside the live system.
 - MIT license, third-party notices, support policy, security policy, code of conduct, and `llms.txt` discovery index.
@@ -18,12 +26,31 @@ This project follows Semantic Versioning once a public API is released. During `
 
 ### Quality
 
-- 106 automated tests passing after the public-documentation and Product pilot changes.
+- 151 source tests, 90 light/dark Storybook contract runs, and 312 release-level visual baselines passing.
+- Registry verification now rejects source-wrapper drift and component/API catalog mismatches.
+- The public-documentation and Product pilot flows remain covered by the current source and browser suites.
 - A temporary clean consumer compiles and builds the complete generated registry item.
-- Production documentation bundle measures 293,988 gzip bytes JavaScript and 29,318 gzip bytes CSS; pilot Shared Detail selection measured 530 ms and dialog open 263 ms in the final full-matrix Chromium pass.
-- The automated Chromium, Firefox, WebKit, mobile Chromium, and mobile WebKit matrix passes locally. Chrome/Safari zoom and Safari VoiceOver Dialog/Menu anchors are manually recorded; Edge, physical touch, manual high contrast, content expansion, and full-catalog branded coverage remain gates.
+- Production documentation measures 343,245 gzip bytes of initial JavaScript, 479,382 gzip bytes across all JavaScript routes, and 39,983 gzip bytes CSS; advanced React Aria previews load only on their component routes. Pilot Shared Detail selection last measured 530 ms and dialog open 263 ms in the recorded full-matrix Chromium pass.
+- The five-project Playwright matrix passes locally with 161 applicable checks and 324 intentional project-ownership skips. Automated long-content expansion, forced colors, reduced motion, touch target, touch path, and virtual-keyboard checks pass; Edge, physical devices, real OS contrast modes, human-language review, and full-catalog branded coverage remain external gates.
 
-No package, canonical repository, or registry endpoint has been published.
+The source and mutable HTTPS registry retain their existing publication state. The `0.1.0-rc.1` npm candidate remains private, unpublished, untagged, and unpushed.
+
+### Fixed
+
+- Replaced the native live-state picker with the system Menu, kept it below its trigger, and reserved its quiet focus treatment for keyboard navigation.
+- Removed the pointer-open focus ring from Context Menu triggers while retaining explicit keyboard focus, and corrected Reorderable List documentation to match its announced Tab-based drop-target navigation.
+- Split Calendar, Tree, and Reorderable List demos from the initial documentation shell and added separate initial and total JavaScript performance budgets.
+- Rebalanced the Text Field product recipe into one full-width identity field and two complete paired rows, with pointer focus no longer adding a dark container ring.
+- Kept the private package candidate below its 4 MB budget by preventing Vite from duplicating the public registry inside the package build output.
+- Aligned every navigation disclosure chevron to one trailing column, removed the sidebar scrollbar dead gutter while preserving scrolling, and added a deliberate nested catalog indent.
+- Made Toast previews share one foreground identity and clear stale actions when feedback changes between confirmation, undo, and error.
+- Stabilized Tabs panel geometry, compacted the primary Popover hierarchy, and refined Badge, Avatar, and Table rhythm in both themes.
+- Centered the 326px Toast surface against Sonner's positioning container, kept one visible feedback item, and aligned the accepted 11px Avatar status indicator contract.
+- Restored the mobile Product-pilot create action's accessible name while preserving its icon-only visual treatment, and separated desktop visual ownership from mobile reflow contracts.
+
+### Breaking
+
+- `toast` now exposes the documented Interaction Index facade (`success`, `info`, `warning`, `error`, `loading`, and `dismiss`) instead of leaking Sonner's full implementation API. Import advanced Sonner-only helpers directly from `sonner` until Interaction Index deliberately specifies them.
 
 ## 0.1.0-alpha.0 — 2026-08-14
 

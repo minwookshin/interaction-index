@@ -1,7 +1,7 @@
-import { useId, type InputHTMLAttributes, type ReactNode } from "react";
+import { useId, type ComponentPropsWithRef, type ReactNode } from "react";
 import { cn } from "../../lib/cn";
 
-export type TextFieldProps = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
+export type TextFieldProps = Omit<ComponentPropsWithRef<"input">, "size"> & {
   label?: string;
   description?: string;
   error?: string;
@@ -19,6 +19,7 @@ export function TextField({
   trailing,
   className,
   fieldClassName,
+  ref,
   ...props
 }: TextFieldProps) {
   const generatedId = useId();
@@ -33,6 +34,7 @@ export function TextField({
       <div className="ix-field__control">
         {leading && <span className="ix-field__adornment" aria-hidden="true">{leading}</span>}
         <input
+          ref={ref}
           id={id}
           className={cn("ix-input", className)}
           aria-invalid={Boolean(error) || undefined}

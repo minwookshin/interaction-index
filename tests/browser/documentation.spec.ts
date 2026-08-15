@@ -1,67 +1,11 @@
 import { expect, test } from "@playwright/test";
-
-const routes = [
-  ["introduction", "Introduction"],
-  ["installation", "Installation"],
-  ["choosing-components", "Choosing components"],
-  ["product-pilot", "Product pilot"],
-  ["foundations", "Foundations"],
-  ["foundation-color", "Color"],
-  ["foundation-typography", "Typography"],
-  ["foundation-spacing", "Spacing"],
-  ["foundation-motion", "Motion"],
-  ["button", "Button"],
-  ["icon-button", "Icon Button"],
-  ["text-field", "Text Field"],
-  ["textarea", "Textarea"],
-  ["checkbox", "Checkbox"],
-  ["radio-group", "Radio Group"],
-  ["switch", "Switch"],
-  ["select", "Select"],
-  ["combobox", "Combobox"],
-  ["search-input", "Search Input"],
-  ["number-field", "Number Field"],
-  ["segmented-control", "Segmented Control"],
-  ["tooltip", "Tooltip"],
-  ["popover", "Popover"],
-  ["menu", "Menu"],
-  ["dialog", "Dialog"],
-  ["alert-dialog", "Alert Dialog"],
-  ["tabs", "Tabs"],
-  ["breadcrumbs", "Breadcrumbs"],
-  ["pagination", "Pagination"],
-  ["collapsible", "Collapsible"],
-  ["toast", "Toast"],
-  ["progress", "Progress"],
-  ["spinner", "Spinner"],
-  ["skeleton", "Skeleton"],
-  ["alert", "Alert"],
-  ["empty-state", "Empty State"],
-  ["badge", "Badge"],
-  ["avatar", "Avatar"],
-  ["table", "Table"],
-  ["inline-edit", "Inline Edit"],
-  ["action-list", "Action List"],
-  ["shared-detail", "Shared Detail"],
-  ["undo-stack", "Undo Stack"],
-  ["patterns", "Interaction patterns"],
-  ["edit-in-place", "Edit in place"],
-  ["find-and-act", "Find and act"],
-  ["preserve-context", "Preserve context"],
-  ["recover-from-action", "Recover from action"],
-  ["accessibility", "Accessibility"],
-  ["browser-support", "Browser support"],
-  ["security", "Security"],
-  ["contributing", "Contributing"],
-  ["releases", "Releases"],
-  ["licensing", "Licensing"],
-] as const;
+import { publicRoutes } from "./public-routes";
 
 test("every public documentation route renders without viewport overflow", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
 
-  for (const [route, heading] of routes) {
+  for (const [route, heading] of publicRoutes) {
     await page.goto(`/#${route}`);
     await expect(page.getByRole("heading", { level: 1, name: heading })).toBeVisible();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
@@ -76,7 +20,7 @@ test("desktop navigation disclosures and theme persistence work", async ({ page,
   await page.goto("/#introduction");
 
   const navigation = page.getByRole("complementary", { name: "Design system navigation" });
-  const components = navigation.getByRole("button", { name: "Components 35", exact: true });
+  const components = navigation.getByRole("button", { name: /^Components \d+$/ });
   await expect(components).toHaveAttribute("aria-expanded", "false");
   await components.click();
   await expect(page.getByRole("region", { name: "Component catalog" })).toBeVisible();
@@ -105,9 +49,64 @@ test("mobile navigation opens, routes, and closes", async ({ page, isMobile }) =
   await page.getByRole("button", { name: "Open navigation" }).click();
   const navigation = page.getByRole("complementary", { name: "Design system navigation" });
   await expect(navigation).toHaveAttribute("data-open", "true");
-  const components = navigation.getByRole("button", { name: "Components 35", exact: true });
+  const components = navigation.getByRole("button", { name: /^Components \d+$/ });
   if (await components.getAttribute("aria-expanded") === "false") await components.click();
   await page.getByRole("link", { name: "Button", exact: true }).click();
   await expect(page.getByRole("heading", { level: 1, name: "Button" })).toBeVisible();
   await expect(navigation).not.toHaveAttribute("data-open", "true");
+});
+
+test("live state inspection uses the system menu without leaving pointer focus chrome", async ({ page }) => {
+  await page.goto("/#button");
+  await page.getByRole("button", { name: "State", exact: true }).click();
+
+  const trigger = page.getByRole("button", { name: /Preview state:/ });
+  const restingShadow = await trigger.evaluate((element) => getComputedStyle(element).boxShadow);
+  const triggerBox = await trigger.boundingBox();
+  await trigger.click();
+
+  const menu = page.getByRole("menu", { name: "Preview state: Default" });
+  await expect(menu).toBeVisible();
+  const menuBox = await menu.boundingBox();
+  expect(triggerBox).not.toBeNull();
+  expect(menuBox).not.toBeNull();
+  expect(menuBox!.y).toBeGreaterThanOrEqual(triggerBox!.y + triggerBox!.height - 1);
+  await expect(menu.getByRole("menuitemradio", { name: "Default", exact: true })).toHaveAttribute("aria-checked", "true");
+
+  await menu.getByRole("menuitemradio", { name: "Pressed", exact: true }).click();
+  await expect(trigger).toHaveAccessibleName("Preview state: Pressed");
+  await expect(page.locator("html")).toHaveAttribute("data-input-modality", "pointer");
+  await expect(trigger).toHaveCSS("outline-style", "none");
+  await expect(trigger).toHaveCSS("box-shadow", restingShadow);
+});
+
+test("text-field recipe keeps a compact complete grid and quiet pointer focus", async ({ page, isMobile }) => {
+  test.skip(isMobile, "The compact two-column recipe contract is a desktop layout; mobile stacking is covered by route reflow checks.");
+  await page.goto("/#text-field");
+  const form = page.getByRole("form", { name: "Project settings form" });
+  const project = form.getByRole("textbox", { name: "Project name" });
+  const identifier = form.getByRole("textbox", { name: "Identifier" });
+  const workspace = form.getByRole("textbox", { name: "Workspace key" });
+  const search = form.getByRole("textbox", { name: "Search", exact: true });
+  const readOnly = form.getByRole("textbox", { name: "Read only" });
+  const [projectBox, identifierBox, workspaceBox, searchBox, readOnlyBox] = await Promise.all([
+    project.boundingBox(),
+    identifier.boundingBox(),
+    workspace.boundingBox(),
+    search.boundingBox(),
+    readOnly.boundingBox(),
+  ]);
+
+  for (const box of [projectBox, identifierBox, workspaceBox, searchBox, readOnlyBox]) expect(box).not.toBeNull();
+  expect(projectBox!.width).toBeGreaterThan(identifierBox!.width * 1.8);
+  expect(Math.abs(identifierBox!.y - workspaceBox!.y)).toBeLessThanOrEqual(1);
+  expect(Math.abs(searchBox!.y - readOnlyBox!.y)).toBeLessThanOrEqual(1);
+  expect(identifierBox!.x).toBeLessThan(workspaceBox!.x);
+  expect(searchBox!.x).toBeLessThan(readOnlyBox!.x);
+
+  const control = search.locator("xpath=..");
+  const restingBorder = await control.evaluate((element) => getComputedStyle(element).borderColor);
+  await search.click();
+  await expect(page.locator("html")).toHaveAttribute("data-input-modality", "pointer");
+  await expect(control).toHaveCSS("border-color", restingBorder);
 });

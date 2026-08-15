@@ -6,6 +6,14 @@ import { cn } from "../../lib/cn";
 import { IconButton } from "./icon-button";
 import { getSharedDetailMotionPreset, selectedSharedDetailMotionPreset, type SharedDetailMotionPresetId } from "./shared-detail-motion";
 
+export {
+  getSharedDetailMotionPreset,
+  selectedSharedDetailMotionPreset,
+  sharedDetailMotionPresets,
+  type SharedDetailMotionPreset,
+  type SharedDetailMotionPresetId,
+} from "./shared-detail-motion";
+
 export const sharedDetailContract: BehaviorContract = {
   input: ["Row click", "Enter on row", "Close button", "Escape"],
   origin: "The selected row title is the visual and focus origin for the detail surface.",
@@ -85,10 +93,10 @@ export function SharedDetail({
     if (!selected) return;
     if (focusOnOpen && interactedRef.current) requestAnimationFrame(() => panelRef.current?.focus({ preventScroll: true }));
     const onKeyDown = (event: globalThis.KeyboardEvent) => {
-      if (event.key === "Escape") { event.preventDefault(); close(); }
+      if (event.key === "Escape" && !event.defaultPrevented) { event.preventDefault(); close(); }
     };
-    window.addEventListener("keydown", onKeyDown, true);
-    return () => window.removeEventListener("keydown", onKeyDown, true);
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [selected]);
 
   return (
@@ -101,7 +109,7 @@ export function SharedDetail({
               key={item.id}
               className="ix-shared-detail__row"
               aria-expanded={selectedId === item.id}
-              aria-controls={panelId(item.id)}
+              aria-controls={selectedId === item.id ? panelId(item.id) : undefined}
               onClick={(event) => {
                 interactedRef.current = true;
                 originRef.current = event.currentTarget;

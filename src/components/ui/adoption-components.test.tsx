@@ -77,6 +77,7 @@ describe("product adoption components", () => {
     expect(input).toHaveAccessibleDescription("Issues available to this cycle.");
     await user.click(screen.getByRole("button", { name: "Increase Cycle capacity" }));
     expect(input).toHaveValue("25");
+    expect(document.querySelectorAll(`[id="${input.id}"]`)).toHaveLength(1);
   });
 
   it("keeps segmented selection singular and announces the group", async () => {

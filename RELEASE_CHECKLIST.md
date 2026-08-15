@@ -24,7 +24,13 @@ The source is available under MIT. Package publication, browser support, and pro
 - [x] Install every individual item into the same fresh consumer project.
 - [x] Install Button from the live HTTPS registry with `shadcn@latest` in a clean Vite canary and complete a production build.
 - [x] Verify generated source imports and the documented system stylesheet in a consumer TypeScript and production build.
-- [ ] Capture and review a 1280 x 720 light/dark baseline for all 35 component routes, all foundations, and all patterns.
+- [x] Generate deterministic SHA-256 integrity metadata for registry artifacts, copied files, public APIs, and tokens.
+- [x] Add a manifest diff that flags removed or type-changed API and token contracts before an update.
+- [x] Generate a byte-identical versioned registry path that rejects same-version rewrites and declares the immutable cache contract.
+- [x] Verify install, local source modification, staged upstream review, explicit acceptance, and the post-upgrade consumer build.
+- [x] Build a private npm tarball with explicit exports and verify it in a fresh TypeScript/Vite consumer.
+- [x] Build the realistic issue-workspace dogfood product exclusively through public package exports and styles.
+- [x] Capture and review a 1280 x 720 light/dark baseline for all 45 component routes, all foundations, all patterns, and public documentation.
 - [x] Run the automated Chromium, Firefox, WebKit, mobile Chromium, and mobile WebKit matrix.
 - [x] Run branded Safari and Chrome anchor-route keyboard and zoom checks.
 - [ ] Run Edge, physical touch, manual high contrast, and full-catalog branded-browser matrices.
@@ -38,12 +44,23 @@ The source is available under MIT. Package publication, browser support, and pro
 - [x] Add axe anchor-route checks plus automated RTL, forced-colors, reduced-motion, and 200% layout-proxy checks.
 - [x] Add issue/PR templates, maintainer ownership, migration policy, release-note categories, and a non-publishing release-candidate workflow.
 - [x] Complete and record Safari VoiceOver Dialog and Menu anchor review.
-- [ ] Complete content expansion, physical touch, Edge, and broader manual high-contrast review.
+- [x] Complete automated long-content expansion, 24 CSS pixel effective target, touch-emulation, virtual-keyboard proxy, forced-colors, and reduced-motion checks.
+- [x] Separate Edge, physical-device, operating-system contrast, and human-language review into explicit external gates with an evidence template.
+- [ ] Complete physical touch, Edge, broader manual high-contrast, and human-language review.
 - [x] Configure the selected canonical GitHub owner/repository and replace every placeholder/localhost publication URL.
 
 ## Version decision
 
-- [ ] Record every public API in the changelog.
-- [ ] Choose the supported React, TypeScript, Base UI, browser, and Node ranges from real test evidence.
-- [ ] Keep the package `private` through canary installation; remove it only as part of an intentional publication review.
-- [ ] Do not claim production adoption until a real project has shipped and the claim can be verified.
+- [x] Record the complete public API in the compiler-generated report and require a changelog/migration entry for contract changes.
+- [x] Record the exact verified React, TypeScript, Base UI, browser, and Node evidence without turning it into a broader support promise.
+- [x] Keep the package `private` through package-consumer verification; remove it only as part of an intentional publication review.
+- [x] Keep production adoption explicitly unclaimed until a real project has shipped and the claim can be verified.
+- [x] Add a non-publishing package-candidate workflow that can create GitHub build provenance for the tarball.
+
+## Local RC acceptance
+
+- [x] Freeze 45 components, 210 public exports, and 145 semantic tokens in a machine-readable contract.
+- [x] Store 312 release-level light/dark visual baselines across the public shell and component Product/State specimens.
+- [x] Keep `private: true`, omit every publish command, and require an exact RC SemVer for artifact assembly.
+- [x] Pass the fresh `npm ci` clean-room reproduction gate.
+- [x] Assemble the checksummed `0.1.0-rc.1` tarball, SBOM, registry release, integrity reports, and QA records from one clean local commit.

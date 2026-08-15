@@ -86,7 +86,7 @@ export function ActionList({ items, onAction, placeholder = "Search actions…",
           aria-controls={listId}
           aria-activedescendant={safeActiveIndex >= 0 ? `${listId}-${filtered[safeActiveIndex]?.id}` : undefined}
         />
-        <kbd>⌘ K</kbd>
+        <kbd aria-label="Command K">⌘K</kbd>
       </div>
       <div id={listId} className="ix-action-list__items" role="listbox" aria-label="Actions">
         {filtered.map((item, index) => (
@@ -102,7 +102,7 @@ export function ActionList({ items, onAction, placeholder = "Search actions…",
             data-loading={item.loading || undefined}
             data-variant={item.variant}
             title={item.inactiveReason}
-            onPointerMove={() => !item.disabled && !item.loading && setActiveIndex(index)}
+            onPointerEnter={() => !item.disabled && !item.loading && setActiveIndex(index)}
             onClick={() => !item.disabled && !item.loading && onAction(item)}
           >
             <span className="ix-action-list__icon" aria-hidden="true">{item.icon}</span>

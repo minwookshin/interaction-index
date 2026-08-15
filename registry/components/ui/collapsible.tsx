@@ -7,6 +7,8 @@ import { cn } from "../../lib/cn";
 
 export const Collapsible = CollapsiblePrimitive.Root;
 
+export type CollapsibleContentProps = CollapsiblePrimitive.Panel.Props & { children?: ReactNode };
+
 export function CollapsibleTrigger({ className, children, ...props }: CollapsiblePrimitive.Trigger.Props) {
   return (
     <CollapsiblePrimitive.Trigger className={cn("ix-collapsible__trigger", className)} {...props}>
@@ -16,7 +18,7 @@ export function CollapsibleTrigger({ className, children, ...props }: Collapsibl
   );
 }
 
-export function CollapsibleContent({ className, children, ...props }: CollapsiblePrimitive.Panel.Props & { children?: ReactNode }) {
+export function CollapsibleContent({ className, children, ...props }: CollapsibleContentProps) {
   return (
     <CollapsiblePrimitive.Panel className={cn("ix-collapsible__panel", className)} {...props}>
       <div className="ix-collapsible__content">{children}</div>

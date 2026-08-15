@@ -20,7 +20,7 @@
 
 .ix-field__label { color: var(--ix-ink); font-size: 12px; font-weight: 550; }
 
-.ix-field[data-invalid] .ix-field__control { border-color: var(--ix-control-border-hover); box-shadow: inset 3px 0 0 var(--ix-fg-default); }
+.ix-field[data-invalid] .ix-field__control { border-color: color-mix(in oklch, var(--ix-fg-danger) 46%, var(--ix-control-border)); box-shadow: 0 0 0 2px color-mix(in oklch, var(--ix-fg-danger) 11%, transparent); }
 
 .ix-input { width: 100%; min-width: 0; height: 100%; padding: 0 9px; border: 0; outline: 0; background: transparent; color: var(--ix-ink); font-size: 13.5px; }
 
@@ -33,9 +33,7 @@
 .ix-field__description,
 .ix-field__error { color: var(--ix-ink-tertiary); font-size: 11.5px; line-height: 1.45; }
 
-.ix-field__error { color: var(--ix-fg-default); font-weight: 520; }
+.ix-field__error { color: var(--ix-fg-danger); font-weight: 520; }
 
 :root[data-theme="dark"] .ix-input:disabled { background: rgb(255 255 255 / 0.025); color: var(--ix-ink-disabled); }
-
-:root[data-theme="dark"] .ix-field__error { color: var(--ix-ink); }
 }
