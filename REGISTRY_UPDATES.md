@@ -1,12 +1,12 @@
 # Registry updates
 
-Interaction Index distributes owned source. Updating is a review operation, not an automatic merge.
+Teum distributes owned source. Updating is a review operation, not an automatic merge.
 
 ## Channels
 
-- `https://minwookshin.github.io/interaction-index/r/{name}.json` is the mutable public-alpha channel.
+- `https://interactions.minwookshin.com/r/{name}.json` is the mutable public-alpha channel.
 - `public/r/manifest.json` records the version, SHA-256 digest, byte size, file-level integrity, TypeScript API hashes, and token-contract hashes for that channel.
-- `https://minwookshin.github.io/interaction-index/r/v/<version>/{name}.json` is the pinned channel. Every item, the catalog, the integrity manifest, and `release.json` are copied byte-for-byte into that path.
+- `https://interactions.minwookshin.com/r/v/<version>/{name}.json` is the pinned channel. Every item, the catalog, the integrity manifest, and `release.json` are copied byte-for-byte into that path.
 - A version directory is write-once: rebuilding different content under an existing version fails and requires a `package.json` version bump.
 - The deployed version path uses `Cache-Control: public, max-age=31536000, immutable`; the mutable alpha path stays `max-age=0, must-revalidate`.
 
@@ -31,7 +31,7 @@ The diff separates additive exports and tokens from removed or type-changed cont
 5. Review the source diff before accepting an overwrite.
 6. Run the consumer's type, accessibility, interaction, and visual checks.
 
-Interaction Index does not promise a three-way merge for edited copied source. Local modifications stay visible in version control, and the consumer decides which upstream changes to adopt.
+Teum does not promise a three-way merge for edited copied source. Local modifications stay visible in version control, and the consumer decides which upstream changes to adopt.
 
 ## Verify the upgrade contract
 

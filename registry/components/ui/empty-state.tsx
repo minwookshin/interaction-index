@@ -1,4 +1,4 @@
-import "../../styles/index-base.css";
+import "../../styles/teum-base.css";
 import "../../styles/components/empty-state.css";
 import { Package } from "@phosphor-icons/react";
 import { useId, type ComponentPropsWithRef, type ReactNode } from "react";
@@ -28,13 +28,13 @@ export function EmptyState({
   const descriptionId = description ? `${generatedId}-description` : undefined;
 
   return (
-    <div className={cn("ix-empty-state", className)} data-size={size} aria-labelledby={titleId} aria-describedby={descriptionId} {...props}>
-      <span className="ix-empty-state__icon" aria-hidden="true">{icon}</span>
-      <div className="ix-empty-state__copy">
+    <div className={cn("teum-empty-state", className)} data-size={size} aria-labelledby={titleId} aria-describedby={descriptionId} {...props}>
+      <span className="teum-empty-state__icon" aria-hidden="true">{icon}</span>
+      <div className="teum-empty-state__copy">
         <strong id={titleId}>{title}</strong>
         {description && <p id={descriptionId}>{description}</p>}
       </div>
-      {(primaryAction || secondaryAction) && <div className="ix-empty-state__actions">{primaryAction}{secondaryAction}</div>}
+      {(primaryAction || secondaryAction) && <div className="teum-empty-state__actions">{primaryAction}{secondaryAction}</div>}
     </div>
   );
 }

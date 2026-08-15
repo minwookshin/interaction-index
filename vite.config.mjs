@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  base: process.env.GITHUB_PAGES === "true" ? "/interaction-index/" : "/",
+  base: process.env.GITHUB_PAGES === "true" ? "/teum/" : "/",
   build: {
     outDir: "dist/client",
     rollupOptions: {

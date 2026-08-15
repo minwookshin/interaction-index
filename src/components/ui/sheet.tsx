@@ -19,12 +19,12 @@ export type SheetContentProps = DialogPrimitive.Popup.Props & {
 export function SheetContent({ className, children, side = "right", showClose = true, ...props }: SheetContentProps) {
   return (
     <DialogPrimitive.Portal>
-      <DialogPrimitive.Backdrop className="ix-sheet__backdrop" />
-      <DialogPrimitive.Viewport className="ix-sheet__viewport" data-side={side}>
-        <DialogPrimitive.Popup className={cn("ix-sheet", className)} data-side={side} data-layer="modal" {...props}>
+      <DialogPrimitive.Backdrop className="teum-sheet__backdrop" />
+      <DialogPrimitive.Viewport className="teum-sheet__viewport" data-side={side}>
+        <DialogPrimitive.Popup className={cn("teum-sheet", className)} data-side={side} data-layer="modal" {...props}>
           {children}
           {showClose && (
-            <DialogPrimitive.Close render={<IconButton className="ix-sheet__close" variant="ghost" size="small" aria-label="Close panel" />}>
+            <DialogPrimitive.Close render={<IconButton className="teum-sheet__close" variant="ghost" size="small" aria-label="Close panel" />}>
               <X />
             </DialogPrimitive.Close>
           )}
@@ -35,13 +35,13 @@ export function SheetContent({ className, children, side = "right", showClose = 
 }
 
 export function SheetHeader({ className, ...props }: ComponentPropsWithRef<"div">) {
-  return <div className={cn("ix-sheet__header", className)} {...props} />;
+  return <div className={cn("teum-sheet__header", className)} {...props} />;
 }
 
 export function SheetBody({ className, ...props }: ComponentPropsWithRef<"div">) {
-  return <div className={cn("ix-sheet__body", className)} {...props} />;
+  return <div className={cn("teum-sheet__body", className)} {...props} />;
 }
 
 export function SheetFooter({ className, ...props }: ComponentPropsWithRef<"div">) {
-  return <div className={cn("ix-sheet__footer", className)} {...props} />;
+  return <div className={cn("teum-sheet__footer", className)} {...props} />;
 }

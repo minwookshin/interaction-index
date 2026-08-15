@@ -1,6 +1,6 @@
 # Release freeze
 
-Interaction Index is frozen at 45 public components while the unpublished `0.1.0` release candidate is verified.
+Teum is frozen at 45 public components while the unpublished `0.1.0` release candidate is verified.
 
 ## Frozen surface
 

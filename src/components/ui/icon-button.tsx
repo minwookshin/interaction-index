@@ -12,7 +12,7 @@ export type IconButtonProps = Omit<ButtonProps, "children" | "leadingIcon" | "tr
 export function IconButton({ children, className, tooltip, ...props }: IconButtonProps) {
   const button = (
     <Button
-      className={cn("ix-icon-button", className)}
+      className={cn("teum-icon-button", className)}
       focusableWhenDisabled={Boolean(tooltip) && props.disabled}
       {...props}
     >

@@ -304,7 +304,7 @@ function isPublicDocId(value: string): value is PublicDocId {
 }
 
 const currentCompatibility = [
-  { label: "React", value: packageManifest.peerDependencies.react.replace(/^[^\d]*/, "") },
+  { label: "React", value: packageManifest.peerDependencies.react },
   { label: "TypeScript", value: packageManifest.devDependencies.typescript.replace(/^[^\d]*/, "") },
   { label: "Base UI", value: packageManifest.dependencies["@base-ui/react"].replace(/^[^\d]*/, "") },
   { label: "React Aria", value: packageManifest.dependencies["react-aria-components"].replace(/^[^\d]*/, "") },
@@ -400,7 +400,7 @@ function ComponentApiPanel({ id }: { id: ComponentId }) {
       </div>
       <div className="component-api__facts" aria-label={`${component.name} reference summary`}>
         <article><span>Import</span><code>{importName}</code></article>
-        <article><span>Package</span><code>@index/ui</code></article>
+        <article><span>Package candidate</span><code>teum</code></article>
         <article><span>Primitive</span><strong>{guidance.source}</strong></article>
         <article><span>Coverage</span><strong>{guidance.states.length} states</strong></article>
       </div>
@@ -504,7 +504,7 @@ function FieldDemo() {
         <form className="field-family-demo" aria-label="Project metadata" onSubmit={(event) => event.preventDefault()}>
           <Field>
             <FieldLabel>Project name</FieldLabel>
-            <FieldControl placeholder="Interaction Index" />
+            <FieldControl placeholder="Teum" />
             <FieldDescription>Shown to everyone in this workspace.</FieldDescription>
           </Field>
           <Field invalid>
@@ -534,7 +534,7 @@ function InputGroupDemo() {
           <label htmlFor="repository-path">Repository</label>
           <InputGroup>
             <InputGroupAddon>github.com/</InputGroupAddon>
-            <InputGroupInput id="repository-path" defaultValue="minwook/interaction-index" />
+            <InputGroupInput id="repository-path" defaultValue="minwook/teum" />
             <InputGroupButton aria-label="Copy repository path"><Copy /></InputGroupButton>
           </InputGroup>
           <span>Use a repository you can publish from this workspace.</span>
@@ -616,7 +616,7 @@ function TextFieldDemo() {
     <>
       <Specimen label="Product recipe" note="Project settings form">
         <form className="field-demo-form" aria-label="Project settings form" onSubmit={(event) => event.preventDefault()}>
-          <TextField fieldClassName="field-demo-form__name" label="Project name" defaultValue="Interaction Index" description="Shown to everyone in the workspace." />
+          <TextField fieldClassName="field-demo-form__name" label="Project name" defaultValue="Teum" description="Shown to everyone in the workspace." />
           <TextField label="Identifier" defaultValue="INT-" error="Use a unique identifier." />
           <TextField label="Workspace key" value="INT" description="Managed by your organization." disabled />
           <TextField label="Search" placeholder="Search components…" leading={<MagnifyingGlass />} trailing={<kbd>⌘K</kbd>} />
@@ -713,7 +713,7 @@ function MenuDemo() {
               <MenuItem><Archive />Archive <kbd>E</kbd></MenuItem>
               <MenuCheckboxItem checked={contracts} onCheckedChange={setContracts}>Show contracts</MenuCheckboxItem>
               <MenuSeparator />
-              <MenuItem className="ix-menu__item--danger"><Trash />Delete</MenuItem>
+              <MenuItem className="teum-menu__item--danger"><Trash />Delete</MenuItem>
             </MenuContent>
           </Menu>
         </div>
@@ -740,7 +740,7 @@ function ContextMenuDemo() {
             <ContextMenuItem><Archive />Archive</ContextMenuItem>
             <ContextMenuCheckboxItem checked={contracts} onCheckedChange={setContracts}>Show contracts</ContextMenuCheckboxItem>
             <ContextMenuSeparator />
-            <ContextMenuItem className="ix-menu__item--danger"><Trash />Delete</ContextMenuItem>
+            <ContextMenuItem className="teum-menu__item--danger"><Trash />Delete</ContextMenuItem>
           </ContextMenuContent>
         </ContextMenu>
       </Specimen>
@@ -1033,8 +1033,8 @@ function CollapsibleDemo() {
   return <>
     <Specimen label="Product recipe" note="Supporting detail without navigation">
       <div className="demo-stack demo-stack--wide">
-        <Collapsible className="ix-collapsible" defaultOpen><CollapsibleTrigger>Advanced filter rules</CollapsibleTrigger><CollapsibleContent>Matches components whose state contract includes focus restoration, keyboard dismissal, and a reduced-motion fallback.</CollapsibleContent></Collapsible>
-        <Collapsible className="ix-collapsible"><CollapsibleTrigger>Compatibility details</CollapsibleTrigger><CollapsibleContent>Tested with React {currentCompatibility[0].value}, TypeScript {currentCompatibility[1].value}, Base UI {currentCompatibility[2].value}, and React Aria {currentCompatibility[3].value}.</CollapsibleContent></Collapsible>
+        <Collapsible className="teum-collapsible" defaultOpen><CollapsibleTrigger>Advanced filter rules</CollapsibleTrigger><CollapsibleContent>Matches components whose state contract includes focus restoration, keyboard dismissal, and a reduced-motion fallback.</CollapsibleContent></Collapsible>
+        <Collapsible className="teum-collapsible"><CollapsibleTrigger>Compatibility details</CollapsibleTrigger><CollapsibleContent>Tested with React {currentCompatibility[0].value}, TypeScript {currentCompatibility[1].value}, Base UI {currentCompatibility[2].value}, and React Aria {currentCompatibility[3].value}.</CollapsibleContent></Collapsible>
       </div>
     </Specimen>
     <ApiStrip values={["closed", "open", "Enter / Space", "focus remains", "disabled", "hidden until found", "reduced motion"]} />
@@ -1075,7 +1075,7 @@ function DataTableRecipe({ compact = false }: { compact?: boolean }) {
   return <div className="data-table-recipe" data-compact={compact || undefined}>
     <div className="data-table-recipe__toolbar"><SearchInput aria-label="Filter issues" value={query} onChange={(event) => updateQuery(event.target.value)} onClear={() => updateQuery("")} placeholder="Filter issues…" /><Badge variant="outline">{rows.length} results</Badge></div>
     <Table aria-label="Interaction quality issues">
-      <TableHeader><TableRow><TableHead className="data-table-recipe__select"><Checkbox aria-label="Select every visible issue" checked={allSelected} indeterminate={!allSelected && visibleRows.some((row) => selected.includes(row.id))} onCheckedChange={(checked) => toggleAll(Boolean(checked))} /></TableHead><TableHead aria-sort={ascending ? "ascending" : "descending"}><button className="ix-table-sort" type="button" aria-label={`Sort issues ${ascending ? "descending" : "ascending"}`} onClick={() => setAscending((value) => !value)}>Issue <ArrowsDownUp /></button></TableHead><TableHead>Status</TableHead><TableHead>Owner</TableHead><TableHead>Updated</TableHead></TableRow></TableHeader>
+      <TableHeader><TableRow><TableHead className="data-table-recipe__select"><Checkbox aria-label="Select every visible issue" checked={allSelected} indeterminate={!allSelected && visibleRows.some((row) => selected.includes(row.id))} onCheckedChange={(checked) => toggleAll(Boolean(checked))} /></TableHead><TableHead aria-sort={ascending ? "ascending" : "descending"}><button className="teum-table-sort" type="button" aria-label={`Sort issues ${ascending ? "descending" : "ascending"}`} onClick={() => setAscending((value) => !value)}>Issue <ArrowsDownUp /></button></TableHead><TableHead>Status</TableHead><TableHead>Owner</TableHead><TableHead>Updated</TableHead></TableRow></TableHeader>
       <TableBody>{visibleRows.map((row) => <TableRow key={row.id} data-selected={selected.includes(row.id) || undefined}><TableCell className="data-table-recipe__select"><Checkbox aria-label={`Select ${row.name}`} checked={selected.includes(row.id)} onCheckedChange={(checked) => toggleRow(row.id, Boolean(checked))} /></TableCell><TableCell><span className="data-table-recipe__identity"><strong>{row.name}</strong><small>{row.id}</small></span></TableCell><TableCell><Badge className="data-table-recipe__status" variant="outline" data-status={row.status.toLocaleLowerCase().replaceAll(" ", "-")}>{row.status}</Badge></TableCell><TableCell>{row.owner}</TableCell><TableCell>{row.updated}</TableCell></TableRow>)}</TableBody>
     </Table>
     {!rows.length && <EmptyState size="compact" title="No matching issues" description="Try another title, identifier, owner, or status." secondaryAction={<Button size="small" variant="ghost" onClick={() => updateQuery("")}>Clear search</Button>} />}
@@ -1109,7 +1109,7 @@ function ReorderableListDemo() {
 }
 
 function InlineEditDemo({ includeContract = true }: { includeContract?: boolean } = {}) {
-  const [title, setTitle] = useState("Interaction Index");
+  const [title, setTitle] = useState("Teum");
   const saveTitle = async (value: string) => {
     await new Promise((resolve) => window.setTimeout(resolve, 420));
     setTitle(value);
@@ -1277,7 +1277,7 @@ function TextFieldProductContext() {
         <span>Used in navigation, search, and shared links.</span>
       </div>
       <div className="product-context__field">
-        <TextField label="Project name" defaultValue="Interaction Index" description="Visible to everyone in the workspace." />
+        <TextField label="Project name" defaultValue="Teum" description="Visible to everyone in the workspace." />
       </div>
     </section>
   );
@@ -1297,7 +1297,7 @@ function MenuProductContext() {
           <MenuItem><Copy />Duplicate <kbd>⌘D</kbd></MenuItem>
           <MenuItem><Archive />Archive</MenuItem>
           <MenuSeparator />
-          <MenuItem className="ix-menu__item--danger"><Trash />Delete</MenuItem>
+          <MenuItem className="teum-menu__item--danger"><Trash />Delete</MenuItem>
         </MenuContent>
       </Menu>
     </section>
@@ -1345,8 +1345,8 @@ function SheetProductContext() {
 export function PrimaryPreviewFor({ id }: { id: ComponentId }) {
   if (id === "button") return <ButtonProductContext />;
   if (id === "icon-button") return <IconButton variant="secondary" aria-label="Create item" tooltip="Create item"><Plus /></IconButton>;
-  if (id === "field") return <div className="primary-field-preview"><Field><FieldLabel>Project name</FieldLabel><FieldControl defaultValue="Interaction Index" /><FieldDescription>Visible to everyone in the workspace.</FieldDescription></Field></div>;
-  if (id === "input-group") return <div className="primary-field-preview"><InputGroup><InputGroupAddon>github.com/</InputGroupAddon><InputGroupInput aria-label="Repository path" defaultValue="minwook/index" /><InputGroupButton aria-label="Copy repository path"><Copy /></InputGroupButton></InputGroup></div>;
+  if (id === "field") return <div className="primary-field-preview"><Field><FieldLabel>Project name</FieldLabel><FieldControl defaultValue="Teum" /><FieldDescription>Visible to everyone in the workspace.</FieldDescription></Field></div>;
+  if (id === "input-group") return <div className="primary-field-preview"><InputGroup><InputGroupAddon>github.com/</InputGroupAddon><InputGroupInput aria-label="Repository path" defaultValue="minwook/teum" /><InputGroupButton aria-label="Copy repository path"><Copy /></InputGroupButton></InputGroup></div>;
   if (id === "kbd") return <KbdGroup><Kbd>⌘</Kbd><Kbd>K</Kbd></KbdGroup>;
   if (id === "button-group") return <ButtonGroup aria-label="Issue actions" attached><Button size="small" variant="secondary">Preview</Button><Button size="small" variant="secondary">Open</Button><Button size="small" variant="secondary" aria-label="More actions"><DotsThree /></Button></ButtonGroup>;
   if (id === "toolbar") return <Toolbar aria-label="Formatting"><ToolbarButton aria-label="Bold"><strong>B</strong></ToolbarButton><ToolbarButton aria-label="Italic"><em>I</em></ToolbarButton><ToolbarSeparator /><ToolbarButton aria-label="Add link"><LinkSimple /></ToolbarButton><ToolbarInput aria-label="Find" placeholder="Find…" /></Toolbar>;
@@ -1363,16 +1363,16 @@ export function PrimaryPreviewFor({ id }: { id: ComponentId }) {
   if (id === "date-picker") return <Suspense fallback={<ReactAriaPreviewFallback />}><ReactAriaPrimaryPreview id="date-picker" /></Suspense>;
   if (id === "segmented-control") return <SegmentedControl label="Issue view" defaultValue="list" options={[{ value: "list", label: "List" }, { value: "board", label: "Board" }, { value: "timeline", label: "Timeline" }]} />;
   if (id === "tooltip") return <Tooltip><TooltipTrigger render={<Button variant="secondary">Favorite</Button>} /><TooltipContent>Add to favorites <kbd>F</kbd></TooltipContent></Tooltip>;
-  if (id === "popover") return <Popover><PopoverTrigger render={<Button variant="secondary" trailingIcon={<CaretDown />}>View options</Button>} /><PopoverContent className="ix-popover--compact" side="top" align="center"><div className="popover-copy"><PopoverTitle>View options</PopoverTitle></div><div className="primary-popover-row"><Switch label="Show contracts" defaultChecked /></div></PopoverContent></Popover>;
+  if (id === "popover") return <Popover><PopoverTrigger render={<Button variant="secondary" trailingIcon={<CaretDown />}>View options</Button>} /><PopoverContent className="teum-popover--compact" side="top" align="center"><div className="popover-copy"><PopoverTitle>View options</PopoverTitle></div><div className="primary-popover-row"><Switch label="Show contracts" defaultChecked /></div></PopoverContent></Popover>;
   if (id === "menu") return <MenuProductContext />;
-  if (id === "context-menu") return <ContextMenu><ContextMenuTrigger className="context-menu-demo-card context-menu-demo-card--primary"><span className="product-context__icon"><Rows aria-hidden="true" /></span><span><strong>Motion contract</strong><small>Right click or press Shift + F10</small></span></ContextMenuTrigger><ContextMenuContent><ContextMenuLabel>Issue</ContextMenuLabel><ContextMenuItem><Copy />Duplicate</ContextMenuItem><ContextMenuItem><Archive />Archive</ContextMenuItem><ContextMenuSeparator /><ContextMenuItem className="ix-menu__item--danger"><Trash />Delete</ContextMenuItem></ContextMenuContent></ContextMenu>;
+  if (id === "context-menu") return <ContextMenu><ContextMenuTrigger className="context-menu-demo-card context-menu-demo-card--primary"><span className="product-context__icon"><Rows aria-hidden="true" /></span><span><strong>Motion contract</strong><small>Right click or press Shift + F10</small></span></ContextMenuTrigger><ContextMenuContent><ContextMenuLabel>Issue</ContextMenuLabel><ContextMenuItem><Copy />Duplicate</ContextMenuItem><ContextMenuItem><Archive />Archive</ContextMenuItem><ContextMenuSeparator /><ContextMenuItem className="teum-menu__item--danger"><Trash />Delete</ContextMenuItem></ContextMenuContent></ContextMenu>;
   if (id === "dialog") return <DialogProductContext />;
   if (id === "sheet") return <SheetProductContext />;
   if (id === "alert-dialog") return <AlertDialog><AlertDialogTrigger render={<Button variant="secondary" />}>Discard draft</AlertDialogTrigger><AlertDialogContent><AlertDialogHeader><AlertDialogTitle>Discard this component draft?</AlertDialogTitle><AlertDialogDescription>The draft and its unpublished interaction notes will be permanently removed.</AlertDialogDescription></AlertDialogHeader><AlertDialogFooter><AlertDialogClose render={<Button variant="ghost" />}>Keep draft</AlertDialogClose><AlertDialogClose render={<Button variant="primary" />}>Discard draft</AlertDialogClose></AlertDialogFooter></AlertDialogContent></AlertDialog>;
   if (id === "tabs") return <Tabs className="tabs-demo tabs-demo--primary" defaultValue="overview"><TabsList><TabsTrigger value="overview">Overview</TabsTrigger><TabsTrigger value="activity">Activity</TabsTrigger><TabsTrigger value="relations">Relations</TabsTrigger></TabsList><div className="tabs-panel-viewport"><TabsContent value="overview"><div className="tab-card"><strong>Live component</strong><p>Inspect the component at product density.</p></div></TabsContent><TabsContent value="activity"><div className="tab-card"><strong>Recent activity</strong><p>Review the latest component changes.</p></div></TabsContent><TabsContent value="relations"><div className="tab-card"><strong>Related work</strong><p>Trace connected patterns and dependencies.</p></div></TabsContent></div></Tabs>;
   if (id === "breadcrumbs") return <Breadcrumbs label="Component preview breadcrumb" items={[{ label: "Workspace", href: "#" }, { label: "Projects", href: "#" }, { label: "UI Refresh" }]} />;
   if (id === "pagination") return <PrimaryPagination />;
-  if (id === "collapsible") return <Collapsible className="ix-collapsible"><CollapsibleTrigger>Advanced filter rules</CollapsibleTrigger><CollapsibleContent>Match state contracts that restore focus and define reduced motion.</CollapsibleContent></Collapsible>;
+  if (id === "collapsible") return <Collapsible className="teum-collapsible"><CollapsibleTrigger>Advanced filter rules</CollapsibleTrigger><CollapsibleContent>Match state contracts that restore focus and define reduced motion.</CollapsibleContent></Collapsible>;
   if (id === "toast") return <Button variant="primary" onClick={() => toast.success("Component saved", { id: COMPONENT_FEEDBACK_TOAST_ID, description: "Button is ready for review.", action: undefined })}>Show toast</Button>;
   if (id === "progress") return <Progress label="Exporting data" value={68} />;
   if (id === "spinner") return <div className="demo-row demo-row--centered"><Spinner label="Loading content" /><span>Loading content</span></div>;
@@ -1396,7 +1396,7 @@ function PrimaryPagination() {
 }
 
 function PrimaryInlineEdit() {
-  const [value, setValue] = useState("Interaction Index");
+  const [value, setValue] = useState("Teum");
   return <div className="primary-inline-edit"><span>Project title</span><InlineEdit value={value} onSave={setValue} /></div>;
 }
 
@@ -1665,7 +1665,7 @@ function ConsolidatedDesignSystemMode({ view, onSelect, theme, onThemeChange }: 
     <div className="system-stage system-stage--consolidated">
       <div className="system-window system-window--consolidated">
         <aside className="system-nav system-nav--consolidated" aria-label="Design system navigation" data-open={navigationOpen || undefined}>
-          <div className="system-brand"><span className="system-brand__mark"><Command weight="bold" /></span><strong>Index</strong><span className="system-brand__divider">/</span><span>Docs</span><button type="button" className="system-nav__close" aria-label="Close navigation" onClick={() => setNavigationOpen(false)}><X aria-hidden="true" /></button></div>
+          <div className="system-brand"><span className="system-brand__mark"><Command weight="bold" /></span><strong>Teum</strong><span className="system-brand__divider">/</span><span>Docs</span><button type="button" className="system-nav__close" aria-label="Close navigation" onClick={() => setNavigationOpen(false)}><X aria-hidden="true" /></button></div>
           <label className="system-component-search system-component-search--global"><MagnifyingGlass aria-hidden="true" /><input value={filter} onChange={(event) => setFilter(event.target.value)} placeholder="Search docs…" aria-label="Search documentation" /><kbd>⌘K</kbd></label>
           <div className="system-nav__scroll">
             <nav className="system-nav__items" aria-label="System sections">
@@ -1700,7 +1700,7 @@ function ConsolidatedDesignSystemMode({ view, onSelect, theme, onThemeChange }: 
               </>}
             </nav>
           </div>
-          <div className="system-nav__footer"><span><Package aria-hidden="true" /> @index/ui</span><button type="button" onClick={() => navigate("licensing")}>MIT licensed</button></div>
+          <div className="system-nav__footer"><span><Package aria-hidden="true" /> teum</span><button type="button" onClick={() => navigate("licensing")}>MIT licensed</button></div>
         </aside>
         {navigationOpen && <button type="button" className="system-nav-scrim" aria-label="Close navigation" onClick={() => setNavigationOpen(false)} />}
 
@@ -1733,7 +1733,7 @@ function ConsolidatedDesignSystemMode({ view, onSelect, theme, onThemeChange }: 
                 <ComponentGuidancePanel guidance={guidance} mode="accessibility" />
                 <ComponentApiPanel id={activeId} />
               </div>
-              <footer className="system-footer"><span>Interaction Index</span><span>Inter / 4px base</span></footer>
+              <footer className="system-footer"><span>Teum</span><span>Inter / 4px base</span></footer>
             </div>}
           </div>
         </main>
@@ -1759,7 +1759,7 @@ function PatternsOverview({ onSelect }: { onSelect: (id: PatternId) => void }) {
           <div className="pattern-index__meta"><small>Built from</small><strong>{pattern.components.join(", ")}</strong><ArrowRight aria-hidden="true" /></div>
         </a>)}
       </div>
-      <footer className="system-footer"><span>Interaction Index</span><span>4 authored patterns</span></footer>
+      <footer className="system-footer"><span>Teum</span><span>4 authored patterns</span></footer>
     </div>
   );
 }
@@ -1820,7 +1820,7 @@ function PatternDetail({ pattern }: { pattern: (typeof patterns)[number] }) {
         <div><span>Built from</span><h2>Components stay visible behind the behavior</h2></div>
         <div>{pattern.components.map((component) => <span key={component}>{component}</span>)}</div>
       </section>
-      <footer className="system-footer"><span>Interaction Index</span><span>Authored behavior contract</span></footer>
+      <footer className="system-footer"><span>Teum</span><span>Authored behavior contract</span></footer>
     </div>
   );
 }
@@ -1834,7 +1834,10 @@ function App() {
     return components.some((component) => component.id === hash) ? hash : "introduction";
   };
   const [view, setView] = useState<ViewId>(getInitial);
-  const [theme, setTheme] = useState<Theme>(() => window.localStorage.getItem("index-ui-theme") === "dark" ? "dark" : "light");
+  const [theme, setTheme] = useState<Theme>(() => {
+    const storedTheme = window.localStorage.getItem("teum-theme") ?? window.localStorage.getItem("index-ui-theme");
+    return storedTheme === "dark" ? "dark" : "light";
+  });
 
   useEffect(() => {
     const root = document.documentElement;
@@ -1861,7 +1864,7 @@ function App() {
   useLayoutEffect(() => {
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
-    window.localStorage.setItem("index-ui-theme", theme);
+    window.localStorage.setItem("teum-theme", theme);
   }, [theme]);
 
   useLayoutEffect(() => {

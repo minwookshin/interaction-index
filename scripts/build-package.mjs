@@ -6,8 +6,9 @@ const root = process.cwd();
 const packageRoot = resolve(root, "dist/package");
 const hash = (value) => createHash("sha256").update(value).digest("hex");
 
-await copyFile(resolve(root, "src/interaction-index.css"), resolve(packageRoot, "styles.css"));
+await copyFile(resolve(root, "src/teum.css"), resolve(packageRoot, "styles.css"));
 await copyFile(resolve(root, "src/tokens/generated.css"), resolve(packageRoot, "tokens.css"));
+await copyFile(resolve(root, "src/teum-tailwind.css"), resolve(packageRoot, "tailwind.css"));
 await copyFile(resolve(root, "tokens/generated/token-manifest.json"), resolve(packageRoot, "tokens.json"));
 await writeFile(resolve(packageRoot, "styles.d.ts"), "declare const stylesheet: string;\nexport default stylesheet;\n", "utf8");
 

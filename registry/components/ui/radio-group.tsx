@@ -1,4 +1,4 @@
-import "../../styles/index-base.css";
+import "../../styles/teum-base.css";
 import "../../styles/components/radio-group.css";
 import { Radio } from "@base-ui/react/radio";
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
@@ -26,26 +26,26 @@ export function RadioGroup({ className, label, description, error, options, orie
   const errorId = error ? `${id}-error` : undefined;
 
   return (
-    <div className="ix-radio-field" data-invalid={Boolean(error) || undefined}>
-      <div id={id} className="ix-radio-field__label">{label}</div>
-      {description && <div id={descriptionId} className="ix-field__description">{description}</div>}
+    <div className="teum-radio-field" data-invalid={Boolean(error) || undefined}>
+      <div id={id} className="teum-radio-field__label">{label}</div>
+      {description && <div id={descriptionId} className="teum-field__description">{description}</div>}
       <RadioGroupPrimitive
         aria-labelledby={id}
         aria-describedby={[descriptionId, errorId].filter(Boolean).join(" ") || undefined}
         aria-invalid={Boolean(error) || undefined}
-        className={cn("ix-radio-group", `ix-radio-group--${orientation}`, className)}
+        className={cn("teum-radio-group", `teum-radio-group--${orientation}`, className)}
         {...props}
       >
         {options.map((option) => (
-          <label className="ix-radio-option" key={option.value} data-disabled={option.disabled || undefined}>
-            <Radio.Root value={option.value} disabled={option.disabled} className="ix-radio">
-              <Radio.Indicator className="ix-radio__indicator" />
+          <label className="teum-radio-option" key={option.value} data-disabled={option.disabled || undefined}>
+            <Radio.Root value={option.value} disabled={option.disabled} className="teum-radio">
+              <Radio.Indicator className="teum-radio__indicator" />
             </Radio.Root>
             <span><strong>{option.label}</strong>{option.description && <small>{option.description}</small>}</span>
           </label>
         ))}
       </RadioGroupPrimitive>
-      {error && <div id={errorId} className="ix-field__error">{error}</div>}
+      {error && <div id={errorId} className="teum-field__error">{error}</div>}
     </div>
   );
 }

@@ -13,12 +13,12 @@ describe("generated design tokens", () => {
     expect(tokenModes).toEqual(["light", "dark"]);
     expect(tokenManifest.every((token) => token.values.light && token.values.dark)).toBe(true);
     expect(tokenByPath["theme.surface.bg-canvas"].values).toEqual({ light: "#ffffff", dark: "#0e0e0f" });
-    expect(tokenByPath["theme.foreground.fg-default"].values.light).toBe("var(--ix-gray-900)");
-    expect(tokenByPath["theme.foreground.fg-default"].values.dark).toBe("var(--ix-gray-900)");
+    expect(tokenByPath["theme.foreground.fg-default"].values.light).toBe("var(--teum-gray-900)");
+    expect(tokenByPath["theme.foreground.fg-default"].values.dark).toBe("var(--teum-gray-900)");
   });
 
   it("exposes type-safe variable references to product code", () => {
-    expect(tokenVar("foundation.layout.control-height-md")).toBe("var(--ix-control-height-md)");
-    expect(tokenVar("theme.elevation.shadow-flyout")).toBe("var(--ix-shadow-flyout)");
+    expect(tokenVar("foundation.layout.control-height-md")).toBe("var(--teum-control-height-md)");
+    expect(tokenVar("theme.elevation.shadow-flyout")).toBe("var(--teum-shadow-flyout)");
   });
 });

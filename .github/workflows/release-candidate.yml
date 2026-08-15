@@ -25,7 +25,7 @@ jobs:
         run: node -e "const actual = JSON.parse(require('fs').readFileSync('package.json')).version; if (actual !== process.env.EXPECTED_VERSION) { console.error(actual); process.exit(1); }"
       - uses: actions/upload-artifact@v7
         with:
-          name: interaction-index-${{ inputs.version }}
+          name: teum-${{ inputs.version }}
           path: |
             dist
             public/r

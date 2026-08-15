@@ -1,6 +1,6 @@
 # Compatibility
 
-Interaction Index `0.1.0-rc.2` is an MIT-licensed, unpublished release candidate. The table below records the environment verified on 2026-08-15; it is evidence, not a broad support promise.
+Teum `0.1.0-rc.3` is an MIT-licensed, unpublished release candidate. The table below records the environment verified on 2026-08-15; it is evidence, not a broad support promise.
 
 ## Verified stack
 
@@ -8,13 +8,14 @@ Interaction Index `0.1.0-rc.2` is an MIT-licensed, unpublished release candidate
 | --- | --- |
 | Node.js | 22.14.0 |
 | npm | 10.9.2 |
-| React / React DOM | 19.2.0 |
+| React / React DOM consumer matrix | 18.3.1 and 19.2.8 |
 | TypeScript | 7.0.2 |
 | Base UI | 1.7.0 |
 | React Aria Components | 1.20.0 |
 | Internationalized Date | 3.12.3 |
 | Motion | 13.1.0 |
 | shadcn CLI | 4.18.0 |
+| Tailwind CSS / CLI bridge | 4.3.3 |
 | Vite | 6.4.3 |
 | Vitest | 4.1.10 |
 | Playwright | 1.62.1 |
@@ -32,12 +33,13 @@ The lockfile is the reproducible source for every direct and transitive version 
 
 ## Verified distribution boundaries
 
-- shadcn-compatible generation for every component, the shared base, and the complete-system item.
+- shadcn-compatible generation for every component, the shared base, the optional Tailwind CSS v4 bridge, and the complete-system item: 48 declared items plus the generated registry catalog.
 - Deterministic SHA-256 metadata for registry JSON, copied files, compiler-extracted APIs, and semantic tokens.
-- A byte-locked versioned registry at `/r/v/0.1.0-rc.2/` that rejects same-version rewrites.
+- A byte-locked versioned registry at `/r/v/0.1.0-rc.3/` that rejects same-version rewrites while preserving every earlier versioned Interaction Index artifact.
 - Fresh source-consumer builds for a Button-only install, every individual item, the complete system, and the staged upgrade/accept flow.
-- A packed private npm candidate with explicit exports, tarball allowlisting, integrity metadata, and a fresh TypeScript/Vite consumer build.
-- A realistic issue workspace built only from `interaction-index` and `interaction-index/styles.css`; no private source imports are permitted by its verifier.
+- A packed private npm candidate with explicit exports, tarball allowlisting, integrity metadata, and fresh TypeScript/Vite consumer builds against both React 18.3.1 and React 19.2.8.
+- A Tailwind CSS v4 clean consumer that compiles semantic utilities from `teum/tokens.css` and `teum/tailwind.css`; plain CSS remains the component styling source of truth.
+- A realistic issue workspace built only from `teum` and `teum/styles.css`; no private source imports are permitted by its verifier.
 - `npm audit` reports zero known vulnerabilities for the verified lockfile.
 
 ## Verified browser and accessibility behavior

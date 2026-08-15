@@ -1,4 +1,4 @@
-import "../../styles/index-base.css";
+import "../../styles/teum-base.css";
 import "../../styles/components/icon-button.css";
 import type { ReactNode } from "react";
 import { Button, type ButtonProps } from "./button";
@@ -14,7 +14,7 @@ export type IconButtonProps = Omit<ButtonProps, "children" | "leadingIcon" | "tr
 export function IconButton({ children, className, tooltip, ...props }: IconButtonProps) {
   const button = (
     <Button
-      className={cn("ix-icon-button", className)}
+      className={cn("teum-icon-button", className)}
       focusableWhenDisabled={Boolean(tooltip) && props.disabled}
       {...props}
     >

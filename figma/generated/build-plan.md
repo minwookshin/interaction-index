@@ -1,4 +1,4 @@
-# Interaction Index Figma library build plan
+# Teum Figma library build plan
 
 > Generated from the DTCG tokens, TypeScript public API, registry, and component behavior contracts. Do not edit directly.
 

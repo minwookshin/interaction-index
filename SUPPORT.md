@@ -1,6 +1,6 @@
 # Support policy
 
-Interaction Index is an MIT-licensed alpha. Support claims are based on recorded tests, not browser similarity or assumed compatibility.
+Teum is an MIT-licensed alpha. Support claims are based on recorded tests, not browser similarity or assumed compatibility.
 
 ## Support levels
 
@@ -29,4 +29,4 @@ Automated accessibility and modality evidence includes axe anchor routes, forced
 
 ## Getting help
 
-Use [public issues](https://github.com/minwookshin/interaction-index/issues) for reproducible bugs, documentation gaps, and feature proposals. Use the private process in `SECURITY.md` for vulnerabilities. General product implementation consulting is outside the open-source support contract.
+Use [public issues](https://github.com/minwookshin/teum/issues) for reproducible bugs, documentation gaps, and feature proposals. Use the private process in `SECURITY.md` for vulnerabilities. General product implementation consulting is outside the open-source support contract.

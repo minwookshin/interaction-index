@@ -3,18 +3,18 @@ import type { ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/cn";
 
-export const buttonVariants = cva("ix-button", {
+export const buttonVariants = cva("teum-button", {
   variants: {
     variant: {
-      primary: "ix-button--primary",
-      secondary: "ix-button--secondary",
-      ghost: "ix-button--ghost",
-      quiet: "ix-button--quiet",
+      primary: "teum-button--primary",
+      secondary: "teum-button--secondary",
+      ghost: "teum-button--ghost",
+      quiet: "teum-button--quiet",
     },
     size: {
-      small: "ix-button--small",
-      medium: "ix-button--medium",
-      large: "ix-button--large",
+      small: "teum-button--small",
+      medium: "teum-button--medium",
+      large: "teum-button--large",
     },
   },
   defaultVariants: {
@@ -54,14 +54,14 @@ export function Button({
       className={cn(buttonVariants({ variant, size }), className)}
       {...props}
     >
-      <span className="ix-button__content">
-        {leadingIcon && <span className="ix-button__icon ix-button__icon--leading">{leadingIcon}</span>}
+      <span className="teum-button__content">
+        {leadingIcon && <span className="teum-button__icon teum-button__icon--leading">{leadingIcon}</span>}
         <span>{children}</span>
-        {trailingIcon && <span className="ix-button__icon ix-button__icon--trailing">{trailingIcon}</span>}
+        {trailingIcon && <span className="teum-button__icon teum-button__icon--trailing">{trailingIcon}</span>}
       </span>
       {loading && (
-        <span className="ix-button__loader" aria-hidden="true">
-          <span className="ix-spinner" />
+        <span className="teum-button__loader" aria-hidden="true">
+          <span className="teum-spinner" />
         </span>
       )}
     </ButtonPrimitive>

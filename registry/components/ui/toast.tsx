@@ -1,4 +1,4 @@
-import "../../styles/index-base.css";
+import "../../styles/teum-base.css";
 import "../../styles/components/toast.css";
 import { Toaster as SonnerToaster, toast as sonnerToast } from "sonner";
 import type { ExternalToast, ToasterProps } from "sonner";
@@ -19,12 +19,12 @@ export type ToastApi = {
 };
 
 const toastClassNames = {
-  toast: "ix-toast",
-  content: "ix-toast__content",
-  title: "ix-toast__title",
-  description: "ix-toast__description",
-  actionButton: "ix-toast__action",
-  closeButton: "ix-toast__close",
+  toast: "teum-toast",
+  content: "teum-toast__content",
+  title: "teum-toast__title",
+  description: "teum-toast__description",
+  actionButton: "teum-toast__action",
+  closeButton: "teum-toast__close",
 };
 
 export function Toaster({
@@ -42,7 +42,7 @@ export function Toaster({
   return (
     <SonnerToaster
       {...props}
-      className={["ix-toaster", className].filter(Boolean).join(" ")}
+      className={["teum-toaster", className].filter(Boolean).join(" ")}
       position={position}
       visibleToasts={visibleToasts}
       expand={expand}

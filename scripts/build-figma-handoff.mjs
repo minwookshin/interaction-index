@@ -218,16 +218,16 @@ const pages = [
 const manifest = {
   schemaVersion: 1,
   generatedBy: "scripts/build-figma-handoff.mjs",
-  runId: "interaction-index-2026-08-14",
+  runId: "teum-2026-08-14",
   file: {
-    name: "Interaction Index - Design System",
+    name: "Teum - Design System",
     fileKey: null,
     url: null,
     selectedPlanKey: null,
     selectionRequired: true,
   },
   sourceOfTruth: {
-    tokens: "tokens/interaction-index.tokens.json",
+    tokens: "tokens/teum.tokens.json",
     api: "api/generated/public-api.json",
     registry: "registry.json",
     guidance: "src/component-guidance.ts",
@@ -269,7 +269,7 @@ const manifest = {
 };
 
 const report = [
-  "# Interaction Index Figma library build plan",
+  "# Teum Figma library build plan",
   "",
   "> Generated from the DTCG tokens, TypeScript public API, registry, and component behavior contracts. Do not edit directly.",
   "",

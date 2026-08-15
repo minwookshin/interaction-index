@@ -28,15 +28,15 @@ export function TooltipContent({
   return (
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Positioner
-        className="ix-positioner"
+        className="teum-positioner"
         side={side}
         sideOffset={sideOffset}
         align={align}
         alignOffset={alignOffset}
       >
-        <TooltipPrimitive.Popup className={cn("ix-tooltip", className)} {...props}>
+        <TooltipPrimitive.Popup className={cn("teum-tooltip", className)} {...props}>
           {children}
-          <TooltipPrimitive.Arrow className="ix-tooltip__arrow" />
+          <TooltipPrimitive.Arrow className="teum-tooltip__arrow" />
         </TooltipPrimitive.Popup>
       </TooltipPrimitive.Positioner>
     </TooltipPrimitive.Portal>

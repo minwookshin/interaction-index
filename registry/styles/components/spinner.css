@@ -1,19 +1,15 @@
 /* Generated from src/styles.css. Do not edit directly. */
 
-@layer index.tokens, index.base, index.components;
+@layer teum.tokens, teum.base, teum.components;
 
-@layer index.components {
-.ix-loading-spinner { display: inline-grid; place-items: center; color: currentColor; }
+@layer teum.components {
+.teum-loading-spinner { display: inline-grid; place-items: center; color: currentColor; }
 
-.ix-loading-spinner > span { width: 100%; height: 100%; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: ix-spin 620ms linear infinite; }
-
-@media (prefers-reduced-motion: reduce) {
-.ix-loading-spinner > span { animation-duration: 2.4s; }
-}
+.teum-loading-spinner > span { width: 100%; height: 100%; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: teum-spin 620ms linear infinite; }
 
 @media (prefers-reduced-motion: reduce) {
-.ix-loading-spinner > span { animation-duration: 2.4s; }
+.teum-loading-spinner > span { animation-duration: 2.4s; }
 }
 
-@keyframes ix-spin { to { transform: rotate(360deg); } }
+@keyframes teum-spin { to { transform: rotate(360deg); } }
 }

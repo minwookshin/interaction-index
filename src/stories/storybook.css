@@ -1,12 +1,12 @@
 :root,
 [data-theme="light"] {
-  --story-stage: color-mix(in srgb, var(--ix-canvas) 70%, var(--ix-gray-50));
-  --story-rule: color-mix(in srgb, var(--ix-ink) 8%, transparent);
+  --story-stage: color-mix(in srgb, var(--teum-canvas) 70%, var(--teum-gray-50));
+  --story-rule: color-mix(in srgb, var(--teum-ink) 8%, transparent);
 }
 
 [data-theme="dark"] {
-  --story-stage: color-mix(in srgb, var(--ix-canvas) 82%, var(--ix-gray-100));
-  --story-rule: color-mix(in srgb, var(--ix-ink) 12%, transparent);
+  --story-stage: color-mix(in srgb, var(--teum-canvas) 82%, var(--teum-gray-100));
+  --story-rule: color-mix(in srgb, var(--teum-ink) 12%, transparent);
 }
 
 html,
@@ -17,10 +17,10 @@ body,
 
 body {
   margin: 0;
-  background: var(--ix-canvas);
-  color: var(--ix-ink);
-  font-family: var(--ix-font-ui);
-  font-size: var(--ix-type-ui);
+  background: var(--teum-canvas);
+  color: var(--teum-ink);
+  font-family: var(--teum-font-ui);
+  font-size: var(--teum-type-ui);
 }
 
 .story-contract,
@@ -50,27 +50,27 @@ body {
 .story-contract__header span,
 .story-contract__section-heading span,
 .story-contract__footer > div > span {
-  color: var(--ix-fg-subtle);
-  font-size: var(--ix-type-label);
-  font-weight: var(--ix-label-weight);
+  color: var(--teum-fg-subtle);
+  font-size: var(--teum-type-label);
+  font-weight: var(--teum-label-weight);
   letter-spacing: 0.035em;
   text-transform: uppercase;
 }
 
 .story-contract__header h1 {
   margin: 8px 0 6px;
-  font-size: var(--ix-type-title);
-  font-weight: var(--ix-heading-weight);
+  font-size: var(--teum-type-title);
+  font-weight: var(--teum-heading-weight);
   letter-spacing: -0.035em;
-  line-height: var(--ix-line-title);
+  line-height: var(--teum-line-title);
 }
 
 .story-contract__header p,
 .story-contract__section-heading p {
   margin: 0;
-  color: var(--ix-ink-secondary);
-  font-size: var(--ix-type-body);
-  line-height: var(--ix-line-body);
+  color: var(--teum-ink-secondary);
+  font-size: var(--teum-type-body);
+  line-height: var(--teum-line-body);
 }
 
 .story-contract__header dl {
@@ -86,14 +86,14 @@ body {
 }
 
 .story-contract__header dt {
-  color: var(--ix-fg-subtle);
-  font-size: var(--ix-type-metadata);
+  color: var(--teum-fg-subtle);
+  font-size: var(--teum-type-metadata);
 }
 
 .story-contract__header dd {
   margin: 0;
-  font-size: var(--ix-type-label);
-  font-weight: var(--ix-label-weight);
+  font-size: var(--teum-type-label);
+  font-weight: var(--teum-label-weight);
 }
 
 .story-contract__product,
@@ -112,10 +112,10 @@ body {
 
 .story-contract__section-heading h2 {
   margin: 5px 0 0;
-  font-size: var(--ix-type-section);
-  font-weight: var(--ix-heading-weight);
+  font-size: var(--teum-type-section);
+  font-weight: var(--teum-heading-weight);
   letter-spacing: -0.025em;
-  line-height: var(--ix-line-section);
+  line-height: var(--teum-line-section);
 }
 
 .story-contract__stage {
@@ -124,7 +124,7 @@ body {
   place-items: center;
   overflow: visible;
   padding: 40px;
-  border-radius: var(--ix-radius-container);
+  border-radius: var(--teum-radius-container);
   background: var(--story-stage);
   box-shadow: inset 0 0 0 1px var(--story-rule);
 }
@@ -137,7 +137,7 @@ body {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   overflow: hidden;
-  border-radius: var(--ix-radius-container);
+  border-radius: var(--teum-radius-container);
   background: var(--story-rule);
   gap: 1px;
 }
@@ -146,7 +146,7 @@ body {
   min-width: 0;
   min-height: 176px;
   grid-column: span 2;
-  background: var(--ix-canvas);
+  background: var(--teum-canvas);
 }
 
 .story-contract__state:nth-last-child(2):nth-child(3n + 1),
@@ -175,9 +175,9 @@ body {
   min-height: 38px;
   align-items: center;
   padding: 0 14px;
-  color: var(--ix-fg-subtle);
-  font-size: var(--ix-type-label);
-  font-weight: var(--ix-label-weight);
+  color: var(--teum-fg-subtle);
+  font-size: var(--teum-type-label);
+  font-weight: var(--teum-label-weight);
 }
 
 .story-contract__state > div {
@@ -207,9 +207,9 @@ body {
 .story-contract__footer li {
   position: relative;
   padding-left: 14px;
-  color: var(--ix-ink-secondary);
-  font-size: var(--ix-type-ui);
-  line-height: var(--ix-line-ui);
+  color: var(--teum-ink-secondary);
+  font-size: var(--teum-type-ui);
+  line-height: var(--teum-line-ui);
 }
 
 .story-contract__footer li::before {
@@ -219,7 +219,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 1px;
-  background: var(--ix-fg-subtle);
+  background: var(--teum-fg-subtle);
   content: "";
   transform: rotate(45deg);
 }

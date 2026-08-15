@@ -1,16 +1,16 @@
 {
   "schemaVersion": 2,
   "$description": "Figma library handoff generated from the DTCG source. It is deterministic input for the Figma build, not evidence that a library is published.",
-  "source": "tokens/interaction-index.tokens.json",
+  "source": "tokens/teum.tokens.json",
   "collections": [
     {
-      "name": "Interaction Index / Foundation",
+      "name": "Teum / Foundation",
       "modes": [
         "Value"
       ]
     },
     {
-      "name": "Interaction Index / Theme",
+      "name": "Teum / Theme",
       "modes": [
         "Light",
         "Dark"
@@ -20,13 +20,13 @@
   "variables": [
     {
       "name": "foundation/system/neutral-h",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Cool graphite hue used by optical OKLCH effects.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-neutral-h)"
+        "WEB": "var(--teum-neutral-h)"
       },
       "values": {
         "Value": 275
@@ -35,13 +35,13 @@
     },
     {
       "name": "foundation/system/neutral-c",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Near-neutral chroma used by optical OKLCH effects.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-neutral-c)"
+        "WEB": "var(--teum-neutral-c)"
       },
       "values": {
         "Value": 0.002
@@ -50,13 +50,13 @@
     },
     {
       "name": "foundation/system/sidebar-l",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Reference lightness for translucent navigation surfaces.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-sidebar-l)"
+        "WEB": "var(--teum-sidebar-l)"
       },
       "values": {
         "Value": 0.982
@@ -65,13 +65,13 @@
     },
     {
       "name": "foundation/system/stage-l",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Reference lightness for specimen stages.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-stage-l)"
+        "WEB": "var(--teum-stage-l)"
       },
       "values": {
         "Value": 0.986
@@ -80,13 +80,13 @@
     },
     {
       "name": "foundation/system/border-alpha",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Reference opacity for low-contrast structural separators.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-border-alpha)"
+        "WEB": "var(--teum-border-alpha)"
       },
       "values": {
         "Value": 0.078
@@ -95,7 +95,7 @@
     },
     {
       "name": "foundation/typography/font-ui",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "STRING",
       "description": "Primary product and documentation font stack.",
       "scopes": [
@@ -103,7 +103,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-font-ui)"
+        "WEB": "var(--teum-font-ui)"
       },
       "values": {
         "Value": "Inter"
@@ -112,7 +112,7 @@
     },
     {
       "name": "foundation/typography/font-code",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "STRING",
       "description": "Code and token value font stack.",
       "scopes": [
@@ -120,7 +120,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-font-code)"
+        "WEB": "var(--teum-font-code)"
       },
       "values": {
         "Value": "SF Mono"
@@ -129,7 +129,7 @@
     },
     {
       "name": "foundation/typography/sizes/type-metadata",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Small supporting metadata with a persistent readability floor.",
       "scopes": [
@@ -137,7 +137,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-type-metadata)"
+        "WEB": "var(--teum-type-metadata)"
       },
       "values": {
         "Value": 11.5
@@ -146,7 +146,7 @@
     },
     {
       "name": "foundation/typography/sizes/type-label",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Persistent navigation and field labels.",
       "scopes": [
@@ -154,7 +154,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-type-label)"
+        "WEB": "var(--teum-type-label)"
       },
       "values": {
         "Value": 12
@@ -163,7 +163,7 @@
     },
     {
       "name": "foundation/typography/sizes/type-ui",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Default compact control and product interface text.",
       "scopes": [
@@ -171,7 +171,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-type-ui)"
+        "WEB": "var(--teum-type-ui)"
       },
       "values": {
         "Value": 13.5
@@ -180,7 +180,7 @@
     },
     {
       "name": "foundation/typography/sizes/type-body",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Documentation body copy.",
       "scopes": [
@@ -188,7 +188,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-type-body)"
+        "WEB": "var(--teum-type-body)"
       },
       "values": {
         "Value": 14.5
@@ -197,7 +197,7 @@
     },
     {
       "name": "foundation/typography/sizes/type-row",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "High-salience labels in dense product rows.",
       "scopes": [
@@ -205,7 +205,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-type-row)"
+        "WEB": "var(--teum-type-row)"
       },
       "values": {
         "Value": 14.5
@@ -214,7 +214,7 @@
     },
     {
       "name": "foundation/typography/sizes/type-section",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Documentation section heading.",
       "scopes": [
@@ -222,7 +222,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-type-section)"
+        "WEB": "var(--teum-type-section)"
       },
       "values": {
         "Value": 20
@@ -231,7 +231,7 @@
     },
     {
       "name": "foundation/typography/sizes/type-title",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Page title for deep documentation routes.",
       "scopes": [
@@ -239,7 +239,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-type-title)"
+        "WEB": "var(--teum-type-title)"
       },
       "values": {
         "Value": 32
@@ -248,7 +248,7 @@
     },
     {
       "name": "foundation/typography/sizes/line-metadata",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Metadata line height.",
       "scopes": [
@@ -256,7 +256,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-line-metadata)"
+        "WEB": "var(--teum-line-metadata)"
       },
       "values": {
         "Value": 16
@@ -265,7 +265,7 @@
     },
     {
       "name": "foundation/typography/sizes/line-label",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Label line height.",
       "scopes": [
@@ -273,7 +273,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-line-label)"
+        "WEB": "var(--teum-line-label)"
       },
       "values": {
         "Value": 16
@@ -282,7 +282,7 @@
     },
     {
       "name": "foundation/typography/sizes/line-ui",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Compact control line height.",
       "scopes": [
@@ -290,7 +290,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-line-ui)"
+        "WEB": "var(--teum-line-ui)"
       },
       "values": {
         "Value": 18
@@ -299,7 +299,7 @@
     },
     {
       "name": "foundation/typography/sizes/line-row",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Dense product row line height.",
       "scopes": [
@@ -307,7 +307,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-line-row)"
+        "WEB": "var(--teum-line-row)"
       },
       "values": {
         "Value": 20
@@ -316,7 +316,7 @@
     },
     {
       "name": "foundation/typography/sizes/line-body",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Documentation reading line height.",
       "scopes": [
@@ -324,7 +324,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-line-body)"
+        "WEB": "var(--teum-line-body)"
       },
       "values": {
         "Value": 23
@@ -333,7 +333,7 @@
     },
     {
       "name": "foundation/typography/sizes/line-section",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Section heading line height.",
       "scopes": [
@@ -341,7 +341,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-line-section)"
+        "WEB": "var(--teum-line-section)"
       },
       "values": {
         "Value": 26
@@ -350,7 +350,7 @@
     },
     {
       "name": "foundation/typography/sizes/line-title",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Page title line height.",
       "scopes": [
@@ -358,7 +358,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-line-title)"
+        "WEB": "var(--teum-line-title)"
       },
       "values": {
         "Value": 36
@@ -367,7 +367,7 @@
     },
     {
       "name": "foundation/typography/ui-weight",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Optical default weight for Inter Variable controls.",
       "scopes": [
@@ -375,7 +375,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-ui-weight)"
+        "WEB": "var(--teum-ui-weight)"
       },
       "values": {
         "Value": 470
@@ -384,7 +384,7 @@
     },
     {
       "name": "foundation/typography/label-weight",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Compact labels and field hierarchy.",
       "scopes": [
@@ -392,7 +392,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-label-weight)"
+        "WEB": "var(--teum-label-weight)"
       },
       "values": {
         "Value": 560
@@ -401,7 +401,7 @@
     },
     {
       "name": "foundation/typography/heading-weight",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Page and section headings.",
       "scopes": [
@@ -409,7 +409,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-heading-weight)"
+        "WEB": "var(--teum-heading-weight)"
       },
       "values": {
         "Value": 580
@@ -418,13 +418,13 @@
     },
     {
       "name": "foundation/typography/ui-tracking",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Compact UI letter spacing expressed as an em ratio.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-ui-tracking)"
+        "WEB": "var(--teum-ui-tracking)"
       },
       "values": {
         "Value": -0.006
@@ -433,7 +433,7 @@
     },
     {
       "name": "foundation/layout/space-0",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Zero-space reset.",
       "scopes": [
@@ -441,7 +441,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-space-0)"
+        "WEB": "var(--teum-space-0)"
       },
       "values": {
         "Value": 0
@@ -450,7 +450,7 @@
     },
     {
       "name": "foundation/layout/space-1",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "One base spacing unit.",
       "scopes": [
@@ -458,7 +458,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-space-1)"
+        "WEB": "var(--teum-space-1)"
       },
       "values": {
         "Value": 4
@@ -467,7 +467,7 @@
     },
     {
       "name": "foundation/layout/space-2",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Two base spacing units.",
       "scopes": [
@@ -475,7 +475,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-space-2)"
+        "WEB": "var(--teum-space-2)"
       },
       "values": {
         "Value": 8
@@ -484,7 +484,7 @@
     },
     {
       "name": "foundation/layout/space-3",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Three base spacing units.",
       "scopes": [
@@ -492,7 +492,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-space-3)"
+        "WEB": "var(--teum-space-3)"
       },
       "values": {
         "Value": 12
@@ -501,7 +501,7 @@
     },
     {
       "name": "foundation/layout/space-4",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Four base spacing units.",
       "scopes": [
@@ -509,7 +509,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-space-4)"
+        "WEB": "var(--teum-space-4)"
       },
       "values": {
         "Value": 16
@@ -518,7 +518,7 @@
     },
     {
       "name": "foundation/layout/space-5",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Five base spacing units.",
       "scopes": [
@@ -526,7 +526,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-space-5)"
+        "WEB": "var(--teum-space-5)"
       },
       "values": {
         "Value": 20
@@ -535,7 +535,7 @@
     },
     {
       "name": "foundation/layout/space-6",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Six base spacing units.",
       "scopes": [
@@ -543,7 +543,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-space-6)"
+        "WEB": "var(--teum-space-6)"
       },
       "values": {
         "Value": 24
@@ -552,7 +552,7 @@
     },
     {
       "name": "foundation/layout/space-7",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Seven base spacing units.",
       "scopes": [
@@ -560,7 +560,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-space-7)"
+        "WEB": "var(--teum-space-7)"
       },
       "values": {
         "Value": 28
@@ -569,7 +569,7 @@
     },
     {
       "name": "foundation/layout/space-8",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Eight base spacing units.",
       "scopes": [
@@ -577,7 +577,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-space-8)"
+        "WEB": "var(--teum-space-8)"
       },
       "values": {
         "Value": 32
@@ -586,7 +586,7 @@
     },
     {
       "name": "foundation/layout/space-10",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Ten base spacing units.",
       "scopes": [
@@ -594,7 +594,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-space-10)"
+        "WEB": "var(--teum-space-10)"
       },
       "values": {
         "Value": 40
@@ -603,7 +603,7 @@
     },
     {
       "name": "foundation/layout/space-12",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Twelve base spacing units.",
       "scopes": [
@@ -611,7 +611,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-space-12)"
+        "WEB": "var(--teum-space-12)"
       },
       "values": {
         "Value": 48
@@ -620,7 +620,7 @@
     },
     {
       "name": "foundation/layout/space-16",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Sixteen base spacing units.",
       "scopes": [
@@ -628,7 +628,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-space-16)"
+        "WEB": "var(--teum-space-16)"
       },
       "values": {
         "Value": 64
@@ -637,7 +637,7 @@
     },
     {
       "name": "foundation/layout/space-page-x",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Default horizontal documentation inset.",
       "scopes": [
@@ -645,7 +645,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-space-page-x)"
+        "WEB": "var(--teum-space-page-x)"
       },
       "values": {
         "Value": 28
@@ -654,7 +654,7 @@
     },
     {
       "name": "foundation/layout/space-page-y",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Default vertical documentation inset.",
       "scopes": [
@@ -662,7 +662,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-space-page-y)"
+        "WEB": "var(--teum-space-page-y)"
       },
       "values": {
         "Value": 24
@@ -671,7 +671,7 @@
     },
     {
       "name": "foundation/layout/space-section",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Primary vertical rhythm between documentation sections.",
       "scopes": [
@@ -679,7 +679,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-space-section)"
+        "WEB": "var(--teum-space-section)"
       },
       "values": {
         "Value": 22
@@ -688,7 +688,7 @@
     },
     {
       "name": "foundation/layout/icon-size",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Default icon box for compact controls.",
       "scopes": [
@@ -696,7 +696,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-icon-size)"
+        "WEB": "var(--teum-icon-size)"
       },
       "values": {
         "Value": 14
@@ -705,7 +705,7 @@
     },
     {
       "name": "foundation/layout/icon-offset-y",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Optical vertical correction for the default icon family.",
       "scopes": [
@@ -713,7 +713,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-icon-offset-y)"
+        "WEB": "var(--teum-icon-offset-y)"
       },
       "values": {
         "Value": 0
@@ -722,7 +722,7 @@
     },
     {
       "name": "foundation/layout/control-height-sm",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Small compact control height.",
       "scopes": [
@@ -730,7 +730,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-control-height-sm)"
+        "WEB": "var(--teum-control-height-sm)"
       },
       "values": {
         "Value": 28
@@ -739,7 +739,7 @@
     },
     {
       "name": "foundation/layout/control-height-md",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Default compact control height.",
       "scopes": [
@@ -747,7 +747,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-control-height-md)"
+        "WEB": "var(--teum-control-height-md)"
       },
       "values": {
         "Value": 32
@@ -756,7 +756,7 @@
     },
     {
       "name": "foundation/layout/control-height-lg",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Large compact control height.",
       "scopes": [
@@ -764,7 +764,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-control-height-lg)"
+        "WEB": "var(--teum-control-height-lg)"
       },
       "values": {
         "Value": 36
@@ -773,7 +773,7 @@
     },
     {
       "name": "foundation/layout/control-padding-sm",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Horizontal inset for small controls.",
       "scopes": [
@@ -781,7 +781,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-control-padding-sm)"
+        "WEB": "var(--teum-control-padding-sm)"
       },
       "values": {
         "Value": 8
@@ -790,7 +790,7 @@
     },
     {
       "name": "foundation/layout/control-padding-md",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Horizontal inset for default controls.",
       "scopes": [
@@ -798,7 +798,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-control-padding-md)"
+        "WEB": "var(--teum-control-padding-md)"
       },
       "values": {
         "Value": 10
@@ -807,7 +807,7 @@
     },
     {
       "name": "foundation/layout/control-padding-lg",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Horizontal inset for large controls.",
       "scopes": [
@@ -815,7 +815,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-control-padding-lg)"
+        "WEB": "var(--teum-control-padding-lg)"
       },
       "values": {
         "Value": 12
@@ -824,7 +824,7 @@
     },
     {
       "name": "foundation/layout/radius-control",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Compact control radius.",
       "scopes": [
@@ -832,7 +832,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-radius-control)"
+        "WEB": "var(--teum-radius-control)"
       },
       "values": {
         "Value": 6
@@ -841,7 +841,7 @@
     },
     {
       "name": "foundation/layout/radius-container",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Persistent surface and specimen radius.",
       "scopes": [
@@ -849,7 +849,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-radius-container)"
+        "WEB": "var(--teum-radius-container)"
       },
       "values": {
         "Value": 8
@@ -858,7 +858,7 @@
     },
     {
       "name": "foundation/layout/radius-overlay",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Temporary overlay radius.",
       "scopes": [
@@ -866,7 +866,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-radius-overlay)"
+        "WEB": "var(--teum-radius-overlay)"
       },
       "values": {
         "Value": 10
@@ -875,7 +875,7 @@
     },
     {
       "name": "foundation/layout/radius-pill",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Fully rounded status and segmented shape.",
       "scopes": [
@@ -883,7 +883,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-radius-pill)"
+        "WEB": "var(--teum-radius-pill)"
       },
       "values": {
         "Value": 999
@@ -892,7 +892,7 @@
     },
     {
       "name": "foundation/layout/row-height-menu",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Menu and action row minimum height.",
       "scopes": [
@@ -900,7 +900,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-row-height-menu)"
+        "WEB": "var(--teum-row-height-menu)"
       },
       "values": {
         "Value": 30
@@ -909,7 +909,7 @@
     },
     {
       "name": "foundation/layout/row-height-table",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Default compact table row height with room for two-line identity content.",
       "scopes": [
@@ -917,7 +917,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-row-height-table)"
+        "WEB": "var(--teum-row-height-table)"
       },
       "values": {
         "Value": 46
@@ -926,7 +926,7 @@
     },
     {
       "name": "foundation/layout/focus-width",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Default visible focus indicator width.",
       "scopes": [
@@ -934,7 +934,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-focus-width)"
+        "WEB": "var(--teum-focus-width)"
       },
       "values": {
         "Value": 2
@@ -943,7 +943,7 @@
     },
     {
       "name": "foundation/layout/focus-offset",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Default separation between a control and its focus indicator.",
       "scopes": [
@@ -951,7 +951,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-focus-offset)"
+        "WEB": "var(--teum-focus-offset)"
       },
       "values": {
         "Value": 1
@@ -960,7 +960,7 @@
     },
     {
       "name": "foundation/layout/radius-xs",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Tight utility radius.",
       "scopes": [
@@ -968,7 +968,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-radius-xs)"
+        "WEB": "var(--teum-radius-xs)"
       },
       "values": {
         "Value": 4
@@ -977,7 +977,7 @@
     },
     {
       "name": "foundation/layout/radius-sm",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Alias for the compact control radius.",
       "scopes": [
@@ -985,7 +985,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-radius-sm)"
+        "WEB": "var(--teum-radius-sm)"
       },
       "values": {
         "Value": {
@@ -996,7 +996,7 @@
     },
     {
       "name": "foundation/layout/radius-md",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Alias for the persistent container radius.",
       "scopes": [
@@ -1004,7 +1004,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-radius-md)"
+        "WEB": "var(--teum-radius-md)"
       },
       "values": {
         "Value": {
@@ -1015,7 +1015,7 @@
     },
     {
       "name": "foundation/layout/radius-lg",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Alias for the temporary overlay radius.",
       "scopes": [
@@ -1023,7 +1023,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-radius-lg)"
+        "WEB": "var(--teum-radius-lg)"
       },
       "values": {
         "Value": {
@@ -1034,13 +1034,13 @@
     },
     {
       "name": "foundation/motion/duration/hover-duration",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Frequent hover and color feedback.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-hover-duration)"
+        "WEB": "var(--teum-hover-duration)"
       },
       "values": {
         "Value": 120
@@ -1049,13 +1049,13 @@
     },
     {
       "name": "foundation/motion/duration/press-duration",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Immediate press and release feedback.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-press-duration)"
+        "WEB": "var(--teum-press-duration)"
       },
       "values": {
         "Value": 110
@@ -1064,13 +1064,13 @@
     },
     {
       "name": "foundation/motion/duration/enter-duration",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Occasional small overlay entrance.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-enter-duration)"
+        "WEB": "var(--teum-enter-duration)"
       },
       "values": {
         "Value": 180
@@ -1079,13 +1079,13 @@
     },
     {
       "name": "foundation/motion/duration/exit-duration",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Faster small overlay exit.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-exit-duration)"
+        "WEB": "var(--teum-exit-duration)"
       },
       "values": {
         "Value": 120
@@ -1094,13 +1094,13 @@
     },
     {
       "name": "foundation/motion/duration/fast",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Compatibility alias for frequent feedback.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-fast)"
+        "WEB": "var(--teum-fast)"
       },
       "values": {
         "Value": {
@@ -1111,13 +1111,13 @@
     },
     {
       "name": "foundation/motion/duration/medium",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Compatibility alias for occasional entrance motion.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-medium)"
+        "WEB": "var(--teum-medium)"
       },
       "values": {
         "Value": {
@@ -1128,13 +1128,13 @@
     },
     {
       "name": "foundation/motion/easing/ease-out",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "STRING",
       "description": "Responsive entrance and direct-manipulation feedback.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-ease-out)"
+        "WEB": "var(--teum-ease-out)"
       },
       "values": {
         "Value": "cubic-bezier(0.23, 1, 0.32, 1)"
@@ -1143,13 +1143,13 @@
     },
     {
       "name": "foundation/motion/easing/ease-in-out",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "STRING",
       "description": "On-screen movement between two visible positions.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-ease-in-out)"
+        "WEB": "var(--teum-ease-in-out)"
       },
       "values": {
         "Value": "cubic-bezier(0.77, 0, 0.175, 1)"
@@ -1158,13 +1158,13 @@
     },
     {
       "name": "foundation/motion/easing/ease-drawer",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "STRING",
       "description": "Interruptible drawer and shared-detail travel.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-ease-drawer)"
+        "WEB": "var(--teum-ease-drawer)"
       },
       "values": {
         "Value": "cubic-bezier(0.32, 0.72, 0, 1)"
@@ -1173,13 +1173,13 @@
     },
     {
       "name": "foundation/motion/easing/ease",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "STRING",
       "description": "Compatibility alias for the system ease-out curve.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-ease)"
+        "WEB": "var(--teum-ease)"
       },
       "values": {
         "Value": {
@@ -1190,13 +1190,13 @@
     },
     {
       "name": "foundation/layers/layer-sticky",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Sticky content within the document canvas.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-layer-sticky)"
+        "WEB": "var(--teum-layer-sticky)"
       },
       "values": {
         "Value": 20
@@ -1205,13 +1205,13 @@
     },
     {
       "name": "foundation/layers/layer-modal-backdrop",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Focus-trapping modal scrim.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-layer-modal-backdrop)"
+        "WEB": "var(--teum-layer-modal-backdrop)"
       },
       "values": {
         "Value": 100
@@ -1220,13 +1220,13 @@
     },
     {
       "name": "foundation/layers/layer-modal",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Focus-trapping task surface.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-layer-modal)"
+        "WEB": "var(--teum-layer-modal)"
       },
       "values": {
         "Value": 110
@@ -1235,13 +1235,13 @@
     },
     {
       "name": "foundation/layers/layer-flyout",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Anchored temporary surface.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-layer-flyout)"
+        "WEB": "var(--teum-layer-flyout)"
       },
       "values": {
         "Value": 120
@@ -1250,13 +1250,13 @@
     },
     {
       "name": "foundation/layers/layer-toast",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Highest non-navigation feedback layer.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-layer-toast)"
+        "WEB": "var(--teum-layer-toast)"
       },
       "values": {
         "Value": 130
@@ -1265,13 +1265,13 @@
     },
     {
       "name": "foundation/layers/layer-navigation",
-      "collection": "Interaction Index / Foundation",
+      "collection": "Teum / Foundation",
       "type": "FLOAT",
       "description": "Persistent application navigation and mobile drawer.",
       "scopes": [],
       "hiddenFromPublishing": true,
       "codeSyntax": {
-        "WEB": "var(--ix-layer-navigation)"
+        "WEB": "var(--teum-layer-navigation)"
       },
       "values": {
         "Value": 150
@@ -1280,13 +1280,13 @@
     },
     {
       "name": "theme/palette/gray-50",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-gray-50)"
+        "WEB": "var(--teum-gray-50)"
       },
       "values": {
         "Light": {
@@ -1306,13 +1306,13 @@
     },
     {
       "name": "theme/palette/gray-100",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-gray-100)"
+        "WEB": "var(--teum-gray-100)"
       },
       "values": {
         "Light": {
@@ -1332,13 +1332,13 @@
     },
     {
       "name": "theme/palette/gray-200",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-gray-200)"
+        "WEB": "var(--teum-gray-200)"
       },
       "values": {
         "Light": {
@@ -1358,13 +1358,13 @@
     },
     {
       "name": "theme/palette/gray-300",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-gray-300)"
+        "WEB": "var(--teum-gray-300)"
       },
       "values": {
         "Light": {
@@ -1384,13 +1384,13 @@
     },
     {
       "name": "theme/palette/gray-400",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-gray-400)"
+        "WEB": "var(--teum-gray-400)"
       },
       "values": {
         "Light": {
@@ -1410,13 +1410,13 @@
     },
     {
       "name": "theme/palette/gray-500",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-gray-500)"
+        "WEB": "var(--teum-gray-500)"
       },
       "values": {
         "Light": {
@@ -1436,13 +1436,13 @@
     },
     {
       "name": "theme/palette/gray-600",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-gray-600)"
+        "WEB": "var(--teum-gray-600)"
       },
       "values": {
         "Light": {
@@ -1462,13 +1462,13 @@
     },
     {
       "name": "theme/palette/gray-700",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-gray-700)"
+        "WEB": "var(--teum-gray-700)"
       },
       "values": {
         "Light": {
@@ -1488,13 +1488,13 @@
     },
     {
       "name": "theme/palette/gray-800",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-gray-800)"
+        "WEB": "var(--teum-gray-800)"
       },
       "values": {
         "Light": {
@@ -1514,13 +1514,13 @@
     },
     {
       "name": "theme/palette/gray-900",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-gray-900)"
+        "WEB": "var(--teum-gray-900)"
       },
       "values": {
         "Light": {
@@ -1540,7 +1540,7 @@
     },
     {
       "name": "theme/surface/bg-canvas",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Application and documentation canvas.",
       "scopes": [
@@ -1549,7 +1549,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-bg-canvas)"
+        "WEB": "var(--teum-bg-canvas)"
       },
       "values": {
         "Light": {
@@ -1569,7 +1569,7 @@
     },
     {
       "name": "theme/surface/bg-sidebar",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Translucent persistent navigation surface.",
       "scopes": [
@@ -1578,7 +1578,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-bg-sidebar)"
+        "WEB": "var(--teum-bg-sidebar)"
       },
       "values": {
         "Light": {
@@ -1598,7 +1598,7 @@
     },
     {
       "name": "theme/surface/bg-stage",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Quiet preview and product-state stage.",
       "scopes": [
@@ -1607,7 +1607,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-bg-stage)"
+        "WEB": "var(--teum-bg-stage)"
       },
       "values": {
         "Light": {
@@ -1627,7 +1627,7 @@
     },
     {
       "name": "theme/surface/bg-subtle",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Selected rows and low-emphasis grouped surfaces.",
       "scopes": [
@@ -1636,7 +1636,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-bg-subtle)"
+        "WEB": "var(--teum-bg-subtle)"
       },
       "values": {
         "Light": {
@@ -1656,7 +1656,7 @@
     },
     {
       "name": "theme/surface/bg-surface",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Persistent composition surface above the canvas.",
       "scopes": [
@@ -1665,7 +1665,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-bg-surface)"
+        "WEB": "var(--teum-bg-surface)"
       },
       "values": {
         "Light": {
@@ -1685,7 +1685,7 @@
     },
     {
       "name": "theme/surface/bg-control",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Compact control fill.",
       "scopes": [
@@ -1694,7 +1694,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-bg-control)"
+        "WEB": "var(--teum-bg-control)"
       },
       "values": {
         "Light": {
@@ -1714,7 +1714,7 @@
     },
     {
       "name": "theme/surface/bg-raised",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Persistent raised Float surface.",
       "scopes": [
@@ -1723,7 +1723,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-bg-raised)"
+        "WEB": "var(--teum-bg-raised)"
       },
       "values": {
         "Light": {
@@ -1743,7 +1743,7 @@
     },
     {
       "name": "theme/surface/bg-overlay",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Base temporary overlay surface.",
       "scopes": [
@@ -1752,7 +1752,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-bg-overlay)"
+        "WEB": "var(--teum-bg-overlay)"
       },
       "values": {
         "Light": {
@@ -1772,7 +1772,7 @@
     },
     {
       "name": "theme/surface/bg-float",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Public Float elevation role.",
       "scopes": [
@@ -1781,7 +1781,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-bg-float)"
+        "WEB": "var(--teum-bg-float)"
       },
       "values": {
         "Light": {
@@ -1795,7 +1795,7 @@
     },
     {
       "name": "theme/surface/bg-flyout",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Anchored temporary Flyout surface.",
       "scopes": [
@@ -1804,7 +1804,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-bg-flyout)"
+        "WEB": "var(--teum-bg-flyout)"
       },
       "values": {
         "Light": {
@@ -1821,7 +1821,7 @@
     },
     {
       "name": "theme/surface/bg-modal",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Focus-trapping Modal surface.",
       "scopes": [
@@ -1830,7 +1830,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-bg-modal)"
+        "WEB": "var(--teum-bg-modal)"
       },
       "values": {
         "Light": {
@@ -1847,7 +1847,7 @@
     },
     {
       "name": "theme/surface/bg-scrim",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Modal and drawer background attenuation.",
       "scopes": [
@@ -1856,7 +1856,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-bg-scrim)"
+        "WEB": "var(--teum-bg-scrim)"
       },
       "values": {
         "Light": {
@@ -1876,7 +1876,7 @@
     },
     {
       "name": "theme/surface/bg-code",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Collapsed and expanded source-code surface.",
       "scopes": [
@@ -1885,7 +1885,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-bg-code)"
+        "WEB": "var(--teum-bg-code)"
       },
       "values": {
         "Light": {
@@ -1905,7 +1905,7 @@
     },
     {
       "name": "theme/surface/canvas",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [
@@ -1914,7 +1914,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-canvas)"
+        "WEB": "var(--teum-canvas)"
       },
       "values": {
         "Light": {
@@ -1928,7 +1928,7 @@
     },
     {
       "name": "theme/surface/sidebar",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [
@@ -1937,7 +1937,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-sidebar)"
+        "WEB": "var(--teum-sidebar)"
       },
       "values": {
         "Light": {
@@ -1951,7 +1951,7 @@
     },
     {
       "name": "theme/surface/surface",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [
@@ -1960,7 +1960,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-surface)"
+        "WEB": "var(--teum-surface)"
       },
       "values": {
         "Light": {
@@ -1974,7 +1974,7 @@
     },
     {
       "name": "theme/surface/control-surface",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [
@@ -1983,7 +1983,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-control-surface)"
+        "WEB": "var(--teum-control-surface)"
       },
       "values": {
         "Light": {
@@ -1997,7 +1997,7 @@
     },
     {
       "name": "theme/surface/elevated-surface",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [
@@ -2006,7 +2006,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-elevated-surface)"
+        "WEB": "var(--teum-elevated-surface)"
       },
       "values": {
         "Light": {
@@ -2020,7 +2020,7 @@
     },
     {
       "name": "theme/surface/overlay-surface",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [
@@ -2029,7 +2029,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-overlay-surface)"
+        "WEB": "var(--teum-overlay-surface)"
       },
       "values": {
         "Light": {
@@ -2043,7 +2043,7 @@
     },
     {
       "name": "theme/surface/code-surface",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [
@@ -2052,7 +2052,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-code-surface)"
+        "WEB": "var(--teum-code-surface)"
       },
       "values": {
         "Light": {
@@ -2066,7 +2066,7 @@
     },
     {
       "name": "theme/surface/stage",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [
@@ -2075,7 +2075,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-stage)"
+        "WEB": "var(--teum-stage)"
       },
       "values": {
         "Light": {
@@ -2089,7 +2089,7 @@
     },
     {
       "name": "theme/surface/subtle",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [
@@ -2098,7 +2098,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-subtle)"
+        "WEB": "var(--teum-subtle)"
       },
       "values": {
         "Light": {
@@ -2112,7 +2112,7 @@
     },
     {
       "name": "theme/surface/hover",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Frequent pointer hover feedback.",
       "scopes": [
@@ -2121,7 +2121,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-hover)"
+        "WEB": "var(--teum-hover)"
       },
       "values": {
         "Light": {
@@ -2141,7 +2141,7 @@
     },
     {
       "name": "theme/surface/active",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Pressed or actively manipulated fill.",
       "scopes": [
@@ -2150,7 +2150,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-active)"
+        "WEB": "var(--teum-active)"
       },
       "values": {
         "Light": {
@@ -2170,7 +2170,7 @@
     },
     {
       "name": "theme/surface/selected",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Persistent selected-row fill.",
       "scopes": [
@@ -2179,7 +2179,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-selected)"
+        "WEB": "var(--teum-selected)"
       },
       "values": {
         "Light": {
@@ -2199,7 +2199,7 @@
     },
     {
       "name": "theme/surface/inverse",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Primary monochrome action fill.",
       "scopes": [
@@ -2208,7 +2208,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-inverse)"
+        "WEB": "var(--teum-inverse)"
       },
       "values": {
         "Light": {
@@ -2228,7 +2228,7 @@
     },
     {
       "name": "theme/surface/inverse-hover",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Primary action hover fill.",
       "scopes": [
@@ -2237,7 +2237,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-inverse-hover)"
+        "WEB": "var(--teum-inverse-hover)"
       },
       "values": {
         "Light": {
@@ -2257,7 +2257,7 @@
     },
     {
       "name": "theme/surface/on-inverse",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Text and icon color on inverse actions.",
       "scopes": [
@@ -2266,7 +2266,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-on-inverse)"
+        "WEB": "var(--teum-on-inverse)"
       },
       "values": {
         "Light": {
@@ -2286,7 +2286,7 @@
     },
     {
       "name": "theme/surface/scrollbar-thumb",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Monochrome scrollbar thumb.",
       "scopes": [
@@ -2295,7 +2295,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-scrollbar-thumb)"
+        "WEB": "var(--teum-scrollbar-thumb)"
       },
       "values": {
         "Light": {
@@ -2315,7 +2315,7 @@
     },
     {
       "name": "theme/surface/scrollbar-thumb-hover",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Scrollbar thumb hover state.",
       "scopes": [
@@ -2324,7 +2324,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-scrollbar-thumb-hover)"
+        "WEB": "var(--teum-scrollbar-thumb-hover)"
       },
       "values": {
         "Light": {
@@ -2344,7 +2344,7 @@
     },
     {
       "name": "theme/foreground/fg-default",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Primary text and icon color.",
       "scopes": [
@@ -2353,7 +2353,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-fg-default)"
+        "WEB": "var(--teum-fg-default)"
       },
       "values": {
         "Light": {
@@ -2367,7 +2367,7 @@
     },
     {
       "name": "theme/foreground/fg-muted",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Secondary explanatory text.",
       "scopes": [
@@ -2376,7 +2376,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-fg-muted)"
+        "WEB": "var(--teum-fg-muted)"
       },
       "values": {
         "Light": {
@@ -2390,7 +2390,7 @@
     },
     {
       "name": "theme/foreground/fg-subtle",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Tertiary metadata and quiet labels.",
       "scopes": [
@@ -2399,7 +2399,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-fg-subtle)"
+        "WEB": "var(--teum-fg-subtle)"
       },
       "values": {
         "Light": {
@@ -2416,7 +2416,7 @@
     },
     {
       "name": "theme/foreground/fg-disabled",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Unavailable control content.",
       "scopes": [
@@ -2425,7 +2425,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-fg-disabled)"
+        "WEB": "var(--teum-fg-disabled)"
       },
       "values": {
         "Light": {
@@ -2439,7 +2439,7 @@
     },
     {
       "name": "theme/foreground/fg-danger",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Accessible semantic foreground for invalid values, errors, destructive actions, and critical feedback.",
       "scopes": [
@@ -2448,7 +2448,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-fg-danger)"
+        "WEB": "var(--teum-fg-danger)"
       },
       "values": {
         "Light": {
@@ -2468,7 +2468,7 @@
     },
     {
       "name": "theme/foreground/ink",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [
@@ -2477,7 +2477,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-ink)"
+        "WEB": "var(--teum-ink)"
       },
       "values": {
         "Light": {
@@ -2491,7 +2491,7 @@
     },
     {
       "name": "theme/foreground/ink-secondary",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [
@@ -2500,7 +2500,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-ink-secondary)"
+        "WEB": "var(--teum-ink-secondary)"
       },
       "values": {
         "Light": {
@@ -2514,7 +2514,7 @@
     },
     {
       "name": "theme/foreground/ink-tertiary",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [
@@ -2523,7 +2523,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-ink-tertiary)"
+        "WEB": "var(--teum-ink-tertiary)"
       },
       "values": {
         "Light": {
@@ -2537,7 +2537,7 @@
     },
     {
       "name": "theme/foreground/ink-disabled",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [
@@ -2546,7 +2546,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-ink-disabled)"
+        "WEB": "var(--teum-ink-disabled)"
       },
       "values": {
         "Light": {
@@ -2560,7 +2560,7 @@
     },
     {
       "name": "theme/border/separator",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Low-contrast structural separator.",
       "scopes": [
@@ -2568,7 +2568,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-separator)"
+        "WEB": "var(--teum-separator)"
       },
       "values": {
         "Light": {
@@ -2588,7 +2588,7 @@
     },
     {
       "name": "theme/border/control-border",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Default control boundary.",
       "scopes": [
@@ -2596,7 +2596,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-control-border)"
+        "WEB": "var(--teum-control-border)"
       },
       "values": {
         "Light": {
@@ -2616,7 +2616,7 @@
     },
     {
       "name": "theme/border/control-border-hover",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Stronger interactive boundary.",
       "scopes": [
@@ -2624,7 +2624,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-control-border-hover)"
+        "WEB": "var(--teum-control-border-hover)"
       },
       "values": {
         "Light": {
@@ -2644,7 +2644,7 @@
     },
     {
       "name": "theme/border/border-subtle",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [
@@ -2652,7 +2652,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-border-subtle)"
+        "WEB": "var(--teum-border-subtle)"
       },
       "values": {
         "Light": {
@@ -2666,7 +2666,7 @@
     },
     {
       "name": "theme/border/border",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [
@@ -2674,7 +2674,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-border)"
+        "WEB": "var(--teum-border)"
       },
       "values": {
         "Light": {
@@ -2688,7 +2688,7 @@
     },
     {
       "name": "theme/border/border-strong",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "",
       "scopes": [
@@ -2696,7 +2696,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-border-strong)"
+        "WEB": "var(--teum-border-strong)"
       },
       "values": {
         "Light": {
@@ -2710,7 +2710,7 @@
     },
     {
       "name": "theme/focus/focus-control",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Keyboard focus for product controls.",
       "scopes": [
@@ -2718,7 +2718,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-focus-control)"
+        "WEB": "var(--teum-focus-control)"
       },
       "values": {
         "Light": {
@@ -2738,7 +2738,7 @@
     },
     {
       "name": "theme/focus/focus-navigation",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Keyboard focus for persistent navigation.",
       "scopes": [
@@ -2746,7 +2746,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-focus-navigation)"
+        "WEB": "var(--teum-focus-navigation)"
       },
       "values": {
         "Light": {
@@ -2766,7 +2766,7 @@
     },
     {
       "name": "theme/focus/focus-documentation",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Keyboard focus for documentation disclosures and anchors.",
       "scopes": [
@@ -2774,7 +2774,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-focus-documentation)"
+        "WEB": "var(--teum-focus-documentation)"
       },
       "values": {
         "Light": {
@@ -2794,7 +2794,7 @@
     },
     {
       "name": "theme/focus/focus-halo",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Quiet supporting halo where a single outline needs separation.",
       "scopes": [
@@ -2802,7 +2802,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-focus-halo)"
+        "WEB": "var(--teum-focus-halo)"
       },
       "values": {
         "Light": {
@@ -2822,7 +2822,7 @@
     },
     {
       "name": "theme/focus/switch-track",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Unchecked switch track.",
       "scopes": [
@@ -2831,7 +2831,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-switch-track)"
+        "WEB": "var(--teum-switch-track)"
       },
       "values": {
         "Light": {
@@ -2845,7 +2845,7 @@
     },
     {
       "name": "theme/focus/switch-thumb",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Switch thumb surface.",
       "scopes": [
@@ -2854,7 +2854,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-switch-thumb)"
+        "WEB": "var(--teum-switch-thumb)"
       },
       "values": {
         "Light": {
@@ -2871,7 +2871,7 @@
     },
     {
       "name": "theme/focus/focus",
-      "collection": "Interaction Index / Theme",
+      "collection": "Teum / Theme",
       "type": "COLOR",
       "description": "Compatibility alias for product-control focus.",
       "scopes": [
@@ -2879,7 +2879,7 @@
       ],
       "hiddenFromPublishing": false,
       "codeSyntax": {
-        "WEB": "var(--ix-focus)"
+        "WEB": "var(--teum-focus)"
       },
       "values": {
         "Light": {
@@ -2912,9 +2912,9 @@
         "unit": "PERCENT"
       },
       "codeSyntax": {
-        "fontFamily": "var(--ix-font-ui)",
-        "fontSize": "var(--ix-type-metadata)",
-        "lineHeight": "var(--ix-line-metadata)"
+        "fontFamily": "var(--teum-font-ui)",
+        "fontSize": "var(--teum-type-metadata)",
+        "lineHeight": "var(--teum-line-metadata)"
       }
     },
     {
@@ -2937,9 +2937,9 @@
         "unit": "PERCENT"
       },
       "codeSyntax": {
-        "fontFamily": "var(--ix-font-ui)",
-        "fontSize": "var(--ix-type-label)",
-        "lineHeight": "var(--ix-line-label)"
+        "fontFamily": "var(--teum-font-ui)",
+        "fontSize": "var(--teum-type-label)",
+        "lineHeight": "var(--teum-line-label)"
       }
     },
     {
@@ -2961,9 +2961,9 @@
         "unit": "PERCENT"
       },
       "codeSyntax": {
-        "fontFamily": "var(--ix-font-ui)",
-        "fontSize": "var(--ix-type-ui)",
-        "lineHeight": "var(--ix-line-ui)"
+        "fontFamily": "var(--teum-font-ui)",
+        "fontSize": "var(--teum-type-ui)",
+        "lineHeight": "var(--teum-line-ui)"
       }
     },
     {
@@ -2985,9 +2985,9 @@
         "unit": "PERCENT"
       },
       "codeSyntax": {
-        "fontFamily": "var(--ix-font-ui)",
-        "fontSize": "var(--ix-type-body)",
-        "lineHeight": "var(--ix-line-body)"
+        "fontFamily": "var(--teum-font-ui)",
+        "fontSize": "var(--teum-type-body)",
+        "lineHeight": "var(--teum-line-body)"
       }
     },
     {
@@ -3009,9 +3009,9 @@
         "unit": "PERCENT"
       },
       "codeSyntax": {
-        "fontFamily": "var(--ix-font-ui)",
-        "fontSize": "var(--ix-type-row)",
-        "lineHeight": "var(--ix-line-row)"
+        "fontFamily": "var(--teum-font-ui)",
+        "fontSize": "var(--teum-type-row)",
+        "lineHeight": "var(--teum-line-row)"
       }
     },
     {
@@ -3034,9 +3034,9 @@
         "unit": "PERCENT"
       },
       "codeSyntax": {
-        "fontFamily": "var(--ix-font-ui)",
-        "fontSize": "var(--ix-type-section)",
-        "lineHeight": "var(--ix-line-section)"
+        "fontFamily": "var(--teum-font-ui)",
+        "fontSize": "var(--teum-type-section)",
+        "lineHeight": "var(--teum-line-section)"
       }
     },
     {
@@ -3059,9 +3059,9 @@
         "unit": "PERCENT"
       },
       "codeSyntax": {
-        "fontFamily": "var(--ix-font-ui)",
-        "fontSize": "var(--ix-type-title)",
-        "lineHeight": "var(--ix-line-title)"
+        "fontFamily": "var(--teum-font-ui)",
+        "fontSize": "var(--teum-type-title)",
+        "lineHeight": "var(--teum-line-title)"
       }
     }
   ],

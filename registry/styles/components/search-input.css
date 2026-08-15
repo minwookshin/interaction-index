@@ -1,50 +1,50 @@
 /* Generated from src/styles.css. Do not edit directly. */
 
-@layer index.tokens, index.base, index.components;
+@layer teum.tokens, teum.base, teum.components;
 
-@layer index.components {
-.ix-search { display: flex; width: 100%; min-width: 220px; height: 32px; align-items: center; gap: 7px; padding: 0 8px; border: 1px solid var(--ix-border); border-radius: var(--ix-radius-sm); background: var(--ix-control-surface); box-shadow: var(--ix-shadow-control); transition: border-color var(--ix-hover-duration) ease, box-shadow var(--ix-hover-duration) ease; }
+@layer teum.components {
+.teum-search { display: flex; width: 100%; min-width: 220px; height: 32px; align-items: center; gap: 7px; padding: 0 8px; border: 1px solid var(--teum-border); border-radius: var(--teum-radius-sm); background: var(--teum-control-surface); box-shadow: var(--teum-shadow-control); transition: border-color var(--teum-hover-duration) ease, box-shadow var(--teum-hover-duration) ease; }
 
-.ix-search__icon { width: 14px; height: 14px; color: var(--ix-ink-tertiary); }
+.teum-search__icon { width: 14px; height: 14px; color: var(--teum-ink-tertiary); }
 
-.ix-search__spinner { width: 13px; height: 13px; }
+.teum-search__spinner { width: 13px; height: 13px; }
 
-.ix-search input { min-width: 0; height: 100%; flex: 1; border: 0; outline: 0; background: transparent; color: var(--ix-ink); font: inherit; font-size: var(--ix-type-ui); -webkit-appearance: none; appearance: none; }
+.teum-search input { min-width: 0; height: 100%; flex: 1; border: 0; outline: 0; background: transparent; color: var(--teum-ink); font: inherit; font-size: var(--teum-type-ui); -webkit-appearance: none; appearance: none; }
 
-.ix-search input::-webkit-search-cancel-button { display: none; }
+.teum-search input::-webkit-search-cancel-button { display: none; }
 
-.ix-search input::placeholder { color: var(--ix-ink-tertiary); }
+.teum-search input::placeholder { color: var(--teum-ink-tertiary); }
 
-.ix-search button { display: grid; width: 22px; height: 22px; place-items: center; border: 0; border-radius: 5px; background: transparent; color: var(--ix-ink-tertiary); cursor: pointer; }
+.teum-search button { display: grid; width: 22px; height: 22px; place-items: center; border: 0; border-radius: 5px; background: transparent; color: var(--teum-ink-tertiary); cursor: pointer; }
 
-.ix-search button svg { width: 12px; height: 12px; }
+.teum-search button svg { width: 12px; height: 12px; }
 
-.ix-search kbd { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; color: var(--ix-ink-tertiary); font-size: 10px; line-height: 1; white-space: nowrap; }
+.teum-search kbd { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; color: var(--teum-ink-tertiary); font-size: 10px; line-height: 1; white-space: nowrap; }
 
 @media (hover: hover) and (pointer: fine) {
-.ix-search button:hover { background: var(--ix-hover); color: var(--ix-ink); }
+.teum-search button:hover { background: var(--teum-hover); color: var(--teum-ink); }
 
-.ix-search:hover { border-color: var(--ix-border-strong); }
+.teum-search:hover { border-color: var(--teum-border-strong); }
 }
 
-.ix-search input:focus-visible { outline: 0; }
+.teum-search input:focus-visible { outline: 0; }
 
-.ix-sr-only,
-.ix-sr-only:not(:focus):not(:active) {
+.teum-sr-only,
+.teum-sr-only:not(:focus):not(:active) {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
 
-.ix-spinner { width: 13px; height: 13px; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: ix-spin 0.75s linear infinite; }
+.teum-spinner { width: 13px; height: 13px; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: teum-spin 0.75s linear infinite; }
 
-.ix-search button { transition: color var(--ix-hover-duration), background-color var(--ix-hover-duration), transform var(--ix-press-duration) var(--ix-ease-out); }
+.teum-search button { transition: color var(--teum-hover-duration), background-color var(--teum-hover-duration), transform var(--teum-press-duration) var(--teum-ease-out); }
 
-.ix-search button:active { transform: scale(.96); }
+.teum-search button:active { transform: scale(.96); }
 
 @media (prefers-reduced-motion: reduce) {
-.ix-search button:active { transform: none; }
+.teum-search button:active { transform: none; }
 
-.ix-spinner { animation-duration: 2.4s; }
+.teum-spinner { animation-duration: 2.4s; }
 }
 
-@keyframes ix-spin { to { transform: rotate(360deg); } }
+@keyframes teum-spin { to { transform: rotate(360deg); } }
 }

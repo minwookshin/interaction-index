@@ -1,5 +1,5 @@
 import { execFile } from "node:child_process";
-import { cp, mkdir, mkdtemp, readFile, rm } from "node:fs/promises";
+import { cp, lstat, mkdir, mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { promisify } from "node:util";
@@ -8,7 +8,7 @@ const exec = promisify(execFile);
 const root = process.cwd();
 const npm = process.platform === "win32" ? "npm.cmd" : "npm";
 const git = process.platform === "win32" ? "git.exe" : "git";
-const work = await mkdtemp(join(tmpdir(), "interaction-index-clean-room-"));
+const work = await mkdtemp(join(tmpdir(), "teum-clean-room-"));
 const fixture = resolve(work, "source");
 
 const excludedPrefixes = [
@@ -35,7 +35,16 @@ try {
     encoding: "buffer",
     maxBuffer: 64 * 1024 * 1024,
   });
-  const files = listed.stdout.toString("utf8").split("\0").filter(Boolean).filter((path) => !isExcluded(path));
+  const candidates = listed.stdout.toString("utf8").split("\0").filter(Boolean).filter((path) => !isExcluded(path));
+  const files = [];
+  for (const path of candidates) {
+    try {
+      await lstat(resolve(root, path));
+      files.push(path);
+    } catch (error) {
+      if (error?.code !== "ENOENT") throw error;
+    }
+  }
   if (!files.includes("package.json") || !files.includes("package-lock.json")) {
     throw new Error("[clean-room] source snapshot is missing package metadata");
   }

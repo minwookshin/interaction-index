@@ -1,4 +1,4 @@
-import "../../styles/index-base.css";
+import "../../styles/teum-base.css";
 import "../../styles/components/number-field.css";
 import { NumberField as NumberFieldPrimitive } from "@base-ui/react/number-field";
 import { Minus, Plus } from "@phosphor-icons/react";
@@ -35,16 +35,16 @@ export function NumberField({
   const accessibleLabel = label ?? inputProps?.["aria-label"] ?? "Value";
 
   return (
-    <NumberFieldPrimitive.Root id={id} className={cn("ix-number-field", className)} data-invalid={Boolean(error) || undefined} {...props}>
-      {label && <label className="ix-field__label" htmlFor={id}>{label}</label>}
-      <NumberFieldPrimitive.Group className="ix-number-field__group">
-        <NumberFieldPrimitive.Decrement className="ix-number-field__step" aria-label={`Decrease ${accessibleLabel}`}><Minus /></NumberFieldPrimitive.Decrement>
-        <NumberFieldPrimitive.Input className={cn("ix-number-field__input", inputClassName)} aria-invalid={Boolean(error) || undefined} aria-describedby={describedBy} {...inputProps} />
-        {suffix && <span className="ix-number-field__suffix" aria-hidden="true">{suffix}</span>}
-        <NumberFieldPrimitive.Increment className="ix-number-field__step" aria-label={`Increase ${accessibleLabel}`}><Plus /></NumberFieldPrimitive.Increment>
+    <NumberFieldPrimitive.Root id={id} className={cn("teum-number-field", className)} data-invalid={Boolean(error) || undefined} {...props}>
+      {label && <label className="teum-field__label" htmlFor={id}>{label}</label>}
+      <NumberFieldPrimitive.Group className="teum-number-field__group">
+        <NumberFieldPrimitive.Decrement className="teum-number-field__step" aria-label={`Decrease ${accessibleLabel}`}><Minus /></NumberFieldPrimitive.Decrement>
+        <NumberFieldPrimitive.Input className={cn("teum-number-field__input", inputClassName)} aria-invalid={Boolean(error) || undefined} aria-describedby={describedBy} {...inputProps} />
+        {suffix && <span className="teum-number-field__suffix" aria-hidden="true">{suffix}</span>}
+        <NumberFieldPrimitive.Increment className="teum-number-field__step" aria-label={`Increase ${accessibleLabel}`}><Plus /></NumberFieldPrimitive.Increment>
       </NumberFieldPrimitive.Group>
-      {description && <div id={descriptionId} className="ix-field__description">{description}</div>}
-      {error && <div id={errorId} className="ix-field__error">{error}</div>}
+      {description && <div id={descriptionId} className="teum-field__description">{description}</div>}
+      {error && <div id={errorId} className="teum-field__error">{error}</div>}
     </NumberFieldPrimitive.Root>
   );
 }

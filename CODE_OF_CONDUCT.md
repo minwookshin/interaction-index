@@ -1,6 +1,6 @@
 # Code of conduct
 
-Interaction Index is built in public with a high bar for respectful, evidence-led collaboration.
+Teum is built in public with a high bar for respectful, evidence-led collaboration.
 
 ## Expected behavior
 

@@ -49,14 +49,14 @@ describe("core controls", () => {
 
 describe("authored interaction components", () => {
   function InlineHarness() {
-    const [value, setValue] = useState("Interaction Index");
+    const [value, setValue] = useState("Teum");
     return <InlineEdit value={value} onSave={setValue} />;
   }
 
   it("saves inline edits with Enter and cancels with Escape", async () => {
     const user = userEvent.setup();
     render(<InlineHarness />);
-    await user.click(screen.getByRole("button", { name: "Edit value: Interaction Index" }));
+    await user.click(screen.getByRole("button", { name: "Edit value: Teum" }));
     const input = screen.getByRole("textbox", { name: "Edit value" });
     await user.clear(input);
     await user.type(input, "Index Core{Enter}");
@@ -127,7 +127,7 @@ describe("authored interaction components", () => {
     const origin = screen.getByRole("button", { name: /Motion contract/ });
     origin.focus();
     await user.keyboard("{Enter}");
-    expect(container.querySelector(".ix-shared-detail")).toHaveAttribute("data-motion-mode", "direct");
+    expect(container.querySelector(".teum-shared-detail")).toHaveAttribute("data-motion-mode", "direct");
     expect(await screen.findByRole("region", { name: "Motion contract" })).toBeInTheDocument();
   });
 

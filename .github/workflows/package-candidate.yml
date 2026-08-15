@@ -42,7 +42,7 @@ jobs:
           subject-path: package-candidate/*.tgz
       - uses: actions/upload-artifact@v7
         with:
-          name: interaction-index-package-${{ inputs.version }}
+          name: teum-package-${{ inputs.version }}
           path: package-candidate
           if-no-files-found: error
 

@@ -1,4 +1,4 @@
-/* Generated from tokens/interaction-index.tokens.json. Do not edit directly. */
+/* Generated from tokens/teum.tokens.json. Do not edit directly. */
 
 export const tokenModes = ["light","dark"] as const;
 export type TokenMode = (typeof tokenModes)[number];
@@ -156,7 +156,7 @@ export const tokenManifest = [
     "type": "number",
     "description": "Cool graphite hue used by optical OKLCH effects.",
     "deprecated": false,
-    "cssVariable": "--ix-neutral-h",
+    "cssVariable": "--teum-neutral-h",
     "scope": "foundation",
     "values": {
       "light": "275",
@@ -172,7 +172,7 @@ export const tokenManifest = [
     "type": "number",
     "description": "Near-neutral chroma used by optical OKLCH effects.",
     "deprecated": false,
-    "cssVariable": "--ix-neutral-c",
+    "cssVariable": "--teum-neutral-c",
     "scope": "foundation",
     "values": {
       "light": "0.002",
@@ -188,7 +188,7 @@ export const tokenManifest = [
     "type": "number",
     "description": "Reference lightness for translucent navigation surfaces.",
     "deprecated": false,
-    "cssVariable": "--ix-sidebar-l",
+    "cssVariable": "--teum-sidebar-l",
     "scope": "foundation",
     "values": {
       "light": "0.982",
@@ -204,7 +204,7 @@ export const tokenManifest = [
     "type": "number",
     "description": "Reference lightness for specimen stages.",
     "deprecated": false,
-    "cssVariable": "--ix-stage-l",
+    "cssVariable": "--teum-stage-l",
     "scope": "foundation",
     "values": {
       "light": "0.986",
@@ -220,7 +220,7 @@ export const tokenManifest = [
     "type": "number",
     "description": "Reference opacity for low-contrast structural separators.",
     "deprecated": false,
-    "cssVariable": "--ix-border-alpha",
+    "cssVariable": "--teum-border-alpha",
     "scope": "foundation",
     "values": {
       "light": "0.078",
@@ -236,7 +236,7 @@ export const tokenManifest = [
     "type": "fontFamily",
     "description": "Primary product and documentation font stack.",
     "deprecated": false,
-    "cssVariable": "--ix-font-ui",
+    "cssVariable": "--teum-font-ui",
     "scope": "foundation",
     "values": {
       "light": "\"Inter Variable\", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
@@ -252,7 +252,7 @@ export const tokenManifest = [
     "type": "fontFamily",
     "description": "Code and token value font stack.",
     "deprecated": false,
-    "cssVariable": "--ix-font-code",
+    "cssVariable": "--teum-font-code",
     "scope": "foundation",
     "values": {
       "light": "SFMono-Regular, \"Geist Mono\", Consolas, \"Liberation Mono\", ui-monospace, monospace",
@@ -268,7 +268,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Small supporting metadata with a persistent readability floor.",
     "deprecated": false,
-    "cssVariable": "--ix-type-metadata",
+    "cssVariable": "--teum-type-metadata",
     "scope": "foundation",
     "values": {
       "light": "11.5px",
@@ -284,7 +284,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Persistent navigation and field labels.",
     "deprecated": false,
-    "cssVariable": "--ix-type-label",
+    "cssVariable": "--teum-type-label",
     "scope": "foundation",
     "values": {
       "light": "12px",
@@ -300,7 +300,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Default compact control and product interface text.",
     "deprecated": false,
-    "cssVariable": "--ix-type-ui",
+    "cssVariable": "--teum-type-ui",
     "scope": "foundation",
     "values": {
       "light": "13.5px",
@@ -316,7 +316,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Documentation body copy.",
     "deprecated": false,
-    "cssVariable": "--ix-type-body",
+    "cssVariable": "--teum-type-body",
     "scope": "foundation",
     "values": {
       "light": "14.5px",
@@ -332,7 +332,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "High-salience labels in dense product rows.",
     "deprecated": false,
-    "cssVariable": "--ix-type-row",
+    "cssVariable": "--teum-type-row",
     "scope": "foundation",
     "values": {
       "light": "14.5px",
@@ -348,7 +348,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Documentation section heading.",
     "deprecated": false,
-    "cssVariable": "--ix-type-section",
+    "cssVariable": "--teum-type-section",
     "scope": "foundation",
     "values": {
       "light": "20px",
@@ -364,7 +364,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Page title for deep documentation routes.",
     "deprecated": false,
-    "cssVariable": "--ix-type-title",
+    "cssVariable": "--teum-type-title",
     "scope": "foundation",
     "values": {
       "light": "32px",
@@ -380,7 +380,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Metadata line height.",
     "deprecated": false,
-    "cssVariable": "--ix-line-metadata",
+    "cssVariable": "--teum-line-metadata",
     "scope": "foundation",
     "values": {
       "light": "16px",
@@ -396,7 +396,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Label line height.",
     "deprecated": false,
-    "cssVariable": "--ix-line-label",
+    "cssVariable": "--teum-line-label",
     "scope": "foundation",
     "values": {
       "light": "16px",
@@ -412,7 +412,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Compact control line height.",
     "deprecated": false,
-    "cssVariable": "--ix-line-ui",
+    "cssVariable": "--teum-line-ui",
     "scope": "foundation",
     "values": {
       "light": "18px",
@@ -428,7 +428,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Dense product row line height.",
     "deprecated": false,
-    "cssVariable": "--ix-line-row",
+    "cssVariable": "--teum-line-row",
     "scope": "foundation",
     "values": {
       "light": "20px",
@@ -444,7 +444,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Documentation reading line height.",
     "deprecated": false,
-    "cssVariable": "--ix-line-body",
+    "cssVariable": "--teum-line-body",
     "scope": "foundation",
     "values": {
       "light": "23px",
@@ -460,7 +460,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Section heading line height.",
     "deprecated": false,
-    "cssVariable": "--ix-line-section",
+    "cssVariable": "--teum-line-section",
     "scope": "foundation",
     "values": {
       "light": "26px",
@@ -476,7 +476,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Page title line height.",
     "deprecated": false,
-    "cssVariable": "--ix-line-title",
+    "cssVariable": "--teum-line-title",
     "scope": "foundation",
     "values": {
       "light": "36px",
@@ -492,7 +492,7 @@ export const tokenManifest = [
     "type": "fontWeight",
     "description": "Optical default weight for Inter Variable controls.",
     "deprecated": false,
-    "cssVariable": "--ix-ui-weight",
+    "cssVariable": "--teum-ui-weight",
     "scope": "foundation",
     "values": {
       "light": "470",
@@ -508,7 +508,7 @@ export const tokenManifest = [
     "type": "fontWeight",
     "description": "Compact labels and field hierarchy.",
     "deprecated": false,
-    "cssVariable": "--ix-label-weight",
+    "cssVariable": "--teum-label-weight",
     "scope": "foundation",
     "values": {
       "light": "560",
@@ -524,7 +524,7 @@ export const tokenManifest = [
     "type": "fontWeight",
     "description": "Page and section headings.",
     "deprecated": false,
-    "cssVariable": "--ix-heading-weight",
+    "cssVariable": "--teum-heading-weight",
     "scope": "foundation",
     "values": {
       "light": "580",
@@ -540,7 +540,7 @@ export const tokenManifest = [
     "type": "number",
     "description": "Compact UI letter spacing expressed as an em ratio.",
     "deprecated": false,
-    "cssVariable": "--ix-ui-tracking",
+    "cssVariable": "--teum-ui-tracking",
     "scope": "foundation",
     "values": {
       "light": "-0.006em",
@@ -556,7 +556,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Zero-space reset.",
     "deprecated": false,
-    "cssVariable": "--ix-space-0",
+    "cssVariable": "--teum-space-0",
     "scope": "foundation",
     "values": {
       "light": "0px",
@@ -572,7 +572,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "One base spacing unit.",
     "deprecated": false,
-    "cssVariable": "--ix-space-1",
+    "cssVariable": "--teum-space-1",
     "scope": "foundation",
     "values": {
       "light": "4px",
@@ -588,7 +588,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Two base spacing units.",
     "deprecated": false,
-    "cssVariable": "--ix-space-2",
+    "cssVariable": "--teum-space-2",
     "scope": "foundation",
     "values": {
       "light": "8px",
@@ -604,7 +604,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Three base spacing units.",
     "deprecated": false,
-    "cssVariable": "--ix-space-3",
+    "cssVariable": "--teum-space-3",
     "scope": "foundation",
     "values": {
       "light": "12px",
@@ -620,7 +620,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Four base spacing units.",
     "deprecated": false,
-    "cssVariable": "--ix-space-4",
+    "cssVariable": "--teum-space-4",
     "scope": "foundation",
     "values": {
       "light": "16px",
@@ -636,7 +636,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Five base spacing units.",
     "deprecated": false,
-    "cssVariable": "--ix-space-5",
+    "cssVariable": "--teum-space-5",
     "scope": "foundation",
     "values": {
       "light": "20px",
@@ -652,7 +652,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Six base spacing units.",
     "deprecated": false,
-    "cssVariable": "--ix-space-6",
+    "cssVariable": "--teum-space-6",
     "scope": "foundation",
     "values": {
       "light": "24px",
@@ -668,7 +668,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Seven base spacing units.",
     "deprecated": false,
-    "cssVariable": "--ix-space-7",
+    "cssVariable": "--teum-space-7",
     "scope": "foundation",
     "values": {
       "light": "28px",
@@ -684,7 +684,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Eight base spacing units.",
     "deprecated": false,
-    "cssVariable": "--ix-space-8",
+    "cssVariable": "--teum-space-8",
     "scope": "foundation",
     "values": {
       "light": "32px",
@@ -700,7 +700,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Ten base spacing units.",
     "deprecated": false,
-    "cssVariable": "--ix-space-10",
+    "cssVariable": "--teum-space-10",
     "scope": "foundation",
     "values": {
       "light": "40px",
@@ -716,7 +716,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Twelve base spacing units.",
     "deprecated": false,
-    "cssVariable": "--ix-space-12",
+    "cssVariable": "--teum-space-12",
     "scope": "foundation",
     "values": {
       "light": "48px",
@@ -732,7 +732,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Sixteen base spacing units.",
     "deprecated": false,
-    "cssVariable": "--ix-space-16",
+    "cssVariable": "--teum-space-16",
     "scope": "foundation",
     "values": {
       "light": "64px",
@@ -748,7 +748,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Default horizontal documentation inset.",
     "deprecated": false,
-    "cssVariable": "--ix-space-page-x",
+    "cssVariable": "--teum-space-page-x",
     "scope": "foundation",
     "values": {
       "light": "28px",
@@ -764,7 +764,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Default vertical documentation inset.",
     "deprecated": false,
-    "cssVariable": "--ix-space-page-y",
+    "cssVariable": "--teum-space-page-y",
     "scope": "foundation",
     "values": {
       "light": "24px",
@@ -780,7 +780,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Primary vertical rhythm between documentation sections.",
     "deprecated": false,
-    "cssVariable": "--ix-space-section",
+    "cssVariable": "--teum-space-section",
     "scope": "foundation",
     "values": {
       "light": "22px",
@@ -796,7 +796,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Default icon box for compact controls.",
     "deprecated": false,
-    "cssVariable": "--ix-icon-size",
+    "cssVariable": "--teum-icon-size",
     "scope": "foundation",
     "values": {
       "light": "14px",
@@ -812,7 +812,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Optical vertical correction for the default icon family.",
     "deprecated": false,
-    "cssVariable": "--ix-icon-offset-y",
+    "cssVariable": "--teum-icon-offset-y",
     "scope": "foundation",
     "values": {
       "light": "0px",
@@ -828,7 +828,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Small compact control height.",
     "deprecated": false,
-    "cssVariable": "--ix-control-height-sm",
+    "cssVariable": "--teum-control-height-sm",
     "scope": "foundation",
     "values": {
       "light": "28px",
@@ -844,7 +844,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Default compact control height.",
     "deprecated": false,
-    "cssVariable": "--ix-control-height-md",
+    "cssVariable": "--teum-control-height-md",
     "scope": "foundation",
     "values": {
       "light": "32px",
@@ -860,7 +860,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Large compact control height.",
     "deprecated": false,
-    "cssVariable": "--ix-control-height-lg",
+    "cssVariable": "--teum-control-height-lg",
     "scope": "foundation",
     "values": {
       "light": "36px",
@@ -876,7 +876,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Horizontal inset for small controls.",
     "deprecated": false,
-    "cssVariable": "--ix-control-padding-sm",
+    "cssVariable": "--teum-control-padding-sm",
     "scope": "foundation",
     "values": {
       "light": "8px",
@@ -892,7 +892,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Horizontal inset for default controls.",
     "deprecated": false,
-    "cssVariable": "--ix-control-padding-md",
+    "cssVariable": "--teum-control-padding-md",
     "scope": "foundation",
     "values": {
       "light": "10px",
@@ -908,7 +908,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Horizontal inset for large controls.",
     "deprecated": false,
-    "cssVariable": "--ix-control-padding-lg",
+    "cssVariable": "--teum-control-padding-lg",
     "scope": "foundation",
     "values": {
       "light": "12px",
@@ -924,7 +924,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Compact control radius.",
     "deprecated": false,
-    "cssVariable": "--ix-radius-control",
+    "cssVariable": "--teum-radius-control",
     "scope": "foundation",
     "values": {
       "light": "6px",
@@ -940,7 +940,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Persistent surface and specimen radius.",
     "deprecated": false,
-    "cssVariable": "--ix-radius-container",
+    "cssVariable": "--teum-radius-container",
     "scope": "foundation",
     "values": {
       "light": "8px",
@@ -956,7 +956,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Temporary overlay radius.",
     "deprecated": false,
-    "cssVariable": "--ix-radius-overlay",
+    "cssVariable": "--teum-radius-overlay",
     "scope": "foundation",
     "values": {
       "light": "10px",
@@ -972,7 +972,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Fully rounded status and segmented shape.",
     "deprecated": false,
-    "cssVariable": "--ix-radius-pill",
+    "cssVariable": "--teum-radius-pill",
     "scope": "foundation",
     "values": {
       "light": "999px",
@@ -988,7 +988,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Menu and action row minimum height.",
     "deprecated": false,
-    "cssVariable": "--ix-row-height-menu",
+    "cssVariable": "--teum-row-height-menu",
     "scope": "foundation",
     "values": {
       "light": "30px",
@@ -1004,7 +1004,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Default compact table row height with room for two-line identity content.",
     "deprecated": false,
-    "cssVariable": "--ix-row-height-table",
+    "cssVariable": "--teum-row-height-table",
     "scope": "foundation",
     "values": {
       "light": "46px",
@@ -1020,7 +1020,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Default visible focus indicator width.",
     "deprecated": false,
-    "cssVariable": "--ix-focus-width",
+    "cssVariable": "--teum-focus-width",
     "scope": "foundation",
     "values": {
       "light": "2px",
@@ -1036,7 +1036,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Default separation between a control and its focus indicator.",
     "deprecated": false,
-    "cssVariable": "--ix-focus-offset",
+    "cssVariable": "--teum-focus-offset",
     "scope": "foundation",
     "values": {
       "light": "1px",
@@ -1052,7 +1052,7 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Tight utility radius.",
     "deprecated": false,
-    "cssVariable": "--ix-radius-xs",
+    "cssVariable": "--teum-radius-xs",
     "scope": "foundation",
     "values": {
       "light": "4px",
@@ -1068,11 +1068,11 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Alias for the compact control radius.",
     "deprecated": false,
-    "cssVariable": "--ix-radius-sm",
+    "cssVariable": "--teum-radius-sm",
     "scope": "foundation",
     "values": {
-      "light": "var(--ix-radius-control)",
-      "dark": "var(--ix-radius-control)"
+      "light": "var(--teum-radius-control)",
+      "dark": "var(--teum-radius-control)"
     },
     "resolvedValues": {
       "light": "6px",
@@ -1084,11 +1084,11 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Alias for the persistent container radius.",
     "deprecated": false,
-    "cssVariable": "--ix-radius-md",
+    "cssVariable": "--teum-radius-md",
     "scope": "foundation",
     "values": {
-      "light": "var(--ix-radius-container)",
-      "dark": "var(--ix-radius-container)"
+      "light": "var(--teum-radius-container)",
+      "dark": "var(--teum-radius-container)"
     },
     "resolvedValues": {
       "light": "8px",
@@ -1100,11 +1100,11 @@ export const tokenManifest = [
     "type": "dimension",
     "description": "Alias for the temporary overlay radius.",
     "deprecated": false,
-    "cssVariable": "--ix-radius-lg",
+    "cssVariable": "--teum-radius-lg",
     "scope": "foundation",
     "values": {
-      "light": "var(--ix-radius-overlay)",
-      "dark": "var(--ix-radius-overlay)"
+      "light": "var(--teum-radius-overlay)",
+      "dark": "var(--teum-radius-overlay)"
     },
     "resolvedValues": {
       "light": "10px",
@@ -1116,7 +1116,7 @@ export const tokenManifest = [
     "type": "duration",
     "description": "Frequent hover and color feedback.",
     "deprecated": false,
-    "cssVariable": "--ix-hover-duration",
+    "cssVariable": "--teum-hover-duration",
     "scope": "foundation",
     "values": {
       "light": "120ms",
@@ -1132,7 +1132,7 @@ export const tokenManifest = [
     "type": "duration",
     "description": "Immediate press and release feedback.",
     "deprecated": false,
-    "cssVariable": "--ix-press-duration",
+    "cssVariable": "--teum-press-duration",
     "scope": "foundation",
     "values": {
       "light": "110ms",
@@ -1148,7 +1148,7 @@ export const tokenManifest = [
     "type": "duration",
     "description": "Occasional small overlay entrance.",
     "deprecated": false,
-    "cssVariable": "--ix-enter-duration",
+    "cssVariable": "--teum-enter-duration",
     "scope": "foundation",
     "values": {
       "light": "180ms",
@@ -1164,7 +1164,7 @@ export const tokenManifest = [
     "type": "duration",
     "description": "Faster small overlay exit.",
     "deprecated": false,
-    "cssVariable": "--ix-exit-duration",
+    "cssVariable": "--teum-exit-duration",
     "scope": "foundation",
     "values": {
       "light": "120ms",
@@ -1180,11 +1180,11 @@ export const tokenManifest = [
     "type": "duration",
     "description": "Compatibility alias for frequent feedback.",
     "deprecated": false,
-    "cssVariable": "--ix-fast",
+    "cssVariable": "--teum-fast",
     "scope": "foundation",
     "values": {
-      "light": "var(--ix-hover-duration)",
-      "dark": "var(--ix-hover-duration)"
+      "light": "var(--teum-hover-duration)",
+      "dark": "var(--teum-hover-duration)"
     },
     "resolvedValues": {
       "light": "120ms",
@@ -1196,11 +1196,11 @@ export const tokenManifest = [
     "type": "duration",
     "description": "Compatibility alias for occasional entrance motion.",
     "deprecated": false,
-    "cssVariable": "--ix-medium",
+    "cssVariable": "--teum-medium",
     "scope": "foundation",
     "values": {
-      "light": "var(--ix-enter-duration)",
-      "dark": "var(--ix-enter-duration)"
+      "light": "var(--teum-enter-duration)",
+      "dark": "var(--teum-enter-duration)"
     },
     "resolvedValues": {
       "light": "180ms",
@@ -1212,7 +1212,7 @@ export const tokenManifest = [
     "type": "cubicBezier",
     "description": "Responsive entrance and direct-manipulation feedback.",
     "deprecated": false,
-    "cssVariable": "--ix-ease-out",
+    "cssVariable": "--teum-ease-out",
     "scope": "foundation",
     "values": {
       "light": "cubic-bezier(0.23, 1, 0.32, 1)",
@@ -1228,7 +1228,7 @@ export const tokenManifest = [
     "type": "cubicBezier",
     "description": "On-screen movement between two visible positions.",
     "deprecated": false,
-    "cssVariable": "--ix-ease-in-out",
+    "cssVariable": "--teum-ease-in-out",
     "scope": "foundation",
     "values": {
       "light": "cubic-bezier(0.77, 0, 0.175, 1)",
@@ -1244,7 +1244,7 @@ export const tokenManifest = [
     "type": "cubicBezier",
     "description": "Interruptible drawer and shared-detail travel.",
     "deprecated": false,
-    "cssVariable": "--ix-ease-drawer",
+    "cssVariable": "--teum-ease-drawer",
     "scope": "foundation",
     "values": {
       "light": "cubic-bezier(0.32, 0.72, 0, 1)",
@@ -1260,11 +1260,11 @@ export const tokenManifest = [
     "type": "cubicBezier",
     "description": "Compatibility alias for the system ease-out curve.",
     "deprecated": false,
-    "cssVariable": "--ix-ease",
+    "cssVariable": "--teum-ease",
     "scope": "foundation",
     "values": {
-      "light": "var(--ix-ease-out)",
-      "dark": "var(--ix-ease-out)"
+      "light": "var(--teum-ease-out)",
+      "dark": "var(--teum-ease-out)"
     },
     "resolvedValues": {
       "light": "cubic-bezier(0.23, 1, 0.32, 1)",
@@ -1276,7 +1276,7 @@ export const tokenManifest = [
     "type": "number",
     "description": "Sticky content within the document canvas.",
     "deprecated": false,
-    "cssVariable": "--ix-layer-sticky",
+    "cssVariable": "--teum-layer-sticky",
     "scope": "foundation",
     "values": {
       "light": "20",
@@ -1292,7 +1292,7 @@ export const tokenManifest = [
     "type": "number",
     "description": "Focus-trapping modal scrim.",
     "deprecated": false,
-    "cssVariable": "--ix-layer-modal-backdrop",
+    "cssVariable": "--teum-layer-modal-backdrop",
     "scope": "foundation",
     "values": {
       "light": "100",
@@ -1308,7 +1308,7 @@ export const tokenManifest = [
     "type": "number",
     "description": "Focus-trapping task surface.",
     "deprecated": false,
-    "cssVariable": "--ix-layer-modal",
+    "cssVariable": "--teum-layer-modal",
     "scope": "foundation",
     "values": {
       "light": "110",
@@ -1324,7 +1324,7 @@ export const tokenManifest = [
     "type": "number",
     "description": "Anchored temporary surface.",
     "deprecated": false,
-    "cssVariable": "--ix-layer-flyout",
+    "cssVariable": "--teum-layer-flyout",
     "scope": "foundation",
     "values": {
       "light": "120",
@@ -1340,7 +1340,7 @@ export const tokenManifest = [
     "type": "number",
     "description": "Highest non-navigation feedback layer.",
     "deprecated": false,
-    "cssVariable": "--ix-layer-toast",
+    "cssVariable": "--teum-layer-toast",
     "scope": "foundation",
     "values": {
       "light": "130",
@@ -1356,7 +1356,7 @@ export const tokenManifest = [
     "type": "number",
     "description": "Persistent application navigation and mobile drawer.",
     "deprecated": false,
-    "cssVariable": "--ix-layer-navigation",
+    "cssVariable": "--teum-layer-navigation",
     "scope": "foundation",
     "values": {
       "light": "150",
@@ -1372,7 +1372,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-gray-50",
+    "cssVariable": "--teum-gray-50",
     "scope": "theme",
     "values": {
       "light": "#f7f7f8",
@@ -1388,7 +1388,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-gray-100",
+    "cssVariable": "--teum-gray-100",
     "scope": "theme",
     "values": {
       "light": "#f2f2f3",
@@ -1404,7 +1404,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-gray-200",
+    "cssVariable": "--teum-gray-200",
     "scope": "theme",
     "values": {
       "light": "#e5e5e7",
@@ -1420,7 +1420,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-gray-300",
+    "cssVariable": "--teum-gray-300",
     "scope": "theme",
     "values": {
       "light": "#d1d1d4",
@@ -1436,7 +1436,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-gray-400",
+    "cssVariable": "--teum-gray-400",
     "scope": "theme",
     "values": {
       "light": "#aeaeb1",
@@ -1452,7 +1452,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-gray-500",
+    "cssVariable": "--teum-gray-500",
     "scope": "theme",
     "values": {
       "light": "#8e8e93",
@@ -1468,7 +1468,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-gray-600",
+    "cssVariable": "--teum-gray-600",
     "scope": "theme",
     "values": {
       "light": "#636366",
@@ -1484,7 +1484,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-gray-700",
+    "cssVariable": "--teum-gray-700",
     "scope": "theme",
     "values": {
       "light": "#48484a",
@@ -1500,7 +1500,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-gray-800",
+    "cssVariable": "--teum-gray-800",
     "scope": "theme",
     "values": {
       "light": "#2c2c2e",
@@ -1516,7 +1516,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-gray-900",
+    "cssVariable": "--teum-gray-900",
     "scope": "theme",
     "values": {
       "light": "#1c1c1e",
@@ -1532,7 +1532,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Application and documentation canvas.",
     "deprecated": false,
-    "cssVariable": "--ix-bg-canvas",
+    "cssVariable": "--teum-bg-canvas",
     "scope": "theme",
     "values": {
       "light": "#ffffff",
@@ -1548,7 +1548,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Translucent persistent navigation surface.",
     "deprecated": false,
-    "cssVariable": "--ix-bg-sidebar",
+    "cssVariable": "--teum-bg-sidebar",
     "scope": "theme",
     "values": {
       "light": "rgb(247 247 248 / 0.9)",
@@ -1564,7 +1564,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Quiet preview and product-state stage.",
     "deprecated": false,
-    "cssVariable": "--ix-bg-stage",
+    "cssVariable": "--teum-bg-stage",
     "scope": "theme",
     "values": {
       "light": "rgb(28 28 30 / 0.026)",
@@ -1580,7 +1580,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Selected rows and low-emphasis grouped surfaces.",
     "deprecated": false,
-    "cssVariable": "--ix-bg-subtle",
+    "cssVariable": "--teum-bg-subtle",
     "scope": "theme",
     "values": {
       "light": "rgb(28 28 30 / 0.043)",
@@ -1596,7 +1596,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Persistent composition surface above the canvas.",
     "deprecated": false,
-    "cssVariable": "--ix-bg-surface",
+    "cssVariable": "--teum-bg-surface",
     "scope": "theme",
     "values": {
       "light": "rgb(255 255 255 / 0.94)",
@@ -1612,7 +1612,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Compact control fill.",
     "deprecated": false,
-    "cssVariable": "--ix-bg-control",
+    "cssVariable": "--teum-bg-control",
     "scope": "theme",
     "values": {
       "light": "rgb(255 255 255 / 0.98)",
@@ -1628,7 +1628,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Persistent raised Float surface.",
     "deprecated": false,
-    "cssVariable": "--ix-bg-raised",
+    "cssVariable": "--teum-bg-raised",
     "scope": "theme",
     "values": {
       "light": "#ffffff",
@@ -1644,7 +1644,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Base temporary overlay surface.",
     "deprecated": false,
-    "cssVariable": "--ix-bg-overlay",
+    "cssVariable": "--teum-bg-overlay",
     "scope": "theme",
     "values": {
       "light": "#ffffff",
@@ -1660,11 +1660,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "Public Float elevation role.",
     "deprecated": false,
-    "cssVariable": "--ix-bg-float",
+    "cssVariable": "--teum-bg-float",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-bg-raised)",
-      "dark": "var(--ix-bg-raised)"
+      "light": "var(--teum-bg-raised)",
+      "dark": "var(--teum-bg-raised)"
     },
     "resolvedValues": {
       "light": "#ffffff",
@@ -1676,10 +1676,10 @@ export const tokenManifest = [
     "type": "color",
     "description": "Anchored temporary Flyout surface.",
     "deprecated": false,
-    "cssVariable": "--ix-bg-flyout",
+    "cssVariable": "--teum-bg-flyout",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-bg-overlay)",
+      "light": "var(--teum-bg-overlay)",
       "dark": "#262629"
     },
     "resolvedValues": {
@@ -1692,11 +1692,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "Focus-trapping Modal surface.",
     "deprecated": false,
-    "cssVariable": "--ix-bg-modal",
+    "cssVariable": "--teum-bg-modal",
     "scope": "theme",
     "values": {
       "light": "#ffffff",
-      "dark": "var(--ix-bg-overlay)"
+      "dark": "var(--teum-bg-overlay)"
     },
     "resolvedValues": {
       "light": "#ffffff",
@@ -1708,7 +1708,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Modal and drawer background attenuation.",
     "deprecated": false,
-    "cssVariable": "--ix-bg-scrim",
+    "cssVariable": "--teum-bg-scrim",
     "scope": "theme",
     "values": {
       "light": "rgb(0 0 0 / 0.18)",
@@ -1724,7 +1724,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Collapsed and expanded source-code surface.",
     "deprecated": false,
-    "cssVariable": "--ix-bg-code",
+    "cssVariable": "--teum-bg-code",
     "scope": "theme",
     "values": {
       "light": "rgb(28 28 30 / 0.02)",
@@ -1740,11 +1740,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-canvas",
+    "cssVariable": "--teum-canvas",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-bg-canvas)",
-      "dark": "var(--ix-bg-canvas)"
+      "light": "var(--teum-bg-canvas)",
+      "dark": "var(--teum-bg-canvas)"
     },
     "resolvedValues": {
       "light": "#ffffff",
@@ -1756,11 +1756,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-sidebar",
+    "cssVariable": "--teum-sidebar",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-bg-sidebar)",
-      "dark": "var(--ix-bg-sidebar)"
+      "light": "var(--teum-bg-sidebar)",
+      "dark": "var(--teum-bg-sidebar)"
     },
     "resolvedValues": {
       "light": "rgb(247 247 248 / 0.9)",
@@ -1772,11 +1772,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-surface",
+    "cssVariable": "--teum-surface",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-bg-surface)",
-      "dark": "var(--ix-bg-surface)"
+      "light": "var(--teum-bg-surface)",
+      "dark": "var(--teum-bg-surface)"
     },
     "resolvedValues": {
       "light": "rgb(255 255 255 / 0.94)",
@@ -1788,11 +1788,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-control-surface",
+    "cssVariable": "--teum-control-surface",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-bg-control)",
-      "dark": "var(--ix-bg-control)"
+      "light": "var(--teum-bg-control)",
+      "dark": "var(--teum-bg-control)"
     },
     "resolvedValues": {
       "light": "rgb(255 255 255 / 0.98)",
@@ -1804,11 +1804,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-elevated-surface",
+    "cssVariable": "--teum-elevated-surface",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-bg-raised)",
-      "dark": "var(--ix-bg-raised)"
+      "light": "var(--teum-bg-raised)",
+      "dark": "var(--teum-bg-raised)"
     },
     "resolvedValues": {
       "light": "#ffffff",
@@ -1820,11 +1820,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-overlay-surface",
+    "cssVariable": "--teum-overlay-surface",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-bg-overlay)",
-      "dark": "var(--ix-bg-overlay)"
+      "light": "var(--teum-bg-overlay)",
+      "dark": "var(--teum-bg-overlay)"
     },
     "resolvedValues": {
       "light": "#ffffff",
@@ -1836,11 +1836,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-code-surface",
+    "cssVariable": "--teum-code-surface",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-bg-code)",
-      "dark": "var(--ix-bg-code)"
+      "light": "var(--teum-bg-code)",
+      "dark": "var(--teum-bg-code)"
     },
     "resolvedValues": {
       "light": "rgb(28 28 30 / 0.02)",
@@ -1852,11 +1852,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-stage",
+    "cssVariable": "--teum-stage",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-bg-stage)",
-      "dark": "var(--ix-bg-stage)"
+      "light": "var(--teum-bg-stage)",
+      "dark": "var(--teum-bg-stage)"
     },
     "resolvedValues": {
       "light": "rgb(28 28 30 / 0.026)",
@@ -1868,11 +1868,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-subtle",
+    "cssVariable": "--teum-subtle",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-bg-subtle)",
-      "dark": "var(--ix-bg-subtle)"
+      "light": "var(--teum-bg-subtle)",
+      "dark": "var(--teum-bg-subtle)"
     },
     "resolvedValues": {
       "light": "rgb(28 28 30 / 0.043)",
@@ -1884,7 +1884,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Frequent pointer hover feedback.",
     "deprecated": false,
-    "cssVariable": "--ix-hover",
+    "cssVariable": "--teum-hover",
     "scope": "theme",
     "values": {
       "light": "rgb(28 28 30 / 0.048)",
@@ -1900,7 +1900,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Pressed or actively manipulated fill.",
     "deprecated": false,
-    "cssVariable": "--ix-active",
+    "cssVariable": "--teum-active",
     "scope": "theme",
     "values": {
       "light": "rgb(28 28 30 / 0.088)",
@@ -1916,7 +1916,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Persistent selected-row fill.",
     "deprecated": false,
-    "cssVariable": "--ix-selected",
+    "cssVariable": "--teum-selected",
     "scope": "theme",
     "values": {
       "light": "rgb(28 28 30 / 0.068)",
@@ -1932,7 +1932,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Primary monochrome action fill.",
     "deprecated": false,
-    "cssVariable": "--ix-inverse",
+    "cssVariable": "--teum-inverse",
     "scope": "theme",
     "values": {
       "light": "#171719",
@@ -1948,7 +1948,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Primary action hover fill.",
     "deprecated": false,
-    "cssVariable": "--ix-inverse-hover",
+    "cssVariable": "--teum-inverse-hover",
     "scope": "theme",
     "values": {
       "light": "#262629",
@@ -1964,7 +1964,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Text and icon color on inverse actions.",
     "deprecated": false,
-    "cssVariable": "--ix-on-inverse",
+    "cssVariable": "--teum-on-inverse",
     "scope": "theme",
     "values": {
       "light": "#f8f8f8",
@@ -1980,7 +1980,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Monochrome scrollbar thumb.",
     "deprecated": false,
-    "cssVariable": "--ix-scrollbar-thumb",
+    "cssVariable": "--teum-scrollbar-thumb",
     "scope": "theme",
     "values": {
       "light": "rgb(28 28 30 / 0.18)",
@@ -1996,7 +1996,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Scrollbar thumb hover state.",
     "deprecated": false,
-    "cssVariable": "--ix-scrollbar-thumb-hover",
+    "cssVariable": "--teum-scrollbar-thumb-hover",
     "scope": "theme",
     "values": {
       "light": "rgb(28 28 30 / 0.3)",
@@ -2012,11 +2012,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "Primary text and icon color.",
     "deprecated": false,
-    "cssVariable": "--ix-fg-default",
+    "cssVariable": "--teum-fg-default",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-gray-900)",
-      "dark": "var(--ix-gray-900)"
+      "light": "var(--teum-gray-900)",
+      "dark": "var(--teum-gray-900)"
     },
     "resolvedValues": {
       "light": "#1c1c1e",
@@ -2028,11 +2028,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "Secondary explanatory text.",
     "deprecated": false,
-    "cssVariable": "--ix-fg-muted",
+    "cssVariable": "--teum-fg-muted",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-gray-600)",
-      "dark": "var(--ix-gray-600)"
+      "light": "var(--teum-gray-600)",
+      "dark": "var(--teum-gray-600)"
     },
     "resolvedValues": {
       "light": "#636366",
@@ -2044,10 +2044,10 @@ export const tokenManifest = [
     "type": "color",
     "description": "Tertiary metadata and quiet labels.",
     "deprecated": false,
-    "cssVariable": "--ix-fg-subtle",
+    "cssVariable": "--teum-fg-subtle",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-gray-600)",
+      "light": "var(--teum-gray-600)",
       "dark": "#8e8e93"
     },
     "resolvedValues": {
@@ -2060,11 +2060,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "Unavailable control content.",
     "deprecated": false,
-    "cssVariable": "--ix-fg-disabled",
+    "cssVariable": "--teum-fg-disabled",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-gray-400)",
-      "dark": "var(--ix-gray-400)"
+      "light": "var(--teum-gray-400)",
+      "dark": "var(--teum-gray-400)"
     },
     "resolvedValues": {
       "light": "#aeaeb1",
@@ -2076,7 +2076,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Accessible semantic foreground for invalid values, errors, destructive actions, and critical feedback.",
     "deprecated": false,
-    "cssVariable": "--ix-fg-danger",
+    "cssVariable": "--teum-fg-danger",
     "scope": "theme",
     "values": {
       "light": "#b42318",
@@ -2092,11 +2092,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-ink",
+    "cssVariable": "--teum-ink",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-fg-default)",
-      "dark": "var(--ix-fg-default)"
+      "light": "var(--teum-fg-default)",
+      "dark": "var(--teum-fg-default)"
     },
     "resolvedValues": {
       "light": "#1c1c1e",
@@ -2108,11 +2108,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-ink-secondary",
+    "cssVariable": "--teum-ink-secondary",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-fg-muted)",
-      "dark": "var(--ix-fg-muted)"
+      "light": "var(--teum-fg-muted)",
+      "dark": "var(--teum-fg-muted)"
     },
     "resolvedValues": {
       "light": "#636366",
@@ -2124,11 +2124,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-ink-tertiary",
+    "cssVariable": "--teum-ink-tertiary",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-fg-subtle)",
-      "dark": "var(--ix-fg-subtle)"
+      "light": "var(--teum-fg-subtle)",
+      "dark": "var(--teum-fg-subtle)"
     },
     "resolvedValues": {
       "light": "#636366",
@@ -2140,11 +2140,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-ink-disabled",
+    "cssVariable": "--teum-ink-disabled",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-fg-disabled)",
-      "dark": "var(--ix-fg-disabled)"
+      "light": "var(--teum-fg-disabled)",
+      "dark": "var(--teum-fg-disabled)"
     },
     "resolvedValues": {
       "light": "#aeaeb1",
@@ -2156,7 +2156,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Low-contrast structural separator.",
     "deprecated": false,
-    "cssVariable": "--ix-separator",
+    "cssVariable": "--teum-separator",
     "scope": "theme",
     "values": {
       "light": "rgb(28 28 30 / 0.055)",
@@ -2172,7 +2172,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Default control boundary.",
     "deprecated": false,
-    "cssVariable": "--ix-control-border",
+    "cssVariable": "--teum-control-border",
     "scope": "theme",
     "values": {
       "light": "rgb(28 28 30 / 0.105)",
@@ -2188,7 +2188,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Stronger interactive boundary.",
     "deprecated": false,
-    "cssVariable": "--ix-control-border-hover",
+    "cssVariable": "--teum-control-border-hover",
     "scope": "theme",
     "values": {
       "light": "rgb(28 28 30 / 0.2)",
@@ -2204,11 +2204,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-border-subtle",
+    "cssVariable": "--teum-border-subtle",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-separator)",
-      "dark": "var(--ix-separator)"
+      "light": "var(--teum-separator)",
+      "dark": "var(--teum-separator)"
     },
     "resolvedValues": {
       "light": "rgb(28 28 30 / 0.055)",
@@ -2220,11 +2220,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-border",
+    "cssVariable": "--teum-border",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-control-border)",
-      "dark": "var(--ix-control-border)"
+      "light": "var(--teum-control-border)",
+      "dark": "var(--teum-control-border)"
     },
     "resolvedValues": {
       "light": "rgb(28 28 30 / 0.105)",
@@ -2236,11 +2236,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "",
     "deprecated": false,
-    "cssVariable": "--ix-border-strong",
+    "cssVariable": "--teum-border-strong",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-control-border-hover)",
-      "dark": "var(--ix-control-border-hover)"
+      "light": "var(--teum-control-border-hover)",
+      "dark": "var(--teum-control-border-hover)"
     },
     "resolvedValues": {
       "light": "rgb(28 28 30 / 0.2)",
@@ -2252,7 +2252,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Keyboard focus for product controls.",
     "deprecated": false,
-    "cssVariable": "--ix-focus-control",
+    "cssVariable": "--teum-focus-control",
     "scope": "theme",
     "values": {
       "light": "#85858b",
@@ -2268,7 +2268,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Keyboard focus for persistent navigation.",
     "deprecated": false,
-    "cssVariable": "--ix-focus-navigation",
+    "cssVariable": "--teum-focus-navigation",
     "scope": "theme",
     "values": {
       "light": "#77777d",
@@ -2284,7 +2284,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Keyboard focus for documentation disclosures and anchors.",
     "deprecated": false,
-    "cssVariable": "--ix-focus-documentation",
+    "cssVariable": "--teum-focus-documentation",
     "scope": "theme",
     "values": {
       "light": "#85858b",
@@ -2300,7 +2300,7 @@ export const tokenManifest = [
     "type": "color",
     "description": "Quiet supporting halo where a single outline needs separation.",
     "deprecated": false,
-    "cssVariable": "--ix-focus-halo",
+    "cssVariable": "--teum-focus-halo",
     "scope": "theme",
     "values": {
       "light": "rgb(28 28 30 / 0.14)",
@@ -2316,11 +2316,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "Unchecked switch track.",
     "deprecated": false,
-    "cssVariable": "--ix-switch-track",
+    "cssVariable": "--teum-switch-track",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-gray-300)",
-      "dark": "var(--ix-gray-300)"
+      "light": "var(--teum-gray-300)",
+      "dark": "var(--teum-gray-300)"
     },
     "resolvedValues": {
       "light": "#d1d1d4",
@@ -2332,11 +2332,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "Switch thumb surface.",
     "deprecated": false,
-    "cssVariable": "--ix-switch-thumb",
+    "cssVariable": "--teum-switch-thumb",
     "scope": "theme",
     "values": {
       "light": "#ffffff",
-      "dark": "var(--ix-gray-800)"
+      "dark": "var(--teum-gray-800)"
     },
     "resolvedValues": {
       "light": "#ffffff",
@@ -2348,11 +2348,11 @@ export const tokenManifest = [
     "type": "color",
     "description": "Compatibility alias for product-control focus.",
     "deprecated": false,
-    "cssVariable": "--ix-focus",
+    "cssVariable": "--teum-focus",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-focus-control)",
-      "dark": "var(--ix-focus-control)"
+      "light": "var(--teum-focus-control)",
+      "dark": "var(--teum-focus-control)"
     },
     "resolvedValues": {
       "light": "#85858b",
@@ -2364,7 +2364,7 @@ export const tokenManifest = [
     "type": "shadow",
     "description": "Optical edge definition for compact controls.",
     "deprecated": false,
-    "cssVariable": "--ix-shadow-control",
+    "cssVariable": "--teum-shadow-control",
     "scope": "theme",
     "values": {
       "light": "0px 1px 1px 0px oklch(0.17 0.004 275 / 0.025), inset 0px 1px 0px 0px rgb(255 255 255 / 0.62)",
@@ -2380,15 +2380,15 @@ export const tokenManifest = [
     "type": "shadow",
     "description": "Persistent raised composition surface.",
     "deprecated": false,
-    "cssVariable": "--ix-shadow-float",
+    "cssVariable": "--teum-shadow-float",
     "scope": "theme",
     "values": {
-      "light": "0px 4px 16px -8px rgb(28 28 30 / 0.08), 0px 1px 2px 0px rgb(28 28 30 / 0.04), 0px 0px 0px 1px var(--ix-separator)",
-      "dark": "0px 4px 16px -8px rgb(0 0 0 / 0.48), 0px 1px 2px 0px rgb(0 0 0 / 0.28), 0px 0px 0px 1px var(--ix-separator)"
+      "light": "0px 4px 16px -8px rgb(28 28 30 / 0.08), 0px 1px 2px 0px rgb(28 28 30 / 0.04), 0px 0px 0px 1px var(--teum-separator)",
+      "dark": "0px 4px 16px -8px rgb(0 0 0 / 0.48), 0px 1px 2px 0px rgb(0 0 0 / 0.28), 0px 0px 0px 1px var(--teum-separator)"
     },
     "resolvedValues": {
-      "light": "0px 4px 16px -8px rgb(28 28 30 / 0.08), 0px 1px 2px 0px rgb(28 28 30 / 0.04), 0px 0px 0px 1px var(--ix-separator)",
-      "dark": "0px 4px 16px -8px rgb(0 0 0 / 0.48), 0px 1px 2px 0px rgb(0 0 0 / 0.28), 0px 0px 0px 1px var(--ix-separator)"
+      "light": "0px 4px 16px -8px rgb(28 28 30 / 0.08), 0px 1px 2px 0px rgb(28 28 30 / 0.04), 0px 0px 0px 1px var(--teum-separator)",
+      "dark": "0px 4px 16px -8px rgb(0 0 0 / 0.48), 0px 1px 2px 0px rgb(0 0 0 / 0.28), 0px 0px 0px 1px var(--teum-separator)"
     }
   },
   {
@@ -2396,15 +2396,15 @@ export const tokenManifest = [
     "type": "shadow",
     "description": "Raised composition surface with active focus or selection.",
     "deprecated": false,
-    "cssVariable": "--ix-shadow-float-focus",
+    "cssVariable": "--teum-shadow-float-focus",
     "scope": "theme",
     "values": {
-      "light": "0px 6px 24px -8px rgb(28 28 30 / 0.12), 0px 1px 2px 0px rgb(28 28 30 / 0.05), 0px 0px 0px 1px var(--ix-control-border)",
-      "dark": "0px 8px 26px -8px rgb(0 0 0 / 0.56), 0px 1px 2px 0px rgb(0 0 0 / 0.34), 0px 0px 0px 1px var(--ix-control-border)"
+      "light": "0px 6px 24px -8px rgb(28 28 30 / 0.12), 0px 1px 2px 0px rgb(28 28 30 / 0.05), 0px 0px 0px 1px var(--teum-control-border)",
+      "dark": "0px 8px 26px -8px rgb(0 0 0 / 0.56), 0px 1px 2px 0px rgb(0 0 0 / 0.34), 0px 0px 0px 1px var(--teum-control-border)"
     },
     "resolvedValues": {
-      "light": "0px 6px 24px -8px rgb(28 28 30 / 0.12), 0px 1px 2px 0px rgb(28 28 30 / 0.05), 0px 0px 0px 1px var(--ix-control-border)",
-      "dark": "0px 8px 26px -8px rgb(0 0 0 / 0.56), 0px 1px 2px 0px rgb(0 0 0 / 0.34), 0px 0px 0px 1px var(--ix-control-border)"
+      "light": "0px 6px 24px -8px rgb(28 28 30 / 0.12), 0px 1px 2px 0px rgb(28 28 30 / 0.05), 0px 0px 0px 1px var(--teum-control-border)",
+      "dark": "0px 8px 26px -8px rgb(0 0 0 / 0.56), 0px 1px 2px 0px rgb(0 0 0 / 0.34), 0px 0px 0px 1px var(--teum-control-border)"
     }
   },
   {
@@ -2412,15 +2412,15 @@ export const tokenManifest = [
     "type": "shadow",
     "description": "Anchored temporary Flyout surface.",
     "deprecated": false,
-    "cssVariable": "--ix-shadow-flyout",
+    "cssVariable": "--teum-shadow-flyout",
     "scope": "theme",
     "values": {
-      "light": "0px 16px 34px -10px rgb(28 28 30 / 0.16), 0px 4px 10px -4px rgb(28 28 30 / 0.09), 0px 0px 0px 1px var(--ix-separator)",
-      "dark": "0px 20px 44px -10px rgb(0 0 0 / 0.68), 0px 5px 14px -4px rgb(0 0 0 / 0.42), 0px 0px 0px 1px var(--ix-separator)"
+      "light": "0px 16px 34px -10px rgb(28 28 30 / 0.16), 0px 4px 10px -4px rgb(28 28 30 / 0.09), 0px 0px 0px 1px var(--teum-separator)",
+      "dark": "0px 20px 44px -10px rgb(0 0 0 / 0.68), 0px 5px 14px -4px rgb(0 0 0 / 0.42), 0px 0px 0px 1px var(--teum-separator)"
     },
     "resolvedValues": {
-      "light": "0px 16px 34px -10px rgb(28 28 30 / 0.16), 0px 4px 10px -4px rgb(28 28 30 / 0.09), 0px 0px 0px 1px var(--ix-separator)",
-      "dark": "0px 20px 44px -10px rgb(0 0 0 / 0.68), 0px 5px 14px -4px rgb(0 0 0 / 0.42), 0px 0px 0px 1px var(--ix-separator)"
+      "light": "0px 16px 34px -10px rgb(28 28 30 / 0.16), 0px 4px 10px -4px rgb(28 28 30 / 0.09), 0px 0px 0px 1px var(--teum-separator)",
+      "dark": "0px 20px 44px -10px rgb(0 0 0 / 0.68), 0px 5px 14px -4px rgb(0 0 0 / 0.42), 0px 0px 0px 1px var(--teum-separator)"
     }
   },
   {
@@ -2428,15 +2428,15 @@ export const tokenManifest = [
     "type": "shadow",
     "description": "Compatibility alias for anchored popovers.",
     "deprecated": false,
-    "cssVariable": "--ix-shadow-popover",
+    "cssVariable": "--teum-shadow-popover",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-shadow-flyout)",
-      "dark": "var(--ix-shadow-flyout)"
+      "light": "var(--teum-shadow-flyout)",
+      "dark": "var(--teum-shadow-flyout)"
     },
     "resolvedValues": {
-      "light": "0px 16px 34px -10px rgb(28 28 30 / 0.16), 0px 4px 10px -4px rgb(28 28 30 / 0.09), 0px 0px 0px 1px var(--ix-separator)",
-      "dark": "0px 20px 44px -10px rgb(0 0 0 / 0.68), 0px 5px 14px -4px rgb(0 0 0 / 0.42), 0px 0px 0px 1px var(--ix-separator)"
+      "light": "0px 16px 34px -10px rgb(28 28 30 / 0.16), 0px 4px 10px -4px rgb(28 28 30 / 0.09), 0px 0px 0px 1px var(--teum-separator)",
+      "dark": "0px 20px 44px -10px rgb(0 0 0 / 0.68), 0px 5px 14px -4px rgb(0 0 0 / 0.42), 0px 0px 0px 1px var(--teum-separator)"
     }
   },
   {
@@ -2444,15 +2444,15 @@ export const tokenManifest = [
     "type": "shadow",
     "description": "Focus-trapping task surface.",
     "deprecated": false,
-    "cssVariable": "--ix-shadow-modal",
+    "cssVariable": "--teum-shadow-modal",
     "scope": "theme",
     "values": {
-      "light": "0px 36px 110px 0px oklch(0.17 0.004 275 / 0.15), 0px 8px 24px 0px oklch(0.17 0.004 275 / 0.065), 0px 0px 0px 1px var(--ix-border)",
-      "dark": "0px 42px 120px 0px rgb(0 0 0 / 0.58), 0px 10px 30px 0px rgb(0 0 0 / 0.34), 0px 0px 0px 1px var(--ix-border)"
+      "light": "0px 36px 110px 0px oklch(0.17 0.004 275 / 0.15), 0px 8px 24px 0px oklch(0.17 0.004 275 / 0.065), 0px 0px 0px 1px var(--teum-border)",
+      "dark": "0px 42px 120px 0px rgb(0 0 0 / 0.58), 0px 10px 30px 0px rgb(0 0 0 / 0.34), 0px 0px 0px 1px var(--teum-border)"
     },
     "resolvedValues": {
-      "light": "0px 36px 110px 0px oklch(0.17 0.004 275 / 0.15), 0px 8px 24px 0px oklch(0.17 0.004 275 / 0.065), 0px 0px 0px 1px var(--ix-border)",
-      "dark": "0px 42px 120px 0px rgb(0 0 0 / 0.58), 0px 10px 30px 0px rgb(0 0 0 / 0.34), 0px 0px 0px 1px var(--ix-border)"
+      "light": "0px 36px 110px 0px oklch(0.17 0.004 275 / 0.15), 0px 8px 24px 0px oklch(0.17 0.004 275 / 0.065), 0px 0px 0px 1px var(--teum-border)",
+      "dark": "0px 42px 120px 0px rgb(0 0 0 / 0.58), 0px 10px 30px 0px rgb(0 0 0 / 0.34), 0px 0px 0px 1px var(--teum-border)"
     }
   },
   {
@@ -2460,15 +2460,15 @@ export const tokenManifest = [
     "type": "shadow",
     "description": "Compatibility alias for dialog surfaces.",
     "deprecated": false,
-    "cssVariable": "--ix-shadow-dialog",
+    "cssVariable": "--teum-shadow-dialog",
     "scope": "theme",
     "values": {
-      "light": "var(--ix-shadow-modal)",
-      "dark": "var(--ix-shadow-modal)"
+      "light": "var(--teum-shadow-modal)",
+      "dark": "var(--teum-shadow-modal)"
     },
     "resolvedValues": {
-      "light": "0px 36px 110px 0px oklch(0.17 0.004 275 / 0.15), 0px 8px 24px 0px oklch(0.17 0.004 275 / 0.065), 0px 0px 0px 1px var(--ix-border)",
-      "dark": "0px 42px 120px 0px rgb(0 0 0 / 0.58), 0px 10px 30px 0px rgb(0 0 0 / 0.34), 0px 0px 0px 1px var(--ix-border)"
+      "light": "0px 36px 110px 0px oklch(0.17 0.004 275 / 0.15), 0px 8px 24px 0px oklch(0.17 0.004 275 / 0.065), 0px 0px 0px 1px var(--teum-border)",
+      "dark": "0px 42px 120px 0px rgb(0 0 0 / 0.58), 0px 10px 30px 0px rgb(0 0 0 / 0.34), 0px 0px 0px 1px var(--teum-border)"
     }
   }
 ] as const;

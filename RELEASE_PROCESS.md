@@ -1,6 +1,6 @@
 # Release process
 
-Interaction Index uses verified, maintainer-approved releases. A passing workflow is evidence, not permission to publish.
+Teum uses verified, maintainer-approved releases. A passing workflow is evidence, not permission to publish.
 
 ## Candidate
 

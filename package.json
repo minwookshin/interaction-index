@@ -1,6 +1,17 @@
 {
-  "name": "interaction-index",
-  "version": "0.1.0-rc.2",
+  "name": "teum",
+  "version": "0.1.0-rc.3",
+  "description": "Interaction-first React components, semantic tokens, and source-owned UI patterns for compact product interfaces.",
+  "keywords": [
+    "react",
+    "typescript",
+    "design-system",
+    "components",
+    "shadcn",
+    "tailwindcss",
+    "accessibility",
+    "interaction"
+  ],
   "private": true,
   "license": "MIT",
   "type": "module",
@@ -35,6 +46,10 @@
     "./tokens.css": {
       "types": "./dist/package/styles.d.ts",
       "default": "./dist/package/tokens.css"
+    },
+    "./tailwind.css": {
+      "types": "./dist/package/styles.d.ts",
+      "default": "./dist/package/tailwind.css"
     },
     "./tokens.json": "./dist/package/tokens.json",
     "./registry/*": "./public/r/*.json",
@@ -85,14 +100,16 @@
     "diff:registry": "node scripts/diff-registry.mjs",
     "build:package": "npm run check:tokens && npm run check:api && vite build --config vite.package.config.mjs && tsc -p tsconfig.package.json && node scripts/build-package.mjs",
     "check:package": "node scripts/verify-package.mjs",
-    "test:package": "node scripts/verify-package-consumer.mjs",
+    "test:package": "node scripts/verify-package-consumer.mjs && npm run test:react-compat && npm run test:tailwind",
+    "test:react-compat": "node scripts/verify-react-compat.mjs",
+    "test:tailwind": "node scripts/verify-tailwind-consumer.mjs",
     "test:dogfood": "node scripts/verify-dogfood-consumer.mjs",
     "test:consumer": "node scripts/verify-consumer.mjs",
     "test:consumer:upgrade": "node scripts/verify-registry-upgrade.mjs",
     "measure": "node scripts/measure-performance.mjs",
     "configure:publication": "node scripts/configure-publication.mjs",
     "build:registry:style": "npm run build:tokens && node scripts/build-registry-style.mjs",
-    "build:registry": "npm run build:registry:style && shadcn build && npm run build:registry:manifest && npm run build:registry:versioned",
+    "build:registry": "npm run build:registry:style && node scripts/clean-mutable-registry.mjs && shadcn build && npm run build:registry:manifest && npm run build:registry:versioned",
     "test:registry": "node scripts/verify-registry.mjs",
     "test:sites": "node --test tests/sites-worker.test.mjs",
     "verify:clean": "npm run check:tokens && npm run check:foundations && npm run check:api && npm run check:freeze && npm run check:figma && npm run test && npm run build:storybook && npm run build:registry && npm run test:registry && npm run test:consumer && npm run test:consumer:upgrade && npm run build:package && npm run check:package && npm run test:package && npm run test:dogfood && npm run build && npm run test:sites && npm run measure",
@@ -142,15 +159,18 @@
     "vitest": "^4.1.10"
   },
   "peerDependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/minwookshin/interaction-index.git"
+    "url": "git+https://github.com/minwookshin/teum.git"
   },
   "bugs": {
-    "url": "https://github.com/minwookshin/interaction-index/issues"
+    "url": "https://github.com/minwookshin/teum/issues"
   },
-  "homepage": "https://minwookshin.github.io/interaction-index"
+  "homepage": "https://interactions.minwookshin.com",
+  "engines": {
+    "node": ">=20"
+  }
 }

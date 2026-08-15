@@ -79,7 +79,7 @@ assert(!/transition\s*:\s*all\b/i.test(css), "Avoid transition: all; list the an
 assert(!/\bscale\(0(?:\.0+)?\)/i.test(css), "Avoid scale(0); entry geometry must remain inspectable.");
 assert(!/(?:^|[\s,:])ease-in(?:[\s,;)]|$)/m.test(css), "Standalone ease-in is not part of the motion contract.");
 
-for (const selector of [".ix-tooltip", ".ix-popover", ".ix-menu", ".ix-select-popup", ".ix-combobox-popup", ".ix-context-switcher__popup"]) {
+for (const selector of [".teum-tooltip", ".teum-popover", ".teum-menu", ".teum-select-popup", ".teum-combobox-popup", ".teum-context-switcher__popup"]) {
   const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   assert(new RegExp(`${escaped}[^{}]*\\{[^{}]*transform-origin\\s*:\\s*var\\(--transform-origin\\)`, "s").test(css), `${selector} must animate from the resolved anchor origin.`);
 }
@@ -87,19 +87,19 @@ for (const selector of [".ix-tooltip", ".ix-popover", ".ix-menu", ".ix-select-po
 const reducedMotionStart = css.indexOf("@media (prefers-reduced-motion: reduce)");
 const reducedMotionCss = reducedMotionStart >= 0 ? css.slice(reducedMotionStart) : "";
 assert(reducedMotionCss.length > 0, "A reduced-motion contract is required.");
-for (const selector of [".ix-tooltip", ".ix-popover", ".ix-menu", ".ix-dialog", ".ix-context-switcher__popup", ".ix-collapsible__panel", ".ix-collapsible__trigger svg"]) {
+for (const selector of [".teum-tooltip", ".teum-popover", ".teum-menu", ".teum-dialog", ".teum-context-switcher__popup", ".teum-collapsible__panel", ".teum-collapsible__trigger svg"]) {
   assert(reducedMotionCss.includes(selector), `Reduced-motion coverage is missing ${selector}.`);
 }
 
 assert(css.includes("@media (hover: hover) and (pointer: fine)"), "Pointer-only hover motion needs an explicit capability query.");
-assert(css.includes(":root:has(:focus-visible) .ix-menu"), "Keyboard-opened surfaces must bypass decorative travel.");
+assert(css.includes(":root:has(:focus-visible) .teum-menu"), "Keyboard-opened surfaces must bypass decorative travel.");
 
 const expectedFinalPress = new Map([
-  [".ix-button:active:not(:disabled):not([data-disabled])", 0.98],
-  [".ix-checkbox:active:not([data-disabled])", 0.96],
-  [".ix-context-switcher:active:not([data-disabled])", 0.985],
-  [".ix-number-field__step:active", 0.96],
-  [".ix-segmented-control__item:active", 0.97],
+  [".teum-button:active:not(:disabled):not([data-disabled])", 0.98],
+  [".teum-checkbox:active:not([data-disabled])", 0.96],
+  [".teum-context-switcher:active:not([data-disabled])", 0.985],
+  [".teum-number-field__step:active", 0.96],
+  [".teum-segmented-control__item:active", 0.97],
 ]);
 
 for (const [selector, expected] of expectedFinalPress) {

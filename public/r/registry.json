@@ -1,12 +1,12 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "interaction-index",
-  "homepage": "https://minwookshin.github.io/interaction-index",
+  "name": "teum",
+  "homepage": "https://interactions.minwookshin.com",
   "items": [
     {
-      "name": "interaction-index-base",
+      "name": "teum-base",
       "type": "registry:style",
-      "title": "Interaction Index Base",
+      "title": "Teum Base",
       "description": "Inter, semantic monochrome tokens, global accessibility defaults, and the documented cascade contract.",
       "dependencies": [
         "@fontsource-variable/inter@^5.3.0",
@@ -25,9 +25,25 @@
           "target": "lib/behavior-contract.ts"
         },
         {
-          "path": "registry/styles/index-base.css",
+          "path": "registry/styles/teum-base.css",
           "type": "registry:style",
-          "target": "styles/index-base.css"
+          "target": "styles/teum-base.css"
+        }
+      ]
+    },
+    {
+      "name": "teum-tailwind",
+      "type": "registry:style",
+      "title": "Teum Tailwind Bridge",
+      "description": "Optional Tailwind CSS v4 semantic utility mapping backed by the same Teum tokens.",
+      "registryDependencies": [
+        "@teum/teum-base"
+      ],
+      "files": [
+        {
+          "path": "registry/styles/teum-tailwind.css",
+          "type": "registry:style",
+          "target": "styles/teum-tailwind.css"
         }
       ]
     },
@@ -40,7 +56,7 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -61,8 +77,8 @@
       "title": "Icon Button",
       "description": "Accessible square icon action with tooltip support.",
       "registryDependencies": [
-        "@index/button",
-        "@index/tooltip"
+        "@teum/button",
+        "@teum/tooltip"
       ],
       "files": [
         {
@@ -86,7 +102,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -107,8 +123,8 @@
       "title": "Input Group",
       "description": "One text-entry boundary with contextual addons and compact actions.",
       "registryDependencies": [
-        "@index/interaction-index-base",
-        "@index/button"
+        "@teum/teum-base",
+        "@teum/button"
       ],
       "files": [
         {
@@ -129,7 +145,7 @@
       "title": "Kbd",
       "description": "Presentational keyboard hints for keys, chords, and sequences.",
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -150,7 +166,7 @@
       "title": "Button Group",
       "description": "Related actions with shared rhythm and optional joined geometry.",
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -174,7 +190,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -195,7 +211,7 @@
       "title": "Text Field",
       "description": "Dense labelled input with hints, validation, and adornments.",
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -220,7 +236,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -244,7 +260,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -270,7 +286,7 @@
         "react-aria-components@^1.20.0"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -294,7 +310,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -317,7 +333,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -340,7 +356,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -363,7 +379,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -387,7 +403,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -411,7 +427,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/icon-button"
+        "@teum/icon-button"
       ],
       "files": [
         {
@@ -436,7 +452,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -461,8 +477,8 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base",
-        "@index/icon-button"
+        "@teum/teum-base",
+        "@teum/icon-button"
       ],
       "files": [
         {
@@ -486,7 +502,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -509,7 +525,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -532,7 +548,7 @@
         "sonner@^2.0.8"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -556,7 +572,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -581,7 +597,7 @@
         "react-aria-components@^1.20.0"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -605,7 +621,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -630,8 +646,8 @@
         "motion@^13.1.0"
       ],
       "registryDependencies": [
-        "@index/icon-button",
-        "@index/interaction-index-base"
+        "@teum/icon-button",
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -660,8 +676,8 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/button",
-        "@index/interaction-index-base"
+        "@teum/button",
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -685,7 +701,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -706,7 +722,7 @@
       "title": "Avatar",
       "description": "Identity image, deterministic fallback, status, and grouping.",
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -727,7 +743,7 @@
       "title": "Textarea",
       "description": "Long-form input with guidance, validation, and character count.",
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -751,7 +767,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -776,7 +792,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -801,7 +817,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -826,7 +842,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -850,7 +866,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -874,7 +890,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -898,7 +914,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -923,7 +939,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -944,7 +960,7 @@
       "title": "Skeleton",
       "description": "Layout-preserving content placeholder geometry.",
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -968,7 +984,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -989,7 +1005,7 @@
       "title": "Spinner",
       "description": "Compact labelled ongoing-work status.",
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -1013,8 +1029,8 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/icon-button",
-        "@index/interaction-index-base"
+        "@teum/icon-button",
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -1038,7 +1054,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -1059,7 +1075,7 @@
       "title": "Table",
       "description": "Semantic tabular structure for product-specific sorting, filtering, and selection recipes.",
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -1084,7 +1100,7 @@
         "react-aria-components@^1.20.0"
       ],
       "registryDependencies": [
-        "@index/interaction-index-base"
+        "@teum/teum-base"
       ],
       "files": [
         {
@@ -1100,9 +1116,9 @@
       ]
     },
     {
-      "name": "interaction-index",
+      "name": "teum",
       "type": "registry:block",
-      "title": "Interaction Index",
+      "title": "Teum",
       "description": "The complete 45-component light-first system with reviewed dark mode.",
       "dependencies": [
         "@base-ui/react@^1.7.0",
@@ -1128,14 +1144,14 @@
           "target": "lib/behavior-contract.ts"
         },
         {
-          "path": "registry/styles/index-base.css",
+          "path": "registry/styles/teum-base.css",
           "type": "registry:style",
-          "target": "styles/index-base.css"
+          "target": "styles/teum-base.css"
         },
         {
-          "path": "registry/styles/interaction-index.css",
+          "path": "registry/styles/teum.css",
           "type": "registry:style",
-          "target": "styles/interaction-index.css"
+          "target": "styles/teum.css"
         },
         {
           "path": "registry/components/ui/button.tsx",

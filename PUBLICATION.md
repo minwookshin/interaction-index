@@ -1,18 +1,18 @@
 # Publication configuration
 
-The source is MIT-licensed and its canonical publication metadata is configured for `minwookshin/interaction-index`. The npm package remains private and unpublished.
+The source is MIT-licensed and its canonical publication metadata is configured for `minwookshin/teum`. The npm package remains private and unpublished.
 
 ## Reconfigure deliberately
 
 If ownership or the repository name changes, update every canonical endpoint together:
 
 ```bash
-npm run configure:publication -- --repo minwookshin/interaction-index
+npm run configure:publication -- --repo minwookshin/teum
 ```
 
 The command writes canonical HTTPS repository, issue tracker, security-advisory, homepage, and GitHub-registry install metadata while preserving `private: true`.
 
-The public repository distributes the root shadcn registry and GitHub Pages hosts the generated HTTPS registry at `https://minwookshin.github.io/interaction-index/r/{name}.json`. `public/r/manifest.json` records deterministic artifact, file, API, and token hashes for reviewable updates. Versioned artifacts live at `/r/v/<version>/{name}.json`, are locked against same-version rewrites, and are served with an immutable cache header. Consumers can also install `minwookshin/interaction-index/interaction-index` directly through shadcn.
+The public repository distributes the root shadcn registry and the canonical documentation deployment serves it at `https://interactions.minwookshin.com/r/{name}.json`. `public/r/manifest.json` records deterministic artifact, file, API, and token hashes for reviewable updates. Versioned artifacts live at `/r/v/<version>/{name}.json`, are locked against same-version rewrites, and are served with an immutable cache header. Consumers can also install `minwookshin/teum/teum` directly through shadcn.
 
 The unversioned HTTPS registry is a mutable alpha channel. The versioned HTTPS path is the reproducible JSON boundary; a GitHub `v<version>` tag remains a separate repository-release claim and must not be implied before the tag exists. See `REGISTRY_UPDATES.md`.
 

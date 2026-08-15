@@ -7,5 +7,5 @@ export type SpinnerProps = ComponentPropsWithRef<"span"> & {
 };
 
 export function Spinner({ className, size = "medium", label = "Loading", ...props }: SpinnerProps) {
-  return <span className={cn("ix-loading-spinner", `ix-loading-spinner--${size}`, className)} role="status" aria-label={label} {...props}><span aria-hidden="true" /></span>;
+  return <span className={cn("teum-loading-spinner", `teum-loading-spinner--${size}`, className)} role="status" aria-label={label} {...props}><span aria-hidden="true" /></span>;
 }

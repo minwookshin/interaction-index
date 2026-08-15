@@ -1,9 +1,9 @@
 /* Generated from src/styles.css. Do not edit directly. */
 
-@layer index.tokens, index.base, index.components;
+@layer teum.tokens, teum.base, teum.components;
 
-@layer index.components {
-.ix-badge {
+@layer teum.components {
+.teum-badge {
   display: inline-flex;
   min-width: 0;
   height: 21px;
@@ -12,8 +12,8 @@
   padding: 0 6px;
   border: 1px solid transparent;
   border-radius: 6px;
-  background: color-mix(in oklch, var(--ix-bg-subtle) 88%, transparent);
-  color: var(--ix-fg-muted);
+  background: color-mix(in oklch, var(--teum-bg-subtle) 88%, transparent);
+  color: var(--teum-fg-muted);
   font-size: 11.5px;
   font-weight: 550;
   line-height: 1;
@@ -21,12 +21,12 @@
   white-space: nowrap;
 }
 
-.ix-badge__icon,
-.ix-badge__icon svg { width: 11px; height: 11px; flex: 0 0 auto; }
+.teum-badge__icon,
+.teum-badge__icon svg { width: 11px; height: 11px; flex: 0 0 auto; }
 
-.ix-badge__label { overflow: hidden; text-overflow: ellipsis; }
+.teum-badge__label { overflow: hidden; text-overflow: ellipsis; }
 
-.ix-badge__remove {
+.teum-badge__remove {
   display: grid;
   width: 17px;
   height: 17px;
@@ -39,19 +39,19 @@
   cursor: pointer;
 }
 
-.ix-badge__remove svg { width: 11px; height: 11px; }
+.teum-badge__remove svg { width: 11px; height: 11px; }
 
-.ix-badge__remove:focus-visible { outline: 1.5px solid currentColor; outline-offset: -2px; }
+.teum-badge__remove:focus-visible { outline: 1.5px solid currentColor; outline-offset: -2px; }
 
 @media (hover: hover) and (pointer: fine) {
-.ix-badge__remove:hover { background: var(--ix-hover); color: var(--ix-ink); }
+.teum-badge__remove:hover { background: var(--teum-hover); color: var(--teum-ink); }
 }
 
-.ix-badge__remove { transition: color var(--ix-hover-duration), background-color var(--ix-hover-duration), transform var(--ix-press-duration) var(--ix-ease-out); }
+.teum-badge__remove { transition: color var(--teum-hover-duration), background-color var(--teum-hover-duration), transform var(--teum-press-duration) var(--teum-ease-out); }
 
-.ix-badge__remove:active { transform: scale(.96); }
+.teum-badge__remove:active { transform: scale(.96); }
 
 @media (prefers-reduced-motion: reduce) {
-.ix-badge__remove:active { transform: none; }
+.teum-badge__remove:active { transform: none; }
 }
 }

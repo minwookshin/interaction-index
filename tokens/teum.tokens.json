@@ -1,18 +1,18 @@
 {
-  "$description": "Interaction Index source tokens in the DTCG 2025.10 format. Light is the default value and dark values live in the documented Interaction Index mode extension.",
+  "$description": "Teum source tokens in the DTCG 2025.10 format. Light is the default value and dark values live in the documented Teum mode extension.",
   "$extensions": {
-    "dev.interaction-index": {
+    "dev.teum": {
       "specification": "DTCG 2025.10",
       "modes": ["light", "dark"],
       "defaultMode": "light",
-      "modeExtension": "$extensions.dev.interaction-index.modeValues"
+      "modeExtension": "$extensions.dev.teum.modeValues"
     }
   },
   "foundation": {
     "$description": "Theme-independent typography, geometry, rhythm, motion, and layer decisions.",
     "$extensions": {
-      "dev.interaction-index": {
-        "cssPrefix": "--ix-",
+      "dev.teum": {
+        "cssPrefix": "--teum-",
         "scope": "foundation"
       }
     },
@@ -129,7 +129,7 @@
         "$description": "Compact UI letter spacing expressed as an em ratio.",
         "$value": -0.006,
         "$extensions": {
-          "dev.interaction-index": {
+          "dev.teum": {
             "cssUnit": "em"
           }
         }
@@ -357,8 +357,8 @@
   "theme": {
     "$description": "Public theme roles. Raw graphite steps support semantic aliases; components consume the aliases.",
     "$extensions": {
-      "dev.interaction-index": {
-        "cssPrefix": "--ix-",
+      "dev.teum": {
+        "cssPrefix": "--teum-",
         "scope": "theme"
       }
     },
@@ -366,43 +366,43 @@
       "$type": "color",
       "gray-50": {
         "$value": { "colorSpace": "srgb", "components": [0.968627, 0.968627, 0.972549], "hex": "#f7f7f8" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.066667, 0.066667, 0.070588], "hex": "#111112" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.066667, 0.066667, 0.070588], "hex": "#111112" } } } }
       },
       "gray-100": {
         "$value": { "colorSpace": "srgb", "components": [0.94902, 0.94902, 0.952941], "hex": "#f2f2f3" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.090196, 0.090196, 0.094118], "hex": "#171718" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.090196, 0.090196, 0.094118], "hex": "#171718" } } } }
       },
       "gray-200": {
         "$value": { "colorSpace": "srgb", "components": [0.898039, 0.898039, 0.905882], "hex": "#e5e5e7" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.133333, 0.133333, 0.141176], "hex": "#222224" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.133333, 0.133333, 0.141176], "hex": "#222224" } } } }
       },
       "gray-300": {
         "$value": { "colorSpace": "srgb", "components": [0.819608, 0.819608, 0.831373], "hex": "#d1d1d4" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.196078, 0.196078, 0.207843], "hex": "#323235" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.196078, 0.196078, 0.207843], "hex": "#323235" } } } }
       },
       "gray-400": {
         "$value": { "colorSpace": "srgb", "components": [0.682353, 0.682353, 0.694118], "hex": "#aeaeb1" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.333333, 0.333333, 0.34902], "hex": "#555559" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.333333, 0.333333, 0.34902], "hex": "#555559" } } } }
       },
       "gray-500": {
         "$value": { "colorSpace": "srgb", "components": [0.556863, 0.556863, 0.576471], "hex": "#8e8e93" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.521569, 0.521569, 0.545098], "hex": "#85858b" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.521569, 0.521569, 0.545098], "hex": "#85858b" } } } }
       },
       "gray-600": {
         "$value": { "colorSpace": "srgb", "components": [0.388235, 0.388235, 0.4], "hex": "#636366" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.705882, 0.705882, 0.729412], "hex": "#b4b4ba" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.705882, 0.705882, 0.729412], "hex": "#b4b4ba" } } } }
       },
       "gray-700": {
         "$value": { "colorSpace": "srgb", "components": [0.282353, 0.282353, 0.290196], "hex": "#48484a" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.819608, 0.819608, 0.835294], "hex": "#d1d1d5" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.819608, 0.819608, 0.835294], "hex": "#d1d1d5" } } } }
       },
       "gray-800": {
         "$value": { "colorSpace": "srgb", "components": [0.172549, 0.172549, 0.180392], "hex": "#2c2c2e" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.898039, 0.898039, 0.909804], "hex": "#e5e5e8" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.898039, 0.898039, 0.909804], "hex": "#e5e5e8" } } } }
       },
       "gray-900": {
         "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "hex": "#1c1c1e" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.94902, 0.94902, 0.956863], "hex": "#f2f2f4" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.94902, 0.94902, 0.956863], "hex": "#f2f2f4" } } } }
       }
     },
     "surface": {
@@ -410,42 +410,42 @@
       "bg-canvas": {
         "$description": "Application and documentation canvas.",
         "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "hex": "#ffffff" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.054902, 0.054902, 0.058824], "hex": "#0e0e0f" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.054902, 0.054902, 0.058824], "hex": "#0e0e0f" } } } }
       },
       "bg-sidebar": {
         "$description": "Translucent persistent navigation surface.",
         "$value": { "colorSpace": "srgb", "components": [0.968627, 0.968627, 0.972549], "alpha": 0.9 },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.062745, 0.062745, 0.066667], "alpha": 0.92 } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.062745, 0.062745, 0.066667], "alpha": 0.92 } } } }
       },
       "bg-stage": {
         "$description": "Quiet preview and product-state stage.",
         "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.026 },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.035 } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.035 } } } }
       },
       "bg-subtle": {
         "$description": "Selected rows and low-emphasis grouped surfaces.",
         "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.043 },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.056 } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.056 } } } }
       },
       "bg-surface": {
         "$description": "Persistent composition surface above the canvas.",
         "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.94 },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.078431, 0.078431, 0.082353], "hex": "#141415" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.078431, 0.078431, 0.082353], "hex": "#141415" } } } }
       },
       "bg-control": {
         "$description": "Compact control fill.",
         "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.98 },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.101961, 0.101961, 0.109804], "hex": "#1a1a1c" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.101961, 0.101961, 0.109804], "hex": "#1a1a1c" } } } }
       },
       "bg-raised": {
         "$description": "Persistent raised Float surface.",
         "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "hex": "#ffffff" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.117647, 0.117647, 0.12549], "hex": "#1e1e20" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.117647, 0.117647, 0.12549], "hex": "#1e1e20" } } } }
       },
       "bg-overlay": {
         "$description": "Base temporary overlay surface.",
         "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "hex": "#ffffff" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.133333, 0.133333, 0.145098], "hex": "#222225" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.133333, 0.133333, 0.145098], "hex": "#222225" } } } }
       },
       "bg-float": {
         "$description": "Public Float elevation role.",
@@ -454,22 +454,22 @@
       "bg-flyout": {
         "$description": "Anchored temporary Flyout surface.",
         "$value": "{theme.surface.bg-overlay}",
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.14902, 0.14902, 0.160784], "hex": "#262629" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.14902, 0.14902, 0.160784], "hex": "#262629" } } } }
       },
       "bg-modal": {
         "$description": "Focus-trapping Modal surface.",
         "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "hex": "#ffffff" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": "{theme.surface.bg-overlay}" } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": "{theme.surface.bg-overlay}" } } }
       },
       "bg-scrim": {
         "$description": "Modal and drawer background attenuation.",
         "$value": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.18 },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.44 } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.44 } } } }
       },
       "bg-code": {
         "$description": "Collapsed and expanded source-code surface.",
         "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.02 },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.025 } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.025 } } } }
       },
       "canvas": { "$value": "{theme.surface.bg-canvas}" },
       "sidebar": { "$value": "{theme.surface.bg-sidebar}" },
@@ -483,42 +483,42 @@
       "hover": {
         "$description": "Frequent pointer hover feedback.",
         "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.048 },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.064 } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.064 } } } }
       },
       "active": {
         "$description": "Pressed or actively manipulated fill.",
         "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.088 },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.112 } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.112 } } } }
       },
       "selected": {
         "$description": "Persistent selected-row fill.",
         "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.068 },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.088 } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.088 } } } }
       },
       "inverse": {
         "$description": "Primary monochrome action fill.",
         "$value": { "colorSpace": "srgb", "components": [0.090196, 0.090196, 0.098039], "hex": "#171719" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.945098, 0.952941, 0.956863], "hex": "#f1f3f4" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.945098, 0.952941, 0.956863], "hex": "#f1f3f4" } } } }
       },
       "inverse-hover": {
         "$description": "Primary action hover fill.",
         "$value": { "colorSpace": "srgb", "components": [0.14902, 0.14902, 0.160784], "hex": "#262629" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.886275, 0.898039, 0.905882], "hex": "#e2e5e7" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.886275, 0.898039, 0.905882], "hex": "#e2e5e7" } } } }
       },
       "on-inverse": {
         "$description": "Text and icon color on inverse actions.",
         "$value": { "colorSpace": "srgb", "components": [0.972549, 0.972549, 0.972549], "hex": "#f8f8f8" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.066667, 0.07451, 0.082353], "hex": "#111315" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.066667, 0.07451, 0.082353], "hex": "#111315" } } } }
       },
       "scrollbar-thumb": {
         "$description": "Monochrome scrollbar thumb.",
         "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.18 },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.2 } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.2 } } } }
       },
       "scrollbar-thumb-hover": {
         "$description": "Scrollbar thumb hover state.",
         "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.3 },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.34 } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.34 } } } }
       }
     },
     "foreground": {
@@ -534,7 +534,7 @@
       "fg-subtle": {
         "$description": "Tertiary metadata and quiet labels.",
         "$value": "{theme.palette.gray-600}",
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.556863, 0.556863, 0.576471], "hex": "#8e8e93" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.556863, 0.556863, 0.576471], "hex": "#8e8e93" } } } }
       },
       "fg-disabled": {
         "$description": "Unavailable control content.",
@@ -543,7 +543,7 @@
       "fg-danger": {
         "$description": "Accessible semantic foreground for invalid values, errors, destructive actions, and critical feedback.",
         "$value": { "colorSpace": "srgb", "components": [0.705882, 0.137255, 0.094118], "hex": "#b42318" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 0.541176, 0.501961], "hex": "#ff8a80" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 0.541176, 0.501961], "hex": "#ff8a80" } } } }
       },
       "ink": { "$value": "{theme.foreground.fg-default}" },
       "ink-secondary": { "$value": "{theme.foreground.fg-muted}" },
@@ -555,17 +555,17 @@
       "separator": {
         "$description": "Low-contrast structural separator.",
         "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.055 },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.072 } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.072 } } } }
       },
       "control-border": {
         "$description": "Default control boundary.",
         "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.105 },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.13 } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.13 } } } }
       },
       "control-border-hover": {
         "$description": "Stronger interactive boundary.",
         "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.2 },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.26 } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.26 } } } }
       },
       "border-subtle": { "$value": "{theme.border.separator}" },
       "border": { "$value": "{theme.border.control-border}" },
@@ -576,22 +576,22 @@
       "focus-control": {
         "$description": "Keyboard focus for product controls.",
         "$value": { "colorSpace": "srgb", "components": [0.521569, 0.521569, 0.545098], "hex": "#85858b" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.643137, 0.643137, 0.666667], "hex": "#a4a4aa" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.643137, 0.643137, 0.666667], "hex": "#a4a4aa" } } } }
       },
       "focus-navigation": {
         "$description": "Keyboard focus for persistent navigation.",
         "$value": { "colorSpace": "srgb", "components": [0.466667, 0.466667, 0.490196], "hex": "#77777d" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.678431, 0.678431, 0.701961], "hex": "#adadb3" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.678431, 0.678431, 0.701961], "hex": "#adadb3" } } } }
       },
       "focus-documentation": {
         "$description": "Keyboard focus for documentation disclosures and anchors.",
         "$value": { "colorSpace": "srgb", "components": [0.521569, 0.521569, 0.545098], "hex": "#85858b" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.643137, 0.643137, 0.666667], "hex": "#a4a4aa" } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.643137, 0.643137, 0.666667], "hex": "#a4a4aa" } } } }
       },
       "focus-halo": {
         "$description": "Quiet supporting halo where a single outline needs separation.",
         "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.14 },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.18 } } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.18 } } } }
       },
       "switch-track": {
         "$description": "Unchecked switch track.",
@@ -600,7 +600,7 @@
       "switch-thumb": {
         "$description": "Switch thumb surface.",
         "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "hex": "#ffffff" },
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": "{theme.palette.gray-800}" } } }
+        "$extensions": { "dev.teum": { "modeValues": { "dark": "{theme.palette.gray-800}" } } }
       },
       "focus": {
         "$description": "Compatibility alias for product-control focus.",
@@ -629,7 +629,7 @@
           }
         ],
         "$extensions": {
-          "dev.interaction-index": {
+          "dev.teum": {
             "modeValues": {
               "dark": [
                 {
@@ -659,7 +659,7 @@
           { "color": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.04 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 1, "unit": "px" }, "blur": { "value": 2, "unit": "px" }, "spread": { "value": 0, "unit": "px" } },
           { "color": "{theme.border.separator}", "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 0, "unit": "px" }, "spread": { "value": 1, "unit": "px" } }
         ],
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": [
+        "$extensions": { "dev.teum": { "modeValues": { "dark": [
           { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.48 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 4, "unit": "px" }, "blur": { "value": 16, "unit": "px" }, "spread": { "value": -8, "unit": "px" } },
           { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.28 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 1, "unit": "px" }, "blur": { "value": 2, "unit": "px" }, "spread": { "value": 0, "unit": "px" } },
           { "color": "{theme.border.separator}", "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 0, "unit": "px" }, "spread": { "value": 1, "unit": "px" } }
@@ -672,7 +672,7 @@
           { "color": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.05 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 1, "unit": "px" }, "blur": { "value": 2, "unit": "px" }, "spread": { "value": 0, "unit": "px" } },
           { "color": "{theme.border.control-border}", "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 0, "unit": "px" }, "spread": { "value": 1, "unit": "px" } }
         ],
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": [
+        "$extensions": { "dev.teum": { "modeValues": { "dark": [
           { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.56 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 8, "unit": "px" }, "blur": { "value": 26, "unit": "px" }, "spread": { "value": -8, "unit": "px" } },
           { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.34 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 1, "unit": "px" }, "blur": { "value": 2, "unit": "px" }, "spread": { "value": 0, "unit": "px" } },
           { "color": "{theme.border.control-border}", "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 0, "unit": "px" }, "spread": { "value": 1, "unit": "px" } }
@@ -685,7 +685,7 @@
           { "color": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.09 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 4, "unit": "px" }, "blur": { "value": 10, "unit": "px" }, "spread": { "value": -4, "unit": "px" } },
           { "color": "{theme.border.separator}", "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 0, "unit": "px" }, "spread": { "value": 1, "unit": "px" } }
         ],
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": [
+        "$extensions": { "dev.teum": { "modeValues": { "dark": [
           { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.68 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 20, "unit": "px" }, "blur": { "value": 44, "unit": "px" }, "spread": { "value": -10, "unit": "px" } },
           { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.42 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 5, "unit": "px" }, "blur": { "value": 14, "unit": "px" }, "spread": { "value": -4, "unit": "px" } },
           { "color": "{theme.border.separator}", "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 0, "unit": "px" }, "spread": { "value": 1, "unit": "px" } }
@@ -702,7 +702,7 @@
           { "color": { "colorSpace": "oklch", "components": [0.17, 0.004, 275], "alpha": 0.065 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 8, "unit": "px" }, "blur": { "value": 24, "unit": "px" }, "spread": { "value": 0, "unit": "px" } },
           { "color": "{theme.border.border}", "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 0, "unit": "px" }, "spread": { "value": 1, "unit": "px" } }
         ],
-        "$extensions": { "dev.interaction-index": { "modeValues": { "dark": [
+        "$extensions": { "dev.teum": { "modeValues": { "dark": [
           { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.58 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 42, "unit": "px" }, "blur": { "value": 120, "unit": "px" }, "spread": { "value": 0, "unit": "px" } },
           { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.34 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 10, "unit": "px" }, "blur": { "value": 30, "unit": "px" }, "spread": { "value": 0, "unit": "px" } },
           { "color": "{theme.border.border}", "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 0, "unit": "px" }, "spread": { "value": 1, "unit": "px" } }

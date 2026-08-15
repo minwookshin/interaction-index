@@ -12,33 +12,33 @@ export type FieldsetProps = FieldsetPrimitive.Root.Props;
 export type FieldsetLegendProps = FieldsetPrimitive.Legend.Props;
 
 export function Field({ className, ...props }: FieldProps) {
-  return <FieldPrimitive.Root className={cn("ix-field-layout", className)} {...props} />;
+  return <FieldPrimitive.Root className={cn("teum-field-layout", className)} {...props} />;
 }
 
 export function FieldLabel({ className, ...props }: FieldLabelProps) {
-  return <FieldPrimitive.Label className={cn("ix-field-layout__label", className)} {...props} />;
+  return <FieldPrimitive.Label className={cn("teum-field-layout__label", className)} {...props} />;
 }
 
 export function FieldDescription({ className, ...props }: FieldDescriptionProps) {
-  return <FieldPrimitive.Description className={cn("ix-field-layout__description", className)} {...props} />;
+  return <FieldPrimitive.Description className={cn("teum-field-layout__description", className)} {...props} />;
 }
 
 export function FieldError({ className, match = true, ...props }: FieldErrorProps) {
-  return <FieldPrimitive.Error className={cn("ix-field-layout__error", className)} match={match} {...props} />;
+  return <FieldPrimitive.Error className={cn("teum-field-layout__error", className)} match={match} {...props} />;
 }
 
 export function FieldControl({ className, ...props }: FieldControlProps) {
-  return <FieldPrimitive.Control className={cn("ix-field-layout__control", className)} {...props} />;
+  return <FieldPrimitive.Control className={cn("teum-field-layout__control", className)} {...props} />;
 }
 
 export function Fieldset({ className, ...props }: FieldsetProps) {
-  return <FieldsetPrimitive.Root className={cn("ix-fieldset", className)} {...props} />;
+  return <FieldsetPrimitive.Root className={cn("teum-fieldset", className)} {...props} />;
 }
 
 export function FieldsetLegend({ className, ...props }: FieldsetLegendProps) {
-  return <FieldsetPrimitive.Legend className={cn("ix-fieldset__legend", className)} {...props} />;
+  return <FieldsetPrimitive.Legend className={cn("teum-fieldset__legend", className)} {...props} />;
 }
 
 export function FieldGroup({ className, ...props }: ComponentPropsWithRef<"div">) {
-  return <div className={cn("ix-field-group", className)} {...props} />;
+  return <div className={cn("teum-field-group", className)} {...props} />;
 }

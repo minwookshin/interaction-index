@@ -1,68 +1,64 @@
 /* Generated from src/styles.css. Do not edit directly. */
 
-@layer index.tokens, index.base, index.components;
+@layer teum.tokens, teum.base, teum.components;
 
-@layer index.components {
-.ix-choice-row { display: flex; align-items: flex-start; gap: 9px; }
+@layer teum.components {
+.teum-choice-row { display: flex; align-items: flex-start; gap: 9px; }
 
-.ix-choice-copy { display: grid; gap: 3px; color: var(--ix-ink); font-size: 13.5px; cursor: pointer; }
+.teum-choice-copy { display: grid; gap: 3px; color: var(--teum-ink); font-size: 13.5px; cursor: pointer; }
 
-.ix-choice-copy small { color: var(--ix-ink-tertiary); font-size: 11.5px; font-weight: 400; line-height: 1.45; }
+.teum-choice-copy small { color: var(--teum-ink-tertiary); font-size: 11.5px; font-weight: 400; line-height: 1.45; }
 
-.ix-checkbox { position: relative; display: grid; width: 16px; height: 16px; flex: none; margin-top: 1px; padding: 0; place-items: center; border: 1px solid var(--ix-border-strong); border-radius: 4px; background: var(--ix-surface); color: var(--ix-on-inverse); cursor: pointer; transition: background var(--ix-hover-duration), border-color var(--ix-hover-duration), transform var(--ix-press-duration) var(--ix-ease-out); }
+.teum-checkbox { position: relative; display: grid; width: 16px; height: 16px; flex: none; margin-top: 1px; padding: 0; place-items: center; border: 1px solid var(--teum-border-strong); border-radius: 4px; background: var(--teum-surface); color: var(--teum-on-inverse); cursor: pointer; transition: background var(--teum-hover-duration), border-color var(--teum-hover-duration), transform var(--teum-press-duration) var(--teum-ease-out); }
 
-.ix-checkbox::after { position: absolute; inset: -8px; content: ""; }
+.teum-checkbox::after { position: absolute; inset: -8px; content: ""; }
 
-.ix-checkbox[data-checked] { border-color: var(--ix-inverse); background: var(--ix-inverse); color: var(--ix-on-inverse); }
+.teum-checkbox[data-checked] { border-color: var(--teum-inverse); background: var(--teum-inverse); color: var(--teum-on-inverse); }
 
-.ix-checkbox[data-indeterminate] { border-color: var(--ix-inverse); background: var(--ix-inverse); color: var(--ix-on-inverse); }
+.teum-checkbox[data-indeterminate] { border-color: var(--teum-inverse); background: var(--teum-inverse); color: var(--teum-on-inverse); }
 
-.ix-checkbox[data-disabled] { opacity: 0.42; cursor: not-allowed; }
+.teum-checkbox[data-disabled] { opacity: 0.42; cursor: not-allowed; }
 
-.ix-checkbox:active:not([data-disabled]) { transform: scale(0.96); }
+.teum-checkbox:active:not([data-disabled]) { transform: scale(0.96); }
 
-.ix-checkbox__indicator { display: grid; place-items: center; }
+.teum-checkbox__indicator { display: grid; place-items: center; }
 
-.ix-checkbox__indicator svg { width: 11px; height: 11px; }
+.teum-checkbox__indicator svg { width: 11px; height: 11px; }
 
-.ix-checkbox__mixed { display: none; }
+.teum-checkbox__mixed { display: none; }
 
-.ix-checkbox[data-indeterminate] .ix-checkbox__check { display: none; }
+.teum-checkbox[data-indeterminate] .teum-checkbox__check { display: none; }
 
-.ix-checkbox[data-indeterminate] .ix-checkbox__mixed { display: block; }
+.teum-checkbox[data-indeterminate] .teum-checkbox__mixed { display: block; }
 
-.ix-choice-row:has([data-disabled]) .ix-choice-copy { opacity: 0.48; cursor: not-allowed; }
+.teum-choice-row:has([data-disabled]) .teum-choice-copy { opacity: 0.48; cursor: not-allowed; }
 
 @media (forced-colors: active) {
-.ix-checkbox { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }
+.teum-checkbox { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }
 
-.ix-checkbox[data-checked],
-.ix-checkbox[data-indeterminate] { background: Highlight; color: HighlightText; }
+.teum-checkbox[data-checked],
+.teum-checkbox[data-indeterminate] { background: Highlight; color: HighlightText; }
 }
 
-:root[data-theme="dark"] .ix-checkbox[data-checked],
-:root[data-theme="dark"] .ix-checkbox[data-indeterminate] { box-shadow: none; }
+:root[data-theme="dark"] .teum-checkbox[data-checked],
+:root[data-theme="dark"] .teum-checkbox[data-indeterminate] { box-shadow: none; }
 
-.ix-checkbox__indicator {
+.teum-checkbox__indicator {
   opacity: 1;
   transform: scale(1);
-  transition: opacity 140ms var(--ix-ease-out), transform 140ms var(--ix-ease-out);
+  transition: opacity 140ms var(--teum-ease-out), transform 140ms var(--teum-ease-out);
 }
 
 @starting-style {
-.ix-checkbox__indicator {
+.teum-checkbox__indicator {
     opacity: 0;
     transform: scale(.72);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-.ix-checkbox__indicator { transition-duration: 0.01ms; }
-}
+.teum-checkbox:active:not([data-disabled]) { transform: none; }
 
-@media (prefers-reduced-motion: reduce) {
-.ix-checkbox:active:not([data-disabled]) { transform: none; }
-
-.ix-checkbox__indicator { transition-duration: 0.01ms; }
+.teum-checkbox__indicator { transition-duration: 0.01ms; }
 }
 }

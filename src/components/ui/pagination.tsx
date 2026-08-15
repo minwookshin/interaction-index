@@ -29,7 +29,7 @@ export function Pagination({ page, totalPages, onPageChange, siblingCount = 1, c
   const safeSiblingCount = Math.max(0, Math.floor(siblingCount));
   const setPage = (next: number) => onPageChange(Math.min(safeTotalPages, Math.max(1, next)));
   return (
-    <nav className={cn("ix-pagination", className)} aria-label={label} {...props}>
+    <nav className={cn("teum-pagination", className)} aria-label={label} {...props}>
       <button type="button" aria-label="Previous page" disabled={safePage <= 1} onClick={() => setPage(safePage - 1)}><CaretLeft /></button>
       {pageRange(safePage, safeTotalPages, safeSiblingCount).map((item) => typeof item === "number" ? <button type="button" key={item} aria-label={`Page ${item}`} aria-current={item === safePage ? "page" : undefined} onClick={() => setPage(item)}>{item}</button> : <span key={item} aria-hidden="true"><DotsThree /></span>)}
       <button type="button" aria-label="Next page" disabled={safePage >= safeTotalPages} onClick={() => setPage(safePage + 1)}><CaretRight /></button>

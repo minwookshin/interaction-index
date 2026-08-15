@@ -1,4 +1,4 @@
-# Interaction Index public API report
+# Teum public API report
 
 > Generated from the TypeScript compiler. Do not edit directly.
 

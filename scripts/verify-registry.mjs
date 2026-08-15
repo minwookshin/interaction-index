@@ -41,10 +41,10 @@ for (const item of items) {
 
   for (const dependency of item.registryDependencies ?? []) {
     if (uniqueNames.has(dependency)) {
-      fail(`${item.name} uses bare internal dependency ${dependency}; use @index/${dependency}`);
+      fail(`${item.name} uses bare internal dependency ${dependency}; use @teum/${dependency}`);
     }
-    if (dependency.startsWith("@index/") && !uniqueNames.has(dependency.slice("@index/".length))) {
-      fail(`${item.name} references unknown @index dependency ${dependency}`);
+    if (dependency.startsWith("@teum/") && !uniqueNames.has(dependency.slice("@teum/".length))) {
+      fail(`${item.name} references unknown @teum dependency ${dependency}`);
     }
   }
 
@@ -56,14 +56,14 @@ for (const item of items) {
   }
 }
 
-const layerOrder = "@layer index.tokens, index.base, index.components;";
-const registryBasePath = resolve(root, "registry/styles/index-base.css");
+const layerOrder = "@layer teum.tokens, teum.base, teum.components;";
+const registryBasePath = resolve(root, "registry/styles/teum-base.css");
 const registryBase = await readFile(registryBasePath, "utf8").catch(() => fail("generated base stylesheet is missing"));
 if (!registryBase.includes(layerOrder)) fail("base stylesheet does not declare the public cascade order");
-if (!registryBase.includes("@layer index.tokens") || !registryBase.includes("@layer index.base")) {
+if (!registryBase.includes("@layer teum.tokens") || !registryBase.includes("@layer teum.base")) {
   fail("base stylesheet does not separate tokens from global defaults");
 }
-for (const selector of [".ix-button", ".ix-dialog", ".ix-table", ".ix-shared-detail"]) {
+for (const selector of [".teum-button", ".teum-dialog", ".teum-table", ".teum-shared-detail"]) {
   if (registryBase.includes(selector)) fail(`base stylesheet leaked component selector ${selector}`);
 }
 if (Buffer.byteLength(registryBase) > 12_000) fail("base stylesheet exceeds the 12 KB source budget");
@@ -76,7 +76,7 @@ for (const item of components) {
   if (!paths.has(componentStylePath)) fail(`${item.name} does not ship its scoped stylesheet`);
 
   const wrapper = await readFile(resolve(root, componentSourcePath), "utf8");
-  const expectedImports = `import "../../styles/index-base.css";\nimport "../../styles/components/${item.name}.css";`;
+  const expectedImports = `import "../../styles/teum-base.css";\nimport "../../styles/components/${item.name}.css";`;
   if (!wrapper.startsWith(expectedImports)) {
     fail(`${item.name} does not automatically load the shared contract and its scoped stylesheet`);
   }
@@ -92,7 +92,7 @@ for (const item of components) {
 
   const componentStyle = await readFile(resolve(root, componentStylePath), "utf8");
   if (componentStyle.includes("@import")) fail(`${item.name} stylesheet contains an unexpected transitive import`);
-  if (!componentStyle.includes(layerOrder) || !componentStyle.includes("@layer index.components")) {
+  if (!componentStyle.includes(layerOrder) || !componentStyle.includes("@layer teum.components")) {
     fail(`${item.name} stylesheet does not respect the public cascade order`);
   }
   for (const documentationSelector of [".system-window", ".live-specimen", ".component-api", ".state-tile", ".foundation-", ".pattern-"]) {
@@ -102,19 +102,27 @@ for (const item of components) {
 }
 
 const buttonStyle = await readFile(resolve(root, "registry/styles/components/button.css"), "utf8");
-for (const unrelatedSelector of [".ix-dialog", ".ix-table", ".ix-shared-detail"]) {
+for (const unrelatedSelector of [".teum-dialog", ".teum-table", ".teum-shared-detail"]) {
   if (buttonStyle.includes(unrelatedSelector)) fail(`button stylesheet leaked ${unrelatedSelector}`);
 }
 
-const completeSystem = items.find((item) => item.name === "interaction-index");
-if (!completeSystem) fail("missing interaction-index complete-system item");
+const completeSystem = items.find((item) => item.name === "teum");
+if (!completeSystem) fail("missing teum complete-system item");
 
-const registryStylePath = resolve(root, "src/interaction-index.css");
+const tailwindBridge = items.find((item) => item.name === "teum-tailwind");
+if (!tailwindBridge) fail("missing optional Tailwind bridge item");
+const tailwindBridgeSource = await readFile(resolve(root, "registry/styles/teum-tailwind.css"), "utf8")
+  .catch(() => fail("generated Tailwind bridge stylesheet is missing"));
+for (const contract of ["@theme inline", "--color-background", "--shadow-flyout", "var(--teum-bg-canvas)"]) {
+  if (!tailwindBridgeSource.includes(contract)) fail(`Tailwind bridge is missing ${contract}`);
+}
+
+const registryStylePath = resolve(root, "src/teum.css");
 const registryStyle = await readFile(registryStylePath, "utf8").catch(() => fail("generated registry stylesheet is missing; run npm run build:registry"));
-for (const selector of [".ix-button", ".ix-field", ".ix-menu", ".ix-dialog", ".ix-table", ".ix-shared-detail"]) {
+for (const selector of [".teum-button", ".teum-field", ".teum-menu", ".teum-dialog", ".teum-table", ".teum-shared-detail"]) {
   if (!registryStyle.includes(selector)) fail(`registry stylesheet is missing ${selector}`);
 }
-for (const token of ["--ix-bg-flyout", "--ix-bg-modal", "--ix-shadow-flyout", "--ix-shadow-modal", "--ix-layer-flyout", "--ix-layer-modal", "--ix-layer-toast"]) {
+for (const token of ["--teum-bg-flyout", "--teum-bg-modal", "--teum-shadow-flyout", "--teum-shadow-modal", "--teum-layer-flyout", "--teum-layer-modal", "--teum-layer-toast"]) {
   if (!registryStyle.includes(token)) fail(`registry stylesheet is missing layer token ${token}`);
 }
 for (const [path, layer] of [
@@ -130,7 +138,7 @@ for (const [path, layer] of [
   if (!source.includes(`data-layer="${layer}"`)) fail(`${path} does not declare the ${layer} layer`);
 }
 const toastSource = await readFile(resolve(root, "src/components/ui/toast.tsx"), "utf8");
-if (!/className=(?:"ix-toaster"|\{[^}]*["']ix-toaster["'][^}]*\})/s.test(toastSource)) fail("toast does not declare the toaster layer class");
+if (!/className=(?:"teum-toaster"|\{[^}]*["']teum-toaster["'][^}]*\})/s.test(toastSource)) fail("toast does not declare the toaster layer class");
 for (const documentationSelector of [".system-window", ".live-specimen", ".component-api", ".state-tile"]) {
   if (registryStyle.includes(documentationSelector)) fail(`registry stylesheet leaked documentation selector ${documentationSelector}`);
 }
@@ -139,9 +147,9 @@ if (gzipSync(registryStyle).byteLength > 18_000) fail("registry stylesheet excee
 
 const completePaths = new Set(completeSystem.files.map((file) => file.path));
 const requiredCompletePaths = new Set([
-  ...items.find((item) => item.name === "interaction-index-base").files.map((file) => file.path),
+  ...items.find((item) => item.name === "teum-base").files.map((file) => file.path),
   ...components.flatMap((item) => item.files.map((file) => file.path)),
-  "registry/styles/interaction-index.css",
+  "registry/styles/teum.css",
   "registry/components/ui/index.ts",
 ]);
 

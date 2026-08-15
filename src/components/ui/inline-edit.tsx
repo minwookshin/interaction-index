@@ -103,13 +103,13 @@ export function InlineEdit({ value, onSave, label = "Edit value", placeholder, c
   };
 
   return (
-    <div className={cn("ix-inline-edit", className)} data-editing={editing || undefined} data-status={status}>
+    <div className={cn("teum-inline-edit", className)} data-editing={editing || undefined} data-status={status}>
       {editing ? (
         <>
-          <div className="ix-inline-edit__control">
+          <div className="teum-inline-edit__control">
             <input
               ref={inputRef}
-              className="ix-inline-edit__input"
+              className="teum-inline-edit__input"
               value={draft}
               placeholder={placeholder}
               aria-label={label}
@@ -120,15 +120,15 @@ export function InlineEdit({ value, onSave, label = "Edit value", placeholder, c
               onKeyDown={onKeyDown}
               onBlur={() => void commit(false)}
             />
-            {status === "saving" && <span className="ix-inline-edit__saving" aria-hidden="true"><span className="ix-spinner" /></span>}
+            {status === "saving" && <span className="teum-inline-edit__saving" aria-hidden="true"><span className="teum-spinner" /></span>}
           </div>
-          {error && <span id={errorId} className="ix-inline-edit__error">{error}</span>}
+          {error && <span id={errorId} className="teum-inline-edit__error">{error}</span>}
         </>
       ) : (
         <button
           ref={triggerRef}
           type="button"
-          className="ix-inline-edit__value"
+          className="teum-inline-edit__value"
           onClick={() => setEditing(true)}
           aria-label={`${label}: ${value}`}
           disabled={disabled}
@@ -137,7 +137,7 @@ export function InlineEdit({ value, onSave, label = "Edit value", placeholder, c
           <PencilSimple aria-hidden="true" />
         </button>
       )}
-      <span className="ix-sr-only" aria-live="polite">{announcement}</span>
+      <span className="teum-sr-only" aria-live="polite">{announcement}</span>
     </div>
   );
 }

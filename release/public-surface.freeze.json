@@ -57,7 +57,7 @@
       "table",
       "tree"
     ],
-    "registryItemCount": 47
+    "registryItemCount": 48
   },
   "publicApi": {
     "exportCount": 210,
@@ -1427,871 +1427,871 @@
       {
         "path": "foundation.system.neutral-h",
         "type": "number",
-        "cssVariable": "--ix-neutral-h",
+        "cssVariable": "--teum-neutral-h",
         "deprecated": false
       },
       {
         "path": "foundation.system.neutral-c",
         "type": "number",
-        "cssVariable": "--ix-neutral-c",
+        "cssVariable": "--teum-neutral-c",
         "deprecated": false
       },
       {
         "path": "foundation.system.sidebar-l",
         "type": "number",
-        "cssVariable": "--ix-sidebar-l",
+        "cssVariable": "--teum-sidebar-l",
         "deprecated": false
       },
       {
         "path": "foundation.system.stage-l",
         "type": "number",
-        "cssVariable": "--ix-stage-l",
+        "cssVariable": "--teum-stage-l",
         "deprecated": false
       },
       {
         "path": "foundation.system.border-alpha",
         "type": "number",
-        "cssVariable": "--ix-border-alpha",
+        "cssVariable": "--teum-border-alpha",
         "deprecated": false
       },
       {
         "path": "foundation.typography.font-ui",
         "type": "fontFamily",
-        "cssVariable": "--ix-font-ui",
+        "cssVariable": "--teum-font-ui",
         "deprecated": false
       },
       {
         "path": "foundation.typography.font-code",
         "type": "fontFamily",
-        "cssVariable": "--ix-font-code",
+        "cssVariable": "--teum-font-code",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.type-metadata",
         "type": "dimension",
-        "cssVariable": "--ix-type-metadata",
+        "cssVariable": "--teum-type-metadata",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.type-label",
         "type": "dimension",
-        "cssVariable": "--ix-type-label",
+        "cssVariable": "--teum-type-label",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.type-ui",
         "type": "dimension",
-        "cssVariable": "--ix-type-ui",
+        "cssVariable": "--teum-type-ui",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.type-body",
         "type": "dimension",
-        "cssVariable": "--ix-type-body",
+        "cssVariable": "--teum-type-body",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.type-row",
         "type": "dimension",
-        "cssVariable": "--ix-type-row",
+        "cssVariable": "--teum-type-row",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.type-section",
         "type": "dimension",
-        "cssVariable": "--ix-type-section",
+        "cssVariable": "--teum-type-section",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.type-title",
         "type": "dimension",
-        "cssVariable": "--ix-type-title",
+        "cssVariable": "--teum-type-title",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.line-metadata",
         "type": "dimension",
-        "cssVariable": "--ix-line-metadata",
+        "cssVariable": "--teum-line-metadata",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.line-label",
         "type": "dimension",
-        "cssVariable": "--ix-line-label",
+        "cssVariable": "--teum-line-label",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.line-ui",
         "type": "dimension",
-        "cssVariable": "--ix-line-ui",
+        "cssVariable": "--teum-line-ui",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.line-row",
         "type": "dimension",
-        "cssVariable": "--ix-line-row",
+        "cssVariable": "--teum-line-row",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.line-body",
         "type": "dimension",
-        "cssVariable": "--ix-line-body",
+        "cssVariable": "--teum-line-body",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.line-section",
         "type": "dimension",
-        "cssVariable": "--ix-line-section",
+        "cssVariable": "--teum-line-section",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.line-title",
         "type": "dimension",
-        "cssVariable": "--ix-line-title",
+        "cssVariable": "--teum-line-title",
         "deprecated": false
       },
       {
         "path": "foundation.typography.ui-weight",
         "type": "fontWeight",
-        "cssVariable": "--ix-ui-weight",
+        "cssVariable": "--teum-ui-weight",
         "deprecated": false
       },
       {
         "path": "foundation.typography.label-weight",
         "type": "fontWeight",
-        "cssVariable": "--ix-label-weight",
+        "cssVariable": "--teum-label-weight",
         "deprecated": false
       },
       {
         "path": "foundation.typography.heading-weight",
         "type": "fontWeight",
-        "cssVariable": "--ix-heading-weight",
+        "cssVariable": "--teum-heading-weight",
         "deprecated": false
       },
       {
         "path": "foundation.typography.ui-tracking",
         "type": "number",
-        "cssVariable": "--ix-ui-tracking",
+        "cssVariable": "--teum-ui-tracking",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-0",
         "type": "dimension",
-        "cssVariable": "--ix-space-0",
+        "cssVariable": "--teum-space-0",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-1",
         "type": "dimension",
-        "cssVariable": "--ix-space-1",
+        "cssVariable": "--teum-space-1",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-2",
         "type": "dimension",
-        "cssVariable": "--ix-space-2",
+        "cssVariable": "--teum-space-2",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-3",
         "type": "dimension",
-        "cssVariable": "--ix-space-3",
+        "cssVariable": "--teum-space-3",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-4",
         "type": "dimension",
-        "cssVariable": "--ix-space-4",
+        "cssVariable": "--teum-space-4",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-5",
         "type": "dimension",
-        "cssVariable": "--ix-space-5",
+        "cssVariable": "--teum-space-5",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-6",
         "type": "dimension",
-        "cssVariable": "--ix-space-6",
+        "cssVariable": "--teum-space-6",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-7",
         "type": "dimension",
-        "cssVariable": "--ix-space-7",
+        "cssVariable": "--teum-space-7",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-8",
         "type": "dimension",
-        "cssVariable": "--ix-space-8",
+        "cssVariable": "--teum-space-8",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-10",
         "type": "dimension",
-        "cssVariable": "--ix-space-10",
+        "cssVariable": "--teum-space-10",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-12",
         "type": "dimension",
-        "cssVariable": "--ix-space-12",
+        "cssVariable": "--teum-space-12",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-16",
         "type": "dimension",
-        "cssVariable": "--ix-space-16",
+        "cssVariable": "--teum-space-16",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-page-x",
         "type": "dimension",
-        "cssVariable": "--ix-space-page-x",
+        "cssVariable": "--teum-space-page-x",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-page-y",
         "type": "dimension",
-        "cssVariable": "--ix-space-page-y",
+        "cssVariable": "--teum-space-page-y",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-section",
         "type": "dimension",
-        "cssVariable": "--ix-space-section",
+        "cssVariable": "--teum-space-section",
         "deprecated": false
       },
       {
         "path": "foundation.layout.icon-size",
         "type": "dimension",
-        "cssVariable": "--ix-icon-size",
+        "cssVariable": "--teum-icon-size",
         "deprecated": false
       },
       {
         "path": "foundation.layout.icon-offset-y",
         "type": "dimension",
-        "cssVariable": "--ix-icon-offset-y",
+        "cssVariable": "--teum-icon-offset-y",
         "deprecated": false
       },
       {
         "path": "foundation.layout.control-height-sm",
         "type": "dimension",
-        "cssVariable": "--ix-control-height-sm",
+        "cssVariable": "--teum-control-height-sm",
         "deprecated": false
       },
       {
         "path": "foundation.layout.control-height-md",
         "type": "dimension",
-        "cssVariable": "--ix-control-height-md",
+        "cssVariable": "--teum-control-height-md",
         "deprecated": false
       },
       {
         "path": "foundation.layout.control-height-lg",
         "type": "dimension",
-        "cssVariable": "--ix-control-height-lg",
+        "cssVariable": "--teum-control-height-lg",
         "deprecated": false
       },
       {
         "path": "foundation.layout.control-padding-sm",
         "type": "dimension",
-        "cssVariable": "--ix-control-padding-sm",
+        "cssVariable": "--teum-control-padding-sm",
         "deprecated": false
       },
       {
         "path": "foundation.layout.control-padding-md",
         "type": "dimension",
-        "cssVariable": "--ix-control-padding-md",
+        "cssVariable": "--teum-control-padding-md",
         "deprecated": false
       },
       {
         "path": "foundation.layout.control-padding-lg",
         "type": "dimension",
-        "cssVariable": "--ix-control-padding-lg",
+        "cssVariable": "--teum-control-padding-lg",
         "deprecated": false
       },
       {
         "path": "foundation.layout.radius-control",
         "type": "dimension",
-        "cssVariable": "--ix-radius-control",
+        "cssVariable": "--teum-radius-control",
         "deprecated": false
       },
       {
         "path": "foundation.layout.radius-container",
         "type": "dimension",
-        "cssVariable": "--ix-radius-container",
+        "cssVariable": "--teum-radius-container",
         "deprecated": false
       },
       {
         "path": "foundation.layout.radius-overlay",
         "type": "dimension",
-        "cssVariable": "--ix-radius-overlay",
+        "cssVariable": "--teum-radius-overlay",
         "deprecated": false
       },
       {
         "path": "foundation.layout.radius-pill",
         "type": "dimension",
-        "cssVariable": "--ix-radius-pill",
+        "cssVariable": "--teum-radius-pill",
         "deprecated": false
       },
       {
         "path": "foundation.layout.row-height-menu",
         "type": "dimension",
-        "cssVariable": "--ix-row-height-menu",
+        "cssVariable": "--teum-row-height-menu",
         "deprecated": false
       },
       {
         "path": "foundation.layout.row-height-table",
         "type": "dimension",
-        "cssVariable": "--ix-row-height-table",
+        "cssVariable": "--teum-row-height-table",
         "deprecated": false
       },
       {
         "path": "foundation.layout.focus-width",
         "type": "dimension",
-        "cssVariable": "--ix-focus-width",
+        "cssVariable": "--teum-focus-width",
         "deprecated": false
       },
       {
         "path": "foundation.layout.focus-offset",
         "type": "dimension",
-        "cssVariable": "--ix-focus-offset",
+        "cssVariable": "--teum-focus-offset",
         "deprecated": false
       },
       {
         "path": "foundation.layout.radius-xs",
         "type": "dimension",
-        "cssVariable": "--ix-radius-xs",
+        "cssVariable": "--teum-radius-xs",
         "deprecated": false
       },
       {
         "path": "foundation.layout.radius-sm",
         "type": "dimension",
-        "cssVariable": "--ix-radius-sm",
+        "cssVariable": "--teum-radius-sm",
         "deprecated": false
       },
       {
         "path": "foundation.layout.radius-md",
         "type": "dimension",
-        "cssVariable": "--ix-radius-md",
+        "cssVariable": "--teum-radius-md",
         "deprecated": false
       },
       {
         "path": "foundation.layout.radius-lg",
         "type": "dimension",
-        "cssVariable": "--ix-radius-lg",
+        "cssVariable": "--teum-radius-lg",
         "deprecated": false
       },
       {
         "path": "foundation.motion.duration.hover-duration",
         "type": "duration",
-        "cssVariable": "--ix-hover-duration",
+        "cssVariable": "--teum-hover-duration",
         "deprecated": false
       },
       {
         "path": "foundation.motion.duration.press-duration",
         "type": "duration",
-        "cssVariable": "--ix-press-duration",
+        "cssVariable": "--teum-press-duration",
         "deprecated": false
       },
       {
         "path": "foundation.motion.duration.enter-duration",
         "type": "duration",
-        "cssVariable": "--ix-enter-duration",
+        "cssVariable": "--teum-enter-duration",
         "deprecated": false
       },
       {
         "path": "foundation.motion.duration.exit-duration",
         "type": "duration",
-        "cssVariable": "--ix-exit-duration",
+        "cssVariable": "--teum-exit-duration",
         "deprecated": false
       },
       {
         "path": "foundation.motion.duration.fast",
         "type": "duration",
-        "cssVariable": "--ix-fast",
+        "cssVariable": "--teum-fast",
         "deprecated": false
       },
       {
         "path": "foundation.motion.duration.medium",
         "type": "duration",
-        "cssVariable": "--ix-medium",
+        "cssVariable": "--teum-medium",
         "deprecated": false
       },
       {
         "path": "foundation.motion.easing.ease-out",
         "type": "cubicBezier",
-        "cssVariable": "--ix-ease-out",
+        "cssVariable": "--teum-ease-out",
         "deprecated": false
       },
       {
         "path": "foundation.motion.easing.ease-in-out",
         "type": "cubicBezier",
-        "cssVariable": "--ix-ease-in-out",
+        "cssVariable": "--teum-ease-in-out",
         "deprecated": false
       },
       {
         "path": "foundation.motion.easing.ease-drawer",
         "type": "cubicBezier",
-        "cssVariable": "--ix-ease-drawer",
+        "cssVariable": "--teum-ease-drawer",
         "deprecated": false
       },
       {
         "path": "foundation.motion.easing.ease",
         "type": "cubicBezier",
-        "cssVariable": "--ix-ease",
+        "cssVariable": "--teum-ease",
         "deprecated": false
       },
       {
         "path": "foundation.layers.layer-sticky",
         "type": "number",
-        "cssVariable": "--ix-layer-sticky",
+        "cssVariable": "--teum-layer-sticky",
         "deprecated": false
       },
       {
         "path": "foundation.layers.layer-modal-backdrop",
         "type": "number",
-        "cssVariable": "--ix-layer-modal-backdrop",
+        "cssVariable": "--teum-layer-modal-backdrop",
         "deprecated": false
       },
       {
         "path": "foundation.layers.layer-modal",
         "type": "number",
-        "cssVariable": "--ix-layer-modal",
+        "cssVariable": "--teum-layer-modal",
         "deprecated": false
       },
       {
         "path": "foundation.layers.layer-flyout",
         "type": "number",
-        "cssVariable": "--ix-layer-flyout",
+        "cssVariable": "--teum-layer-flyout",
         "deprecated": false
       },
       {
         "path": "foundation.layers.layer-toast",
         "type": "number",
-        "cssVariable": "--ix-layer-toast",
+        "cssVariable": "--teum-layer-toast",
         "deprecated": false
       },
       {
         "path": "foundation.layers.layer-navigation",
         "type": "number",
-        "cssVariable": "--ix-layer-navigation",
+        "cssVariable": "--teum-layer-navigation",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-50",
         "type": "color",
-        "cssVariable": "--ix-gray-50",
+        "cssVariable": "--teum-gray-50",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-100",
         "type": "color",
-        "cssVariable": "--ix-gray-100",
+        "cssVariable": "--teum-gray-100",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-200",
         "type": "color",
-        "cssVariable": "--ix-gray-200",
+        "cssVariable": "--teum-gray-200",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-300",
         "type": "color",
-        "cssVariable": "--ix-gray-300",
+        "cssVariable": "--teum-gray-300",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-400",
         "type": "color",
-        "cssVariable": "--ix-gray-400",
+        "cssVariable": "--teum-gray-400",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-500",
         "type": "color",
-        "cssVariable": "--ix-gray-500",
+        "cssVariable": "--teum-gray-500",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-600",
         "type": "color",
-        "cssVariable": "--ix-gray-600",
+        "cssVariable": "--teum-gray-600",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-700",
         "type": "color",
-        "cssVariable": "--ix-gray-700",
+        "cssVariable": "--teum-gray-700",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-800",
         "type": "color",
-        "cssVariable": "--ix-gray-800",
+        "cssVariable": "--teum-gray-800",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-900",
         "type": "color",
-        "cssVariable": "--ix-gray-900",
+        "cssVariable": "--teum-gray-900",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-canvas",
         "type": "color",
-        "cssVariable": "--ix-bg-canvas",
+        "cssVariable": "--teum-bg-canvas",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-sidebar",
         "type": "color",
-        "cssVariable": "--ix-bg-sidebar",
+        "cssVariable": "--teum-bg-sidebar",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-stage",
         "type": "color",
-        "cssVariable": "--ix-bg-stage",
+        "cssVariable": "--teum-bg-stage",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-subtle",
         "type": "color",
-        "cssVariable": "--ix-bg-subtle",
+        "cssVariable": "--teum-bg-subtle",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-surface",
         "type": "color",
-        "cssVariable": "--ix-bg-surface",
+        "cssVariable": "--teum-bg-surface",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-control",
         "type": "color",
-        "cssVariable": "--ix-bg-control",
+        "cssVariable": "--teum-bg-control",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-raised",
         "type": "color",
-        "cssVariable": "--ix-bg-raised",
+        "cssVariable": "--teum-bg-raised",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-overlay",
         "type": "color",
-        "cssVariable": "--ix-bg-overlay",
+        "cssVariable": "--teum-bg-overlay",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-float",
         "type": "color",
-        "cssVariable": "--ix-bg-float",
+        "cssVariable": "--teum-bg-float",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-flyout",
         "type": "color",
-        "cssVariable": "--ix-bg-flyout",
+        "cssVariable": "--teum-bg-flyout",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-modal",
         "type": "color",
-        "cssVariable": "--ix-bg-modal",
+        "cssVariable": "--teum-bg-modal",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-scrim",
         "type": "color",
-        "cssVariable": "--ix-bg-scrim",
+        "cssVariable": "--teum-bg-scrim",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-code",
         "type": "color",
-        "cssVariable": "--ix-bg-code",
+        "cssVariable": "--teum-bg-code",
         "deprecated": false
       },
       {
         "path": "theme.surface.canvas",
         "type": "color",
-        "cssVariable": "--ix-canvas",
+        "cssVariable": "--teum-canvas",
         "deprecated": false
       },
       {
         "path": "theme.surface.sidebar",
         "type": "color",
-        "cssVariable": "--ix-sidebar",
+        "cssVariable": "--teum-sidebar",
         "deprecated": false
       },
       {
         "path": "theme.surface.surface",
         "type": "color",
-        "cssVariable": "--ix-surface",
+        "cssVariable": "--teum-surface",
         "deprecated": false
       },
       {
         "path": "theme.surface.control-surface",
         "type": "color",
-        "cssVariable": "--ix-control-surface",
+        "cssVariable": "--teum-control-surface",
         "deprecated": false
       },
       {
         "path": "theme.surface.elevated-surface",
         "type": "color",
-        "cssVariable": "--ix-elevated-surface",
+        "cssVariable": "--teum-elevated-surface",
         "deprecated": false
       },
       {
         "path": "theme.surface.overlay-surface",
         "type": "color",
-        "cssVariable": "--ix-overlay-surface",
+        "cssVariable": "--teum-overlay-surface",
         "deprecated": false
       },
       {
         "path": "theme.surface.code-surface",
         "type": "color",
-        "cssVariable": "--ix-code-surface",
+        "cssVariable": "--teum-code-surface",
         "deprecated": false
       },
       {
         "path": "theme.surface.stage",
         "type": "color",
-        "cssVariable": "--ix-stage",
+        "cssVariable": "--teum-stage",
         "deprecated": false
       },
       {
         "path": "theme.surface.subtle",
         "type": "color",
-        "cssVariable": "--ix-subtle",
+        "cssVariable": "--teum-subtle",
         "deprecated": false
       },
       {
         "path": "theme.surface.hover",
         "type": "color",
-        "cssVariable": "--ix-hover",
+        "cssVariable": "--teum-hover",
         "deprecated": false
       },
       {
         "path": "theme.surface.active",
         "type": "color",
-        "cssVariable": "--ix-active",
+        "cssVariable": "--teum-active",
         "deprecated": false
       },
       {
         "path": "theme.surface.selected",
         "type": "color",
-        "cssVariable": "--ix-selected",
+        "cssVariable": "--teum-selected",
         "deprecated": false
       },
       {
         "path": "theme.surface.inverse",
         "type": "color",
-        "cssVariable": "--ix-inverse",
+        "cssVariable": "--teum-inverse",
         "deprecated": false
       },
       {
         "path": "theme.surface.inverse-hover",
         "type": "color",
-        "cssVariable": "--ix-inverse-hover",
+        "cssVariable": "--teum-inverse-hover",
         "deprecated": false
       },
       {
         "path": "theme.surface.on-inverse",
         "type": "color",
-        "cssVariable": "--ix-on-inverse",
+        "cssVariable": "--teum-on-inverse",
         "deprecated": false
       },
       {
         "path": "theme.surface.scrollbar-thumb",
         "type": "color",
-        "cssVariable": "--ix-scrollbar-thumb",
+        "cssVariable": "--teum-scrollbar-thumb",
         "deprecated": false
       },
       {
         "path": "theme.surface.scrollbar-thumb-hover",
         "type": "color",
-        "cssVariable": "--ix-scrollbar-thumb-hover",
+        "cssVariable": "--teum-scrollbar-thumb-hover",
         "deprecated": false
       },
       {
         "path": "theme.foreground.fg-default",
         "type": "color",
-        "cssVariable": "--ix-fg-default",
+        "cssVariable": "--teum-fg-default",
         "deprecated": false
       },
       {
         "path": "theme.foreground.fg-muted",
         "type": "color",
-        "cssVariable": "--ix-fg-muted",
+        "cssVariable": "--teum-fg-muted",
         "deprecated": false
       },
       {
         "path": "theme.foreground.fg-subtle",
         "type": "color",
-        "cssVariable": "--ix-fg-subtle",
+        "cssVariable": "--teum-fg-subtle",
         "deprecated": false
       },
       {
         "path": "theme.foreground.fg-disabled",
         "type": "color",
-        "cssVariable": "--ix-fg-disabled",
+        "cssVariable": "--teum-fg-disabled",
         "deprecated": false
       },
       {
         "path": "theme.foreground.fg-danger",
         "type": "color",
-        "cssVariable": "--ix-fg-danger",
+        "cssVariable": "--teum-fg-danger",
         "deprecated": false
       },
       {
         "path": "theme.foreground.ink",
         "type": "color",
-        "cssVariable": "--ix-ink",
+        "cssVariable": "--teum-ink",
         "deprecated": false
       },
       {
         "path": "theme.foreground.ink-secondary",
         "type": "color",
-        "cssVariable": "--ix-ink-secondary",
+        "cssVariable": "--teum-ink-secondary",
         "deprecated": false
       },
       {
         "path": "theme.foreground.ink-tertiary",
         "type": "color",
-        "cssVariable": "--ix-ink-tertiary",
+        "cssVariable": "--teum-ink-tertiary",
         "deprecated": false
       },
       {
         "path": "theme.foreground.ink-disabled",
         "type": "color",
-        "cssVariable": "--ix-ink-disabled",
+        "cssVariable": "--teum-ink-disabled",
         "deprecated": false
       },
       {
         "path": "theme.border.separator",
         "type": "color",
-        "cssVariable": "--ix-separator",
+        "cssVariable": "--teum-separator",
         "deprecated": false
       },
       {
         "path": "theme.border.control-border",
         "type": "color",
-        "cssVariable": "--ix-control-border",
+        "cssVariable": "--teum-control-border",
         "deprecated": false
       },
       {
         "path": "theme.border.control-border-hover",
         "type": "color",
-        "cssVariable": "--ix-control-border-hover",
+        "cssVariable": "--teum-control-border-hover",
         "deprecated": false
       },
       {
         "path": "theme.border.border-subtle",
         "type": "color",
-        "cssVariable": "--ix-border-subtle",
+        "cssVariable": "--teum-border-subtle",
         "deprecated": false
       },
       {
         "path": "theme.border.border",
         "type": "color",
-        "cssVariable": "--ix-border",
+        "cssVariable": "--teum-border",
         "deprecated": false
       },
       {
         "path": "theme.border.border-strong",
         "type": "color",
-        "cssVariable": "--ix-border-strong",
+        "cssVariable": "--teum-border-strong",
         "deprecated": false
       },
       {
         "path": "theme.focus.focus-control",
         "type": "color",
-        "cssVariable": "--ix-focus-control",
+        "cssVariable": "--teum-focus-control",
         "deprecated": false
       },
       {
         "path": "theme.focus.focus-navigation",
         "type": "color",
-        "cssVariable": "--ix-focus-navigation",
+        "cssVariable": "--teum-focus-navigation",
         "deprecated": false
       },
       {
         "path": "theme.focus.focus-documentation",
         "type": "color",
-        "cssVariable": "--ix-focus-documentation",
+        "cssVariable": "--teum-focus-documentation",
         "deprecated": false
       },
       {
         "path": "theme.focus.focus-halo",
         "type": "color",
-        "cssVariable": "--ix-focus-halo",
+        "cssVariable": "--teum-focus-halo",
         "deprecated": false
       },
       {
         "path": "theme.focus.switch-track",
         "type": "color",
-        "cssVariable": "--ix-switch-track",
+        "cssVariable": "--teum-switch-track",
         "deprecated": false
       },
       {
         "path": "theme.focus.switch-thumb",
         "type": "color",
-        "cssVariable": "--ix-switch-thumb",
+        "cssVariable": "--teum-switch-thumb",
         "deprecated": false
       },
       {
         "path": "theme.focus.focus",
         "type": "color",
-        "cssVariable": "--ix-focus",
+        "cssVariable": "--teum-focus",
         "deprecated": false
       },
       {
         "path": "theme.elevation.shadow-control",
         "type": "shadow",
-        "cssVariable": "--ix-shadow-control",
+        "cssVariable": "--teum-shadow-control",
         "deprecated": false
       },
       {
         "path": "theme.elevation.shadow-float",
         "type": "shadow",
-        "cssVariable": "--ix-shadow-float",
+        "cssVariable": "--teum-shadow-float",
         "deprecated": false
       },
       {
         "path": "theme.elevation.shadow-float-focus",
         "type": "shadow",
-        "cssVariable": "--ix-shadow-float-focus",
+        "cssVariable": "--teum-shadow-float-focus",
         "deprecated": false
       },
       {
         "path": "theme.elevation.shadow-flyout",
         "type": "shadow",
-        "cssVariable": "--ix-shadow-flyout",
+        "cssVariable": "--teum-shadow-flyout",
         "deprecated": false
       },
       {
         "path": "theme.elevation.shadow-popover",
         "type": "shadow",
-        "cssVariable": "--ix-shadow-popover",
+        "cssVariable": "--teum-shadow-popover",
         "deprecated": false
       },
       {
         "path": "theme.elevation.shadow-modal",
         "type": "shadow",
-        "cssVariable": "--ix-shadow-modal",
+        "cssVariable": "--teum-shadow-modal",
         "deprecated": false
       },
       {
         "path": "theme.elevation.shadow-dialog",
         "type": "shadow",
-        "cssVariable": "--ix-shadow-dialog",
+        "cssVariable": "--teum-shadow-dialog",
         "deprecated": false
       }
     ]

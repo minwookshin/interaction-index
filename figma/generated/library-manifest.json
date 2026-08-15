@@ -1,36 +1,36 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/build-figma-handoff.mjs",
-  "runId": "interaction-index-2026-08-14",
+  "runId": "teum-2026-08-14",
   "file": {
-    "name": "Interaction Index - Design System",
+    "name": "Teum - Design System",
     "fileKey": null,
     "url": null,
     "selectedPlanKey": null,
     "selectionRequired": true
   },
   "sourceOfTruth": {
-    "tokens": "tokens/interaction-index.tokens.json",
+    "tokens": "tokens/teum.tokens.json",
     "api": "api/generated/public-api.json",
     "registry": "registry.json",
     "guidance": "src/component-guidance.ts",
     "hashes": {
-      "registry": "884665bdcc7a31ac96a3e4bf6c3c0604872f7f4ced30beaa4bec9bc76e096668",
-      "api": "99ed36b047d1469447dd8cbf66a5d381d00bb020b24a1dee4db8f9b1dc865560",
-      "figmaTokens": "d7b012085cab75e165827c9dde1f8a4f46523e69ef145049fc2e31f955317849",
+      "registry": "b7cc97dca9e866086ee9654b4b09c37bcda241835f0fd13c51f98771eaea818e",
+      "api": "4e2de6ced23f6c99e3dc8d50209106fbb30c7aac0ed348a9cf022116c96b8880",
+      "figmaTokens": "726ee76e906394f2217622b507e903861e0c4a175bf1e9baf38f048d52f305b3",
       "guidance": "75e3c6a6f586e58123e7c4f1eb9219cbbd2148a93870571eb02493fa9ede5be1"
     }
   },
   "foundations": {
     "collections": [
       {
-        "name": "Interaction Index / Foundation",
+        "name": "Teum / Foundation",
         "modes": [
           "Value"
         ]
       },
       {
-        "name": "Interaction Index / Theme",
+        "name": "Teum / Theme",
         "modes": [
           "Light",
           "Dark"
@@ -451,7 +451,7 @@
       },
       "code": {
         "source": "src/components/ui/button.tsx",
-        "sourceHash": "6a13c822693368c6f6dfaf7cf4d51d59a14ecd668b258c9c5323541c7c7460f2",
+        "sourceHash": "10475179bc060db186497b24cd310dc70f50ededbfb21fb11a5b91f53cd2e49f",
         "declaration": "api/generated/types/components/ui/button.d.ts",
         "publicExports": [
           {
@@ -471,7 +471,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "class-variance-authority@^0.7.1"
@@ -618,7 +618,7 @@
       },
       "code": {
         "source": "src/components/ui/icon-button.tsx",
-        "sourceHash": "5a52f2fda0e2b71b32baa924877b40b1e8561ee56232994bd021f4182c67a06e",
+        "sourceHash": "ffd0f4f62485e1a570e7ff6322a296b7ad9da848c27ecaebc7d093a953d3cc23",
         "declaration": "api/generated/types/components/ui/icon-button.d.ts",
         "publicExports": [
           {
@@ -633,8 +633,8 @@
           }
         ],
         "registryDependencies": [
-          "@index/button",
-          "@index/tooltip"
+          "@teum/button",
+          "@teum/tooltip"
         ],
         "packageDependencies": []
       },
@@ -727,7 +727,7 @@
       },
       "code": {
         "source": "src/components/ui/field.tsx",
-        "sourceHash": "0e00a18e5795f310572de3856e2a5e02823f0f021b82a448c9c908c0f4cf2680",
+        "sourceHash": "984b06383e1f74468a27746635f105a5d3539760251eebc901c9560e71003788",
         "declaration": "api/generated/types/components/ui/field.d.ts",
         "publicExports": [
           {
@@ -807,7 +807,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0"
@@ -977,7 +977,7 @@
       },
       "code": {
         "source": "src/components/ui/input-group.tsx",
-        "sourceHash": "693b02ba3df7e86f7c060e1c84c750b03845d45830ea4c0b15423cc1809da7ea",
+        "sourceHash": "b7895877bc4ee8a920e937ae9d2da5a1509ff64f243d469d3ad1afd0b2112495",
         "declaration": "api/generated/types/components/ui/input-group.d.ts",
         "publicExports": [
           {
@@ -1022,8 +1022,8 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base",
-          "@index/button"
+          "@teum/teum-base",
+          "@teum/button"
         ],
         "packageDependencies": []
       },
@@ -1106,7 +1106,7 @@
       },
       "code": {
         "source": "src/components/ui/kbd.tsx",
-        "sourceHash": "3242d83e59c0bb9249cbbcf7c62483b4ff945cd844dcba8f90db5a0d867e851a",
+        "sourceHash": "b3e0486044259bb7422d9d131dbde501a585e048c0e79f01212b07a360ec3da6",
         "declaration": "api/generated/types/components/ui/kbd.d.ts",
         "publicExports": [
           {
@@ -1131,7 +1131,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": []
       },
@@ -1234,7 +1234,7 @@
       },
       "code": {
         "source": "src/components/ui/button-group.tsx",
-        "sourceHash": "1b7ce351cbdf69842442a062410a29fbed9ab01095e323fd13f37ce24c68c19b",
+        "sourceHash": "bf27f324861a9122da4291acc078c7e5e8a70cd77c1b9245b723abe8a0a9617b",
         "declaration": "api/generated/types/components/ui/button-group.d.ts",
         "publicExports": [
           {
@@ -1259,7 +1259,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": []
       },
@@ -1363,7 +1363,7 @@
       },
       "code": {
         "source": "src/components/ui/toolbar.tsx",
-        "sourceHash": "8bae0eea5dbe205199d6f1b76f14f38720b3956f90512548c7d0088e862e9ec5",
+        "sourceHash": "2fc7c7227cac12c1431c443658c69e6b99e1b14e4f89b259711b9240b7c0d34d",
         "declaration": "api/generated/types/components/ui/toolbar.d.ts",
         "publicExports": [
           {
@@ -1428,7 +1428,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0"
@@ -1523,7 +1523,7 @@
       },
       "code": {
         "source": "src/components/ui/text-field.tsx",
-        "sourceHash": "4f21309beffac8e21eeb4f233d561361dfbddfd26be0ca0e2ba4badcbf134f30",
+        "sourceHash": "a067ec8e837cb3131231972920cbf9bb7d2901d921bcba0c20c9fa645dafd70a",
         "declaration": "api/generated/types/components/ui/text-field.d.ts",
         "publicExports": [
           {
@@ -1538,7 +1538,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": []
       },
@@ -1631,7 +1631,7 @@
       },
       "code": {
         "source": "src/components/ui/textarea.tsx",
-        "sourceHash": "2e781d981ce9b9beaf6c0d19414a59bfb1dad0c52125777d4e991fb0563dd12c",
+        "sourceHash": "32825b66f709a5743bc9cb1ea9d8db357b677fd31e3083b80ca706461bbe968b",
         "declaration": "api/generated/types/components/ui/textarea.d.ts",
         "publicExports": [
           {
@@ -1646,7 +1646,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": []
       },
@@ -1739,7 +1739,7 @@
       },
       "code": {
         "source": "src/components/ui/checkbox.tsx",
-        "sourceHash": "92028535692f81fab612282b5c77825ba0df8dc47809c1a2a6b577cd738ebe52",
+        "sourceHash": "d6e5d90166fa986c46b62d44729ceb580a20d8da4f7f61ad99c39ae8b904b163",
         "declaration": "api/generated/types/components/ui/checkbox.d.ts",
         "publicExports": [
           {
@@ -1754,7 +1754,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0",
@@ -1872,7 +1872,7 @@
       },
       "code": {
         "source": "src/components/ui/radio-group.tsx",
-        "sourceHash": "4985acd060304f5cffb05400fcc4421ac9c01a5231ad6cb1187f81b68877aafe",
+        "sourceHash": "0b58af1ff14dc09b1e6bee35d53b0777fa80cb3a438b40859ce9e38a13d40a56",
         "declaration": "api/generated/types/components/ui/radio-group.d.ts",
         "publicExports": [
           {
@@ -1892,7 +1892,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0"
@@ -1982,7 +1982,7 @@
       },
       "code": {
         "source": "src/components/ui/switch.tsx",
-        "sourceHash": "ea14354fa1c493e87706b4da1860a5996064e8aa91e6c6023900a89cece0d34f",
+        "sourceHash": "1662d901a81773e6fb4517024b914c689cc107a3bb678c87933b71f76714b4ed",
         "declaration": "api/generated/types/components/ui/switch.d.ts",
         "publicExports": [
           {
@@ -1997,7 +1997,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0"
@@ -2103,7 +2103,7 @@
       },
       "code": {
         "source": "src/components/ui/select.tsx",
-        "sourceHash": "3881907dae4f6790113aef0273a6b4ca4b02e49287ecc5ccc24d63b2fa547b0d",
+        "sourceHash": "2bef93cfac4ea65f9b00ce31489fd8770bf488e6792acd4f51e45dbba7bfc7cf",
         "declaration": "api/generated/types/components/ui/select.d.ts",
         "publicExports": [
           {
@@ -2123,7 +2123,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0",
@@ -2225,7 +2225,7 @@
       },
       "code": {
         "source": "src/components/ui/context-switcher.tsx",
-        "sourceHash": "956c0674bd993c8127be1cb3f3c4fef7b847b7a11d92d7ddfbffcd5bc4b50ecc",
+        "sourceHash": "6d40bb94c42a4850eebfc682a0b4585ab7868ab36b3bad0ac8397197aad07bcb",
         "declaration": "api/generated/types/components/ui/context-switcher.d.ts",
         "publicExports": [
           {
@@ -2245,7 +2245,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0",
@@ -2352,7 +2352,7 @@
       },
       "code": {
         "source": "src/components/ui/combobox.tsx",
-        "sourceHash": "4a023ccdf06470e3e77b86faac2461c69e9e2d444e2249f532690edb1303e8a5",
+        "sourceHash": "e872d500c3ecf74a95642982be950052f8f334d177e7616a408a16d4ef348bc9",
         "declaration": "api/generated/types/components/ui/combobox.d.ts",
         "publicExports": [
           {
@@ -2372,7 +2372,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0",
@@ -2473,7 +2473,7 @@
       },
       "code": {
         "source": "src/components/ui/search-input.tsx",
-        "sourceHash": "763e9a6edfec690ae41c226186f16328f0b5e6b217038a364750cf6158c9fc03",
+        "sourceHash": "7a620a6296f022ebecdc0c159c002fd2bcd1394aa8648b817b45df9defd3b5df",
         "declaration": "api/generated/types/components/ui/search-input.d.ts",
         "publicExports": [
           {
@@ -2488,7 +2488,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@phosphor-icons/react@^2.1.10"
@@ -2593,7 +2593,7 @@
       },
       "code": {
         "source": "src/components/ui/number-field.tsx",
-        "sourceHash": "1da9b9254492441bb6e3428ba3ab4887409c86cf7801951fadc2a902f5248c9f",
+        "sourceHash": "1eebfe4427d19e7efb5304fb9cb7f2cbc2f0ea92131dcbcb4e63891c82d76e67",
         "declaration": "api/generated/types/components/ui/number-field.d.ts",
         "publicExports": [
           {
@@ -2608,7 +2608,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0",
@@ -2710,7 +2710,7 @@
       },
       "code": {
         "source": "src/components/ui/date-picker.tsx",
-        "sourceHash": "fa2be616cc22c85c9da549cb7ff1cfec569e9e13b0addfd33cb5a4c2a756e3a2",
+        "sourceHash": "8dc2b6821c1a35e95542caf83b9abc42f409a00d42f704ecc3cb925235fee8c8",
         "declaration": "api/generated/types/components/ui/date-picker.d.ts",
         "publicExports": [
           {
@@ -2735,7 +2735,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@internationalized/date@^3.12.3",
@@ -2873,7 +2873,7 @@
       },
       "code": {
         "source": "src/components/ui/segmented-control.tsx",
-        "sourceHash": "1ce0cc0924cfe1c9a48e98f34f68fcaae2716f88a889562587bea0a5f0077625",
+        "sourceHash": "7f06df594f83ea8f689594757459b5a8e61e3a6dc01ceb4c3e9fc4b6136ee8d4",
         "declaration": "api/generated/types/components/ui/segmented-control.d.ts",
         "publicExports": [
           {
@@ -2893,7 +2893,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0"
@@ -3038,7 +3038,7 @@
       },
       "code": {
         "source": "src/components/ui/tooltip.tsx",
-        "sourceHash": "e28faee51999b52fb99b29ea599687ae73f2a20721f49d3f42ced6b73370d3b0",
+        "sourceHash": "72ca009e516f98bacfaf9be67335e4246bef7c3aa47467335ddde199a27954c7",
         "declaration": "api/generated/types/components/ui/tooltip.d.ts",
         "publicExports": [
           {
@@ -3068,7 +3068,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0"
@@ -3227,7 +3227,7 @@
       },
       "code": {
         "source": "src/components/ui/popover.tsx",
-        "sourceHash": "09f6362ffa767cb0add62354181efedb2dda508673360ccad79daef1a5357c09",
+        "sourceHash": "20d2d0ee61f3b8be232992c3664e7d04e698fd68b19df4cb2d2d32206ac37f9f",
         "declaration": "api/generated/types/components/ui/popover.d.ts",
         "publicExports": [
           {
@@ -3262,7 +3262,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0"
@@ -3422,7 +3422,7 @@
       },
       "code": {
         "source": "src/components/ui/menu.tsx",
-        "sourceHash": "dfd567ac00ea1bef70e486fff4e41040c2fdacaefa9ea1cacad65ca556e35d72",
+        "sourceHash": "5942ac27f6331af122fd4478098d67a8dd372029b7c10a335e21865135aa8a23",
         "declaration": "api/generated/types/components/ui/menu.d.ts",
         "publicExports": [
           {
@@ -3477,7 +3477,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0",
@@ -3638,7 +3638,7 @@
       },
       "code": {
         "source": "src/components/ui/context-menu.tsx",
-        "sourceHash": "3370316fd592c5e14a9061eda16d4d9dc849fedb5876eefe6bf0d0a759a8447e",
+        "sourceHash": "fe95d3e4083c2125dbc536977baef6a3a7fbca695768b78c38016efd1f9364af",
         "declaration": "api/generated/types/components/ui/context-menu.d.ts",
         "publicExports": [
           {
@@ -3693,7 +3693,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0",
@@ -3795,7 +3795,7 @@
       },
       "code": {
         "source": "src/components/ui/dialog.tsx",
-        "sourceHash": "8ac4fea26f5f3dd19d436166523ca35dab679d55c7e9bf4249cc8cd125f542b2",
+        "sourceHash": "0f2a1a170b29ef48ec0ac4e5de90671948ea26ddf3f2fb8429c41b9781be4324",
         "declaration": "api/generated/types/components/ui/dialog.d.ts",
         "publicExports": [
           {
@@ -3845,7 +3845,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/icon-button"
+          "@teum/icon-button"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0",
@@ -3968,7 +3968,7 @@
       },
       "code": {
         "source": "src/components/ui/sheet.tsx",
-        "sourceHash": "aa6b8d1d68b6f8b166cd3d9e43b39a474b434604f38133376efc64113be88c84",
+        "sourceHash": "c23899fda032764103ec99ccc6c623f695e4f1118ff359b5b9a51c6c8439bdcc",
         "declaration": "api/generated/types/components/ui/sheet.d.ts",
         "publicExports": [
           {
@@ -4028,8 +4028,8 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base",
-          "@index/icon-button"
+          "@teum/teum-base",
+          "@teum/icon-button"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0",
@@ -4126,7 +4126,7 @@
       },
       "code": {
         "source": "src/components/ui/alert-dialog.tsx",
-        "sourceHash": "a91c232a2c66bb65f285911123073bc509a3a240fdb4482725b207efa5d5fba5",
+        "sourceHash": "854abad07256ae9ebe9ff634fe5db1b081bf9a2b1e0ec6b5fdf28494bc47817d",
         "declaration": "api/generated/types/components/ui/alert-dialog.d.ts",
         "publicExports": [
           {
@@ -4171,7 +4171,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0"
@@ -4261,7 +4261,7 @@
       },
       "code": {
         "source": "src/components/ui/tabs.tsx",
-        "sourceHash": "d21f6963f7f47e53297108b7cb7bb436389a534d46e7c9182c26aec7da1a13ec",
+        "sourceHash": "ad268bc73eff272eca0a99db5000ed022b100e4aca9fb9a4ac887b94814cd360",
         "declaration": "api/generated/types/components/ui/tabs.d.ts",
         "publicExports": [
           {
@@ -4286,7 +4286,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0"
@@ -4376,7 +4376,7 @@
       },
       "code": {
         "source": "src/components/ui/breadcrumbs.tsx",
-        "sourceHash": "a09b840fcbced50d9defc0e78bd04975d9bc3a67b38c521376145e5ea16d9d26",
+        "sourceHash": "5a82fb0d3b015aa3e443907c2345adbc6484c47963b670174ea1ccf9b09dc584",
         "declaration": "api/generated/types/components/ui/breadcrumbs.d.ts",
         "publicExports": [
           {
@@ -4396,7 +4396,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@phosphor-icons/react@^2.1.10"
@@ -4491,7 +4491,7 @@
       },
       "code": {
         "source": "src/components/ui/pagination.tsx",
-        "sourceHash": "d65ab94f6a5939240276dd8fd47426bcf3d0c376221e5f355cb1b53d55e4431f",
+        "sourceHash": "6a78f80123ee33b19e9a451db45cab2a73dd215f647f7b0f3f99a40eccdac769",
         "declaration": "api/generated/types/components/ui/pagination.d.ts",
         "publicExports": [
           {
@@ -4506,7 +4506,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@phosphor-icons/react@^2.1.10"
@@ -4596,7 +4596,7 @@
       },
       "code": {
         "source": "src/components/ui/collapsible.tsx",
-        "sourceHash": "6eb213365d2a62047f48275773a3aea59879593357d44739765bb409e72a230f",
+        "sourceHash": "85faa7ec526e7424f8485cdbd403dcaf4611fff189add0a3f0c410de93f5cba6",
         "declaration": "api/generated/types/components/ui/collapsible.d.ts",
         "publicExports": [
           {
@@ -4621,7 +4621,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0",
@@ -4719,7 +4719,7 @@
       },
       "code": {
         "source": "src/components/ui/toast.tsx",
-        "sourceHash": "21e3179a3165f60809aad78a1bc4fae8f4547fbaf8548cd36e7c4f2d174be23d",
+        "sourceHash": "b0d7ffb17afc68fced4be1e98d67ac5eb3e0f9898e18bedb7f51ffc6ba41adbc",
         "declaration": "api/generated/types/components/ui/toast.d.ts",
         "publicExports": [
           {
@@ -4754,7 +4754,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "sonner@^2.0.8"
@@ -4859,7 +4859,7 @@
       },
       "code": {
         "source": "src/components/ui/progress.tsx",
-        "sourceHash": "01259aa59eadc0bd3a699fbc82ba801f2a3e48de1a61a160cfce563548420371",
+        "sourceHash": "1ba0bea333cb7028331b923f121347d1d7a2c3d5e230fec9d33f42453a769878",
         "declaration": "api/generated/types/components/ui/progress.d.ts",
         "publicExports": [
           {
@@ -4874,7 +4874,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@base-ui/react@^1.7.0"
@@ -4978,7 +4978,7 @@
       },
       "code": {
         "source": "src/components/ui/spinner.tsx",
-        "sourceHash": "1686b43341a8380e2307d91d135e9c2a32adcfeca11884d6b454f34e575ff163",
+        "sourceHash": "918c0b475fd4de803f924939cc8d851445ccf07758c563df43608a31b9b04fa9",
         "declaration": "api/generated/types/components/ui/spinner.d.ts",
         "publicExports": [
           {
@@ -4993,7 +4993,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": []
       },
@@ -5095,7 +5095,7 @@
       },
       "code": {
         "source": "src/components/ui/skeleton.tsx",
-        "sourceHash": "d584f21064910c89d1a8aa1cc92a2f9104a3efa270b55645b59d99611a2eaba7",
+        "sourceHash": "b833cc6ff0210b4b3865fa89cc49292b3739aaa281900287c2b76d8223fff33d",
         "declaration": "api/generated/types/components/ui/skeleton.d.ts",
         "publicExports": [
           {
@@ -5115,7 +5115,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": []
       },
@@ -5242,7 +5242,7 @@
       },
       "code": {
         "source": "src/components/ui/alert.tsx",
-        "sourceHash": "16c131bcfdcdbd65f5cb5206388e8c51e2dc7e4f4f65012954d67738a6b92444",
+        "sourceHash": "3cc39f193c373baf1dbda8451ca31cb8985a9e326f8de9628c8ed8cf105bcd43",
         "declaration": "api/generated/types/components/ui/alert.d.ts",
         "publicExports": [
           {
@@ -5257,8 +5257,8 @@
           }
         ],
         "registryDependencies": [
-          "@index/icon-button",
-          "@index/interaction-index-base"
+          "@teum/icon-button",
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@phosphor-icons/react@^2.1.10"
@@ -5363,7 +5363,7 @@
       },
       "code": {
         "source": "src/components/ui/empty-state.tsx",
-        "sourceHash": "21fa8191e6e3f91c9de407618af0d28ceee5a80024e4dd0f131419501a1ceedc",
+        "sourceHash": "c80b0776fb155b38a1781c1104b3ee4fe87900a060f6b0700408a50e9a4320c1",
         "declaration": "api/generated/types/components/ui/empty-state.d.ts",
         "publicExports": [
           {
@@ -5378,7 +5378,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@phosphor-icons/react@^2.1.10"
@@ -5503,7 +5503,7 @@
       },
       "code": {
         "source": "src/components/ui/badge.tsx",
-        "sourceHash": "a6958bebd38157c467903779ef795172f0d8474c6f5782cccb3a92abe601cf8b",
+        "sourceHash": "8443f0a980d44892f20c42b6d2894ba8b037fb9afae391ee8a40f68a3e26dd1b",
         "declaration": "api/generated/types/components/ui/badge.d.ts",
         "publicExports": [
           {
@@ -5518,7 +5518,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@phosphor-icons/react@^2.1.10"
@@ -5665,7 +5665,7 @@
       },
       "code": {
         "source": "src/components/ui/avatar.tsx",
-        "sourceHash": "b3dc90819ca144c791ceaf2b6398752b98c48f2417072011cb67dd8ff2459cc8",
+        "sourceHash": "30aae1abd3aec3ba0000df1e8dba3680dce426e25c4918c7008013e31722ca38",
         "declaration": "api/generated/types/components/ui/avatar.d.ts",
         "publicExports": [
           {
@@ -5685,7 +5685,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": []
       },
@@ -5783,7 +5783,7 @@
       },
       "code": {
         "source": "src/components/ui/table.tsx",
-        "sourceHash": "f3bec2a8ad88849f6e21b7d23c73811dddeecc42f8af597d45be1118b40d9e92",
+        "sourceHash": "9d97736dd5fb54c560637c6ae56ad46bbb4546d7100a9336a40fc932b197b24e",
         "declaration": "api/generated/types/components/ui/table.d.ts",
         "publicExports": [
           {
@@ -5833,7 +5833,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": []
       },
@@ -5927,7 +5927,7 @@
       },
       "code": {
         "source": "src/components/ui/tree.tsx",
-        "sourceHash": "f07c5e959f64affc333d44a4cf125a42fd9387e3c1c4a4b82f91c2571d8c1e3e",
+        "sourceHash": "b81a225396842e88781cb431760197c6c33b172eab1d4b162e6becc3dca0c843",
         "declaration": "api/generated/types/components/ui/tree.d.ts",
         "publicExports": [
           {
@@ -5947,7 +5947,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@phosphor-icons/react@^2.1.10",
@@ -6066,7 +6066,7 @@
       },
       "code": {
         "source": "src/components/ui/reorderable-list.tsx",
-        "sourceHash": "12be08f35780fe2b25a4d2ca431105694e1cb281b9a08a196768485a1583c016",
+        "sourceHash": "a72ab72f721c5814fec97b6f3a0d25ef26754ec1d5ecd7cb78740a1a3b428cdc",
         "declaration": "api/generated/types/components/ui/reorderable-list.d.ts",
         "publicExports": [
           {
@@ -6086,7 +6086,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@phosphor-icons/react@^2.1.10",
@@ -6187,7 +6187,7 @@
       },
       "code": {
         "source": "src/components/ui/inline-edit.tsx",
-        "sourceHash": "fc9d2528b672055ec9420a8e0ba2046c181c64ef59c737ee716e190f4283ff78",
+        "sourceHash": "fada713cec9d3791575fdc0542531b19383fe82db831f9fb604153b3be553545",
         "declaration": "api/generated/types/components/ui/inline-edit.d.ts",
         "publicExports": [
           {
@@ -6207,7 +6207,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@phosphor-icons/react@^2.1.10"
@@ -6303,7 +6303,7 @@
       },
       "code": {
         "source": "src/components/ui/action-list.tsx",
-        "sourceHash": "2f367a3275a89de867c4ec7b98157dac36e9b21a744f014cf466454f7727475f",
+        "sourceHash": "a83eeafb7a285a5e2f34d37fad41615be796b7c22ecd05b47bcb1a46c1f61449",
         "declaration": "api/generated/types/components/ui/action-list.d.ts",
         "publicExports": [
           {
@@ -6328,7 +6328,7 @@
           }
         ],
         "registryDependencies": [
-          "@index/interaction-index-base"
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@phosphor-icons/react@^2.1.10"
@@ -6476,7 +6476,7 @@
       },
       "code": {
         "source": "src/components/ui/shared-detail.tsx",
-        "sourceHash": "7794b22dbb887a41cd50fd70c3130c15c36efb13fe97023bcaec3fba1d64bf65",
+        "sourceHash": "0b7d45ee2b7b378fccea25ba498bef4c55620194325ea33871a2c94ec7a05abd",
         "declaration": "api/generated/types/components/ui/shared-detail.d.ts",
         "publicExports": [
           {
@@ -6526,8 +6526,8 @@
           }
         ],
         "registryDependencies": [
-          "@index/icon-button",
-          "@index/interaction-index-base"
+          "@teum/icon-button",
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@phosphor-icons/react@^2.1.10",
@@ -6623,7 +6623,7 @@
       },
       "code": {
         "source": "src/components/ui/undo-stack.tsx",
-        "sourceHash": "0a393976afe778362ea8cd38b3b1e02462356efea39f1fa390908bf5af18aef0",
+        "sourceHash": "46a6450f5b91b9d771fe6a076981339ccffb4dbadaa1ece5781763dfea3fa570",
         "declaration": "api/generated/types/components/ui/undo-stack.d.ts",
         "publicExports": [
           {
@@ -6658,8 +6658,8 @@
           }
         ],
         "registryDependencies": [
-          "@index/button",
-          "@index/interaction-index-base"
+          "@teum/button",
+          "@teum/teum-base"
         ],
         "packageDependencies": [
           "@phosphor-icons/react@^2.1.10"

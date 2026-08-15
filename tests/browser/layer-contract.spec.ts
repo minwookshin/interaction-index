@@ -25,9 +25,9 @@ test("toast feedback owns the highest non-navigation product layer", async ({ pa
   await trigger.click();
   await trigger.click();
 
-  const toaster = page.locator(".ix-toaster");
+  const toaster = page.locator(".teum-toaster");
   await expect(toaster).toBeVisible();
-  const visibleToast = page.locator(".ix-toast:visible");
+  const visibleToast = page.locator(".teum-toast:visible");
   await expect(visibleToast).toHaveCount(1);
   await expect(toaster).toHaveCSS("z-index", "130");
 
@@ -41,12 +41,12 @@ test("toast feedback owns the highest non-navigation product layer", async ({ pa
 
 test("data-display polish keeps compact geometry optically balanced", async ({ page }) => {
   await page.goto("/#table");
-  await expect(page.locator(".data-table-recipe .ix-table__body .ix-table__row").first()).toHaveCSS("height", "46px");
-  await expect(page.locator(".data-table-recipe .ix-badge--strong")).toHaveCount(0);
+  await expect(page.locator(".data-table-recipe .teum-table__body .teum-table__row").first()).toHaveCSS("height", "46px");
+  await expect(page.locator(".data-table-recipe .teum-badge--strong")).toHaveCount(0);
 
   await page.goto("/#avatar");
-  const avatar = page.locator(".primary-avatar-group .ix-avatar[data-status]").first().or(page.locator(".live-specimen .ix-avatar[data-status]").first());
-  const status = avatar.locator(".ix-avatar__status");
+  const avatar = page.locator(".primary-avatar-group .teum-avatar[data-status]").first().or(page.locator(".live-specimen .teum-avatar[data-status]").first());
+  const status = avatar.locator(".teum-avatar__status");
   await expect(status).toHaveCSS("width", "11px");
   await expect(status).toHaveCSS("height", "11px");
 });

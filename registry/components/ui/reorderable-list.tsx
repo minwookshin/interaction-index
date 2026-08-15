@@ -1,4 +1,4 @@
-import "../../styles/index-base.css";
+import "../../styles/teum-base.css";
 import "../../styles/components/reorderable-list.css";
 import {
   Button as AriaButton,
@@ -44,21 +44,21 @@ export function ReorderableList({ items: controlledItems, defaultItems = [], onI
   const { dragAndDropHooks } = useDragAndDrop<ReorderableItem>({
     getItems: (keys, sourceItems) => sourceItems
       .filter((item) => keys.has(item.id))
-      .map((item) => ({ "text/plain": item.label, "application/x-interaction-index-item": String(item.id) })),
+      .map((item) => ({ "text/plain": item.label, "application/x-teum-item": String(item.id) })),
     onReorder: (event) => {
       const nextItems = reorder(items, event);
       if (!controlledItems) setUncontrolledItems(nextItems);
       onItemsChange?.(nextItems);
     },
-    renderDropIndicator: (target) => <DropIndicator className="ix-reorderable__drop-indicator" target={target} />,
+    renderDropIndicator: (target) => <DropIndicator className="teum-reorderable__drop-indicator" target={target} />,
     renderDragPreview: (draggedItems) => (
-      <div className="ix-reorderable__preview">{draggedItems.length > 1 ? `${draggedItems.length} items` : draggedItems[0]?.["text/plain"]}</div>
+      <div className="teum-reorderable__preview">{draggedItems.length > 1 ? `${draggedItems.length} items` : draggedItems[0]?.["text/plain"]}</div>
     ),
   });
 
   return (
     <GridList
-      className={cn("ix-reorderable", className)}
+      className={cn("teum-reorderable", className)}
       dragAndDropHooks={dragAndDropHooks}
       items={items}
       layout={layout}
@@ -66,13 +66,13 @@ export function ReorderableList({ items: controlledItems, defaultItems = [], onI
       {...props}
     >
       {(item) => (
-        <GridListItem className="ix-reorderable__item" id={item.id} textValue={item.label} isDisabled={item.disabled}>
-          <AriaButton slot="drag" className="ix-reorderable__handle" aria-label={`Move ${item.label}`}>
+        <GridListItem className="teum-reorderable__item" id={item.id} textValue={item.label} isDisabled={item.disabled}>
+          <AriaButton slot="drag" className="teum-reorderable__handle" aria-label={`Move ${item.label}`}>
             <DotsSixVertical aria-hidden="true" />
           </AriaButton>
-          <span className="ix-reorderable__copy">
-            <span className="ix-reorderable__label">{item.label}</span>
-            {item.description && <span className="ix-reorderable__description">{item.description}</span>}
+          <span className="teum-reorderable__copy">
+            <span className="teum-reorderable__label">{item.label}</span>
+            {item.description && <span className="teum-reorderable__description">{item.description}</span>}
           </span>
         </GridListItem>
       )}

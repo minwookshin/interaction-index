@@ -1,8 +1,8 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
-export const TOKEN_EXTENSION = "dev.interaction-index";
-export const TOKEN_SOURCE = "tokens/interaction-index.tokens.json";
+export const TOKEN_EXTENSION = "dev.teum";
+export const TOKEN_SOURCE = "tokens/teum.tokens.json";
 export const TOKEN_OUTPUTS = {
   css: "src/tokens/generated.css",
   typescript: "src/tokens/generated.ts",
@@ -124,7 +124,7 @@ export function collectTokens(document) {
         const childExtension = { ...extension, ...tokenExtension(child) };
         const tokenType = child.$type ?? type;
         assert(typeof tokenType === "string", `${nextPath.join(".")}: token type is required or must be inherited.`);
-        const cssVariable = childExtension.cssVariable ?? `${childExtension.cssPrefix ?? "--ix-"}${name}`;
+        const cssVariable = childExtension.cssVariable ?? `${childExtension.cssPrefix ?? "--teum-"}${name}`;
         assert(/^--[a-z0-9-]+$/.test(cssVariable), `${nextPath.join(".")}: invalid CSS variable ${cssVariable}.`);
         tokens.push({
           path: nextPath.join("."),
@@ -252,11 +252,11 @@ export function generateCss(model) {
     .filter((token) => Object.hasOwn(token.modes, "dark"))
     .map((token) => `  ${token.cssVariable}: ${formatCssValue(token, token.modes.dark, model.byPath)};`);
   return [
-    "/* Generated from tokens/interaction-index.tokens.json. Do not edit directly. */",
+    "/* Generated from tokens/teum.tokens.json. Do not edit directly. */",
     "",
     ":root {",
     "  color-scheme: light;",
-    "  font-family: var(--ix-font-ui);",
+    "  font-family: var(--teum-font-ui);",
     "  font-synthesis: none;",
     "  font-optical-sizing: auto;",
     "  text-rendering: optimizeLegibility;",
@@ -284,7 +284,7 @@ export function generateTypescript(model) {
   }));
   const paths = manifest.map((token) => token.path);
   return [
-    "/* Generated from tokens/interaction-index.tokens.json. Do not edit directly. */",
+    "/* Generated from tokens/teum.tokens.json. Do not edit directly. */",
     "",
     `export const tokenModes = ${JSON.stringify(model.modes)} as const;`,
     "export type TokenMode = (typeof tokenModes)[number];",
@@ -394,7 +394,7 @@ function figmaScopes(token) {
 }
 
 function figmaCollection(token) {
-  return token.scope === "foundation" ? "Interaction Index / Foundation" : "Interaction Index / Theme";
+  return token.scope === "foundation" ? "Teum / Foundation" : "Teum / Theme";
 }
 
 function figmaVariable(token, model) {
@@ -474,9 +474,9 @@ function figmaTextStyles(model) {
       lineHeight: tokenNumber(model, `foundation.typography.sizes.line-${sizeName}`),
       letterSpacing: { value: tracking, unit: "PERCENT" },
       codeSyntax: {
-        fontFamily: "var(--ix-font-ui)",
-        fontSize: `var(--ix-type-${sizeName})`,
-        lineHeight: `var(--ix-line-${sizeName})`,
+        fontFamily: "var(--teum-font-ui)",
+        fontSize: `var(--teum-type-${sizeName})`,
+        lineHeight: `var(--teum-line-${sizeName})`,
       },
     };
   });
@@ -492,8 +492,8 @@ export function generateFigmaManifest(model) {
     $description: "Figma library handoff generated from the DTCG source. It is deterministic input for the Figma build, not evidence that a library is published.",
     source: TOKEN_SOURCE,
     collections: [
-      { name: "Interaction Index / Foundation", modes: ["Value"] },
-      { name: "Interaction Index / Theme", modes: model.modes.map(titleCase) },
+      { name: "Teum / Foundation", modes: ["Value"] },
+      { name: "Teum / Theme", modes: model.modes.map(titleCase) },
     ],
     variables,
     textStyles,

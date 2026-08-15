@@ -20,7 +20,7 @@ import {
   UndoStackProvider,
   useUndoStack,
   toast,
-} from "interaction-index";
+} from "teum";
 
 type Issue = {
   id: string;

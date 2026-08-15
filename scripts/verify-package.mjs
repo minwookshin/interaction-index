@@ -12,8 +12,9 @@ const hash = (value) => createHash("sha256").update(value).digest("hex");
 
 if (packageJson.private !== true) fail("package publication must remain locked during pre-release");
 if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/.test(packageJson.version)) fail("version is not valid SemVer");
-if (packageJson.peerDependencies?.react !== "^19.2.0" || packageJson.peerDependencies?.["react-dom"] !== "^19.2.0") {
-  fail("React peer contract must match the currently verified React 19.2 line");
+const expectedReactRange = "^18.2.0 || ^19.0.0";
+if (packageJson.peerDependencies?.react !== expectedReactRange || packageJson.peerDependencies?.["react-dom"] !== expectedReactRange) {
+  fail("React peer contract must match the verified React 18 and 19 range");
 }
 for (const dependency of ["react", "react-dom", "vite", "@vitejs/plugin-react"]) {
   if (packageJson.dependencies?.[dependency]) fail(`${dependency} must not ship as a runtime dependency`);
@@ -45,7 +46,7 @@ const paths = report.files.map((file) => file.path);
 for (const forbidden of ["src/", "tests/", ".storybook/", "figma/", ".env", "AGENTS.md"]) {
   if (paths.some((path) => path === forbidden || path.startsWith(forbidden))) fail(`tarball leaked ${forbidden}`);
 }
-for (const required of ["dist/package/index.js", "dist/package/styles.css", "dist/package/integrity.json", "public/r/manifest.json", "LICENSE", "README.md"]) {
+for (const required of ["dist/package/index.js", "dist/package/styles.css", "dist/package/tokens.css", "dist/package/tailwind.css", "dist/package/integrity.json", "public/r/manifest.json", "LICENSE", "README.md"]) {
   if (!paths.includes(required)) fail(`tarball omitted ${required}`);
 }
 if (report.unpackedSize > 4_000_000) fail(`tarball exceeds the 4 MB unpacked budget: ${report.unpackedSize}`);

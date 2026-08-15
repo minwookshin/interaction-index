@@ -36,12 +36,12 @@ test("mobile component previews preserve a 24 CSS pixel target floor", async ({ 
 
       const compound = source.closest<HTMLElement>([
         "label",
-        ".ix-field__control",
-        ".ix-date-picker__group",
-        ".ix-number-field__group",
-        ".ix-choice-row",
-        ".ix-checkbox-option",
-        ".ix-radio-option",
+        ".teum-field__control",
+        ".teum-date-picker__group",
+        ".teum-number-field__group",
+        ".teum-choice-row",
+        ".teum-checkbox-option",
+        ".teum-radio-option",
       ].join(","));
       const target = compound ?? source;
       const box = target.getBoundingClientRect();

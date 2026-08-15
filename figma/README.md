@@ -1,4 +1,4 @@
-# Interaction Index Figma handoff
+# Teum Figma handoff
 
 The codebase remains the source of truth until a real Figma library is created and inspected.
 

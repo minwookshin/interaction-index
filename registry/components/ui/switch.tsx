@@ -1,4 +1,4 @@
-import "../../styles/index-base.css";
+import "../../styles/teum-base.css";
 import "../../styles/components/switch.css";
 import { Switch as SwitchPrimitive } from "@base-ui/react/switch";
 import { useId } from "react";
@@ -16,15 +16,15 @@ export function Switch({ className, label, description, id: providedId, "aria-de
   const descriptionId = description ? `${id}-description` : undefined;
   const describedBy = [ariaDescribedBy, descriptionId].filter(Boolean).join(" ") || undefined;
   return (
-    <div className="ix-choice-row ix-choice-row--spread">
+    <div className="teum-choice-row teum-choice-row--spread">
       {label && (
-        <label htmlFor={id} className="ix-choice-copy">
+        <label htmlFor={id} className="teum-choice-copy">
           <span id={labelId}>{label}</span>
           {description && <small id={descriptionId}>{description}</small>}
         </label>
       )}
-      <SwitchPrimitive.Root id={id} className={cn("ix-switch", className)} aria-labelledby={ariaLabelledBy ?? labelId} aria-describedby={describedBy} {...props}>
-        <SwitchPrimitive.Thumb className="ix-switch__thumb" />
+      <SwitchPrimitive.Root id={id} className={cn("teum-switch", className)} aria-labelledby={ariaLabelledBy ?? labelId} aria-describedby={describedBy} {...props}>
+        <SwitchPrimitive.Thumb className="teum-switch__thumb" />
       </SwitchPrimitive.Root>
     </div>
   );

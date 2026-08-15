@@ -9,7 +9,7 @@ export type ReactAriaPreviewId = "date-picker" | "tree" | "reorderable-list";
 const projectTreeItems: readonly TreeNode[] = [
   {
     id: "workspace",
-    label: "Interaction Index",
+    label: "Teum",
     description: "Design system workspace",
     icon: <Folder />,
     children: [

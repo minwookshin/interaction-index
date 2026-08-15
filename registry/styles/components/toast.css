@@ -1,23 +1,23 @@
 /* Generated from src/styles.css. Do not edit directly. */
 
-@layer index.tokens, index.base, index.components;
+@layer teum.tokens, teum.base, teum.components;
 
-@layer index.components {
-.ix-toaster { --width: 326px; z-index: var(--ix-layer-toast); }
+@layer teum.components {
+.teum-toaster { --width: 326px; z-index: var(--teum-layer-toast); }
 
-.ix-toast { position: relative; display: flex; width: 326px; max-width: calc(100vw - 32px); min-height: 52px; align-items: center; gap: 10px; padding: 10px 40px 10px 12px; border: 1px solid var(--ix-border-subtle); border-radius: 8px; background: var(--ix-bg-flyout); color: var(--ix-ink); box-shadow: var(--ix-shadow-flyout); font-family: inherit; }
+.teum-toast { position: relative; display: flex; width: 326px; max-width: calc(100vw - 32px); min-height: 52px; align-items: center; gap: 10px; padding: 10px 40px 10px 12px; border: 1px solid var(--teum-border-subtle); border-radius: 8px; background: var(--teum-bg-flyout); color: var(--teum-ink); box-shadow: var(--teum-shadow-flyout); font-family: inherit; }
 
-.ix-toast__content { display: grid; flex: 1; gap: 2px; }
+.teum-toast__content { display: grid; flex: 1; gap: 2px; }
 
-.ix-toast__title { font-size: 13.5px; font-weight: 580; }
+.teum-toast__title { font-size: 13.5px; font-weight: 580; }
 
-.ix-toast__description { color: var(--ix-ink-secondary); font-size: 12px; }
+.teum-toast__description { color: var(--teum-ink-secondary); font-size: 12px; }
 
-.ix-toast__action { height: 28px; padding: 0 8px; border: 1px solid var(--ix-border); border-radius: 5px; background: var(--ix-control-surface); color: var(--ix-ink); font-size: 12px; font-weight: 550; }
+.teum-toast__action { height: 28px; padding: 0 8px; border: 1px solid var(--teum-border); border-radius: 5px; background: var(--teum-control-surface); color: var(--teum-ink); font-size: 12px; font-weight: 550; }
 
-.ix-toast__close { position: absolute; top: 8px; right: 8px; display: grid; width: 22px; height: 22px; padding: 0; place-items: center; border: 0; border-radius: 4px; background: transparent; color: var(--ix-fg-subtle); }
+.teum-toast__close { position: absolute; top: 8px; right: 8px; display: grid; width: 22px; height: 22px; padding: 0; place-items: center; border: 0; border-radius: 4px; background: transparent; color: var(--teum-fg-subtle); }
 
 @media (forced-colors: active) {
-.ix-toast { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }
+.teum-toast { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }
 }
 }

@@ -17,10 +17,10 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(functi
   const currentValue = controlled ? String(value ?? "") : uncontrolledValue;
   const hasValue = currentValue.length > 0;
   return (
-    <div className="ix-search-field">
-      <label className="ix-sr-only" htmlFor={id}>{label}</label>
-      <div className={cn("ix-search", className)} data-loading={loading || undefined}>
-        {loading ? <span className="ix-spinner ix-search__spinner" aria-hidden="true" /> : <MagnifyingGlass className="ix-search__icon" aria-hidden="true" />}
+    <div className="teum-search-field">
+      <label className="teum-sr-only" htmlFor={id}>{label}</label>
+      <div className={cn("teum-search", className)} data-loading={loading || undefined}>
+        {loading ? <span className="teum-spinner teum-search__spinner" aria-hidden="true" /> : <MagnifyingGlass className="teum-search__icon" aria-hidden="true" />}
         <input
           ref={ref}
           id={id}

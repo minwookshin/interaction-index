@@ -1,6 +1,6 @@
-# Interaction Index
+# Teum
 
-Interaction Index is a dense, monochrome React component and interaction system for product interfaces.
+Teum is a dense, monochrome React component and interaction system for product interfaces.
 
 ## Documentation routes
 
@@ -19,11 +19,11 @@ Interaction Index is a dense, monochrome React component and interaction system 
 ## Install
 
 ```bash
-npx shadcn@latest registry add @index=https://minwookshin.github.io/interaction-index/r/{name}.json
-npx shadcn@latest add @index/button
+npx shadcn@latest registry add @teum=https://interactions.minwookshin.com/r/{name}.json
+npx shadcn@latest add @teum/button
 ```
 
-Installed component source imports the shared contract and its scoped stylesheet. The complete-system item also provides `styles/interaction-index.css` as the application-root base entry.
+Installed component source imports the shared contract and its scoped stylesheet. The complete-system item also provides `styles/teum.css` as the application-root base entry. Plain CSS is the source of truth; Tailwind CSS v4 consumers may additionally install `@teum/teum-tailwind` for semantic utilities backed by the same variables.
 
 ## Source documents
 

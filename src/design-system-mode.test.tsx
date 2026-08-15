@@ -141,11 +141,11 @@ describe("design system workspace", () => {
     expect(screen.getAllByText("Tab to focus").length).toBeGreaterThan(0);
     expect(container.querySelectorAll(".guidance-marker")).toHaveLength(6);
     expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("Button");
-    expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("@index/ui");
+    expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("teum");
     expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("Base UI");
     expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("7 states");
     expect(screen.getByRole("table", { name: "Button API" })).toBeInTheDocument();
-    expect(screen.getByLabelText("Button compatibility and confidence")).toHaveTextContent("React19.2");
+    expect(screen.getByLabelText("Button compatibility and confidence")).toHaveTextContent("React^18.2.0 || ^19.0.0");
     expect(screen.getByLabelText("Button compatibility and confidence")).toHaveTextContent("Not published");
     expect(screen.queryByRole("tab", { name: "Preview" })).not.toBeInTheDocument();
   });
@@ -155,13 +155,13 @@ describe("design system workspace", () => {
 
     const actions = screen.getByRole("banner", { name: "Workspace actions" });
     const catalog = screen.getByRole("region", { name: "Component catalog" });
-    expect(actions).not.toHaveTextContent("Index UI");
+    expect(actions).not.toHaveTextContent("Teum");
     expect(actions).not.toHaveTextContent("Components");
     expect(screen.queryByText("Alpha")).not.toBeInTheDocument();
     expect(within(catalog).getByRole("link", { name: "Button" })).toHaveAttribute("aria-current", "page");
     expect(within(catalog).getByRole("link", { name: "Icon Button" })).not.toHaveAttribute("aria-current");
     expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("Base UI");
-    expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("@index/ui");
+    expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("teum");
   });
 
   it("keeps one persistent page-copy action", () => {
@@ -180,7 +180,7 @@ describe("design system workspace", () => {
     expect(document.documentElement).toHaveAttribute("data-theme", "light");
     await user.click(screen.getByRole("button", { name: "Current theme: light. Switch to dark theme" }));
     expect(document.documentElement).toHaveAttribute("data-theme", "dark");
-    expect(window.localStorage.getItem("index-ui-theme")).toBe("dark");
+    expect(window.localStorage.getItem("teum-theme")).toBe("dark");
     expect(screen.getByRole("button", { name: "Current theme: dark. Switch to light theme" })).toBeInTheDocument();
   });
 
@@ -216,7 +216,7 @@ describe("design system workspace", () => {
     expect(disclosure).not.toHaveAttribute("open");
     await user.click(screen.getByText("Show code"));
     expect(disclosure).toHaveAttribute("open");
-    expect(screen.getByText(/import \{ Button \} from "@index\/ui"/)).toBeInTheDocument();
+    expect(screen.getByText(/import \{ Button \} from "teum"/)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Copy code" })).toBeInTheDocument();
   });
 
@@ -226,7 +226,7 @@ describe("design system workspace", () => {
     const disclosure = screen.getByText("Show code").closest("summary")!;
     disclosure.focus();
     await user.keyboard("{Enter}");
-    expect(screen.getByText(/import \{ Button \} from "@index\/ui"/)).toBeInTheDocument();
+    expect(screen.getByText(/import \{ Button \} from "teum"/)).toBeInTheDocument();
   });
 
   it("returns to the preview when the user moves to another component", async () => {
@@ -308,7 +308,7 @@ describe("design system workspace", () => {
     const catalog = screen.getByRole("region", { name: "Component catalog" });
 
     expect(container.querySelectorAll(".state-control-stack > .state-inline-surface")).toHaveLength(3);
-    expect(container.querySelector(".ix-context-switcher__popup")).not.toBeInTheDocument();
+    expect(container.querySelector(".teum-context-switcher__popup")).not.toBeInTheDocument();
 
     await user.click(within(catalog).getByRole("link", { name: "Popover" }));
     expect(container.querySelectorAll('.state-overlay-stack[data-composition="compound"]')).toHaveLength(componentGuidance.popover.states.length);

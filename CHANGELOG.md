@@ -2,6 +2,21 @@
 
 This project follows Semantic Versioning once a public API is released. During `0.x`, documented APIs may still change; every breaking alpha change must be called out here.
 
+## 0.1.0-rc.3 — 2026-08-15
+
+### Changed
+
+- Renamed the public system from Interaction Index to Teum, including the future npm package candidate, registry namespace, CSS class prefix, token prefix, and cascade layers.
+- Set `https://interactions.minwookshin.com` as the canonical documentation and registry origin while preserving the portfolio's Interaction Index URL as the product's existing entry point.
+- Expanded the peer contract to React 18.2+ and React 19, with clean TypeScript/Vite consumers for both major lines.
+- Kept framework-neutral CSS as the styling source of truth and added an optional Tailwind CSS v4 semantic-token bridge.
+
+### Distribution
+
+- The active registry uses `@teum`, `teum-base`, `teum-tailwind`, and the complete `teum` item.
+- The future npm package name is `teum`; it remains private and unpublished until npm ownership, trusted publishing, and external install gates are complete.
+- Versioned Interaction Index registry artifacts from earlier candidates remain byte-for-byte preserved. Teum begins a new immutable namespace with this candidate.
+
 ## 0.1.0-rc.2 — 2026-08-15
 
 ### Changed

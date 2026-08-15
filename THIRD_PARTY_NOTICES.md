@@ -1,6 +1,6 @@
 # Third-party notices
 
-Interaction Index is MIT licensed. The direct runtime dependencies below keep their own licenses. This list records the versions in `package-lock.json` at the 0.1.0 alpha checkpoint; the lockfile is authoritative when versions change.
+Teum is MIT licensed. The direct runtime dependencies below keep their own licenses. This list records the versions in `package-lock.json` at the 0.1.0 alpha checkpoint; the lockfile is authoritative when versions change.
 
 | Package | Version | License |
 | --- | --- | --- |

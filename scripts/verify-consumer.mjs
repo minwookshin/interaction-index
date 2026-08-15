@@ -29,7 +29,7 @@ async function writeRegistryFiles(fixture, items) {
 async function scaffoldFixture(fixture, mainSource) {
   await cp(resolve(root, "node_modules"), resolve(fixture, "node_modules"), { recursive: true });
   await writeFile(resolve(fixture, "package.json"), JSON.stringify({
-    name: "interaction-index-consumer-smoke",
+    name: "teum-consumer-smoke",
     private: true,
     type: "module",
     scripts: { build: "tsc --noEmit && vite build" },
@@ -68,7 +68,7 @@ async function builtCss(fixture) {
 }
 
 async function runFixture(label, items, mainSource, verify) {
-  const fixture = await mkdtemp(join(tmpdir(), `interaction-index-${label}-`));
+  const fixture = await mkdtemp(join(tmpdir(), `teum-${label}-`));
   try {
     await writeRegistryFiles(fixture, items);
     await scaffoldFixture(fixture, mainSource);
@@ -83,30 +83,30 @@ async function runFixture(label, items, mainSource, verify) {
   }
 }
 
-const baseItem = await readRegistryItem("interaction-index-base");
+const baseItem = await readRegistryItem("teum-base");
 const buttonItem = await readRegistryItem("button");
 await runFixture(
   "button-only",
   [baseItem, buttonItem],
   `import { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport { Button } from "./components/ui/button";\nfunction App() { return <main><Button>Verified action</Button></main>; }\ncreateRoot(document.getElementById("root")!).render(<StrictMode><App /></StrictMode>);\n`,
   async (css) => {
-    if (!css.includes(".ix-button")) throw new Error("[consumer] button-only build omitted Button CSS");
-    for (const selector of [".ix-dialog", ".ix-table", ".ix-shared-detail"]) {
+    if (!css.includes(".teum-button")) throw new Error("[consumer] button-only build omitted Button CSS");
+    for (const selector of [".teum-dialog", ".teum-table", ".teum-shared-detail"]) {
       if (css.includes(selector)) throw new Error(`[consumer] button-only build leaked ${selector}`);
     }
-    if (!css.includes("@layer index.tokens,index.base,index.components")) {
+    if (!css.includes("@layer teum.tokens,teum.base,teum.components")) {
       throw new Error("[consumer] button-only build omitted the public cascade order");
     }
   },
 );
 
-const completeItem = await readRegistryItem("interaction-index");
+const completeItem = await readRegistryItem("teum");
 await runFixture(
   "complete-system",
   [completeItem],
-  `import { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport { Button, SharedDetail, UndoBar, UndoStackProvider } from "./components/ui";\nimport "./styles/interaction-index.css";\nconst items = [{ id: "one", title: "Consumer proof", meta: "INT-001", description: "Installed from generated registry source." }];\nfunction App() { return <UndoStackProvider><main><Button>Verified action</Button><SharedDetail items={items} defaultSelectedId="one" /><UndoBar /></main></UndoStackProvider>; }\ncreateRoot(document.getElementById("root")!).render(<StrictMode><App /></StrictMode>);\n`,
+  `import { StrictMode } from "react";\nimport { createRoot } from "react-dom/client";\nimport { Button, SharedDetail, UndoBar, UndoStackProvider } from "./components/ui";\nimport "./styles/teum.css";\nconst items = [{ id: "one", title: "Consumer proof", meta: "INT-001", description: "Installed from generated registry source." }];\nfunction App() { return <UndoStackProvider><main><Button>Verified action</Button><SharedDetail items={items} defaultSelectedId="one" /><UndoBar /></main></UndoStackProvider>; }\ncreateRoot(document.getElementById("root")!).render(<StrictMode><App /></StrictMode>);\n`,
   async (css) => {
-    for (const selector of [".ix-button", ".ix-dialog", ".ix-table", ".ix-shared-detail"]) {
+    for (const selector of [".teum-button", ".teum-dialog", ".teum-table", ".teum-shared-detail"]) {
       if (!css.includes(selector)) throw new Error(`[consumer] complete-system build omitted ${selector}`);
     }
   },

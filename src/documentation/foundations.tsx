@@ -60,7 +60,7 @@ export function FoundationOverview({ onSelect }: { onSelect: (id: FoundationRout
           </a>
         ))}
       </div>
-      <footer className="system-footer"><span>Interaction Index</span><span>Inter / Divai rhythm</span></footer>
+      <footer className="system-footer"><span>Teum</span><span>Inter / Divai rhythm</span></footer>
     </div>
   );
 }
@@ -85,7 +85,7 @@ export function FoundationDetail({ id, onBack }: { id: FoundationId; onBack: () 
       {id === "typography" && <TypographyFoundation />}
       {id === "spacing" && <SpacingFoundation />}
       {id === "motion" && <MotionFoundation />}
-      <footer className="system-footer"><span>Interaction Index</span><span>{item.label} foundation</span></footer>
+      <footer className="system-footer"><span>Teum</span><span>{item.label} foundation</span></footer>
     </div>
   );
 }
@@ -117,12 +117,12 @@ const semanticColors = semanticColorRoles.map(([path, role, usage]) => [
 ] as const);
 
 const elevationContract = [
-  ["Canvas", "Page and persistent regions", "--ix-bg-canvas", "none", "document flow"],
-  ["Stage", "Specimens and grouped controls", "--ix-bg-stage", "none", "document flow"],
-  ["Float", "Persistent raised composition", "--ix-bg-float", "--ix-shadow-float", "document flow"],
-  ["Flyout", "Select, Combobox, Context Switcher, Menu, Popover", "--ix-bg-flyout", "--ix-shadow-flyout", "120"],
-  ["Modal", "Dialog and Alert Dialog", "--ix-bg-modal", "--ix-shadow-modal", "100 / 110"],
-  ["Toast", "Non-blocking outcome feedback", "--ix-bg-flyout", "--ix-shadow-flyout", "130"],
+  ["Canvas", "Page and persistent regions", "--teum-bg-canvas", "none", "document flow"],
+  ["Stage", "Specimens and grouped controls", "--teum-bg-stage", "none", "document flow"],
+  ["Float", "Persistent raised composition", "--teum-bg-float", "--teum-shadow-float", "document flow"],
+  ["Flyout", "Select, Combobox, Context Switcher, Menu, Popover", "--teum-bg-flyout", "--teum-shadow-flyout", "120"],
+  ["Modal", "Dialog and Alert Dialog", "--teum-bg-modal", "--teum-shadow-modal", "100 / 110"],
+  ["Toast", "Non-blocking outcome feedback", "--teum-bg-flyout", "--teum-shadow-flyout", "130"],
 ] as const;
 
 const materialDecisionContract = [
@@ -217,7 +217,7 @@ function TypographyFoundation() {
         <div className="type-product-example"><div><small>INT-184 · UPDATED 8M</small><h3>Define motion contract</h3><p>Document origin, continuity, interruption, keyboard behavior, and reduced motion before implementation.</p></div><span>In review</span></div>
       </FoundationSection>
       <FoundationSection eyebrow="Implementation" title="Copy the role, not the number" description="Semantic type tokens keep component decisions stable when optical adjustments change.">
-        <div className="foundation-code-line"><code>font: var(--ix-type-ui) / 1.35 "Inter Variable", Inter, sans-serif;</code><CopyValue value={'font: var(--ix-type-ui) / 1.35 "Inter Variable", Inter, sans-serif;'} /></div>
+        <div className="foundation-code-line"><code>font: var(--teum-type-ui) / 1.35 "Inter Variable", Inter, sans-serif;</code><CopyValue value={'font: var(--teum-type-ui) / 1.35 "Inter Variable", Inter, sans-serif;'} /></div>
       </FoundationSection>
     </>
   );
@@ -255,7 +255,7 @@ function SpacingFoundation() {
         <div className="dna-contract" aria-label="Component DNA contract">{componentDnaRoles.map(([role, value, description]) => <article key={role}><span>{role}</span><strong>{value}</strong><p>{description}</p></article>)}</div>
       </FoundationSection>
       <FoundationSection eyebrow="Implementation" title="Layout owns external spacing" description="Components define their internal geometry. Parent stacks and grids decide the space between components.">
-        <div className="foundation-code-line"><code>gap: var(--ix-space-section); /* 22px section rhythm */</code><CopyValue value="gap: var(--ix-space-section);" /></div>
+        <div className="foundation-code-line"><code>gap: var(--teum-space-section); /* 22px section rhythm */</code><CopyValue value="gap: var(--teum-space-section);" /></div>
       </FoundationSection>
     </>
   );
@@ -287,7 +287,7 @@ function MotionFoundation() {
         <div className="easing-list"><div><span>Enter / exit</span><code>{resolvedToken("foundation.motion.easing.ease-out")}</code><CopyValue value={resolvedToken("foundation.motion.easing.ease-out")} /></div><div><span>Spatial change</span><code>{resolvedToken("foundation.motion.easing.ease-in-out")}</code><CopyValue value={resolvedToken("foundation.motion.easing.ease-in-out")} /></div></div>
       </FoundationSection>
       <FoundationSection eyebrow="Accessibility" title="Reduced motion is a behavior contract" description="Remove translation, scaling, and layout choreography. Keep instant state changes, focus movement, and short opacity feedback.">
-        <div className="foundation-code-line foundation-code-line--multiline"><code>{`@media (prefers-reduced-motion: reduce) {\n  .overlay { transition: opacity 120ms var(--ix-ease-out); transform: none; }\n}`}</code><CopyValue value={'@media (prefers-reduced-motion: reduce) {\n  .overlay { transition: opacity 120ms var(--ix-ease-out); transform: none; }\n}'} /></div>
+        <div className="foundation-code-line foundation-code-line--multiline"><code>{`@media (prefers-reduced-motion: reduce) {\n  .overlay { transition: opacity 120ms var(--teum-ease-out); transform: none; }\n}`}</code><CopyValue value={'@media (prefers-reduced-motion: reduce) {\n  .overlay { transition: opacity 120ms var(--teum-ease-out); transform: none; }\n}'} /></div>
       </FoundationSection>
     </>
   );

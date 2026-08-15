@@ -30,19 +30,19 @@ export function Alert({
 
   return (
     <div
-      className={cn("ix-alert", className)}
+      className={cn("teum-alert", className)}
       data-variant={variant}
       role={role ?? (live === "assertive" ? "alert" : live === "polite" ? "status" : undefined)}
       aria-live={live}
       {...props}
     >
-      <span className="ix-alert__icon" aria-hidden="true">{icon ?? fallbackIcon}</span>
-      <span className="ix-alert__content">
+      <span className="teum-alert__icon" aria-hidden="true">{icon ?? fallbackIcon}</span>
+      <span className="teum-alert__content">
         <strong>{title}</strong>
         {children && <span>{children}</span>}
       </span>
-      {action && <span className="ix-alert__action">{action}</span>}
-      {onDismiss && <IconButton className="ix-alert__dismiss" variant="ghost" size="small" aria-label={dismissLabel} onClick={onDismiss}><X /></IconButton>}
+      {action && <span className="teum-alert__action">{action}</span>}
+      {onDismiss && <IconButton className="teum-alert__dismiss" variant="ghost" size="small" aria-label={dismissLabel} onClick={onDismiss}><X /></IconButton>}
     </div>
   );
 }

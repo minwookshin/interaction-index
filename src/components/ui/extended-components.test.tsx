@@ -138,18 +138,18 @@ describe("extended component set", () => {
     const { container } = render(<><Progress label="Export" value={68} /><Spinner label="Loading panel" /><Skeleton width={120} height={10} /></>);
     expect(screen.getByRole("progressbar", { name: "Export" })).toHaveAttribute("aria-valuenow", "68");
     expect(screen.getByRole("status", { name: "Loading panel" })).toBeInTheDocument();
-    expect(container.querySelector(".ix-skeleton")).toHaveAttribute("aria-hidden", "true");
+    expect(container.querySelector(".teum-skeleton")).toHaveAttribute("aria-hidden", "true");
   });
 
   it("maps Progress against its full min-to-max range", () => {
     render(<Progress aria-label="Migration" min={50} max={150} value={100} />);
-    expect(screen.getByRole("progressbar", { name: "Migration" })).toHaveStyle({ "--ix-progress-scale": "0.5" });
+    expect(screen.getByRole("progressbar", { name: "Migration" })).toHaveStyle({ "--teum-progress-scale": "0.5" });
   });
 
   it("labels presence without turning the avatar into an action", () => {
     const { container } = render(<Avatar fallback="AS" status="online" />);
     expect(screen.getByLabelText("online presence")).toBeInTheDocument();
-    expect(container.querySelector(".ix-avatar")).toHaveAttribute("data-status", "online");
+    expect(container.querySelector(".teum-avatar")).toHaveAttribute("data-status", "online");
     expect(screen.queryByRole("button")).not.toBeInTheDocument();
   });
 });

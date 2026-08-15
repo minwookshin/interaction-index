@@ -1,33 +1,33 @@
 /* Generated from src/styles.css. Do not edit directly. */
 
-@layer index.tokens, index.base, index.components;
+@layer teum.tokens, teum.base, teum.components;
 
-@layer index.components {
-.ix-positioner { z-index: var(--ix-layer-flyout); }
+@layer teum.components {
+.teum-positioner { z-index: var(--teum-layer-flyout); }
 
-.ix-tooltip kbd { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; color: var(--ix-ink-tertiary); font-family: inherit; font-size: 10px; line-height: 1; white-space: nowrap; }
+.teum-tooltip kbd { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; color: var(--teum-ink-tertiary); font-family: inherit; font-size: 10px; line-height: 1; white-space: nowrap; }
 
-.ix-tooltip { display: flex; align-items: center; gap: 8px; max-width: 240px; padding: 6px 8px; border-radius: 5px; background: var(--ix-inverse); color: var(--ix-on-inverse); font-size: 12px; line-height: 1.35; box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18); transform-origin: var(--transform-origin); transition: opacity var(--ix-enter-duration) var(--ix-ease-out), transform var(--ix-enter-duration) var(--ix-ease-out); }
+.teum-tooltip { display: flex; align-items: center; gap: 8px; max-width: 240px; padding: 6px 8px; border-radius: 5px; background: var(--teum-inverse); color: var(--teum-on-inverse); font-size: 12px; line-height: 1.35; box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18); transform-origin: var(--transform-origin); transition: opacity var(--teum-enter-duration) var(--teum-ease-out), transform var(--teum-enter-duration) var(--teum-ease-out); }
 
-.ix-tooltip[data-starting-style] { opacity: 0; transform: scale(0.96); }
+.teum-tooltip[data-starting-style] { opacity: 0; transform: scale(0.96); }
 
-.ix-tooltip[data-ending-style] { opacity: 0; transform: scale(0.98); transition-duration: var(--ix-exit-duration); }
+.teum-tooltip[data-ending-style] { opacity: 0; transform: scale(0.98); transition-duration: var(--teum-exit-duration); }
 
-.ix-tooltip[data-instant] { transition-duration: 0ms; }
+.teum-tooltip[data-instant] { transition-duration: 0ms; }
 
-.ix-tooltip kbd { padding: 0 3px; border: 1px solid color-mix(in oklch, var(--ix-on-inverse) 24%, transparent); border-radius: 3px; color: color-mix(in oklch, var(--ix-on-inverse) 76%, transparent); }
+.teum-tooltip kbd { padding: 0 3px; border: 1px solid color-mix(in oklch, var(--teum-on-inverse) 24%, transparent); border-radius: 3px; color: color-mix(in oklch, var(--teum-on-inverse) 76%, transparent); }
 
-.ix-tooltip__arrow { width: 8px; height: 4px; fill: var(--ix-inverse); }
+.teum-tooltip__arrow { width: 8px; height: 4px; fill: var(--teum-inverse); }
 
-:root[data-theme="dark"] .ix-tooltip__arrow { fill: var(--ix-inverse); }
+:root[data-theme="dark"] .teum-tooltip__arrow { fill: var(--teum-inverse); }
 
 @media (prefers-reduced-motion: reduce) {
-.ix-tooltip {
+.teum-tooltip {
     transition-property: opacity;
-    transition-duration: var(--ix-exit-duration);
+    transition-duration: var(--teum-exit-duration);
   }
 
-.ix-tooltip[data-starting-style],
-.ix-tooltip[data-ending-style] { transform: none; }
+.teum-tooltip[data-starting-style],
+.teum-tooltip[data-ending-style] { transform: none; }
 }
 }

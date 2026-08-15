@@ -1,4 +1,4 @@
-import "../../styles/index-base.css";
+import "../../styles/teum-base.css";
 import "../../styles/components/date-picker.css";
 import {
   Button as AriaButton,
@@ -31,22 +31,22 @@ export type CalendarProps<T extends DateValue> = Omit<AriaCalendarProps<T>, "chi
 
 export function Calendar<T extends DateValue>({ className, ...props }: CalendarProps<T>) {
   return (
-    <AriaCalendar className={cn("ix-calendar", className)} {...props}>
-      <header className="ix-calendar__header">
-        <AriaButton slot="previous" className="ix-calendar__nav" aria-label="Previous month">
+    <AriaCalendar className={cn("teum-calendar", className)} {...props}>
+      <header className="teum-calendar__header">
+        <AriaButton slot="previous" className="teum-calendar__nav" aria-label="Previous month">
           <CaretLeft aria-hidden="true" />
         </AriaButton>
-        <Heading className="ix-calendar__heading" />
-        <AriaButton slot="next" className="ix-calendar__nav" aria-label="Next month">
+        <Heading className="teum-calendar__heading" />
+        <AriaButton slot="next" className="teum-calendar__nav" aria-label="Next month">
           <CaretRight aria-hidden="true" />
         </AriaButton>
       </header>
-      <CalendarGrid className="ix-calendar__grid" weekdayStyle="short">
+      <CalendarGrid className="teum-calendar__grid" weekdayStyle="short">
         <CalendarGridHeader>
-          {(day) => <CalendarHeaderCell className="ix-calendar__weekday">{day}</CalendarHeaderCell>}
+          {(day) => <CalendarHeaderCell className="teum-calendar__weekday">{day}</CalendarHeaderCell>}
         </CalendarGridHeader>
         <CalendarGridBody>
-          {(date) => <CalendarCell className="ix-calendar__cell" date={date} />}
+          {(date) => <CalendarCell className="teum-calendar__cell" date={date} />}
         </CalendarGridBody>
       </CalendarGrid>
     </AriaCalendar>
@@ -72,23 +72,23 @@ export function DatePicker<T extends DateValue>({
   return (
     <AriaDatePicker
       aria-label={label ? undefined : ariaLabel}
-      className={cn("ix-date-picker", className)}
+      className={cn("teum-date-picker", className)}
       isInvalid={Boolean(errorMessage) || props.isInvalid}
       {...props}
     >
-      {label && <Label className="ix-field__label">{label}</Label>}
-      <Group className="ix-date-picker__group">
-        <DateInput className="ix-date-picker__input">
-          {(segment) => <DateSegment className="ix-date-picker__segment" segment={segment} />}
+      {label && <Label className="teum-field__label">{label}</Label>}
+      <Group className="teum-date-picker__group">
+        <DateInput className="teum-date-picker__input">
+          {(segment) => <DateSegment className="teum-date-picker__segment" segment={segment} />}
         </DateInput>
-        <AriaButton className="ix-date-picker__button" aria-label="Open calendar">
+        <AriaButton className="teum-date-picker__button" aria-label="Open calendar">
           <CalendarBlank aria-hidden="true" />
         </AriaButton>
       </Group>
-      {description && <Text slot="description" className="ix-field__description">{description}</Text>}
-      {errorMessage && <Text slot="errorMessage" className="ix-field__error">{errorMessage}</Text>}
-      <Popover className="ix-date-picker__popover" placement="bottom start" data-layer="flyout">
-        <AriaDialog className="ix-date-picker__dialog">
+      {description && <Text slot="description" className="teum-field__description">{description}</Text>}
+      {errorMessage && <Text slot="errorMessage" className="teum-field__error">{errorMessage}</Text>}
+      <Popover className="teum-date-picker__popover" placement="bottom start" data-layer="flyout">
+        <AriaDialog className="teum-date-picker__dialog">
           <Calendar />
         </AriaDialog>
       </Popover>

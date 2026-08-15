@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "interaction-index/styles.css";
+import "teum/styles.css";
 import App from "./App";
 import "./workspace.css";
 

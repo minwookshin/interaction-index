@@ -91,13 +91,13 @@ async function exerciseRiskyInteraction(id: ComponentId, canvasElement: HTMLElem
   } else if (id === "field") {
     const input = product.getByRole("textbox", { name: "Project name" });
     await userEvent.clear(input);
-    await userEvent.type(input, "Interaction Index");
+    await userEvent.type(input, "Teum");
     await expect(input).toHaveAccessibleDescription("Visible to everyone in the workspace.");
   } else if (id === "input-group") {
     const input = product.getByRole("textbox", { name: "Repository path" });
     await userEvent.clear(input);
-    await userEvent.type(input, "minwook/interaction-index");
-    await expect(input).toHaveValue("minwook/interaction-index");
+    await userEvent.type(input, "minwook/teum");
+    await expect(input).toHaveValue("minwook/teum");
     await expect(product.getByRole("button", { name: "Copy repository path" })).toBeEnabled();
   } else if (id === "kbd") {
     await expect(product.getByText("⌘")).toBeVisible();
@@ -115,8 +115,8 @@ async function exerciseRiskyInteraction(id: ComponentId, canvasElement: HTMLElem
   } else if (id === "text-field") {
     const input = product.getByRole("textbox", { name: "Project name" });
     await userEvent.clear(input);
-    await userEvent.type(input, "Interaction Index");
-    await expect(input).toHaveValue("Interaction Index");
+    await userEvent.type(input, "Teum");
+    await expect(input).toHaveValue("Teum");
   } else if (id === "textarea") {
     const input = product.getByRole("textbox", { name: "Description" });
     await userEvent.clear(input);
@@ -171,12 +171,12 @@ async function exerciseRiskyInteraction(id: ComponentId, canvasElement: HTMLElem
     await userEvent.click(product.getByRole("button", { name: /Open calendar/ }));
     const dialog = await page.findByRole("dialog");
     await waitFor(() => {
-      expect(dialog.closest(".ix-date-picker__popover")).not.toHaveAttribute("data-entering");
+      expect(dialog.closest(".teum-date-picker__popover")).not.toHaveAttribute("data-entering");
       expect(dialog).toBeVisible();
     });
     await userEvent.keyboard("{Escape}");
   } else if (id === "context-menu") {
-    const trigger = canvasElement.querySelector<HTMLElement>("[aria-label='Context Menu product preview'] .ix-context-menu__trigger");
+    const trigger = canvasElement.querySelector<HTMLElement>("[aria-label='Context Menu product preview'] .teum-context-menu__trigger");
     expect(trigger).not.toBeNull();
     fireEvent.contextMenu(trigger!);
     const menu = await page.findByRole("menu");
@@ -194,28 +194,28 @@ async function exerciseRiskyInteraction(id: ComponentId, canvasElement: HTMLElem
     await userEvent.hover(trigger);
     await waitFor(() => expect(page.getByText("Add to favorites")).toBeVisible(), { timeout: 2_000 });
     await userEvent.unhover(trigger);
-    await waitFor(() => expect(document.querySelector(".ix-tooltip")).toBeNull());
+    await waitFor(() => expect(document.querySelector(".teum-tooltip")).toBeNull());
   } else if (id === "popover") {
     await userEvent.click(product.getByRole("button", { name: "View options" }));
     await waitFor(() => {
-      const popup = document.querySelector<HTMLElement>(".ix-popover[data-open]");
+      const popup = document.querySelector<HTMLElement>(".teum-popover[data-open]");
       expect(popup).not.toBeNull();
       expect(popup).not.toHaveAttribute("data-starting-style");
       expect(within(popup!).getByRole("heading", { name: "View options" })).toBeVisible();
       expect(within(popup!).getByRole("switch", { name: "Show contracts" })).toBeVisible();
     });
     await userEvent.keyboard("{Escape}");
-    await waitFor(() => expect(document.querySelector(".ix-popover")).toBeNull());
+    await waitFor(() => expect(document.querySelector(".teum-popover")).toBeNull());
   } else if (id === "menu") {
     await userEvent.click(product.getByRole("button", { name: "Actions" }));
     await waitFor(() => {
-      const popup = document.querySelector<HTMLElement>(".ix-menu[data-open]");
+      const popup = document.querySelector<HTMLElement>(".teum-menu[data-open]");
       expect(popup).not.toBeNull();
       expect(popup).not.toHaveAttribute("data-starting-style");
       expect(within(popup!).getByRole("menuitem", { name: /Duplicate/ })).toBeVisible();
     });
     await userEvent.keyboard("{Escape}");
-    await waitFor(() => expect(document.querySelector(".ix-menu")).toBeNull());
+    await waitFor(() => expect(document.querySelector(".teum-menu")).toBeNull());
   } else if (id === "dialog") {
     await userEvent.click(product.getByRole("button", { name: "Edit details" }));
     const dialog = await page.findByRole("dialog", { name: "Edit component metadata" });
@@ -248,9 +248,9 @@ async function exerciseRiskyInteraction(id: ComponentId, canvasElement: HTMLElem
     await userEvent.click(trigger);
   } else if (id === "toast") {
     await userEvent.click(product.getByRole("button", { name: "Show toast" }));
-    await waitFor(() => expect(document.querySelector(".ix-toast__title")).toHaveTextContent("Component saved"));
+    await waitFor(() => expect(document.querySelector(".teum-toast__title")).toHaveTextContent("Component saved"));
     toast.dismiss();
-    await waitFor(() => expect(document.querySelector(".ix-toast")).toBeNull());
+    await waitFor(() => expect(document.querySelector(".teum-toast")).toBeNull());
   } else if (id === "badge") {
     await expect(product.getByText("In review")).toBeVisible();
   } else if (id === "avatar") {
@@ -258,14 +258,14 @@ async function exerciseRiskyInteraction(id: ComponentId, canvasElement: HTMLElem
   } else if (id === "tree") {
     const tree = product.getByRole("treegrid", { name: "Project structure" });
     await expect(tree).toBeVisible();
-    await userEvent.click(await within(tree).findByText("Interaction Index"));
+    await userEvent.click(await within(tree).findByText("Teum"));
     await expect(await within(tree).findByText("Foundations")).toBeVisible();
   } else if (id === "reorderable-list") {
     const handle = await product.findByRole("button", { name: "Move Capture intent" });
     handle.focus();
     await expect(handle).toHaveFocus();
   } else if (id === "inline-edit") {
-    await userEvent.click(product.getByRole("button", { name: /Edit value: Interaction Index/ }));
+    await userEvent.click(product.getByRole("button", { name: /Edit value: Teum/ }));
     const input = product.getByRole("textbox", { name: "Edit value" });
     await userEvent.clear(input);
     await userEvent.type(input, "Interaction System{Enter}");
@@ -293,7 +293,7 @@ export function componentStory(id: ComponentId) {
     name: component.name,
     render: () => <ComponentStoryContract id={id} />,
     parameters: {
-      interactionIndex: {
+      teum: {
         componentId: id,
       },
       docs: {

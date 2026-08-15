@@ -1,37 +1,37 @@
 /* Generated from src/styles.css. Do not edit directly. */
 
-@layer index.tokens, index.base, index.components;
+@layer teum.tokens, teum.base, teum.components;
 
-@layer index.components {
-.ix-input-group {
+@layer teum.components {
+.teum-input-group {
   display: flex;
   width: 100%;
   min-width: 0;
-  height: var(--ix-control-height-md);
+  height: var(--teum-control-height-md);
   align-items: center;
-  border: 1px solid var(--ix-control-border);
-  border-radius: var(--ix-radius-control);
-  background: var(--ix-bg-control);
-  box-shadow: var(--ix-shadow-control);
-  color: var(--ix-fg-default);
-  transition: background-color var(--ix-hover-duration), border-color var(--ix-hover-duration), box-shadow var(--ix-hover-duration);
+  border: 1px solid var(--teum-control-border);
+  border-radius: var(--teum-radius-control);
+  background: var(--teum-bg-control);
+  box-shadow: var(--teum-shadow-control);
+  color: var(--teum-fg-default);
+  transition: background-color var(--teum-hover-duration), border-color var(--teum-hover-duration), box-shadow var(--teum-hover-duration);
 }
 
-.ix-input-group:hover:not([data-disabled]) { border-color: var(--ix-control-border-hover); }
+.teum-input-group:hover:not([data-disabled]) { border-color: var(--teum-control-border-hover); }
 
-.ix-input-group:has(.ix-input-group__input:focus-visible) {
-  border-color: var(--ix-control-border-hover);
-  box-shadow: var(--ix-shadow-control), 0 0 0 2px var(--ix-focus-halo);
+.teum-input-group:has(.teum-input-group__input:focus-visible) {
+  border-color: var(--teum-control-border-hover);
+  box-shadow: var(--teum-shadow-control), 0 0 0 2px var(--teum-focus-halo);
 }
 
-.ix-input-group[data-invalid] {
-  border-color: color-mix(in oklch, var(--ix-fg-danger) 42%, var(--ix-control-border));
-  box-shadow: var(--ix-shadow-control), 0 0 0 2px color-mix(in oklch, var(--ix-fg-danger) 10%, transparent);
+.teum-input-group[data-invalid] {
+  border-color: color-mix(in oklch, var(--teum-fg-danger) 42%, var(--teum-control-border));
+  box-shadow: var(--teum-shadow-control), 0 0 0 2px color-mix(in oklch, var(--teum-fg-danger) 10%, transparent);
 }
 
-.ix-input-group[data-disabled] { background: var(--ix-bg-subtle); box-shadow: none; color: var(--ix-fg-disabled); cursor: not-allowed; }
+.teum-input-group[data-disabled] { background: var(--teum-bg-subtle); box-shadow: none; color: var(--teum-fg-disabled); cursor: not-allowed; }
 
-.ix-input-group__input {
+.teum-input-group__input {
   width: 100%;
   min-width: 60px;
   height: 100%;
@@ -42,31 +42,31 @@
   background: transparent;
   color: inherit;
   font: inherit;
-  font-size: var(--ix-type-ui);
+  font-size: var(--teum-type-ui);
 }
 
-.ix-input-group__input::placeholder { color: var(--ix-fg-subtle); }
+.teum-input-group__input::placeholder { color: var(--teum-fg-subtle); }
 
-.ix-input-group__input:disabled { cursor: not-allowed; }
+.teum-input-group__input:disabled { cursor: not-allowed; }
 
-.ix-input-group__addon {
+.teum-input-group__addon {
   display: inline-flex;
   height: 100%;
   flex: 0 0 auto;
   align-items: center;
   padding-left: 9px;
-  color: var(--ix-fg-muted);
-  font-size: var(--ix-type-label);
+  color: var(--teum-fg-muted);
+  font-size: var(--teum-type-label);
   white-space: nowrap;
 }
 
-.ix-input-group__addon[data-side="end"] { padding-right: 7px; padding-left: 0; }
+.teum-input-group__addon[data-side="end"] { padding-right: 7px; padding-left: 0; }
 
-.ix-input-group__addon + .ix-input-group__input { padding-left: 6px; }
+.teum-input-group__addon + .teum-input-group__input { padding-left: 6px; }
 
-.ix-input-group__button { height: 26px; margin: 0 2px; padding-inline: 6px; border: 0; }
+.teum-input-group__button { height: 26px; margin: 0 2px; padding-inline: 6px; border: 0; }
 
 @media (prefers-reduced-motion: reduce) {
-.ix-input-group { transition-duration: 0.01ms; }
+.teum-input-group { transition-duration: 0.01ms; }
 }
 }

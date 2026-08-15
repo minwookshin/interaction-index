@@ -1,4 +1,4 @@
-import "../../styles/index-base.css";
+import "../../styles/teum-base.css";
 import "../../styles/components/shared-detail.css";
 import { ArrowLeft, X } from "@phosphor-icons/react";
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "motion/react";
@@ -103,13 +103,13 @@ export function SharedDetail({
 
   return (
     <LayoutGroup id={layoutGroupId}>
-      <div className={cn("ix-shared-detail", className)} data-open={Boolean(selected) || undefined} data-motion-preset={motionPreset} data-motion-mode={motionMode}>
-        <div className="ix-shared-detail__list" aria-label="Objects">
+      <div className={cn("teum-shared-detail", className)} data-open={Boolean(selected) || undefined} data-motion-preset={motionPreset} data-motion-mode={motionMode}>
+        <div className="teum-shared-detail__list" aria-label="Objects">
           {items.map((item) => (
             <button
               type="button"
               key={item.id}
-              className="ix-shared-detail__row"
+              className="teum-shared-detail__row"
               aria-expanded={selectedId === item.id}
               aria-controls={selectedId === item.id ? panelId(item.id) : undefined}
               onClick={(event) => {
@@ -119,12 +119,12 @@ export function SharedDetail({
                 setSelectedId(item.id);
               }}
             >
-              <span className="ix-shared-detail__dot" aria-hidden="true" />
-              <span className="ix-shared-detail__row-copy" data-title={item.title}>
+              <span className="teum-shared-detail__dot" aria-hidden="true" />
+              <span className="teum-shared-detail__row-copy" data-title={item.title}>
                 <motion.span layout={spatialMotion ? "position" : false} layoutId={spatialMotion ? titleId(item.id) : undefined} transition={spatialMotion ? preset.titleTransition : { duration: 0 }}>{item.title}</motion.span>
                 <small>{item.meta}</small>
               </span>
-              {item.status && <span className="ix-shared-detail__status">{item.status}</span>}
+              {item.status && <span className="teum-shared-detail__status">{item.status}</span>}
             </button>
           ))}
         </div>
@@ -133,7 +133,7 @@ export function SharedDetail({
             <motion.aside
               ref={panelRef}
               id={panelId(selected.id)}
-              className="ix-shared-detail__panel"
+              className="teum-shared-detail__panel"
               role="region"
               tabIndex={-1}
               aria-label={regionLabel}
@@ -143,21 +143,21 @@ export function SharedDetail({
               exit={panelExit}
               transition={panelTransition}
             >
-              <div className="ix-shared-detail__toolbar">
-                <IconButton className="ix-shared-detail__back" variant="ghost" size="small" aria-label="Back to list" tooltip="Back" onClick={close}><ArrowLeft /></IconButton>
+              <div className="teum-shared-detail__toolbar">
+                <IconButton className="teum-shared-detail__back" variant="ghost" size="small" aria-label="Back to list" tooltip="Back" onClick={close}><ArrowLeft /></IconButton>
                 <IconButton variant="ghost" size="small" aria-label="Close detail" tooltip="Close" onClick={close}><X /></IconButton>
               </div>
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.div
                   key={selected.id}
-                  className="ix-shared-detail__content"
+                  className="teum-shared-detail__content"
                   initial={contentInitial}
                   animate={{ opacity: 1, transform: "translateY(0px)", filter: "blur(0px)" }}
                   exit={contentExit}
                   transition={contentTransition}
                 >
                   <motion.h3 layout={spatialMotion ? "position" : false} id={titleId(selected.id)} layoutId={spatialMotion ? titleId(selected.id) : undefined} transition={spatialMotion ? preset.titleTransition : { duration: 0 }}>{selected.title}</motion.h3>
-                  <div className="ix-shared-detail__meta">{selected.meta}</div>
+                  <div className="teum-shared-detail__meta">{selected.meta}</div>
                   {renderDetail ? renderDetail(selected) : <><p>{selected.description}</p><dl><div><dt>Status</dt><dd>{selected.status ?? "Open"}</dd></div><div><dt>Interaction</dt><dd>Shared detail</dd></div></dl></>}
                 </motion.div>
               </AnimatePresence>

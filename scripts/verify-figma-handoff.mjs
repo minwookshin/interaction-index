@@ -21,7 +21,7 @@ const variableNames = new Set(tokens.variables.map((variable) => variable.name))
 if (variableNames.size !== tokens.variables.length) fail("Figma variable names must be unique");
 for (const variable of tokens.variables) {
   if (variable.scopes.includes("ALL_SCOPES")) fail(`${variable.name} uses ALL_SCOPES`);
-  if (!/^var\(--ix-[a-z0-9-]+\)$/.test(variable.codeSyntax?.WEB ?? "")) fail(`${variable.name} has invalid WEB code syntax`);
+  if (!/^var\(--teum-[a-z0-9-]+\)$/.test(variable.codeSyntax?.WEB ?? "")) fail(`${variable.name} has invalid WEB code syntax`);
   for (const value of Object.values(variable.values)) {
     if (value?.alias && !variableNames.has(value.alias)) fail(`${variable.name} aliases missing variable ${value.alias}`);
   }

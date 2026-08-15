@@ -1,47 +1,47 @@
 /* Generated from src/styles.css. Do not edit directly. */
 
-@layer index.tokens, index.base, index.components;
+@layer teum.tokens, teum.base, teum.components;
 
-@layer index.components {
-.ix-table__container {
-  scrollbar-color: var(--ix-scrollbar-thumb) transparent;
+@layer teum.components {
+.teum-table__container {
+  scrollbar-color: var(--teum-scrollbar-thumb) transparent;
   scrollbar-width: thin;
 }
 
-.ix-table__container::-webkit-scrollbar { width: 10px; height: 10px; }
+.teum-table__container::-webkit-scrollbar { width: 10px; height: 10px; }
 
-.ix-table__container::-webkit-scrollbar-track { background: transparent; }
+.teum-table__container::-webkit-scrollbar-track { background: transparent; }
 
-.ix-table__container::-webkit-scrollbar-thumb {
+.teum-table__container::-webkit-scrollbar-thumb {
   border: 3px solid transparent;
   border-radius: 999px;
-  background: var(--ix-scrollbar-thumb);
+  background: var(--teum-scrollbar-thumb);
   background-clip: padding-box;
 }
 
-.ix-table__container::-webkit-scrollbar-thumb:hover { background: var(--ix-scrollbar-thumb-hover); background-clip: padding-box; }
+.teum-table__container::-webkit-scrollbar-thumb:hover { background: var(--teum-scrollbar-thumb-hover); background-clip: padding-box; }
 
 @media (forced-colors: active) {
-.ix-table__container { scrollbar-color: auto; }
+.teum-table__container { scrollbar-color: auto; }
 }
 
-.ix-table__container { width: 100%; overflow: auto; border: 1px solid color-mix(in oklch, var(--ix-control-border) 78%, transparent); border-radius: var(--ix-radius-container); background: var(--ix-bg-surface); }
+.teum-table__container { width: 100%; overflow: auto; border: 1px solid color-mix(in oklch, var(--teum-control-border) 78%, transparent); border-radius: var(--teum-radius-container); background: var(--teum-bg-surface); }
 
-.ix-table { width: 100%; min-width: 560px; border-collapse: separate; border-spacing: 0; color: var(--ix-fg-default); font-size: var(--ix-type-label); font-variant-numeric: tabular-nums; }
+.teum-table { width: 100%; min-width: 560px; border-collapse: separate; border-spacing: 0; color: var(--teum-fg-default); font-size: var(--teum-type-label); font-variant-numeric: tabular-nums; }
 
-.ix-table__caption { padding: 10px 12px; color: var(--ix-fg-subtle); text-align: left; caption-side: bottom; }
+.teum-table__caption { padding: 10px 12px; color: var(--teum-fg-subtle); text-align: left; caption-side: bottom; }
 
-.ix-table__head { height: 35px; padding: 0 12px; border-bottom: 1px solid color-mix(in oklch, var(--ix-separator) 68%, transparent); background: color-mix(in oklch, var(--ix-bg-stage) 74%, var(--ix-bg-surface)); color: var(--ix-fg-subtle); font-size: var(--ix-type-metadata); font-weight: 560; text-align: left; white-space: nowrap; }
+.teum-table__head { height: 35px; padding: 0 12px; border-bottom: 1px solid color-mix(in oklch, var(--teum-separator) 68%, transparent); background: color-mix(in oklch, var(--teum-bg-stage) 74%, var(--teum-bg-surface)); color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); font-weight: 560; text-align: left; white-space: nowrap; }
 
-.ix-table__cell { height: var(--ix-row-height-table); padding: 0 12px; border-bottom: 1px solid color-mix(in oklch, var(--ix-separator) 66%, transparent); color: var(--ix-fg-muted); vertical-align: middle; }
+.teum-table__cell { height: var(--teum-row-height-table); padding: 0 12px; border-bottom: 1px solid color-mix(in oklch, var(--teum-separator) 66%, transparent); color: var(--teum-fg-muted); vertical-align: middle; }
 
-.ix-table__row:last-child .ix-table__cell { border-bottom: 0; }
+.teum-table__row:last-child .teum-table__cell { border-bottom: 0; }
 
-.ix-table__row[data-selected] { background: var(--ix-selected); }
+.teum-table__row[data-selected] { background: var(--teum-selected); }
 
-.ix-table__footer .ix-table__cell { background: var(--ix-bg-stage); color: var(--ix-fg-default); font-weight: 560; }
+.teum-table__footer .teum-table__cell { background: var(--teum-bg-stage); color: var(--teum-fg-default); font-weight: 560; }
 
 @media (hover: hover) and (pointer: fine) {
-.ix-table__body .ix-table__row:hover { background: var(--ix-hover); }
+.teum-table__body .teum-table__row:hover { background: var(--teum-hover); }
 }
 }

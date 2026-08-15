@@ -1,5 +1,5 @@
 {
-  "name": "interaction-index-issue-workspace",
+  "name": "teum-issue-workspace",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +7,7 @@
     "build": "tsc --noEmit && vite build"
   },
   "dependencies": {
-    "interaction-index": "file:../..",
+    "teum": "file:../..",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },

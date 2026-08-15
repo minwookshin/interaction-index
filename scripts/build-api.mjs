@@ -7,7 +7,7 @@ const root = process.cwd();
 const checkOnly = process.argv.includes("--check");
 const sourceRoot = resolve(root, "src");
 const entryPoint = resolve(sourceRoot, "components/ui/index.ts");
-const virtualOut = resolve(root, ".interaction-index-api-emit");
+const virtualOut = resolve(root, ".teum-api-emit");
 const generatedRoot = resolve(root, "api/generated");
 const generatedTypesRoot = resolve(generatedRoot, "types");
 const documentationOutput = resolve(sourceRoot, "documentation/generated-component-exports.ts");
@@ -144,7 +144,7 @@ const manifest = {
 };
 
 const report = [
-  "# Interaction Index public API report",
+  "# Teum public API report",
   "",
   "> Generated from the TypeScript compiler. Do not edit directly.",
   "",

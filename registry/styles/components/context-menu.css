@@ -1,95 +1,91 @@
 /* Generated from src/styles.css. Do not edit directly. */
 
-@layer index.tokens, index.base, index.components;
+@layer teum.tokens, teum.base, teum.components;
 
-@layer index.components {
-.ix-positioner { z-index: var(--ix-layer-flyout); }
+@layer teum.components {
+.teum-positioner { z-index: var(--teum-layer-flyout); }
 
-.ix-menu kbd { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; color: var(--ix-ink-tertiary); font-family: inherit; font-size: 10px; line-height: 1; white-space: nowrap; }
+.teum-menu kbd { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; color: var(--teum-ink-tertiary); font-family: inherit; font-size: 10px; line-height: 1; white-space: nowrap; }
 
-.ix-menu { min-width: 196px; max-height: var(--available-height); padding: 4px; overflow: auto; border-radius: var(--ix-radius-overlay); background: var(--ix-bg-flyout); box-shadow: var(--ix-shadow-flyout); outline: 0; transform-origin: var(--transform-origin); transition: opacity 150ms var(--ix-ease-out), transform 150ms var(--ix-ease-out); }
+.teum-menu { min-width: 196px; max-height: var(--available-height); padding: 4px; overflow: auto; border-radius: var(--teum-radius-overlay); background: var(--teum-bg-flyout); box-shadow: var(--teum-shadow-flyout); outline: 0; transform-origin: var(--transform-origin); transition: opacity 150ms var(--teum-ease-out), transform 150ms var(--teum-ease-out); }
 
-.ix-menu[data-starting-style] { opacity: 0; transform: translateY(-2px) scale(0.985); }
+.teum-menu[data-starting-style] { opacity: 0; transform: translateY(-2px) scale(0.985); }
 
-.ix-menu[data-ending-style] { opacity: 0; transform: translateY(-1px) scale(0.99); transition-duration: 100ms; }
+.teum-menu[data-ending-style] { opacity: 0; transform: translateY(-1px) scale(0.99); transition-duration: 100ms; }
 
-.ix-menu__label { padding: 6px 7px 4px; color: var(--ix-ink-tertiary); font-size: 11.5px; font-weight: 560; letter-spacing: 0.02em; }
+.teum-menu__label { padding: 6px 7px 4px; color: var(--teum-ink-tertiary); font-size: 11.5px; font-weight: 560; letter-spacing: 0.02em; }
 
-.ix-menu__item { display: flex; min-height: var(--ix-row-height-menu); align-items: center; gap: 7px; padding: 0 7px; border-radius: calc(var(--ix-radius-control) - 1px); outline: 0; color: var(--ix-ink); font-size: 13px; cursor: default; user-select: none; }
+.teum-menu__item { display: flex; min-height: var(--teum-row-height-menu); align-items: center; gap: 7px; padding: 0 7px; border-radius: calc(var(--teum-radius-control) - 1px); outline: 0; color: var(--teum-ink); font-size: 13px; cursor: default; user-select: none; }
 
-.ix-menu__item svg { width: 13px; height: 13px; color: var(--ix-fg-muted); }
+.teum-menu__item svg { width: 13px; height: 13px; color: var(--teum-fg-muted); }
 
-.ix-menu__item kbd { margin-left: auto; }
+.teum-menu__item kbd { margin-left: auto; }
 
-.ix-menu__item[data-highlighted] { background: var(--ix-hover); color: var(--ix-ink); }
+.teum-menu__item[data-highlighted] { background: var(--teum-hover); color: var(--teum-ink); }
 
-.ix-menu__item[data-disabled] { opacity: 0.4; }
+.teum-menu__item[data-disabled] { opacity: 0.4; }
 
-.ix-menu__item--check { justify-content: space-between; }
+.teum-menu__item--check { justify-content: space-between; }
 
-.ix-menu__check { display: inline-flex; }
+.teum-menu__check { display: inline-flex; }
 
-.ix-menu__check svg { width: 11px; height: 11px; color: currentColor; }
+.teum-menu__check svg { width: 11px; height: 11px; color: currentColor; }
 
-.ix-menu__separator { height: 1px; margin: 4px; background: var(--ix-border-subtle); }
+.teum-menu__separator { height: 1px; margin: 4px; background: var(--teum-border-subtle); }
 
-.ix-menu {
-  scrollbar-color: var(--ix-scrollbar-thumb) transparent;
+.teum-menu {
+  scrollbar-color: var(--teum-scrollbar-thumb) transparent;
   scrollbar-width: thin;
 }
 
-.ix-menu::-webkit-scrollbar { width: 10px; height: 10px; }
+.teum-menu::-webkit-scrollbar { width: 10px; height: 10px; }
 
-.ix-menu::-webkit-scrollbar-track { background: transparent; }
+.teum-menu::-webkit-scrollbar-track { background: transparent; }
 
-.ix-menu::-webkit-scrollbar-thumb {
+.teum-menu::-webkit-scrollbar-thumb {
   border: 3px solid transparent;
   border-radius: 999px;
-  background: var(--ix-scrollbar-thumb);
+  background: var(--teum-scrollbar-thumb);
   background-clip: padding-box;
 }
 
-.ix-menu::-webkit-scrollbar-thumb:hover { background: var(--ix-scrollbar-thumb-hover); background-clip: padding-box; }
+.teum-menu::-webkit-scrollbar-thumb:hover { background: var(--teum-scrollbar-thumb-hover); background-clip: padding-box; }
 
-:root[data-theme="dark"] .ix-menu__item svg,
-:root[data-theme="dark"] .ix-menu__check svg { color: var(--ix-ink); }
+:root[data-theme="dark"] .teum-menu__item svg,
+:root[data-theme="dark"] .teum-menu__check svg { color: var(--teum-ink); }
 
-.ix-menu__check {
+.teum-menu__check {
   opacity: 1;
   transform: scale(1);
-  transition: opacity 140ms var(--ix-ease-out), transform 140ms var(--ix-ease-out);
+  transition: opacity 140ms var(--teum-ease-out), transform 140ms var(--teum-ease-out);
 }
 
 @starting-style {
-.ix-menu__check {
+.teum-menu__check {
     opacity: 0;
     transform: scale(.72);
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-.ix-menu__check { transition-duration: 0.01ms; }
-}
-
-.ix-menu { background: var(--ix-bg-flyout); }
+.teum-menu { background: var(--teum-bg-flyout); }
 
 @media (forced-colors: active) {
-.ix-menu { scrollbar-color: auto; }
+.teum-menu { scrollbar-color: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-.ix-menu {
+.teum-menu {
     transition-property: opacity;
-    transition-duration: var(--ix-exit-duration);
+    transition-duration: var(--teum-exit-duration);
   }
 
-.ix-menu[data-starting-style],
-.ix-menu[data-ending-style] { transform: none; }
+.teum-menu[data-starting-style],
+.teum-menu[data-ending-style] { transform: none; }
 
-.ix-menu__check { transition-duration: 0.01ms; }
+.teum-menu__check { transition-duration: 0.01ms; }
 }
 
-.ix-context-menu__trigger { outline: 0; touch-action: manipulation; }
+.teum-context-menu__trigger { outline: 0; touch-action: manipulation; }
 
-.ix-context-menu { min-width: 188px; }
+.teum-context-menu { min-width: 188px; }
 }

@@ -1,4 +1,4 @@
-import "../../styles/index-base.css";
+import "../../styles/teum-base.css";
 import "../../styles/components/tree.css";
 import {
   Button as AriaButton,
@@ -32,16 +32,16 @@ function TreeNodeItem({ node }: { node: TreeNode }) {
     <AriaTreeItem id={node.id} textValue={node.label} isDisabled={node.disabled}>
       <TreeItemContent>
         {({ isExpanded, level }) => (
-          <div className="ix-tree__row" style={{ "--ix-tree-indent": `${Math.max(0, level - 1) * 18}px` } as React.CSSProperties}>
+          <div className="teum-tree__row" style={{ "--teum-tree-indent": `${Math.max(0, level - 1) * 18}px` } as React.CSSProperties}>
             {hasChildren ? (
-              <AriaButton slot="chevron" className="ix-tree__chevron" data-visible data-expanded={isExpanded || undefined}>
+              <AriaButton slot="chevron" className="teum-tree__chevron" data-visible data-expanded={isExpanded || undefined}>
                 <CaretRight aria-hidden="true" />
               </AriaButton>
-            ) : <span className="ix-tree__chevron" aria-hidden="true"><CaretRight /></span>}
-            <span className="ix-tree__icon" aria-hidden="true">{node.icon ?? (hasChildren ? <Folder /> : <File />)}</span>
-            <span className="ix-tree__copy">
-              <span className="ix-tree__label">{node.label}</span>
-              {node.description && <span className="ix-tree__description">{node.description}</span>}
+            ) : <span className="teum-tree__chevron" aria-hidden="true"><CaretRight /></span>}
+            <span className="teum-tree__icon" aria-hidden="true">{node.icon ?? (hasChildren ? <Folder /> : <File />)}</span>
+            <span className="teum-tree__copy">
+              <span className="teum-tree__label">{node.label}</span>
+              {node.description && <span className="teum-tree__description">{node.description}</span>}
             </span>
           </div>
         )}
@@ -53,7 +53,7 @@ function TreeNodeItem({ node }: { node: TreeNode }) {
 
 export function Tree({ items, className, selectionMode = "single", ...props }: TreeProps) {
   return (
-    <AriaTree className={cn("ix-tree", className)} selectionMode={selectionMode} {...props}>
+    <AriaTree className={cn("teum-tree", className)} selectionMode={selectionMode} {...props}>
       {items.map((item) => <TreeNodeItem key={item.id} node={item} />)}
     </AriaTree>
   );

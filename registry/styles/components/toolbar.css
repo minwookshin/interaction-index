@@ -1,9 +1,9 @@
 /* Generated from src/styles.css. Do not edit directly. */
 
-@layer index.tokens, index.base, index.components;
+@layer teum.tokens, teum.base, teum.components;
 
-@layer index.components {
-.ix-toolbar {
+@layer teum.components {
+.teum-toolbar {
   display: inline-flex;
   min-width: 0;
   min-height: 36px;
@@ -11,18 +11,18 @@
   gap: 3px;
   padding: 3px;
   border-radius: 8px;
-  background: var(--ix-bg-stage);
-  color: var(--ix-fg-default);
+  background: var(--teum-bg-stage);
+  color: var(--teum-fg-default);
 }
 
-.ix-toolbar[data-orientation="vertical"] { flex-direction: column; align-items: stretch; }
+.teum-toolbar[data-orientation="vertical"] { flex-direction: column; align-items: stretch; }
 
-.ix-toolbar__group { display: inline-flex; align-items: center; gap: 2px; }
+.teum-toolbar__group { display: inline-flex; align-items: center; gap: 2px; }
 
-.ix-toolbar[data-orientation="vertical"] .ix-toolbar__group { flex-direction: column; align-items: stretch; }
+.teum-toolbar[data-orientation="vertical"] .teum-toolbar__group { flex-direction: column; align-items: stretch; }
 
-.ix-toolbar__button,
-.ix-toolbar__link {
+.teum-toolbar__button,
+.teum-toolbar__link {
   display: inline-flex;
   width: 28px;
   height: 28px;
@@ -33,53 +33,53 @@
   border-radius: 6px;
   outline: 0;
   background: transparent;
-  color: var(--ix-fg-muted);
+  color: var(--teum-fg-muted);
   font: inherit;
-  font-size: var(--ix-type-label);
+  font-size: var(--teum-type-label);
   text-decoration: none;
   cursor: pointer;
-  transition: background-color var(--ix-hover-duration), color var(--ix-hover-duration), transform var(--ix-press-duration) var(--ix-ease-out);
+  transition: background-color var(--teum-hover-duration), color var(--teum-hover-duration), transform var(--teum-press-duration) var(--teum-ease-out);
 }
 
-.ix-toolbar__button svg,
-.ix-toolbar__link svg { width: 14px; height: 14px; }
+.teum-toolbar__button svg,
+.teum-toolbar__link svg { width: 14px; height: 14px; }
 
-.ix-toolbar__button:hover:not(:disabled),
-.ix-toolbar__link:hover { background: var(--ix-hover); color: var(--ix-fg-default); }
+.teum-toolbar__button:hover:not(:disabled),
+.teum-toolbar__link:hover { background: var(--teum-hover); color: var(--teum-fg-default); }
 
-.ix-toolbar__button:active:not(:disabled),
-.ix-toolbar__link:active { transform: scale(.97); }
+.teum-toolbar__button:active:not(:disabled),
+.teum-toolbar__link:active { transform: scale(.97); }
 
-.ix-toolbar__button:focus-visible,
-.ix-toolbar__link:focus-visible { background: var(--ix-hover); box-shadow: 0 0 0 2px var(--ix-focus-halo); color: var(--ix-fg-default); }
+.teum-toolbar__button:focus-visible,
+.teum-toolbar__link:focus-visible { background: var(--teum-hover); box-shadow: 0 0 0 2px var(--teum-focus-halo); color: var(--teum-fg-default); }
 
-.ix-toolbar__button[data-popup-open] { background: var(--ix-active); color: var(--ix-fg-default); }
+.teum-toolbar__button[data-popup-open] { background: var(--teum-active); color: var(--teum-fg-default); }
 
-.ix-toolbar__button:disabled { color: var(--ix-fg-disabled); cursor: not-allowed; }
+.teum-toolbar__button:disabled { color: var(--teum-fg-disabled); cursor: not-allowed; }
 
-.ix-toolbar__input {
+.teum-toolbar__input {
   width: 116px;
   height: 28px;
   margin-left: 2px;
   padding: 0 7px;
-  border: 1px solid var(--ix-control-border);
+  border: 1px solid var(--teum-control-border);
   border-radius: 6px;
   outline: 0;
-  background: var(--ix-bg-control);
-  box-shadow: var(--ix-shadow-control);
-  color: var(--ix-fg-default);
+  background: var(--teum-bg-control);
+  box-shadow: var(--teum-shadow-control);
+  color: var(--teum-fg-default);
   font: inherit;
-  font-size: var(--ix-type-label);
+  font-size: var(--teum-type-label);
 }
 
-.ix-toolbar__input:focus-visible { border-color: var(--ix-control-border-hover); box-shadow: var(--ix-shadow-control), 0 0 0 2px var(--ix-focus-halo); }
+.teum-toolbar__input:focus-visible { border-color: var(--teum-control-border-hover); box-shadow: var(--teum-shadow-control), 0 0 0 2px var(--teum-focus-halo); }
 
-.ix-toolbar__separator { width: 1px; height: 20px; margin: 0 2px; background: var(--ix-separator); }
+.teum-toolbar__separator { width: 1px; height: 20px; margin: 0 2px; background: var(--teum-separator); }
 
-.ix-toolbar[data-orientation="vertical"] .ix-toolbar__separator { width: auto; height: 1px; margin: 2px 0; }
+.teum-toolbar[data-orientation="vertical"] .teum-toolbar__separator { width: auto; height: 1px; margin: 2px 0; }
 
 @media (prefers-reduced-motion: reduce) {
-.ix-toolbar__button,
-.ix-toolbar__link { transition-duration: 0.01ms; }
+.teum-toolbar__button,
+.teum-toolbar__link { transition-duration: 0.01ms; }
 }
 }

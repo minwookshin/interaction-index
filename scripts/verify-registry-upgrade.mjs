@@ -43,7 +43,7 @@ async function writeItemFiles(fixture, items) {
 async function scaffold(fixture) {
   await symlink(resolve(root, "node_modules"), resolve(fixture, "node_modules"), "dir");
   await writeFile(resolve(fixture, "package.json"), `${JSON.stringify({
-    name: "interaction-index-upgrade-consumer",
+    name: "teum-upgrade-consumer",
     private: true,
     type: "module",
     scripts: { build: "tsc --noEmit && vite build" },
@@ -79,9 +79,9 @@ async function build(fixture, phase) {
   console.log(`[registry-upgrade] ${phase} consumer build passed`);
 }
 
-const baseItem = await readItem("interaction-index-base");
+const baseItem = await readItem("teum-base");
 const buttonItem = await readItem("button");
-const fixture = await mkdtemp(join(tmpdir(), "interaction-index-upgrade-"));
+const fixture = await mkdtemp(join(tmpdir(), "teum-upgrade-"));
 
 try {
   const baseline = await writeItemFiles(fixture, [baseItem, buttonItem]);
