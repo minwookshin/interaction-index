@@ -23,10 +23,11 @@ The lockfile is the reproducible source for every direct and transitive version 
 - TypeScript strict no-emit checking and a Vite production build.
 - shadcn-compatible generation for 35 individual component items and the complete system item.
 - Fresh Vite consumer builds for a Button-only install and the complete-system item, in addition to the full generated registry validation.
+- A clean public canary installed `@index/button` from the live GitHub Pages registry with `shadcn@latest`, received its base and component-scoped styles, and passed a production TypeScript/Vite build.
 - Consumer TypeScript and production builds with generated source, per-component CSS, the shared cascade contract, and bundled Inter variable font.
 - Light and dark visual review at 1280 x 720 in the in-app Chromium browser.
 - Representative pointer, keyboard, focus-return, overlay dismissal, sorting, filtering, selection, pagination, and reduced-motion paths.
-- The full Playwright suite executed locally across Chromium, Firefox, WebKit, mobile Chromium, and mobile WebKit: 56 passed and 19 intentionally skipped by visual-baseline ownership and desktop/mobile gating.
+- The full Playwright suite executed locally across Chromium, Firefox, WebKit, mobile Chromium, and mobile WebKit: 66 passed and 19 intentionally skipped by visual-baseline ownership and desktop/mobile gating.
 - All 53 documentation routes, including the Product pilot, were checked per browser project for their expected H1, page errors, and document-level horizontal overflow.
 - Desktop disclosure and theme persistence passed in Chromium, Firefox, and WebKit; mobile drawer navigation passed in Pixel 5 and iPhone 12 emulation.
 - Axe anchor-route checks report no serious or critical violations on Introduction, Button, and Product pilot after correcting the subtle-text contrast token.

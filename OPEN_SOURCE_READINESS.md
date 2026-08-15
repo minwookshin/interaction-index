@@ -18,7 +18,7 @@ Continue, but stop optimizing for component count. The current 35-component cata
 | Accessibility | Keyboard contracts, axe anchor routes, RTL, forced colors, reduced motion, zoom proxy, Chrome/Safari zoom, and Safari VoiceOver anchors | Edge, physical touch, manual high contrast, content expansion, and full-catalog manual coverage remain |
 | Visual stability | Eight cross-platform screenshot baselines across entry, component, focus, loading, error, pilot, light, and dark states | CI-ready baseline complete |
 | Adoption | Internal Product pilot composes the public API; no shipped external consumer | Composition proven, adoption unproven |
-| Governance | MIT, templates, ownership, conduct, security, support, migration and release policies, release-candidate workflow | Local foundation complete; canonical public channels still missing |
+| Governance | MIT, templates, ownership, conduct, security, support, migration and release policies, release-candidate workflow | Public repository, Issues, and private vulnerability reporting configured |
 
 ## Public stages
 

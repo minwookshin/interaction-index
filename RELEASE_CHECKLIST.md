@@ -1,6 +1,6 @@
 # Release checklist
 
-The current build is an MIT-licensed, unpublished alpha. Complete every open item below before calling the package public or stable.
+The current build is an MIT-licensed public-source alpha with an unpublished npm package. Complete every open item below before publishing the package or calling the system stable.
 
 ## Legal and ownership
 
@@ -22,6 +22,7 @@ The source is available under MIT. Package publication, browser support, and pro
 
 - [x] Install the complete registry item into a fresh Vite consumer project.
 - [x] Install every individual item into the same fresh consumer project.
+- [x] Install Button from the live HTTPS registry with `shadcn@latest` in a clean Vite canary and complete a production build.
 - [x] Verify generated source imports and the documented system stylesheet in a consumer TypeScript and production build.
 - [ ] Capture and review a 1280 x 720 light/dark baseline for all 35 component routes, all foundations, and all patterns.
 - [x] Run the automated Chromium, Firefox, WebKit, mobile Chromium, and mobile WebKit matrix.

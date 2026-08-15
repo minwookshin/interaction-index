@@ -4,7 +4,7 @@
     "cssGzipBytes": 40000
   },
   "totals": {
-    "jsGzipBytes": 299194,
+    "jsGzipBytes": 299309,
     "cssGzipBytes": 30998
   },
   "assets": [
@@ -14,9 +14,9 @@
       "gzipBytes": 92614
     },
     {
-      "file": "index-BX4LpKg3.js",
-      "bytes": 272305,
-      "gzipBytes": 71600
+      "file": "index-CE-m0eG9.js",
+      "bytes": 272465,
+      "gzipBytes": 71715
     },
     {
       "file": "react-DIDUf3HZ.js",
