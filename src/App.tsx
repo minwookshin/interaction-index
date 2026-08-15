@@ -338,7 +338,7 @@ function ComponentApiPanel({ id }: { id: ComponentId }) {
       <div className="component-support" aria-label={`${component.name} compatibility and confidence`}>
         <div className="component-support__heading">
           <div><span>Compatibility</span><h3>Current workspace contract</h3></div>
-          <p>Private alpha. APIs may change before a public release, so compatibility claims stay pinned to the versions tested here.</p>
+          <p>Public preview. APIs may change before a stable release, so compatibility claims stay pinned to the versions tested here.</p>
         </div>
         <dl className="component-support__versions">{currentCompatibility.map((item) => <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>)}</dl>
         <div className="component-support__confidence">

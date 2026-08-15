@@ -32,10 +32,12 @@ The lockfile is the reproducible source for every direct and transitive version 
 - Axe anchor-route checks report no serious or critical violations on Introduction, Button, and Product pilot after correcting the subtle-text contrast token.
 - The Product pilot passes automated structural checks in RTL, forced colors, reduced motion, and a 640 px viewport used as a 200% layout proxy.
 - Eight cross-platform visual baselines cover light/dark entry, Button product/focus/loading, Text Field error, and Product pilot light/dark.
+- Branded Chrome 151 passed Button keyboard focus and confirmed 200% zoom without content loss on macOS 26.5.2.
+- Branded Safari 26.5.2 passed Button keyboard/zoom plus a live VoiceOver Dialog and Menu anchor review on macOS 26.5.2.
 
 ## Not yet verified
 
-- Branded Safari, Chrome, and Edge smoke tests; Playwright WebKit is not branded Safari evidence.
+- Microsoft Edge; it was not installed in the current manual-test environment.
 - Physical touch devices, virtual keyboards, safe areas, zoom, and narrow viewports as a complete catalog-wide matrix.
 - Translated content expansion; RTL structure is automated, but semantic icon mirroring still requires manual review.
 - Server rendering outside the current Vite application.

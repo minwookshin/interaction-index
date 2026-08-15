@@ -15,7 +15,7 @@ Continue, but stop optimizing for component count. The current 35-component cata
 | Documentation | Preview, code, recipes, states, usage, accessibility, API, public project guidance | Strong alpha candidate |
 | Distribution | Public GitHub source, GitHub Pages workflow, granular shadcn artifacts, and clean-consumer builds | Public path configured; npm remains private and unpublished |
 | Automated behavior | 108 Vitest checks plus five-engine/device Playwright matrix and a nested modal/flyout stack assertion | Strong baseline |
-| Accessibility | Keyboard contracts, axe anchor-route checks, RTL, forced-colors, reduced-motion, and zoom-proxy checks | Manual VoiceOver and branded-browser evidence remain |
+| Accessibility | Keyboard contracts, axe anchor routes, RTL, forced colors, reduced motion, zoom proxy, Chrome/Safari zoom, and Safari VoiceOver anchors | Edge, physical touch, manual high contrast, content expansion, and full-catalog manual coverage remain |
 | Visual stability | Eight cross-platform screenshot baselines across entry, component, focus, loading, error, pilot, light, and dark states | CI-ready baseline complete |
 | Adoption | Internal Product pilot composes the public API; no shipped external consumer | Composition proven, adoption unproven |
 | Governance | MIT, templates, ownership, conduct, security, support, migration and release policies, release-candidate workflow | Local foundation complete; canonical public channels still missing |
@@ -33,7 +33,7 @@ Required before asking strangers to install it:
 1. **Complete** — canonical GitHub repository, issue tracker, Pages homepage/HTTPS registry workflow, and private vulnerability-reporting path are configured for `minwookshin/interaction-index`.
 2. **Complete** — generated complete-system and individual registry artifacts plus Button-only and complete-system clean-consumer TypeScript/production builds.
 3. **Complete** — CI-ready visual regression for entry, component product, focus, loading, error, Product pilot, light, dark, and reduced-motion configurations.
-4. **Partial** — automated axe, 640 px zoom proxy, forced-colors, reduced motion, and RTL structure pass; manual VoiceOver, branded-browser zoom/high-contrast, keyboard recording, and content expansion remain.
+4. **Partial** — automated axe, zoom proxy, forced colors, reduced motion, and RTL pass; Chrome/Safari zoom and Safari VoiceOver Dialog/Menu anchors are recorded. Edge, physical touch, manual high contrast, content expansion, and full-catalog manual coverage remain.
 5. **Complete as internal proof** — a real issue-management slice composes search, create, fields, dialog, table, toast, Shared Detail, archive, and Undo Stack. It does not count as external adoption.
 6. **Complete as local alpha evidence** — gzip budgets plus recorded Shared Detail selection and dialog-open measurements. Production field data remains a beta concern.
 7. **Complete locally** — issue/PR templates, maintainer ownership, generated release categories, release-candidate verification, release process, and migration policy.
@@ -53,7 +53,7 @@ The public path, internal product slice, decision guide, and granular CSS bounda
 ## Adopter gap ranking
 
 1. **Independent evidence** — the Product pilot and generated clean fixtures prove composition internally, not adoption or upgrade safety in another maintainer-owned repository.
-2. **Manual evidence** — automated engines and axe are strong baselines, but any unavailable VoiceOver, branded-browser, physical-touch, zoom, high-contrast, and content-expansion passes remain named release gates.
+2. **Manual evidence** — Chrome/Safari zoom and Safari VoiceOver anchors are verified, but Edge, full-catalog branded coverage, physical touch, manual high contrast, and translated-content expansion remain named release gates.
 3. **Reference drift** — API prose should ultimately be generated or parity-checked against exported TypeScript.
 4. **Upgrade safety** — copied-source customization needs a realistic modified-consumer fixture before beta.
 
@@ -69,7 +69,7 @@ These are focused design-engineering days, not calendar guarantees.
 | Strong beta | 2–4 additional weeks, including real usage and feedback |
 | Defensible 1.0 | Usually 1–3 months or longer; governed by stability and adoption rather than implementation volume |
 
-Remaining alpha allocation: 1–2 focused days for any manual VoiceOver, branded-browser zoom/high-contrast, content expansion, and physical-touch evidence that cannot be completed in the current environment, plus any defects those passes expose.
+Remaining alpha allocation: 1–2 focused days for Edge and broader branded-browser coverage, manual high contrast, content expansion, and physical-touch evidence, plus any defects those passes expose.
 
 ## Research basis
 

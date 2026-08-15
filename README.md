@@ -124,4 +124,4 @@ Canonical metadata points to [minwookshin/interaction-index](https://github.com/
 - [Accessibility evidence](./ACCESSIBILITY_EVIDENCE.md)
 - [Interaction and bundle performance](./INTERACTION_PERFORMANCE.md)
 
-The remaining public-alpha evidence gaps are intentionally explicit: complete the recorded VoiceOver, branded-browser, content-expansion, and physical-device review. External production adoption remains a beta/1.0 evidence gap, not a claim.
+The remaining public-alpha evidence gaps are intentionally explicit: Edge, physical touch, manual high contrast, translated-content expansion, and catalog-wide branded-browser coverage. Chrome, Safari, and VoiceOver anchor evidence is recorded; external production adoption remains a beta/1.0 gap, not a claim.

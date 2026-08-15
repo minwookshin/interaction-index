@@ -21,7 +21,7 @@ This project follows Semantic Versioning once a public API is released. During `
 - 106 automated tests passing after the public-documentation and Product pilot changes.
 - A temporary clean consumer compiles and builds the complete generated registry item.
 - Production documentation bundle measures 293,988 gzip bytes JavaScript and 29,318 gzip bytes CSS; pilot Shared Detail selection measured 530 ms and dialog open 263 ms in the final full-matrix Chromium pass.
-- The automated Chromium, Firefox, WebKit, mobile Chromium, and mobile WebKit matrix passes locally; branded-browser and physical-device smoke tests remain publication gates.
+- The automated Chromium, Firefox, WebKit, mobile Chromium, and mobile WebKit matrix passes locally. Chrome/Safari zoom and Safari VoiceOver Dialog/Menu anchors are manually recorded; Edge, physical touch, manual high contrast, content expansion, and full-catalog branded coverage remain gates.
 
 No package, canonical repository, or registry endpoint has been published.
 

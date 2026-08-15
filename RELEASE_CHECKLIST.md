@@ -25,7 +25,8 @@ The source is available under MIT. Package publication, browser support, and pro
 - [x] Verify generated source imports and the documented system stylesheet in a consumer TypeScript and production build.
 - [ ] Capture and review a 1280 x 720 light/dark baseline for all 35 component routes, all foundations, and all patterns.
 - [x] Run the automated Chromium, Firefox, WebKit, mobile Chromium, and mobile WebKit matrix.
-- [ ] Run branded Safari, Chrome, and Edge plus physical touch, zoom, and high-contrast matrices.
+- [x] Run branded Safari and Chrome anchor-route keyboard and zoom checks.
+- [ ] Run Edge, physical touch, manual high contrast, and full-catalog branded-browser matrices.
 - [x] Define automated Chromium, Firefox, WebKit, mobile Chromium, and mobile WebKit projects.
 - [x] Add automated screenshot regression coverage for representative light/dark, focus, error, and loading states.
 - [x] Measure bundle, Shared Detail selection, and overlay-open performance in the composed pilot/build.
@@ -35,7 +36,8 @@ The source is available under MIT. Package publication, browser support, and pro
 - [x] Build a realistic product slice with dense controls, overlay, Table, Toast, Shared Detail, and Undo Stack.
 - [x] Add axe anchor-route checks plus automated RTL, forced-colors, reduced-motion, and 200% layout-proxy checks.
 - [x] Add issue/PR templates, maintainer ownership, migration policy, release-note categories, and a non-publishing release-candidate workflow.
-- [ ] Complete and record VoiceOver, branded-browser keyboard/zoom/high-contrast, content expansion, and physical touch review.
+- [x] Complete and record Safari VoiceOver Dialog and Menu anchor review.
+- [ ] Complete content expansion, physical touch, Edge, and broader manual high-contrast review.
 - [x] Configure the selected canonical GitHub owner/repository and replace every placeholder/localhost publication URL.
 
 ## Version decision
