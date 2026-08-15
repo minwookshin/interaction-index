@@ -64,3 +64,4 @@ The source is available under MIT. Package publication, browser support, and pro
 - [x] Keep `private: true`, omit every publish command, and require an exact RC SemVer for artifact assembly.
 - [x] Pass the fresh `npm ci` clean-room reproduction gate.
 - [x] Assemble the checksummed `0.1.0-rc.1` tarball, SBOM, registry release, integrity reports, and QA records from one clean local commit.
+- [x] Assemble the checksummed `0.1.0-rc.2` tarball, SBOM, registry release, integrity reports, and QA records from one clean local commit.

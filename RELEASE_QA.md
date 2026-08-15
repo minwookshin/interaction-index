@@ -1,6 +1,6 @@
 # Release QA
 
-This document records the reviewed visual and interaction evidence for the unpublished `0.1.0-rc.1` candidate. It is a release record, not a production-adoption claim.
+This document records the reviewed visual and interaction evidence for the unpublished `0.1.0-rc.2` candidate. It is a release record, not a production-adoption claim.
 
 ## Frozen scope
 
@@ -23,7 +23,7 @@ The canonical viewport is 1280 x 720 CSS pixels in Chromium with Inter loaded, a
 | Component State contract | 45 components x 2 themes | 90 isolated snapshots |
 | Total | — | 312 snapshots |
 
-The generated baselines live beside their Playwright specifications in `tests/browser/full-catalog-visual.spec.ts-snapshots/` and `tests/storybook/visual-regression.spec.ts-snapshots/`. Local contact sheets are generated under the ignored `artifacts/visual-qa/0.1.0-rc.1/` directory for rapid gestalt review; the source snapshots remain the reviewable test boundary.
+The generated baselines live beside their Playwright specifications in `tests/browser/full-catalog-visual.spec.ts-snapshots/` and `tests/storybook/visual-regression.spec.ts-snapshots/`. Local contact sheets are generated under the ignored `artifacts/visual-qa/0.1.0-rc.2/` directory for rapid gestalt review; the source snapshots remain the reviewable test boundary.
 
 ## Review decisions
 

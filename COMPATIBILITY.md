@@ -1,6 +1,6 @@
 # Compatibility
 
-Interaction Index `0.1.0-rc.1` is an MIT-licensed, unpublished release candidate. The table below records the environment verified on 2026-08-15; it is evidence, not a broad support promise.
+Interaction Index `0.1.0-rc.2` is an MIT-licensed, unpublished release candidate. The table below records the environment verified on 2026-08-15; it is evidence, not a broad support promise.
 
 ## Verified stack
 
@@ -34,7 +34,7 @@ The lockfile is the reproducible source for every direct and transitive version 
 
 - shadcn-compatible generation for every component, the shared base, and the complete-system item.
 - Deterministic SHA-256 metadata for registry JSON, copied files, compiler-extracted APIs, and semantic tokens.
-- A byte-locked versioned registry at `/r/v/0.1.0-rc.1/` that rejects same-version rewrites.
+- A byte-locked versioned registry at `/r/v/0.1.0-rc.2/` that rejects same-version rewrites.
 - Fresh source-consumer builds for a Button-only install, every individual item, the complete system, and the staged upgrade/accept flow.
 - A packed private npm candidate with explicit exports, tarball allowlisting, integrity metadata, and a fresh TypeScript/Vite consumer build.
 - A realistic issue workspace built only from `interaction-index` and `interaction-index/styles.css`; no private source imports are permitted by its verifier.

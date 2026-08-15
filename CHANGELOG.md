@@ -2,6 +2,20 @@
 
 This project follows Semantic Versioning once a public API is released. During `0.x`, documented APIs may still change; every breaking alpha change must be called out here.
 
+## 0.1.0-rc.2 — 2026-08-15
+
+### Changed
+
+- Aligned the README, pinned registry example, compatibility record, external-gate template, and release-QA record with one RC version before public review.
+- Preserved the npm publication lock while preparing a fresh, checksummed source-and-registry candidate.
+
+### Quality
+
+- Reuses the frozen 45-component, 210-export, and 145-token surface from RC1; no component API, token, behavior, or visual baseline changed in this metadata-only candidate.
+- Passed fresh clean-room, registry, package, browser, accessibility, and release-candidate verification before assembly.
+
+The `0.1.0-rc.2` candidate remains private at the npm boundary, unpublished, untagged, and unpushed until the remaining external gates and publication decisions are complete.
+
 ## 0.1.0-rc.1 — 2026-08-15
 
 ### Added

@@ -6,7 +6,7 @@ A dense, monochrome component and interaction system for product interfaces. It 
 
 | | Current state |
 | --- | --- |
-| Version | `0.1.0-alpha.3` |
+| Version | `0.1.0-rc.2` |
 | Catalog | 45 documented components |
 | Themes | Light-first; fully reviewed dark theme |
 | Distribution | [Public source](https://github.com/minwookshin/interaction-index) and HTTPS shadcn registry; npm unpublished |
@@ -131,7 +131,7 @@ Generated files live in `public/r`. Use the mutable namespace during active alph
 npx shadcn@latest registry add @index=https://minwookshin.github.io/interaction-index/r/{name}.json
 npx shadcn@latest add @index/button
 
-npx shadcn@latest registry add @index-pinned=https://minwookshin.github.io/interaction-index/r/v/0.1.0-alpha.3/{name}.json
+npx shadcn@latest registry add @index-pinned=https://minwookshin.github.io/interaction-index/r/v/0.1.0-rc.2/{name}.json
 npx shadcn@latest add @index-pinned/button
 ```
 
