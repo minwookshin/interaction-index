@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination",
+  "title": "Pagination",
+  "description": "Controlled, bounded, condensed page navigation.",
+  "dependencies": [
+    "@phosphor-icons/react"
+  ],
+  "registryDependencies": [
+    "@index/interaction-index-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/pagination.tsx",
+      "content": "import \"../../styles/index-base.css\";\nimport \"../../styles/components/pagination.css\";\nimport { CaretLeft, CaretRight, DotsThree } from \"@phosphor-icons/react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type PaginationProps = {\n  page: number;\n  totalPages: number;\n  onPageChange: (page: number) => void;\n  siblingCount?: number;\n  className?: string;\n  label?: string;\n};\n\nfunction pageRange(page: number, total: number, siblingCount: number) {\n  if (total <= 7) return Array.from({ length: total }, (_, index) => index + 1);\n  const start = Math.max(2, page - siblingCount);\n  const end = Math.min(total - 1, page + siblingCount);\n  const values: Array<number | \"ellipsis-start\" | \"ellipsis-end\"> = [1];\n  if (start > 2) values.push(\"ellipsis-start\");\n  for (let value = start; value <= end; value += 1) values.push(value);\n  if (end < total - 1) values.push(\"ellipsis-end\");\n  values.push(total);\n  return values;\n}\n\nexport function Pagination({ page, totalPages, onPageChange, siblingCount = 1, className, label = \"Pagination\" }: PaginationProps) {\n  const setPage = (next: number) => onPageChange(Math.min(totalPages, Math.max(1, next)));\n  return (\n    <nav className={cn(\"ix-pagination\", className)} aria-label={label}>\n      <button type=\"button\" aria-label=\"Previous page\" disabled={page <= 1} onClick={() => setPage(page - 1)}><CaretLeft /></button>\n      {pageRange(page, totalPages, siblingCount).map((item) => typeof item === \"number\" ? <button type=\"button\" key={item} aria-label={`Page ${item}`} aria-current={item === page ? \"page\" : undefined} onClick={() => setPage(item)}>{item}</button> : <span key={item} aria-hidden=\"true\"><DotsThree /></span>)}\n      <button type=\"button\" aria-label=\"Next page\" disabled={page >= totalPages} onClick={() => setPage(page + 1)}><CaretRight /></button>\n    </nav>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/pagination.tsx"
+    },
+    {
+      "path": "registry/styles/components/pagination.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer index.tokens, index.base, index.components;\n\n@layer index.components {\n.ix-pagination { display: flex; align-items: center; gap: 3px; }\n\n.ix-pagination button,\n.ix-pagination > span { display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid transparent; border-radius: var(--ix-radius-sm); background: transparent; color: var(--ix-ink-secondary); font: inherit; font-size: var(--ix-type-label); font-variant-numeric: tabular-nums; }\n\n.ix-pagination button { cursor: pointer; transition: background-color var(--ix-hover-duration) ease, color var(--ix-hover-duration) ease, transform var(--ix-press-duration) var(--ix-ease-out, ease-out); }\n\n.ix-pagination button[aria-current=\"page\"] { border-color: var(--ix-border); background: var(--ix-control-surface); box-shadow: var(--ix-shadow-control); color: var(--ix-ink); font-weight: 550; }\n\n.ix-pagination button:focus-visible { outline: 2px solid var(--ix-focus-control); outline-offset: 2px; }\n\n.ix-pagination button:disabled { color: var(--ix-ink-disabled); cursor: not-allowed; }\n\n.ix-pagination svg { width: 13px; height: 13px; }\n\n@media (hover: hover) and (pointer: fine) {\n.ix-pagination button:not(:disabled):hover { background: var(--ix-hover); color: var(--ix-ink); }\n}\n\n.ix-pagination button:not(:disabled):active { transform: scale(0.97); }\n\n@media (prefers-reduced-motion: reduce) {\n.ix-pagination button { transition-duration: 0.01ms; }\n}\n\n@media (prefers-reduced-motion: reduce) {\n.ix-pagination button:not(:disabled):active { transform: none; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/pagination.css"
+    }
+  ],
+  "type": "registry:ui"
+}

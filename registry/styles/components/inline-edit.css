@@ -1,0 +1,42 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-sr-only,
+.ix-sr-only:not(:focus):not(:active) {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.ix-spinner { width: 13px; height: 13px; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: ix-spin 0.75s linear infinite; }
+
+.ix-inline-edit { width: min(420px, 100%); min-height: 44px; }
+
+.ix-inline-edit__value,
+.ix-inline-edit__input { width: 100%; height: 44px; padding: 0 10px; border: 1px solid transparent; border-radius: 7px; background: transparent; color: var(--ix-ink); font-size: 22px; font-weight: 570; letter-spacing: -0.035em; text-align: left; }
+
+.ix-inline-edit__value { display: flex; align-items: center; justify-content: space-between; cursor: text; transition: background var(--ix-fast), border-color var(--ix-fast); }
+
+.ix-inline-edit__value:hover { border-color: var(--ix-border-subtle); background: var(--ix-hover); }
+
+.ix-inline-edit__value svg { width: 15px; height: 15px; color: var(--ix-fg-subtle); opacity: 0; transition: opacity var(--ix-fast); }
+
+.ix-inline-edit__value:hover svg,
+.ix-inline-edit__value:focus-visible svg { opacity: 1; }
+
+.ix-inline-edit__control { position: relative; }
+
+.ix-inline-edit__input { border-color: var(--ix-border-strong); outline: 0; background: var(--ix-control-surface); box-shadow: 0 0 0 2px var(--ix-border-subtle); }
+
+.ix-inline-edit[data-status="error"] .ix-inline-edit__input { border-color: var(--ix-control-border-hover); box-shadow: 0 0 0 2px var(--ix-focus-control), inset 3px 0 0 var(--ix-fg-default); }
+
+.ix-inline-edit__saving { position: absolute; top: 0; right: 10px; display: grid; height: 44px; place-items: center; color: var(--ix-fg-muted); }
+
+.ix-inline-edit__error { display: block; padding: 6px 10px 0; color: var(--ix-ink-secondary); font-size: 11.5px; font-weight: 520; }
+
+@media (prefers-reduced-motion: reduce) {
+.ix-spinner { animation-duration: 2.4s; }
+}
+
+@keyframes ix-spin { to { transform: rotate(360deg); } }
+}

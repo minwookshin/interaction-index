@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "title": "Textarea",
+  "description": "Long-form input with guidance, validation, and character count.",
+  "registryDependencies": [
+    "@index/interaction-index-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/textarea.tsx",
+      "content": "import \"../../styles/index-base.css\";\nimport \"../../styles/components/textarea.css\";\nimport { useId, useState, type TextareaHTMLAttributes } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {\n  label?: string;\n  description?: string;\n  error?: string;\n  showCount?: boolean;\n};\n\nexport function Textarea({ id: providedId, label, description, error, showCount, maxLength, className, value, defaultValue, onChange, ...props }: TextareaProps) {\n  const generatedId = useId();\n  const id = providedId ?? generatedId;\n  const descriptionId = description ? `${id}-description` : undefined;\n  const errorId = error ? `${id}-error` : undefined;\n  const describedBy = [props[\"aria-describedby\"], descriptionId, errorId].filter(Boolean).join(\" \") || undefined;\n  const initialValue = value ?? defaultValue ?? \"\";\n  const [uncontrolledCount, setUncontrolledCount] = useState(typeof initialValue === \"string\" ? initialValue.length : 0);\n  const count = typeof value === \"string\" ? value.length : uncontrolledCount;\n\n  return (\n    <div className=\"ix-field ix-textarea-field\" data-invalid={Boolean(error) || undefined}>\n      {label && <label className=\"ix-field__label\" htmlFor={id}>{label}</label>}\n      <textarea\n        id={id}\n        className={cn(\"ix-input ix-textarea\", className)}\n        aria-invalid={Boolean(error) || undefined}\n        aria-describedby={describedBy}\n        maxLength={maxLength}\n        value={value}\n        defaultValue={defaultValue}\n        onChange={(event) => { setUncontrolledCount(event.currentTarget.value.length); onChange?.(event); }}\n        {...props}\n      />\n      <div className=\"ix-textarea-field__meta\">\n        <span>\n          {description && <span id={descriptionId} className=\"ix-field__description\">{description}</span>}\n          {error && <span id={errorId} className=\"ix-field__error\">{error}</span>}\n        </span>\n        {showCount && maxLength && <output aria-label=\"Character count\">{count}/{maxLength}</output>}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/textarea.tsx"
+    },
+    {
+      "path": "registry/styles/components/textarea.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer index.tokens, index.base, index.components;\n\n@layer index.components {\n.ix-textarea {\n  min-height: 96px;\n  resize: vertical;\n  padding: 9px 10px;\n  line-height: 1.5;\n}\n\n.ix-textarea-field__meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }\n\n.ix-textarea-field__meta > span { min-width: 0; }\n\n.ix-textarea-field__meta output { flex: 0 0 auto; color: var(--ix-ink-tertiary); font-size: var(--ix-type-metadata); font-variant-numeric: tabular-nums; }\n\n.ix-field { display: grid; min-width: 0; gap: 6px; }\n\n.ix-field__label { color: var(--ix-ink); font-size: 12px; font-weight: 550; }\n\n.ix-field[data-invalid] .ix-field__control { border-color: var(--ix-control-border-hover); box-shadow: inset 3px 0 0 var(--ix-fg-default); }\n\n.ix-input { width: 100%; min-width: 0; height: 100%; padding: 0 9px; border: 0; outline: 0; background: transparent; color: var(--ix-ink); font-size: 13.5px; }\n\n.ix-input::placeholder { color: var(--ix-fg-subtle); }\n\n.ix-input:disabled { background: var(--ix-bg-subtle); color: var(--ix-fg-disabled); cursor: not-allowed; }\n\n.ix-input:read-only { color: var(--ix-fg-muted); }\n\n.ix-field__description,\n.ix-field__error { color: var(--ix-ink-tertiary); font-size: 11.5px; line-height: 1.45; }\n\n.ix-field__error { color: var(--ix-fg-default); font-weight: 520; }\n\n:root[data-theme=\"dark\"] .ix-input:disabled { background: rgb(255 255 255 / 0.025); color: var(--ix-ink-disabled); }\n\n:root[data-theme=\"dark\"] .ix-field__error { color: var(--ix-ink); }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/textarea.css"
+    }
+  ],
+  "type": "registry:ui"
+}

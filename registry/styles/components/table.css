@@ -1,0 +1,47 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-table__container {
+  scrollbar-color: var(--ix-scrollbar-thumb) transparent;
+  scrollbar-width: thin;
+}
+
+.ix-table__container::-webkit-scrollbar { width: 10px; height: 10px; }
+
+.ix-table__container::-webkit-scrollbar-track { background: transparent; }
+
+.ix-table__container::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: var(--ix-scrollbar-thumb);
+  background-clip: padding-box;
+}
+
+.ix-table__container::-webkit-scrollbar-thumb:hover { background: var(--ix-scrollbar-thumb-hover); background-clip: padding-box; }
+
+@media (forced-colors: active) {
+.ix-table__container { scrollbar-color: auto; }
+}
+
+.ix-table__container { width: 100%; overflow: auto; border: 1px solid var(--ix-control-border); border-radius: var(--ix-radius-container); background: var(--ix-bg-surface); }
+
+.ix-table { width: 100%; min-width: 560px; border-collapse: separate; border-spacing: 0; color: var(--ix-fg-default); font-size: var(--ix-type-label); font-variant-numeric: tabular-nums; }
+
+.ix-table__caption { padding: 10px 12px; color: var(--ix-fg-subtle); text-align: left; caption-side: bottom; }
+
+.ix-table__head { height: 34px; padding: 0 12px; border-bottom: 1px solid var(--ix-separator); background: var(--ix-bg-stage); color: var(--ix-fg-subtle); font-size: var(--ix-type-metadata); font-weight: 560; text-align: left; white-space: nowrap; }
+
+.ix-table__cell { height: var(--ix-row-height-table); padding: 0 12px; border-bottom: 1px solid var(--ix-separator); color: var(--ix-fg-muted); vertical-align: middle; }
+
+.ix-table__row:last-child .ix-table__cell { border-bottom: 0; }
+
+.ix-table__row[data-selected] { background: var(--ix-selected); }
+
+.ix-table__footer .ix-table__cell { background: var(--ix-bg-stage); color: var(--ix-fg-default); font-weight: 560; }
+
+@media (hover: hover) and (pointer: fine) {
+.ix-table__body .ix-table__row:hover { background: var(--ix-hover); }
+}
+}

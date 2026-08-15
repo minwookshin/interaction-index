@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover",
+  "title": "Popover",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@index/interaction-index-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/popover.tsx",
+      "content": "import \"../../styles/index-base.css\";\nimport \"../../styles/components/popover.css\";\nimport { Popover as PopoverPrimitive } from \"@base-ui/react/popover\";\nimport { cn } from \"../../lib/cn\";\n\nexport function Popover(props: PopoverPrimitive.Root.Props) {\n  return <PopoverPrimitive.Root data-slot=\"popover\" {...props} />;\n}\n\nexport function PopoverTrigger(props: PopoverPrimitive.Trigger.Props) {\n  return <PopoverPrimitive.Trigger data-slot=\"popover-trigger\" {...props} />;\n}\n\ntype PopoverContentProps = PopoverPrimitive.Popup.Props &\n  Pick<PopoverPrimitive.Positioner.Props, \"align\" | \"alignOffset\" | \"side\" | \"sideOffset\">;\n\nexport function PopoverContent({\n  className,\n  side = \"bottom\",\n  sideOffset = 6,\n  align = \"start\",\n  alignOffset = 0,\n  ...props\n}: PopoverContentProps) {\n  return (\n    <PopoverPrimitive.Portal>\n      <PopoverPrimitive.Positioner className=\"ix-positioner\" side={side} sideOffset={sideOffset} align={align} alignOffset={alignOffset}>\n        <PopoverPrimitive.Popup className={cn(\"ix-popover\", className)} {...props} data-layer=\"flyout\" />\n      </PopoverPrimitive.Positioner>\n    </PopoverPrimitive.Portal>\n  );\n}\n\nexport const PopoverTitle = PopoverPrimitive.Title;\nexport const PopoverDescription = PopoverPrimitive.Description;\n",
+      "type": "registry:ui",
+      "target": "components/ui/popover.tsx"
+    },
+    {
+      "path": "registry/styles/components/popover.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer index.tokens, index.base, index.components;\n\n@layer index.components {\n.ix-positioner { z-index: var(--ix-layer-flyout); }\n\n.ix-popover { width: 278px; padding: 12px; border-radius: var(--ix-radius-overlay); background: var(--ix-bg-flyout); box-shadow: var(--ix-shadow-flyout); outline: 0; transform-origin: var(--transform-origin); transition: opacity var(--ix-enter-duration) var(--ix-ease-out), transform var(--ix-enter-duration) var(--ix-ease-out); }\n\n.ix-popover[data-starting-style] { opacity: 0; transform: scale(0.98); }\n\n.ix-popover[data-ending-style] { opacity: 0; transform: scale(0.99); transition-duration: var(--ix-exit-duration); }\n\n.ix-popover { background: var(--ix-bg-flyout); }\n\n@media (prefers-reduced-motion: reduce) {\n.ix-popover {\n    transition-property: opacity;\n    transition-duration: var(--ix-exit-duration);\n  }\n\n.ix-popover[data-starting-style],\n.ix-popover[data-ending-style] { transform: none; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/popover.css"
+    }
+  ],
+  "type": "registry:ui"
+}

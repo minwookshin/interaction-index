@@ -1,0 +1,80 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-button { position: relative; display: inline-flex; flex: none; align-items: center; justify-content: center; min-width: 0; border: 1px solid transparent; border-radius: var(--ix-radius-control); white-space: nowrap; cursor: pointer; user-select: none; font-size: 13px; font-weight: 540; letter-spacing: -0.006em; box-shadow: none; transition: color var(--ix-hover-duration), background-color var(--ix-hover-duration), border-color var(--ix-hover-duration), box-shadow var(--ix-hover-duration), transform var(--ix-press-duration) var(--ix-ease-out); }
+
+.ix-button:active:not(:disabled):not([data-disabled]) { transform: scale(0.985); }
+
+.ix-button:focus-visible { outline: var(--ix-focus-width) solid var(--ix-focus); outline-offset: var(--ix-focus-offset); }
+
+.ix-button:disabled,
+.ix-button[data-disabled] { cursor: not-allowed; opacity: 0.45; }
+
+.ix-button--small { height: var(--ix-control-height-sm); gap: 5px; padding: 0 var(--ix-control-padding-sm); font-size: 12px; }
+
+.ix-button--medium { height: var(--ix-control-height-md); gap: 6px; padding: 0 var(--ix-control-padding-md); }
+
+.ix-button--large { height: var(--ix-control-height-lg); gap: 7px; padding: 0 var(--ix-control-padding-lg); font-size: 14px; }
+
+.ix-button--primary { border-color: var(--ix-inverse); background: var(--ix-inverse); color: var(--ix-on-inverse); box-shadow: 0 1px 1px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08); }
+
+.ix-button--primary:hover:not(:disabled):not([data-disabled]) { background: var(--ix-inverse-hover); }
+
+.ix-button--secondary { border-color: var(--ix-border); background: var(--ix-control-surface); color: var(--ix-ink); box-shadow: var(--ix-shadow-control); }
+
+.ix-button--secondary:hover:not(:disabled):not([data-disabled]) { border-color: var(--ix-border-strong); background: var(--ix-hover); }
+
+.ix-button--ghost { background: transparent; color: var(--ix-ink-secondary); }
+
+.ix-button--ghost:hover:not(:disabled):not([data-disabled]) { background: var(--ix-hover); color: var(--ix-ink); }
+
+.ix-button--quiet { height: auto; min-height: 24px; padding: 0 2px; border-radius: 3px; background: transparent; color: var(--ix-ink-secondary); }
+
+.ix-button--quiet:hover:not(:disabled):not([data-disabled]) { color: var(--ix-ink); }
+
+.ix-button__content { display: inline-flex; align-items: center; justify-content: center; gap: inherit; opacity: 1; }
+
+.ix-button__icon { display: inline-flex; }
+
+.ix-button svg { width: var(--ix-icon-size); height: var(--ix-icon-size); flex: none; transform: translateY(var(--ix-icon-offset-y)); }
+
+.ix-button[data-loading] .ix-button__content { opacity: 0; }
+
+.ix-button__loader { position: absolute; inset: 0; display: grid; place-items: center; }
+
+.ix-spinner { width: 13px; height: 13px; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: ix-spin 0.75s linear infinite; }
+
+@media (forced-colors: active) {
+.ix-button { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }
+
+.ix-button--primary { background: Highlight; color: HighlightText; }
+}
+
+:root[data-theme="dark"] .ix-button--primary { box-shadow: none; }
+
+.ix-button__icon--trailing svg {
+  transform-origin: center;
+  transition: transform 160ms var(--ix-ease-out);
+}
+
+[data-slot="popover-trigger"][data-popup-open] .ix-button__icon--trailing svg,
+[data-slot="menu-trigger"][data-popup-open] .ix-button__icon--trailing svg {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+.ix-button__icon--trailing svg { transition-duration: 0.01ms; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+.ix-button:active:not(:disabled) { transform: none; }
+
+.ix-button__icon--trailing svg { transition-duration: 0.01ms; }
+
+.ix-spinner { animation-duration: 2.4s; }
+}
+
+@keyframes ix-spin { to { transform: rotate(360deg); } }
+}

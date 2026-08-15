@@ -1,0 +1,34 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-alert {
+  display: grid;
+  width: min(560px, 100%);
+  min-height: 54px;
+  grid-template-columns: 18px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 10px 10px 12px;
+  border-radius: var(--ix-radius-md);
+  background: var(--ix-bg-subtle);
+  color: var(--ix-fg-default);
+}
+
+.ix-alert[data-variant="critical"] { box-shadow: inset 2px 0 0 var(--ix-fg-default); }
+
+.ix-alert__icon { display: grid; width: 18px; height: 18px; place-items: center; color: var(--ix-fg-muted); }
+
+.ix-alert__icon svg { width: 16px; height: 16px; }
+
+.ix-alert__content { display: grid; min-width: 0; gap: 2px; }
+
+.ix-alert__content strong { font-size: var(--ix-type-ui); font-weight: 580; letter-spacing: -0.01em; }
+
+.ix-alert__content > span { color: var(--ix-fg-muted); font-size: var(--ix-type-label); line-height: 1.45; }
+
+.ix-alert__action { display: inline-flex; align-items: center; }
+
+.ix-alert__dismiss { color: var(--ix-fg-subtle); }
+}

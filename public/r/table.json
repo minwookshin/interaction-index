@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table",
+  "title": "Table",
+  "description": "Semantic tabular structure for product-specific sorting, filtering, and selection recipes.",
+  "registryDependencies": [
+    "@index/interaction-index-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/table.tsx",
+      "content": "import \"../../styles/index-base.css\";\nimport \"../../styles/components/table.css\";\nimport type { HTMLAttributes, TableHTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type TableProps = TableHTMLAttributes<HTMLTableElement> & {\n  containerClassName?: string;\n};\n\nexport function Table({ className, containerClassName, ...props }: TableProps) {\n  return <div className={cn(\"ix-table__container\", containerClassName)}><table className={cn(\"ix-table\", className)} {...props} /></div>;\n}\n\nexport function TableHeader({ className, ...props }: HTMLAttributes<HTMLTableSectionElement>) {\n  return <thead className={cn(\"ix-table__header\", className)} {...props} />;\n}\n\nexport function TableBody({ className, ...props }: HTMLAttributes<HTMLTableSectionElement>) {\n  return <tbody className={cn(\"ix-table__body\", className)} {...props} />;\n}\n\nexport function TableFooter({ className, ...props }: HTMLAttributes<HTMLTableSectionElement>) {\n  return <tfoot className={cn(\"ix-table__footer\", className)} {...props} />;\n}\n\nexport function TableRow({ className, ...props }: HTMLAttributes<HTMLTableRowElement>) {\n  return <tr className={cn(\"ix-table__row\", className)} {...props} />;\n}\n\nexport function TableHead({ className, scope = \"col\", ...props }: ThHTMLAttributes<HTMLTableCellElement>) {\n  return <th className={cn(\"ix-table__head\", className)} scope={scope} {...props} />;\n}\n\nexport function TableCell({ className, ...props }: TdHTMLAttributes<HTMLTableCellElement>) {\n  return <td className={cn(\"ix-table__cell\", className)} {...props} />;\n}\n\nexport function TableCaption({ className, ...props }: HTMLAttributes<HTMLTableCaptionElement>) {\n  return <caption className={cn(\"ix-table__caption\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/table.tsx"
+    },
+    {
+      "path": "registry/styles/components/table.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer index.tokens, index.base, index.components;\n\n@layer index.components {\n.ix-table__container {\n  scrollbar-color: var(--ix-scrollbar-thumb) transparent;\n  scrollbar-width: thin;\n}\n\n.ix-table__container::-webkit-scrollbar { width: 10px; height: 10px; }\n\n.ix-table__container::-webkit-scrollbar-track { background: transparent; }\n\n.ix-table__container::-webkit-scrollbar-thumb {\n  border: 3px solid transparent;\n  border-radius: 999px;\n  background: var(--ix-scrollbar-thumb);\n  background-clip: padding-box;\n}\n\n.ix-table__container::-webkit-scrollbar-thumb:hover { background: var(--ix-scrollbar-thumb-hover); background-clip: padding-box; }\n\n@media (forced-colors: active) {\n.ix-table__container { scrollbar-color: auto; }\n}\n\n.ix-table__container { width: 100%; overflow: auto; border: 1px solid var(--ix-control-border); border-radius: var(--ix-radius-container); background: var(--ix-bg-surface); }\n\n.ix-table { width: 100%; min-width: 560px; border-collapse: separate; border-spacing: 0; color: var(--ix-fg-default); font-size: var(--ix-type-label); font-variant-numeric: tabular-nums; }\n\n.ix-table__caption { padding: 10px 12px; color: var(--ix-fg-subtle); text-align: left; caption-side: bottom; }\n\n.ix-table__head { height: 34px; padding: 0 12px; border-bottom: 1px solid var(--ix-separator); background: var(--ix-bg-stage); color: var(--ix-fg-subtle); font-size: var(--ix-type-metadata); font-weight: 560; text-align: left; white-space: nowrap; }\n\n.ix-table__cell { height: var(--ix-row-height-table); padding: 0 12px; border-bottom: 1px solid var(--ix-separator); color: var(--ix-fg-muted); vertical-align: middle; }\n\n.ix-table__row:last-child .ix-table__cell { border-bottom: 0; }\n\n.ix-table__row[data-selected] { background: var(--ix-selected); }\n\n.ix-table__footer .ix-table__cell { background: var(--ix-bg-stage); color: var(--ix-fg-default); font-weight: 560; }\n\n@media (hover: hover) and (pointer: fine) {\n.ix-table__body .ix-table__row:hover { background: var(--ix-hover); }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/table.css"
+    }
+  ],
+  "type": "registry:ui"
+}

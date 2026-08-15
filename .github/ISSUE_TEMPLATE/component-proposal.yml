@@ -1,0 +1,33 @@
+name: Component proposal
+description: Propose a component or interaction backed by a concrete product case.
+title: "[Proposal]: "
+labels: [proposal, needs-triage]
+body:
+  - type: input
+    id: case
+    attributes:
+      label: Product case
+      description: What real task cannot be expressed clearly by the current primitives?
+    validations:
+      required: true
+  - type: textarea
+    id: composition
+    attributes:
+      label: Proposed composition
+      description: Name the existing primitives, new behavior, states, and expected keyboard path.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Explain why composition or documentation is insufficient.
+    validations:
+      required: true
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibility and motion risks
+      description: Note focus, naming, assistive technology, reduced motion, and interruption behavior.
+    validations:
+      required: true

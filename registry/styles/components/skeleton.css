@@ -1,0 +1,21 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-skeleton { position: relative; overflow: hidden; border-radius: var(--ix-radius-xs); background: var(--ix-gray-100); }
+
+.ix-skeleton::after { position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.65), transparent); content: ""; transform: translateX(-100%); animation: ix-skeleton-shimmer 1.6s linear infinite; }
+
+.ix-skeleton-text { display: grid; width: min(320px, 100%); gap: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+.ix-skeleton::after { animation-duration: 2.4s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+.ix-skeleton::after { animation-duration: 2.4s; }
+}
+
+@keyframes ix-skeleton-shimmer { to { transform: translateX(100%); } }
+}

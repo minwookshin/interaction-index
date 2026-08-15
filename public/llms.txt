@@ -1,0 +1,37 @@
+# Interaction Index
+
+Interaction Index is a dense, monochrome React component and interaction system for product interfaces.
+
+## Documentation routes
+
+- /#introduction - system overview and behavior signature
+- /#installation - registry and stylesheet setup
+- /#foundations - color, typography, spacing, motion, and Component DNA
+- /#button - component documentation begins with Button; the sidebar lists all 35 components
+- /#patterns - authored interaction patterns
+- /#accessibility - keyboard, focus, motion, contrast, and manual review
+- /#browser-support - browser and viewport support policy
+- /#security - vulnerability reporting and supported versions
+- /#contributing - contribution and review requirements
+- /#releases - versioning, evidence, deprecation, and support windows
+- /#licensing - MIT permissions and third-party responsibilities
+
+## Install
+
+```bash
+npx shadcn@latest registry add @index=https://minwookshin.github.io/interaction-index/r/{name}.json
+npx shadcn@latest add @index/button
+```
+
+Installed component source imports the shared contract and its scoped stylesheet. The complete-system item also provides `styles/interaction-index.css` as the application-root base entry.
+
+## Source documents
+
+- README.md
+- COMPATIBILITY.md
+- CONTRIBUTING.md
+- SECURITY.md
+- SUPPORT.md
+- RELEASE_CHECKLIST.md
+- CHANGELOG.md
+- LICENSE

@@ -1,0 +1,42 @@
+name: Bug report
+description: Report a reproducible component, documentation, or registry defect.
+title: "[Bug]: "
+labels: [bug, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve Interaction Index. Security issues must use a private repository advisory.
+  - type: input
+    id: component
+    attributes:
+      label: Component or area
+      placeholder: Shared Detail, registry install, documentation shell…
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include a repository, StackBlitz, or exact sequence that isolates the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and observed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser, OS, React, TypeScript, Base UI, and package/registry version.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Preflight
+      options:
+        - label: I searched existing issues and this is not a public security disclosure.
+          required: true

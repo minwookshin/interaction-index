@@ -1,0 +1,34 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-avatar {
+  position: relative;
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: visible;
+  border: 1px solid var(--ix-control-border);
+  border-radius: 50%;
+  background: var(--ix-gray-100);
+  color: var(--ix-ink-secondary);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.ix-avatar img,
+.ix-avatar__fallback { width: 100%; height: 100%; border-radius: inherit; object-fit: cover; display: grid; place-items: center; }
+
+.ix-avatar__status { position: absolute; right: -1px; bottom: -1px; width: 8px; height: 8px; border: 2px solid var(--ix-bg-surface); border-radius: 50%; background: var(--ix-gray-700); }
+
+.ix-avatar__status[data-status="away"] { background: var(--ix-gray-400); }
+
+.ix-avatar__status[data-status="busy"] { background: var(--ix-gray-900); }
+
+.ix-avatar__status[data-status="offline"] { background: var(--ix-bg-control); box-shadow: inset 0 0 0 1px var(--ix-gray-400); }
+
+.ix-avatar-group { display: flex; align-items: center; padding-left: 6px; }
+
+.ix-avatar-group .ix-avatar { margin-left: -6px; box-shadow: 0 0 0 2px var(--ix-bg-surface); }
+}

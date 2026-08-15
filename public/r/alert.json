@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "title": "Alert",
+  "description": "Persistent neutral or critical feedback with opt-in live announcement.",
+  "dependencies": [
+    "@phosphor-icons/react"
+  ],
+  "registryDependencies": [
+    "@index/icon-button",
+    "@index/interaction-index-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/alert.tsx",
+      "content": "import \"../../styles/index-base.css\";\nimport \"../../styles/components/alert.css\";\nimport { Info, WarningCircle, X } from \"@phosphor-icons/react\";\nimport type { HTMLAttributes, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\nimport { IconButton } from \"./icon-button\";\n\nexport type AlertProps = Omit<HTMLAttributes<HTMLDivElement>, \"title\"> & {\n  variant?: \"neutral\" | \"critical\";\n  title: ReactNode;\n  icon?: ReactNode;\n  action?: ReactNode;\n  live?: \"polite\" | \"assertive\";\n  dismissLabel?: string;\n  onDismiss?: () => void;\n};\n\nexport function Alert({\n  variant = \"neutral\",\n  title,\n  icon,\n  action,\n  live,\n  dismissLabel = \"Dismiss notification\",\n  onDismiss,\n  className,\n  children,\n  role,\n  ...props\n}: AlertProps) {\n  const fallbackIcon = variant === \"critical\" ? <WarningCircle weight=\"fill\" /> : <Info weight=\"fill\" />;\n\n  return (\n    <div\n      className={cn(\"ix-alert\", className)}\n      data-variant={variant}\n      role={role ?? (live === \"assertive\" ? \"alert\" : live === \"polite\" ? \"status\" : undefined)}\n      aria-live={live}\n      {...props}\n    >\n      <span className=\"ix-alert__icon\" aria-hidden=\"true\">{icon ?? fallbackIcon}</span>\n      <span className=\"ix-alert__content\">\n        <strong>{title}</strong>\n        {children && <span>{children}</span>}\n      </span>\n      {action && <span className=\"ix-alert__action\">{action}</span>}\n      {onDismiss && <IconButton className=\"ix-alert__dismiss\" variant=\"ghost\" size=\"small\" aria-label={dismissLabel} onClick={onDismiss}><X /></IconButton>}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/alert.tsx"
+    },
+    {
+      "path": "registry/styles/components/alert.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer index.tokens, index.base, index.components;\n\n@layer index.components {\n.ix-alert {\n  display: grid;\n  width: min(560px, 100%);\n  min-height: 54px;\n  grid-template-columns: 18px minmax(0, 1fr) auto auto;\n  align-items: center;\n  gap: 10px;\n  padding: 10px 10px 10px 12px;\n  border-radius: var(--ix-radius-md);\n  background: var(--ix-bg-subtle);\n  color: var(--ix-fg-default);\n}\n\n.ix-alert[data-variant=\"critical\"] { box-shadow: inset 2px 0 0 var(--ix-fg-default); }\n\n.ix-alert__icon { display: grid; width: 18px; height: 18px; place-items: center; color: var(--ix-fg-muted); }\n\n.ix-alert__icon svg { width: 16px; height: 16px; }\n\n.ix-alert__content { display: grid; min-width: 0; gap: 2px; }\n\n.ix-alert__content strong { font-size: var(--ix-type-ui); font-weight: 580; letter-spacing: -0.01em; }\n\n.ix-alert__content > span { color: var(--ix-fg-muted); font-size: var(--ix-type-label); line-height: 1.45; }\n\n.ix-alert__action { display: inline-flex; align-items: center; }\n\n.ix-alert__dismiss { color: var(--ix-fg-subtle); }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/alert.css"
+    }
+  ],
+  "type": "registry:ui"
+}

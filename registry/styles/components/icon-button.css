@@ -1,0 +1,17 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-icon-button { width: var(--ix-control-height-md); padding: 0; }
+
+.ix-icon-button.ix-button--small { width: var(--ix-control-height-sm); padding: 0; }
+
+.ix-icon-button.ix-button--large { width: var(--ix-control-height-lg); padding: 0; }
+
+.ix-icon-button .ix-button__content { display: grid; width: 100%; height: 100%; place-items: center; }
+
+.ix-icon-button .ix-button__content > span:last-child { display: grid; width: 100%; height: 100%; place-items: center; line-height: 0; }
+
+.ix-icon-button svg { width: calc(var(--ix-icon-size) + 1px); height: calc(var(--ix-icon-size) + 1px); transform: none; }
+}

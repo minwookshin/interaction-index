@@ -1,0 +1,43 @@
+name: Release candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Candidate version, for example 0.1.0-alpha.1
+        required: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run quality
+      - run: npm run test:consumer
+      - run: npm run test:a11y
+      - run: npm run test:pilot
+      - run: npm run test:visual
+      - name: Verify requested version
+        env:
+          EXPECTED_VERSION: ${{ inputs.version }}
+        run: node -e "const actual = JSON.parse(require('fs').readFileSync('package.json')).version; if (actual !== process.env.EXPECTED_VERSION) { console.error(actual); process.exit(1); }"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: interaction-index-${{ inputs.version }}
+          path: |
+            dist
+            public/r
+            performance-report.json
+          if-no-files-found: error
+
+  publication-remains-manual:
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Verification passed. Tagging, GitHub Release creation, and package publication remain explicit maintainer actions."

@@ -1,0 +1,28 @@
+import "../../styles/index-base.css";
+import "../../styles/components/search-input.css";
+import { MagnifyingGlass, X } from "@phosphor-icons/react";
+import { forwardRef, useId, type InputHTMLAttributes } from "react";
+import { cn } from "../../lib/cn";
+
+export type SearchInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
+  label?: string;
+  loading?: boolean;
+  onClear?: () => void;
+  shortcut?: string;
+};
+
+export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(function SearchInput({ id: providedId, label = "Search", loading, onClear, shortcut, className, value, ...props }, ref) {
+  const generatedId = useId();
+  const id = providedId ?? generatedId;
+  const hasValue = typeof value === "string" && value.length > 0;
+  return (
+    <div className="ix-search-field">
+      <label className="ix-sr-only" htmlFor={id}>{label}</label>
+      <div className={cn("ix-search", className)} data-loading={loading || undefined}>
+        {loading ? <span className="ix-spinner ix-search__spinner" aria-hidden="true" /> : <MagnifyingGlass className="ix-search__icon" aria-hidden="true" />}
+        <input ref={ref} id={id} type="search" value={value} aria-busy={loading || undefined} {...props} />
+        {hasValue && onClear ? <button type="button" aria-label="Clear search" onClick={onClear}><X /></button> : shortcut ? <kbd>{shortcut}</kbd> : null}
+      </div>
+    </div>
+  );
+});

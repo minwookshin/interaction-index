@@ -1,0 +1,42 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-segmented-control {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 8px;
+  background: var(--ix-bg-subtle);
+}
+
+.ix-segmented-control[data-orientation="vertical"] { flex-direction: column; align-items: stretch; }
+
+.ix-segmented-control__item { display: inline-flex; min-width: 0; height: 28px; align-items: center; justify-content: center; gap: 6px; padding: 0 9px; border: 0; border-radius: 6px; background: transparent; color: var(--ix-fg-muted); font-size: var(--ix-type-label); white-space: nowrap; cursor: pointer; transition: color var(--ix-hover-duration), background-color var(--ix-hover-duration), box-shadow var(--ix-hover-duration), transform var(--ix-press-duration) var(--ix-ease-out); }
+
+.ix-segmented-control[data-size="small"] .ix-segmented-control__item { height: 24px; padding-inline: 7px; font-size: var(--ix-type-metadata); }
+
+.ix-segmented-control__item > span { display: inline-flex; min-width: 0; align-items: center; }
+
+.ix-segmented-control__item svg { width: 13px; height: 13px; }
+
+.ix-segmented-control__item[data-pressed] { background: var(--ix-bg-control); color: var(--ix-fg-default); box-shadow: var(--ix-shadow-control); font-weight: 560; }
+
+.ix-segmented-control__item:focus-visible { z-index: 1; outline: 2px solid var(--ix-focus-control); outline-offset: 1px; }
+
+.ix-segmented-control__item:active { transform: scale(.96); }
+
+.ix-segmented-control__item[data-disabled] { color: var(--ix-fg-disabled); cursor: not-allowed; }
+
+@media (hover: hover) and (pointer: fine) {
+.ix-segmented-control__item:not([data-disabled]):not([data-pressed]):hover { background: var(--ix-hover); color: var(--ix-fg-default); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+.ix-segmented-control__item:active { transform: none; }
+}
+}

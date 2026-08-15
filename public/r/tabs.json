@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs",
+  "title": "Tabs",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@index/interaction-index-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/tabs.tsx",
+      "content": "import \"../../styles/index-base.css\";\nimport \"../../styles/components/tabs.css\";\nimport { Tabs as TabsPrimitive } from \"@base-ui/react/tabs\";\nimport { cn } from \"../../lib/cn\";\n\nexport function Tabs({ className, ...props }: TabsPrimitive.Root.Props) {\n  return <TabsPrimitive.Root className={cn(\"ix-tabs\", className)} {...props} />;\n}\n\nexport function TabsList({ className, activateOnFocus = true, ...props }: TabsPrimitive.List.Props) {\n  return <TabsPrimitive.List className={cn(\"ix-tabs__list\", className)} activateOnFocus={activateOnFocus} {...props} />;\n}\n\nexport function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {\n  return <TabsPrimitive.Tab className={cn(\"ix-tabs__trigger\", className)} {...props} />;\n}\n\nexport function TabsContent({ className, ...props }: TabsPrimitive.Panel.Props) {\n  return <TabsPrimitive.Panel className={cn(\"ix-tabs__panel\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/tabs.tsx"
+    },
+    {
+      "path": "registry/styles/components/tabs.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer index.tokens, index.base, index.components;\n\n@layer index.components {\n.ix-tabs { display: grid; gap: 16px; }\n\n.ix-tabs__list { display: inline-flex; width: fit-content; height: 30px; align-items: center; gap: 2px; padding: 2px; border: 1px solid var(--ix-border-subtle); border-radius: 6px; background: var(--ix-subtle); }\n\n.ix-tabs__trigger { position: relative; height: 24px; padding: 0 8px; border: 0; border-radius: 4px; outline: 0; background: transparent; color: var(--ix-ink-secondary); font-size: 12.5px; cursor: pointer; }\n\n.ix-tabs__trigger:hover { color: var(--ix-fg-default); }\n\n.ix-tabs__trigger[data-active] { background: var(--ix-control-surface); color: var(--ix-ink); box-shadow: var(--ix-shadow-control), 0 0 0 1px var(--ix-border-subtle); }\n\n.ix-tabs__trigger[data-disabled] { opacity: 0.42; cursor: not-allowed; }\n\n.ix-tabs__trigger:focus-visible { outline: 2px solid var(--ix-focus-control); outline-offset: 2px; }\n\n.ix-tabs__panel { outline: 0; }\n\n@media (forced-colors: active) {\n.ix-tabs__list { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }\n\n.ix-tabs__trigger[data-active] { outline: 2px solid Highlight; outline-offset: -2px; }\n}\n\n:root[data-theme=\"dark\"] .ix-tabs__trigger:hover { color: var(--ix-ink); }\n\n.ix-tabs__trigger { transition: color var(--ix-hover-duration), background-color var(--ix-hover-duration), box-shadow var(--ix-hover-duration); }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/tabs.css"
+    }
+  ],
+  "type": "registry:ui"
+}

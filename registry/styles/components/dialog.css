@@ -1,0 +1,43 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-dialog__backdrop { position: fixed; inset: 0; z-index: var(--ix-layer-modal-backdrop); background: var(--ix-bg-scrim); backdrop-filter: blur(1.5px); transition: opacity var(--ix-enter-duration) var(--ix-ease-out); }
+
+.ix-dialog__backdrop[data-starting-style],
+.ix-dialog__backdrop[data-ending-style] { opacity: 0; }
+
+.ix-dialog__backdrop[data-ending-style] { transition-duration: var(--ix-exit-duration); }
+
+.ix-dialog { position: fixed; z-index: var(--ix-layer-modal); top: 50%; left: 50%; width: min(390px, calc(100vw - 32px)); padding: 16px; border-radius: var(--ix-radius-overlay); background: var(--ix-bg-modal); box-shadow: var(--ix-shadow-modal); outline: 0; transform: translate(-50%, -50%); transition: opacity var(--ix-enter-duration) var(--ix-ease-out), transform var(--ix-enter-duration) var(--ix-ease-out); }
+
+.ix-dialog[data-starting-style] { opacity: 0; transform: translate(-50%, calc(-50% + 6px)) scale(0.985); }
+
+.ix-dialog[data-ending-style] { opacity: 0; transform: translate(-50%, calc(-50% + 3px)) scale(0.99); transition-duration: var(--ix-exit-duration); }
+
+.ix-dialog__close { position: absolute; top: 8px; right: 8px; }
+
+.ix-dialog__header { display: grid; gap: 7px; padding-right: 28px; }
+
+.ix-dialog__header [data-slot="dialog-title"],
+.ix-dialog__header h2 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.015em; }
+
+.ix-dialog__header [data-slot="dialog-description"],
+.ix-dialog__header p { margin: 0; color: var(--ix-ink-secondary); font-size: 13px; line-height: 1.55; }
+
+.ix-dialog__footer { display: flex; justify-content: flex-end; gap: 6px; margin-top: 20px; padding-top: 0; border-top: 0; }
+
+.ix-dialog { background: var(--ix-bg-modal); }
+
+@media (prefers-reduced-motion: reduce) {
+.ix-dialog,
+.ix-dialog__backdrop {
+    transition-property: opacity;
+    transition-duration: var(--ix-exit-duration);
+  }
+
+.ix-dialog[data-starting-style],
+.ix-dialog[data-ending-style] { transform: translate(-50%, -50%); }
+}
+}

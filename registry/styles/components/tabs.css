@@ -1,0 +1,31 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-tabs { display: grid; gap: 16px; }
+
+.ix-tabs__list { display: inline-flex; width: fit-content; height: 30px; align-items: center; gap: 2px; padding: 2px; border: 1px solid var(--ix-border-subtle); border-radius: 6px; background: var(--ix-subtle); }
+
+.ix-tabs__trigger { position: relative; height: 24px; padding: 0 8px; border: 0; border-radius: 4px; outline: 0; background: transparent; color: var(--ix-ink-secondary); font-size: 12.5px; cursor: pointer; }
+
+.ix-tabs__trigger:hover { color: var(--ix-fg-default); }
+
+.ix-tabs__trigger[data-active] { background: var(--ix-control-surface); color: var(--ix-ink); box-shadow: var(--ix-shadow-control), 0 0 0 1px var(--ix-border-subtle); }
+
+.ix-tabs__trigger[data-disabled] { opacity: 0.42; cursor: not-allowed; }
+
+.ix-tabs__trigger:focus-visible { outline: 2px solid var(--ix-focus-control); outline-offset: 2px; }
+
+.ix-tabs__panel { outline: 0; }
+
+@media (forced-colors: active) {
+.ix-tabs__list { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }
+
+.ix-tabs__trigger[data-active] { outline: 2px solid Highlight; outline-offset: -2px; }
+}
+
+:root[data-theme="dark"] .ix-tabs__trigger:hover { color: var(--ix-ink); }
+
+.ix-tabs__trigger { transition: color var(--ix-hover-duration), background-color var(--ix-hover-duration), box-shadow var(--ix-hover-duration); }
+}

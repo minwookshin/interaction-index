@@ -1,0 +1,34 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer index.tokens, index.base, index.components;
+
+@layer index.components {
+.ix-pagination { display: flex; align-items: center; gap: 3px; }
+
+.ix-pagination button,
+.ix-pagination > span { display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid transparent; border-radius: var(--ix-radius-sm); background: transparent; color: var(--ix-ink-secondary); font: inherit; font-size: var(--ix-type-label); font-variant-numeric: tabular-nums; }
+
+.ix-pagination button { cursor: pointer; transition: background-color var(--ix-hover-duration) ease, color var(--ix-hover-duration) ease, transform var(--ix-press-duration) var(--ix-ease-out, ease-out); }
+
+.ix-pagination button[aria-current="page"] { border-color: var(--ix-border); background: var(--ix-control-surface); box-shadow: var(--ix-shadow-control); color: var(--ix-ink); font-weight: 550; }
+
+.ix-pagination button:focus-visible { outline: 2px solid var(--ix-focus-control); outline-offset: 2px; }
+
+.ix-pagination button:disabled { color: var(--ix-ink-disabled); cursor: not-allowed; }
+
+.ix-pagination svg { width: 13px; height: 13px; }
+
+@media (hover: hover) and (pointer: fine) {
+.ix-pagination button:not(:disabled):hover { background: var(--ix-hover); color: var(--ix-ink); }
+}
+
+.ix-pagination button:not(:disabled):active { transform: scale(0.97); }
+
+@media (prefers-reduced-motion: reduce) {
+.ix-pagination button { transition-duration: 0.01ms; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+.ix-pagination button:not(:disabled):active { transform: none; }
+}
+}

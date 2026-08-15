@@ -1,0 +1,9 @@
+{
+  "status": "configured",
+  "repository": "minwookshin/interaction-index",
+  "repositoryUrl": "https://github.com/minwookshin/interaction-index",
+  "issueTracker": "https://github.com/minwookshin/interaction-index/issues",
+  "securityAdvisories": "https://github.com/minwookshin/interaction-index/security/advisories/new",
+  "homepage": "https://minwookshin.github.io/interaction-index",
+  "registryInstall": "npx shadcn@latest add minwookshin/interaction-index/interaction-index"
+}

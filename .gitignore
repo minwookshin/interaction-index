@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+playwright-report/
+test-results/
+.env
+.env.*
+!.env.example
+
+# Local design direction and raw review evidence are not public package assets.
+AGENTS.md
+audit/
+design-qa.md
+design-qa-*.png

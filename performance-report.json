@@ -1,0 +1,47 @@
+{
+  "budgets": {
+    "jsGzipBytes": 330000,
+    "cssGzipBytes": 40000
+  },
+  "totals": {
+    "jsGzipBytes": 299194,
+    "cssGzipBytes": 30998
+  },
+  "assets": [
+    {
+      "file": "base-ui-BcqJza6k.js",
+      "bytes": 278030,
+      "gzipBytes": 92614
+    },
+    {
+      "file": "index-BX4LpKg3.js",
+      "bytes": 272305,
+      "gzipBytes": 71600
+    },
+    {
+      "file": "react-DIDUf3HZ.js",
+      "bytes": 194288,
+      "gzipBytes": 60738
+    },
+    {
+      "file": "motion-plzMhemS.js",
+      "bytes": 129921,
+      "gzipBytes": 42698
+    },
+    {
+      "file": "index-CIZ0olMl.css",
+      "bytes": 194550,
+      "gzipBytes": 30998
+    },
+    {
+      "file": "icons-Dv3BYFQ8.js",
+      "bytes": 100811,
+      "gzipBytes": 21757
+    },
+    {
+      "file": "feedback-Cv4wrCNj.js",
+      "bytes": 34801,
+      "gzipBytes": 9787
+    }
+  ]
+}

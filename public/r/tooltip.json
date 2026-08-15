@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip",
+  "title": "Tooltip",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "@index/interaction-index-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/tooltip.tsx",
+      "content": "import \"../../styles/index-base.css\";\nimport \"../../styles/components/tooltip.css\";\nimport { Tooltip as TooltipPrimitive } from \"@base-ui/react/tooltip\";\nimport { cn } from \"../../lib/cn\";\n\nexport function TooltipProvider({ delay = 350, ...props }: TooltipPrimitive.Provider.Props) {\n  return <TooltipPrimitive.Provider delay={delay} {...props} />;\n}\n\nexport function Tooltip(props: TooltipPrimitive.Root.Props) {\n  return <TooltipPrimitive.Root data-slot=\"tooltip\" {...props} />;\n}\n\nexport function TooltipTrigger(props: TooltipPrimitive.Trigger.Props) {\n  return <TooltipPrimitive.Trigger data-slot=\"tooltip-trigger\" {...props} />;\n}\n\ntype TooltipContentProps = TooltipPrimitive.Popup.Props &\n  Pick<TooltipPrimitive.Positioner.Props, \"align\" | \"alignOffset\" | \"side\" | \"sideOffset\">;\n\nexport function TooltipContent({\n  className,\n  side = \"top\",\n  sideOffset = 6,\n  align = \"center\",\n  alignOffset = 0,\n  children,\n  ...props\n}: TooltipContentProps) {\n  return (\n    <TooltipPrimitive.Portal>\n      <TooltipPrimitive.Positioner\n        className=\"ix-positioner\"\n        side={side}\n        sideOffset={sideOffset}\n        align={align}\n        alignOffset={alignOffset}\n      >\n        <TooltipPrimitive.Popup className={cn(\"ix-tooltip\", className)} {...props}>\n          {children}\n          <TooltipPrimitive.Arrow className=\"ix-tooltip__arrow\" />\n        </TooltipPrimitive.Popup>\n      </TooltipPrimitive.Positioner>\n    </TooltipPrimitive.Portal>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/tooltip.tsx"
+    },
+    {
+      "path": "registry/styles/components/tooltip.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer index.tokens, index.base, index.components;\n\n@layer index.components {\n.ix-positioner { z-index: var(--ix-layer-flyout); }\n\n.ix-tooltip kbd { font-family: inherit; font-size: 10px; color: var(--ix-ink-tertiary); }\n\n.ix-tooltip { display: flex; align-items: center; gap: 8px; max-width: 240px; padding: 6px 8px; border-radius: 5px; background: var(--ix-inverse); color: var(--ix-on-inverse); font-size: 12px; line-height: 1.35; box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18); transform-origin: var(--transform-origin); transition: opacity var(--ix-enter-duration) var(--ix-ease-out), transform var(--ix-enter-duration) var(--ix-ease-out); }\n\n.ix-tooltip[data-starting-style] { opacity: 0; transform: scale(0.96); }\n\n.ix-tooltip[data-ending-style] { opacity: 0; transform: scale(0.98); transition-duration: var(--ix-exit-duration); }\n\n.ix-tooltip[data-instant] { transition-duration: 0ms; }\n\n.ix-tooltip kbd { padding: 0 3px; border: 1px solid color-mix(in oklch, var(--ix-on-inverse) 24%, transparent); border-radius: 3px; color: color-mix(in oklch, var(--ix-on-inverse) 76%, transparent); }\n\n.ix-tooltip__arrow { width: 8px; height: 4px; fill: var(--ix-inverse); }\n\n:root[data-theme=\"dark\"] .ix-tooltip__arrow { fill: var(--ix-inverse); }\n\n@media (prefers-reduced-motion: reduce) {\n.ix-tooltip {\n    transition-property: opacity;\n    transition-duration: var(--ix-exit-duration);\n  }\n\n.ix-tooltip[data-starting-style],\n.ix-tooltip[data-ending-style] { transform: none; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/tooltip.css"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast",
+  "title": "Toast",
+  "dependencies": [
+    "sonner"
+  ],
+  "registryDependencies": [
+    "@index/interaction-index-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/toast.tsx",
+      "content": "import \"../../styles/index-base.css\";\nimport \"../../styles/components/toast.css\";\nimport { Toaster as SonnerToaster, toast as sonnerToast } from \"sonner\";\n\nexport function Toaster() {\n  return (\n    <SonnerToaster\n      className=\"ix-toaster\"\n      position=\"bottom-right\"\n      closeButton\n      gap={8}\n      toastOptions={{\n        unstyled: true,\n        classNames: {\n          toast: \"ix-toast\",\n          content: \"ix-toast__content\",\n          title: \"ix-toast__title\",\n          description: \"ix-toast__description\",\n          actionButton: \"ix-toast__action\",\n          closeButton: \"ix-toast__close\",\n        },\n      }}\n    />\n  );\n}\n\nexport const toast = sonnerToast;\n",
+      "type": "registry:ui",
+      "target": "components/ui/toast.tsx"
+    },
+    {
+      "path": "registry/styles/components/toast.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer index.tokens, index.base, index.components;\n\n@layer index.components {\n.ix-toaster { z-index: var(--ix-layer-toast); }\n\n.ix-toast { position: relative; display: flex; width: 326px; min-height: 52px; align-items: center; gap: 10px; padding: 10px 40px 10px 12px; border-radius: 8px; background: var(--ix-bg-flyout); color: var(--ix-ink); box-shadow: var(--ix-shadow-flyout); font-family: inherit; }\n\n.ix-toast__content { display: grid; flex: 1; gap: 2px; }\n\n.ix-toast__title { font-size: 13.5px; font-weight: 580; }\n\n.ix-toast__description { color: var(--ix-ink-secondary); font-size: 12px; }\n\n.ix-toast__action { height: 28px; padding: 0 8px; border: 1px solid var(--ix-border); border-radius: 5px; background: var(--ix-control-surface); color: var(--ix-ink); font-size: 12px; font-weight: 550; }\n\n.ix-toast__close { position: absolute; top: 8px; right: 8px; display: grid; width: 22px; height: 22px; padding: 0; place-items: center; border: 0; border-radius: 4px; background: transparent; color: var(--ix-fg-subtle); }\n\n@media (forced-colors: active) {\n.ix-toast { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/toast.css"
+    }
+  ],
+  "type": "registry:ui"
+}

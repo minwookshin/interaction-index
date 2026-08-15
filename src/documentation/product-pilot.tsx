@@ -1,0 +1,185 @@
+import {
+  Archive,
+  CalendarBlank,
+  CheckCircle,
+  Circle,
+  DotsThree,
+  Plus,
+  Rows,
+  UserCircle,
+} from "@phosphor-icons/react";
+import { useMemo, useState } from "react";
+import {
+  Badge,
+  Button,
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  IconButton,
+  InlineEdit,
+  Menu,
+  MenuContent,
+  MenuItem,
+  MenuLabel,
+  MenuSeparator,
+  MenuTrigger,
+  SearchInput,
+  Select,
+  SharedDetail,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+  TextField,
+  UndoBar,
+  UndoStackProvider,
+  useUndoStack,
+  toast,
+} from "../components/ui";
+
+type PilotIssue = {
+  id: string;
+  code: string;
+  title: string;
+  description: string;
+  status: "Backlog" | "In progress" | "Done";
+  priority: "Low" | "Medium" | "High";
+  assignee: string;
+  updated: string;
+};
+
+const initialIssues: PilotIssue[] = [
+  { id: "focus", code: "INT-204", title: "Unify keyboard focus", description: "Make focus movement predictable across menus, dialogs, and shared detail views.", status: "In progress", priority: "High", assignee: "Avery Stone", updated: "8m" },
+  { id: "motion", code: "INT-198", title: "Tune shared detail motion", description: "Preserve list identity while detail content changes and adjacent issues are inspected.", status: "Backlog", priority: "Medium", assignee: "Mina Park", updated: "32m" },
+  { id: "registry", code: "INT-191", title: "Verify registry consumer", description: "Install the public boundary into a clean app and record every generated dependency.", status: "Done", priority: "High", assignee: "Noah Williams", updated: "2h" },
+  { id: "contrast", code: "INT-184", title: "Review dark theme contrast", description: "Check text, focus, disabled controls, and overlays in the cool graphite dark theme.", status: "Backlog", priority: "Low", assignee: "Avery Stone", updated: "1d" },
+];
+
+const statusOptions = ["Backlog", "In progress", "Done"].map((value) => ({ label: value, value }));
+const priorityOptions = ["Low", "Medium", "High"].map((value) => ({ label: value, value }));
+
+function PilotWorkspaceInner() {
+  const [issues, setIssues] = useState(initialIssues);
+  const [selectedId, setSelectedId] = useState<string | null>(initialIssues[0].id);
+  const [query, setQuery] = useState("");
+  const [createOpen, setCreateOpen] = useState(false);
+  const [draftTitle, setDraftTitle] = useState("");
+  const [draftDescription, setDraftDescription] = useState("");
+  const { pushUndo } = useUndoStack();
+
+  const filtered = useMemo(() => issues.filter((issue) => `${issue.code} ${issue.title} ${issue.status} ${issue.assignee}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase())), [issues, query]);
+  const selected = issues.find((issue) => issue.id === selectedId);
+  const sharedItems = filtered.map((issue) => ({ id: issue.id, title: issue.title, meta: `${issue.code} · ${issue.updated}`, description: issue.description, status: issue.status }));
+
+  const updateIssue = (id: string, update: Partial<PilotIssue>) => setIssues((current) => current.map((issue) => issue.id === id ? { ...issue, ...update, updated: "Now" } : issue));
+
+  const archiveIssue = (id: string) => {
+    const index = issues.findIndex((issue) => issue.id === id);
+    const issue = issues[index];
+    if (!issue) return;
+    const remaining = issues.filter((item) => item.id !== id);
+    setIssues(remaining);
+    setSelectedId(remaining[Math.min(index, Math.max(remaining.length - 1, 0))]?.id ?? null);
+    pushUndo({
+      label: `Archived ${issue.code}`,
+      undo: () => {
+        setIssues((current) => current.some((item) => item.id === issue.id) ? current : [...current.slice(0, index), issue, ...current.slice(index)]);
+        setSelectedId(issue.id);
+      },
+    });
+    toast("Issue archived", { description: `${issue.code} can be restored from the undo bar.` });
+  };
+
+  const createIssue = () => {
+    const title = draftTitle.trim();
+    if (!title) return;
+    const next: PilotIssue = {
+      id: `issue-${Date.now()}`,
+      code: `INT-${206 + issues.length}`,
+      title,
+      description: draftDescription.trim() || "Add product context and acceptance criteria.",
+      status: "Backlog",
+      priority: "Medium",
+      assignee: "Unassigned",
+      updated: "Now",
+    };
+    setIssues((current) => [next, ...current]);
+    setSelectedId(next.id);
+    setDraftTitle("");
+    setDraftDescription("");
+    setCreateOpen(false);
+    toast("Issue created", { description: `${next.code} is ready for refinement.` });
+  };
+
+  return (
+    <section className="pilot-workspace" aria-label="Interaction Index product pilot">
+      <header className="pilot-workspace__header">
+        <div className="pilot-workspace__identity"><span><Rows aria-hidden="true" /></span><div><strong>Interface quality</strong><small>Cycle 08 · {issues.length} issues</small></div></div>
+        <div className="pilot-workspace__actions">
+          <SearchInput label="Search pilot issues" value={query} onChange={(event) => setQuery(event.target.value)} onClear={() => setQuery("")} placeholder="Search issues…" shortcut="/" />
+          <Dialog open={createOpen} onOpenChange={setCreateOpen}>
+            <DialogTrigger render={<Button variant="primary" size="small" leadingIcon={<Plus />}>New issue</Button>} />
+            <DialogContent>
+              <DialogHeader><DialogTitle>Create issue</DialogTitle><DialogDescription>Add a small, concrete piece of interface work to the active cycle.</DialogDescription></DialogHeader>
+              <form className="pilot-create-form" onSubmit={(event) => { event.preventDefault(); createIssue(); }}>
+                <TextField autoFocus label="Title" value={draftTitle} onChange={(event) => setDraftTitle(event.target.value)} placeholder="What needs attention?" />
+                <TextField label="Description" value={draftDescription} onChange={(event) => setDraftDescription(event.target.value)} placeholder="Add useful context" />
+                <DialogFooter><DialogClose render={<Button variant="ghost" />}>Cancel</DialogClose><Button type="submit" variant="primary" disabled={!draftTitle.trim()}>Create issue</Button></DialogFooter>
+              </form>
+            </DialogContent>
+          </Dialog>
+        </div>
+      </header>
+
+      <Tabs defaultValue="issues" className="pilot-tabs">
+        <div className="pilot-tabs__bar"><TabsList aria-label="Pilot views"><TabsTrigger value="issues">Issues</TabsTrigger><TabsTrigger value="cycle">Cycle</TabsTrigger></TabsList><span>{filtered.length} visible</span></div>
+        <TabsContent value="issues" className="pilot-tabs__panel">
+          {sharedItems.length ? <SharedDetail
+            className="pilot-shared-detail"
+            items={sharedItems}
+            selectedId={filtered.some((issue) => issue.id === selectedId) ? selectedId : null}
+            onSelectedIdChange={setSelectedId}
+            focusOnOpen={false}
+            regionLabel="Selected issue detail"
+            renderDetail={(item) => {
+              const issue = issues.find((candidate) => candidate.id === item.id)!;
+              return <div className="pilot-detail-content">
+                <p>{issue.description}</p>
+                <div className="pilot-detail-fields">
+                  <Select label="Status" options={statusOptions} value={issue.status} onValueChange={(value) => updateIssue(issue.id, { status: value as PilotIssue["status"] })} />
+                  <Select label="Priority" options={priorityOptions} value={issue.priority} onValueChange={(value) => updateIssue(issue.id, { priority: value as PilotIssue["priority"] })} />
+                </div>
+                <dl className="pilot-detail-meta"><div><dt><UserCircle aria-hidden="true" />Assignee</dt><dd>{issue.assignee}</dd></div><div><dt><CalendarBlank aria-hidden="true" />Updated</dt><dd>{issue.updated}</dd></div></dl>
+                <div className="pilot-detail-title"><span>Title</span><InlineEdit value={issue.title} label="Edit issue title" onSave={(title) => updateIssue(issue.id, { title })} validate={(title) => title.length < 4 ? "Use at least four characters." : undefined} /></div>
+                <div className="pilot-detail-actions"><Button size="small" variant="secondary" onClick={() => { updateIssue(issue.id, { status: issue.status === "Done" ? "In progress" : "Done" }); toast(issue.status === "Done" ? "Issue reopened" : "Issue completed"); }}>{issue.status === "Done" ? "Reopen" : "Mark done"}</Button><Menu><MenuTrigger render={<IconButton size="small" variant="ghost" aria-label="More issue actions"><DotsThree /></IconButton>} /><MenuContent align="end"><MenuLabel>{issue.code}</MenuLabel><MenuItem onClick={() => updateIssue(issue.id, { priority: "High" })}>Set high priority</MenuItem><MenuSeparator /><MenuItem className="ix-menu__item--danger" onClick={() => archiveIssue(issue.id)}><Archive aria-hidden="true" />Archive issue</MenuItem></MenuContent></Menu></div>
+              </div>;
+            }}
+          /> : <div className="pilot-empty"><strong>No matching issues</strong><p>Try a different query or create a new issue.</p><Button size="small" onClick={() => setQuery("")}>Clear search</Button></div>}
+        </TabsContent>
+        <TabsContent value="cycle" className="pilot-tabs__panel pilot-cycle">
+          <Table aria-label="Active cycle issues">
+            <TableHeader><TableRow><TableHead>Issue</TableHead><TableHead>Status</TableHead><TableHead>Priority</TableHead><TableHead>Updated</TableHead></TableRow></TableHeader>
+            <TableBody>{filtered.map((issue) => <TableRow key={issue.id}><TableCell><button type="button" className="pilot-table-link" onClick={() => setSelectedId(issue.id)}>{issue.status === "Done" ? <CheckCircle aria-hidden="true" /> : <Circle aria-hidden="true" />}<span><strong>{issue.title}</strong><small>{issue.code}</small></span></button></TableCell><TableCell><Badge variant={issue.status === "Done" ? "strong" : "outline"}>{issue.status}</Badge></TableCell><TableCell>{issue.priority}</TableCell><TableCell>{issue.updated}</TableCell></TableRow>)}</TableBody>
+          </Table>
+        </TabsContent>
+      </Tabs>
+      <UndoBar />
+      <span className="ix-sr-only" aria-live="polite">{selected ? `${selected.code} selected` : "No issue selected"}</span>
+    </section>
+  );
+}
+
+export function ProductPilot() {
+  return <UndoStackProvider><PilotWorkspaceInner /></UndoStackProvider>;
+}
