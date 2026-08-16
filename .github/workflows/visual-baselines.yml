@@ -1,0 +1,35 @@
+name: Visual baselines
+
+on:
+  workflow_dispatch:
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:stories:visual:update
+      - run: npm run test:visual:catalog:update
+      - name: Package Linux baselines
+        run: |
+          set -euo pipefail
+          find \
+            tests/storybook/visual-regression.spec.ts-snapshots \
+            tests/browser/full-catalog-visual.spec.ts-snapshots \
+            tests/browser/visual-regression.spec.ts-snapshots \
+            -type f -name '*-linux.png' -print0 \
+            | tar --null --files-from=- -czf teum-linux-visual-baselines.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: teum-linux-visual-baselines
+          path: teum-linux-visual-baselines.tar.gz
+          if-no-files-found: error
+          retention-days: 3

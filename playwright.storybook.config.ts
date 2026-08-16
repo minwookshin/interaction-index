@@ -12,7 +12,9 @@ export default defineConfig({
   // fan-out when Playwright uses every local core.
   workers: 2,
   reporter: process.env.CI ? [["line"], ["html", { open: "never" }]] : "line",
-  snapshotPathTemplate: "{testDir}/{testFilePath}-snapshots/{arg}{ext}",
+  // Keep local macOS review and Linux CI equally strict without treating
+  // platform font rasterization as a component regression.
+  snapshotPathTemplate: "{testDir}/{testFilePath}-snapshots/{arg}-{platform}{ext}",
   use: {
     ...devices["Desktop Chrome"],
     baseURL: "http://127.0.0.1:6006",
