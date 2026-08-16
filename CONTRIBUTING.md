@@ -31,6 +31,8 @@ npm run quality
 
 Changes that affect layout, focus, overlays, or browser APIs must also pass the relevant Playwright projects and manual matrix in `SUPPORT.md`.
 
+Visual baselines are platform-specific and retain the same 1% diff budget on macOS and Linux. Update macOS snapshots locally, then run the Browser matrix workflow with `update_baselines` enabled and review its Linux artifact before committing those files. Never raise the shared diff budget to hide platform rendering differences.
+
 ## Design principles
 
 - Preserve stable geometry across loading and state changes.

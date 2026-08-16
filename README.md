@@ -90,7 +90,7 @@ npm run test:stories:visual:update # intentionally accept a reviewed visual chan
 npm run build:storybook            # static Storybook build
 ```
 
-The visual suite captures the interactive Product composition and the complete inert State matrix separately, so offscreen state proofs cannot silently disappear from a full-page screenshot. Snapshot updates are review actions, not automatic build artifacts.
+The visual suite captures the interactive Product composition and the complete inert State matrix separately, so offscreen state proofs cannot silently disappear from a full-page screenshot. macOS and Linux keep separate, equally strict baselines because font rasterization and native controls differ by platform. Snapshot updates are review actions, not automatic build artifacts; the Browser matrix workflow can generate a short-lived Linux baseline artifact for review.
 
 ### Public TypeScript API
 

@@ -10,6 +10,10 @@ on:
         type: boolean
         default: false
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   browser:
     name: ${{ matrix.project }}
@@ -54,14 +58,14 @@ jobs:
             tests/browser/visual-regression.spec.ts-snapshots \
             -type f -name '*-linux.png' -print0 \
             | tar --null --files-from=- -czf teum-linux-visual-baselines.tar.gz
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.update_baselines && matrix.project == 'chromium' }}
         with:
           name: teum-linux-visual-baselines
           path: teum-linux-visual-baselines.tar.gz
           if-no-files-found: error
           retention-days: 3
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: playwright-${{ matrix.project }}
