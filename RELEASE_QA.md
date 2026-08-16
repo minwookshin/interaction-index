@@ -48,7 +48,7 @@ The generated baselines live beside their Playwright specifications in `tests/br
 - `npm run quality` passed the frozen contracts, 151 unit tests, 90 Storybook interaction tests, all 312 visual baselines, registry install and upgrade checks, private package consumers, the public-API-only dogfood app, the Sites build contract, and performance budgets in one run.
 - `npm run test:clean-room` reproduced the candidate after a fresh `npm ci` in a temporary source tree and repeated the build, registry, package, consumer, dogfood, Sites, and performance gates without workspace caches.
 - `npm audit` reported zero known vulnerabilities across 637 installed production, development, and optional dependencies on 2026-08-15.
-- The private npm candidate contains 169 packed files, is 266,064 compressed bytes and 1,552,732 unpacked bytes, and remains blocked from publication by `private: true`.
+- The private npm candidate contains 169 packed files, is 266,142 compressed bytes and 1,552,946 unpacked bytes, and remains blocked from publication by `private: true`.
 - Fresh package consumers pass against React 18.3.1 and React 19.2.8, and the optional Tailwind CSS 4.3.3 bridge compiles semantic utilities from the same Teum variables used by plain CSS.
 
 ## Manual review boundary
