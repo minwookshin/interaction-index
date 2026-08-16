@@ -22,16 +22,23 @@ describe("documentation accessibility", () => {
   it.each(structuralRoutes)("has no detectable structural violations on %s", async (route) => {
     window.history.replaceState(null, "", `#${route}`);
     const { container, unmount } = render(<App />);
-    const result = await axe.run(container, { rules: { "color-contrast": { enabled: false } } });
-    expect(result.violations).toEqual([]);
-    unmount();
-  });
+    try {
+      const result = await axe.run(container, { rules: { "color-contrast": { enabled: false } } });
+      expect(result.violations).toEqual([]);
+    } finally {
+      unmount();
+    }
+  }, 15_000);
 
   it("keeps the component API table structurally accessible", async () => {
     window.history.replaceState(null, "", "#button");
-    const { container } = render(<App />);
+    const { container, unmount } = render(<App />);
 
-    const result = await axe.run(container, { rules: { "color-contrast": { enabled: false } } });
-    expect(result.violations).toEqual([]);
-  });
+    try {
+      const result = await axe.run(container, { rules: { "color-contrast": { enabled: false } } });
+      expect(result.violations).toEqual([]);
+    } finally {
+      unmount();
+    }
+  }, 15_000);
 });

@@ -6,7 +6,7 @@ A dense, monochrome component and interaction system for product interfaces. It 
 
 | | Current state |
 | --- | --- |
-| Version | `0.1.0-rc.3` |
+| Version | `0.1.0-rc.4` |
 | Catalog | 45 documented components |
 | Themes | Light-first; fully reviewed dark theme |
 | Distribution | [Public source](https://github.com/minwookshin/teum) and HTTPS shadcn registry; npm unpublished |
@@ -142,11 +142,31 @@ Generated files live in `public/r`. Use the mutable namespace during active alph
 npx shadcn@latest registry add @teum=https://interactions.minwookshin.com/r/{name}.json
 npx shadcn@latest add @teum/button
 
-npx shadcn@latest registry add @teum-pinned=https://interactions.minwookshin.com/r/v/0.1.0-rc.3/{name}.json
+npx shadcn@latest registry add @teum-pinned=https://interactions.minwookshin.com/r/v/0.1.0-rc.4/{name}.json
 npx shadcn@latest add @teum-pinned/button
 ```
 
 Teum owns the registry namespace, component source, tokens, APIs, and release contract. The shadcn CLI is the compatible transport that resolves and copies those files; it is not the design-system identity. A dedicated Teum CLI would be a separate future product boundary, not a relabeled command.
+
+Existing shadcn projects can use those commands directly. A plain CSS project needs only a minimal `components.json` so the transport knows where copied files belong; the schema's `tailwind` object does not install or require Tailwind:
+
+```json
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": { "config": "", "css": "src/index.css", "baseColor": "neutral", "cssVariables": true, "prefix": "" },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "components",
+    "utils": "lib/utils",
+    "ui": "components/ui",
+    "lib": "lib",
+    "hooks": "hooks"
+  }
+}
+```
 
 Each installed component imports the shared token/reset contract and its own scoped stylesheet. The complete-system item also includes a stable application-root entry for the shared contract:
 
@@ -170,7 +190,7 @@ npx shadcn@latest add @teum/teum-tailwind
 
 The bridge exposes semantic utilities such as `bg-background`, `text-foreground`, `rounded-control`, and `shadow-flyout`; each resolves to the same Teum variables used by plain CSS.
 
-`public/r/manifest.json` is the deterministic update boundary. It hashes each JSON artifact, each copied file, every public TypeScript export, and every semantic token contract. The mutable alpha channel remains reviewable; `public/r/v/<version>` is byte-for-byte pinned, rejects changed contents under an existing version, and is deployed with an immutable cache policy. `npm run test:consumer:upgrade` proves that a local source edit is preserved while an upstream candidate is staged for explicit acceptance. See [Registry updates](./REGISTRY_UPDATES.md).
+`public/r/manifest.json` is the deterministic update boundary. It hashes each JSON artifact, each copied file, every public TypeScript export, and every semantic token contract. The mutable alpha channel remains reviewable; `public/r/v/<version>` is content-locked, rewrites internal dependencies into the same-version `@teum-pinned` scope, rejects changed contents under an existing version, and is deployed with an immutable cache policy. `npm run test:registry` now performs a real shadcn CLI install with only that pinned registry configured. `npm run test:consumer:upgrade` proves that a local source edit is preserved while an upstream candidate is staged for explicit acceptance. See [Registry updates](./REGISTRY_UPDATES.md).
 
 The repository can also be installed directly through shadcn without operating a separate registry server:
 

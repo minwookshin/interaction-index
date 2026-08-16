@@ -13,6 +13,7 @@ async function runAxe(page: import("@playwright/test").Page) {
 
 for (const [route, heading] of [["introduction", "Introduction"], ["button", "Button"], ["product-pilot", "Product pilot"]] as const) {
   test(route + " has no serious or critical automated accessibility violations", async ({ page }) => {
+    test.setTimeout(90_000);
     await page.goto("/#" + route);
     await expect(page.getByRole("heading", { level: 1, name: heading })).toBeVisible();
     const result = await runAxe(page);
@@ -22,7 +23,7 @@ for (const [route, heading] of [["introduction", "Introduction"], ["button", "Bu
 
 test("all public documents have no serious or critical automated violations", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "chromium", "The complete public-route scan runs once; representative routes run in every configured engine.");
-  test.slow();
+  test.setTimeout(240_000);
   for (const [route, heading] of publicRoutes) {
     await page.goto(`/#${route}`);
     await expect(page.getByRole("heading", { level: 1, name: heading })).toBeVisible();

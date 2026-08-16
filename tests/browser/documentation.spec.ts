@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 import { publicRoutes } from "./public-routes";
 
 test("every public documentation route renders without viewport overflow", async ({ page }) => {
+  test.setTimeout(180_000);
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
 

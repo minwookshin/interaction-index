@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "name": "teum",
-  "version": "0.1.0-rc.3",
+  "version": "0.1.0-rc.4",
   "maturity": "pre-release",
   "distribution": {
     "package": {
@@ -16,9 +16,9 @@
     },
     "immutableRegistry": {
       "status": "available",
-      "version": "0.1.0-rc.3",
-      "urlTemplate": "https://interactions.minwookshin.com/r/v/0.1.0-rc.3/{name}.json",
-      "releaseManifest": "https://interactions.minwookshin.com/r/v/0.1.0-rc.3/release.json",
+      "version": "0.1.0-rc.4",
+      "urlTemplate": "https://interactions.minwookshin.com/r/v/0.1.0-rc.4/{name}.json",
+      "releaseManifest": "https://interactions.minwookshin.com/r/v/0.1.0-rc.4/release.json",
       "cacheControl": "public, max-age=31536000, immutable",
       "updatePolicy": "bump-version-review-apply"
     }
@@ -26,11 +26,11 @@
   "sources": {
     "package": {
       "path": "package.json",
-      "sha256": "93bcf5cb32a0fd9ca79d4538249639e632727ee13dd1ac8327880537ca4b3dad"
+      "sha256": "8a2b1455b6e0ca3bd8da9722ff72eb5742e5ad5bf0ba99a85bd072571dd8fe04"
     },
     "registry": {
       "path": "registry.json",
-      "sha256": "b7cc97dca9e866086ee9654b4b09c37bcda241835f0fd13c51f98771eaea818e"
+      "sha256": "baed53d14ebce2a79d93377fd6f4cee016dd9baa8ea6cb1647f41ee6ef5dfe28"
     },
     "api": {
       "path": "api/generated/public-api.json",
@@ -211,9 +211,9 @@
     "button": {
       "path": "public/r/button.json",
       "type": "registry:ui",
-      "bytes": 6976,
-      "sha256": "7d4bf2d5de77146a150ef0ced2da8b2e2b029dae240ab6caa939f1923f569747",
-      "integrity": "sha256-fUvy1d53FGoVDvDO0tqLLisCna4kCrbKqTnxkj9Wl0c=",
+      "bytes": 7005,
+      "sha256": "9cc5d240586c092e9a7b8767010fe74b5a3f32c6d30c68729862b113598b1627",
+      "integrity": "sha256-nMXSQFhsCS6ae4dnAQ/nS1o/MsbTDGhymGKxE1mLFic=",
       "files": [
         {
           "path": "registry/components/ui/button.tsx",
@@ -671,9 +671,9 @@
     "registry": {
       "path": "public/r/registry.json",
       "type": "registry:index",
-      "bytes": 48177,
-      "sha256": "b7cc97dca9e866086ee9654b4b09c37bcda241835f0fd13c51f98771eaea818e",
-      "integrity": "sha256-t8yX3KnoZghu6WVLSwnDe82iQYNfD9E8UfmHcerqgY4=",
+      "bytes": 48210,
+      "sha256": "baed53d14ebce2a79d93377fd6f4cee016dd9baa8ea6cb1647f41ee6ef5dfe28",
+      "integrity": "sha256-uu1T0U684qedkzd/1vTO4Bbdm6qOpssWR/Qe5u9d/ig=",
       "files": []
     },
     "reorderable-list": {

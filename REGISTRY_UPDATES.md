@@ -6,7 +6,7 @@ Teum distributes owned source. Updating is a review operation, not an automatic 
 
 - `https://interactions.minwookshin.com/r/{name}.json` is the mutable public-alpha channel.
 - `public/r/manifest.json` records the version, SHA-256 digest, byte size, file-level integrity, TypeScript API hashes, and token-contract hashes for that channel.
-- `https://interactions.minwookshin.com/r/v/<version>/{name}.json` is the pinned channel. Every item, the catalog, the integrity manifest, and `release.json` are copied byte-for-byte into that path.
+- `https://interactions.minwookshin.com/r/v/<version>/{name}.json` is the pinned channel. Component source and CSS stay byte-identical, while internal registry dependencies are deterministically rewritten from `@teum/*` to the same-version `@teum-pinned/*` scope. The pinned integrity manifest hashes the resulting served bytes.
 - A version directory is write-once: rebuilding different content under an existing version fails and requires a `package.json` version bump.
 - The deployed version path uses `Cache-Control: public, max-age=31536000, immutable`; the mutable alpha path stays `max-age=0, must-revalidate`.
 
@@ -36,7 +36,8 @@ Teum does not promise a three-way merge for edited copied source. Local modifica
 ## Verify the upgrade contract
 
 ```bash
+npm run test:registry
 npm run test:consumer:upgrade
 ```
 
-The clean-consumer harness installs the exact pinned base and Button payloads, builds them, applies a local source customization, and introduces a deterministic synthetic next-version candidate. It must detect the conflict, keep the consumer file unchanged, stage the upstream candidate for review, require an explicit acceptance step, and build again afterward. This proves the update contract; it is not external product adoption.
+The registry test first runs the real shadcn CLI with only `@teum-pinned` configured, installs Button, its base contract, and the optional Tailwind bridge, then type-checks the plain CSS fixture. The upgrade harness separately installs the exact pinned base and Button payloads, builds them, applies a local source customization, and introduces a deterministic synthetic next-version candidate. It must detect the conflict, keep the consumer file unchanged, stage the upstream candidate for review, require an explicit acceptance step, and build again afterward. Together they prove the transport and update contracts; they are not external product adoption.

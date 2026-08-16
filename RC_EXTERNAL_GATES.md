@@ -1,6 +1,6 @@
 # RC external gates
 
-The local `0.1.0-rc.3` artifact may be assembled when automated verification passes. Public recommendation, a stable compatibility promise, or npm publication remains blocked until the applicable external gates below have dated evidence.
+The local `0.1.0-rc.4` artifact may be assembled when automated verification passes. A stable compatibility promise or npm publication remains blocked until the applicable external gates below have dated evidence.
 
 These are environment gates, not hidden implementation TODOs. Each gate names what local automation already proves and what still requires the real platform.
 
@@ -63,7 +63,7 @@ Copy this block for every external run:
 
 ```text
 Gate:
-Candidate version: 0.1.0-rc.3
+Candidate version: 0.1.0-rc.4
 Candidate SHA-256:
 Date:
 Tester:

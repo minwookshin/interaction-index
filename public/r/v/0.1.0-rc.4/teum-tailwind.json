@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "teum-tailwind",
+  "title": "Teum Tailwind Bridge",
+  "description": "Optional Tailwind CSS v4 semantic utility mapping backed by the same Teum tokens.",
+  "registryDependencies": [
+    "@teum-pinned/teum-base"
+  ],
+  "files": [
+    {
+      "path": "registry/styles/teum-tailwind.css",
+      "content": "/*\n * Optional Tailwind CSS v4 bridge for Teum.\n * Import after `tailwindcss` and `teum/tokens.css`.\n * Teum's CSS variables remain the source of truth; this file only maps them\n * to semantic Tailwind utilities such as bg-background and shadow-flyout.\n */\n\n@theme inline {\n  --color-background: var(--teum-bg-canvas);\n  --color-foreground: var(--teum-fg-default);\n  --color-card: var(--teum-bg-surface);\n  --color-card-foreground: var(--teum-fg-default);\n  --color-popover: var(--teum-bg-flyout);\n  --color-popover-foreground: var(--teum-fg-default);\n  --color-primary: var(--teum-inverse);\n  --color-primary-foreground: var(--teum-on-inverse);\n  --color-secondary: var(--teum-bg-control);\n  --color-secondary-foreground: var(--teum-fg-default);\n  --color-muted: var(--teum-bg-subtle);\n  --color-muted-foreground: var(--teum-fg-muted);\n  --color-accent: var(--teum-hover);\n  --color-accent-foreground: var(--teum-fg-default);\n  --color-destructive: var(--teum-fg-danger);\n  --color-border: var(--teum-control-border);\n  --color-input: var(--teum-control-border);\n  --color-ring: var(--teum-focus-control);\n\n  --color-canvas: var(--teum-bg-canvas);\n  --color-stage: var(--teum-bg-stage);\n  --color-float: var(--teum-bg-float);\n  --color-flyout: var(--teum-bg-flyout);\n  --color-modal: var(--teum-bg-modal);\n\n  --radius-xs: var(--teum-radius-xs);\n  --radius-sm: var(--teum-radius-sm);\n  --radius-md: var(--teum-radius-md);\n  --radius-lg: var(--teum-radius-lg);\n  --radius-control: var(--teum-radius-control);\n  --radius-container: var(--teum-radius-container);\n  --radius-overlay: var(--teum-radius-overlay);\n\n  --shadow-control: var(--teum-shadow-control);\n  --shadow-float: var(--teum-shadow-float);\n  --shadow-flyout: var(--teum-shadow-flyout);\n  --shadow-modal: var(--teum-shadow-modal);\n\n  --font-sans: var(--teum-font-ui);\n  --font-mono: var(--teum-font-code);\n  --text-metadata: var(--teum-type-metadata);\n  --text-label: var(--teum-type-label);\n  --text-ui: var(--teum-type-ui);\n  --text-body: var(--teum-type-body);\n\n  --ease-teum-out: var(--teum-ease-out);\n  --ease-teum-in-out: var(--teum-ease-in-out);\n  --ease-teum-drawer: var(--teum-ease-drawer);\n}\n",
+      "type": "registry:style",
+      "target": "styles/teum-tailwind.css"
+    }
+  ],
+  "type": "registry:style"
+}

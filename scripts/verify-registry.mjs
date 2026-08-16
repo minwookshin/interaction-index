@@ -1,7 +1,7 @@
-import { createHash } from "node:crypto";
 import { access, readFile, readdir } from "node:fs/promises";
 import { resolve } from "node:path";
 import { gzipSync } from "node:zlib";
+import { createVersionedArtifactSources, mutableRegistryScope, pinnedRegistryScope, sha256 } from "./versioned-registry-contract.mjs";
 
 const root = process.cwd();
 const registryPath = resolve(root, "registry.json");
@@ -13,7 +13,16 @@ const fail = (message) => {
 };
 
 const readJson = async (path) => JSON.parse(await readFile(path, "utf8"));
-const hash = (value) => createHash("sha256").update(value).digest("hex");
+const hash = sha256;
+const packageName = (specifier) => specifier.startsWith("@")
+  ? specifier.split("/").slice(0, 2).join("/")
+  : specifier.split("/")[0];
+const dependencyName = (dependency) => {
+  const separator = dependency.startsWith("@")
+    ? dependency.indexOf("@", dependency.indexOf("/") + 1)
+    : dependency.indexOf("@");
+  return separator === -1 ? dependency : dependency.slice(0, separator);
+};
 const registry = await readJson(registryPath);
 const publicApi = await readJson(publicApiPath).catch(() => fail("generated public API manifest is missing; run npm run build:api"));
 const items = registry.items ?? [];
@@ -53,6 +62,23 @@ for (const item of items) {
       ? dependency.indexOf("@", dependency.indexOf("/") + 1)
       : dependency.indexOf("@");
     if (separator === -1) fail(`${item.name} dependency ${dependency} is not pinned to a tested range`);
+  }
+
+  const declaredPackages = new Set((item.dependencies ?? []).map(dependencyName));
+  const importedPackages = new Set();
+  for (const file of item.files) {
+    if (!/\.[cm]?[jt]sx?$/.test(file.path)) continue;
+    const source = await readFile(resolve(root, file.path), "utf8");
+    for (const match of source.matchAll(/(?:from\s+|import\s*\()["']([^"']+)["']/g)) {
+      const specifier = match[1];
+      if (!specifier.startsWith(".") && !specifier.startsWith("node:")) importedPackages.add(packageName(specifier));
+    }
+  }
+  for (const importedPackage of importedPackages) {
+    if (["react", "react-dom"].includes(importedPackage)) continue;
+    if (!declaredPackages.has(importedPackage)) {
+      fail(`${item.name} imports ${importedPackage} without declaring a tested dependency range`);
+    }
   }
 }
 
@@ -195,19 +221,62 @@ if (versionedRelease.version !== releaseManifest.version || versionedRelease.imm
 if (versionedRelease.cacheControl !== "public, max-age=31536000, immutable") {
   fail("versioned registry release does not declare the immutable cache contract");
 }
+if (versionedRelease.schemaVersion !== 2 || versionedRelease.registryScope !== pinnedRegistryScope) {
+  fail("versioned registry release does not declare the pinned dependency scope");
+}
 const versionedArtifacts = (await readdir(versionedDirectory)).filter((name) => name.endsWith(".json") && name !== "release.json").sort();
 const mutableArtifacts = (await readdir(outputDirectory, { withFileTypes: true })).filter((entry) => entry.isFile() && entry.name.endsWith(".json")).map((entry) => entry.name).sort();
 if (JSON.stringify(versionedArtifacts) !== JSON.stringify(mutableArtifacts)) {
   fail("versioned registry artifact set differs from the mutable release artifact set");
 }
+
+const mutableSources = new Map();
+for (const name of mutableArtifacts) mutableSources.set(name, await readFile(resolve(outputDirectory, name), "utf8"));
+const expectedVersionedSources = createVersionedArtifactSources(mutableSources);
 for (const name of mutableArtifacts) {
-  const mutableSource = await readFile(resolve(outputDirectory, name), "utf8");
   const versionedSource = await readFile(resolve(versionedDirectory, name), "utf8");
-  if (versionedSource !== mutableSource) fail(`versioned ${name} is not a byte-for-byte release artifact`);
+  if (versionedSource !== expectedVersionedSources.get(name)) fail(`versioned ${name} does not match the pinned release contract`);
   if (versionedRelease.artifacts?.[name]?.sha256 !== hash(versionedSource)) fail(`versioned ${name} digest is stale`);
 }
-if (versionedRelease.sourceManifestSha256 !== hash(await readFile(releaseManifestPath, "utf8"))) {
-  fail("versioned release manifest does not point to the current integrity manifest");
+
+const versionedRegistry = await readJson(resolve(versionedDirectory, "registry.json"));
+for (const item of versionedRegistry.items ?? []) {
+  for (const dependency of item.registryDependencies ?? []) {
+    if (dependency.startsWith(`${mutableRegistryScope}/`)) {
+      fail(`${item.name} leaks mutable dependency ${dependency} into the pinned release`);
+    }
+    if (dependency.startsWith(`${pinnedRegistryScope}/`) && !uniqueNames.has(dependency.slice(`${pinnedRegistryScope}/`.length))) {
+      fail(`${item.name} references unknown pinned dependency ${dependency}`);
+    }
+  }
+}
+
+const versionedManifestSource = await readFile(resolve(versionedDirectory, "manifest.json"), "utf8");
+const versionedManifest = JSON.parse(versionedManifestSource);
+if (versionedManifest.distribution?.immutableRegistry?.registryScope !== pinnedRegistryScope) {
+  fail("versioned integrity manifest does not declare the pinned registry scope");
+}
+if (versionedManifest.sources?.registry?.sha256 !== releaseManifest.sources?.registry?.sha256) {
+  fail("versioned integrity manifest no longer identifies the authored registry source");
+}
+if (
+  versionedManifest.versionedFrom?.mutableManifestSha256 !== hash(releaseManifestSource)
+  || versionedManifest.versionedFrom?.dependencyScopeRewrite !== `${mutableRegistryScope}/* -> ${pinnedRegistryScope}/*`
+) {
+  fail("versioned integrity manifest does not identify its mutable source and dependency rewrite");
+}
+for (const item of items) {
+  const source = await readFile(resolve(versionedDirectory, `${item.name}.json`), "utf8");
+  const artifact = versionedManifest.artifacts?.[item.name];
+  if (artifact?.sha256 !== hash(source) || artifact?.path !== `public/r/v/${releaseManifest.version}/${item.name}.json`) {
+    fail(`${item.name} versioned manifest evidence is stale`);
+  }
+}
+if (versionedRelease.sourceManifestSha256 !== hash(releaseManifestSource)) {
+  fail("versioned release does not identify the mutable source manifest");
+}
+if (versionedRelease.versionedManifestSha256 !== hash(versionedManifestSource)) {
+  fail("versioned release does not identify its pinned integrity manifest");
 }
 
 console.log(`[registry] verified ${components.length} components, ${items.length} items, the complete-system artifact, and immutable ${releaseManifest.version}`);

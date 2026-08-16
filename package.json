@@ -1,6 +1,6 @@
 {
   "name": "teum",
-  "version": "0.1.0-rc.3",
+  "version": "0.1.0-rc.4",
   "description": "Interaction-first React components, semantic tokens, and source-owned UI patterns for compact product interfaces.",
   "keywords": [
     "react",
@@ -110,7 +110,9 @@
     "configure:publication": "node scripts/configure-publication.mjs",
     "build:registry:style": "npm run build:tokens && node scripts/build-registry-style.mjs",
     "build:registry": "npm run build:registry:style && node scripts/clean-mutable-registry.mjs && shadcn build && npm run build:registry:manifest && npm run build:registry:versioned",
-    "test:registry": "node scripts/verify-registry.mjs",
+    "test:registry:structure": "node scripts/verify-registry.mjs",
+    "test:registry:cli": "node scripts/verify-shadcn-consumer.mjs",
+    "test:registry": "npm run test:registry:structure && npm run test:registry:cli",
     "test:sites": "node --test tests/sites-worker.test.mjs",
     "verify:clean": "npm run check:tokens && npm run check:foundations && npm run check:api && npm run check:freeze && npm run check:figma && npm run test && npm run build:storybook && npm run build:registry && npm run test:registry && npm run test:consumer && npm run test:consumer:upgrade && npm run build:package && npm run check:package && npm run test:package && npm run test:dogfood && npm run build && npm run test:sites && npm run measure",
     "test:clean-room": "node scripts/verify-clean-room.mjs",

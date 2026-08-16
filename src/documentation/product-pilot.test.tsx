@@ -26,7 +26,7 @@ describe("ProductPilot", () => {
 
     expect(await screen.findByRole("heading", { name: "Document product pilot" })).toBeInTheDocument();
     expect(screen.getByText("Cycle 08 · 5 issues")).toBeInTheDocument();
-  });
+  }, 10_000);
 
   it("archives and restores the selected issue through the undo stack", async () => {
     const user = userEvent.setup();

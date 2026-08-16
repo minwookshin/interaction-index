@@ -1,5 +1,44 @@
 import { expect, test } from "@playwright/test";
 
+async function measureBrowserCommit(
+  page: import("@playwright/test").Page,
+  triggerText: string,
+  target: { kind: "heading"; text: string } | { kind: "dialog" },
+) {
+  return page.evaluate(({ triggerText, target }) => new Promise<number>((resolve, reject) => {
+    const trigger = [...document.querySelectorAll<HTMLButtonElement>("button")]
+      .find((button) => button.textContent?.includes(triggerText));
+    if (!trigger) {
+      reject(new Error(`Could not find the interaction trigger: ${triggerText}`));
+      return;
+    }
+
+    const targetIsReady = () => {
+      if (target.kind === "dialog") return Boolean(document.querySelector('[role="dialog"]'));
+      return [...document.querySelectorAll<HTMLElement>("h1, h2, h3")]
+        .some((heading) => heading.textContent?.trim() === target.text);
+    };
+
+    const start = performance.now();
+    const deadline = start + 2_000;
+    trigger.click();
+
+    const inspect = () => {
+      if (targetIsReady()) {
+        resolve(performance.now() - start);
+        return;
+      }
+      if (performance.now() >= deadline) {
+        reject(new Error(`The ${target.kind} target did not commit within 2000ms`));
+        return;
+      }
+      requestAnimationFrame(inspect);
+    };
+
+    inspect();
+  }), { triggerText, target });
+}
+
 test("product pilot supports create, edit, archive, and recovery", async ({ page }) => {
   await page.goto("/#product-pilot");
   await expect(page.getByRole("heading", { level: 1, name: "Product pilot" })).toBeVisible();
@@ -22,17 +61,16 @@ test("product pilot supports create, edit, archive, and recovery", async ({ page
 test("product pilot selection responds within the interaction budget", async ({ page, isMobile }) => {
   await page.goto("/#product-pilot");
   if (isMobile) await page.getByRole("button", { name: "Back to list" }).click();
-  const start = Date.now();
-  await page.getByRole("button", { name: /Tune shared detail motion/ }).click();
+  const selectionMs = await measureBrowserCommit(page, "Tune shared detail motion", {
+    kind: "heading",
+    text: "Tune shared detail motion",
+  });
   await expect(page.getByRole("heading", { name: "Tune shared detail motion" })).toBeVisible();
-  const selectionMs = Date.now() - start;
   console.log(`[pilot-performance] shared-detail selection: ${selectionMs}ms`);
   expect(selectionMs).toBeLessThan(750);
 
-  const overlayStart = Date.now();
-  await page.getByRole("button", { name: "New issue" }).click();
+  const overlayMs = await measureBrowserCommit(page, "New issue", { kind: "dialog" });
   await expect(page.getByRole("dialog", { name: "Create issue" })).toBeVisible();
-  const overlayMs = Date.now() - overlayStart;
   console.log(`[pilot-performance] dialog open: ${overlayMs}ms`);
   expect(overlayMs).toBeLessThan(750);
 });

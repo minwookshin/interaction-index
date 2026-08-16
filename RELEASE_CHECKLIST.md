@@ -26,7 +26,7 @@ The source is available under MIT. Package publication, browser support, and pro
 - [x] Verify generated source imports and the documented system stylesheet in a consumer TypeScript and production build.
 - [x] Generate deterministic SHA-256 integrity metadata for registry artifacts, copied files, public APIs, and tokens.
 - [x] Add a manifest diff that flags removed or type-changed API and token contracts before an update.
-- [x] Generate a byte-identical versioned registry path that rejects same-version rewrites and declares the immutable cache contract.
+- [x] Generate a content-locked versioned registry path that preserves source bytes, deterministically pins internal dependencies to the same release scope, rejects same-version rewrites, and declares the immutable cache contract.
 - [x] Verify install, local source modification, staged upstream review, explicit acceptance, and the post-upgrade consumer build.
 - [x] Build a private npm tarball with explicit exports and verify it in a fresh TypeScript/Vite consumer.
 - [x] Build the realistic issue-workspace dogfood product exclusively through public package exports and styles.
@@ -65,4 +65,5 @@ The source is available under MIT. Package publication, browser support, and pro
 - [x] Pass the fresh `npm ci` clean-room reproduction gate.
 - [x] Assemble the checksummed `0.1.0-rc.1` tarball, SBOM, registry release, integrity reports, and QA records from one clean local commit.
 - [x] Assemble the checksummed `0.1.0-rc.2` tarball, SBOM, registry release, integrity reports, and QA records from one clean local commit.
-- [ ] Assemble the renamed and checksummed `0.1.0-rc.3` Teum tarball, SBOM, registry release, integrity reports, and QA records from one clean commit after the full visual and browser matrix passes.
+- [x] Assemble the renamed and checksummed `0.1.0-rc.3` Teum tarball, SBOM, registry release, integrity reports, and QA records from one clean commit after the full visual and browser matrix passes.
+- [ ] Assemble `0.1.0-rc.4` from one clean commit after the pinned-registry CLI install and full release matrix pass.

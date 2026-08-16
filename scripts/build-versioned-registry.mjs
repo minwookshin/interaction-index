@@ -1,6 +1,6 @@
-import { createHash } from "node:crypto";
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { createVersionedArtifactSources, pinnedRegistryScope, sha256 } from "./versioned-registry-contract.mjs";
 
 const root = process.cwd();
 const sourceRoot = resolve(root, "public/r");
@@ -12,7 +12,6 @@ const checkOnly = process.argv.includes("--check");
 const fail = (message) => {
   throw new Error(`[versioned-registry] ${message}`);
 };
-const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 
 if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/.test(version)) {
   fail(`package version is not valid SemVer: ${version}`);
@@ -26,23 +25,29 @@ if (!artifactNames.includes("manifest.json") || !artifactNames.includes("registr
   fail("build the mutable registry and integrity manifest before the versioned release");
 }
 
-const artifacts = {};
-const expectedFiles = new Map();
+const mutableSources = new Map();
 for (const name of artifactNames) {
   const source = await readFile(resolve(sourceRoot, name), "utf8");
-  expectedFiles.set(name, source);
+  mutableSources.set(name, source);
+}
+
+const expectedFiles = createVersionedArtifactSources(mutableSources);
+const artifacts = {};
+for (const [name, source] of expectedFiles) {
   artifacts[name] = { bytes: Buffer.byteLength(source), sha256: sha256(source) };
 }
 
 const release = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   name: packageJson.name,
   version,
   immutable: true,
   channel: "versioned",
+  registryScope: pinnedRegistryScope,
   urlTemplate: `${publication.homepage}/r/v/${version}/{name}.json`,
   cacheControl: "public, max-age=31536000, immutable",
-  sourceManifestSha256: artifacts["manifest.json"].sha256,
+  sourceManifestSha256: sha256(mutableSources.get("manifest.json")),
+  versionedManifestSha256: artifacts["manifest.json"].sha256,
   artifacts,
 };
 expectedFiles.set("release.json", `${JSON.stringify(release, null, 2)}\n`);
