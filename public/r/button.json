@@ -4,6 +4,7 @@
   "title": "Button",
   "description": "Compact action hierarchy with loading-state geometry.",
   "dependencies": [
+    "@base-ui/react@^1.7.0",
     "class-variance-authority@^0.7.1"
   ],
   "registryDependencies": [

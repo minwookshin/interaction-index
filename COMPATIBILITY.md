@@ -1,6 +1,6 @@
 # Compatibility
 
-Teum `0.1.0-rc.3` is an MIT-licensed, unpublished release candidate. The table below records the environment verified on 2026-08-15; it is evidence, not a broad support promise.
+Teum `0.1.0-rc.4` is an MIT-licensed, unpublished npm release candidate. The table below records the environment verified on 2026-08-15; it is evidence, not a broad support promise.
 
 ## Verified stack
 
@@ -35,7 +35,8 @@ The lockfile is the reproducible source for every direct and transitive version 
 
 - shadcn-compatible generation for every component, the shared base, the optional Tailwind CSS v4 bridge, and the complete-system item: 48 declared items plus the generated registry catalog.
 - Deterministic SHA-256 metadata for registry JSON, copied files, compiler-extracted APIs, and semantic tokens.
-- A byte-locked versioned registry at `/r/v/0.1.0-rc.3/` that rejects same-version rewrites while preserving every earlier versioned Interaction Index artifact.
+- A content-locked versioned registry at `/r/v/0.1.0-rc.4/` that pins every internal dependency to the same `@teum-pinned` scope, rejects same-version rewrites, and preserves every earlier artifact.
+- A fresh shadcn CLI consumer that configures only `@teum-pinned`, installs Button, its Base UI and CSS dependencies, and the optional Tailwind bridge without adding Tailwind to the plain CSS fixture.
 - Fresh source-consumer builds for a Button-only install, every individual item, the complete system, and the staged upgrade/accept flow.
 - A packed private npm candidate with explicit exports, tarball allowlisting, integrity metadata, and fresh TypeScript/Vite consumer builds against both React 18.3.1 and React 19.2.8.
 - A Tailwind CSS v4 clean consumer that compiles semantic utilities from `teum/tokens.css` and `teum/tailwind.css`; plain CSS remains the component styling source of truth.
@@ -60,7 +61,7 @@ The lockfile is the reproducible source for every direct and transitive version 
 - macOS Increase Contrast and Reduce Transparency on the final candidate.
 - Human review of a verbose translation and an RTL translation, including semantic icon direction.
 - Server rendering outside the current Vite application.
-- External production adoption, long-running product performance, or independent installs outside the verified consumers.
-- npm publication, trusted-publisher configuration, remote provenance attestation, a public release tag, or a GitHub Release for this candidate.
+- External production adoption, long-running product performance, or an independent human-maintained product install outside the verified consumers.
+- npm publication and trusted-publisher configuration remain intentionally incomplete.
 
 `RC_EXTERNAL_GATES.md` defines the exact procedures and evidence record. These gaps do not invalidate the local candidate artifact, but they block a stable compatibility promise and any claim of external production readiness.

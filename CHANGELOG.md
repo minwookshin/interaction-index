@@ -2,6 +2,19 @@
 
 This project follows Semantic Versioning once a public API is released. During `0.x`, documented APIs may still change; every breaking alpha change must be called out here.
 
+## 0.1.0-rc.4 — 2026-08-15
+
+### Fixed
+
+- Made the immutable registry dependency graph self-contained: versioned artifacts rewrite internal `@teum/*` dependencies to the same-version `@teum-pinned/*` scope instead of reaching back into the mutable channel.
+- Added the missing tested `@base-ui/react` dependency to the Button registry item.
+
+### Quality
+
+- Added a real shadcn CLI clean-consumer gate that configures only the pinned registry, installs Button and its transitive base files, verifies declared packages, and installs the optional Tailwind bridge without adding Tailwind to the plain CSS fixture.
+- Added separate mutable-source and pinned-manifest digests so integrity metadata matches the bytes served by each channel.
+- Preserved `0.1.0-rc.3` byte-for-byte; it remains available as historical prerelease evidence but is superseded for pinned installation.
+
 ## 0.1.0-rc.3 — 2026-08-15
 
 ### Changed

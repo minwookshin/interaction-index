@@ -1,6 +1,6 @@
 # Release QA
 
-This document records the reviewed visual and interaction evidence for the unpublished `0.1.0-rc.3` candidate. It is a release record, not a production-adoption claim.
+This document records the reviewed visual, interaction, and distribution evidence for the unpublished npm `0.1.0-rc.4` candidate. It is a release record, not a production-adoption claim.
 
 ## Frozen scope
 
@@ -23,7 +23,7 @@ The canonical viewport is 1280 x 720 CSS pixels in Chromium with Inter loaded, a
 | Component State contract | 45 components x 2 themes | 90 isolated snapshots |
 | Total | — | 312 snapshots |
 
-The generated baselines live beside their Playwright specifications in `tests/browser/full-catalog-visual.spec.ts-snapshots/` and `tests/storybook/visual-regression.spec.ts-snapshots/`. Local contact sheets are generated under the ignored `artifacts/visual-qa/0.1.0-rc.3/` directory for rapid gestalt review; the source snapshots remain the reviewable test boundary.
+The generated baselines live beside their Playwright specifications in `tests/browser/full-catalog-visual.spec.ts-snapshots/` and `tests/storybook/visual-regression.spec.ts-snapshots/`. Local contact sheets are generated under the ignored `artifacts/visual-qa/0.1.0-rc.4/` directory for rapid gestalt review; the source snapshots remain the reviewable test boundary.
 
 ## Review decisions
 
@@ -46,10 +46,12 @@ The generated baselines live beside their Playwright specifications in `tests/br
 ## Local candidate evidence
 
 - `npm run quality` passed the frozen contracts, 151 unit tests, 90 Storybook interaction tests, all 312 visual baselines, registry install and upgrade checks, private package consumers, the public-API-only dogfood app, the Sites build contract, and performance budgets in one run.
+- `npm run test:browsers -- --workers=2` passed all 161 applicable checks across desktop Chromium, Firefox, WebKit, mobile Chromium, and mobile WebKit; 324 project-inapplicable combinations were explicitly skipped.
 - `npm run test:clean-room` reproduced the candidate after a fresh `npm ci` in a temporary source tree and repeated the build, registry, package, consumer, dogfood, Sites, and performance gates without workspace caches.
 - `npm audit` reported zero known vulnerabilities across 637 installed production, development, and optional dependencies on 2026-08-15.
-- The private npm candidate contains 169 packed files, is 266,142 compressed bytes and 1,552,946 unpacked bytes, and remains blocked from publication by `private: true`.
+- The private npm candidate contains 169 packed files, is 266,789 compressed bytes and 1,555,076 unpacked bytes, and remains blocked from publication by `private: true`.
 - Fresh package consumers pass against React 18.3.1 and React 19.2.8, and the optional Tailwind CSS 4.3.3 bridge compiles semantic utilities from the same Teum variables used by plain CSS.
+- A fresh plain CSS fixture with only `@teum-pinned` configured completes a real shadcn CLI install of Button, its same-version base dependency, and the optional Tailwind bridge without installing Tailwind CSS.
 
 ## Manual review boundary
 

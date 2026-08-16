@@ -5,8 +5,8 @@
     "cssGzipBytes": 40000
   },
   "totals": {
-    "initialJsGzipBytes": 343717,
-    "totalJsGzipBytes": 479849,
+    "initialJsGzipBytes": 344105,
+    "totalJsGzipBytes": 480238,
     "cssGzipBytes": 39919
   },
   "initialJavaScript": [
@@ -15,21 +15,21 @@
     "base-ui-CuypfNDa.js",
     "feedback-D5bZHH62.js",
     "icons-C0W6cOqL.js",
-    "index-BlrNW9Cb.js",
+    "index-CRT1PQIQ.js",
     "motion-BYJvC3Ml.js",
     "react-CYjvl0oU.js",
     "with-selector-BcJo0SNu.js"
   ],
   "assets": [
     {
-      "file": "react-aria-previews-mrQ5TXVt.js",
+      "file": "react-aria-previews-9pb6-3_F.js",
       "bytes": 479371,
-      "gzipBytes": 136132
+      "gzipBytes": 136133
     },
     {
-      "file": "index-BlrNW9Cb.js",
-      "bytes": 412690,
-      "gzipBytes": 98349
+      "file": "index-CRT1PQIQ.js",
+      "bytes": 413792,
+      "gzipBytes": 98737
     },
     {
       "file": "base-ui-CuypfNDa.js",

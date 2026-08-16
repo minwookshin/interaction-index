@@ -15,7 +15,7 @@
     "registry": "registry.json",
     "guidance": "src/component-guidance.ts",
     "hashes": {
-      "registry": "b7cc97dca9e866086ee9654b4b09c37bcda241835f0fd13c51f98771eaea818e",
+      "registry": "baed53d14ebce2a79d93377fd6f4cee016dd9baa8ea6cb1647f41ee6ef5dfe28",
       "api": "4e2de6ced23f6c99e3dc8d50209106fbb30c7aac0ed348a9cf022116c96b8880",
       "figmaTokens": "726ee76e906394f2217622b507e903861e0c4a175bf1e9baf38f048d52f305b3",
       "guidance": "75e3c6a6f586e58123e7c4f1eb9219cbbd2148a93870571eb02493fa9ede5be1"
@@ -474,6 +474,7 @@
           "@teum/teum-base"
         ],
         "packageDependencies": [
+          "@base-ui/react@^1.7.0",
           "class-variance-authority@^0.7.1"
         ]
       },
