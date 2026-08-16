@@ -46,6 +46,7 @@ jobs:
         run: |
           npm run test:stories:visual:update
           npm run test:visual:catalog:update
+          npx playwright test tests/browser/visual-regression.spec.ts --project=chromium --update-snapshots
           set -euo pipefail
           find \
             tests/storybook/visual-regression.spec.ts-snapshots \
