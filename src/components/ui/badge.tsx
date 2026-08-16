@@ -1,8 +1,8 @@
 import { X } from "@phosphor-icons/react";
-import type { HTMLAttributes, ReactNode } from "react";
+import type { ComponentPropsWithRef, ReactNode } from "react";
 import { cn } from "../../lib/cn";
 
-export type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
+export type BadgeProps = ComponentPropsWithRef<"span"> & {
   variant?: "neutral" | "strong" | "outline" | "success" | "warning" | "danger";
   leadingIcon?: ReactNode;
   removable?: boolean;
@@ -21,11 +21,11 @@ export function Badge({
   ...props
 }: BadgeProps) {
   return (
-    <span className={cn("ix-badge", `ix-badge--${variant}`, className)} {...props}>
-      {leadingIcon && <span className="ix-badge__icon" aria-hidden="true">{leadingIcon}</span>}
-      <span className="ix-badge__label">{children}</span>
+    <span className={cn("teum-badge", `teum-badge--${variant}`, className)} {...props}>
+      {leadingIcon && <span className="teum-badge__icon" aria-hidden="true">{leadingIcon}</span>}
+      <span className="teum-badge__label">{children}</span>
       {removable && (
-        <button type="button" className="ix-badge__remove" aria-label={removeLabel} onClick={onRemove}>
+        <button type="button" className="teum-badge__remove" aria-label={removeLabel} onClick={onRemove}>
           <X aria-hidden="true" />
         </button>
       )}

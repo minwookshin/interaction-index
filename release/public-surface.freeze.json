@@ -1,0 +1,2299 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen-for-0.1-rc",
+  "policy": {
+    "componentAdditions": "blocked",
+    "componentRemovals": "blocked",
+    "publicTypeChanges": "migration-and-freeze-update-required",
+    "semanticTokenChanges": "migration-and-freeze-update-required",
+    "implementationFixes": "allowed-when-public-contract-is-unchanged"
+  },
+  "catalog": {
+    "componentCount": 45,
+    "componentIds": [
+      "button",
+      "icon-button",
+      "field",
+      "input-group",
+      "kbd",
+      "button-group",
+      "toolbar",
+      "text-field",
+      "number-field",
+      "segmented-control",
+      "date-picker",
+      "checkbox",
+      "switch",
+      "tooltip",
+      "popover",
+      "menu",
+      "dialog",
+      "context-menu",
+      "sheet",
+      "alert-dialog",
+      "tabs",
+      "toast",
+      "inline-edit",
+      "reorderable-list",
+      "action-list",
+      "shared-detail",
+      "undo-stack",
+      "badge",
+      "avatar",
+      "textarea",
+      "radio-group",
+      "select",
+      "context-switcher",
+      "combobox",
+      "search-input",
+      "breadcrumbs",
+      "pagination",
+      "collapsible",
+      "skeleton",
+      "progress",
+      "spinner",
+      "alert",
+      "empty-state",
+      "table",
+      "tree"
+    ],
+    "registryItemCount": 48
+  },
+  "publicApi": {
+    "exportCount": 210,
+    "indexExports": [
+      "ActionList",
+      "ActionListItem",
+      "ActionListProps",
+      "Alert",
+      "AlertDialog",
+      "AlertDialogClose",
+      "AlertDialogContent",
+      "AlertDialogDescription",
+      "AlertDialogFooter",
+      "AlertDialogHeader",
+      "AlertDialogTitle",
+      "AlertDialogTrigger",
+      "AlertProps",
+      "Avatar",
+      "AvatarGroup",
+      "AvatarProps",
+      "Badge",
+      "BadgeProps",
+      "BreadcrumbItem",
+      "Breadcrumbs",
+      "BreadcrumbsProps",
+      "Button",
+      "ButtonGroup",
+      "ButtonGroupProps",
+      "ButtonGroupSeparator",
+      "ButtonGroupSeparatorProps",
+      "ButtonProps",
+      "Calendar",
+      "CalendarProps",
+      "Checkbox",
+      "CheckboxProps",
+      "Collapsible",
+      "CollapsibleContent",
+      "CollapsibleContentProps",
+      "CollapsibleTrigger",
+      "Combobox",
+      "ComboboxOption",
+      "ComboboxProps",
+      "ContextMenu",
+      "ContextMenuCheckboxItem",
+      "ContextMenuContent",
+      "ContextMenuContentProps",
+      "ContextMenuItem",
+      "ContextMenuLabel",
+      "ContextMenuRadioGroup",
+      "ContextMenuRadioItem",
+      "ContextMenuSeparator",
+      "ContextMenuTrigger",
+      "ContextSwitcher",
+      "ContextSwitcherOption",
+      "ContextSwitcherProps",
+      "DatePicker",
+      "DatePickerProps",
+      "Dialog",
+      "DialogClose",
+      "DialogContent",
+      "DialogContentProps",
+      "DialogDescription",
+      "DialogFooter",
+      "DialogHeader",
+      "DialogTitle",
+      "DialogTrigger",
+      "EmptyState",
+      "EmptyStateProps",
+      "Field",
+      "FieldControl",
+      "FieldControlProps",
+      "FieldDescription",
+      "FieldDescriptionProps",
+      "FieldError",
+      "FieldErrorProps",
+      "FieldGroup",
+      "FieldLabel",
+      "FieldLabelProps",
+      "FieldProps",
+      "Fieldset",
+      "FieldsetLegend",
+      "FieldsetLegendProps",
+      "FieldsetProps",
+      "IconButton",
+      "IconButtonProps",
+      "InlineEdit",
+      "InlineEditProps",
+      "InputGroup",
+      "InputGroupAddon",
+      "InputGroupAddonProps",
+      "InputGroupButton",
+      "InputGroupButtonProps",
+      "InputGroupInput",
+      "InputGroupInputProps",
+      "InputGroupProps",
+      "Kbd",
+      "KbdGroup",
+      "KbdGroupProps",
+      "KbdProps",
+      "Menu",
+      "MenuCheckboxItem",
+      "MenuContent",
+      "MenuContentProps",
+      "MenuItem",
+      "MenuLabel",
+      "MenuRadioGroup",
+      "MenuRadioItem",
+      "MenuSeparator",
+      "MenuTrigger",
+      "NumberField",
+      "NumberFieldProps",
+      "Pagination",
+      "PaginationProps",
+      "Popover",
+      "PopoverContent",
+      "PopoverContentProps",
+      "PopoverDescription",
+      "PopoverTitle",
+      "PopoverTrigger",
+      "Progress",
+      "ProgressProps",
+      "RadioGroup",
+      "RadioGroupProps",
+      "RadioOption",
+      "ReorderableItem",
+      "ReorderableList",
+      "ReorderableListProps",
+      "SearchInput",
+      "SearchInputProps",
+      "SegmentedControl",
+      "SegmentedControlOption",
+      "SegmentedControlProps",
+      "Select",
+      "SelectOption",
+      "SelectProps",
+      "SharedDetail",
+      "SharedDetailItem",
+      "SharedDetailMotionPreset",
+      "SharedDetailMotionPresetId",
+      "SharedDetailProps",
+      "Sheet",
+      "SheetBody",
+      "SheetClose",
+      "SheetContent",
+      "SheetContentProps",
+      "SheetDescription",
+      "SheetFooter",
+      "SheetHeader",
+      "SheetSide",
+      "SheetTitle",
+      "SheetTrigger",
+      "Skeleton",
+      "SkeletonProps",
+      "SkeletonText",
+      "Spinner",
+      "SpinnerProps",
+      "Switch",
+      "SwitchProps",
+      "Table",
+      "TableBody",
+      "TableCaption",
+      "TableCell",
+      "TableFooter",
+      "TableHead",
+      "TableHeader",
+      "TableProps",
+      "TableRow",
+      "Tabs",
+      "TabsContent",
+      "TabsList",
+      "TabsTrigger",
+      "TextField",
+      "TextFieldProps",
+      "Textarea",
+      "TextareaProps",
+      "ToastApi",
+      "ToastId",
+      "ToastMessage",
+      "ToastOptions",
+      "Toaster",
+      "Toolbar",
+      "ToolbarButton",
+      "ToolbarButtonProps",
+      "ToolbarGroup",
+      "ToolbarGroupProps",
+      "ToolbarInput",
+      "ToolbarInputProps",
+      "ToolbarLink",
+      "ToolbarLinkProps",
+      "ToolbarProps",
+      "ToolbarSeparator",
+      "ToolbarSeparatorProps",
+      "Tooltip",
+      "TooltipContent",
+      "TooltipContentProps",
+      "TooltipProvider",
+      "TooltipTrigger",
+      "Tree",
+      "TreeNode",
+      "TreeProps",
+      "UndoAction",
+      "UndoBar",
+      "UndoContextValue",
+      "UndoStackProvider",
+      "actionListContract",
+      "buttonVariants",
+      "getSharedDetailMotionPreset",
+      "inlineEditContract",
+      "selectedSharedDetailMotionPreset",
+      "sharedDetailContract",
+      "sharedDetailMotionPresets",
+      "toast",
+      "undoStackContract",
+      "useUndoStack"
+    ],
+    "components": {
+      "button": [
+        {
+          "name": "Button",
+          "kind": "function",
+          "typeHash": "4cf01e95b53b14ee2a6e9553d2bd75dadc0adf7baab9d874642149f5f49c881a"
+        },
+        {
+          "name": "ButtonProps",
+          "kind": "type",
+          "typeHash": "ca8046eddd33b23cbe09ca2e7736956c35dc2e04344890a0b1b08e93b4b04810"
+        },
+        {
+          "name": "buttonVariants",
+          "kind": "const",
+          "typeHash": "474da8b2a0214076408890cd51b82d99ec9b27e2ae60eae2d9eb5349cab05bd1"
+        }
+      ],
+      "icon-button": [
+        {
+          "name": "IconButton",
+          "kind": "function",
+          "typeHash": "8b2e33e384e0201fd2ae97a280b368be8a6aa10899bd395f6a3141b35742efe7"
+        },
+        {
+          "name": "IconButtonProps",
+          "kind": "type",
+          "typeHash": "f4ea32e820ee3f6659cd07a8c5132f5cc4fc6ba9156bcf9c434c2cf9d8dd85ea"
+        }
+      ],
+      "field": [
+        {
+          "name": "Field",
+          "kind": "function",
+          "typeHash": "008d701343627f1c7d4873dcddace025708e63f3c38161adf0ea9eb3b2c629ec"
+        },
+        {
+          "name": "FieldControl",
+          "kind": "function",
+          "typeHash": "64891bb800731f40c0107eb7837e27fbcd823b828b379912630b98a266c4c1d9"
+        },
+        {
+          "name": "FieldControlProps",
+          "kind": "type",
+          "typeHash": "adfd0f1d78d4845d52f26e2a16638524ea8eacdab6febb8b81e4bd323a0ac448"
+        },
+        {
+          "name": "FieldDescription",
+          "kind": "function",
+          "typeHash": "ae14333e2a9e25c6e3fa3bfa42861ae0deac9b9d5efbc9ed9b0964aae5e2f133"
+        },
+        {
+          "name": "FieldDescriptionProps",
+          "kind": "type",
+          "typeHash": "6537e79136c0ed8757925010d9cd39becddbe5dcefdbee056d692390454b993f"
+        },
+        {
+          "name": "FieldError",
+          "kind": "function",
+          "typeHash": "55c501765432965abb2ac74947757bae5a239b9a04dcd5a6de9653a8cf1d6916"
+        },
+        {
+          "name": "FieldErrorProps",
+          "kind": "type",
+          "typeHash": "b44e0221029754dc43ce81d16b59bcb2c963daf3f73a82fabf1570feb22f5a7d"
+        },
+        {
+          "name": "FieldGroup",
+          "kind": "function",
+          "typeHash": "68576e9f5767270c5de968765cc3e97e30c4d01a1cfe7f17bcc1eb79e81ed33c"
+        },
+        {
+          "name": "FieldLabel",
+          "kind": "function",
+          "typeHash": "3ef6e1c4aa0724c3504d901d76540f728e84a70484eb739fd03be26ffa6afa2e"
+        },
+        {
+          "name": "FieldLabelProps",
+          "kind": "type",
+          "typeHash": "c1f2c1c1ddf8c2a26cb5728cc242a20ae55e47391acd762088d7d73d0524784e"
+        },
+        {
+          "name": "FieldProps",
+          "kind": "type",
+          "typeHash": "b08c97f77c3884c786958cb89b6915a45333d366bf6fbefc583d671f6e6b83c8"
+        },
+        {
+          "name": "Fieldset",
+          "kind": "function",
+          "typeHash": "3772db687cedfbeb4f7636e4236e0258299c8b08ab405e96e72a70a392c4c528"
+        },
+        {
+          "name": "FieldsetLegend",
+          "kind": "function",
+          "typeHash": "d3e0f89ceabb70b34c223dd1b1b78278fec29760cd6ba8ab3be895c345451df7"
+        },
+        {
+          "name": "FieldsetLegendProps",
+          "kind": "type",
+          "typeHash": "6ffd502d6b9f20eca97866e20ba972b6f0f846442f545c42947970a99cd545f3"
+        },
+        {
+          "name": "FieldsetProps",
+          "kind": "type",
+          "typeHash": "cf49e156b288eb7e05117b1360d6091277022bdbecce3b2dd18308195c846044"
+        }
+      ],
+      "input-group": [
+        {
+          "name": "InputGroup",
+          "kind": "function",
+          "typeHash": "8e17817f1acc445aa72233d292dcd1325ca02b6070ad26fdbd56a02a4cdbb6f7"
+        },
+        {
+          "name": "InputGroupAddon",
+          "kind": "function",
+          "typeHash": "13a36384795ff9f7ab59ae0550b13496e97bb3bf8f5c8821459fcd3bf1448e43"
+        },
+        {
+          "name": "InputGroupAddonProps",
+          "kind": "type",
+          "typeHash": "ec4eafe00753bb14de60a64fe4e2a8201e7d113244ee50b2ff8779398a9f4cf7"
+        },
+        {
+          "name": "InputGroupButton",
+          "kind": "function",
+          "typeHash": "4e834bb86ffb1f07256047af2dab3edd2551b20b249a59096234b6eeff6051ce"
+        },
+        {
+          "name": "InputGroupButtonProps",
+          "kind": "type",
+          "typeHash": "f685f94ccc720399c43a34a96f7d3cef3605e853828bfa0c4e7bf16029a68979"
+        },
+        {
+          "name": "InputGroupInput",
+          "kind": "function",
+          "typeHash": "b019c96391165df7acd4d4bfdbdaeb82830c942300caeeaa47cf57277b2f5a16"
+        },
+        {
+          "name": "InputGroupInputProps",
+          "kind": "type",
+          "typeHash": "a732a11be79a0a0e93b43f5625992b12baf338c6ddbdcfddabda70a75d220452"
+        },
+        {
+          "name": "InputGroupProps",
+          "kind": "type",
+          "typeHash": "644367a6cadc440a8f4dea43ad77f64cd5adf67ab73d379d10502e64a184e071"
+        }
+      ],
+      "kbd": [
+        {
+          "name": "Kbd",
+          "kind": "function",
+          "typeHash": "c3295d54ed07be5b53de5a355cd59e18512627c756e78957b0a27a0fde7b430b"
+        },
+        {
+          "name": "KbdGroup",
+          "kind": "function",
+          "typeHash": "f7526eda0f0b6e12225e9018062edc799ea2a0071120f6b37c089b0d13adaaa2"
+        },
+        {
+          "name": "KbdGroupProps",
+          "kind": "type",
+          "typeHash": "bc160e5d99a3cf20484cb7f49edb55d1b74a995a2473caf106d09573e7c7c442"
+        },
+        {
+          "name": "KbdProps",
+          "kind": "type",
+          "typeHash": "ff14e93fc1452ed9d0ed965bc0a8cb8df103230fd0fd00a6e317d2f903e7c0f7"
+        }
+      ],
+      "button-group": [
+        {
+          "name": "ButtonGroup",
+          "kind": "function",
+          "typeHash": "d67be0e611558b0d29f006e3988ae3916daf710dc6c8bf32c12834a38c048b5d"
+        },
+        {
+          "name": "ButtonGroupProps",
+          "kind": "type",
+          "typeHash": "8dd63220fb9bd8bc22ab9d54d7f5c05734851ee3e97d81e35c0caa2c0b54b2b6"
+        },
+        {
+          "name": "ButtonGroupSeparator",
+          "kind": "function",
+          "typeHash": "05072fe9d4c633d088d1ce89c478b6b53dcb03a1e736604de2ab26e07483ae23"
+        },
+        {
+          "name": "ButtonGroupSeparatorProps",
+          "kind": "type",
+          "typeHash": "04080041ea593a5134b547ba62b042d3e8788916213cf83ca2496b3480d025a7"
+        }
+      ],
+      "toolbar": [
+        {
+          "name": "Toolbar",
+          "kind": "function",
+          "typeHash": "fe8844ab8f4138d769d5c55f6168511278e7f747feb46fcb5b88537aa8cdfc2e"
+        },
+        {
+          "name": "ToolbarButton",
+          "kind": "function",
+          "typeHash": "6c220cb947201d676bcdf4ead23baa91ede9b5cf5e51e8aa5828d42c2d23bcb1"
+        },
+        {
+          "name": "ToolbarButtonProps",
+          "kind": "type",
+          "typeHash": "f204591711b74c3539baa71b6d9ceeb490494e05d6b95ff2e2f99805dbd6b953"
+        },
+        {
+          "name": "ToolbarGroup",
+          "kind": "function",
+          "typeHash": "7116f83081ba1e3b85dae2fbe37b985a8af256c9d603046ad8345010aea82a8d"
+        },
+        {
+          "name": "ToolbarGroupProps",
+          "kind": "type",
+          "typeHash": "f5d5821bba7d0bd0b0195ad1e9bd336660778d0c7a3f53369f0be8bd67b96056"
+        },
+        {
+          "name": "ToolbarInput",
+          "kind": "function",
+          "typeHash": "1de42930048383f341333ae70cebfce68fd79c13ad83fb701a59902e83159e97"
+        },
+        {
+          "name": "ToolbarInputProps",
+          "kind": "type",
+          "typeHash": "b51b3084ec7f9e0fb0ceff8aa624b8acc09c40246d84928dc9ae281d29646371"
+        },
+        {
+          "name": "ToolbarLink",
+          "kind": "function",
+          "typeHash": "d865b8b680998338b3e542f26ca48561d6298749983712b4d6000e965ab95565"
+        },
+        {
+          "name": "ToolbarLinkProps",
+          "kind": "type",
+          "typeHash": "4001bc121c9b2a1f6ab0eb052689c85f07d5676912ca3e065fc15c77711bb039"
+        },
+        {
+          "name": "ToolbarProps",
+          "kind": "type",
+          "typeHash": "7b2347965612d84973c5c43346f68a560ee116ec05d6f1f73547218687487d4a"
+        },
+        {
+          "name": "ToolbarSeparator",
+          "kind": "function",
+          "typeHash": "51d19013d09e93bc3c3b673bc0192fbc0b80c9b31cd31826a124cfb36e1de60e"
+        },
+        {
+          "name": "ToolbarSeparatorProps",
+          "kind": "type",
+          "typeHash": "b2be39aa804d3223b433238447011dee656ba2654c8102eef6172cc3a96cc9f2"
+        }
+      ],
+      "text-field": [
+        {
+          "name": "TextField",
+          "kind": "function",
+          "typeHash": "b378d9cc24159ba8ff5d455904dcc97dd379d896aac20d6396904b724eb9f758"
+        },
+        {
+          "name": "TextFieldProps",
+          "kind": "type",
+          "typeHash": "0280e9503bfe52a61af4eca6b9df553ebb23fe666951356104ef7c4506b32587"
+        }
+      ],
+      "number-field": [
+        {
+          "name": "NumberField",
+          "kind": "function",
+          "typeHash": "edea9a59ea7260a45d087ce57765b7a8b30852772847e0ae465a4e091a850046"
+        },
+        {
+          "name": "NumberFieldProps",
+          "kind": "type",
+          "typeHash": "637c7da654adb5afb8de7ff2c72e1a6cd432d96c262f213aa60e0ab4eb2a2056"
+        }
+      ],
+      "segmented-control": [
+        {
+          "name": "SegmentedControl",
+          "kind": "function",
+          "typeHash": "de4b9dc356813b30c075282078086960d60d67b591da7052be498f0403f0eb54"
+        },
+        {
+          "name": "SegmentedControlOption",
+          "kind": "type",
+          "typeHash": "394edc8219d0c83239e3fe9e34260a3013c8f89196e21d2b3f9f2ce45f157693"
+        },
+        {
+          "name": "SegmentedControlProps",
+          "kind": "type",
+          "typeHash": "741bb2c15bedee2cef14d9a5c3e20bff55fea285ce85d1415c54d3d8a61e954a"
+        }
+      ],
+      "date-picker": [
+        {
+          "name": "Calendar",
+          "kind": "function",
+          "typeHash": "a84d183621ebebc4d1633aef89fa8e895f05ee4771bbd1a7b3bca3de60485d77"
+        },
+        {
+          "name": "CalendarProps",
+          "kind": "type",
+          "typeHash": "6b1c6fed77dfdb544e2be17c9733329d56cd256c28beff0e207cfbe4adab001e"
+        },
+        {
+          "name": "DatePicker",
+          "kind": "function",
+          "typeHash": "2b3f51262dcb419091ab911054ddc1b05c5ec4c4fb06c899b9d64c4eb3734d0a"
+        },
+        {
+          "name": "DatePickerProps",
+          "kind": "type",
+          "typeHash": "73f5b2e81aaa895f1fa24146194d1b2682357c1ebe6e95e1b2c3d7c58f3730cb"
+        }
+      ],
+      "checkbox": [
+        {
+          "name": "Checkbox",
+          "kind": "function",
+          "typeHash": "919c744e918dd50807ee890ca0738a5918f53a485690039513cff709c0a9d064"
+        },
+        {
+          "name": "CheckboxProps",
+          "kind": "type",
+          "typeHash": "be8fbada6c8ea8ae3c7828cf6bbeb7fca510779496d7c89fe55bcdea9a988ee8"
+        }
+      ],
+      "switch": [
+        {
+          "name": "Switch",
+          "kind": "function",
+          "typeHash": "2664785d97ffd8faa94ba33d995d2f20d45bdf5241cbf3fa71f932c6a313777c"
+        },
+        {
+          "name": "SwitchProps",
+          "kind": "type",
+          "typeHash": "684195be23a0af8fb266c231f35f99deef42fce206fa6a024383fb214c1acb59"
+        }
+      ],
+      "tooltip": [
+        {
+          "name": "Tooltip",
+          "kind": "function",
+          "typeHash": "11b9ab1baa621f7017af51b40199e90f30a7432a4e678a5941c8ab01345688b4"
+        },
+        {
+          "name": "TooltipContent",
+          "kind": "function",
+          "typeHash": "1d45b53deb6118a3803b371ada74dcd942b3f31bea7e6f927d2ab9792bbf79c1"
+        },
+        {
+          "name": "TooltipContentProps",
+          "kind": "type",
+          "typeHash": "6e0acb6b1530d3458758a80b3f47ec89586ae9606e17732fb2e1173e812a1629"
+        },
+        {
+          "name": "TooltipProvider",
+          "kind": "function",
+          "typeHash": "873f10d6a256082c8667671e4cd147f504d05045f14d41d07aeb5d3473548c53"
+        },
+        {
+          "name": "TooltipTrigger",
+          "kind": "function",
+          "typeHash": "fdbee0f6ec22cd16604d47559891c9972ed4e7bb9fcdb8627ac52ddb0b7de3c3"
+        }
+      ],
+      "popover": [
+        {
+          "name": "Popover",
+          "kind": "function",
+          "typeHash": "5d03cca4375f7d01cd31c027847427f3c41a0972a9193215d546029a613cf5a4"
+        },
+        {
+          "name": "PopoverContent",
+          "kind": "function",
+          "typeHash": "e4d2f20b34189b99e7f2f046532c85b0d2dea89d03b698b73465919b1b790b8d"
+        },
+        {
+          "name": "PopoverContentProps",
+          "kind": "type",
+          "typeHash": "fb079b52b0d15abf3cdb787f33f3ceadb5c827b4a1ddbaeed06257623750b122"
+        },
+        {
+          "name": "PopoverDescription",
+          "kind": "const",
+          "typeHash": "921239c256f5869102376d015b1e09303a7af01c8a060640c461682df5047680"
+        },
+        {
+          "name": "PopoverTitle",
+          "kind": "const",
+          "typeHash": "0b1469c983a84acd92d85efb4a8019b753724602509fb797337f18502e919833"
+        },
+        {
+          "name": "PopoverTrigger",
+          "kind": "function",
+          "typeHash": "7a6642edc3a02ce784aa9351e65f3d0529fe9db9103ab38935b3c5d1cc00c3a5"
+        }
+      ],
+      "menu": [
+        {
+          "name": "Menu",
+          "kind": "const",
+          "typeHash": "f03feb7a34966354c7bc08e67b23723fc80c4027fef2f4a51174a6ab83f60e1c"
+        },
+        {
+          "name": "MenuCheckboxItem",
+          "kind": "function",
+          "typeHash": "d3b62ab9327bab44daa92c3c91b3d2fcd25f4d405fbb8aae8c2de2efe3ebaefd"
+        },
+        {
+          "name": "MenuContent",
+          "kind": "function",
+          "typeHash": "88f122b83093b00ed494bd7be7407941c333eaf6fcf5ebd51670a9f5e4680734"
+        },
+        {
+          "name": "MenuContentProps",
+          "kind": "type",
+          "typeHash": "0415ea32565f984b57db7045aca51833d8a598442a88ddbd734fae29936a06ce"
+        },
+        {
+          "name": "MenuItem",
+          "kind": "function",
+          "typeHash": "8e5620221b22851e07e2aae55314a4017a21fca92462bd215c80a0dafa2688d1"
+        },
+        {
+          "name": "MenuLabel",
+          "kind": "function",
+          "typeHash": "122afd8535842f62ba8e25e442bc3db41cc7a261283eb8876c7f78b074c1e127"
+        },
+        {
+          "name": "MenuRadioGroup",
+          "kind": "const",
+          "typeHash": "33f8acee4b765b86adedb2a550a2d8fe3614ca255892a661fd4674a7a70e077f"
+        },
+        {
+          "name": "MenuRadioItem",
+          "kind": "function",
+          "typeHash": "7ade2a29690a8d2189a32bdd7963421118feb5f84dc9e0fcfedc4528f65c6aa0"
+        },
+        {
+          "name": "MenuSeparator",
+          "kind": "function",
+          "typeHash": "7fb1bbde5abd7f745254785831870fa31765022228f782c78803a8028d53e120"
+        },
+        {
+          "name": "MenuTrigger",
+          "kind": "function",
+          "typeHash": "c198a664b97c0f18e9580d4e19a46294a23ee798354c9a2e40e8e75661cd2bbd"
+        }
+      ],
+      "dialog": [
+        {
+          "name": "Dialog",
+          "kind": "const",
+          "typeHash": "e124c87a2a23cd75bdc9abb49285fdc34db668349e697980071124d542f8a591"
+        },
+        {
+          "name": "DialogClose",
+          "kind": "const",
+          "typeHash": "1aa6c43ddb62328c4811a7564767b2c7341b5ca4f8e6fc70b06ca92df499f41b"
+        },
+        {
+          "name": "DialogContent",
+          "kind": "function",
+          "typeHash": "1f2bc1fe2e7bfcd594b75e76dd850612cec202d08e0ce0fe276e04e3fb0742dd"
+        },
+        {
+          "name": "DialogContentProps",
+          "kind": "type",
+          "typeHash": "7c94be135e9622a90ff85478f4dcf6fbd62d96400805f979ab55d67359f3c970"
+        },
+        {
+          "name": "DialogDescription",
+          "kind": "const",
+          "typeHash": "2a8c7ffbb4fa86956cdc9c32aea270703c7e1ec9e417dc69a8ed2e5b4caf9d29"
+        },
+        {
+          "name": "DialogFooter",
+          "kind": "function",
+          "typeHash": "56bd9dce82528d35b4e65214575b7b0a5d62bc3878bc072b1e29965e3835f881"
+        },
+        {
+          "name": "DialogHeader",
+          "kind": "function",
+          "typeHash": "080844c4b4fdf9be5c78890be285387e8290b4a6b9741f8d322744a4e034596c"
+        },
+        {
+          "name": "DialogTitle",
+          "kind": "const",
+          "typeHash": "4fee797d7bdd40f14a8866554e88982f70e500a9eb99df74afc731969a6e05b5"
+        },
+        {
+          "name": "DialogTrigger",
+          "kind": "const",
+          "typeHash": "a7d306a0233c7a5f02923dd1e215c1fd7b56c46ace19bde3c92f55cc14c4e24e"
+        }
+      ],
+      "context-menu": [
+        {
+          "name": "ContextMenu",
+          "kind": "const",
+          "typeHash": "df4f561be0bd7469d18d0e222d71a5429b7af8c75e7b9f5914348cd56cedc10e"
+        },
+        {
+          "name": "ContextMenuCheckboxItem",
+          "kind": "function",
+          "typeHash": "80bcb4dcf71dcbb9a4da27f6deb582deeb987ab3d1d2d3aae137166d576ec1f0"
+        },
+        {
+          "name": "ContextMenuContent",
+          "kind": "function",
+          "typeHash": "8c0c4186222b2b9f5a55c2ea5854ec9aca6e254970bee9cd7c996f969fa5c802"
+        },
+        {
+          "name": "ContextMenuContentProps",
+          "kind": "type",
+          "typeHash": "b0af9eddaa2fffa2320ade3e0c09514f9d787e183a87220b21a00e4b73e5a5f4"
+        },
+        {
+          "name": "ContextMenuItem",
+          "kind": "function",
+          "typeHash": "179b4b0aace499c599a591ae3620b1c702a7fc0da4b8e21b7cd889782bcce542"
+        },
+        {
+          "name": "ContextMenuLabel",
+          "kind": "function",
+          "typeHash": "efd30d0ce8bfad5ac1715af9fbab599a359e0f8095f77b70f792c7213885994b"
+        },
+        {
+          "name": "ContextMenuRadioGroup",
+          "kind": "const",
+          "typeHash": "0512afa5984ab619e6e27f84e04fa5d1052a176aa897bf890bd8600e15c7612a"
+        },
+        {
+          "name": "ContextMenuRadioItem",
+          "kind": "function",
+          "typeHash": "f3f145950f01195ef48b0018f9775f7a67828c3f26004961439e8ff46aebe749"
+        },
+        {
+          "name": "ContextMenuSeparator",
+          "kind": "function",
+          "typeHash": "6ff5f92d5e1428daf59c6c8c1ee485ca11c554a3b5f1f7f2694ac19499c7fd42"
+        },
+        {
+          "name": "ContextMenuTrigger",
+          "kind": "function",
+          "typeHash": "8063fb6cd5c3e2033d52b582cccd8fba54ceefc662aaaca6ed6dc2a7f4494d0a"
+        }
+      ],
+      "sheet": [
+        {
+          "name": "Sheet",
+          "kind": "const",
+          "typeHash": "3e9a09ad9d0b0e8892375fede84c11123069d5f3ff84dd95a947a36271d6ff07"
+        },
+        {
+          "name": "SheetBody",
+          "kind": "function",
+          "typeHash": "9b7912d498709f23a1e735c577515baf81e73799f8e4b5b4d42c873bb90c0103"
+        },
+        {
+          "name": "SheetClose",
+          "kind": "const",
+          "typeHash": "faaca8c12024a0976010a333d42e0783949841f9dca2a1e399da5bed24d95852"
+        },
+        {
+          "name": "SheetContent",
+          "kind": "function",
+          "typeHash": "3d0d182bacc5c0846b8dc315f6bc67568285533806f46d7bdbcb54f79d3f7c33"
+        },
+        {
+          "name": "SheetContentProps",
+          "kind": "type",
+          "typeHash": "782497ffdc43ce288a28e5489d40d5aa474a2642722a4e7c16ebedbe2b533de5"
+        },
+        {
+          "name": "SheetDescription",
+          "kind": "const",
+          "typeHash": "3081973246137d1f85ddbf6a70112b16ee7781af0b88dea12a650790860bb101"
+        },
+        {
+          "name": "SheetFooter",
+          "kind": "function",
+          "typeHash": "6a697b45e46c5f2482bef2639cf6129aaf655ff98255b61be8b0e090f52efa6c"
+        },
+        {
+          "name": "SheetHeader",
+          "kind": "function",
+          "typeHash": "be000f463b0209d7ddd0a6dffda14c5e45e58945f48059f1af8ae0786ce8080d"
+        },
+        {
+          "name": "SheetSide",
+          "kind": "type",
+          "typeHash": "59ae7db8afa5fd192cc7daf83796fbb266cdb3f82fac14f3f90a3bc99b6927c6"
+        },
+        {
+          "name": "SheetTitle",
+          "kind": "const",
+          "typeHash": "4e5d73b080d6544942f99bd5226fa6ff8233114dc34aacc712beb4c0ec1aecc6"
+        },
+        {
+          "name": "SheetTrigger",
+          "kind": "const",
+          "typeHash": "549055f1b9b322d0757ff60cccb819eb4c905eba069332f23d46bddec01e0d3c"
+        }
+      ],
+      "alert-dialog": [
+        {
+          "name": "AlertDialog",
+          "kind": "const",
+          "typeHash": "69baa56c88961f1056e178e6707f9b24cfbc2aa27f73a89a905f50524a83ed73"
+        },
+        {
+          "name": "AlertDialogClose",
+          "kind": "const",
+          "typeHash": "279b4a51821ceb05110650f12c57576351afafcc1bffd50d7634e21d456954f9"
+        },
+        {
+          "name": "AlertDialogContent",
+          "kind": "function",
+          "typeHash": "e6063cd228e5a345c4798e718e2fa1d9fea904cb40dbed9cbd913047b513c6b0"
+        },
+        {
+          "name": "AlertDialogDescription",
+          "kind": "const",
+          "typeHash": "1aa83cda42204837be4569767674c2ff277d0b203718d9d6463fa136161b648a"
+        },
+        {
+          "name": "AlertDialogFooter",
+          "kind": "function",
+          "typeHash": "f7a802ec27d18fdc5814f4926213d99472731c99eaabe94a21bc8c93b1638a3d"
+        },
+        {
+          "name": "AlertDialogHeader",
+          "kind": "function",
+          "typeHash": "43a784b81bdca4e96b7d0b776db7bdd43d7236d2b0f180e01d33d386e8a9c597"
+        },
+        {
+          "name": "AlertDialogTitle",
+          "kind": "const",
+          "typeHash": "61a8ab2609a42505c5c93c1699087c15573dc633a46c0a4d494891e5ef62bad7"
+        },
+        {
+          "name": "AlertDialogTrigger",
+          "kind": "const",
+          "typeHash": "152fffc24ff63a1c8299a9d08bfaee21e45fb49ab84bbb43f1c7b5572898207c"
+        }
+      ],
+      "tabs": [
+        {
+          "name": "Tabs",
+          "kind": "function",
+          "typeHash": "1387eb9c820292818dd137477dd06029da4ae57f719737eb4012873a8968a20e"
+        },
+        {
+          "name": "TabsContent",
+          "kind": "function",
+          "typeHash": "93dcff565fd7e2fee6f6d2e29ce5b914d2452d6a061a309a187b4be23b93bc27"
+        },
+        {
+          "name": "TabsList",
+          "kind": "function",
+          "typeHash": "a4b295f4090678a7217f8bc80cc00c8a5d654f61692992aa2d934228cb99a925"
+        },
+        {
+          "name": "TabsTrigger",
+          "kind": "function",
+          "typeHash": "4edcf9c737b93e1331e8fb14f0638314f5d6ef1616f6129b7d9c533bfced8e56"
+        }
+      ],
+      "toast": [
+        {
+          "name": "toast",
+          "kind": "const",
+          "typeHash": "f18484b5225133d6468281195142e97d10f01cf9a6ec1293fc11c7362801312a"
+        },
+        {
+          "name": "ToastApi",
+          "kind": "type",
+          "typeHash": "d0ae9864315f89d86bd81d5cd3e92e10731b8b7c4cd748f0a44d0bdd8132a349"
+        },
+        {
+          "name": "Toaster",
+          "kind": "function",
+          "typeHash": "5018b466f15da55e498da8584301697285aa7fe4936d15ee9503de3c9d92beb9"
+        },
+        {
+          "name": "ToastId",
+          "kind": "type",
+          "typeHash": "0ea5222f158bc98b382dc4bb3f1d8f480277a8b2242bb54fc71e443aef3138d0"
+        },
+        {
+          "name": "ToastMessage",
+          "kind": "type",
+          "typeHash": "9103f8dfb9d61a6e0b57efda740eec97e6463ed5d962c6a94c05d41d86347eb1"
+        },
+        {
+          "name": "ToastOptions",
+          "kind": "type",
+          "typeHash": "5e05b28ccc593fb8da3489d38062d89a8f18cbc80cfa231f9d40d5423dc3d3b9"
+        }
+      ],
+      "inline-edit": [
+        {
+          "name": "InlineEdit",
+          "kind": "function",
+          "typeHash": "90963662825bc8fcdf0c679089a3539c57b970d16a9437ec8641bfe7fb69ac51"
+        },
+        {
+          "name": "inlineEditContract",
+          "kind": "const",
+          "typeHash": "d24f9cc38757a102caba8ba2dd2a08bb4ebb91aae49944d2409ea7c63c703e19"
+        },
+        {
+          "name": "InlineEditProps",
+          "kind": "type",
+          "typeHash": "ebe537fbd454bfc9e8a855349ed4f540637c573a6502b29a948ec222387d0259"
+        }
+      ],
+      "reorderable-list": [
+        {
+          "name": "ReorderableItem",
+          "kind": "type",
+          "typeHash": "05b89bbf9c8d96f3fc8e3c52f5392f13432e921e5d139709d5f0db731a0655f7"
+        },
+        {
+          "name": "ReorderableList",
+          "kind": "function",
+          "typeHash": "a1495211c492b06561ad958ee7af928721a743a96bece862a1e8a2756fe894ba"
+        },
+        {
+          "name": "ReorderableListProps",
+          "kind": "type",
+          "typeHash": "e20aca27076a2a21c085b9657349db1fc55a0e1fc08882ace1d1c09d5f3b2be5"
+        }
+      ],
+      "action-list": [
+        {
+          "name": "ActionList",
+          "kind": "function",
+          "typeHash": "ea36f26356d56d9be3282a4b70289d0537d23077b466b3ec067b66826a15bcde"
+        },
+        {
+          "name": "actionListContract",
+          "kind": "const",
+          "typeHash": "9e1c5d24c5ae917a8506dc6fd0a5f4c74107884bd52dba14d17e7e1d1d0786b1"
+        },
+        {
+          "name": "ActionListItem",
+          "kind": "type",
+          "typeHash": "3143fe8565f478fa899f28dadd8e53ad909abfc61ce02bba3875dfd0e4438ea4"
+        },
+        {
+          "name": "ActionListProps",
+          "kind": "type",
+          "typeHash": "c3974adeae63e9a85946b7bf81a2c89ee62ce30bb388bf8244341c833c076804"
+        }
+      ],
+      "shared-detail": [
+        {
+          "name": "getSharedDetailMotionPreset",
+          "kind": "function",
+          "typeHash": "f3192e11522b01e451537037644a244e4df1518d19f11a209c98acf5dceb938c"
+        },
+        {
+          "name": "selectedSharedDetailMotionPreset",
+          "kind": "const",
+          "typeHash": "9973aa891d985f76525d12fa7ff95dc30f5dde5115bbf6b717df02b2a8dc272d"
+        },
+        {
+          "name": "SharedDetail",
+          "kind": "function",
+          "typeHash": "3618565c32352186a674c8e733351d8efb35a82f70df68d7b69ea485f0fb3b1a"
+        },
+        {
+          "name": "sharedDetailContract",
+          "kind": "const",
+          "typeHash": "3051aff10b622f42c2a7e842f03c5bde8eb16ba19340e93fdb87ac87df75987e"
+        },
+        {
+          "name": "SharedDetailItem",
+          "kind": "type",
+          "typeHash": "58f937b0a83840a07514f73c454da51ea36e81b5efa48664a59f739d83ae6e0e"
+        },
+        {
+          "name": "SharedDetailMotionPreset",
+          "kind": "type",
+          "typeHash": "af4160983154ae7fe2340383681f41db715390985d45119d49ed2c4f61279534"
+        },
+        {
+          "name": "SharedDetailMotionPresetId",
+          "kind": "type",
+          "typeHash": "e313745e379be51b74efed89f8703800f8568fc98dfba2ae2e157e0d393b6a7e"
+        },
+        {
+          "name": "sharedDetailMotionPresets",
+          "kind": "const",
+          "typeHash": "712774d614b3f433f902556493a22ddee6dc30557104e8169ee9d36e0cba4fb3"
+        },
+        {
+          "name": "SharedDetailProps",
+          "kind": "type",
+          "typeHash": "43cab41c8ce33d6892f2a6940394a2b50c4fb0e66dc5fe4292e3be662fb36432"
+        }
+      ],
+      "undo-stack": [
+        {
+          "name": "UndoAction",
+          "kind": "type",
+          "typeHash": "3100487d086fc6703ae5e1adb6819a2959c43cc0bb5a2bd0a3eb12e916427c4c"
+        },
+        {
+          "name": "UndoBar",
+          "kind": "function",
+          "typeHash": "4ff703ca8bfce65e6de597cf2bd29e533e23e231ed1d594baf6c5b8077f0005f"
+        },
+        {
+          "name": "UndoContextValue",
+          "kind": "type",
+          "typeHash": "26ef29e9cdb6f9879356e1ee73b7dc7189fd1c560bd675ffc15ca9c1ae23841a"
+        },
+        {
+          "name": "undoStackContract",
+          "kind": "const",
+          "typeHash": "7f18a8d82774990fc1eab91b4b5f77ddb478926142b4573128d530af7c71550e"
+        },
+        {
+          "name": "UndoStackProvider",
+          "kind": "function",
+          "typeHash": "9793413d31c6f599fd4580ee3f3a578df9ca8e1f175ea7f1286363ce7d5ac66a"
+        },
+        {
+          "name": "useUndoStack",
+          "kind": "function",
+          "typeHash": "a76f98b37c580d6356e00aa5cbdf39ba0a20d4ff28046b613fbc0e3541073579"
+        }
+      ],
+      "badge": [
+        {
+          "name": "Badge",
+          "kind": "function",
+          "typeHash": "3c507681fddb86565ab77588be7db423bdeb570f62a4b3d4d54ebcebb8e74581"
+        },
+        {
+          "name": "BadgeProps",
+          "kind": "type",
+          "typeHash": "872692b3c1112948591d25854ff6457e7f1d28d72f0ff4144c9ae0143d0c3659"
+        }
+      ],
+      "avatar": [
+        {
+          "name": "Avatar",
+          "kind": "function",
+          "typeHash": "e3cb907d5c2c6e5645fc29fb247eedb308691a730030a095f5bb9b8806bc6afc"
+        },
+        {
+          "name": "AvatarGroup",
+          "kind": "function",
+          "typeHash": "b11563a182b53ccee8b1e94dcd8ecb33dcdec9d4422c2180e6c2393256faecdd"
+        },
+        {
+          "name": "AvatarProps",
+          "kind": "type",
+          "typeHash": "64fff836b5d063bf97af2cb224d516c512e99175e9573bef2ee38aa8b8962a56"
+        }
+      ],
+      "textarea": [
+        {
+          "name": "Textarea",
+          "kind": "function",
+          "typeHash": "42eab46f5372430c1a226a67a7717c798785303de82dc326ae8656cb311524b1"
+        },
+        {
+          "name": "TextareaProps",
+          "kind": "type",
+          "typeHash": "1ecea768e8ac6e3854a7067b9bd7c4640fe4e122f03d6ecfc3afabb02915de21"
+        }
+      ],
+      "radio-group": [
+        {
+          "name": "RadioGroup",
+          "kind": "function",
+          "typeHash": "511ed77e7de3fe258c0b896d87ef21db6926d9fc486c509c8d3561af0993ef8c"
+        },
+        {
+          "name": "RadioGroupProps",
+          "kind": "type",
+          "typeHash": "e6b03328c9acb38b05fe1a61d61bea3243daf0ca882e2ad3d74c322b6e9b50ad"
+        },
+        {
+          "name": "RadioOption",
+          "kind": "type",
+          "typeHash": "753253c9b3ee4a6064a42f9e3bcde86b27afa21ce72132235e8d3ccd65f75565"
+        }
+      ],
+      "select": [
+        {
+          "name": "Select",
+          "kind": "function",
+          "typeHash": "47f518f3c89fd8c3436fb4695c00bef42204cf258da1d159aca8df95bdb4734e"
+        },
+        {
+          "name": "SelectOption",
+          "kind": "type",
+          "typeHash": "9cab7de3f250e672e42a30cf128e137ff7a7e7c85795afa8652ba5705aa1f0c6"
+        },
+        {
+          "name": "SelectProps",
+          "kind": "type",
+          "typeHash": "7b92c47d49d51a98bc2fe242f9b73f26fbc36c33db651bbd7c764748ac869f23"
+        }
+      ],
+      "context-switcher": [
+        {
+          "name": "ContextSwitcher",
+          "kind": "function",
+          "typeHash": "a6fd4522e6ca08727c96ec4f4657bdf0c05df6a3e409999d8db282a713d6eb22"
+        },
+        {
+          "name": "ContextSwitcherOption",
+          "kind": "type",
+          "typeHash": "f0fcf9049174efce1d8bb982ce7b9b6bbebddcdcd69141f4423a1fa1abd4766a"
+        },
+        {
+          "name": "ContextSwitcherProps",
+          "kind": "type",
+          "typeHash": "32a3835cae3daeb918606c2f8fbc51ac9e27f1a037cd29f38599ff4840209b4c"
+        }
+      ],
+      "combobox": [
+        {
+          "name": "Combobox",
+          "kind": "function",
+          "typeHash": "df280748cbabd0133b490d086c914eac7494c141e483f4eb9b2142c65d628410"
+        },
+        {
+          "name": "ComboboxOption",
+          "kind": "type",
+          "typeHash": "4737a7f27350117b1d3d1d066ba6ab0bb060278baaea4d12612cbd7494e0fc90"
+        },
+        {
+          "name": "ComboboxProps",
+          "kind": "type",
+          "typeHash": "fc378f8df1564990a2787abff76816eedf814a2c6f364c5b31cb0699d9fd6740"
+        }
+      ],
+      "search-input": [
+        {
+          "name": "SearchInput",
+          "kind": "const",
+          "typeHash": "36952e75b12550b7747377944f7c99e89b28a482969bad529e8699d38516257c"
+        },
+        {
+          "name": "SearchInputProps",
+          "kind": "type",
+          "typeHash": "589672930bb031b6387ad89764d8f55c7ab7061057cd9b54f1eaa396f5b31a7b"
+        }
+      ],
+      "breadcrumbs": [
+        {
+          "name": "BreadcrumbItem",
+          "kind": "type",
+          "typeHash": "a3fe037d91e24d40681a4f7e3b38269c2f1a31c662e0bc486f676163b5075de8"
+        },
+        {
+          "name": "Breadcrumbs",
+          "kind": "function",
+          "typeHash": "41c0c26e1c007b81f932db5431d860880c3ec1adba747f5b36c6bb071e9284b9"
+        },
+        {
+          "name": "BreadcrumbsProps",
+          "kind": "type",
+          "typeHash": "6f963adb080b7b019c1290690057ec934ef9bb6ffea1f6f5b6f8b2cc18dbde9f"
+        }
+      ],
+      "pagination": [
+        {
+          "name": "Pagination",
+          "kind": "function",
+          "typeHash": "f8280d90ef95e6fa42e47679b6a09db7e681a2bb21d0b12432a678755c37fbaf"
+        },
+        {
+          "name": "PaginationProps",
+          "kind": "type",
+          "typeHash": "9caabe660f708bcc1283a26f46c3bafdc818fee314fb014a46992a5af7755928"
+        }
+      ],
+      "collapsible": [
+        {
+          "name": "Collapsible",
+          "kind": "const",
+          "typeHash": "884d6b951dcc5c71d9c8ef68d1c93e81c79a00797ab355ad1d2b9d67dfa79355"
+        },
+        {
+          "name": "CollapsibleContent",
+          "kind": "function",
+          "typeHash": "d7d7c1e0613d21c55ce967ef467c662bbf2de664d85ea93db3e9f973a9b4940e"
+        },
+        {
+          "name": "CollapsibleContentProps",
+          "kind": "type",
+          "typeHash": "8d323e8e52abd661f899e37c9136eec725048ab00331319815d41b5b2c561dfb"
+        },
+        {
+          "name": "CollapsibleTrigger",
+          "kind": "function",
+          "typeHash": "5a945090ea4e10dca4fe7d105755a6cf249eb3558f173e9200085e4b8ca9ec71"
+        }
+      ],
+      "skeleton": [
+        {
+          "name": "Skeleton",
+          "kind": "function",
+          "typeHash": "057e8504d257649d5260418cf2570dd799399b55f8ebd5b8beb61c415ecb1c2b"
+        },
+        {
+          "name": "SkeletonProps",
+          "kind": "type",
+          "typeHash": "3f3a1f097c6671d0b4a5e12f1beb44ffa217a90af099a4bf63d72f15d4b5548e"
+        },
+        {
+          "name": "SkeletonText",
+          "kind": "function",
+          "typeHash": "0ba1708bff88c5b13e7198166b08ba444acb16b71d26c10dc230bfc2c7f5493c"
+        }
+      ],
+      "progress": [
+        {
+          "name": "Progress",
+          "kind": "function",
+          "typeHash": "5d9cb648b7b77145462c71855f8ea3303f93aaa0cc3d9641fbdd52e2a39e88b4"
+        },
+        {
+          "name": "ProgressProps",
+          "kind": "type",
+          "typeHash": "c4c6dcd394eaf6155523594d2a0d8435b567c8e3ba357d498a4792ea93d0af8b"
+        }
+      ],
+      "spinner": [
+        {
+          "name": "Spinner",
+          "kind": "function",
+          "typeHash": "a083f7b3b3eeaec1e0970b20ac90dc4c129bcfb188dba62baa3f385406e4263c"
+        },
+        {
+          "name": "SpinnerProps",
+          "kind": "type",
+          "typeHash": "4ce647548951da5f150851bf45fb8155a53e0d44994e08d07f1fb0dc4aa9f0e6"
+        }
+      ],
+      "alert": [
+        {
+          "name": "Alert",
+          "kind": "function",
+          "typeHash": "2df11dbda80cf0bd5b56c95cc16abdd191d3dcd0b3910538c3136d53c140fa52"
+        },
+        {
+          "name": "AlertProps",
+          "kind": "type",
+          "typeHash": "7991f9b05d59cde84e96bbdd4fafc693b9613c0d8a09798ad7eadd45b7be809f"
+        }
+      ],
+      "empty-state": [
+        {
+          "name": "EmptyState",
+          "kind": "function",
+          "typeHash": "abb880033074648039be7e7531ff03351e3a8fe12bc54992e4c813b12ef50587"
+        },
+        {
+          "name": "EmptyStateProps",
+          "kind": "type",
+          "typeHash": "68bbb6f0328115b359ceab6559a54b3f80008fafeb568e27b08b6b64a6523dfa"
+        }
+      ],
+      "table": [
+        {
+          "name": "Table",
+          "kind": "function",
+          "typeHash": "db2c61815968053752f685052abbb76acf858628e70df89e10e45bbd4b981e86"
+        },
+        {
+          "name": "TableBody",
+          "kind": "function",
+          "typeHash": "b8f2d2ce8e280d14afa315b4e36f3cde4efa752e2f1408c41dbf4dc347466cc8"
+        },
+        {
+          "name": "TableCaption",
+          "kind": "function",
+          "typeHash": "0de3fa52c4453f8aa008509ac56cccf637dd69b5977b20e96294402dd986c9f8"
+        },
+        {
+          "name": "TableCell",
+          "kind": "function",
+          "typeHash": "9d12fabe45494ce55527bd30089a533da90b1b88082e19d459bfd763ff3d3d74"
+        },
+        {
+          "name": "TableFooter",
+          "kind": "function",
+          "typeHash": "c15d6691d470e242bba5c706dfd923b001311d78dd6615c8c640c47854a5f746"
+        },
+        {
+          "name": "TableHead",
+          "kind": "function",
+          "typeHash": "f2ad2618b9f9e07f3d8487286b631b5ac7fab529112961f170924b444fb40e4d"
+        },
+        {
+          "name": "TableHeader",
+          "kind": "function",
+          "typeHash": "e2af8d6cacdeb05427086c7b2c472691b7b5e21461340be317d5059f2ef70757"
+        },
+        {
+          "name": "TableProps",
+          "kind": "type",
+          "typeHash": "0c237851183de1fb09ef828e806b6ac9c6cabb541dbe7a7077b99d6983e22c34"
+        },
+        {
+          "name": "TableRow",
+          "kind": "function",
+          "typeHash": "a61ac93cce2f8f037656c6f3dc7cc981206b44c47608ec57e2a7b1e7503dd20b"
+        }
+      ],
+      "tree": [
+        {
+          "name": "Tree",
+          "kind": "function",
+          "typeHash": "b4908a6589ef1250fb4290ab91a01092dc5029193e29950c48ac3e534d0d5158"
+        },
+        {
+          "name": "TreeNode",
+          "kind": "type",
+          "typeHash": "cd9d6298fb08aa71ba67821d5568acfe5fa98869c42427ba0987ec65bdeada4f"
+        },
+        {
+          "name": "TreeProps",
+          "kind": "type",
+          "typeHash": "283123a6d5bbad5b10833009f62a883e570abde3c2cb3b65b6ac9f4d352d2d94"
+        }
+      ]
+    }
+  },
+  "semanticTokens": {
+    "format": "DTCG 2025.10",
+    "modes": [
+      "light",
+      "dark"
+    ],
+    "count": 145,
+    "contract": [
+      {
+        "path": "foundation.system.neutral-h",
+        "type": "number",
+        "cssVariable": "--teum-neutral-h",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.system.neutral-c",
+        "type": "number",
+        "cssVariable": "--teum-neutral-c",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.system.sidebar-l",
+        "type": "number",
+        "cssVariable": "--teum-sidebar-l",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.system.stage-l",
+        "type": "number",
+        "cssVariable": "--teum-stage-l",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.system.border-alpha",
+        "type": "number",
+        "cssVariable": "--teum-border-alpha",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.font-ui",
+        "type": "fontFamily",
+        "cssVariable": "--teum-font-ui",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.font-code",
+        "type": "fontFamily",
+        "cssVariable": "--teum-font-code",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.sizes.type-metadata",
+        "type": "dimension",
+        "cssVariable": "--teum-type-metadata",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.sizes.type-label",
+        "type": "dimension",
+        "cssVariable": "--teum-type-label",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.sizes.type-ui",
+        "type": "dimension",
+        "cssVariable": "--teum-type-ui",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.sizes.type-body",
+        "type": "dimension",
+        "cssVariable": "--teum-type-body",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.sizes.type-row",
+        "type": "dimension",
+        "cssVariable": "--teum-type-row",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.sizes.type-section",
+        "type": "dimension",
+        "cssVariable": "--teum-type-section",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.sizes.type-title",
+        "type": "dimension",
+        "cssVariable": "--teum-type-title",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.sizes.line-metadata",
+        "type": "dimension",
+        "cssVariable": "--teum-line-metadata",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.sizes.line-label",
+        "type": "dimension",
+        "cssVariable": "--teum-line-label",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.sizes.line-ui",
+        "type": "dimension",
+        "cssVariable": "--teum-line-ui",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.sizes.line-row",
+        "type": "dimension",
+        "cssVariable": "--teum-line-row",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.sizes.line-body",
+        "type": "dimension",
+        "cssVariable": "--teum-line-body",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.sizes.line-section",
+        "type": "dimension",
+        "cssVariable": "--teum-line-section",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.sizes.line-title",
+        "type": "dimension",
+        "cssVariable": "--teum-line-title",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.ui-weight",
+        "type": "fontWeight",
+        "cssVariable": "--teum-ui-weight",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.label-weight",
+        "type": "fontWeight",
+        "cssVariable": "--teum-label-weight",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.heading-weight",
+        "type": "fontWeight",
+        "cssVariable": "--teum-heading-weight",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.typography.ui-tracking",
+        "type": "number",
+        "cssVariable": "--teum-ui-tracking",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.space-0",
+        "type": "dimension",
+        "cssVariable": "--teum-space-0",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.space-1",
+        "type": "dimension",
+        "cssVariable": "--teum-space-1",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.space-2",
+        "type": "dimension",
+        "cssVariable": "--teum-space-2",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.space-3",
+        "type": "dimension",
+        "cssVariable": "--teum-space-3",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.space-4",
+        "type": "dimension",
+        "cssVariable": "--teum-space-4",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.space-5",
+        "type": "dimension",
+        "cssVariable": "--teum-space-5",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.space-6",
+        "type": "dimension",
+        "cssVariable": "--teum-space-6",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.space-7",
+        "type": "dimension",
+        "cssVariable": "--teum-space-7",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.space-8",
+        "type": "dimension",
+        "cssVariable": "--teum-space-8",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.space-10",
+        "type": "dimension",
+        "cssVariable": "--teum-space-10",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.space-12",
+        "type": "dimension",
+        "cssVariable": "--teum-space-12",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.space-16",
+        "type": "dimension",
+        "cssVariable": "--teum-space-16",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.space-page-x",
+        "type": "dimension",
+        "cssVariable": "--teum-space-page-x",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.space-page-y",
+        "type": "dimension",
+        "cssVariable": "--teum-space-page-y",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.space-section",
+        "type": "dimension",
+        "cssVariable": "--teum-space-section",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.icon-size",
+        "type": "dimension",
+        "cssVariable": "--teum-icon-size",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.icon-offset-y",
+        "type": "dimension",
+        "cssVariable": "--teum-icon-offset-y",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.control-height-sm",
+        "type": "dimension",
+        "cssVariable": "--teum-control-height-sm",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.control-height-md",
+        "type": "dimension",
+        "cssVariable": "--teum-control-height-md",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.control-height-lg",
+        "type": "dimension",
+        "cssVariable": "--teum-control-height-lg",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.control-padding-sm",
+        "type": "dimension",
+        "cssVariable": "--teum-control-padding-sm",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.control-padding-md",
+        "type": "dimension",
+        "cssVariable": "--teum-control-padding-md",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.control-padding-lg",
+        "type": "dimension",
+        "cssVariable": "--teum-control-padding-lg",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.radius-control",
+        "type": "dimension",
+        "cssVariable": "--teum-radius-control",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.radius-container",
+        "type": "dimension",
+        "cssVariable": "--teum-radius-container",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.radius-overlay",
+        "type": "dimension",
+        "cssVariable": "--teum-radius-overlay",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.radius-pill",
+        "type": "dimension",
+        "cssVariable": "--teum-radius-pill",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.row-height-menu",
+        "type": "dimension",
+        "cssVariable": "--teum-row-height-menu",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.row-height-table",
+        "type": "dimension",
+        "cssVariable": "--teum-row-height-table",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.focus-width",
+        "type": "dimension",
+        "cssVariable": "--teum-focus-width",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.focus-offset",
+        "type": "dimension",
+        "cssVariable": "--teum-focus-offset",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.radius-xs",
+        "type": "dimension",
+        "cssVariable": "--teum-radius-xs",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.radius-sm",
+        "type": "dimension",
+        "cssVariable": "--teum-radius-sm",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.radius-md",
+        "type": "dimension",
+        "cssVariable": "--teum-radius-md",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layout.radius-lg",
+        "type": "dimension",
+        "cssVariable": "--teum-radius-lg",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.motion.duration.hover-duration",
+        "type": "duration",
+        "cssVariable": "--teum-hover-duration",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.motion.duration.press-duration",
+        "type": "duration",
+        "cssVariable": "--teum-press-duration",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.motion.duration.enter-duration",
+        "type": "duration",
+        "cssVariable": "--teum-enter-duration",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.motion.duration.exit-duration",
+        "type": "duration",
+        "cssVariable": "--teum-exit-duration",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.motion.duration.fast",
+        "type": "duration",
+        "cssVariable": "--teum-fast",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.motion.duration.medium",
+        "type": "duration",
+        "cssVariable": "--teum-medium",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.motion.easing.ease-out",
+        "type": "cubicBezier",
+        "cssVariable": "--teum-ease-out",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.motion.easing.ease-in-out",
+        "type": "cubicBezier",
+        "cssVariable": "--teum-ease-in-out",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.motion.easing.ease-drawer",
+        "type": "cubicBezier",
+        "cssVariable": "--teum-ease-drawer",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.motion.easing.ease",
+        "type": "cubicBezier",
+        "cssVariable": "--teum-ease",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layers.layer-sticky",
+        "type": "number",
+        "cssVariable": "--teum-layer-sticky",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layers.layer-modal-backdrop",
+        "type": "number",
+        "cssVariable": "--teum-layer-modal-backdrop",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layers.layer-modal",
+        "type": "number",
+        "cssVariable": "--teum-layer-modal",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layers.layer-flyout",
+        "type": "number",
+        "cssVariable": "--teum-layer-flyout",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layers.layer-toast",
+        "type": "number",
+        "cssVariable": "--teum-layer-toast",
+        "deprecated": false
+      },
+      {
+        "path": "foundation.layers.layer-navigation",
+        "type": "number",
+        "cssVariable": "--teum-layer-navigation",
+        "deprecated": false
+      },
+      {
+        "path": "theme.palette.gray-50",
+        "type": "color",
+        "cssVariable": "--teum-gray-50",
+        "deprecated": false
+      },
+      {
+        "path": "theme.palette.gray-100",
+        "type": "color",
+        "cssVariable": "--teum-gray-100",
+        "deprecated": false
+      },
+      {
+        "path": "theme.palette.gray-200",
+        "type": "color",
+        "cssVariable": "--teum-gray-200",
+        "deprecated": false
+      },
+      {
+        "path": "theme.palette.gray-300",
+        "type": "color",
+        "cssVariable": "--teum-gray-300",
+        "deprecated": false
+      },
+      {
+        "path": "theme.palette.gray-400",
+        "type": "color",
+        "cssVariable": "--teum-gray-400",
+        "deprecated": false
+      },
+      {
+        "path": "theme.palette.gray-500",
+        "type": "color",
+        "cssVariable": "--teum-gray-500",
+        "deprecated": false
+      },
+      {
+        "path": "theme.palette.gray-600",
+        "type": "color",
+        "cssVariable": "--teum-gray-600",
+        "deprecated": false
+      },
+      {
+        "path": "theme.palette.gray-700",
+        "type": "color",
+        "cssVariable": "--teum-gray-700",
+        "deprecated": false
+      },
+      {
+        "path": "theme.palette.gray-800",
+        "type": "color",
+        "cssVariable": "--teum-gray-800",
+        "deprecated": false
+      },
+      {
+        "path": "theme.palette.gray-900",
+        "type": "color",
+        "cssVariable": "--teum-gray-900",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.bg-canvas",
+        "type": "color",
+        "cssVariable": "--teum-bg-canvas",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.bg-sidebar",
+        "type": "color",
+        "cssVariable": "--teum-bg-sidebar",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.bg-stage",
+        "type": "color",
+        "cssVariable": "--teum-bg-stage",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.bg-subtle",
+        "type": "color",
+        "cssVariable": "--teum-bg-subtle",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.bg-surface",
+        "type": "color",
+        "cssVariable": "--teum-bg-surface",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.bg-control",
+        "type": "color",
+        "cssVariable": "--teum-bg-control",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.bg-raised",
+        "type": "color",
+        "cssVariable": "--teum-bg-raised",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.bg-overlay",
+        "type": "color",
+        "cssVariable": "--teum-bg-overlay",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.bg-float",
+        "type": "color",
+        "cssVariable": "--teum-bg-float",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.bg-flyout",
+        "type": "color",
+        "cssVariable": "--teum-bg-flyout",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.bg-modal",
+        "type": "color",
+        "cssVariable": "--teum-bg-modal",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.bg-scrim",
+        "type": "color",
+        "cssVariable": "--teum-bg-scrim",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.bg-code",
+        "type": "color",
+        "cssVariable": "--teum-bg-code",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.canvas",
+        "type": "color",
+        "cssVariable": "--teum-canvas",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.sidebar",
+        "type": "color",
+        "cssVariable": "--teum-sidebar",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.surface",
+        "type": "color",
+        "cssVariable": "--teum-surface",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.control-surface",
+        "type": "color",
+        "cssVariable": "--teum-control-surface",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.elevated-surface",
+        "type": "color",
+        "cssVariable": "--teum-elevated-surface",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.overlay-surface",
+        "type": "color",
+        "cssVariable": "--teum-overlay-surface",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.code-surface",
+        "type": "color",
+        "cssVariable": "--teum-code-surface",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.stage",
+        "type": "color",
+        "cssVariable": "--teum-stage",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.subtle",
+        "type": "color",
+        "cssVariable": "--teum-subtle",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.hover",
+        "type": "color",
+        "cssVariable": "--teum-hover",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.active",
+        "type": "color",
+        "cssVariable": "--teum-active",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.selected",
+        "type": "color",
+        "cssVariable": "--teum-selected",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.inverse",
+        "type": "color",
+        "cssVariable": "--teum-inverse",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.inverse-hover",
+        "type": "color",
+        "cssVariable": "--teum-inverse-hover",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.on-inverse",
+        "type": "color",
+        "cssVariable": "--teum-on-inverse",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.scrollbar-thumb",
+        "type": "color",
+        "cssVariable": "--teum-scrollbar-thumb",
+        "deprecated": false
+      },
+      {
+        "path": "theme.surface.scrollbar-thumb-hover",
+        "type": "color",
+        "cssVariable": "--teum-scrollbar-thumb-hover",
+        "deprecated": false
+      },
+      {
+        "path": "theme.foreground.fg-default",
+        "type": "color",
+        "cssVariable": "--teum-fg-default",
+        "deprecated": false
+      },
+      {
+        "path": "theme.foreground.fg-muted",
+        "type": "color",
+        "cssVariable": "--teum-fg-muted",
+        "deprecated": false
+      },
+      {
+        "path": "theme.foreground.fg-subtle",
+        "type": "color",
+        "cssVariable": "--teum-fg-subtle",
+        "deprecated": false
+      },
+      {
+        "path": "theme.foreground.fg-disabled",
+        "type": "color",
+        "cssVariable": "--teum-fg-disabled",
+        "deprecated": false
+      },
+      {
+        "path": "theme.foreground.fg-danger",
+        "type": "color",
+        "cssVariable": "--teum-fg-danger",
+        "deprecated": false
+      },
+      {
+        "path": "theme.foreground.ink",
+        "type": "color",
+        "cssVariable": "--teum-ink",
+        "deprecated": false
+      },
+      {
+        "path": "theme.foreground.ink-secondary",
+        "type": "color",
+        "cssVariable": "--teum-ink-secondary",
+        "deprecated": false
+      },
+      {
+        "path": "theme.foreground.ink-tertiary",
+        "type": "color",
+        "cssVariable": "--teum-ink-tertiary",
+        "deprecated": false
+      },
+      {
+        "path": "theme.foreground.ink-disabled",
+        "type": "color",
+        "cssVariable": "--teum-ink-disabled",
+        "deprecated": false
+      },
+      {
+        "path": "theme.border.separator",
+        "type": "color",
+        "cssVariable": "--teum-separator",
+        "deprecated": false
+      },
+      {
+        "path": "theme.border.control-border",
+        "type": "color",
+        "cssVariable": "--teum-control-border",
+        "deprecated": false
+      },
+      {
+        "path": "theme.border.control-border-hover",
+        "type": "color",
+        "cssVariable": "--teum-control-border-hover",
+        "deprecated": false
+      },
+      {
+        "path": "theme.border.border-subtle",
+        "type": "color",
+        "cssVariable": "--teum-border-subtle",
+        "deprecated": false
+      },
+      {
+        "path": "theme.border.border",
+        "type": "color",
+        "cssVariable": "--teum-border",
+        "deprecated": false
+      },
+      {
+        "path": "theme.border.border-strong",
+        "type": "color",
+        "cssVariable": "--teum-border-strong",
+        "deprecated": false
+      },
+      {
+        "path": "theme.focus.focus-control",
+        "type": "color",
+        "cssVariable": "--teum-focus-control",
+        "deprecated": false
+      },
+      {
+        "path": "theme.focus.focus-navigation",
+        "type": "color",
+        "cssVariable": "--teum-focus-navigation",
+        "deprecated": false
+      },
+      {
+        "path": "theme.focus.focus-documentation",
+        "type": "color",
+        "cssVariable": "--teum-focus-documentation",
+        "deprecated": false
+      },
+      {
+        "path": "theme.focus.focus-halo",
+        "type": "color",
+        "cssVariable": "--teum-focus-halo",
+        "deprecated": false
+      },
+      {
+        "path": "theme.focus.switch-track",
+        "type": "color",
+        "cssVariable": "--teum-switch-track",
+        "deprecated": false
+      },
+      {
+        "path": "theme.focus.switch-thumb",
+        "type": "color",
+        "cssVariable": "--teum-switch-thumb",
+        "deprecated": false
+      },
+      {
+        "path": "theme.focus.focus",
+        "type": "color",
+        "cssVariable": "--teum-focus",
+        "deprecated": false
+      },
+      {
+        "path": "theme.elevation.shadow-control",
+        "type": "shadow",
+        "cssVariable": "--teum-shadow-control",
+        "deprecated": false
+      },
+      {
+        "path": "theme.elevation.shadow-float",
+        "type": "shadow",
+        "cssVariable": "--teum-shadow-float",
+        "deprecated": false
+      },
+      {
+        "path": "theme.elevation.shadow-float-focus",
+        "type": "shadow",
+        "cssVariable": "--teum-shadow-float-focus",
+        "deprecated": false
+      },
+      {
+        "path": "theme.elevation.shadow-flyout",
+        "type": "shadow",
+        "cssVariable": "--teum-shadow-flyout",
+        "deprecated": false
+      },
+      {
+        "path": "theme.elevation.shadow-popover",
+        "type": "shadow",
+        "cssVariable": "--teum-shadow-popover",
+        "deprecated": false
+      },
+      {
+        "path": "theme.elevation.shadow-modal",
+        "type": "shadow",
+        "cssVariable": "--teum-shadow-modal",
+        "deprecated": false
+      },
+      {
+        "path": "theme.elevation.shadow-dialog",
+        "type": "shadow",
+        "cssVariable": "--teum-shadow-dialog",
+        "deprecated": false
+      }
+    ]
+  }
+}

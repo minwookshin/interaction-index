@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { UndoBar, UndoStackProvider, useUndoStack } from "./undo-stack";
 
 function Harness() {
@@ -31,5 +31,28 @@ describe("UndoStack", () => {
     await user.click(screen.getByRole("button", { name: "Archive Beta" }));
     await user.keyboard("{Control>}z{/Control}");
     expect(screen.getByRole("button", { name: "Archive Beta" })).toBeInTheDocument();
+  });
+
+  it("pops one LIFO entry even when product-supplied identifiers repeat", async () => {
+    const user = userEvent.setup();
+    const undoFirst = vi.fn();
+    const undoSecond = vi.fn();
+
+    function DuplicateIdHarness() {
+      const { pushUndo } = useUndoStack();
+      return <>
+        <button onClick={() => pushUndo({ id: "archive", label: "First", undo: undoFirst })}>Push first</button>
+        <button onClick={() => pushUndo({ id: "archive", label: "Second", undo: undoSecond })}>Push second</button>
+        <UndoBar />
+      </>;
+    }
+
+    render(<UndoStackProvider><DuplicateIdHarness /></UndoStackProvider>);
+    await user.click(screen.getByRole("button", { name: "Push first" }));
+    await user.click(screen.getByRole("button", { name: "Push second" }));
+    await user.click(screen.getByRole("button", { name: "Undo" }));
+    expect(undoSecond).toHaveBeenCalledOnce();
+    expect(undoFirst).not.toHaveBeenCalled();
+    expect(screen.getByRole("region", { name: "Undo history" })).toHaveTextContent("First");
   });
 });

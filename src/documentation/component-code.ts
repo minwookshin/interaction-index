@@ -1,6 +1,11 @@
 export type ComponentDocId =
   | "button"
   | "icon-button"
+  | "field"
+  | "input-group"
+  | "kbd"
+  | "button-group"
+  | "toolbar"
   | "text-field"
   | "textarea"
   | "checkbox"
@@ -11,11 +16,14 @@ export type ComponentDocId =
   | "combobox"
   | "search-input"
   | "number-field"
+  | "date-picker"
   | "segmented-control"
   | "tooltip"
   | "popover"
   | "menu"
+  | "context-menu"
   | "dialog"
+  | "sheet"
   | "alert-dialog"
   | "tabs"
   | "breadcrumbs"
@@ -30,19 +38,21 @@ export type ComponentDocId =
   | "badge"
   | "avatar"
   | "table"
+  | "tree"
+  | "reorderable-list"
   | "inline-edit"
   | "action-list"
   | "shared-detail"
   | "undo-stack";
 
 export const componentCode: Record<ComponentDocId, string> = {
-  button: `import { Button } from "@index/ui";
+  button: `import { Button } from "teum";
 
 export function CreateIssueAction() {
   return <Button variant="primary">Create issue</Button>;
 }`,
   "icon-button": `import { Plus } from "@phosphor-icons/react";
-import { IconButton } from "@index/ui";
+import { IconButton } from "teum";
 
 export function AddItemAction() {
   return (
@@ -51,23 +61,84 @@ export function AddItemAction() {
     </IconButton>
   );
 }`,
-  "text-field": `import { TextField } from "@index/ui";
+  field: `import {
+  Field,
+  FieldControl,
+  FieldDescription,
+  FieldLabel,
+  Fieldset,
+  FieldsetLegend,
+} from "teum";
+
+export function ProjectMetadata() {
+  return (
+    <Fieldset>
+      <FieldsetLegend>Project metadata</FieldsetLegend>
+      <Field>
+        <FieldLabel>Project name</FieldLabel>
+        <FieldControl defaultValue="Teum" />
+        <FieldDescription>Visible to everyone in the workspace.</FieldDescription>
+      </Field>
+    </Fieldset>
+  );
+}`,
+  "input-group": `import { Copy } from "@phosphor-icons/react";
+import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "teum";
+
+export function RepositoryField() {
+  return (
+    <InputGroup>
+      <InputGroupAddon>github.com/</InputGroupAddon>
+      <InputGroupInput aria-label="Repository path" />
+      <InputGroupButton aria-label="Copy repository path"><Copy /></InputGroupButton>
+    </InputGroup>
+  );
+}`,
+  kbd: `import { Kbd, KbdGroup } from "teum";
+
+export function CommandShortcut() {
+  return <KbdGroup><Kbd>⌘</Kbd><Kbd>K</Kbd></KbdGroup>;
+}`,
+  "button-group": `import { Button, ButtonGroup } from "teum";
+
+export function IssueActions() {
+  return (
+    <ButtonGroup aria-label="Issue actions" attached>
+      <Button size="small">Preview</Button>
+      <Button size="small">Open</Button>
+    </ButtonGroup>
+  );
+}`,
+  toolbar: `import { Plus } from "@phosphor-icons/react";
+import { Toolbar, ToolbarButton, ToolbarInput, ToolbarSeparator } from "teum";
+
+export function FormattingToolbar() {
+  return (
+    <Toolbar aria-label="Formatting">
+      <ToolbarButton aria-label="Bold"><strong>B</strong></ToolbarButton>
+      <ToolbarButton aria-label="Add"><Plus /></ToolbarButton>
+      <ToolbarSeparator />
+      <ToolbarInput aria-label="Find" placeholder="Find…" />
+    </Toolbar>
+  );
+}`,
+  "text-field": `import { TextField } from "teum";
 
 export function ProjectNameField() {
   return (
     <TextField
       label="Project name"
-      defaultValue="Interaction Index"
+      defaultValue="Teum"
       description="Shown to everyone in the workspace."
     />
   );
 }`,
-  textarea: `import { Textarea } from "@index/ui";
+  textarea: `import { Textarea } from "teum";
 
 export function IssueDescription() {
   return <Textarea label="Description" maxLength={280} showCount />;
 }`,
-  checkbox: `import { Checkbox } from "@index/ui";
+  checkbox: `import { Checkbox } from "teum";
 
 export function ExportOptions() {
   return (
@@ -78,7 +149,7 @@ export function ExportOptions() {
     />
   );
 }`,
-  "radio-group": `import { RadioGroup } from "@index/ui";
+  "radio-group": `import { RadioGroup } from "teum";
 
 export function DeliveryCadence() {
   return <RadioGroup label="Send updates" defaultValue="daily" options={[
@@ -87,7 +158,7 @@ export function DeliveryCadence() {
     { value: "off", label: "Never" },
   ]} />;
 }`,
-  switch: `import { Switch } from "@index/ui";
+  switch: `import { Switch } from "teum";
 
 export function PreviewPreference() {
   return (
@@ -98,7 +169,7 @@ export function PreviewPreference() {
     />
   );
 }`,
-  select: `import { Select } from "@index/ui";
+  select: `import { Select } from "teum";
 
 export function PrioritySelect() {
   return <Select label="Priority" defaultValue="medium" options={[
@@ -108,7 +179,7 @@ export function PrioritySelect() {
   ]} />;
 }`,
   "context-switcher": `import { Monitor, DeviceMobile, TerminalWindow } from "@phosphor-icons/react";
-import { ContextSwitcher } from "@index/ui";
+import { ContextSwitcher } from "teum";
 
 export function PlatformSwitcher() {
   return <ContextSwitcher aria-label="Preview platform" defaultValue="web" options={[
@@ -117,17 +188,17 @@ export function PlatformSwitcher() {
     { value: "terminal", label: "Terminal", description: "Keyboard-first command tools", icon: <TerminalWindow /> },
   ]} />;
 }`,
-  combobox: `import { Combobox } from "@index/ui";
+  combobox: `import { Combobox } from "teum";
 
 export function AssigneeCombobox({ people }) {
   return <Combobox label="Assignee" options={people} placeholder="Search people…" />;
 }`,
-  "search-input": `import { SearchInput } from "@index/ui";
+  "search-input": `import { SearchInput } from "teum";
 
 export function ComponentSearch({ query, setQuery }) {
   return <SearchInput value={query} onChange={(event) => setQuery(event.target.value)} onClear={() => setQuery("")} placeholder="Search components…" />;
 }`,
-  "number-field": `import { NumberField } from "@index/ui";
+  "number-field": `import { NumberField } from "teum";
 
 export function CycleCapacity() {
   return (
@@ -140,7 +211,19 @@ export function CycleCapacity() {
     />
   );
 }`,
-  "segmented-control": `import { SegmentedControl } from "@index/ui";
+  "date-picker": `import { parseDate } from "@internationalized/date";
+import { DatePicker } from "teum";
+
+export function DueDate() {
+  return (
+    <DatePicker
+      label="Due date"
+      defaultValue={parseDate("2026-08-21")}
+      description="Dates follow the current locale."
+    />
+  );
+}`,
+  "segmented-control": `import { SegmentedControl } from "teum";
 
 export function IssueView() {
   return (
@@ -155,7 +238,7 @@ export function IssueView() {
     />
   );
 }`,
-  tooltip: `import { Button, Tooltip, TooltipContent, TooltipTrigger } from "@index/ui";
+  tooltip: `import { Button, Tooltip, TooltipContent, TooltipTrigger } from "teum";
 
 export function FavoriteHint() {
   return (
@@ -172,7 +255,7 @@ export function FavoriteHint() {
   PopoverDescription,
   PopoverTitle,
   PopoverTrigger,
-} from "@index/ui";
+} from "teum";
 
 export function ViewOptions() {
   return (
@@ -185,7 +268,7 @@ export function ViewOptions() {
     </Popover>
   );
 }`,
-  menu: `import { Button, Menu, MenuContent, MenuItem, MenuTrigger } from "@index/ui";
+  menu: `import { Button, Menu, MenuContent, MenuItem, MenuTrigger } from "teum";
 
 export function IssueActions() {
   return (
@@ -198,6 +281,24 @@ export function IssueActions() {
     </Menu>
   );
 }`,
+  "context-menu": `import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from "teum";
+
+export function IssueContextMenu() {
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger>Motion contract</ContextMenuTrigger>
+      <ContextMenuContent>
+        <ContextMenuItem>Duplicate</ContextMenuItem>
+        <ContextMenuItem>Archive</ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
+  );
+}`,
   dialog: `import {
   Button,
   Dialog,
@@ -208,7 +309,7 @@ export function IssueActions() {
   DialogTitle,
   DialogTrigger,
   TextField,
-} from "@index/ui";
+} from "teum";
 
 export function EditComponentMetadata() {
   return (
@@ -227,6 +328,34 @@ export function EditComponentMetadata() {
     </Dialog>
   );
 }`,
+  sheet: `import {
+  Button,
+  Sheet,
+  SheetBody,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "teum";
+
+export function IssueProperties() {
+  return (
+    <Sheet>
+      <SheetTrigger render={<Button>Properties</Button>} />
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Issue properties</SheetTitle>
+          <SheetDescription>Organize this issue without leaving the list.</SheetDescription>
+        </SheetHeader>
+        <SheetBody>{/* compact form fields */}</SheetBody>
+        <SheetFooter><SheetClose>Save changes</SheetClose></SheetFooter>
+      </SheetContent>
+    </Sheet>
+  );
+}`,
   "alert-dialog": `import {
   AlertDialog,
   AlertDialogClose,
@@ -237,7 +366,7 @@ export function EditComponentMetadata() {
   AlertDialogTitle,
   AlertDialogTrigger,
   Button,
-} from "@index/ui";
+} from "teum";
 
 export function DiscardDraft() {
   return (
@@ -256,7 +385,7 @@ export function DiscardDraft() {
     </AlertDialog>
   );
 }`,
-  tabs: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@index/ui";
+  tabs: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "teum";
 
 export function IssueViews() {
   return (
@@ -270,7 +399,7 @@ export function IssueViews() {
     </Tabs>
   );
 }`,
-  breadcrumbs: `import { Breadcrumbs } from "@index/ui";
+  breadcrumbs: `import { Breadcrumbs } from "teum";
 
 export function IssueLocation() {
   return <Breadcrumbs items={[
@@ -280,45 +409,45 @@ export function IssueLocation() {
   ]} />;
 }`,
   pagination: `import { useState } from "react";
-import { Pagination } from "@index/ui";
+import { Pagination } from "teum";
 
 export function ResultsPagination() {
   const [page, setPage] = useState(1);
   return <Pagination page={page} totalPages={18} onPageChange={setPage} />;
 }`,
-  collapsible: `import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@index/ui";
+  collapsible: `import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "teum";
 
 export function AdvancedRules() {
   return (
-    <Collapsible className="ix-collapsible">
+    <Collapsible className="teum-collapsible">
       <CollapsibleTrigger>Advanced filter rules</CollapsibleTrigger>
       <CollapsibleContent>Match state contracts that restore focus.</CollapsibleContent>
     </Collapsible>
   );
 }`,
-  toast: `import { Button, toast } from "@index/ui";
+  toast: `import { Button, toast } from "teum";
 
 export function SaveFeedback() {
   return (
     <Button onClick={() => toast.success("Component saved")}>Save component</Button>
   );
 }`,
-  progress: `import { Progress } from "@index/ui";
+  progress: `import { Progress } from "teum";
 
 export function ExportProgress() {
   return <Progress label="Exporting data" value={68} />;
 }`,
-  spinner: `import { Spinner } from "@index/ui";
+  spinner: `import { Spinner } from "teum";
 
 export function PanelLoading() {
   return <Spinner label="Loading panel" />;
 }`,
-  skeleton: `import { Skeleton, SkeletonText } from "@index/ui";
+  skeleton: `import { Skeleton, SkeletonText } from "teum";
 
 export function IssueSkeleton() {
   return <><Skeleton width={32} height={32} radius="round" /><SkeletonText lines={3} /></>;
 }`,
-  alert: `import { Alert, Button } from "@index/ui";
+  alert: `import { Alert, Button } from "teum";
 
 export function RegistryWarning() {
   return (
@@ -327,7 +456,7 @@ export function RegistryWarning() {
     </Alert>
   );
 }`,
-  "empty-state": `import { Button, EmptyState } from "@index/ui";
+  "empty-state": `import { Button, EmptyState } from "teum";
 
 export function FilteredEmptyState() {
   return (
@@ -338,17 +467,17 @@ export function FilteredEmptyState() {
     />
   );
 }`,
-  badge: `import { Badge } from "@index/ui";
+  badge: `import { Badge } from "teum";
 
 export function IssueStatus() {
   return <Badge variant="strong">In review</Badge>;
 }`,
-  avatar: `import { Avatar, AvatarGroup } from "@index/ui";
+  avatar: `import { Avatar, AvatarGroup } from "teum";
 
 export function ProjectMembers() {
   return <AvatarGroup aria-label="Project members"><Avatar fallback="AS" /><Avatar fallback="MP" status="online" /></AvatarGroup>;
 }`,
-  table: `import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@index/ui";
+  table: `import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "teum";
 
 export function IssueTable({ issues }) {
   return (
@@ -363,15 +492,40 @@ export function IssueTable({ issues }) {
     </Table>
   );
 }`,
+  tree: `import { Tree } from "teum";
+
+const items = [{
+  id: "workspace",
+  label: "Teum",
+  children: [
+    { id: "foundations", label: "Foundations" },
+    { id: "components", label: "Components" },
+  ],
+}];
+
+export function ProjectTree() {
+  return <Tree aria-label="Project structure" items={items} defaultExpandedKeys={["workspace"]} />;
+}`,
+  "reorderable-list": `import { ReorderableList } from "teum";
+
+const steps = [
+  { id: "capture", label: "Capture intent" },
+  { id: "compose", label: "Compose primitives" },
+  { id: "verify", label: "Verify behavior" },
+];
+
+export function ReleaseSequence() {
+  return <ReorderableList aria-label="Release sequence" defaultItems={steps} />;
+}`,
   "inline-edit": `import { useState } from "react";
-import { InlineEdit } from "@index/ui";
+import { InlineEdit } from "teum";
 
 export function ProjectTitle() {
-  const [title, setTitle] = useState("Interaction Index");
+  const [title, setTitle] = useState("Teum");
 
   return <InlineEdit value={title} onSave={setTitle} label="Edit project title" />;
 }`,
-  "action-list": `import { ActionList } from "@index/ui";
+  "action-list": `import { ActionList } from "teum";
 
 const actions = [
   { id: "create", label: "Create component", shortcut: "C" },
@@ -381,7 +535,7 @@ const actions = [
 export function CommandActions() {
   return <ActionList items={actions} onAction={(item) => run(item.id)} />;
 }`,
-  "shared-detail": `import { SharedDetail } from "@index/ui";
+  "shared-detail": `import { SharedDetail } from "teum";
 
 const issues = [
   {
@@ -396,7 +550,7 @@ const issues = [
 export function IssueInspector() {
   return <SharedDetail items={issues} />;
 }`,
-  "undo-stack": `import { Button, UndoBar, useUndoStack } from "@index/ui";
+  "undo-stack": `import { Button, UndoBar, useUndoStack } from "teum";
 
 export function ArchiveAction() {
   const { pushUndo } = useUndoStack();

@@ -20,10 +20,33 @@ test("a flyout opened inside a modal remains above the modal surface", async ({ 
 
 test("toast feedback owns the highest non-navigation product layer", async ({ page }) => {
   await page.goto("/#toast");
-  await page.getByRole("button", { name: "Show toast" }).click();
+  const trigger = page.getByRole("button", { name: "Show toast" });
+  await trigger.click();
+  await trigger.click();
+  await trigger.click();
 
-  const toaster = page.locator(".ix-toaster");
+  const toaster = page.locator(".teum-toaster");
   await expect(toaster).toBeVisible();
-  await expect(page.locator(".ix-toast")).toBeVisible();
+  const visibleToast = page.locator(".teum-toast:visible");
+  await expect(visibleToast).toHaveCount(1);
   await expect(toaster).toHaveCSS("z-index", "130");
+
+  const [toastBox, viewport] = await Promise.all([
+    visibleToast.boundingBox(),
+    page.evaluate(() => ({ width: window.innerWidth, height: window.innerHeight })),
+  ]);
+  expect(toastBox).not.toBeNull();
+  expect(Math.abs((toastBox!.x + toastBox!.width / 2) - viewport.width / 2)).toBeLessThanOrEqual(1);
+});
+
+test("data-display polish keeps compact geometry optically balanced", async ({ page }) => {
+  await page.goto("/#table");
+  await expect(page.locator(".data-table-recipe .teum-table__body .teum-table__row").first()).toHaveCSS("height", "46px");
+  await expect(page.locator(".data-table-recipe .teum-badge--strong")).toHaveCount(0);
+
+  await page.goto("/#avatar");
+  const avatar = page.locator(".primary-avatar-group .teum-avatar[data-status]").first().or(page.locator(".live-specimen .teum-avatar[data-status]").first());
+  const status = avatar.locator(".teum-avatar__status");
+  await expect(status).toHaveCSS("width", "11px");
+  await expect(status).toHaveCSS("height", "11px");
 });

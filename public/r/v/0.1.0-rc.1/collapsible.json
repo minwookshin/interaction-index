@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "title": "Collapsible",
+  "description": "Disclosure primitive for optional supporting content and advanced settings.",
+  "dependencies": [
+    "@base-ui/react@^1.7.0",
+    "@phosphor-icons/react@^2.1.10"
+  ],
+  "registryDependencies": [
+    "@index/interaction-index-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/collapsible.tsx",
+      "content": "import \"../../styles/index-base.css\";\nimport \"../../styles/components/collapsible.css\";\nimport { Collapsible as CollapsiblePrimitive } from \"@base-ui/react/collapsible\";\nimport { CaretDown } from \"@phosphor-icons/react\";\nimport type { ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport const Collapsible = CollapsiblePrimitive.Root;\n\nexport type CollapsibleContentProps = CollapsiblePrimitive.Panel.Props & { children?: ReactNode };\n\nexport function CollapsibleTrigger({ className, children, ...props }: CollapsiblePrimitive.Trigger.Props) {\n  return (\n    <CollapsiblePrimitive.Trigger className={cn(\"ix-collapsible__trigger\", className)} {...props}>\n      <span>{children}</span>\n      <CaretDown aria-hidden=\"true\" />\n    </CollapsiblePrimitive.Trigger>\n  );\n}\n\nexport function CollapsibleContent({ className, children, ...props }: CollapsibleContentProps) {\n  return (\n    <CollapsiblePrimitive.Panel className={cn(\"ix-collapsible__panel\", className)} {...props}>\n      <div className=\"ix-collapsible__content\">{children}</div>\n    </CollapsiblePrimitive.Panel>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/collapsible.tsx"
+    },
+    {
+      "path": "registry/styles/components/collapsible.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer index.tokens, index.base, index.components;\n\n@layer index.components {\n.ix-collapsible__trigger { display: flex; width: 100%; min-height: 38px; align-items: center; justify-content: space-between; gap: 16px; padding: 0 11px; border: 0; border-radius: var(--ix-radius-md); background: var(--ix-bg-subtle); color: var(--ix-fg-default); font-size: var(--ix-type-ui); font-weight: 560; text-align: left; cursor: pointer; transition: background-color var(--ix-hover-duration), color var(--ix-hover-duration); }\n\n.ix-collapsible__trigger svg { width: 14px; height: 14px; flex: 0 0 auto; color: var(--ix-fg-subtle); transform: rotate(0); transition: transform 160ms var(--ix-ease-out); }\n\n.ix-collapsible__trigger[data-panel-open] svg { transform: rotate(180deg); }\n\n.ix-collapsible__trigger:focus-visible { outline: 2px solid var(--ix-focus-control); outline-offset: 2px; }\n\n.ix-collapsible__trigger[data-disabled] { color: var(--ix-fg-disabled); cursor: not-allowed; }\n\n.ix-collapsible__panel {\n  height: var(--collapsible-panel-height);\n  overflow: hidden;\n  transition: height var(--ix-enter-duration) var(--ix-ease-out);\n}\n\n.ix-collapsible__panel[data-starting-style],\n.ix-collapsible__panel[data-ending-style] { height: 0; }\n\n.ix-collapsible__panel[data-ending-style] { transition-duration: var(--ix-exit-duration); }\n\n.ix-collapsible__content { padding: 12px 11px 2px; color: var(--ix-fg-muted); font-size: var(--ix-type-ui); line-height: 1.55; }\n\n@media (hover: hover) and (pointer: fine) {\n.ix-collapsible__trigger:not([data-disabled]):hover { background: var(--ix-hover); color: var(--ix-fg-default); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n.ix-collapsible__panel,\n.ix-collapsible__trigger svg { transition-duration: 0.01ms; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/collapsible.css"
+    }
+  ],
+  "type": "registry:ui"
+}

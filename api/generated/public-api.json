@@ -1,0 +1,2007 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/build-api.mjs",
+  "entryPoint": "src/components/ui/index.ts",
+  "typescriptVersion": "6.0.3",
+  "componentCount": 45,
+  "exportCount": 210,
+  "indexExports": [
+    "ActionList",
+    "ActionListItem",
+    "ActionListProps",
+    "Alert",
+    "AlertDialog",
+    "AlertDialogClose",
+    "AlertDialogContent",
+    "AlertDialogDescription",
+    "AlertDialogFooter",
+    "AlertDialogHeader",
+    "AlertDialogTitle",
+    "AlertDialogTrigger",
+    "AlertProps",
+    "Avatar",
+    "AvatarGroup",
+    "AvatarProps",
+    "Badge",
+    "BadgeProps",
+    "BreadcrumbItem",
+    "Breadcrumbs",
+    "BreadcrumbsProps",
+    "Button",
+    "ButtonGroup",
+    "ButtonGroupProps",
+    "ButtonGroupSeparator",
+    "ButtonGroupSeparatorProps",
+    "ButtonProps",
+    "Calendar",
+    "CalendarProps",
+    "Checkbox",
+    "CheckboxProps",
+    "Collapsible",
+    "CollapsibleContent",
+    "CollapsibleContentProps",
+    "CollapsibleTrigger",
+    "Combobox",
+    "ComboboxOption",
+    "ComboboxProps",
+    "ContextMenu",
+    "ContextMenuCheckboxItem",
+    "ContextMenuContent",
+    "ContextMenuContentProps",
+    "ContextMenuItem",
+    "ContextMenuLabel",
+    "ContextMenuRadioGroup",
+    "ContextMenuRadioItem",
+    "ContextMenuSeparator",
+    "ContextMenuTrigger",
+    "ContextSwitcher",
+    "ContextSwitcherOption",
+    "ContextSwitcherProps",
+    "DatePicker",
+    "DatePickerProps",
+    "Dialog",
+    "DialogClose",
+    "DialogContent",
+    "DialogContentProps",
+    "DialogDescription",
+    "DialogFooter",
+    "DialogHeader",
+    "DialogTitle",
+    "DialogTrigger",
+    "EmptyState",
+    "EmptyStateProps",
+    "Field",
+    "FieldControl",
+    "FieldControlProps",
+    "FieldDescription",
+    "FieldDescriptionProps",
+    "FieldError",
+    "FieldErrorProps",
+    "FieldGroup",
+    "FieldLabel",
+    "FieldLabelProps",
+    "FieldProps",
+    "Fieldset",
+    "FieldsetLegend",
+    "FieldsetLegendProps",
+    "FieldsetProps",
+    "IconButton",
+    "IconButtonProps",
+    "InlineEdit",
+    "InlineEditProps",
+    "InputGroup",
+    "InputGroupAddon",
+    "InputGroupAddonProps",
+    "InputGroupButton",
+    "InputGroupButtonProps",
+    "InputGroupInput",
+    "InputGroupInputProps",
+    "InputGroupProps",
+    "Kbd",
+    "KbdGroup",
+    "KbdGroupProps",
+    "KbdProps",
+    "Menu",
+    "MenuCheckboxItem",
+    "MenuContent",
+    "MenuContentProps",
+    "MenuItem",
+    "MenuLabel",
+    "MenuRadioGroup",
+    "MenuRadioItem",
+    "MenuSeparator",
+    "MenuTrigger",
+    "NumberField",
+    "NumberFieldProps",
+    "Pagination",
+    "PaginationProps",
+    "Popover",
+    "PopoverContent",
+    "PopoverContentProps",
+    "PopoverDescription",
+    "PopoverTitle",
+    "PopoverTrigger",
+    "Progress",
+    "ProgressProps",
+    "RadioGroup",
+    "RadioGroupProps",
+    "RadioOption",
+    "ReorderableItem",
+    "ReorderableList",
+    "ReorderableListProps",
+    "SearchInput",
+    "SearchInputProps",
+    "SegmentedControl",
+    "SegmentedControlOption",
+    "SegmentedControlProps",
+    "Select",
+    "SelectOption",
+    "SelectProps",
+    "SharedDetail",
+    "SharedDetailItem",
+    "SharedDetailMotionPreset",
+    "SharedDetailMotionPresetId",
+    "SharedDetailProps",
+    "Sheet",
+    "SheetBody",
+    "SheetClose",
+    "SheetContent",
+    "SheetContentProps",
+    "SheetDescription",
+    "SheetFooter",
+    "SheetHeader",
+    "SheetSide",
+    "SheetTitle",
+    "SheetTrigger",
+    "Skeleton",
+    "SkeletonProps",
+    "SkeletonText",
+    "Spinner",
+    "SpinnerProps",
+    "Switch",
+    "SwitchProps",
+    "Table",
+    "TableBody",
+    "TableCaption",
+    "TableCell",
+    "TableFooter",
+    "TableHead",
+    "TableHeader",
+    "TableProps",
+    "TableRow",
+    "Tabs",
+    "TabsContent",
+    "TabsList",
+    "TabsTrigger",
+    "TextField",
+    "TextFieldProps",
+    "Textarea",
+    "TextareaProps",
+    "ToastApi",
+    "ToastId",
+    "ToastMessage",
+    "ToastOptions",
+    "Toaster",
+    "Toolbar",
+    "ToolbarButton",
+    "ToolbarButtonProps",
+    "ToolbarGroup",
+    "ToolbarGroupProps",
+    "ToolbarInput",
+    "ToolbarInputProps",
+    "ToolbarLink",
+    "ToolbarLinkProps",
+    "ToolbarProps",
+    "ToolbarSeparator",
+    "ToolbarSeparatorProps",
+    "Tooltip",
+    "TooltipContent",
+    "TooltipContentProps",
+    "TooltipProvider",
+    "TooltipTrigger",
+    "Tree",
+    "TreeNode",
+    "TreeProps",
+    "UndoAction",
+    "UndoBar",
+    "UndoContextValue",
+    "UndoStackProvider",
+    "actionListContract",
+    "buttonVariants",
+    "getSharedDetailMotionPreset",
+    "inlineEditContract",
+    "selectedSharedDetailMotionPreset",
+    "sharedDetailContract",
+    "sharedDetailMotionPresets",
+    "toast",
+    "undoStackContract",
+    "useUndoStack"
+  ],
+  "components": {
+    "button": {
+      "source": "src/components/ui/button.tsx",
+      "sourceHash": "10475179bc060db186497b24cd310dc70f50ededbfb21fb11a5b91f53cd2e49f",
+      "declaration": "api/generated/types/components/ui/button.d.ts",
+      "exports": [
+        {
+          "name": "Button",
+          "kind": "function",
+          "signature": "Button({ className, variant, size, loading, leadingIcon, trailingIcon, disabled, focusableWhenDisabled, children, type, ...props }: ButtonProps): import(\"react\").JSX.Element",
+          "typeHash": "4cf01e95b53b14ee2a6e9553d2bd75dadc0adf7baab9d874642149f5f49c881a",
+          "description": ""
+        },
+        {
+          "name": "ButtonProps",
+          "kind": "type",
+          "signature": "ButtonProps = ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & { loading?: boolean; leadingIcon?: ReactNode; trailingIcon?: ReactNode; }",
+          "typeHash": "ca8046eddd33b23cbe09ca2e7736956c35dc2e04344890a0b1b08e93b4b04810",
+          "description": ""
+        },
+        {
+          "name": "buttonVariants",
+          "kind": "const",
+          "signature": "buttonVariants: (props?: ({ variant?: \"primary\" | \"secondary\" | \"ghost\" | \"quiet\" | null | undefined; size?: \"small\" | \"medium\" | \"large\" | null | undefined; } & import(\"class-variance-authority/types\").ClassProp) | undefined) => string",
+          "typeHash": "474da8b2a0214076408890cd51b82d99ec9b27e2ae60eae2d9eb5349cab05bd1",
+          "description": ""
+        }
+      ]
+    },
+    "icon-button": {
+      "source": "src/components/ui/icon-button.tsx",
+      "sourceHash": "ffd0f4f62485e1a570e7ff6322a296b7ad9da848c27ecaebc7d093a953d3cc23",
+      "declaration": "api/generated/types/components/ui/icon-button.d.ts",
+      "exports": [
+        {
+          "name": "IconButton",
+          "kind": "function",
+          "signature": "IconButton({ children, className, tooltip, ...props }: IconButtonProps): import(\"react\").JSX.Element",
+          "typeHash": "8b2e33e384e0201fd2ae97a280b368be8a6aa10899bd395f6a3141b35742efe7",
+          "description": ""
+        },
+        {
+          "name": "IconButtonProps",
+          "kind": "type",
+          "signature": "IconButtonProps = Omit<ButtonProps, \"children\" | \"leadingIcon\" | \"trailingIcon\"> & { children?: ReactNode; \"aria-label\": string; tooltip?: string; }",
+          "typeHash": "f4ea32e820ee3f6659cd07a8c5132f5cc4fc6ba9156bcf9c434c2cf9d8dd85ea",
+          "description": ""
+        }
+      ]
+    },
+    "field": {
+      "source": "src/components/ui/field.tsx",
+      "sourceHash": "984b06383e1f74468a27746635f105a5d3539760251eebc901c9560e71003788",
+      "declaration": "api/generated/types/components/ui/field.d.ts",
+      "exports": [
+        {
+          "name": "Field",
+          "kind": "function",
+          "signature": "Field({ className, ...props }: FieldProps): import(\"react\").JSX.Element",
+          "typeHash": "008d701343627f1c7d4873dcddace025708e63f3c38161adf0ea9eb3b2c629ec",
+          "description": ""
+        },
+        {
+          "name": "FieldControl",
+          "kind": "function",
+          "signature": "FieldControl({ className, ...props }: FieldControlProps): import(\"react\").JSX.Element",
+          "typeHash": "64891bb800731f40c0107eb7837e27fbcd823b828b379912630b98a266c4c1d9",
+          "description": ""
+        },
+        {
+          "name": "FieldControlProps",
+          "kind": "type",
+          "signature": "FieldControlProps = FieldPrimitive.Control.Props",
+          "typeHash": "adfd0f1d78d4845d52f26e2a16638524ea8eacdab6febb8b81e4bd323a0ac448",
+          "description": ""
+        },
+        {
+          "name": "FieldDescription",
+          "kind": "function",
+          "signature": "FieldDescription({ className, ...props }: FieldDescriptionProps): import(\"react\").JSX.Element",
+          "typeHash": "ae14333e2a9e25c6e3fa3bfa42861ae0deac9b9d5efbc9ed9b0964aae5e2f133",
+          "description": ""
+        },
+        {
+          "name": "FieldDescriptionProps",
+          "kind": "type",
+          "signature": "FieldDescriptionProps = FieldPrimitive.Description.Props",
+          "typeHash": "6537e79136c0ed8757925010d9cd39becddbe5dcefdbee056d692390454b993f",
+          "description": ""
+        },
+        {
+          "name": "FieldError",
+          "kind": "function",
+          "signature": "FieldError({ className, match, ...props }: FieldErrorProps): import(\"react\").JSX.Element",
+          "typeHash": "55c501765432965abb2ac74947757bae5a239b9a04dcd5a6de9653a8cf1d6916",
+          "description": ""
+        },
+        {
+          "name": "FieldErrorProps",
+          "kind": "type",
+          "signature": "FieldErrorProps = FieldPrimitive.Error.Props",
+          "typeHash": "b44e0221029754dc43ce81d16b59bcb2c963daf3f73a82fabf1570feb22f5a7d",
+          "description": ""
+        },
+        {
+          "name": "FieldGroup",
+          "kind": "function",
+          "signature": "FieldGroup({ className, ...props }: ComponentPropsWithRef<\"div\">): import(\"react\").JSX.Element",
+          "typeHash": "68576e9f5767270c5de968765cc3e97e30c4d01a1cfe7f17bcc1eb79e81ed33c",
+          "description": ""
+        },
+        {
+          "name": "FieldLabel",
+          "kind": "function",
+          "signature": "FieldLabel({ className, ...props }: FieldLabelProps): import(\"react\").JSX.Element",
+          "typeHash": "3ef6e1c4aa0724c3504d901d76540f728e84a70484eb739fd03be26ffa6afa2e",
+          "description": ""
+        },
+        {
+          "name": "FieldLabelProps",
+          "kind": "type",
+          "signature": "FieldLabelProps = FieldPrimitive.Label.Props",
+          "typeHash": "c1f2c1c1ddf8c2a26cb5728cc242a20ae55e47391acd762088d7d73d0524784e",
+          "description": ""
+        },
+        {
+          "name": "FieldProps",
+          "kind": "type",
+          "signature": "FieldProps = FieldPrimitive.Root.Props",
+          "typeHash": "b08c97f77c3884c786958cb89b6915a45333d366bf6fbefc583d671f6e6b83c8",
+          "description": ""
+        },
+        {
+          "name": "Fieldset",
+          "kind": "function",
+          "signature": "Fieldset({ className, ...props }: FieldsetProps): import(\"react\").JSX.Element",
+          "typeHash": "3772db687cedfbeb4f7636e4236e0258299c8b08ab405e96e72a70a392c4c528",
+          "description": ""
+        },
+        {
+          "name": "FieldsetLegend",
+          "kind": "function",
+          "signature": "FieldsetLegend({ className, ...props }: FieldsetLegendProps): import(\"react\").JSX.Element",
+          "typeHash": "d3e0f89ceabb70b34c223dd1b1b78278fec29760cd6ba8ab3be895c345451df7",
+          "description": ""
+        },
+        {
+          "name": "FieldsetLegendProps",
+          "kind": "type",
+          "signature": "FieldsetLegendProps = FieldsetPrimitive.Legend.Props",
+          "typeHash": "6ffd502d6b9f20eca97866e20ba972b6f0f846442f545c42947970a99cd545f3",
+          "description": ""
+        },
+        {
+          "name": "FieldsetProps",
+          "kind": "type",
+          "signature": "FieldsetProps = FieldsetPrimitive.Root.Props",
+          "typeHash": "cf49e156b288eb7e05117b1360d6091277022bdbecce3b2dd18308195c846044",
+          "description": ""
+        }
+      ]
+    },
+    "input-group": {
+      "source": "src/components/ui/input-group.tsx",
+      "sourceHash": "b7895877bc4ee8a920e937ae9d2da5a1509ff64f243d469d3ad1afd0b2112495",
+      "declaration": "api/generated/types/components/ui/input-group.d.ts",
+      "exports": [
+        {
+          "name": "InputGroup",
+          "kind": "function",
+          "signature": "InputGroup({ className, invalid, disabled, ...props }: InputGroupProps): import(\"react\").JSX.Element",
+          "typeHash": "8e17817f1acc445aa72233d292dcd1325ca02b6070ad26fdbd56a02a4cdbb6f7",
+          "description": ""
+        },
+        {
+          "name": "InputGroupAddon",
+          "kind": "function",
+          "signature": "InputGroupAddon({ className, side, ...props }: InputGroupAddonProps): import(\"react\").JSX.Element",
+          "typeHash": "13a36384795ff9f7ab59ae0550b13496e97bb3bf8f5c8821459fcd3bf1448e43",
+          "description": ""
+        },
+        {
+          "name": "InputGroupAddonProps",
+          "kind": "type",
+          "signature": "InputGroupAddonProps = ComponentPropsWithRef<\"span\"> & { side?: \"start\" | \"end\"; }",
+          "typeHash": "ec4eafe00753bb14de60a64fe4e2a8201e7d113244ee50b2ff8779398a9f4cf7",
+          "description": ""
+        },
+        {
+          "name": "InputGroupButton",
+          "kind": "function",
+          "signature": "InputGroupButton({ className, variant, size, disabled, ...props }: InputGroupButtonProps): import(\"react\").JSX.Element",
+          "typeHash": "4e834bb86ffb1f07256047af2dab3edd2551b20b249a59096234b6eeff6051ce",
+          "description": ""
+        },
+        {
+          "name": "InputGroupButtonProps",
+          "kind": "type",
+          "signature": "InputGroupButtonProps = ButtonProps",
+          "typeHash": "f685f94ccc720399c43a34a96f7d3cef3605e853828bfa0c4e7bf16029a68979",
+          "description": ""
+        },
+        {
+          "name": "InputGroupInput",
+          "kind": "function",
+          "signature": "InputGroupInput({ className, disabled, \"aria-invalid\": ariaInvalid, ...props }: InputGroupInputProps): import(\"react\").JSX.Element",
+          "typeHash": "b019c96391165df7acd4d4bfdbdaeb82830c942300caeeaa47cf57277b2f5a16",
+          "description": ""
+        },
+        {
+          "name": "InputGroupInputProps",
+          "kind": "type",
+          "signature": "InputGroupInputProps = ComponentPropsWithRef<\"input\">",
+          "typeHash": "a732a11be79a0a0e93b43f5625992b12baf338c6ddbdcfddabda70a75d220452",
+          "description": ""
+        },
+        {
+          "name": "InputGroupProps",
+          "kind": "type",
+          "signature": "InputGroupProps = ComponentPropsWithRef<\"div\"> & { invalid?: boolean; disabled?: boolean; }",
+          "typeHash": "644367a6cadc440a8f4dea43ad77f64cd5adf67ab73d379d10502e64a184e071",
+          "description": ""
+        }
+      ]
+    },
+    "kbd": {
+      "source": "src/components/ui/kbd.tsx",
+      "sourceHash": "b3e0486044259bb7422d9d131dbde501a585e048c0e79f01212b07a360ec3da6",
+      "declaration": "api/generated/types/components/ui/kbd.d.ts",
+      "exports": [
+        {
+          "name": "Kbd",
+          "kind": "function",
+          "signature": "Kbd({ className, ...props }: KbdProps): import(\"react\").JSX.Element",
+          "typeHash": "c3295d54ed07be5b53de5a355cd59e18512627c756e78957b0a27a0fde7b430b",
+          "description": ""
+        },
+        {
+          "name": "KbdGroup",
+          "kind": "function",
+          "signature": "KbdGroup({ className, ...props }: KbdGroupProps): import(\"react\").JSX.Element",
+          "typeHash": "f7526eda0f0b6e12225e9018062edc799ea2a0071120f6b37c089b0d13adaaa2",
+          "description": ""
+        },
+        {
+          "name": "KbdGroupProps",
+          "kind": "type",
+          "signature": "KbdGroupProps = ComponentPropsWithRef<\"span\">",
+          "typeHash": "bc160e5d99a3cf20484cb7f49edb55d1b74a995a2473caf106d09573e7c7c442",
+          "description": ""
+        },
+        {
+          "name": "KbdProps",
+          "kind": "type",
+          "signature": "KbdProps = ComponentPropsWithRef<\"kbd\">",
+          "typeHash": "ff14e93fc1452ed9d0ed965bc0a8cb8df103230fd0fd00a6e317d2f903e7c0f7",
+          "description": ""
+        }
+      ]
+    },
+    "button-group": {
+      "source": "src/components/ui/button-group.tsx",
+      "sourceHash": "bf27f324861a9122da4291acc078c7e5e8a70cd77c1b9245b723abe8a0a9617b",
+      "declaration": "api/generated/types/components/ui/button-group.d.ts",
+      "exports": [
+        {
+          "name": "ButtonGroup",
+          "kind": "function",
+          "signature": "ButtonGroup({ className, orientation, attached, role, ...props }: ButtonGroupProps): import(\"react\").JSX.Element",
+          "typeHash": "d67be0e611558b0d29f006e3988ae3916daf710dc6c8bf32c12834a38c048b5d",
+          "description": ""
+        },
+        {
+          "name": "ButtonGroupProps",
+          "kind": "type",
+          "signature": "ButtonGroupProps = ComponentPropsWithRef<\"div\"> & { orientation?: \"horizontal\" | \"vertical\"; attached?: boolean; }",
+          "typeHash": "8dd63220fb9bd8bc22ab9d54d7f5c05734851ee3e97d81e35c0caa2c0b54b2b6",
+          "description": ""
+        },
+        {
+          "name": "ButtonGroupSeparator",
+          "kind": "function",
+          "signature": "ButtonGroupSeparator({ className, orientation, ...props }: ButtonGroupSeparatorProps): import(\"react\").JSX.Element",
+          "typeHash": "05072fe9d4c633d088d1ce89c478b6b53dcb03a1e736604de2ab26e07483ae23",
+          "description": ""
+        },
+        {
+          "name": "ButtonGroupSeparatorProps",
+          "kind": "type",
+          "signature": "ButtonGroupSeparatorProps = ComponentPropsWithRef<\"span\"> & { orientation?: \"horizontal\" | \"vertical\"; }",
+          "typeHash": "04080041ea593a5134b547ba62b042d3e8788916213cf83ca2496b3480d025a7",
+          "description": ""
+        }
+      ]
+    },
+    "toolbar": {
+      "source": "src/components/ui/toolbar.tsx",
+      "sourceHash": "2fc7c7227cac12c1431c443658c69e6b99e1b14e4f89b259711b9240b7c0d34d",
+      "declaration": "api/generated/types/components/ui/toolbar.d.ts",
+      "exports": [
+        {
+          "name": "Toolbar",
+          "kind": "function",
+          "signature": "Toolbar({ className, ...props }: ToolbarProps): import(\"react\").JSX.Element",
+          "typeHash": "fe8844ab8f4138d769d5c55f6168511278e7f747feb46fcb5b88537aa8cdfc2e",
+          "description": ""
+        },
+        {
+          "name": "ToolbarButton",
+          "kind": "function",
+          "signature": "ToolbarButton({ className, ...props }: ToolbarButtonProps): import(\"react\").JSX.Element",
+          "typeHash": "6c220cb947201d676bcdf4ead23baa91ede9b5cf5e51e8aa5828d42c2d23bcb1",
+          "description": ""
+        },
+        {
+          "name": "ToolbarButtonProps",
+          "kind": "type",
+          "signature": "ToolbarButtonProps = ToolbarPrimitive.Button.Props",
+          "typeHash": "f204591711b74c3539baa71b6d9ceeb490494e05d6b95ff2e2f99805dbd6b953",
+          "description": ""
+        },
+        {
+          "name": "ToolbarGroup",
+          "kind": "function",
+          "signature": "ToolbarGroup({ className, ...props }: ToolbarGroupProps): import(\"react\").JSX.Element",
+          "typeHash": "7116f83081ba1e3b85dae2fbe37b985a8af256c9d603046ad8345010aea82a8d",
+          "description": ""
+        },
+        {
+          "name": "ToolbarGroupProps",
+          "kind": "type",
+          "signature": "ToolbarGroupProps = ToolbarPrimitive.Group.Props",
+          "typeHash": "f5d5821bba7d0bd0b0195ad1e9bd336660778d0c7a3f53369f0be8bd67b96056",
+          "description": ""
+        },
+        {
+          "name": "ToolbarInput",
+          "kind": "function",
+          "signature": "ToolbarInput({ className, ...props }: ToolbarInputProps): import(\"react\").JSX.Element",
+          "typeHash": "1de42930048383f341333ae70cebfce68fd79c13ad83fb701a59902e83159e97",
+          "description": ""
+        },
+        {
+          "name": "ToolbarInputProps",
+          "kind": "type",
+          "signature": "ToolbarInputProps = ToolbarPrimitive.Input.Props",
+          "typeHash": "b51b3084ec7f9e0fb0ceff8aa624b8acc09c40246d84928dc9ae281d29646371",
+          "description": ""
+        },
+        {
+          "name": "ToolbarLink",
+          "kind": "function",
+          "signature": "ToolbarLink({ className, ...props }: ToolbarLinkProps): import(\"react\").JSX.Element",
+          "typeHash": "d865b8b680998338b3e542f26ca48561d6298749983712b4d6000e965ab95565",
+          "description": ""
+        },
+        {
+          "name": "ToolbarLinkProps",
+          "kind": "type",
+          "signature": "ToolbarLinkProps = ToolbarPrimitive.Link.Props",
+          "typeHash": "4001bc121c9b2a1f6ab0eb052689c85f07d5676912ca3e065fc15c77711bb039",
+          "description": ""
+        },
+        {
+          "name": "ToolbarProps",
+          "kind": "type",
+          "signature": "ToolbarProps = ToolbarPrimitive.Root.Props",
+          "typeHash": "7b2347965612d84973c5c43346f68a560ee116ec05d6f1f73547218687487d4a",
+          "description": ""
+        },
+        {
+          "name": "ToolbarSeparator",
+          "kind": "function",
+          "signature": "ToolbarSeparator({ className, ...props }: ToolbarSeparatorProps): import(\"react\").JSX.Element",
+          "typeHash": "51d19013d09e93bc3c3b673bc0192fbc0b80c9b31cd31826a124cfb36e1de60e",
+          "description": ""
+        },
+        {
+          "name": "ToolbarSeparatorProps",
+          "kind": "type",
+          "signature": "ToolbarSeparatorProps = ToolbarPrimitive.Separator.Props",
+          "typeHash": "b2be39aa804d3223b433238447011dee656ba2654c8102eef6172cc3a96cc9f2",
+          "description": ""
+        }
+      ]
+    },
+    "text-field": {
+      "source": "src/components/ui/text-field.tsx",
+      "sourceHash": "a067ec8e837cb3131231972920cbf9bb7d2901d921bcba0c20c9fa645dafd70a",
+      "declaration": "api/generated/types/components/ui/text-field.d.ts",
+      "exports": [
+        {
+          "name": "TextField",
+          "kind": "function",
+          "signature": "TextField({ id: providedId, label, description, error, leading, trailing, className, fieldClassName, ref, ...props }: TextFieldProps): import(\"react\").JSX.Element",
+          "typeHash": "b378d9cc24159ba8ff5d455904dcc97dd379d896aac20d6396904b724eb9f758",
+          "description": ""
+        },
+        {
+          "name": "TextFieldProps",
+          "kind": "type",
+          "signature": "TextFieldProps = Omit<ComponentPropsWithRef<\"input\">, \"size\"> & { label?: string; description?: string; error?: string; leading?: ReactNode; trailing?: ReactNode; fieldClassName?: string; }",
+          "typeHash": "0280e9503bfe52a61af4eca6b9df553ebb23fe666951356104ef7c4506b32587",
+          "description": ""
+        }
+      ]
+    },
+    "number-field": {
+      "source": "src/components/ui/number-field.tsx",
+      "sourceHash": "1eebfe4427d19e7efb5304fb9cb7f2cbc2f0ea92131dcbcb4e63891c82d76e67",
+      "declaration": "api/generated/types/components/ui/number-field.d.ts",
+      "exports": [
+        {
+          "name": "NumberField",
+          "kind": "function",
+          "signature": "NumberField({ id: providedId, label, description, error, suffix, className, inputClassName, inputProps, ...props }: NumberFieldProps): import(\"react\").JSX.Element",
+          "typeHash": "edea9a59ea7260a45d087ce57765b7a8b30852772847e0ae465a4e091a850046",
+          "description": ""
+        },
+        {
+          "name": "NumberFieldProps",
+          "kind": "type",
+          "signature": "NumberFieldProps = Omit<NumberFieldPrimitive.Root.Props, \"children\" | \"className\" | \"id\"> & { id?: string; label?: string; description?: string; error?: string; suffix?: ReactNode; className?: string; inputClassName?: string; inputProps?: …",
+          "typeHash": "637c7da654adb5afb8de7ff2c72e1a6cd432d96c262f213aa60e0ab4eb2a2056",
+          "description": ""
+        }
+      ]
+    },
+    "segmented-control": {
+      "source": "src/components/ui/segmented-control.tsx",
+      "sourceHash": "7f06df594f83ea8f689594757459b5a8e61e3a6dc01ceb4c3e9fc4b6136ee8d4",
+      "declaration": "api/generated/types/components/ui/segmented-control.d.ts",
+      "exports": [
+        {
+          "name": "SegmentedControl",
+          "kind": "function",
+          "signature": "SegmentedControl({ options, label, value, defaultValue, onValueChange, allowEmpty, disabled, orientation, size, className, }: SegmentedControlProps): import(\"react\").JSX.Element",
+          "typeHash": "de4b9dc356813b30c075282078086960d60d67b591da7052be498f0403f0eb54",
+          "description": ""
+        },
+        {
+          "name": "SegmentedControlOption",
+          "kind": "type",
+          "signature": "SegmentedControlOption = { value: string; label: ReactNode; accessibleLabel?: string; icon?: ReactNode; disabled?: boolean; }",
+          "typeHash": "394edc8219d0c83239e3fe9e34260a3013c8f89196e21d2b3f9f2ce45f157693",
+          "description": ""
+        },
+        {
+          "name": "SegmentedControlProps",
+          "kind": "type",
+          "signature": "SegmentedControlProps = { options: readonly SegmentedControlOption[]; label: string; value?: string; defaultValue?: string; onValueChange?: (value: string | null) => void; allowEmpty?: boolean; disabled?: boolean; orientation?: \"horizontal…",
+          "typeHash": "741bb2c15bedee2cef14d9a5c3e20bff55fea285ce85d1415c54d3d8a61e954a",
+          "description": ""
+        }
+      ]
+    },
+    "date-picker": {
+      "source": "src/components/ui/date-picker.tsx",
+      "sourceHash": "8dc2b6821c1a35e95542caf83b9abc42f409a00d42f704ecc3cb925235fee8c8",
+      "declaration": "api/generated/types/components/ui/date-picker.d.ts",
+      "exports": [
+        {
+          "name": "Calendar",
+          "kind": "function",
+          "signature": "Calendar<T extends DateValue>({ className, ...props }: CalendarProps<T>): import(\"react\").JSX.Element",
+          "typeHash": "a84d183621ebebc4d1633aef89fa8e895f05ee4771bbd1a7b3bca3de60485d77",
+          "description": ""
+        },
+        {
+          "name": "CalendarProps",
+          "kind": "type",
+          "signature": "CalendarProps = Omit<AriaCalendarProps<T>, \"children\" | \"className\"> & { className?: string; }",
+          "typeHash": "6b1c6fed77dfdb544e2be17c9733329d56cd256c28beff0e207cfbe4adab001e",
+          "description": ""
+        },
+        {
+          "name": "DatePicker",
+          "kind": "function",
+          "signature": "DatePicker<T extends DateValue>({ label, \"aria-label\": ariaLabel, description, errorMessage, className, ...props }: DatePickerProps<T>): import(\"react\").JSX.Element",
+          "typeHash": "2b3f51262dcb419091ab911054ddc1b05c5ec4c4fb06c899b9d64c4eb3734d0a",
+          "description": ""
+        },
+        {
+          "name": "DatePickerProps",
+          "kind": "type",
+          "signature": "DatePickerProps = Omit<AriaDatePickerProps<T>, \"children\" | \"className\"> & { label?: ReactNode; \"aria-label\"?: string; description?: ReactNode; errorMessage?: ReactNode; className?: string; }",
+          "typeHash": "73f5b2e81aaa895f1fa24146194d1b2682357c1ebe6e95e1b2c3d7c58f3730cb",
+          "description": ""
+        }
+      ]
+    },
+    "checkbox": {
+      "source": "src/components/ui/checkbox.tsx",
+      "sourceHash": "d6e5d90166fa986c46b62d44729ceb580a20d8da4f7f61ad99c39ae8b904b163",
+      "declaration": "api/generated/types/components/ui/checkbox.d.ts",
+      "exports": [
+        {
+          "name": "Checkbox",
+          "kind": "function",
+          "signature": "Checkbox({ className, label, description, id: providedId, \"aria-describedby\": ariaDescribedBy, \"aria-labelledby\": ariaLabelledBy, ...props }: CheckboxProps): import(\"react\").JSX.Element",
+          "typeHash": "919c744e918dd50807ee890ca0738a5918f53a485690039513cff709c0a9d064",
+          "description": ""
+        },
+        {
+          "name": "CheckboxProps",
+          "kind": "type",
+          "signature": "CheckboxProps = CheckboxPrimitive.Root.Props & { label?: string; description?: string; }",
+          "typeHash": "be8fbada6c8ea8ae3c7828cf6bbeb7fca510779496d7c89fe55bcdea9a988ee8",
+          "description": ""
+        }
+      ]
+    },
+    "switch": {
+      "source": "src/components/ui/switch.tsx",
+      "sourceHash": "1662d901a81773e6fb4517024b914c689cc107a3bb678c87933b71f76714b4ed",
+      "declaration": "api/generated/types/components/ui/switch.d.ts",
+      "exports": [
+        {
+          "name": "Switch",
+          "kind": "function",
+          "signature": "Switch({ className, label, description, id: providedId, \"aria-describedby\": ariaDescribedBy, \"aria-labelledby\": ariaLabelledBy, ...props }: SwitchProps): import(\"react\").JSX.Element",
+          "typeHash": "2664785d97ffd8faa94ba33d995d2f20d45bdf5241cbf3fa71f932c6a313777c",
+          "description": ""
+        },
+        {
+          "name": "SwitchProps",
+          "kind": "type",
+          "signature": "SwitchProps = SwitchPrimitive.Root.Props & { label?: string; description?: string; }",
+          "typeHash": "684195be23a0af8fb266c231f35f99deef42fce206fa6a024383fb214c1acb59",
+          "description": ""
+        }
+      ]
+    },
+    "tooltip": {
+      "source": "src/components/ui/tooltip.tsx",
+      "sourceHash": "72ca009e516f98bacfaf9be67335e4246bef7c3aa47467335ddde199a27954c7",
+      "declaration": "api/generated/types/components/ui/tooltip.d.ts",
+      "exports": [
+        {
+          "name": "Tooltip",
+          "kind": "function",
+          "signature": "Tooltip(props: TooltipPrimitive.Root.Props): import(\"react\").JSX.Element",
+          "typeHash": "11b9ab1baa621f7017af51b40199e90f30a7432a4e678a5941c8ab01345688b4",
+          "description": ""
+        },
+        {
+          "name": "TooltipContent",
+          "kind": "function",
+          "signature": "TooltipContent({ className, side, sideOffset, align, alignOffset, children, ...props }: TooltipContentProps): import(\"react\").JSX.Element",
+          "typeHash": "1d45b53deb6118a3803b371ada74dcd942b3f31bea7e6f927d2ab9792bbf79c1",
+          "description": ""
+        },
+        {
+          "name": "TooltipContentProps",
+          "kind": "type",
+          "signature": "TooltipContentProps = TooltipPrimitive.Popup.Props & Pick<TooltipPrimitive.Positioner.Props, \"align\" | \"alignOffset\" | \"side\" | \"sideOffset\">",
+          "typeHash": "6e0acb6b1530d3458758a80b3f47ec89586ae9606e17732fb2e1173e812a1629",
+          "description": ""
+        },
+        {
+          "name": "TooltipProvider",
+          "kind": "function",
+          "signature": "TooltipProvider({ delay, ...props }: TooltipPrimitive.Provider.Props): import(\"react\").JSX.Element",
+          "typeHash": "873f10d6a256082c8667671e4cd147f504d05045f14d41d07aeb5d3473548c53",
+          "description": ""
+        },
+        {
+          "name": "TooltipTrigger",
+          "kind": "function",
+          "signature": "TooltipTrigger(props: TooltipPrimitive.Trigger.Props): import(\"react\").JSX.Element",
+          "typeHash": "fdbee0f6ec22cd16604d47559891c9972ed4e7bb9fcdb8627ac52ddb0b7de3c3",
+          "description": ""
+        }
+      ]
+    },
+    "popover": {
+      "source": "src/components/ui/popover.tsx",
+      "sourceHash": "20d2d0ee61f3b8be232992c3664e7d04e698fd68b19df4cb2d2d32206ac37f9f",
+      "declaration": "api/generated/types/components/ui/popover.d.ts",
+      "exports": [
+        {
+          "name": "Popover",
+          "kind": "function",
+          "signature": "Popover(props: PopoverPrimitive.Root.Props): import(\"react\").JSX.Element",
+          "typeHash": "5d03cca4375f7d01cd31c027847427f3c41a0972a9193215d546029a613cf5a4",
+          "description": ""
+        },
+        {
+          "name": "PopoverContent",
+          "kind": "function",
+          "signature": "PopoverContent({ className, side, sideOffset, align, alignOffset, ...props }: PopoverContentProps): import(\"react\").JSX.Element",
+          "typeHash": "e4d2f20b34189b99e7f2f046532c85b0d2dea89d03b698b73465919b1b790b8d",
+          "description": ""
+        },
+        {
+          "name": "PopoverContentProps",
+          "kind": "type",
+          "signature": "PopoverContentProps = PopoverPrimitive.Popup.Props & Pick<PopoverPrimitive.Positioner.Props, \"align\" | \"alignOffset\" | \"side\" | \"sideOffset\">",
+          "typeHash": "fb079b52b0d15abf3cdb787f33f3ceadb5c827b4a1ddbaeed06257623750b122",
+          "description": ""
+        },
+        {
+          "name": "PopoverDescription",
+          "kind": "const",
+          "signature": "PopoverDescription: import(\"react\").ForwardRefExoticComponent<Omit<import(\"@base-ui/react\").PopoverDescriptionProps, \"ref\"> & import(\"react\").RefAttributes<HTMLParagraphElement>>",
+          "typeHash": "921239c256f5869102376d015b1e09303a7af01c8a060640c461682df5047680",
+          "description": ""
+        },
+        {
+          "name": "PopoverTitle",
+          "kind": "const",
+          "signature": "PopoverTitle: import(\"react\").ForwardRefExoticComponent<Omit<import(\"@base-ui/react\").PopoverTitleProps, \"ref\"> & import(\"react\").RefAttributes<HTMLHeadingElement>>",
+          "typeHash": "0b1469c983a84acd92d85efb4a8019b753724602509fb797337f18502e919833",
+          "description": ""
+        },
+        {
+          "name": "PopoverTrigger",
+          "kind": "function",
+          "signature": "PopoverTrigger(props: PopoverPrimitive.Trigger.Props): import(\"react\").JSX.Element",
+          "typeHash": "7a6642edc3a02ce784aa9351e65f3d0529fe9db9103ab38935b3c5d1cc00c3a5",
+          "description": ""
+        }
+      ]
+    },
+    "menu": {
+      "source": "src/components/ui/menu.tsx",
+      "sourceHash": "5942ac27f6331af122fd4478098d67a8dd372029b7c10a335e21865135aa8a23",
+      "declaration": "api/generated/types/components/ui/menu.d.ts",
+      "exports": [
+        {
+          "name": "Menu",
+          "kind": "const",
+          "signature": "Menu: <Payload>(props: MenuPrimitive.Root.Props<Payload>) => import(\"react\").JSX.Element",
+          "typeHash": "f03feb7a34966354c7bc08e67b23723fc80c4027fef2f4a51174a6ab83f60e1c",
+          "description": ""
+        },
+        {
+          "name": "MenuCheckboxItem",
+          "kind": "function",
+          "signature": "MenuCheckboxItem({ className, children, ...props }: MenuPrimitive.CheckboxItem.Props): import(\"react\").JSX.Element",
+          "typeHash": "d3b62ab9327bab44daa92c3c91b3d2fcd25f4d405fbb8aae8c2de2efe3ebaefd",
+          "description": ""
+        },
+        {
+          "name": "MenuContent",
+          "kind": "function",
+          "signature": "MenuContent({ className, align, alignOffset, collisionAvoidance, side, sideOffset, ...props }: MenuContentProps): import(\"react\").JSX.Element",
+          "typeHash": "88f122b83093b00ed494bd7be7407941c333eaf6fcf5ebd51670a9f5e4680734",
+          "description": ""
+        },
+        {
+          "name": "MenuContentProps",
+          "kind": "type",
+          "signature": "MenuContentProps = MenuPrimitive.Popup.Props & Pick<MenuPrimitive.Positioner.Props, \"align\" | \"alignOffset\" | \"collisionAvoidance\" | \"side\" | \"sideOffset\">",
+          "typeHash": "0415ea32565f984b57db7045aca51833d8a598442a88ddbd734fae29936a06ce",
+          "description": ""
+        },
+        {
+          "name": "MenuItem",
+          "kind": "function",
+          "signature": "MenuItem({ className, ...props }: MenuPrimitive.Item.Props): import(\"react\").JSX.Element",
+          "typeHash": "8e5620221b22851e07e2aae55314a4017a21fca92462bd215c80a0dafa2688d1",
+          "description": ""
+        },
+        {
+          "name": "MenuLabel",
+          "kind": "function",
+          "signature": "MenuLabel({ className, ...props }: ComponentPropsWithRef<\"div\">): import(\"react\").JSX.Element",
+          "typeHash": "122afd8535842f62ba8e25e442bc3db41cc7a261283eb8876c7f78b074c1e127",
+          "description": ""
+        },
+        {
+          "name": "MenuRadioGroup",
+          "kind": "const",
+          "signature": "MenuRadioGroup: import(\"react\").NamedExoticComponent<Omit<import(\"@base-ui/react\").ContextMenuRadioGroupProps, \"ref\"> & import(\"react\").RefAttributes<HTMLDivElement>>",
+          "typeHash": "33f8acee4b765b86adedb2a550a2d8fe3614ca255892a661fd4674a7a70e077f",
+          "description": ""
+        },
+        {
+          "name": "MenuRadioItem",
+          "kind": "function",
+          "signature": "MenuRadioItem({ className, children, closeOnClick, ...props }: MenuPrimitive.RadioItem.Props): import(\"react\").JSX.Element",
+          "typeHash": "7ade2a29690a8d2189a32bdd7963421118feb5f84dc9e0fcfedc4528f65c6aa0",
+          "description": ""
+        },
+        {
+          "name": "MenuSeparator",
+          "kind": "function",
+          "signature": "MenuSeparator(props: MenuPrimitive.Separator.Props): import(\"react\").JSX.Element",
+          "typeHash": "7fb1bbde5abd7f745254785831870fa31765022228f782c78803a8028d53e120",
+          "description": ""
+        },
+        {
+          "name": "MenuTrigger",
+          "kind": "function",
+          "signature": "MenuTrigger(props: MenuPrimitive.Trigger.Props): import(\"react\").JSX.Element",
+          "typeHash": "c198a664b97c0f18e9580d4e19a46294a23ee798354c9a2e40e8e75661cd2bbd",
+          "description": ""
+        }
+      ]
+    },
+    "dialog": {
+      "source": "src/components/ui/dialog.tsx",
+      "sourceHash": "0f2a1a170b29ef48ec0ac4e5de90671948ea26ddf3f2fb8429c41b9781be4324",
+      "declaration": "api/generated/types/components/ui/dialog.d.ts",
+      "exports": [
+        {
+          "name": "Dialog",
+          "kind": "const",
+          "signature": "Dialog: <Payload>(props: DialogPrimitive.Root.Props<Payload>) => import(\"react\").JSX.Element",
+          "typeHash": "e124c87a2a23cd75bdc9abb49285fdc34db668349e697980071124d542f8a591",
+          "description": ""
+        },
+        {
+          "name": "DialogClose",
+          "kind": "const",
+          "signature": "DialogClose: import(\"react\").ForwardRefExoticComponent<Omit<import(\"@base-ui/react\").AlertDialogCloseProps, \"ref\"> & import(\"react\").RefAttributes<HTMLButtonElement>>",
+          "typeHash": "1aa6c43ddb62328c4811a7564767b2c7341b5ca4f8e6fc70b06ca92df499f41b",
+          "description": ""
+        },
+        {
+          "name": "DialogContent",
+          "kind": "function",
+          "signature": "DialogContent({ className, children, showClose, initialFocus, ref, ...props }: DialogContentProps): import(\"react\").JSX.Element",
+          "typeHash": "1f2bc1fe2e7bfcd594b75e76dd850612cec202d08e0ce0fe276e04e3fb0742dd",
+          "description": ""
+        },
+        {
+          "name": "DialogContentProps",
+          "kind": "type",
+          "signature": "DialogContentProps = DialogPrimitive.Popup.Props & { showClose?: boolean }",
+          "typeHash": "7c94be135e9622a90ff85478f4dcf6fbd62d96400805f979ab55d67359f3c970",
+          "description": ""
+        },
+        {
+          "name": "DialogDescription",
+          "kind": "const",
+          "signature": "DialogDescription: import(\"react\").ForwardRefExoticComponent<Omit<import(\"@base-ui/react\").AlertDialogDescriptionProps, \"ref\"> & import(\"react\").RefAttributes<HTMLParagraphElement>>",
+          "typeHash": "2a8c7ffbb4fa86956cdc9c32aea270703c7e1ec9e417dc69a8ed2e5b4caf9d29",
+          "description": ""
+        },
+        {
+          "name": "DialogFooter",
+          "kind": "function",
+          "signature": "DialogFooter({ className, ...props }: ComponentPropsWithRef<\"div\">): import(\"react\").JSX.Element",
+          "typeHash": "56bd9dce82528d35b4e65214575b7b0a5d62bc3878bc072b1e29965e3835f881",
+          "description": ""
+        },
+        {
+          "name": "DialogHeader",
+          "kind": "function",
+          "signature": "DialogHeader({ className, ...props }: ComponentPropsWithRef<\"div\">): import(\"react\").JSX.Element",
+          "typeHash": "080844c4b4fdf9be5c78890be285387e8290b4a6b9741f8d322744a4e034596c",
+          "description": ""
+        },
+        {
+          "name": "DialogTitle",
+          "kind": "const",
+          "signature": "DialogTitle: import(\"react\").ForwardRefExoticComponent<Omit<import(\"@base-ui/react\").AlertDialogTitleProps, \"ref\"> & import(\"react\").RefAttributes<HTMLHeadingElement>>",
+          "typeHash": "4fee797d7bdd40f14a8866554e88982f70e500a9eb99df74afc731969a6e05b5",
+          "description": ""
+        },
+        {
+          "name": "DialogTrigger",
+          "kind": "const",
+          "signature": "DialogTrigger: DialogPrimitive.Trigger",
+          "typeHash": "a7d306a0233c7a5f02923dd1e215c1fd7b56c46ace19bde3c92f55cc14c4e24e",
+          "description": ""
+        }
+      ]
+    },
+    "context-menu": {
+      "source": "src/components/ui/context-menu.tsx",
+      "sourceHash": "fe95d3e4083c2125dbc536977baef6a3a7fbca695768b78c38016efd1f9364af",
+      "declaration": "api/generated/types/components/ui/context-menu.d.ts",
+      "exports": [
+        {
+          "name": "ContextMenu",
+          "kind": "const",
+          "signature": "ContextMenu: (props: ContextMenuPrimitive.Root.Props) => import(\"react\").JSX.Element",
+          "typeHash": "df4f561be0bd7469d18d0e222d71a5429b7af8c75e7b9f5914348cd56cedc10e",
+          "description": ""
+        },
+        {
+          "name": "ContextMenuCheckboxItem",
+          "kind": "function",
+          "signature": "ContextMenuCheckboxItem({ className, children, ...props }: ContextMenuPrimitive.CheckboxItem.Props): import(\"react\").JSX.Element",
+          "typeHash": "80bcb4dcf71dcbb9a4da27f6deb582deeb987ab3d1d2d3aae137166d576ec1f0",
+          "description": ""
+        },
+        {
+          "name": "ContextMenuContent",
+          "kind": "function",
+          "signature": "ContextMenuContent({ className, align, alignOffset, collisionAvoidance, side, sideOffset, ...props }: ContextMenuContentProps): import(\"react\").JSX.Element",
+          "typeHash": "8c0c4186222b2b9f5a55c2ea5854ec9aca6e254970bee9cd7c996f969fa5c802",
+          "description": ""
+        },
+        {
+          "name": "ContextMenuContentProps",
+          "kind": "type",
+          "signature": "ContextMenuContentProps = ContextMenuPrimitive.Popup.Props & Pick<ContextMenuPrimitive.Positioner.Props, \"align\" | \"alignOffset\" | \"collisionAvoidance\" | \"side\" | \"sideOffset\">",
+          "typeHash": "b0af9eddaa2fffa2320ade3e0c09514f9d787e183a87220b21a00e4b73e5a5f4",
+          "description": ""
+        },
+        {
+          "name": "ContextMenuItem",
+          "kind": "function",
+          "signature": "ContextMenuItem({ className, ...props }: ContextMenuPrimitive.Item.Props): import(\"react\").JSX.Element",
+          "typeHash": "179b4b0aace499c599a591ae3620b1c702a7fc0da4b8e21b7cd889782bcce542",
+          "description": ""
+        },
+        {
+          "name": "ContextMenuLabel",
+          "kind": "function",
+          "signature": "ContextMenuLabel({ className, ...props }: ComponentPropsWithRef<\"div\">): import(\"react\").JSX.Element",
+          "typeHash": "efd30d0ce8bfad5ac1715af9fbab599a359e0f8095f77b70f792c7213885994b",
+          "description": ""
+        },
+        {
+          "name": "ContextMenuRadioGroup",
+          "kind": "const",
+          "signature": "ContextMenuRadioGroup: import(\"react\").NamedExoticComponent<Omit<import(\"@base-ui/react\").ContextMenuRadioGroupProps, \"ref\"> & import(\"react\").RefAttributes<HTMLDivElement>>",
+          "typeHash": "0512afa5984ab619e6e27f84e04fa5d1052a176aa897bf890bd8600e15c7612a",
+          "description": ""
+        },
+        {
+          "name": "ContextMenuRadioItem",
+          "kind": "function",
+          "signature": "ContextMenuRadioItem({ className, children, closeOnClick, ...props }: ContextMenuPrimitive.RadioItem.Props): import(\"react\").JSX.Element",
+          "typeHash": "f3f145950f01195ef48b0018f9775f7a67828c3f26004961439e8ff46aebe749",
+          "description": ""
+        },
+        {
+          "name": "ContextMenuSeparator",
+          "kind": "function",
+          "signature": "ContextMenuSeparator(props: ContextMenuPrimitive.Separator.Props): import(\"react\").JSX.Element",
+          "typeHash": "6ff5f92d5e1428daf59c6c8c1ee485ca11c554a3b5f1f7f2694ac19499c7fd42",
+          "description": ""
+        },
+        {
+          "name": "ContextMenuTrigger",
+          "kind": "function",
+          "signature": "ContextMenuTrigger({ className, ...props }: ContextMenuPrimitive.Trigger.Props): import(\"react\").JSX.Element",
+          "typeHash": "8063fb6cd5c3e2033d52b582cccd8fba54ceefc662aaaca6ed6dc2a7f4494d0a",
+          "description": ""
+        }
+      ]
+    },
+    "sheet": {
+      "source": "src/components/ui/sheet.tsx",
+      "sourceHash": "c23899fda032764103ec99ccc6c623f695e4f1118ff359b5b9a51c6c8439bdcc",
+      "declaration": "api/generated/types/components/ui/sheet.d.ts",
+      "exports": [
+        {
+          "name": "Sheet",
+          "kind": "const",
+          "signature": "Sheet: <Payload>(props: DialogPrimitive.Root.Props<Payload>) => import(\"react\").JSX.Element",
+          "typeHash": "3e9a09ad9d0b0e8892375fede84c11123069d5f3ff84dd95a947a36271d6ff07",
+          "description": ""
+        },
+        {
+          "name": "SheetBody",
+          "kind": "function",
+          "signature": "SheetBody({ className, ...props }: ComponentPropsWithRef<\"div\">): import(\"react\").JSX.Element",
+          "typeHash": "9b7912d498709f23a1e735c577515baf81e73799f8e4b5b4d42c873bb90c0103",
+          "description": ""
+        },
+        {
+          "name": "SheetClose",
+          "kind": "const",
+          "signature": "SheetClose: import(\"react\").ForwardRefExoticComponent<Omit<import(\"@base-ui/react\").AlertDialogCloseProps, \"ref\"> & import(\"react\").RefAttributes<HTMLButtonElement>>",
+          "typeHash": "faaca8c12024a0976010a333d42e0783949841f9dca2a1e399da5bed24d95852",
+          "description": ""
+        },
+        {
+          "name": "SheetContent",
+          "kind": "function",
+          "signature": "SheetContent({ className, children, side, showClose, ...props }: SheetContentProps): import(\"react\").JSX.Element",
+          "typeHash": "3d0d182bacc5c0846b8dc315f6bc67568285533806f46d7bdbcb54f79d3f7c33",
+          "description": ""
+        },
+        {
+          "name": "SheetContentProps",
+          "kind": "type",
+          "signature": "SheetContentProps = DialogPrimitive.Popup.Props & { side?: SheetSide; showClose?: boolean; }",
+          "typeHash": "782497ffdc43ce288a28e5489d40d5aa474a2642722a4e7c16ebedbe2b533de5",
+          "description": ""
+        },
+        {
+          "name": "SheetDescription",
+          "kind": "const",
+          "signature": "SheetDescription: import(\"react\").ForwardRefExoticComponent<Omit<import(\"@base-ui/react\").AlertDialogDescriptionProps, \"ref\"> & import(\"react\").RefAttributes<HTMLParagraphElement>>",
+          "typeHash": "3081973246137d1f85ddbf6a70112b16ee7781af0b88dea12a650790860bb101",
+          "description": ""
+        },
+        {
+          "name": "SheetFooter",
+          "kind": "function",
+          "signature": "SheetFooter({ className, ...props }: ComponentPropsWithRef<\"div\">): import(\"react\").JSX.Element",
+          "typeHash": "6a697b45e46c5f2482bef2639cf6129aaf655ff98255b61be8b0e090f52efa6c",
+          "description": ""
+        },
+        {
+          "name": "SheetHeader",
+          "kind": "function",
+          "signature": "SheetHeader({ className, ...props }: ComponentPropsWithRef<\"div\">): import(\"react\").JSX.Element",
+          "typeHash": "be000f463b0209d7ddd0a6dffda14c5e45e58945f48059f1af8ae0786ce8080d",
+          "description": ""
+        },
+        {
+          "name": "SheetSide",
+          "kind": "type",
+          "signature": "SheetSide = \"top\" | \"right\" | \"bottom\" | \"left\"",
+          "typeHash": "59ae7db8afa5fd192cc7daf83796fbb266cdb3f82fac14f3f90a3bc99b6927c6",
+          "description": ""
+        },
+        {
+          "name": "SheetTitle",
+          "kind": "const",
+          "signature": "SheetTitle: import(\"react\").ForwardRefExoticComponent<Omit<import(\"@base-ui/react\").AlertDialogTitleProps, \"ref\"> & import(\"react\").RefAttributes<HTMLHeadingElement>>",
+          "typeHash": "4e5d73b080d6544942f99bd5226fa6ff8233114dc34aacc712beb4c0ec1aecc6",
+          "description": ""
+        },
+        {
+          "name": "SheetTrigger",
+          "kind": "const",
+          "signature": "SheetTrigger: DialogPrimitive.Trigger",
+          "typeHash": "549055f1b9b322d0757ff60cccb819eb4c905eba069332f23d46bddec01e0d3c",
+          "description": ""
+        }
+      ]
+    },
+    "alert-dialog": {
+      "source": "src/components/ui/alert-dialog.tsx",
+      "sourceHash": "854abad07256ae9ebe9ff634fe5db1b081bf9a2b1e0ec6b5fdf28494bc47817d",
+      "declaration": "api/generated/types/components/ui/alert-dialog.d.ts",
+      "exports": [
+        {
+          "name": "AlertDialog",
+          "kind": "const",
+          "signature": "AlertDialog: <Payload>(props: AlertDialogPrimitive.Root.Props<Payload>) => import(\"react\").JSX.Element",
+          "typeHash": "69baa56c88961f1056e178e6707f9b24cfbc2aa27f73a89a905f50524a83ed73",
+          "description": ""
+        },
+        {
+          "name": "AlertDialogClose",
+          "kind": "const",
+          "signature": "AlertDialogClose: import(\"react\").ForwardRefExoticComponent<Omit<import(\"@base-ui/react\").AlertDialogCloseProps, \"ref\"> & import(\"react\").RefAttributes<HTMLButtonElement>>",
+          "typeHash": "279b4a51821ceb05110650f12c57576351afafcc1bffd50d7634e21d456954f9",
+          "description": ""
+        },
+        {
+          "name": "AlertDialogContent",
+          "kind": "function",
+          "signature": "AlertDialogContent({ className, children, ...props }: AlertDialogPrimitive.Popup.Props): import(\"react\").JSX.Element",
+          "typeHash": "e6063cd228e5a345c4798e718e2fa1d9fea904cb40dbed9cbd913047b513c6b0",
+          "description": ""
+        },
+        {
+          "name": "AlertDialogDescription",
+          "kind": "const",
+          "signature": "AlertDialogDescription: import(\"react\").ForwardRefExoticComponent<Omit<import(\"@base-ui/react\").AlertDialogDescriptionProps, \"ref\"> & import(\"react\").RefAttributes<HTMLParagraphElement>>",
+          "typeHash": "1aa83cda42204837be4569767674c2ff277d0b203718d9d6463fa136161b648a",
+          "description": ""
+        },
+        {
+          "name": "AlertDialogFooter",
+          "kind": "function",
+          "signature": "AlertDialogFooter({ className, ...props }: ComponentPropsWithRef<\"div\">): import(\"react\").JSX.Element",
+          "typeHash": "f7a802ec27d18fdc5814f4926213d99472731c99eaabe94a21bc8c93b1638a3d",
+          "description": ""
+        },
+        {
+          "name": "AlertDialogHeader",
+          "kind": "function",
+          "signature": "AlertDialogHeader({ className, ...props }: ComponentPropsWithRef<\"div\">): import(\"react\").JSX.Element",
+          "typeHash": "43a784b81bdca4e96b7d0b776db7bdd43d7236d2b0f180e01d33d386e8a9c597",
+          "description": ""
+        },
+        {
+          "name": "AlertDialogTitle",
+          "kind": "const",
+          "signature": "AlertDialogTitle: import(\"react\").ForwardRefExoticComponent<Omit<import(\"@base-ui/react\").AlertDialogTitleProps, \"ref\"> & import(\"react\").RefAttributes<HTMLHeadingElement>>",
+          "typeHash": "61a8ab2609a42505c5c93c1699087c15573dc633a46c0a4d494891e5ef62bad7",
+          "description": ""
+        },
+        {
+          "name": "AlertDialogTrigger",
+          "kind": "const",
+          "signature": "AlertDialogTrigger: AlertDialogPrimitive.Trigger",
+          "typeHash": "152fffc24ff63a1c8299a9d08bfaee21e45fb49ab84bbb43f1c7b5572898207c",
+          "description": ""
+        }
+      ]
+    },
+    "tabs": {
+      "source": "src/components/ui/tabs.tsx",
+      "sourceHash": "ad268bc73eff272eca0a99db5000ed022b100e4aca9fb9a4ac887b94814cd360",
+      "declaration": "api/generated/types/components/ui/tabs.d.ts",
+      "exports": [
+        {
+          "name": "Tabs",
+          "kind": "function",
+          "signature": "Tabs({ className, ...props }: TabsPrimitive.Root.Props): import(\"react\").JSX.Element",
+          "typeHash": "1387eb9c820292818dd137477dd06029da4ae57f719737eb4012873a8968a20e",
+          "description": ""
+        },
+        {
+          "name": "TabsContent",
+          "kind": "function",
+          "signature": "TabsContent({ className, ...props }: TabsPrimitive.Panel.Props): import(\"react\").JSX.Element",
+          "typeHash": "93dcff565fd7e2fee6f6d2e29ce5b914d2452d6a061a309a187b4be23b93bc27",
+          "description": ""
+        },
+        {
+          "name": "TabsList",
+          "kind": "function",
+          "signature": "TabsList({ className, activateOnFocus, ...props }: TabsPrimitive.List.Props): import(\"react\").JSX.Element",
+          "typeHash": "a4b295f4090678a7217f8bc80cc00c8a5d654f61692992aa2d934228cb99a925",
+          "description": ""
+        },
+        {
+          "name": "TabsTrigger",
+          "kind": "function",
+          "signature": "TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props): import(\"react\").JSX.Element",
+          "typeHash": "4edcf9c737b93e1331e8fb14f0638314f5d6ef1616f6129b7d9c533bfced8e56",
+          "description": ""
+        }
+      ]
+    },
+    "toast": {
+      "source": "src/components/ui/toast.tsx",
+      "sourceHash": "b0d7ffb17afc68fced4be1e98d67ac5eb3e0f9898e18bedb7f51ffc6ba41adbc",
+      "declaration": "api/generated/types/components/ui/toast.d.ts",
+      "exports": [
+        {
+          "name": "toast",
+          "kind": "const",
+          "signature": "toast: ToastApi",
+          "typeHash": "f18484b5225133d6468281195142e97d10f01cf9a6ec1293fc11c7362801312a",
+          "description": ""
+        },
+        {
+          "name": "ToastApi",
+          "kind": "type",
+          "signature": "ToastApi = { (message: ToastMessage, options?: ToastOptions): ToastId; success: (message: ToastMessage, options?: ToastOptions) => ToastId; info: (message: ToastMessage, options?: ToastOptions) => ToastId; warning: (message: ToastMessage, …",
+          "typeHash": "d0ae9864315f89d86bd81d5cd3e92e10731b8b7c4cd748f0a44d0bdd8132a349",
+          "description": ""
+        },
+        {
+          "name": "Toaster",
+          "kind": "function",
+          "signature": "Toaster({ className, position, visibleToasts, expand, closeButton, duration, gap, offset, toastOptions, ...props }: ToasterProps): import(\"react\").JSX.Element",
+          "typeHash": "5018b466f15da55e498da8584301697285aa7fe4936d15ee9503de3c9d92beb9",
+          "description": ""
+        },
+        {
+          "name": "ToastId",
+          "kind": "type",
+          "signature": "ToastId = string | number",
+          "typeHash": "0ea5222f158bc98b382dc4bb3f1d8f480277a8b2242bb54fc71e443aef3138d0",
+          "description": ""
+        },
+        {
+          "name": "ToastMessage",
+          "kind": "type",
+          "signature": "ToastMessage = ReactNode | (() => ReactNode)",
+          "typeHash": "9103f8dfb9d61a6e0b57efda740eec97e6463ed5d962c6a94c05d41d86347eb1",
+          "description": ""
+        },
+        {
+          "name": "ToastOptions",
+          "kind": "type",
+          "signature": "ToastOptions = ExternalToast",
+          "typeHash": "5e05b28ccc593fb8da3489d38062d89a8f18cbc80cfa231f9d40d5423dc3d3b9",
+          "description": ""
+        }
+      ]
+    },
+    "inline-edit": {
+      "source": "src/components/ui/inline-edit.tsx",
+      "sourceHash": "fada713cec9d3791575fdc0542531b19383fe82db831f9fb604153b3be553545",
+      "declaration": "api/generated/types/components/ui/inline-edit.d.ts",
+      "exports": [
+        {
+          "name": "InlineEdit",
+          "kind": "function",
+          "signature": "InlineEdit({ value, onSave, label, placeholder, className, disabled, validate }: InlineEditProps): import(\"react\").JSX.Element",
+          "typeHash": "90963662825bc8fcdf0c679089a3539c57b970d16a9437ec8641bfe7fb69ac51",
+          "description": ""
+        },
+        {
+          "name": "inlineEditContract",
+          "kind": "const",
+          "signature": "inlineEditContract: BehaviorContract",
+          "typeHash": "d24f9cc38757a102caba8ba2dd2a08bb4ebb91aae49944d2409ea7c63c703e19",
+          "description": ""
+        },
+        {
+          "name": "InlineEditProps",
+          "kind": "type",
+          "signature": "InlineEditProps = { value: string; onSave: (value: string) => void | Promise<void>; label?: string; placeholder?: string; className?: string; disabled?: boolean; validate?: (value: string) => string | undefined; }",
+          "typeHash": "ebe537fbd454bfc9e8a855349ed4f540637c573a6502b29a948ec222387d0259",
+          "description": ""
+        }
+      ]
+    },
+    "reorderable-list": {
+      "source": "src/components/ui/reorderable-list.tsx",
+      "sourceHash": "a72ab72f721c5814fec97b6f3a0d25ef26754ec1d5ecd7cb78740a1a3b428cdc",
+      "declaration": "api/generated/types/components/ui/reorderable-list.d.ts",
+      "exports": [
+        {
+          "name": "ReorderableItem",
+          "kind": "type",
+          "signature": "ReorderableItem = { id: Key; label: string; description?: string; disabled?: boolean; }",
+          "typeHash": "05b89bbf9c8d96f3fc8e3c52f5392f13432e921e5d139709d5f0db731a0655f7",
+          "description": ""
+        },
+        {
+          "name": "ReorderableList",
+          "kind": "function",
+          "signature": "ReorderableList({ items: controlledItems, defaultItems, onItemsChange, className, layout, ...props }: ReorderableListProps): import(\"react\").JSX.Element",
+          "typeHash": "a1495211c492b06561ad958ee7af928721a743a96bece862a1e8a2756fe894ba",
+          "description": ""
+        },
+        {
+          "name": "ReorderableListProps",
+          "kind": "type",
+          "signature": "ReorderableListProps = Omit<GridListProps<ReorderableItem>, \"children\" | \"className\" | \"dragAndDropHooks\" | \"items\"> & { items?: readonly ReorderableItem[]; defaultItems?: readonly ReorderableItem[]; onItemsChange?: (items: ReorderableItem…",
+          "typeHash": "e20aca27076a2a21c085b9657349db1fc55a0e1fc08882ace1d1c09d5f3b2be5",
+          "description": ""
+        }
+      ]
+    },
+    "action-list": {
+      "source": "src/components/ui/action-list.tsx",
+      "sourceHash": "a83eeafb7a285a5e2f34d37fad41615be796b7c22ecd05b47bcb1a46c1f61449",
+      "declaration": "api/generated/types/components/ui/action-list.d.ts",
+      "exports": [
+        {
+          "name": "ActionList",
+          "kind": "function",
+          "signature": "ActionList({ items, onAction, placeholder, emptyMessage, className, autoFocus, defaultQuery }: ActionListProps): import(\"react\").JSX.Element",
+          "typeHash": "ea36f26356d56d9be3282a4b70289d0537d23077b466b3ec067b66826a15bcde",
+          "description": ""
+        },
+        {
+          "name": "actionListContract",
+          "kind": "const",
+          "signature": "actionListContract: BehaviorContract",
+          "typeHash": "9e1c5d24c5ae917a8506dc6fd0a5f4c74107884bd52dba14d17e7e1d1d0786b1",
+          "description": ""
+        },
+        {
+          "name": "ActionListItem",
+          "kind": "type",
+          "signature": "ActionListItem = { id: string; label: string; description?: string; icon?: ReactNode; shortcut?: string; disabled?: boolean; loading?: boolean; variant?: \"default\" | \"danger\"; inactiveReason?: string; }",
+          "typeHash": "3143fe8565f478fa899f28dadd8e53ad909abfc61ce02bba3875dfd0e4438ea4",
+          "description": ""
+        },
+        {
+          "name": "ActionListProps",
+          "kind": "type",
+          "signature": "ActionListProps = { items: readonly ActionListItem[]; onAction: (item: ActionListItem) => void; placeholder?: string; emptyMessage?: string; className?: string; autoFocus?: boolean; defaultQuery?: string; }",
+          "typeHash": "c3974adeae63e9a85946b7bf81a2c89ee62ce30bb388bf8244341c833c076804",
+          "description": ""
+        }
+      ]
+    },
+    "shared-detail": {
+      "source": "src/components/ui/shared-detail.tsx",
+      "sourceHash": "0b7d45ee2b7b378fccea25ba498bef4c55620194325ea33871a2c94ec7a05abd",
+      "declaration": "api/generated/types/components/ui/shared-detail.d.ts",
+      "exports": [
+        {
+          "name": "getSharedDetailMotionPreset",
+          "kind": "function",
+          "signature": "getSharedDetailMotionPreset(id: SharedDetailMotionPresetId): SharedDetailMotionPreset",
+          "typeHash": "f3192e11522b01e451537037644a244e4df1518d19f11a209c98acf5dceb938c",
+          "description": ""
+        },
+        {
+          "name": "selectedSharedDetailMotionPreset",
+          "kind": "const",
+          "signature": "selectedSharedDetailMotionPreset: \"continuity\"",
+          "typeHash": "9973aa891d985f76525d12fa7ff95dc30f5dde5115bbf6b717df02b2a8dc272d",
+          "description": ""
+        },
+        {
+          "name": "SharedDetail",
+          "kind": "function",
+          "signature": "SharedDetail({ items, className, selectedId: selectedIdProp, defaultSelectedId, onSelectedIdChange, motionPreset, focusOnOpen, regionLabel, renderDetail, }: SharedDetailProps): import(\"react\").JSX.Element",
+          "typeHash": "3618565c32352186a674c8e733351d8efb35a82f70df68d7b69ea485f0fb3b1a",
+          "description": ""
+        },
+        {
+          "name": "sharedDetailContract",
+          "kind": "const",
+          "signature": "sharedDetailContract: BehaviorContract",
+          "typeHash": "3051aff10b622f42c2a7e842f03c5bde8eb16ba19340e93fdb87ac87df75987e",
+          "description": ""
+        },
+        {
+          "name": "SharedDetailItem",
+          "kind": "type",
+          "signature": "SharedDetailItem = { id: string; title: string; meta: string; description: string; status?: string; }",
+          "typeHash": "58f937b0a83840a07514f73c454da51ea36e81b5efa48664a59f739d83ae6e0e",
+          "description": ""
+        },
+        {
+          "name": "SharedDetailMotionPreset",
+          "kind": "type",
+          "signature": "SharedDetailMotionPreset = { id: SharedDetailMotionPresetId; label: string; description: string; panelInitial: Record<string, string | number>; panelExit: Record<string, string | number>; panelTransition: { duration?: number; ease?: Bezier…",
+          "typeHash": "af4160983154ae7fe2340383681f41db715390985d45119d49ed2c4f61279534",
+          "description": ""
+        },
+        {
+          "name": "SharedDetailMotionPresetId",
+          "kind": "type",
+          "signature": "SharedDetailMotionPresetId = | \"continuity\" | \"quiet\" | \"soft-scale\" | \"spring\" | \"reveal\" | \"crossfade\" | \"stagger\" | \"direct\"",
+          "typeHash": "e313745e379be51b74efed89f8703800f8568fc98dfba2ae2e157e0d393b6a7e",
+          "description": ""
+        },
+        {
+          "name": "sharedDetailMotionPresets",
+          "kind": "const",
+          "signature": "sharedDetailMotionPresets: readonly SharedDetailMotionPreset[]",
+          "typeHash": "712774d614b3f433f902556493a22ddee6dc30557104e8169ee9d36e0cba4fb3",
+          "description": ""
+        },
+        {
+          "name": "SharedDetailProps",
+          "kind": "type",
+          "signature": "SharedDetailProps = { items: readonly SharedDetailItem[]; className?: string; selectedId?: string | null; defaultSelectedId?: string; onSelectedIdChange?: (id: string | null) => void; motionPreset?: SharedDetailMotionPresetId; focusOnOpen?…",
+          "typeHash": "43cab41c8ce33d6892f2a6940394a2b50c4fb0e66dc5fe4292e3be662fb36432",
+          "description": ""
+        }
+      ]
+    },
+    "undo-stack": {
+      "source": "src/components/ui/undo-stack.tsx",
+      "sourceHash": "46a6450f5b91b9d771fe6a076981339ccffb4dbadaa1ece5781763dfea3fa570",
+      "declaration": "api/generated/types/components/ui/undo-stack.d.ts",
+      "exports": [
+        {
+          "name": "UndoAction",
+          "kind": "type",
+          "signature": "UndoAction = { id?: string; label: string; undo: () => void; }",
+          "typeHash": "3100487d086fc6703ae5e1adb6819a2959c43cc0bb5a2bd0a3eb12e916427c4c",
+          "description": ""
+        },
+        {
+          "name": "UndoBar",
+          "kind": "function",
+          "signature": "UndoBar(): import(\"react\").JSX.Element | null",
+          "typeHash": "4ff703ca8bfce65e6de597cf2bd29e533e23e231ed1d594baf6c5b8077f0005f",
+          "description": ""
+        },
+        {
+          "name": "UndoContextValue",
+          "kind": "type",
+          "signature": "UndoContextValue = { pushUndo: (action: UndoAction) => void; undoLatest: () => void; canUndo: boolean; latestLabel?: string; count: number; }",
+          "typeHash": "26ef29e9cdb6f9879356e1ee73b7dc7189fd1c560bd675ffc15ca9c1ae23841a",
+          "description": ""
+        },
+        {
+          "name": "undoStackContract",
+          "kind": "const",
+          "signature": "undoStackContract: BehaviorContract",
+          "typeHash": "7f18a8d82774990fc1eab91b4b5f77ddb478926142b4573128d530af7c71550e",
+          "description": ""
+        },
+        {
+          "name": "UndoStackProvider",
+          "kind": "function",
+          "signature": "UndoStackProvider({ children }: { children: ReactNode; }): import(\"react\").JSX.Element",
+          "typeHash": "9793413d31c6f599fd4580ee3f3a578df9ca8e1f175ea7f1286363ce7d5ac66a",
+          "description": ""
+        },
+        {
+          "name": "useUndoStack",
+          "kind": "function",
+          "signature": "useUndoStack(): UndoContextValue",
+          "typeHash": "a76f98b37c580d6356e00aa5cbdf39ba0a20d4ff28046b613fbc0e3541073579",
+          "description": ""
+        }
+      ]
+    },
+    "badge": {
+      "source": "src/components/ui/badge.tsx",
+      "sourceHash": "8443f0a980d44892f20c42b6d2894ba8b037fb9afae391ee8a40f68a3e26dd1b",
+      "declaration": "api/generated/types/components/ui/badge.d.ts",
+      "exports": [
+        {
+          "name": "Badge",
+          "kind": "function",
+          "signature": "Badge({ className, variant, leadingIcon, removable, onRemove, removeLabel, children, ...props }: BadgeProps): import(\"react\").JSX.Element",
+          "typeHash": "3c507681fddb86565ab77588be7db423bdeb570f62a4b3d4d54ebcebb8e74581",
+          "description": ""
+        },
+        {
+          "name": "BadgeProps",
+          "kind": "type",
+          "signature": "BadgeProps = ComponentPropsWithRef<\"span\"> & { variant?: \"neutral\" | \"strong\" | \"outline\" | \"success\" | \"warning\" | \"danger\"; leadingIcon?: ReactNode; removable?: boolean; onRemove?: () => void; removeLabel?: string; }",
+          "typeHash": "872692b3c1112948591d25854ff6457e7f1d28d72f0ff4144c9ae0143d0c3659",
+          "description": ""
+        }
+      ]
+    },
+    "avatar": {
+      "source": "src/components/ui/avatar.tsx",
+      "sourceHash": "30aae1abd3aec3ba0000df1e8dba3680dce426e25c4918c7008013e31722ca38",
+      "declaration": "api/generated/types/components/ui/avatar.d.ts",
+      "exports": [
+        {
+          "name": "Avatar",
+          "kind": "function",
+          "signature": "Avatar({ className, src, alt, fallback, size, status, ...props }: AvatarProps): import(\"react\").JSX.Element",
+          "typeHash": "e3cb907d5c2c6e5645fc29fb247eedb308691a730030a095f5bb9b8806bc6afc",
+          "description": ""
+        },
+        {
+          "name": "AvatarGroup",
+          "kind": "function",
+          "signature": "AvatarGroup({ className, children, ...props }: ComponentPropsWithRef<\"div\">): import(\"react\").JSX.Element",
+          "typeHash": "b11563a182b53ccee8b1e94dcd8ecb33dcdec9d4422c2180e6c2393256faecdd",
+          "description": ""
+        },
+        {
+          "name": "AvatarProps",
+          "kind": "type",
+          "signature": "AvatarProps = ComponentPropsWithRef<\"span\"> & { src?: string; alt?: string; fallback: string; size?: \"small\" | \"medium\" | \"large\"; status?: \"online\" | \"away\" | \"busy\" | \"offline\"; }",
+          "typeHash": "64fff836b5d063bf97af2cb224d516c512e99175e9573bef2ee38aa8b8962a56",
+          "description": ""
+        }
+      ]
+    },
+    "textarea": {
+      "source": "src/components/ui/textarea.tsx",
+      "sourceHash": "32825b66f709a5743bc9cb1ea9d8db357b677fd31e3083b80ca706461bbe968b",
+      "declaration": "api/generated/types/components/ui/textarea.d.ts",
+      "exports": [
+        {
+          "name": "Textarea",
+          "kind": "function",
+          "signature": "Textarea({ id: providedId, label, description, error, showCount, maxLength, className, value, defaultValue, onChange, ref, ...props }: TextareaProps): import(\"react\").JSX.Element",
+          "typeHash": "42eab46f5372430c1a226a67a7717c798785303de82dc326ae8656cb311524b1",
+          "description": ""
+        },
+        {
+          "name": "TextareaProps",
+          "kind": "type",
+          "signature": "TextareaProps = ComponentPropsWithRef<\"textarea\"> & { label?: string; description?: string; error?: string; showCount?: boolean; }",
+          "typeHash": "1ecea768e8ac6e3854a7067b9bd7c4640fe4e122f03d6ecfc3afabb02915de21",
+          "description": ""
+        }
+      ]
+    },
+    "radio-group": {
+      "source": "src/components/ui/radio-group.tsx",
+      "sourceHash": "0b58af1ff14dc09b1e6bee35d53b0777fa80cb3a438b40859ce9e38a13d40a56",
+      "declaration": "api/generated/types/components/ui/radio-group.d.ts",
+      "exports": [
+        {
+          "name": "RadioGroup",
+          "kind": "function",
+          "signature": "RadioGroup({ className, label, description, error, options, orientation, ...props }: RadioGroupProps): import(\"react\").JSX.Element",
+          "typeHash": "511ed77e7de3fe258c0b896d87ef21db6926d9fc486c509c8d3561af0993ef8c",
+          "description": ""
+        },
+        {
+          "name": "RadioGroupProps",
+          "kind": "type",
+          "signature": "RadioGroupProps = Omit<RadioGroupPrimitive.Props<string>, \"children\"> & { label: string; description?: string; error?: string; options: readonly RadioOption[]; orientation?: \"vertical\" | \"horizontal\"; }",
+          "typeHash": "e6b03328c9acb38b05fe1a61d61bea3243daf0ca882e2ad3d74c322b6e9b50ad",
+          "description": ""
+        },
+        {
+          "name": "RadioOption",
+          "kind": "type",
+          "signature": "RadioOption = { value: string; label: string; description?: string; disabled?: boolean; }",
+          "typeHash": "753253c9b3ee4a6064a42f9e3bcde86b27afa21ce72132235e8d3ccd65f75565",
+          "description": ""
+        }
+      ]
+    },
+    "select": {
+      "source": "src/components/ui/select.tsx",
+      "sourceHash": "2bef93cfac4ea65f9b00ce31489fd8770bf488e6792acd4f51e45dbba7bfc7cf",
+      "declaration": "api/generated/types/components/ui/select.d.ts",
+      "exports": [
+        {
+          "name": "Select",
+          "kind": "function",
+          "signature": "Select({ label, \"aria-label\": ariaLabel, description, error, placeholder, options, className, ref, ...props }: SelectProps): import(\"react\").JSX.Element",
+          "typeHash": "47f518f3c89fd8c3436fb4695c00bef42204cf258da1d159aca8df95bdb4734e",
+          "description": ""
+        },
+        {
+          "name": "SelectOption",
+          "kind": "type",
+          "signature": "SelectOption = { label: string; value: string; disabled?: boolean }",
+          "typeHash": "9cab7de3f250e672e42a30cf128e137ff7a7e7c85795afa8652ba5705aa1f0c6",
+          "description": ""
+        },
+        {
+          "name": "SelectProps",
+          "kind": "type",
+          "signature": "SelectProps = Omit<SelectPrimitive.Root.Props<string>, \"children\" | \"items\" | \"aria-label\"> & { label?: string; \"aria-label\"?: string; description?: string; error?: string; placeholder?: string; options: readonly SelectOption[]; className?…",
+          "typeHash": "7b92c47d49d51a98bc2fe242f9b73f26fbc36c33db651bbd7c764748ac869f23",
+          "description": ""
+        }
+      ]
+    },
+    "context-switcher": {
+      "source": "src/components/ui/context-switcher.tsx",
+      "sourceHash": "6d40bb94c42a4850eebfc682a0b4585ab7868ab36b3bad0ac8397197aad07bcb",
+      "declaration": "api/generated/types/components/ui/context-switcher.d.ts",
+      "exports": [
+        {
+          "name": "ContextSwitcher",
+          "kind": "function",
+          "signature": "ContextSwitcher({ options, value, defaultValue, onValueChange, open, defaultOpen, onOpenChange, \"aria-label\": ariaLabel, disabled, highlightItemOnHover, placeholder, className, ref, ...rootProps }: ContextSwitcherProps): import(\"react\").JS…",
+          "typeHash": "a6fd4522e6ca08727c96ec4f4657bdf0c05df6a3e409999d8db282a713d6eb22",
+          "description": ""
+        },
+        {
+          "name": "ContextSwitcherOption",
+          "kind": "type",
+          "signature": "ContextSwitcherOption = { value: string; label: string; description: string; icon: ReactNode; disabled?: boolean; }",
+          "typeHash": "f0fcf9049174efce1d8bb982ce7b9b6bbebddcdcd69141f4423a1fa1abd4766a",
+          "description": ""
+        },
+        {
+          "name": "ContextSwitcherProps",
+          "kind": "type",
+          "signature": "ContextSwitcherProps = Omit<SelectPrimitive.Root.Props<string>, \"children\" | \"items\"> & { options: readonly ContextSwitcherOption[]; \"aria-label\": string; placeholder?: string; className?: string; ref?: SelectPrimitive.Trigger.Props[\"ref\"]…",
+          "typeHash": "32a3835cae3daeb918606c2f8fbc51ac9e27f1a037cd29f38599ff4840209b4c",
+          "description": ""
+        }
+      ]
+    },
+    "combobox": {
+      "source": "src/components/ui/combobox.tsx",
+      "sourceHash": "e872d500c3ecf74a95642982be950052f8f334d177e7616a408a16d4ef348bc9",
+      "declaration": "api/generated/types/components/ui/combobox.d.ts",
+      "exports": [
+        {
+          "name": "Combobox",
+          "kind": "function",
+          "signature": "Combobox({ label, \"aria-label\": ariaLabel, description, error, placeholder, options, className, ref, ...props }: ComboboxProps): import(\"react\").JSX.Element",
+          "typeHash": "df280748cbabd0133b490d086c914eac7494c141e483f4eb9b2142c65d628410",
+          "description": ""
+        },
+        {
+          "name": "ComboboxOption",
+          "kind": "type",
+          "signature": "ComboboxOption = { label: string; value: string; description?: string; disabled?: boolean }",
+          "typeHash": "4737a7f27350117b1d3d1d066ba6ab0bb060278baaea4d12612cbd7494e0fc90",
+          "description": ""
+        },
+        {
+          "name": "ComboboxProps",
+          "kind": "type",
+          "signature": "ComboboxProps = Omit<ComboboxPrimitive.Root.Props<ComboboxOption>, \"children\" | \"items\" | \"aria-label\"> & { label?: string; \"aria-label\"?: string; description?: string; error?: string; placeholder?: string; options: readonly ComboboxOption…",
+          "typeHash": "fc378f8df1564990a2787abff76816eedf814a2c6f364c5b31cb0699d9fd6740",
+          "description": ""
+        }
+      ]
+    },
+    "search-input": {
+      "source": "src/components/ui/search-input.tsx",
+      "sourceHash": "7a620a6296f022ebecdc0c159c002fd2bcd1394aa8648b817b45df9defd3b5df",
+      "declaration": "api/generated/types/components/ui/search-input.d.ts",
+      "exports": [
+        {
+          "name": "SearchInput",
+          "kind": "const",
+          "signature": "SearchInput: import(\"react\").ForwardRefExoticComponent<Omit<InputHTMLAttributes<HTMLInputElement>, \"type\"> & { label?: string; loading?: boolean; onClear?: () => void; shortcut?: string; } & import(\"react\").RefAttributes<HTMLInputElement>>",
+          "typeHash": "36952e75b12550b7747377944f7c99e89b28a482969bad529e8699d38516257c",
+          "description": ""
+        },
+        {
+          "name": "SearchInputProps",
+          "kind": "type",
+          "signature": "SearchInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, \"type\"> & { label?: string; loading?: boolean; onClear?: () => void; shortcut?: string; }",
+          "typeHash": "589672930bb031b6387ad89764d8f55c7ab7061057cd9b54f1eaa396f5b31a7b",
+          "description": ""
+        }
+      ]
+    },
+    "breadcrumbs": {
+      "source": "src/components/ui/breadcrumbs.tsx",
+      "sourceHash": "5a82fb0d3b015aa3e443907c2345adbc6484c47963b670174ea1ccf9b09dc584",
+      "declaration": "api/generated/types/components/ui/breadcrumbs.d.ts",
+      "exports": [
+        {
+          "name": "BreadcrumbItem",
+          "kind": "type",
+          "signature": "BreadcrumbItem = { label: string; href?: string; icon?: ReactNode }",
+          "typeHash": "a3fe037d91e24d40681a4f7e3b38269c2f1a31c662e0bc486f676163b5075de8",
+          "description": ""
+        },
+        {
+          "name": "Breadcrumbs",
+          "kind": "function",
+          "signature": "Breadcrumbs({ items, maxItems, label, className, ...props }: BreadcrumbsProps): import(\"react\").JSX.Element",
+          "typeHash": "41c0c26e1c007b81f932db5431d860880c3ec1adba747f5b36c6bb071e9284b9",
+          "description": ""
+        },
+        {
+          "name": "BreadcrumbsProps",
+          "kind": "type",
+          "signature": "BreadcrumbsProps = ComponentPropsWithRef<\"nav\"> & { items: readonly BreadcrumbItem[]; maxItems?: number; label?: string }",
+          "typeHash": "6f963adb080b7b019c1290690057ec934ef9bb6ffea1f6f5b6f8b2cc18dbde9f",
+          "description": ""
+        }
+      ]
+    },
+    "pagination": {
+      "source": "src/components/ui/pagination.tsx",
+      "sourceHash": "6a78f80123ee33b19e9a451db45cab2a73dd215f647f7b0f3f99a40eccdac769",
+      "declaration": "api/generated/types/components/ui/pagination.d.ts",
+      "exports": [
+        {
+          "name": "Pagination",
+          "kind": "function",
+          "signature": "Pagination({ page, totalPages, onPageChange, siblingCount, className, label, ...props }: PaginationProps): import(\"react\").JSX.Element",
+          "typeHash": "f8280d90ef95e6fa42e47679b6a09db7e681a2bb21d0b12432a678755c37fbaf",
+          "description": ""
+        },
+        {
+          "name": "PaginationProps",
+          "kind": "type",
+          "signature": "PaginationProps = Omit<ComponentPropsWithRef<\"nav\">, \"children\"> & { page: number; totalPages: number; onPageChange: (page: number) => void; siblingCount?: number; className?: string; label?: string; }",
+          "typeHash": "9caabe660f708bcc1283a26f46c3bafdc818fee314fb014a46992a5af7755928",
+          "description": ""
+        }
+      ]
+    },
+    "collapsible": {
+      "source": "src/components/ui/collapsible.tsx",
+      "sourceHash": "85faa7ec526e7424f8485cdbd403dcaf4611fff189add0a3f0c410de93f5cba6",
+      "declaration": "api/generated/types/components/ui/collapsible.d.ts",
+      "exports": [
+        {
+          "name": "Collapsible",
+          "kind": "const",
+          "signature": "Collapsible: import(\"react\").ForwardRefExoticComponent<Omit<import(\"@base-ui/react\").CollapsibleRootProps, \"ref\"> & import(\"react\").RefAttributes<HTMLDivElement>>",
+          "typeHash": "884d6b951dcc5c71d9c8ef68d1c93e81c79a00797ab355ad1d2b9d67dfa79355",
+          "description": ""
+        },
+        {
+          "name": "CollapsibleContent",
+          "kind": "function",
+          "signature": "CollapsibleContent({ className, children, ...props }: CollapsibleContentProps): import(\"react\").JSX.Element",
+          "typeHash": "d7d7c1e0613d21c55ce967ef467c662bbf2de664d85ea93db3e9f973a9b4940e",
+          "description": ""
+        },
+        {
+          "name": "CollapsibleContentProps",
+          "kind": "type",
+          "signature": "CollapsibleContentProps = CollapsiblePrimitive.Panel.Props & { children?: ReactNode }",
+          "typeHash": "8d323e8e52abd661f899e37c9136eec725048ab00331319815d41b5b2c561dfb",
+          "description": ""
+        },
+        {
+          "name": "CollapsibleTrigger",
+          "kind": "function",
+          "signature": "CollapsibleTrigger({ className, children, ...props }: CollapsiblePrimitive.Trigger.Props): import(\"react\").JSX.Element",
+          "typeHash": "5a945090ea4e10dca4fe7d105755a6cf249eb3558f173e9200085e4b8ca9ec71",
+          "description": ""
+        }
+      ]
+    },
+    "skeleton": {
+      "source": "src/components/ui/skeleton.tsx",
+      "sourceHash": "b833cc6ff0210b4b3865fa89cc49292b3739aaa281900287c2b76d8223fff33d",
+      "declaration": "api/generated/types/components/ui/skeleton.d.ts",
+      "exports": [
+        {
+          "name": "Skeleton",
+          "kind": "function",
+          "signature": "Skeleton({ className, width, height, radius, style, ...props }: SkeletonProps): import(\"react\").JSX.Element",
+          "typeHash": "057e8504d257649d5260418cf2570dd799399b55f8ebd5b8beb61c415ecb1c2b",
+          "description": ""
+        },
+        {
+          "name": "SkeletonProps",
+          "kind": "type",
+          "signature": "SkeletonProps = ComponentPropsWithRef<\"div\"> & { width?: number | string; height?: number | string; radius?: \"small\" | \"medium\" | \"round\"; }",
+          "typeHash": "3f3a1f097c6671d0b4a5e12f1beb44ffa217a90af099a4bf63d72f15d4b5548e",
+          "description": ""
+        },
+        {
+          "name": "SkeletonText",
+          "kind": "function",
+          "signature": "SkeletonText({ lines }: { lines?: number; }): import(\"react\").JSX.Element",
+          "typeHash": "0ba1708bff88c5b13e7198166b08ba444acb16b71d26c10dc230bfc2c7f5493c",
+          "description": ""
+        }
+      ]
+    },
+    "progress": {
+      "source": "src/components/ui/progress.tsx",
+      "sourceHash": "1ba0bea333cb7028331b923f121347d1d7a2c3d5e230fec9d33f42453a769878",
+      "declaration": "api/generated/types/components/ui/progress.d.ts",
+      "exports": [
+        {
+          "name": "Progress",
+          "kind": "function",
+          "signature": "Progress({ label, \"aria-label\": ariaLabel, showValue, size, className, value, min, max, style, ...props }: ProgressProps): import(\"react\").JSX.Element",
+          "typeHash": "5d9cb648b7b77145462c71855f8ea3303f93aaa0cc3d9641fbdd52e2a39e88b4",
+          "description": ""
+        },
+        {
+          "name": "ProgressProps",
+          "kind": "type",
+          "signature": "ProgressProps = Omit<ProgressPrimitive.Root.Props, \"children\"> & { label?: string; \"aria-label\"?: string; showValue?: boolean; size?: \"small\" | \"medium\"; className?: string; }",
+          "typeHash": "c4c6dcd394eaf6155523594d2a0d8435b567c8e3ba357d498a4792ea93d0af8b",
+          "description": ""
+        }
+      ]
+    },
+    "spinner": {
+      "source": "src/components/ui/spinner.tsx",
+      "sourceHash": "918c0b475fd4de803f924939cc8d851445ccf07758c563df43608a31b9b04fa9",
+      "declaration": "api/generated/types/components/ui/spinner.d.ts",
+      "exports": [
+        {
+          "name": "Spinner",
+          "kind": "function",
+          "signature": "Spinner({ className, size, label, ...props }: SpinnerProps): import(\"react\").JSX.Element",
+          "typeHash": "a083f7b3b3eeaec1e0970b20ac90dc4c129bcfb188dba62baa3f385406e4263c",
+          "description": ""
+        },
+        {
+          "name": "SpinnerProps",
+          "kind": "type",
+          "signature": "SpinnerProps = ComponentPropsWithRef<\"span\"> & { size?: \"small\" | \"medium\" | \"large\"; label?: string; }",
+          "typeHash": "4ce647548951da5f150851bf45fb8155a53e0d44994e08d07f1fb0dc4aa9f0e6",
+          "description": ""
+        }
+      ]
+    },
+    "alert": {
+      "source": "src/components/ui/alert.tsx",
+      "sourceHash": "3cc39f193c373baf1dbda8451ca31cb8985a9e326f8de9628c8ed8cf105bcd43",
+      "declaration": "api/generated/types/components/ui/alert.d.ts",
+      "exports": [
+        {
+          "name": "Alert",
+          "kind": "function",
+          "signature": "Alert({ variant, title, icon, action, live, dismissLabel, onDismiss, className, children, role, ...props }: AlertProps): import(\"react\").JSX.Element",
+          "typeHash": "2df11dbda80cf0bd5b56c95cc16abdd191d3dcd0b3910538c3136d53c140fa52",
+          "description": ""
+        },
+        {
+          "name": "AlertProps",
+          "kind": "type",
+          "signature": "AlertProps = Omit<ComponentPropsWithRef<\"div\">, \"title\"> & { variant?: \"neutral\" | \"critical\"; title: ReactNode; icon?: ReactNode; action?: ReactNode; live?: \"polite\" | \"assertive\"; dismissLabel?: string; onDismiss?: () => void; }",
+          "typeHash": "7991f9b05d59cde84e96bbdd4fafc693b9613c0d8a09798ad7eadd45b7be809f",
+          "description": ""
+        }
+      ]
+    },
+    "empty-state": {
+      "source": "src/components/ui/empty-state.tsx",
+      "sourceHash": "c80b0776fb155b38a1781c1104b3ee4fe87900a060f6b0700408a50e9a4320c1",
+      "declaration": "api/generated/types/components/ui/empty-state.d.ts",
+      "exports": [
+        {
+          "name": "EmptyState",
+          "kind": "function",
+          "signature": "EmptyState({ title, description, icon, primaryAction, secondaryAction, size, className, ...props }: EmptyStateProps): import(\"react\").JSX.Element",
+          "typeHash": "abb880033074648039be7e7531ff03351e3a8fe12bc54992e4c813b12ef50587",
+          "description": ""
+        },
+        {
+          "name": "EmptyStateProps",
+          "kind": "type",
+          "signature": "EmptyStateProps = Omit<ComponentPropsWithRef<\"div\">, \"title\"> & { title: ReactNode; description?: ReactNode; icon?: ReactNode; primaryAction?: ReactNode; secondaryAction?: ReactNode; size?: \"compact\" | \"default\"; }",
+          "typeHash": "68bbb6f0328115b359ceab6559a54b3f80008fafeb568e27b08b6b64a6523dfa",
+          "description": ""
+        }
+      ]
+    },
+    "table": {
+      "source": "src/components/ui/table.tsx",
+      "sourceHash": "9d97736dd5fb54c560637c6ae56ad46bbb4546d7100a9336a40fc932b197b24e",
+      "declaration": "api/generated/types/components/ui/table.d.ts",
+      "exports": [
+        {
+          "name": "Table",
+          "kind": "function",
+          "signature": "Table({ className, containerClassName, ...props }: TableProps): import(\"react\").JSX.Element",
+          "typeHash": "db2c61815968053752f685052abbb76acf858628e70df89e10e45bbd4b981e86",
+          "description": ""
+        },
+        {
+          "name": "TableBody",
+          "kind": "function",
+          "signature": "TableBody({ className, ...props }: ComponentPropsWithRef<\"tbody\">): import(\"react\").JSX.Element",
+          "typeHash": "b8f2d2ce8e280d14afa315b4e36f3cde4efa752e2f1408c41dbf4dc347466cc8",
+          "description": ""
+        },
+        {
+          "name": "TableCaption",
+          "kind": "function",
+          "signature": "TableCaption({ className, ...props }: ComponentPropsWithRef<\"caption\">): import(\"react\").JSX.Element",
+          "typeHash": "0de3fa52c4453f8aa008509ac56cccf637dd69b5977b20e96294402dd986c9f8",
+          "description": ""
+        },
+        {
+          "name": "TableCell",
+          "kind": "function",
+          "signature": "TableCell({ className, ...props }: ComponentPropsWithRef<\"td\">): import(\"react\").JSX.Element",
+          "typeHash": "9d12fabe45494ce55527bd30089a533da90b1b88082e19d459bfd763ff3d3d74",
+          "description": ""
+        },
+        {
+          "name": "TableFooter",
+          "kind": "function",
+          "signature": "TableFooter({ className, ...props }: ComponentPropsWithRef<\"tfoot\">): import(\"react\").JSX.Element",
+          "typeHash": "c15d6691d470e242bba5c706dfd923b001311d78dd6615c8c640c47854a5f746",
+          "description": ""
+        },
+        {
+          "name": "TableHead",
+          "kind": "function",
+          "signature": "TableHead({ className, scope, ...props }: ComponentPropsWithRef<\"th\">): import(\"react\").JSX.Element",
+          "typeHash": "f2ad2618b9f9e07f3d8487286b631b5ac7fab529112961f170924b444fb40e4d",
+          "description": ""
+        },
+        {
+          "name": "TableHeader",
+          "kind": "function",
+          "signature": "TableHeader({ className, ...props }: ComponentPropsWithRef<\"thead\">): import(\"react\").JSX.Element",
+          "typeHash": "e2af8d6cacdeb05427086c7b2c472691b7b5e21461340be317d5059f2ef70757",
+          "description": ""
+        },
+        {
+          "name": "TableProps",
+          "kind": "type",
+          "signature": "TableProps = ComponentPropsWithRef<\"table\"> & { containerClassName?: string; }",
+          "typeHash": "0c237851183de1fb09ef828e806b6ac9c6cabb541dbe7a7077b99d6983e22c34",
+          "description": ""
+        },
+        {
+          "name": "TableRow",
+          "kind": "function",
+          "signature": "TableRow({ className, ...props }: ComponentPropsWithRef<\"tr\">): import(\"react\").JSX.Element",
+          "typeHash": "a61ac93cce2f8f037656c6f3dc7cc981206b44c47608ec57e2a7b1e7503dd20b",
+          "description": ""
+        }
+      ]
+    },
+    "tree": {
+      "source": "src/components/ui/tree.tsx",
+      "sourceHash": "b81a225396842e88781cb431760197c6c33b172eab1d4b162e6becc3dca0c843",
+      "declaration": "api/generated/types/components/ui/tree.d.ts",
+      "exports": [
+        {
+          "name": "Tree",
+          "kind": "function",
+          "signature": "Tree({ items, className, selectionMode, ...props }: TreeProps): import(\"react\").JSX.Element",
+          "typeHash": "b4908a6589ef1250fb4290ab91a01092dc5029193e29950c48ac3e534d0d5158",
+          "description": ""
+        },
+        {
+          "name": "TreeNode",
+          "kind": "type",
+          "signature": "TreeNode = { id: Key; label: string; description?: string; icon?: ReactNode; children?: readonly TreeNode[]; disabled?: boolean; }",
+          "typeHash": "cd9d6298fb08aa71ba67821d5568acfe5fa98869c42427ba0987ec65bdeada4f",
+          "description": ""
+        },
+        {
+          "name": "TreeProps",
+          "kind": "type",
+          "signature": "TreeProps = Omit<AriaTreeProps<TreeNode>, \"children\" | \"className\" | \"items\"> & { items: readonly TreeNode[]; className?: string; }",
+          "typeHash": "283123a6d5bbad5b10833009f62a883e570abde3c2cb3b65b6ac9f4d352d2d94",
+          "description": ""
+        }
+      ]
+    }
+  }
+}

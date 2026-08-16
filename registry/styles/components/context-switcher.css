@@ -1,70 +1,70 @@
 /* Generated from src/styles.css. Do not edit directly. */
 
-@layer index.tokens, index.base, index.components;
+@layer teum.tokens, teum.base, teum.components;
 
-@layer index.components {
-.ix-context-switcher {
+@layer teum.components {
+.teum-context-switcher {
   display: inline-flex;
   width: min(252px, 100%);
   height: 38px;
   align-items: center;
   gap: 8px;
   padding: 0 9px;
-  border: 1px solid var(--ix-control-border);
+  border: 1px solid var(--teum-control-border);
   border-radius: 9px;
-  background: color-mix(in oklab, var(--ix-bg-subtle) 42%, var(--ix-bg-control));
-  box-shadow: var(--ix-shadow-control);
-  color: var(--ix-fg-default);
+  background: color-mix(in oklab, var(--teum-bg-subtle) 42%, var(--teum-bg-control));
+  box-shadow: var(--teum-shadow-control);
+  color: var(--teum-fg-default);
   font: inherit;
   cursor: pointer;
-  transition: background-color var(--ix-hover-duration), border-color var(--ix-hover-duration), box-shadow var(--ix-hover-duration), transform var(--ix-press-duration) var(--ix-ease-out);
+  transition: background-color var(--teum-hover-duration), border-color var(--teum-hover-duration), box-shadow var(--teum-hover-duration), transform var(--teum-press-duration) var(--teum-ease-out);
 }
 
-.ix-context-switcher__value { display: flex; min-width: 0; flex: 1; align-items: center; gap: 8px; }
+.teum-context-switcher__value { display: flex; min-width: 0; flex: 1; align-items: center; gap: 8px; }
 
-.ix-context-switcher__icon,
-.ix-context-switcher__item-icon { display: grid; width: 17px; height: 17px; flex: 0 0 auto; place-items: center; color: var(--ix-fg-muted); }
+.teum-context-switcher__icon,
+.teum-context-switcher__item-icon { display: grid; width: 17px; height: 17px; flex: 0 0 auto; place-items: center; color: var(--teum-fg-muted); }
 
-.ix-context-switcher__icon svg,
-.ix-context-switcher__item-icon svg { width: 16px; height: 16px; }
+.teum-context-switcher__icon svg,
+.teum-context-switcher__item-icon svg { width: 16px; height: 16px; }
 
-.ix-context-switcher__label { overflow: hidden; font-size: var(--ix-type-ui); font-weight: 540; text-overflow: ellipsis; white-space: nowrap; }
+.teum-context-switcher__label { overflow: hidden; font-size: var(--teum-type-ui); font-weight: 540; text-overflow: ellipsis; white-space: nowrap; }
 
-.ix-context-switcher__chevron { display: grid; width: 16px; height: 16px; flex: 0 0 auto; place-items: center; color: var(--ix-fg-subtle); }
+.teum-context-switcher__chevron { display: grid; width: 16px; height: 16px; flex: 0 0 auto; place-items: center; color: var(--teum-fg-subtle); }
 
-.ix-context-switcher__chevron svg { width: 14px; height: 14px; }
+.teum-context-switcher__chevron svg { width: 14px; height: 14px; }
 
-.ix-context-switcher:not([data-disabled]):hover,
-.ix-context-switcher[data-popup-open] { border-color: var(--ix-control-border-hover); background: var(--ix-bg-control); box-shadow: var(--ix-shadow-float); }
+.teum-context-switcher:not([data-disabled]):hover,
+.teum-context-switcher[data-popup-open] { border-color: var(--teum-control-border-hover); background: var(--teum-bg-control); box-shadow: var(--teum-shadow-float); }
 
-.ix-context-switcher:active:not([data-disabled]) { transform: scale(.99); }
+.teum-context-switcher:active:not([data-disabled]) { transform: scale(.985); }
 
-.ix-context-switcher:focus-visible { outline: 2px solid var(--ix-focus-control); outline-offset: 2px; }
+.teum-context-switcher:focus-visible { outline: 0; border-color: var(--teum-control-border-hover); background: var(--teum-bg-control); box-shadow: var(--teum-shadow-control); }
 
-.ix-context-switcher[data-disabled] { color: var(--ix-fg-disabled); cursor: not-allowed; box-shadow: none; }
+.teum-context-switcher[data-disabled] { color: var(--teum-fg-disabled); cursor: not-allowed; box-shadow: none; }
 
-.ix-context-switcher__popup {
+.teum-context-switcher__popup {
   min-width: var(--anchor-width);
   max-width: min(320px, calc(100vw - 20px));
   max-height: min(360px, var(--available-height));
   overflow: hidden;
-  border-radius: var(--ix-radius-overlay);
-  background: color-mix(in oklab, var(--ix-bg-flyout) 94%, transparent);
-  box-shadow: var(--ix-shadow-flyout);
-  color: var(--ix-fg-default);
+  border-radius: var(--teum-radius-overlay);
+  background: color-mix(in oklab, var(--teum-bg-flyout) 94%, transparent);
+  box-shadow: var(--teum-shadow-flyout);
+  color: var(--teum-fg-default);
   backdrop-filter: blur(14px);
   transform-origin: var(--transform-origin);
-  transition: opacity 150ms var(--ix-ease-out), transform 150ms var(--ix-ease-out);
+  transition: opacity 150ms var(--teum-ease-out), transform 150ms var(--teum-ease-out);
 }
 
-.ix-context-switcher__popup[data-starting-style],
-.ix-context-switcher__popup[data-ending-style] { opacity: 0; transform: translateY(-2px) scale(.985); }
+.teum-context-switcher__popup[data-starting-style],
+.teum-context-switcher__popup[data-ending-style] { opacity: 0; transform: translateY(-2px) scale(.985); }
 
-.ix-context-switcher__popup[data-ending-style] { transition-duration: var(--ix-exit-duration); }
+.teum-context-switcher__popup[data-ending-style] { transition-duration: var(--teum-exit-duration); }
 
-.ix-context-switcher__list { display: grid; gap: 2px; padding: 4px; overflow-y: auto; }
+.teum-context-switcher__list { display: grid; gap: 2px; padding: 4px; overflow-y: auto; }
 
-.ix-context-switcher__item {
+.teum-context-switcher__item {
   display: grid;
   min-height: 48px;
   grid-template-columns: 17px minmax(0, 1fr) 14px;
@@ -75,68 +75,68 @@
   border-radius: 7px;
   background: transparent;
   outline: 0;
-  color: var(--ix-fg-default);
+  color: var(--teum-fg-default);
   font: inherit;
   text-align: left;
   cursor: default;
   user-select: none;
-  transition: background-color var(--ix-hover-duration), box-shadow var(--ix-hover-duration);
+  transition: background-color var(--teum-hover-duration), box-shadow var(--teum-hover-duration);
 }
 
-.ix-context-switcher__copy { display: grid; min-width: 0; gap: 3px; }
+.teum-context-switcher__copy { display: grid; min-width: 0; gap: 3px; }
 
-.ix-context-switcher__item-label { overflow: hidden; font-size: var(--ix-type-ui); font-weight: 550; line-height: 1.1; text-overflow: ellipsis; white-space: nowrap; }
+.teum-context-switcher__item-label { overflow: hidden; font-size: var(--teum-type-ui); font-weight: 550; line-height: 1.1; text-overflow: ellipsis; white-space: nowrap; }
 
-.ix-context-switcher__description { overflow: hidden; color: var(--ix-fg-subtle); font-size: var(--ix-type-label); line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
+.teum-context-switcher__description { overflow: hidden; color: var(--teum-fg-subtle); font-size: var(--teum-type-label); line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
 
-.ix-context-switcher__indicator { display: grid; width: 14px; height: 14px; place-items: center; color: var(--ix-fg-default); }
+.teum-context-switcher__indicator { display: grid; width: 14px; height: 14px; place-items: center; color: var(--teum-fg-default); }
 
-.ix-context-switcher__indicator svg { width: 12px; height: 12px; }
+.teum-context-switcher__indicator svg { width: 12px; height: 12px; }
 
-.ix-context-switcher__item:hover { background: var(--ix-hover); }
+.teum-context-switcher__item:hover { background: var(--teum-hover); }
 
-.ix-context-switcher__item[data-highlighted] { background: var(--ix-bg-control); box-shadow: inset 0 0 0 1px var(--ix-focus-control); }
+.teum-context-switcher__item[data-highlighted] { background: var(--teum-bg-control); box-shadow: inset 0 0 0 1px var(--teum-focus-control); }
 
-.ix-context-switcher__item[data-disabled] { color: var(--ix-fg-disabled); cursor: not-allowed; }
+.teum-context-switcher__item[data-disabled] { color: var(--teum-fg-disabled); cursor: not-allowed; }
 
-.ix-context-switcher__item[data-disabled] .ix-context-switcher__description,
-.ix-context-switcher__item[data-disabled] .ix-context-switcher__item-icon { color: var(--ix-fg-disabled); }
+.teum-context-switcher__item[data-disabled] .teum-context-switcher__description,
+.teum-context-switcher__item[data-disabled] .teum-context-switcher__item-icon { color: var(--teum-fg-disabled); }
 
-.ix-positioner { z-index: var(--ix-layer-flyout); }
+.teum-positioner { z-index: var(--teum-layer-flyout); }
 
-.ix-context-switcher__popup {
-  scrollbar-color: var(--ix-scrollbar-thumb) transparent;
+.teum-context-switcher__popup {
+  scrollbar-color: var(--teum-scrollbar-thumb) transparent;
   scrollbar-width: thin;
 }
 
-.ix-context-switcher__popup::-webkit-scrollbar { width: 10px; height: 10px; }
+.teum-context-switcher__popup::-webkit-scrollbar { width: 10px; height: 10px; }
 
-.ix-context-switcher__popup::-webkit-scrollbar-track { background: transparent; }
+.teum-context-switcher__popup::-webkit-scrollbar-track { background: transparent; }
 
-.ix-context-switcher__popup::-webkit-scrollbar-thumb {
+.teum-context-switcher__popup::-webkit-scrollbar-thumb {
   border: 3px solid transparent;
   border-radius: 999px;
-  background: var(--ix-scrollbar-thumb);
+  background: var(--teum-scrollbar-thumb);
   background-clip: padding-box;
 }
 
-.ix-context-switcher__popup::-webkit-scrollbar-thumb:hover { background: var(--ix-scrollbar-thumb-hover); background-clip: padding-box; }
+.teum-context-switcher__popup::-webkit-scrollbar-thumb:hover { background: var(--teum-scrollbar-thumb-hover); background-clip: padding-box; }
 
 @media (forced-colors: active) {
-.ix-context-switcher__popup { scrollbar-color: auto; }
+.teum-context-switcher__popup { scrollbar-color: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-.ix-context-switcher__popup {
+.teum-context-switcher__popup {
     transition-property: opacity;
-    transition-duration: var(--ix-exit-duration);
+    transition-duration: var(--teum-exit-duration);
   }
 
-.ix-context-switcher__popup[data-starting-style],
-.ix-context-switcher__popup[data-ending-style] { transform: none; }
+.teum-context-switcher__popup[data-starting-style],
+.teum-context-switcher__popup[data-ending-style] { transform: none; }
 
-.ix-context-switcher:active { transform: none; }
+.teum-context-switcher:active { transform: none; }
 
-.ix-context-switcher__chevron svg { transition-duration: 0.01ms; }
+.teum-context-switcher__chevron svg { transition-duration: 0.01ms; }
 }
 }

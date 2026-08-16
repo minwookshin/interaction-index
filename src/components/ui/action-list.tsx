@@ -70,8 +70,8 @@ export function ActionList({ items, onAction, placeholder = "Search actions…",
   };
 
   return (
-    <div className={cn("ix-action-list", className)}>
-      <div className="ix-action-list__search">
+    <div className={cn("teum-action-list", className)}>
+      <div className="teum-action-list__search">
         <MagnifyingGlass aria-hidden="true" />
         <input
           value={query}
@@ -86,9 +86,9 @@ export function ActionList({ items, onAction, placeholder = "Search actions…",
           aria-controls={listId}
           aria-activedescendant={safeActiveIndex >= 0 ? `${listId}-${filtered[safeActiveIndex]?.id}` : undefined}
         />
-        <kbd>⌘ K</kbd>
+        <kbd aria-label="Command K">⌘K</kbd>
       </div>
-      <div id={listId} className="ix-action-list__items" role="listbox" aria-label="Actions">
+      <div id={listId} className="teum-action-list__items" role="listbox" aria-label="Actions">
         {filtered.map((item, index) => (
           <div
             id={`${listId}-${item.id}`}
@@ -96,25 +96,25 @@ export function ActionList({ items, onAction, placeholder = "Search actions…",
             role="option"
             aria-selected={index === safeActiveIndex}
             aria-disabled={item.disabled || item.loading || undefined}
-            className="ix-action-list__item"
+            className="teum-action-list__item"
             data-active={index === safeActiveIndex || undefined}
             data-disabled={item.disabled || undefined}
             data-loading={item.loading || undefined}
             data-variant={item.variant}
             title={item.inactiveReason}
-            onPointerMove={() => !item.disabled && !item.loading && setActiveIndex(index)}
+            onPointerEnter={() => !item.disabled && !item.loading && setActiveIndex(index)}
             onClick={() => !item.disabled && !item.loading && onAction(item)}
           >
-            <span className="ix-action-list__icon" aria-hidden="true">{item.icon}</span>
-            <span className="ix-action-list__copy">
+            <span className="teum-action-list__icon" aria-hidden="true">{item.icon}</span>
+            <span className="teum-action-list__copy">
               <span>{item.label}</span>
               {(item.description || item.inactiveReason) && <small>{item.inactiveReason ?? item.description}</small>}
             </span>
-            {item.loading ? <span className="ix-spinner" aria-hidden="true" /> : item.shortcut && <kbd>{item.shortcut}</kbd>}
+            {item.loading ? <span className="teum-spinner" aria-hidden="true" /> : item.shortcut && <kbd>{item.shortcut}</kbd>}
           </div>
         ))}
       </div>
-      {!filtered.length && <div className="ix-action-list__empty" role="status">{emptyMessage}</div>}
+      {!filtered.length && <div className="teum-action-list__empty" role="status">{emptyMessage}</div>}
     </div>
   );
 }

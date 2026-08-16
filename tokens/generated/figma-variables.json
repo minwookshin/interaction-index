@@ -1,0 +1,3868 @@
+{
+  "schemaVersion": 2,
+  "$description": "Figma library handoff generated from the DTCG source. It is deterministic input for the Figma build, not evidence that a library is published.",
+  "source": "tokens/teum.tokens.json",
+  "collections": [
+    {
+      "name": "Teum / Foundation",
+      "modes": [
+        "Value"
+      ]
+    },
+    {
+      "name": "Teum / Theme",
+      "modes": [
+        "Light",
+        "Dark"
+      ]
+    }
+  ],
+  "variables": [
+    {
+      "name": "foundation/system/neutral-h",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Cool graphite hue used by optical OKLCH effects.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-neutral-h)"
+      },
+      "values": {
+        "Value": 275
+      },
+      "sourceType": "number"
+    },
+    {
+      "name": "foundation/system/neutral-c",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Near-neutral chroma used by optical OKLCH effects.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-neutral-c)"
+      },
+      "values": {
+        "Value": 0.002
+      },
+      "sourceType": "number"
+    },
+    {
+      "name": "foundation/system/sidebar-l",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Reference lightness for translucent navigation surfaces.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-sidebar-l)"
+      },
+      "values": {
+        "Value": 0.982
+      },
+      "sourceType": "number"
+    },
+    {
+      "name": "foundation/system/stage-l",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Reference lightness for specimen stages.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-stage-l)"
+      },
+      "values": {
+        "Value": 0.986
+      },
+      "sourceType": "number"
+    },
+    {
+      "name": "foundation/system/border-alpha",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Reference opacity for low-contrast structural separators.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-border-alpha)"
+      },
+      "values": {
+        "Value": 0.078
+      },
+      "sourceType": "number"
+    },
+    {
+      "name": "foundation/typography/font-ui",
+      "collection": "Teum / Foundation",
+      "type": "STRING",
+      "description": "Primary product and documentation font stack.",
+      "scopes": [
+        "FONT_FAMILY"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-font-ui)"
+      },
+      "values": {
+        "Value": "Inter"
+      },
+      "sourceType": "fontFamily"
+    },
+    {
+      "name": "foundation/typography/font-code",
+      "collection": "Teum / Foundation",
+      "type": "STRING",
+      "description": "Code and token value font stack.",
+      "scopes": [
+        "FONT_FAMILY"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-font-code)"
+      },
+      "values": {
+        "Value": "SF Mono"
+      },
+      "sourceType": "fontFamily"
+    },
+    {
+      "name": "foundation/typography/sizes/type-metadata",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Small supporting metadata with a persistent readability floor.",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-type-metadata)"
+      },
+      "values": {
+        "Value": 11.5
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/typography/sizes/type-label",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Persistent navigation and field labels.",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-type-label)"
+      },
+      "values": {
+        "Value": 12
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/typography/sizes/type-ui",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Default compact control and product interface text.",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-type-ui)"
+      },
+      "values": {
+        "Value": 13.5
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/typography/sizes/type-body",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Documentation body copy.",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-type-body)"
+      },
+      "values": {
+        "Value": 14.5
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/typography/sizes/type-row",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "High-salience labels in dense product rows.",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-type-row)"
+      },
+      "values": {
+        "Value": 14.5
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/typography/sizes/type-section",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Documentation section heading.",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-type-section)"
+      },
+      "values": {
+        "Value": 20
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/typography/sizes/type-title",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Page title for deep documentation routes.",
+      "scopes": [
+        "FONT_SIZE"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-type-title)"
+      },
+      "values": {
+        "Value": 32
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/typography/sizes/line-metadata",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Metadata line height.",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-line-metadata)"
+      },
+      "values": {
+        "Value": 16
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/typography/sizes/line-label",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Label line height.",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-line-label)"
+      },
+      "values": {
+        "Value": 16
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/typography/sizes/line-ui",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Compact control line height.",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-line-ui)"
+      },
+      "values": {
+        "Value": 18
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/typography/sizes/line-row",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Dense product row line height.",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-line-row)"
+      },
+      "values": {
+        "Value": 20
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/typography/sizes/line-body",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Documentation reading line height.",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-line-body)"
+      },
+      "values": {
+        "Value": 23
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/typography/sizes/line-section",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Section heading line height.",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-line-section)"
+      },
+      "values": {
+        "Value": 26
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/typography/sizes/line-title",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Page title line height.",
+      "scopes": [
+        "LINE_HEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-line-title)"
+      },
+      "values": {
+        "Value": 36
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/typography/ui-weight",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Optical default weight for Inter Variable controls.",
+      "scopes": [
+        "FONT_WEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-ui-weight)"
+      },
+      "values": {
+        "Value": 470
+      },
+      "sourceType": "fontWeight"
+    },
+    {
+      "name": "foundation/typography/label-weight",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Compact labels and field hierarchy.",
+      "scopes": [
+        "FONT_WEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-label-weight)"
+      },
+      "values": {
+        "Value": 560
+      },
+      "sourceType": "fontWeight"
+    },
+    {
+      "name": "foundation/typography/heading-weight",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Page and section headings.",
+      "scopes": [
+        "FONT_WEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-heading-weight)"
+      },
+      "values": {
+        "Value": 580
+      },
+      "sourceType": "fontWeight"
+    },
+    {
+      "name": "foundation/typography/ui-tracking",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Compact UI letter spacing expressed as an em ratio.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-ui-tracking)"
+      },
+      "values": {
+        "Value": -0.006
+      },
+      "sourceType": "number"
+    },
+    {
+      "name": "foundation/layout/space-0",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Zero-space reset.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-space-0)"
+      },
+      "values": {
+        "Value": 0
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/space-1",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "One base spacing unit.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-space-1)"
+      },
+      "values": {
+        "Value": 4
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/space-2",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Two base spacing units.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-space-2)"
+      },
+      "values": {
+        "Value": 8
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/space-3",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Three base spacing units.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-space-3)"
+      },
+      "values": {
+        "Value": 12
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/space-4",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Four base spacing units.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-space-4)"
+      },
+      "values": {
+        "Value": 16
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/space-5",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Five base spacing units.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-space-5)"
+      },
+      "values": {
+        "Value": 20
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/space-6",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Six base spacing units.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-space-6)"
+      },
+      "values": {
+        "Value": 24
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/space-7",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Seven base spacing units.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-space-7)"
+      },
+      "values": {
+        "Value": 28
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/space-8",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Eight base spacing units.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-space-8)"
+      },
+      "values": {
+        "Value": 32
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/space-10",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Ten base spacing units.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-space-10)"
+      },
+      "values": {
+        "Value": 40
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/space-12",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Twelve base spacing units.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-space-12)"
+      },
+      "values": {
+        "Value": 48
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/space-16",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Sixteen base spacing units.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-space-16)"
+      },
+      "values": {
+        "Value": 64
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/space-page-x",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Default horizontal documentation inset.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-space-page-x)"
+      },
+      "values": {
+        "Value": 28
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/space-page-y",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Default vertical documentation inset.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-space-page-y)"
+      },
+      "values": {
+        "Value": 24
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/space-section",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Primary vertical rhythm between documentation sections.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-space-section)"
+      },
+      "values": {
+        "Value": 22
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/icon-size",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Default icon box for compact controls.",
+      "scopes": [
+        "WIDTH_HEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-icon-size)"
+      },
+      "values": {
+        "Value": 14
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/icon-offset-y",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Optical vertical correction for the default icon family.",
+      "scopes": [
+        "WIDTH_HEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-icon-offset-y)"
+      },
+      "values": {
+        "Value": 0
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/control-height-sm",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Small compact control height.",
+      "scopes": [
+        "WIDTH_HEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-control-height-sm)"
+      },
+      "values": {
+        "Value": 28
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/control-height-md",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Default compact control height.",
+      "scopes": [
+        "WIDTH_HEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-control-height-md)"
+      },
+      "values": {
+        "Value": 32
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/control-height-lg",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Large compact control height.",
+      "scopes": [
+        "WIDTH_HEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-control-height-lg)"
+      },
+      "values": {
+        "Value": 36
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/control-padding-sm",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Horizontal inset for small controls.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-control-padding-sm)"
+      },
+      "values": {
+        "Value": 8
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/control-padding-md",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Horizontal inset for default controls.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-control-padding-md)"
+      },
+      "values": {
+        "Value": 10
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/control-padding-lg",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Horizontal inset for large controls.",
+      "scopes": [
+        "GAP"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-control-padding-lg)"
+      },
+      "values": {
+        "Value": 12
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/radius-control",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Compact control radius.",
+      "scopes": [
+        "CORNER_RADIUS"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-radius-control)"
+      },
+      "values": {
+        "Value": 6
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/radius-container",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Persistent surface and specimen radius.",
+      "scopes": [
+        "CORNER_RADIUS"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-radius-container)"
+      },
+      "values": {
+        "Value": 8
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/radius-overlay",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Temporary overlay radius.",
+      "scopes": [
+        "CORNER_RADIUS"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-radius-overlay)"
+      },
+      "values": {
+        "Value": 10
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/radius-pill",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Fully rounded status and segmented shape.",
+      "scopes": [
+        "CORNER_RADIUS"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-radius-pill)"
+      },
+      "values": {
+        "Value": 999
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/row-height-menu",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Menu and action row minimum height.",
+      "scopes": [
+        "WIDTH_HEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-row-height-menu)"
+      },
+      "values": {
+        "Value": 30
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/row-height-table",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Default compact table row height with room for two-line identity content.",
+      "scopes": [
+        "WIDTH_HEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-row-height-table)"
+      },
+      "values": {
+        "Value": 46
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/focus-width",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Default visible focus indicator width.",
+      "scopes": [
+        "STROKE_FLOAT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-focus-width)"
+      },
+      "values": {
+        "Value": 2
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/focus-offset",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Default separation between a control and its focus indicator.",
+      "scopes": [
+        "WIDTH_HEIGHT"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-focus-offset)"
+      },
+      "values": {
+        "Value": 1
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/radius-xs",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Tight utility radius.",
+      "scopes": [
+        "CORNER_RADIUS"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-radius-xs)"
+      },
+      "values": {
+        "Value": 4
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/radius-sm",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Alias for the compact control radius.",
+      "scopes": [
+        "CORNER_RADIUS"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-radius-sm)"
+      },
+      "values": {
+        "Value": {
+          "alias": "foundation/layout/radius-control"
+        }
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/radius-md",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Alias for the persistent container radius.",
+      "scopes": [
+        "CORNER_RADIUS"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-radius-md)"
+      },
+      "values": {
+        "Value": {
+          "alias": "foundation/layout/radius-container"
+        }
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/layout/radius-lg",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Alias for the temporary overlay radius.",
+      "scopes": [
+        "CORNER_RADIUS"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-radius-lg)"
+      },
+      "values": {
+        "Value": {
+          "alias": "foundation/layout/radius-overlay"
+        }
+      },
+      "sourceType": "dimension"
+    },
+    {
+      "name": "foundation/motion/duration/hover-duration",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Frequent hover and color feedback.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-hover-duration)"
+      },
+      "values": {
+        "Value": 120
+      },
+      "sourceType": "duration"
+    },
+    {
+      "name": "foundation/motion/duration/press-duration",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Immediate press and release feedback.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-press-duration)"
+      },
+      "values": {
+        "Value": 110
+      },
+      "sourceType": "duration"
+    },
+    {
+      "name": "foundation/motion/duration/enter-duration",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Occasional small overlay entrance.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-enter-duration)"
+      },
+      "values": {
+        "Value": 180
+      },
+      "sourceType": "duration"
+    },
+    {
+      "name": "foundation/motion/duration/exit-duration",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Faster small overlay exit.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-exit-duration)"
+      },
+      "values": {
+        "Value": 120
+      },
+      "sourceType": "duration"
+    },
+    {
+      "name": "foundation/motion/duration/fast",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Compatibility alias for frequent feedback.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-fast)"
+      },
+      "values": {
+        "Value": {
+          "alias": "foundation/motion/duration/hover-duration"
+        }
+      },
+      "sourceType": "duration"
+    },
+    {
+      "name": "foundation/motion/duration/medium",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Compatibility alias for occasional entrance motion.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-medium)"
+      },
+      "values": {
+        "Value": {
+          "alias": "foundation/motion/duration/enter-duration"
+        }
+      },
+      "sourceType": "duration"
+    },
+    {
+      "name": "foundation/motion/easing/ease-out",
+      "collection": "Teum / Foundation",
+      "type": "STRING",
+      "description": "Responsive entrance and direct-manipulation feedback.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-ease-out)"
+      },
+      "values": {
+        "Value": "cubic-bezier(0.23, 1, 0.32, 1)"
+      },
+      "sourceType": "cubicBezier"
+    },
+    {
+      "name": "foundation/motion/easing/ease-in-out",
+      "collection": "Teum / Foundation",
+      "type": "STRING",
+      "description": "On-screen movement between two visible positions.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-ease-in-out)"
+      },
+      "values": {
+        "Value": "cubic-bezier(0.77, 0, 0.175, 1)"
+      },
+      "sourceType": "cubicBezier"
+    },
+    {
+      "name": "foundation/motion/easing/ease-drawer",
+      "collection": "Teum / Foundation",
+      "type": "STRING",
+      "description": "Interruptible drawer and shared-detail travel.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-ease-drawer)"
+      },
+      "values": {
+        "Value": "cubic-bezier(0.32, 0.72, 0, 1)"
+      },
+      "sourceType": "cubicBezier"
+    },
+    {
+      "name": "foundation/motion/easing/ease",
+      "collection": "Teum / Foundation",
+      "type": "STRING",
+      "description": "Compatibility alias for the system ease-out curve.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-ease)"
+      },
+      "values": {
+        "Value": {
+          "alias": "foundation/motion/easing/ease-out"
+        }
+      },
+      "sourceType": "cubicBezier"
+    },
+    {
+      "name": "foundation/layers/layer-sticky",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Sticky content within the document canvas.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-layer-sticky)"
+      },
+      "values": {
+        "Value": 20
+      },
+      "sourceType": "number"
+    },
+    {
+      "name": "foundation/layers/layer-modal-backdrop",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Focus-trapping modal scrim.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-layer-modal-backdrop)"
+      },
+      "values": {
+        "Value": 100
+      },
+      "sourceType": "number"
+    },
+    {
+      "name": "foundation/layers/layer-modal",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Focus-trapping task surface.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-layer-modal)"
+      },
+      "values": {
+        "Value": 110
+      },
+      "sourceType": "number"
+    },
+    {
+      "name": "foundation/layers/layer-flyout",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Anchored temporary surface.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-layer-flyout)"
+      },
+      "values": {
+        "Value": 120
+      },
+      "sourceType": "number"
+    },
+    {
+      "name": "foundation/layers/layer-toast",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Highest non-navigation feedback layer.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-layer-toast)"
+      },
+      "values": {
+        "Value": 130
+      },
+      "sourceType": "number"
+    },
+    {
+      "name": "foundation/layers/layer-navigation",
+      "collection": "Teum / Foundation",
+      "type": "FLOAT",
+      "description": "Persistent application navigation and mobile drawer.",
+      "scopes": [],
+      "hiddenFromPublishing": true,
+      "codeSyntax": {
+        "WEB": "var(--teum-layer-navigation)"
+      },
+      "values": {
+        "Value": 150
+      },
+      "sourceType": "number"
+    },
+    {
+      "name": "theme/palette/gray-50",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-gray-50)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.968627,
+          "g": 0.968627,
+          "b": 0.972549,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.066667,
+          "g": 0.066667,
+          "b": 0.070588,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/palette/gray-100",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-gray-100)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.94902,
+          "g": 0.94902,
+          "b": 0.952941,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.090196,
+          "g": 0.090196,
+          "b": 0.094118,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/palette/gray-200",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-gray-200)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.898039,
+          "g": 0.898039,
+          "b": 0.905882,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.133333,
+          "g": 0.133333,
+          "b": 0.141176,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/palette/gray-300",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-gray-300)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.819608,
+          "g": 0.819608,
+          "b": 0.831373,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.196078,
+          "g": 0.196078,
+          "b": 0.207843,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/palette/gray-400",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-gray-400)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.682353,
+          "g": 0.682353,
+          "b": 0.694118,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.333333,
+          "g": 0.333333,
+          "b": 0.34902,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/palette/gray-500",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-gray-500)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.556863,
+          "g": 0.556863,
+          "b": 0.576471,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.521569,
+          "g": 0.521569,
+          "b": 0.545098,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/palette/gray-600",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-gray-600)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.388235,
+          "g": 0.388235,
+          "b": 0.4,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.705882,
+          "g": 0.705882,
+          "b": 0.729412,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/palette/gray-700",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-gray-700)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.282353,
+          "g": 0.282353,
+          "b": 0.290196,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.819608,
+          "g": 0.819608,
+          "b": 0.835294,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/palette/gray-800",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-gray-800)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.172549,
+          "g": 0.172549,
+          "b": 0.180392,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.898039,
+          "g": 0.898039,
+          "b": 0.909804,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/palette/gray-900",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-gray-900)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.109804,
+          "g": 0.109804,
+          "b": 0.117647,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.94902,
+          "g": 0.94902,
+          "b": 0.956863,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/bg-canvas",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Application and documentation canvas.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-bg-canvas)"
+      },
+      "values": {
+        "Light": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.054902,
+          "g": 0.054902,
+          "b": 0.058824,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/bg-sidebar",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Translucent persistent navigation surface.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-bg-sidebar)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.968627,
+          "g": 0.968627,
+          "b": 0.972549,
+          "a": 0.9
+        },
+        "Dark": {
+          "r": 0.062745,
+          "g": 0.062745,
+          "b": 0.066667,
+          "a": 0.92
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/bg-stage",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Quiet preview and product-state stage.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-bg-stage)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.109804,
+          "g": 0.109804,
+          "b": 0.117647,
+          "a": 0.026
+        },
+        "Dark": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 0.035
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/bg-subtle",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Selected rows and low-emphasis grouped surfaces.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-bg-subtle)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.109804,
+          "g": 0.109804,
+          "b": 0.117647,
+          "a": 0.043
+        },
+        "Dark": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 0.056
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/bg-surface",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Persistent composition surface above the canvas.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-bg-surface)"
+      },
+      "values": {
+        "Light": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 0.94
+        },
+        "Dark": {
+          "r": 0.078431,
+          "g": 0.078431,
+          "b": 0.082353,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/bg-control",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Compact control fill.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-bg-control)"
+      },
+      "values": {
+        "Light": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 0.98
+        },
+        "Dark": {
+          "r": 0.101961,
+          "g": 0.101961,
+          "b": 0.109804,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/bg-raised",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Persistent raised Float surface.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-bg-raised)"
+      },
+      "values": {
+        "Light": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.117647,
+          "g": 0.117647,
+          "b": 0.12549,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/bg-overlay",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Base temporary overlay surface.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-bg-overlay)"
+      },
+      "values": {
+        "Light": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.133333,
+          "g": 0.133333,
+          "b": 0.145098,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/bg-float",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Public Float elevation role.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-bg-float)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/surface/bg-raised"
+        },
+        "Dark": {
+          "alias": "theme/surface/bg-raised"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/bg-flyout",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Anchored temporary Flyout surface.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-bg-flyout)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/surface/bg-overlay"
+        },
+        "Dark": {
+          "r": 0.14902,
+          "g": 0.14902,
+          "b": 0.160784,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/bg-modal",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Focus-trapping Modal surface.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-bg-modal)"
+      },
+      "values": {
+        "Light": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1
+        },
+        "Dark": {
+          "alias": "theme/surface/bg-overlay"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/bg-scrim",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Modal and drawer background attenuation.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-bg-scrim)"
+      },
+      "values": {
+        "Light": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0.18
+        },
+        "Dark": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0.44
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/bg-code",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Collapsed and expanded source-code surface.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-bg-code)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.109804,
+          "g": 0.109804,
+          "b": 0.117647,
+          "a": 0.02
+        },
+        "Dark": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 0.025
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/canvas",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-canvas)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/surface/bg-canvas"
+        },
+        "Dark": {
+          "alias": "theme/surface/bg-canvas"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/sidebar",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-sidebar)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/surface/bg-sidebar"
+        },
+        "Dark": {
+          "alias": "theme/surface/bg-sidebar"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/surface",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-surface)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/surface/bg-surface"
+        },
+        "Dark": {
+          "alias": "theme/surface/bg-surface"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/control-surface",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-control-surface)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/surface/bg-control"
+        },
+        "Dark": {
+          "alias": "theme/surface/bg-control"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/elevated-surface",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-elevated-surface)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/surface/bg-raised"
+        },
+        "Dark": {
+          "alias": "theme/surface/bg-raised"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/overlay-surface",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-overlay-surface)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/surface/bg-overlay"
+        },
+        "Dark": {
+          "alias": "theme/surface/bg-overlay"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/code-surface",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-code-surface)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/surface/bg-code"
+        },
+        "Dark": {
+          "alias": "theme/surface/bg-code"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/stage",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-stage)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/surface/bg-stage"
+        },
+        "Dark": {
+          "alias": "theme/surface/bg-stage"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/subtle",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-subtle)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/surface/bg-subtle"
+        },
+        "Dark": {
+          "alias": "theme/surface/bg-subtle"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/hover",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Frequent pointer hover feedback.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-hover)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.109804,
+          "g": 0.109804,
+          "b": 0.117647,
+          "a": 0.048
+        },
+        "Dark": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 0.064
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/active",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Pressed or actively manipulated fill.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-active)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.109804,
+          "g": 0.109804,
+          "b": 0.117647,
+          "a": 0.088
+        },
+        "Dark": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 0.112
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/selected",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Persistent selected-row fill.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-selected)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.109804,
+          "g": 0.109804,
+          "b": 0.117647,
+          "a": 0.068
+        },
+        "Dark": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 0.088
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/inverse",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Primary monochrome action fill.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-inverse)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.090196,
+          "g": 0.090196,
+          "b": 0.098039,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.945098,
+          "g": 0.952941,
+          "b": 0.956863,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/inverse-hover",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Primary action hover fill.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-inverse-hover)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.14902,
+          "g": 0.14902,
+          "b": 0.160784,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.886275,
+          "g": 0.898039,
+          "b": 0.905882,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/on-inverse",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Text and icon color on inverse actions.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-on-inverse)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.972549,
+          "g": 0.972549,
+          "b": 0.972549,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.066667,
+          "g": 0.07451,
+          "b": 0.082353,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/scrollbar-thumb",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Monochrome scrollbar thumb.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-scrollbar-thumb)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.109804,
+          "g": 0.109804,
+          "b": 0.117647,
+          "a": 0.18
+        },
+        "Dark": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 0.2
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/surface/scrollbar-thumb-hover",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Scrollbar thumb hover state.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-scrollbar-thumb-hover)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.109804,
+          "g": 0.109804,
+          "b": 0.117647,
+          "a": 0.3
+        },
+        "Dark": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 0.34
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/foreground/fg-default",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Primary text and icon color.",
+      "scopes": [
+        "TEXT_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-fg-default)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/palette/gray-900"
+        },
+        "Dark": {
+          "alias": "theme/palette/gray-900"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/foreground/fg-muted",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Secondary explanatory text.",
+      "scopes": [
+        "TEXT_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-fg-muted)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/palette/gray-600"
+        },
+        "Dark": {
+          "alias": "theme/palette/gray-600"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/foreground/fg-subtle",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Tertiary metadata and quiet labels.",
+      "scopes": [
+        "TEXT_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-fg-subtle)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/palette/gray-600"
+        },
+        "Dark": {
+          "r": 0.556863,
+          "g": 0.556863,
+          "b": 0.576471,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/foreground/fg-disabled",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Unavailable control content.",
+      "scopes": [
+        "TEXT_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-fg-disabled)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/palette/gray-400"
+        },
+        "Dark": {
+          "alias": "theme/palette/gray-400"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/foreground/fg-danger",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Accessible semantic foreground for invalid values, errors, destructive actions, and critical feedback.",
+      "scopes": [
+        "TEXT_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-fg-danger)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.705882,
+          "g": 0.137255,
+          "b": 0.094118,
+          "a": 1
+        },
+        "Dark": {
+          "r": 1,
+          "g": 0.541176,
+          "b": 0.501961,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/foreground/ink",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [
+        "TEXT_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-ink)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/foreground/fg-default"
+        },
+        "Dark": {
+          "alias": "theme/foreground/fg-default"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/foreground/ink-secondary",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [
+        "TEXT_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-ink-secondary)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/foreground/fg-muted"
+        },
+        "Dark": {
+          "alias": "theme/foreground/fg-muted"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/foreground/ink-tertiary",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [
+        "TEXT_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-ink-tertiary)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/foreground/fg-subtle"
+        },
+        "Dark": {
+          "alias": "theme/foreground/fg-subtle"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/foreground/ink-disabled",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [
+        "TEXT_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-ink-disabled)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/foreground/fg-disabled"
+        },
+        "Dark": {
+          "alias": "theme/foreground/fg-disabled"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/border/separator",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Low-contrast structural separator.",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-separator)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.109804,
+          "g": 0.109804,
+          "b": 0.117647,
+          "a": 0.055
+        },
+        "Dark": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 0.072
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/border/control-border",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Default control boundary.",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-control-border)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.109804,
+          "g": 0.109804,
+          "b": 0.117647,
+          "a": 0.105
+        },
+        "Dark": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 0.13
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/border/control-border-hover",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Stronger interactive boundary.",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-control-border-hover)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.109804,
+          "g": 0.109804,
+          "b": 0.117647,
+          "a": 0.2
+        },
+        "Dark": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 0.26
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/border/border-subtle",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-border-subtle)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/border/separator"
+        },
+        "Dark": {
+          "alias": "theme/border/separator"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/border/border",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-border)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/border/control-border"
+        },
+        "Dark": {
+          "alias": "theme/border/control-border"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/border/border-strong",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-border-strong)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/border/control-border-hover"
+        },
+        "Dark": {
+          "alias": "theme/border/control-border-hover"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/focus/focus-control",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Keyboard focus for product controls.",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-focus-control)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.521569,
+          "g": 0.521569,
+          "b": 0.545098,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.643137,
+          "g": 0.643137,
+          "b": 0.666667,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/focus/focus-navigation",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Keyboard focus for persistent navigation.",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-focus-navigation)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.466667,
+          "g": 0.466667,
+          "b": 0.490196,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.678431,
+          "g": 0.678431,
+          "b": 0.701961,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/focus/focus-documentation",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Keyboard focus for documentation disclosures and anchors.",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-focus-documentation)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.521569,
+          "g": 0.521569,
+          "b": 0.545098,
+          "a": 1
+        },
+        "Dark": {
+          "r": 0.643137,
+          "g": 0.643137,
+          "b": 0.666667,
+          "a": 1
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/focus/focus-halo",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Quiet supporting halo where a single outline needs separation.",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-focus-halo)"
+      },
+      "values": {
+        "Light": {
+          "r": 0.109804,
+          "g": 0.109804,
+          "b": 0.117647,
+          "a": 0.14
+        },
+        "Dark": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 0.18
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/focus/switch-track",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Unchecked switch track.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-switch-track)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/palette/gray-300"
+        },
+        "Dark": {
+          "alias": "theme/palette/gray-300"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/focus/switch-thumb",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Switch thumb surface.",
+      "scopes": [
+        "FRAME_FILL",
+        "SHAPE_FILL"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-switch-thumb)"
+      },
+      "values": {
+        "Light": {
+          "r": 1,
+          "g": 1,
+          "b": 1,
+          "a": 1
+        },
+        "Dark": {
+          "alias": "theme/palette/gray-800"
+        }
+      },
+      "sourceType": "color"
+    },
+    {
+      "name": "theme/focus/focus",
+      "collection": "Teum / Theme",
+      "type": "COLOR",
+      "description": "Compatibility alias for product-control focus.",
+      "scopes": [
+        "STROKE_COLOR"
+      ],
+      "hiddenFromPublishing": false,
+      "codeSyntax": {
+        "WEB": "var(--teum-focus)"
+      },
+      "values": {
+        "Light": {
+          "alias": "theme/focus/focus-control"
+        },
+        "Dark": {
+          "alias": "theme/focus/focus-control"
+        }
+      },
+      "sourceType": "color"
+    }
+  ],
+  "textStyles": [
+    {
+      "name": "Typography/Metadata",
+      "description": "Persistent metadata and supporting labels.",
+      "fontFamilyCandidates": [
+        "Inter",
+        "Inter Variable"
+      ],
+      "fontStyleCandidates": [
+        "Medium",
+        "Regular"
+      ],
+      "fontWeight": 470,
+      "fontSize": 11.5,
+      "lineHeight": 16,
+      "letterSpacing": {
+        "value": -0.6,
+        "unit": "PERCENT"
+      },
+      "codeSyntax": {
+        "fontFamily": "var(--teum-font-ui)",
+        "fontSize": "var(--teum-type-metadata)",
+        "lineHeight": "var(--teum-line-metadata)"
+      }
+    },
+    {
+      "name": "Typography/Label",
+      "description": "Navigation, field, and control labels.",
+      "fontFamilyCandidates": [
+        "Inter",
+        "Inter Variable"
+      ],
+      "fontStyleCandidates": [
+        "Semi Bold",
+        "Medium",
+        "Regular"
+      ],
+      "fontWeight": 560,
+      "fontSize": 12,
+      "lineHeight": 16,
+      "letterSpacing": {
+        "value": -0.6,
+        "unit": "PERCENT"
+      },
+      "codeSyntax": {
+        "fontFamily": "var(--teum-font-ui)",
+        "fontSize": "var(--teum-type-label)",
+        "lineHeight": "var(--teum-line-label)"
+      }
+    },
+    {
+      "name": "Typography/UI",
+      "description": "Default dense product interface text.",
+      "fontFamilyCandidates": [
+        "Inter",
+        "Inter Variable"
+      ],
+      "fontStyleCandidates": [
+        "Medium",
+        "Regular"
+      ],
+      "fontWeight": 470,
+      "fontSize": 13.5,
+      "lineHeight": 18,
+      "letterSpacing": {
+        "value": -0.6,
+        "unit": "PERCENT"
+      },
+      "codeSyntax": {
+        "fontFamily": "var(--teum-font-ui)",
+        "fontSize": "var(--teum-type-ui)",
+        "lineHeight": "var(--teum-line-ui)"
+      }
+    },
+    {
+      "name": "Typography/Body",
+      "description": "Readable documentation and supporting copy.",
+      "fontFamilyCandidates": [
+        "Inter",
+        "Inter Variable"
+      ],
+      "fontStyleCandidates": [
+        "Medium",
+        "Regular"
+      ],
+      "fontWeight": 470,
+      "fontSize": 14.5,
+      "lineHeight": 23,
+      "letterSpacing": {
+        "value": -0.6,
+        "unit": "PERCENT"
+      },
+      "codeSyntax": {
+        "fontFamily": "var(--teum-font-ui)",
+        "fontSize": "var(--teum-type-body)",
+        "lineHeight": "var(--teum-line-body)"
+      }
+    },
+    {
+      "name": "Typography/Row",
+      "description": "Dense list and table row content.",
+      "fontFamilyCandidates": [
+        "Inter",
+        "Inter Variable"
+      ],
+      "fontStyleCandidates": [
+        "Medium",
+        "Regular"
+      ],
+      "fontWeight": 470,
+      "fontSize": 14.5,
+      "lineHeight": 20,
+      "letterSpacing": {
+        "value": -0.6,
+        "unit": "PERCENT"
+      },
+      "codeSyntax": {
+        "fontFamily": "var(--teum-font-ui)",
+        "fontSize": "var(--teum-type-row)",
+        "lineHeight": "var(--teum-line-row)"
+      }
+    },
+    {
+      "name": "Typography/Section",
+      "description": "Documentation section heading.",
+      "fontFamilyCandidates": [
+        "Inter",
+        "Inter Variable"
+      ],
+      "fontStyleCandidates": [
+        "Semi Bold",
+        "Medium",
+        "Regular"
+      ],
+      "fontWeight": 580,
+      "fontSize": 20,
+      "lineHeight": 26,
+      "letterSpacing": {
+        "value": -0.6,
+        "unit": "PERCENT"
+      },
+      "codeSyntax": {
+        "fontFamily": "var(--teum-font-ui)",
+        "fontSize": "var(--teum-type-section)",
+        "lineHeight": "var(--teum-line-section)"
+      }
+    },
+    {
+      "name": "Typography/Title",
+      "description": "Page and component title.",
+      "fontFamilyCandidates": [
+        "Inter",
+        "Inter Variable"
+      ],
+      "fontStyleCandidates": [
+        "Semi Bold",
+        "Medium",
+        "Regular"
+      ],
+      "fontWeight": 580,
+      "fontSize": 32,
+      "lineHeight": 36,
+      "letterSpacing": {
+        "value": -0.6,
+        "unit": "PERCENT"
+      },
+      "codeSyntax": {
+        "fontFamily": "var(--teum-font-ui)",
+        "fontSize": "var(--teum-type-title)",
+        "lineHeight": "var(--teum-line-title)"
+      }
+    }
+  ],
+  "effectStyles": [
+    {
+      "name": "Elevation/Light/Control",
+      "mode": "Light",
+      "sourceToken": "theme.elevation.shadow-control",
+      "description": "Optical edge definition for compact controls.",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.05807615670580984,
+            "g": 0.059892949332839764,
+            "b": 0.06734128530508326,
+            "a": 0.025
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "radius": 1,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "INNER_SHADOW",
+          "color": {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 0.62
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "radius": 0,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        }
+      ]
+    },
+    {
+      "name": "Elevation/Dark/Control",
+      "mode": "Dark",
+      "sourceToken": "theme.elevation.shadow-control",
+      "description": "Optical edge definition for compact controls.",
+      "effects": [
+        {
+          "type": "INNER_SHADOW",
+          "color": {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 0.055
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "radius": 0,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.2
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "radius": 1,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        }
+      ]
+    },
+    {
+      "name": "Elevation/Light/Float",
+      "mode": "Light",
+      "sourceToken": "theme.elevation.shadow-float",
+      "description": "Persistent raised composition surface.",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.109804,
+            "g": 0.109804,
+            "b": 0.117647,
+            "a": 0.08
+          },
+          "offset": {
+            "x": 0,
+            "y": 4
+          },
+          "radius": 16,
+          "spread": -8,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.109804,
+            "g": 0.109804,
+            "b": 0.117647,
+            "a": 0.04
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "radius": 2,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.109804,
+            "g": 0.109804,
+            "b": 0.117647,
+            "a": 0.055
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 1,
+          "visible": true,
+          "blendMode": "NORMAL"
+        }
+      ]
+    },
+    {
+      "name": "Elevation/Dark/Float",
+      "mode": "Dark",
+      "sourceToken": "theme.elevation.shadow-float",
+      "description": "Persistent raised composition surface.",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.48
+          },
+          "offset": {
+            "x": 0,
+            "y": 4
+          },
+          "radius": 16,
+          "spread": -8,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.28
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "radius": 2,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 0.072
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 1,
+          "visible": true,
+          "blendMode": "NORMAL"
+        }
+      ]
+    },
+    {
+      "name": "Elevation/Light/Float Focus",
+      "mode": "Light",
+      "sourceToken": "theme.elevation.shadow-float-focus",
+      "description": "Raised composition surface with active focus or selection.",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.109804,
+            "g": 0.109804,
+            "b": 0.117647,
+            "a": 0.12
+          },
+          "offset": {
+            "x": 0,
+            "y": 6
+          },
+          "radius": 24,
+          "spread": -8,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.109804,
+            "g": 0.109804,
+            "b": 0.117647,
+            "a": 0.05
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "radius": 2,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.109804,
+            "g": 0.109804,
+            "b": 0.117647,
+            "a": 0.105
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 1,
+          "visible": true,
+          "blendMode": "NORMAL"
+        }
+      ]
+    },
+    {
+      "name": "Elevation/Dark/Float Focus",
+      "mode": "Dark",
+      "sourceToken": "theme.elevation.shadow-float-focus",
+      "description": "Raised composition surface with active focus or selection.",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.56
+          },
+          "offset": {
+            "x": 0,
+            "y": 8
+          },
+          "radius": 26,
+          "spread": -8,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.34
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "radius": 2,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 0.13
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 1,
+          "visible": true,
+          "blendMode": "NORMAL"
+        }
+      ]
+    },
+    {
+      "name": "Elevation/Light/Flyout",
+      "mode": "Light",
+      "sourceToken": "theme.elevation.shadow-flyout",
+      "description": "Anchored temporary Flyout surface.",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.109804,
+            "g": 0.109804,
+            "b": 0.117647,
+            "a": 0.16
+          },
+          "offset": {
+            "x": 0,
+            "y": 16
+          },
+          "radius": 34,
+          "spread": -10,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.109804,
+            "g": 0.109804,
+            "b": 0.117647,
+            "a": 0.09
+          },
+          "offset": {
+            "x": 0,
+            "y": 4
+          },
+          "radius": 10,
+          "spread": -4,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.109804,
+            "g": 0.109804,
+            "b": 0.117647,
+            "a": 0.055
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 1,
+          "visible": true,
+          "blendMode": "NORMAL"
+        }
+      ]
+    },
+    {
+      "name": "Elevation/Dark/Flyout",
+      "mode": "Dark",
+      "sourceToken": "theme.elevation.shadow-flyout",
+      "description": "Anchored temporary Flyout surface.",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.68
+          },
+          "offset": {
+            "x": 0,
+            "y": 20
+          },
+          "radius": 44,
+          "spread": -10,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.42
+          },
+          "offset": {
+            "x": 0,
+            "y": 5
+          },
+          "radius": 14,
+          "spread": -4,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 0.072
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 1,
+          "visible": true,
+          "blendMode": "NORMAL"
+        }
+      ]
+    },
+    {
+      "name": "Elevation/Light/Popover",
+      "mode": "Light",
+      "sourceToken": "theme.elevation.shadow-popover",
+      "description": "Compatibility alias for anchored popovers.",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.109804,
+            "g": 0.109804,
+            "b": 0.117647,
+            "a": 0.16
+          },
+          "offset": {
+            "x": 0,
+            "y": 16
+          },
+          "radius": 34,
+          "spread": -10,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.109804,
+            "g": 0.109804,
+            "b": 0.117647,
+            "a": 0.09
+          },
+          "offset": {
+            "x": 0,
+            "y": 4
+          },
+          "radius": 10,
+          "spread": -4,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.109804,
+            "g": 0.109804,
+            "b": 0.117647,
+            "a": 0.055
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 1,
+          "visible": true,
+          "blendMode": "NORMAL"
+        }
+      ]
+    },
+    {
+      "name": "Elevation/Dark/Popover",
+      "mode": "Dark",
+      "sourceToken": "theme.elevation.shadow-popover",
+      "description": "Compatibility alias for anchored popovers.",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.68
+          },
+          "offset": {
+            "x": 0,
+            "y": 20
+          },
+          "radius": 44,
+          "spread": -10,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.42
+          },
+          "offset": {
+            "x": 0,
+            "y": 5
+          },
+          "radius": 14,
+          "spread": -4,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 0.072
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 1,
+          "visible": true,
+          "blendMode": "NORMAL"
+        }
+      ]
+    },
+    {
+      "name": "Elevation/Light/Modal",
+      "mode": "Light",
+      "sourceToken": "theme.elevation.shadow-modal",
+      "description": "Focus-trapping task surface.",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.05807615670580984,
+            "g": 0.059892949332839764,
+            "b": 0.06734128530508326,
+            "a": 0.15
+          },
+          "offset": {
+            "x": 0,
+            "y": 36
+          },
+          "radius": 110,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.05807615670580984,
+            "g": 0.059892949332839764,
+            "b": 0.06734128530508326,
+            "a": 0.065
+          },
+          "offset": {
+            "x": 0,
+            "y": 8
+          },
+          "radius": 24,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.109804,
+            "g": 0.109804,
+            "b": 0.117647,
+            "a": 0.105
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 1,
+          "visible": true,
+          "blendMode": "NORMAL"
+        }
+      ]
+    },
+    {
+      "name": "Elevation/Dark/Modal",
+      "mode": "Dark",
+      "sourceToken": "theme.elevation.shadow-modal",
+      "description": "Focus-trapping task surface.",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.58
+          },
+          "offset": {
+            "x": 0,
+            "y": 42
+          },
+          "radius": 120,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.34
+          },
+          "offset": {
+            "x": 0,
+            "y": 10
+          },
+          "radius": 30,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 0.13
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 1,
+          "visible": true,
+          "blendMode": "NORMAL"
+        }
+      ]
+    },
+    {
+      "name": "Elevation/Light/Dialog",
+      "mode": "Light",
+      "sourceToken": "theme.elevation.shadow-dialog",
+      "description": "Compatibility alias for dialog surfaces.",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.05807615670580984,
+            "g": 0.059892949332839764,
+            "b": 0.06734128530508326,
+            "a": 0.15
+          },
+          "offset": {
+            "x": 0,
+            "y": 36
+          },
+          "radius": 110,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.05807615670580984,
+            "g": 0.059892949332839764,
+            "b": 0.06734128530508326,
+            "a": 0.065
+          },
+          "offset": {
+            "x": 0,
+            "y": 8
+          },
+          "radius": 24,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0.109804,
+            "g": 0.109804,
+            "b": 0.117647,
+            "a": 0.105
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 1,
+          "visible": true,
+          "blendMode": "NORMAL"
+        }
+      ]
+    },
+    {
+      "name": "Elevation/Dark/Dialog",
+      "mode": "Dark",
+      "sourceToken": "theme.elevation.shadow-dialog",
+      "description": "Compatibility alias for dialog surfaces.",
+      "effects": [
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.58
+          },
+          "offset": {
+            "x": 0,
+            "y": 42
+          },
+          "radius": 120,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.34
+          },
+          "offset": {
+            "x": 0,
+            "y": 10
+          },
+          "radius": 30,
+          "spread": 0,
+          "visible": true,
+          "blendMode": "NORMAL"
+        },
+        {
+          "type": "DROP_SHADOW",
+          "color": {
+            "r": 1,
+            "g": 1,
+            "b": 1,
+            "a": 0.13
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "radius": 0,
+          "spread": 1,
+          "visible": true,
+          "blendMode": "NORMAL"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "sourceTokens": 145,
+    "variables": 138,
+    "textStyles": 7,
+    "effectStyles": 14
+  }
+}

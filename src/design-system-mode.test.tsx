@@ -1,7 +1,7 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
-import App from "./App";
+import App, { components } from "./App";
 import { componentGuidance } from "./component-guidance";
 
 describe("design system workspace", () => {
@@ -87,6 +87,19 @@ describe("design system workspace", () => {
     expect(screen.getByRole("button", { name: "All foundations" })).toBeInTheDocument();
   });
 
+  it("publishes one explicit surface and elevation decision contract", () => {
+    window.history.replaceState(null, "", "#foundation-color");
+    render(<App />);
+
+    const contract = screen.getByRole("list", { name: "Surface and elevation decision contract" });
+    expect(within(contract).getAllByRole("listitem")).toHaveLength(6);
+    expect(contract).toHaveTextContent("Space");
+    expect(contract).toHaveTextContent("Tone");
+    expect(contract).toHaveTextContent("Stroke");
+    expect(contract).toHaveTextContent("Flyout");
+    expect(screen.getByText(/space → tone → stroke → elevation/i)).toBeInTheDocument();
+  });
+
   it("gives authored interaction patterns their own index and detail structure", async () => {
     const user = userEvent.setup();
     render(<App />);
@@ -128,11 +141,11 @@ describe("design system workspace", () => {
     expect(screen.getAllByText("Tab to focus").length).toBeGreaterThan(0);
     expect(container.querySelectorAll(".guidance-marker")).toHaveLength(6);
     expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("Button");
-    expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("@index/ui");
+    expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("teum");
     expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("Base UI");
     expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("7 states");
     expect(screen.getByRole("table", { name: "Button API" })).toBeInTheDocument();
-    expect(screen.getByLabelText("Button compatibility and confidence")).toHaveTextContent("React19.2");
+    expect(screen.getByLabelText("Button compatibility and confidence")).toHaveTextContent("React^18.2.0 || ^19.0.0");
     expect(screen.getByLabelText("Button compatibility and confidence")).toHaveTextContent("Not published");
     expect(screen.queryByRole("tab", { name: "Preview" })).not.toBeInTheDocument();
   });
@@ -141,11 +154,23 @@ describe("design system workspace", () => {
     render(<App />);
 
     const actions = screen.getByRole("banner", { name: "Workspace actions" });
-    expect(actions).not.toHaveTextContent("Index UI");
+    const catalog = screen.getByRole("region", { name: "Component catalog" });
+    expect(actions).not.toHaveTextContent("Teum");
     expect(actions).not.toHaveTextContent("Components");
     expect(screen.queryByText("Alpha")).not.toBeInTheDocument();
+    expect(within(catalog).getByRole("link", { name: "Button" })).toHaveAttribute("aria-current", "page");
+    expect(within(catalog).getByRole("link", { name: "Icon Button" })).not.toHaveAttribute("aria-current");
     expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("Base UI");
-    expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("@index/ui");
+    expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("teum");
+  });
+
+  it("keeps one persistent page-copy action", () => {
+    render(<App />);
+
+    const outline = screen.getByRole("complementary", { name: "Page outline" });
+    expect(screen.getAllByRole("button", { name: "Copy page link" })).toHaveLength(1);
+    expect(within(outline).queryByRole("button", { name: "Copy page link" })).not.toBeInTheDocument();
+    expect(within(outline).getByRole("button", { name: "MIT license" })).toBeInTheDocument();
   });
 
   it("switches and persists the workspace theme", async () => {
@@ -155,8 +180,19 @@ describe("design system workspace", () => {
     expect(document.documentElement).toHaveAttribute("data-theme", "light");
     await user.click(screen.getByRole("button", { name: "Current theme: light. Switch to dark theme" }));
     expect(document.documentElement).toHaveAttribute("data-theme", "dark");
-    expect(window.localStorage.getItem("index-ui-theme")).toBe("dark");
+    expect(window.localStorage.getItem("teum-theme")).toBe("dark");
     expect(screen.getByRole("button", { name: "Current theme: dark. Switch to light theme" })).toBeInTheDocument();
+  });
+
+  it("reserves persistent focus treatment for keyboard navigation", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    expect(document.documentElement).toHaveAttribute("data-input-modality", "pointer");
+    await user.tab();
+    expect(document.documentElement).toHaveAttribute("data-input-modality", "keyboard");
+    await user.click(screen.getByRole("textbox", { name: "Search documentation" }));
+    expect(document.documentElement).toHaveAttribute("data-input-modality", "pointer");
   });
 
   it("renders exactly one radio specimen inside every radio-group state tile", () => {
@@ -180,7 +216,7 @@ describe("design system workspace", () => {
     expect(disclosure).not.toHaveAttribute("open");
     await user.click(screen.getByText("Show code"));
     expect(disclosure).toHaveAttribute("open");
-    expect(screen.getByText(/import \{ Button \} from "@index\/ui"/)).toBeInTheDocument();
+    expect(screen.getByText(/import \{ Button \} from "teum"/)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Copy code" })).toBeInTheDocument();
   });
 
@@ -190,7 +226,7 @@ describe("design system workspace", () => {
     const disclosure = screen.getByText("Show code").closest("summary")!;
     disclosure.focus();
     await user.keyboard("{Enter}");
-    expect(screen.getByText(/import \{ Button \} from "@index\/ui"/)).toBeInTheDocument();
+    expect(screen.getByText(/import \{ Button \} from "teum"/)).toBeInTheDocument();
   });
 
   it("returns to the preview when the user moves to another component", async () => {
@@ -214,12 +250,12 @@ describe("design system workspace", () => {
     expect(screen.getByText('"primary" | "secondary" | "ghost" | "quiet"')).toBeInTheDocument();
   });
 
-  it("publishes all 35 component routes with component-specific state contracts", () => {
+  it("publishes every component route with a component-specific state contract", () => {
     const { container } = render(<App />);
     const catalog = screen.getByRole("region", { name: "Component catalog" });
-    expect(within(catalog).getAllByRole("link")).toHaveLength(35);
+    expect(within(catalog).getAllByRole("link")).toHaveLength(components.length);
     expect(container.querySelectorAll(".state-tile")).toHaveLength(componentGuidance.button.states.length);
-    expect(Object.keys(componentGuidance)).toHaveLength(35);
+    expect(Object.keys(componentGuidance)).toHaveLength(components.length);
     for (const guidance of Object.values(componentGuidance)) {
       expect(guidance.states.length).toBeGreaterThanOrEqual(5);
       expect(guidance.states.length).toBeLessThanOrEqual(9);
@@ -235,9 +271,12 @@ describe("design system workspace", () => {
     expect(within(specimen).getByRole("button", { name: "Product" })).toHaveAttribute("aria-pressed", "true");
     expect(container.querySelector(".live-specimen__preview")).toHaveAttribute("data-specimen", "context");
     await user.click(within(specimen).getByRole("button", { name: "State" }));
-    expect(within(specimen).getByRole("combobox", { name: "Preview state" })).toBeInTheDocument();
-    await user.selectOptions(within(specimen).getByRole("combobox", { name: "Preview state" }), "5");
+    expect(within(specimen).queryByRole("combobox", { name: "Preview state" })).not.toBeInTheDocument();
+    await user.click(within(specimen).getByRole("button", { name: "Preview state: Default" }));
+    const stateMenu = await screen.findByRole("menu");
+    await user.click(within(stateMenu).getByRole("menuitemradio", { name: "Disabled" }));
     expect(within(specimen).getByLabelText("Disabled state preview")).toBeInTheDocument();
+    expect(within(specimen).getByRole("button", { name: "Preview state: Disabled" })).toBeInTheDocument();
     expect(container.querySelector(".live-specimen__preview")).toHaveAttribute("data-specimen", "compact");
   });
 
@@ -249,6 +288,33 @@ describe("design system workspace", () => {
     for (const preview of previews) expect(preview).toHaveAttribute("inert");
     expect(container.querySelector('.state-tile[data-state="default"]')).not.toHaveAttribute("data-state-flags", expect.stringContaining("focus"));
     expect(container.querySelector('.state-tile[data-state="focus"]')).toHaveAttribute("data-state-flags", expect.stringContaining("focus"));
+  });
+
+  it("uses one ordered two-column-ready state board without subgroup singleton rows", () => {
+    window.history.replaceState(null, "", "#icon-button");
+    const { container } = render(<App />);
+    const gallery = screen.getByRole("list", { name: "Icon Button state contract" });
+    const tiles = within(gallery).getAllByRole("listitem");
+
+    expect(container.querySelector(".state-contract-group")).not.toBeInTheDocument();
+    expect(tiles).toHaveLength(componentGuidance["icon-button"].states.length);
+    expect(tiles.map((tile) => tile.getAttribute("data-state"))).toEqual(["default", "hover", "pressed", "focus", "loading", "disabled", "tooltip"]);
+  });
+
+  it("models trigger-and-surface states as one centered documentation composition", async () => {
+    const user = userEvent.setup();
+    window.history.replaceState(null, "", "#context-switcher");
+    const { container } = render(<App />);
+    const catalog = screen.getByRole("region", { name: "Component catalog" });
+
+    expect(container.querySelectorAll(".state-control-stack > .state-inline-surface")).toHaveLength(3);
+    expect(container.querySelector(".teum-context-switcher__popup")).not.toBeInTheDocument();
+
+    await user.click(within(catalog).getByRole("link", { name: "Popover" }));
+    expect(container.querySelectorAll('.state-overlay-stack[data-composition="compound"]')).toHaveLength(componentGuidance.popover.states.length);
+
+    await user.click(within(catalog).getByRole("link", { name: "Tooltip" }));
+    expect(container.querySelector('.state-overlay-stack[data-composition="compound"]')).not.toBeInTheDocument();
   });
 
   it("publishes the shared component DNA in the spacing foundation", () => {

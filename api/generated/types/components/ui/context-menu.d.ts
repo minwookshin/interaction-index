@@ -1,0 +1,12 @@
+import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu";
+import type { ComponentPropsWithRef } from "react";
+export declare const ContextMenu: typeof ContextMenuPrimitive.Root;
+export declare function ContextMenuTrigger({ className, ...props }: ContextMenuPrimitive.Trigger.Props): import("react").JSX.Element;
+export type ContextMenuContentProps = ContextMenuPrimitive.Popup.Props & Pick<ContextMenuPrimitive.Positioner.Props, "align" | "alignOffset" | "collisionAvoidance" | "side" | "sideOffset">;
+export declare function ContextMenuContent({ className, align, alignOffset, collisionAvoidance, side, sideOffset, ...props }: ContextMenuContentProps): import("react").JSX.Element;
+export declare function ContextMenuLabel({ className, ...props }: ComponentPropsWithRef<"div">): import("react").JSX.Element;
+export declare function ContextMenuItem({ className, ...props }: ContextMenuPrimitive.Item.Props): import("react").JSX.Element;
+export declare function ContextMenuSeparator(props: ContextMenuPrimitive.Separator.Props): import("react").JSX.Element;
+export declare function ContextMenuCheckboxItem({ className, children, ...props }: ContextMenuPrimitive.CheckboxItem.Props): import("react").JSX.Element;
+export declare const ContextMenuRadioGroup: import("react").NamedExoticComponent<Omit<import("@base-ui/react").ContextMenuRadioGroupProps, "ref"> & import("react").RefAttributes<HTMLDivElement>>;
+export declare function ContextMenuRadioItem({ className, children, closeOnClick, ...props }: ContextMenuPrimitive.RadioItem.Props): import("react").JSX.Element;

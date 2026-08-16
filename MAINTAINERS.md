@@ -2,7 +2,7 @@
 
 ## Ownership
 
-Minwook Shin is the current design, API, documentation, registry, and release owner for Interaction Index.
+Minwook Shin is the current design, API, documentation, registry, and release owner for Teum.
 
 ## Triage
 

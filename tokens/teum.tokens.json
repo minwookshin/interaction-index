@@ -1,0 +1,717 @@
+{
+  "$description": "Teum source tokens in the DTCG 2025.10 format. Light is the default value and dark values live in the documented Teum mode extension.",
+  "$extensions": {
+    "dev.teum": {
+      "specification": "DTCG 2025.10",
+      "modes": ["light", "dark"],
+      "defaultMode": "light",
+      "modeExtension": "$extensions.dev.teum.modeValues"
+    }
+  },
+  "foundation": {
+    "$description": "Theme-independent typography, geometry, rhythm, motion, and layer decisions.",
+    "$extensions": {
+      "dev.teum": {
+        "cssPrefix": "--teum-",
+        "scope": "foundation"
+      }
+    },
+    "system": {
+      "$type": "number",
+      "neutral-h": {
+        "$description": "Cool graphite hue used by optical OKLCH effects.",
+        "$value": 275
+      },
+      "neutral-c": {
+        "$description": "Near-neutral chroma used by optical OKLCH effects.",
+        "$value": 0.002
+      },
+      "sidebar-l": {
+        "$description": "Reference lightness for translucent navigation surfaces.",
+        "$value": 0.982
+      },
+      "stage-l": {
+        "$description": "Reference lightness for specimen stages.",
+        "$value": 0.986
+      },
+      "border-alpha": {
+        "$description": "Reference opacity for low-contrast structural separators.",
+        "$value": 0.078
+      }
+    },
+    "typography": {
+      "font-ui": {
+        "$type": "fontFamily",
+        "$description": "Primary product and documentation font stack.",
+        "$value": ["Inter Variable", "Inter", "ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"]
+      },
+      "font-code": {
+        "$type": "fontFamily",
+        "$description": "Code and token value font stack.",
+        "$value": ["SFMono-Regular", "Geist Mono", "Consolas", "Liberation Mono", "ui-monospace", "monospace"]
+      },
+      "sizes": {
+        "$type": "dimension",
+        "type-metadata": {
+          "$description": "Small supporting metadata with a persistent readability floor.",
+          "$value": { "value": 11.5, "unit": "px" }
+        },
+        "type-label": {
+          "$description": "Persistent navigation and field labels.",
+          "$value": { "value": 12, "unit": "px" }
+        },
+        "type-ui": {
+          "$description": "Default compact control and product interface text.",
+          "$value": { "value": 13.5, "unit": "px" }
+        },
+        "type-body": {
+          "$description": "Documentation body copy.",
+          "$value": { "value": 14.5, "unit": "px" }
+        },
+        "type-row": {
+          "$description": "High-salience labels in dense product rows.",
+          "$value": { "value": 14.5, "unit": "px" }
+        },
+        "type-section": {
+          "$description": "Documentation section heading.",
+          "$value": { "value": 20, "unit": "px" }
+        },
+        "type-title": {
+          "$description": "Page title for deep documentation routes.",
+          "$value": { "value": 32, "unit": "px" }
+        },
+        "line-metadata": {
+          "$description": "Metadata line height.",
+          "$value": { "value": 16, "unit": "px" }
+        },
+        "line-label": {
+          "$description": "Label line height.",
+          "$value": { "value": 16, "unit": "px" }
+        },
+        "line-ui": {
+          "$description": "Compact control line height.",
+          "$value": { "value": 18, "unit": "px" }
+        },
+        "line-row": {
+          "$description": "Dense product row line height.",
+          "$value": { "value": 20, "unit": "px" }
+        },
+        "line-body": {
+          "$description": "Documentation reading line height.",
+          "$value": { "value": 23, "unit": "px" }
+        },
+        "line-section": {
+          "$description": "Section heading line height.",
+          "$value": { "value": 26, "unit": "px" }
+        },
+        "line-title": {
+          "$description": "Page title line height.",
+          "$value": { "value": 36, "unit": "px" }
+        }
+      },
+      "ui-weight": {
+        "$type": "fontWeight",
+        "$description": "Optical default weight for Inter Variable controls.",
+        "$value": 470
+      },
+      "label-weight": {
+        "$type": "fontWeight",
+        "$description": "Compact labels and field hierarchy.",
+        "$value": 560
+      },
+      "heading-weight": {
+        "$type": "fontWeight",
+        "$description": "Page and section headings.",
+        "$value": 580
+      },
+      "ui-tracking": {
+        "$type": "number",
+        "$description": "Compact UI letter spacing expressed as an em ratio.",
+        "$value": -0.006,
+        "$extensions": {
+          "dev.teum": {
+            "cssUnit": "em"
+          }
+        }
+      }
+    },
+    "layout": {
+      "$type": "dimension",
+      "space-0": {
+        "$description": "Zero-space reset.",
+        "$value": { "value": 0, "unit": "px" }
+      },
+      "space-1": {
+        "$description": "One base spacing unit.",
+        "$value": { "value": 4, "unit": "px" }
+      },
+      "space-2": {
+        "$description": "Two base spacing units.",
+        "$value": { "value": 8, "unit": "px" }
+      },
+      "space-3": {
+        "$description": "Three base spacing units.",
+        "$value": { "value": 12, "unit": "px" }
+      },
+      "space-4": {
+        "$description": "Four base spacing units.",
+        "$value": { "value": 16, "unit": "px" }
+      },
+      "space-5": {
+        "$description": "Five base spacing units.",
+        "$value": { "value": 20, "unit": "px" }
+      },
+      "space-6": {
+        "$description": "Six base spacing units.",
+        "$value": { "value": 24, "unit": "px" }
+      },
+      "space-7": {
+        "$description": "Seven base spacing units.",
+        "$value": { "value": 28, "unit": "px" }
+      },
+      "space-8": {
+        "$description": "Eight base spacing units.",
+        "$value": { "value": 32, "unit": "px" }
+      },
+      "space-10": {
+        "$description": "Ten base spacing units.",
+        "$value": { "value": 40, "unit": "px" }
+      },
+      "space-12": {
+        "$description": "Twelve base spacing units.",
+        "$value": { "value": 48, "unit": "px" }
+      },
+      "space-16": {
+        "$description": "Sixteen base spacing units.",
+        "$value": { "value": 64, "unit": "px" }
+      },
+      "space-page-x": {
+        "$description": "Default horizontal documentation inset.",
+        "$value": { "value": 28, "unit": "px" }
+      },
+      "space-page-y": {
+        "$description": "Default vertical documentation inset.",
+        "$value": { "value": 24, "unit": "px" }
+      },
+      "space-section": {
+        "$description": "Primary vertical rhythm between documentation sections.",
+        "$value": { "value": 22, "unit": "px" }
+      },
+      "icon-size": {
+        "$description": "Default icon box for compact controls.",
+        "$value": { "value": 14, "unit": "px" }
+      },
+      "icon-offset-y": {
+        "$description": "Optical vertical correction for the default icon family.",
+        "$value": { "value": 0, "unit": "px" }
+      },
+      "control-height-sm": {
+        "$description": "Small compact control height.",
+        "$value": { "value": 28, "unit": "px" }
+      },
+      "control-height-md": {
+        "$description": "Default compact control height.",
+        "$value": { "value": 32, "unit": "px" }
+      },
+      "control-height-lg": {
+        "$description": "Large compact control height.",
+        "$value": { "value": 36, "unit": "px" }
+      },
+      "control-padding-sm": {
+        "$description": "Horizontal inset for small controls.",
+        "$value": { "value": 8, "unit": "px" }
+      },
+      "control-padding-md": {
+        "$description": "Horizontal inset for default controls.",
+        "$value": { "value": 10, "unit": "px" }
+      },
+      "control-padding-lg": {
+        "$description": "Horizontal inset for large controls.",
+        "$value": { "value": 12, "unit": "px" }
+      },
+      "radius-control": {
+        "$description": "Compact control radius.",
+        "$value": { "value": 6, "unit": "px" }
+      },
+      "radius-container": {
+        "$description": "Persistent surface and specimen radius.",
+        "$value": { "value": 8, "unit": "px" }
+      },
+      "radius-overlay": {
+        "$description": "Temporary overlay radius.",
+        "$value": { "value": 10, "unit": "px" }
+      },
+      "radius-pill": {
+        "$description": "Fully rounded status and segmented shape.",
+        "$value": { "value": 999, "unit": "px" }
+      },
+      "row-height-menu": {
+        "$description": "Menu and action row minimum height.",
+        "$value": { "value": 30, "unit": "px" }
+      },
+      "row-height-table": {
+        "$description": "Default compact table row height with room for two-line identity content.",
+        "$value": { "value": 46, "unit": "px" }
+      },
+      "focus-width": {
+        "$description": "Default visible focus indicator width.",
+        "$value": { "value": 2, "unit": "px" }
+      },
+      "focus-offset": {
+        "$description": "Default separation between a control and its focus indicator.",
+        "$value": { "value": 1, "unit": "px" }
+      },
+      "radius-xs": {
+        "$description": "Tight utility radius.",
+        "$value": { "value": 4, "unit": "px" }
+      },
+      "radius-sm": {
+        "$description": "Alias for the compact control radius.",
+        "$value": "{foundation.layout.radius-control}"
+      },
+      "radius-md": {
+        "$description": "Alias for the persistent container radius.",
+        "$value": "{foundation.layout.radius-container}"
+      },
+      "radius-lg": {
+        "$description": "Alias for the temporary overlay radius.",
+        "$value": "{foundation.layout.radius-overlay}"
+      }
+    },
+    "motion": {
+      "duration": {
+        "$type": "duration",
+        "hover-duration": {
+          "$description": "Frequent hover and color feedback.",
+          "$value": { "value": 120, "unit": "ms" }
+        },
+        "press-duration": {
+          "$description": "Immediate press and release feedback.",
+          "$value": { "value": 110, "unit": "ms" }
+        },
+        "enter-duration": {
+          "$description": "Occasional small overlay entrance.",
+          "$value": { "value": 180, "unit": "ms" }
+        },
+        "exit-duration": {
+          "$description": "Faster small overlay exit.",
+          "$value": { "value": 120, "unit": "ms" }
+        },
+        "fast": {
+          "$description": "Compatibility alias for frequent feedback.",
+          "$value": "{foundation.motion.duration.hover-duration}"
+        },
+        "medium": {
+          "$description": "Compatibility alias for occasional entrance motion.",
+          "$value": "{foundation.motion.duration.enter-duration}"
+        }
+      },
+      "easing": {
+        "$type": "cubicBezier",
+        "ease-out": {
+          "$description": "Responsive entrance and direct-manipulation feedback.",
+          "$value": [0.23, 1, 0.32, 1]
+        },
+        "ease-in-out": {
+          "$description": "On-screen movement between two visible positions.",
+          "$value": [0.77, 0, 0.175, 1]
+        },
+        "ease-drawer": {
+          "$description": "Interruptible drawer and shared-detail travel.",
+          "$value": [0.32, 0.72, 0, 1]
+        },
+        "ease": {
+          "$description": "Compatibility alias for the system ease-out curve.",
+          "$value": "{foundation.motion.easing.ease-out}"
+        }
+      }
+    },
+    "layers": {
+      "$type": "number",
+      "layer-sticky": {
+        "$description": "Sticky content within the document canvas.",
+        "$value": 20
+      },
+      "layer-modal-backdrop": {
+        "$description": "Focus-trapping modal scrim.",
+        "$value": 100
+      },
+      "layer-modal": {
+        "$description": "Focus-trapping task surface.",
+        "$value": 110
+      },
+      "layer-flyout": {
+        "$description": "Anchored temporary surface.",
+        "$value": 120
+      },
+      "layer-toast": {
+        "$description": "Highest non-navigation feedback layer.",
+        "$value": 130
+      },
+      "layer-navigation": {
+        "$description": "Persistent application navigation and mobile drawer.",
+        "$value": 150
+      }
+    }
+  },
+  "theme": {
+    "$description": "Public theme roles. Raw graphite steps support semantic aliases; components consume the aliases.",
+    "$extensions": {
+      "dev.teum": {
+        "cssPrefix": "--teum-",
+        "scope": "theme"
+      }
+    },
+    "palette": {
+      "$type": "color",
+      "gray-50": {
+        "$value": { "colorSpace": "srgb", "components": [0.968627, 0.968627, 0.972549], "hex": "#f7f7f8" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.066667, 0.066667, 0.070588], "hex": "#111112" } } } }
+      },
+      "gray-100": {
+        "$value": { "colorSpace": "srgb", "components": [0.94902, 0.94902, 0.952941], "hex": "#f2f2f3" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.090196, 0.090196, 0.094118], "hex": "#171718" } } } }
+      },
+      "gray-200": {
+        "$value": { "colorSpace": "srgb", "components": [0.898039, 0.898039, 0.905882], "hex": "#e5e5e7" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.133333, 0.133333, 0.141176], "hex": "#222224" } } } }
+      },
+      "gray-300": {
+        "$value": { "colorSpace": "srgb", "components": [0.819608, 0.819608, 0.831373], "hex": "#d1d1d4" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.196078, 0.196078, 0.207843], "hex": "#323235" } } } }
+      },
+      "gray-400": {
+        "$value": { "colorSpace": "srgb", "components": [0.682353, 0.682353, 0.694118], "hex": "#aeaeb1" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.333333, 0.333333, 0.34902], "hex": "#555559" } } } }
+      },
+      "gray-500": {
+        "$value": { "colorSpace": "srgb", "components": [0.556863, 0.556863, 0.576471], "hex": "#8e8e93" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.521569, 0.521569, 0.545098], "hex": "#85858b" } } } }
+      },
+      "gray-600": {
+        "$value": { "colorSpace": "srgb", "components": [0.388235, 0.388235, 0.4], "hex": "#636366" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.705882, 0.705882, 0.729412], "hex": "#b4b4ba" } } } }
+      },
+      "gray-700": {
+        "$value": { "colorSpace": "srgb", "components": [0.282353, 0.282353, 0.290196], "hex": "#48484a" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.819608, 0.819608, 0.835294], "hex": "#d1d1d5" } } } }
+      },
+      "gray-800": {
+        "$value": { "colorSpace": "srgb", "components": [0.172549, 0.172549, 0.180392], "hex": "#2c2c2e" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.898039, 0.898039, 0.909804], "hex": "#e5e5e8" } } } }
+      },
+      "gray-900": {
+        "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "hex": "#1c1c1e" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.94902, 0.94902, 0.956863], "hex": "#f2f2f4" } } } }
+      }
+    },
+    "surface": {
+      "$type": "color",
+      "bg-canvas": {
+        "$description": "Application and documentation canvas.",
+        "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "hex": "#ffffff" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.054902, 0.054902, 0.058824], "hex": "#0e0e0f" } } } }
+      },
+      "bg-sidebar": {
+        "$description": "Translucent persistent navigation surface.",
+        "$value": { "colorSpace": "srgb", "components": [0.968627, 0.968627, 0.972549], "alpha": 0.9 },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.062745, 0.062745, 0.066667], "alpha": 0.92 } } } }
+      },
+      "bg-stage": {
+        "$description": "Quiet preview and product-state stage.",
+        "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.026 },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.035 } } } }
+      },
+      "bg-subtle": {
+        "$description": "Selected rows and low-emphasis grouped surfaces.",
+        "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.043 },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.056 } } } }
+      },
+      "bg-surface": {
+        "$description": "Persistent composition surface above the canvas.",
+        "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.94 },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.078431, 0.078431, 0.082353], "hex": "#141415" } } } }
+      },
+      "bg-control": {
+        "$description": "Compact control fill.",
+        "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.98 },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.101961, 0.101961, 0.109804], "hex": "#1a1a1c" } } } }
+      },
+      "bg-raised": {
+        "$description": "Persistent raised Float surface.",
+        "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "hex": "#ffffff" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.117647, 0.117647, 0.12549], "hex": "#1e1e20" } } } }
+      },
+      "bg-overlay": {
+        "$description": "Base temporary overlay surface.",
+        "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "hex": "#ffffff" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.133333, 0.133333, 0.145098], "hex": "#222225" } } } }
+      },
+      "bg-float": {
+        "$description": "Public Float elevation role.",
+        "$value": "{theme.surface.bg-raised}"
+      },
+      "bg-flyout": {
+        "$description": "Anchored temporary Flyout surface.",
+        "$value": "{theme.surface.bg-overlay}",
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.14902, 0.14902, 0.160784], "hex": "#262629" } } } }
+      },
+      "bg-modal": {
+        "$description": "Focus-trapping Modal surface.",
+        "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "hex": "#ffffff" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": "{theme.surface.bg-overlay}" } } }
+      },
+      "bg-scrim": {
+        "$description": "Modal and drawer background attenuation.",
+        "$value": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.18 },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.44 } } } }
+      },
+      "bg-code": {
+        "$description": "Collapsed and expanded source-code surface.",
+        "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.02 },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.025 } } } }
+      },
+      "canvas": { "$value": "{theme.surface.bg-canvas}" },
+      "sidebar": { "$value": "{theme.surface.bg-sidebar}" },
+      "surface": { "$value": "{theme.surface.bg-surface}" },
+      "control-surface": { "$value": "{theme.surface.bg-control}" },
+      "elevated-surface": { "$value": "{theme.surface.bg-raised}" },
+      "overlay-surface": { "$value": "{theme.surface.bg-overlay}" },
+      "code-surface": { "$value": "{theme.surface.bg-code}" },
+      "stage": { "$value": "{theme.surface.bg-stage}" },
+      "subtle": { "$value": "{theme.surface.bg-subtle}" },
+      "hover": {
+        "$description": "Frequent pointer hover feedback.",
+        "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.048 },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.064 } } } }
+      },
+      "active": {
+        "$description": "Pressed or actively manipulated fill.",
+        "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.088 },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.112 } } } }
+      },
+      "selected": {
+        "$description": "Persistent selected-row fill.",
+        "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.068 },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.088 } } } }
+      },
+      "inverse": {
+        "$description": "Primary monochrome action fill.",
+        "$value": { "colorSpace": "srgb", "components": [0.090196, 0.090196, 0.098039], "hex": "#171719" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.945098, 0.952941, 0.956863], "hex": "#f1f3f4" } } } }
+      },
+      "inverse-hover": {
+        "$description": "Primary action hover fill.",
+        "$value": { "colorSpace": "srgb", "components": [0.14902, 0.14902, 0.160784], "hex": "#262629" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.886275, 0.898039, 0.905882], "hex": "#e2e5e7" } } } }
+      },
+      "on-inverse": {
+        "$description": "Text and icon color on inverse actions.",
+        "$value": { "colorSpace": "srgb", "components": [0.972549, 0.972549, 0.972549], "hex": "#f8f8f8" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.066667, 0.07451, 0.082353], "hex": "#111315" } } } }
+      },
+      "scrollbar-thumb": {
+        "$description": "Monochrome scrollbar thumb.",
+        "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.18 },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.2 } } } }
+      },
+      "scrollbar-thumb-hover": {
+        "$description": "Scrollbar thumb hover state.",
+        "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.3 },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.34 } } } }
+      }
+    },
+    "foreground": {
+      "$type": "color",
+      "fg-default": {
+        "$description": "Primary text and icon color.",
+        "$value": "{theme.palette.gray-900}"
+      },
+      "fg-muted": {
+        "$description": "Secondary explanatory text.",
+        "$value": "{theme.palette.gray-600}"
+      },
+      "fg-subtle": {
+        "$description": "Tertiary metadata and quiet labels.",
+        "$value": "{theme.palette.gray-600}",
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.556863, 0.556863, 0.576471], "hex": "#8e8e93" } } } }
+      },
+      "fg-disabled": {
+        "$description": "Unavailable control content.",
+        "$value": "{theme.palette.gray-400}"
+      },
+      "fg-danger": {
+        "$description": "Accessible semantic foreground for invalid values, errors, destructive actions, and critical feedback.",
+        "$value": { "colorSpace": "srgb", "components": [0.705882, 0.137255, 0.094118], "hex": "#b42318" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 0.541176, 0.501961], "hex": "#ff8a80" } } } }
+      },
+      "ink": { "$value": "{theme.foreground.fg-default}" },
+      "ink-secondary": { "$value": "{theme.foreground.fg-muted}" },
+      "ink-tertiary": { "$value": "{theme.foreground.fg-subtle}" },
+      "ink-disabled": { "$value": "{theme.foreground.fg-disabled}" }
+    },
+    "border": {
+      "$type": "color",
+      "separator": {
+        "$description": "Low-contrast structural separator.",
+        "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.055 },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.072 } } } }
+      },
+      "control-border": {
+        "$description": "Default control boundary.",
+        "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.105 },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.13 } } } }
+      },
+      "control-border-hover": {
+        "$description": "Stronger interactive boundary.",
+        "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.2 },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.26 } } } }
+      },
+      "border-subtle": { "$value": "{theme.border.separator}" },
+      "border": { "$value": "{theme.border.control-border}" },
+      "border-strong": { "$value": "{theme.border.control-border-hover}" }
+    },
+    "focus": {
+      "$type": "color",
+      "focus-control": {
+        "$description": "Keyboard focus for product controls.",
+        "$value": { "colorSpace": "srgb", "components": [0.521569, 0.521569, 0.545098], "hex": "#85858b" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.643137, 0.643137, 0.666667], "hex": "#a4a4aa" } } } }
+      },
+      "focus-navigation": {
+        "$description": "Keyboard focus for persistent navigation.",
+        "$value": { "colorSpace": "srgb", "components": [0.466667, 0.466667, 0.490196], "hex": "#77777d" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.678431, 0.678431, 0.701961], "hex": "#adadb3" } } } }
+      },
+      "focus-documentation": {
+        "$description": "Keyboard focus for documentation disclosures and anchors.",
+        "$value": { "colorSpace": "srgb", "components": [0.521569, 0.521569, 0.545098], "hex": "#85858b" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [0.643137, 0.643137, 0.666667], "hex": "#a4a4aa" } } } }
+      },
+      "focus-halo": {
+        "$description": "Quiet supporting halo where a single outline needs separation.",
+        "$value": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.14 },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.18 } } } }
+      },
+      "switch-track": {
+        "$description": "Unchecked switch track.",
+        "$value": "{theme.palette.gray-300}"
+      },
+      "switch-thumb": {
+        "$description": "Switch thumb surface.",
+        "$value": { "colorSpace": "srgb", "components": [1, 1, 1], "hex": "#ffffff" },
+        "$extensions": { "dev.teum": { "modeValues": { "dark": "{theme.palette.gray-800}" } } }
+      },
+      "focus": {
+        "$description": "Compatibility alias for product-control focus.",
+        "$value": "{theme.focus.focus-control}"
+      }
+    },
+    "elevation": {
+      "$type": "shadow",
+      "shadow-control": {
+        "$description": "Optical edge definition for compact controls.",
+        "$value": [
+          {
+            "color": { "colorSpace": "oklch", "components": [0.17, 0.004, 275], "alpha": 0.025 },
+            "offsetX": { "value": 0, "unit": "px" },
+            "offsetY": { "value": 1, "unit": "px" },
+            "blur": { "value": 1, "unit": "px" },
+            "spread": { "value": 0, "unit": "px" }
+          },
+          {
+            "color": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.62 },
+            "offsetX": { "value": 0, "unit": "px" },
+            "offsetY": { "value": 1, "unit": "px" },
+            "blur": { "value": 0, "unit": "px" },
+            "spread": { "value": 0, "unit": "px" },
+            "inset": true
+          }
+        ],
+        "$extensions": {
+          "dev.teum": {
+            "modeValues": {
+              "dark": [
+                {
+                  "color": { "colorSpace": "srgb", "components": [1, 1, 1], "alpha": 0.055 },
+                  "offsetX": { "value": 0, "unit": "px" },
+                  "offsetY": { "value": 1, "unit": "px" },
+                  "blur": { "value": 0, "unit": "px" },
+                  "spread": { "value": 0, "unit": "px" },
+                  "inset": true
+                },
+                {
+                  "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.2 },
+                  "offsetX": { "value": 0, "unit": "px" },
+                  "offsetY": { "value": 1, "unit": "px" },
+                  "blur": { "value": 1, "unit": "px" },
+                  "spread": { "value": 0, "unit": "px" }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "shadow-float": {
+        "$description": "Persistent raised composition surface.",
+        "$value": [
+          { "color": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.08 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 4, "unit": "px" }, "blur": { "value": 16, "unit": "px" }, "spread": { "value": -8, "unit": "px" } },
+          { "color": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.04 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 1, "unit": "px" }, "blur": { "value": 2, "unit": "px" }, "spread": { "value": 0, "unit": "px" } },
+          { "color": "{theme.border.separator}", "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 0, "unit": "px" }, "spread": { "value": 1, "unit": "px" } }
+        ],
+        "$extensions": { "dev.teum": { "modeValues": { "dark": [
+          { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.48 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 4, "unit": "px" }, "blur": { "value": 16, "unit": "px" }, "spread": { "value": -8, "unit": "px" } },
+          { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.28 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 1, "unit": "px" }, "blur": { "value": 2, "unit": "px" }, "spread": { "value": 0, "unit": "px" } },
+          { "color": "{theme.border.separator}", "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 0, "unit": "px" }, "spread": { "value": 1, "unit": "px" } }
+        ] } } }
+      },
+      "shadow-float-focus": {
+        "$description": "Raised composition surface with active focus or selection.",
+        "$value": [
+          { "color": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.12 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 6, "unit": "px" }, "blur": { "value": 24, "unit": "px" }, "spread": { "value": -8, "unit": "px" } },
+          { "color": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.05 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 1, "unit": "px" }, "blur": { "value": 2, "unit": "px" }, "spread": { "value": 0, "unit": "px" } },
+          { "color": "{theme.border.control-border}", "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 0, "unit": "px" }, "spread": { "value": 1, "unit": "px" } }
+        ],
+        "$extensions": { "dev.teum": { "modeValues": { "dark": [
+          { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.56 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 8, "unit": "px" }, "blur": { "value": 26, "unit": "px" }, "spread": { "value": -8, "unit": "px" } },
+          { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.34 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 1, "unit": "px" }, "blur": { "value": 2, "unit": "px" }, "spread": { "value": 0, "unit": "px" } },
+          { "color": "{theme.border.control-border}", "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 0, "unit": "px" }, "spread": { "value": 1, "unit": "px" } }
+        ] } } }
+      },
+      "shadow-flyout": {
+        "$description": "Anchored temporary Flyout surface.",
+        "$value": [
+          { "color": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.16 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 16, "unit": "px" }, "blur": { "value": 34, "unit": "px" }, "spread": { "value": -10, "unit": "px" } },
+          { "color": { "colorSpace": "srgb", "components": [0.109804, 0.109804, 0.117647], "alpha": 0.09 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 4, "unit": "px" }, "blur": { "value": 10, "unit": "px" }, "spread": { "value": -4, "unit": "px" } },
+          { "color": "{theme.border.separator}", "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 0, "unit": "px" }, "spread": { "value": 1, "unit": "px" } }
+        ],
+        "$extensions": { "dev.teum": { "modeValues": { "dark": [
+          { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.68 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 20, "unit": "px" }, "blur": { "value": 44, "unit": "px" }, "spread": { "value": -10, "unit": "px" } },
+          { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.42 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 5, "unit": "px" }, "blur": { "value": 14, "unit": "px" }, "spread": { "value": -4, "unit": "px" } },
+          { "color": "{theme.border.separator}", "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 0, "unit": "px" }, "spread": { "value": 1, "unit": "px" } }
+        ] } } }
+      },
+      "shadow-popover": {
+        "$description": "Compatibility alias for anchored popovers.",
+        "$value": "{theme.elevation.shadow-flyout}"
+      },
+      "shadow-modal": {
+        "$description": "Focus-trapping task surface.",
+        "$value": [
+          { "color": { "colorSpace": "oklch", "components": [0.17, 0.004, 275], "alpha": 0.15 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 36, "unit": "px" }, "blur": { "value": 110, "unit": "px" }, "spread": { "value": 0, "unit": "px" } },
+          { "color": { "colorSpace": "oklch", "components": [0.17, 0.004, 275], "alpha": 0.065 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 8, "unit": "px" }, "blur": { "value": 24, "unit": "px" }, "spread": { "value": 0, "unit": "px" } },
+          { "color": "{theme.border.border}", "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 0, "unit": "px" }, "spread": { "value": 1, "unit": "px" } }
+        ],
+        "$extensions": { "dev.teum": { "modeValues": { "dark": [
+          { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.58 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 42, "unit": "px" }, "blur": { "value": 120, "unit": "px" }, "spread": { "value": 0, "unit": "px" } },
+          { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.34 }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 10, "unit": "px" }, "blur": { "value": 30, "unit": "px" }, "spread": { "value": 0, "unit": "px" } },
+          { "color": "{theme.border.border}", "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 0, "unit": "px" }, "spread": { "value": 1, "unit": "px" } }
+        ] } } }
+      },
+      "shadow-dialog": {
+        "$description": "Compatibility alias for dialog surfaces.",
+        "$value": "{theme.elevation.shadow-modal}"
+      }
+    }
+  }
+}

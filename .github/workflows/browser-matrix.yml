@@ -3,6 +3,16 @@ name: Browser matrix
 on:
   pull_request:
   workflow_dispatch:
+    inputs:
+      update_baselines:
+        description: Generate strict Linux visual baselines for review
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   browser:
@@ -25,13 +35,37 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
+        if: ${{ github.event_name != 'workflow_dispatch' || !inputs.update_baselines || matrix.project == 'chromium' }}
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
-      - run: npx playwright install --with-deps ${{ matrix.browser }}
-      - run: npm run test:browsers -- --project=${{ matrix.project }}
-      - uses: actions/upload-artifact@v4
+      - if: ${{ github.event_name != 'workflow_dispatch' || !inputs.update_baselines || matrix.project == 'chromium' }}
+        run: npm ci
+      - if: ${{ github.event_name != 'workflow_dispatch' || !inputs.update_baselines || matrix.project == 'chromium' }}
+        run: npx playwright install --with-deps ${{ matrix.browser }}
+      - if: ${{ github.event_name != 'workflow_dispatch' || !inputs.update_baselines }}
+        run: npm run test:browsers -- --project=${{ matrix.project }}
+      - name: Generate Linux visual baselines
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.update_baselines && matrix.project == 'chromium' }}
+        run: |
+          npm run test:stories:visual:update
+          npm run test:visual:catalog:update
+          npx playwright test tests/browser/visual-regression.spec.ts --project=chromium --update-snapshots
+          set -euo pipefail
+          find \
+            tests/storybook/visual-regression.spec.ts-snapshots \
+            tests/browser/full-catalog-visual.spec.ts-snapshots \
+            tests/browser/visual-regression.spec.ts-snapshots \
+            -type f -name '*-linux.png' -print0 \
+            | tar --null --files-from=- -czf teum-linux-visual-baselines.tar.gz
+      - uses: actions/upload-artifact@v7
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.update_baselines && matrix.project == 'chromium' }}
+        with:
+          name: teum-linux-visual-baselines
+          path: teum-linux-visual-baselines.tar.gz
+          if-no-files-found: error
+          retention-days: 3
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: playwright-${{ matrix.project }}

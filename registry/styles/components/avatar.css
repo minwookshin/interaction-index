@@ -1,34 +1,50 @@
 /* Generated from src/styles.css. Do not edit directly. */
 
-@layer index.tokens, index.base, index.components;
+@layer teum.tokens, teum.base, teum.components;
 
-@layer index.components {
-.ix-avatar {
+@layer teum.components {
+.teum-avatar {
   position: relative;
   display: inline-grid;
   flex: 0 0 auto;
+  isolation: isolate;
   place-items: center;
   overflow: visible;
-  border: 1px solid var(--ix-control-border);
+  border: 1px solid color-mix(in oklch, var(--teum-control-border) 76%, transparent);
   border-radius: 50%;
-  background: var(--ix-gray-100);
-  color: var(--ix-ink-secondary);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  background: var(--teum-gray-100);
+  color: var(--teum-fg-muted);
+  box-shadow: inset 0 1px 0 color-mix(in oklch, var(--teum-bg-surface) 72%, transparent);
+  font-weight: 570;
+  letter-spacing: -0.025em;
 }
 
-.ix-avatar img,
-.ix-avatar__fallback { width: 100%; height: 100%; border-radius: inherit; object-fit: cover; display: grid; place-items: center; }
+.teum-avatar[data-tone="0"] { background: var(--teum-gray-50); }
 
-.ix-avatar__status { position: absolute; right: -1px; bottom: -1px; width: 8px; height: 8px; border: 2px solid var(--ix-bg-surface); border-radius: 50%; background: var(--ix-gray-700); }
+.teum-avatar[data-tone="1"] { background: color-mix(in oklch, var(--teum-gray-100) 78%, var(--teum-gray-200)); }
 
-.ix-avatar__status[data-status="away"] { background: var(--ix-gray-400); }
+.teum-avatar[data-tone="2"] { background: color-mix(in oklch, var(--teum-gray-100) 58%, var(--teum-gray-200)); }
 
-.ix-avatar__status[data-status="busy"] { background: var(--ix-gray-900); }
+.teum-avatar[data-tone="3"] { background: color-mix(in oklch, var(--teum-gray-100) 38%, var(--teum-gray-200)); }
 
-.ix-avatar__status[data-status="offline"] { background: var(--ix-bg-control); box-shadow: inset 0 0 0 1px var(--ix-gray-400); }
+.teum-avatar img,
+.teum-avatar__fallback { width: 100%; height: 100%; border-radius: inherit; object-fit: cover; display: grid; place-items: center; }
 
-.ix-avatar-group { display: flex; align-items: center; padding-left: 6px; }
+.teum-avatar__fallback { line-height: 1; text-align: center; }
 
-.ix-avatar-group .ix-avatar { margin-left: -6px; box-shadow: 0 0 0 2px var(--ix-bg-surface); }
+.teum-avatar__status { position: absolute; z-index: 2; right: -1px; bottom: -1px; width: 11px; height: 11px; border: 2px solid var(--teum-bg-surface); border-radius: 50%; background: var(--teum-gray-700); }
+
+.teum-avatar__status[data-status="away"] { background: var(--teum-gray-400); }
+
+.teum-avatar__status[data-status="busy"] { background: var(--teum-gray-900); }
+
+.teum-avatar__status[data-status="offline"] { background: var(--teum-bg-control); box-shadow: inset 0 0 0 1px var(--teum-gray-400); }
+
+.teum-avatar-group { display: flex; align-items: center; isolation: isolate; }
+
+.teum-avatar-group .teum-avatar { box-shadow: 0 0 0 2px var(--teum-bg-surface), inset 0 1px 0 color-mix(in oklch, var(--teum-bg-surface) 72%, transparent); }
+
+.teum-avatar-group .teum-avatar + .teum-avatar { margin-left: -7px; }
+
+.teum-avatar-group .teum-avatar[data-status] { z-index: 1; }
 }

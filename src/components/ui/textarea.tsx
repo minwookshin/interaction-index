@@ -1,14 +1,14 @@
-import { useId, useState, type TextareaHTMLAttributes } from "react";
+import { useId, useState, type ComponentPropsWithRef } from "react";
 import { cn } from "../../lib/cn";
 
-export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
+export type TextareaProps = ComponentPropsWithRef<"textarea"> & {
   label?: string;
   description?: string;
   error?: string;
   showCount?: boolean;
 };
 
-export function Textarea({ id: providedId, label, description, error, showCount, maxLength, className, value, defaultValue, onChange, ...props }: TextareaProps) {
+export function Textarea({ id: providedId, label, description, error, showCount, maxLength, className, value, defaultValue, onChange, ref, ...props }: TextareaProps) {
   const generatedId = useId();
   const id = providedId ?? generatedId;
   const descriptionId = description ? `${id}-description` : undefined;
@@ -19,11 +19,12 @@ export function Textarea({ id: providedId, label, description, error, showCount,
   const count = typeof value === "string" ? value.length : uncontrolledCount;
 
   return (
-    <div className="ix-field ix-textarea-field" data-invalid={Boolean(error) || undefined}>
-      {label && <label className="ix-field__label" htmlFor={id}>{label}</label>}
+    <div className="teum-field teum-textarea-field" data-invalid={Boolean(error) || undefined}>
+      {label && <label className="teum-field__label" htmlFor={id}>{label}</label>}
       <textarea
+        ref={ref}
         id={id}
-        className={cn("ix-input ix-textarea", className)}
+        className={cn("teum-input teum-textarea", className)}
         aria-invalid={Boolean(error) || undefined}
         aria-describedby={describedBy}
         maxLength={maxLength}
@@ -32,10 +33,10 @@ export function Textarea({ id: providedId, label, description, error, showCount,
         onChange={(event) => { setUncontrolledCount(event.currentTarget.value.length); onChange?.(event); }}
         {...props}
       />
-      <div className="ix-textarea-field__meta">
+      <div className="teum-textarea-field__meta">
         <span>
-          {description && <span id={descriptionId} className="ix-field__description">{description}</span>}
-          {error && <span id={errorId} className="ix-field__error">{error}</span>}
+          {description && <span id={descriptionId} className="teum-field__description">{description}</span>}
+          {error && <span id={errorId} className="teum-field__error">{error}</span>}
         </span>
         {showCount && maxLength && <output aria-label="Character count">{count}/{maxLength}</output>}
       </div>

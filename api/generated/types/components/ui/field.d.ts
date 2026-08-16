@@ -1,0 +1,18 @@
+import { Field as FieldPrimitive } from "@base-ui/react/field";
+import { Fieldset as FieldsetPrimitive } from "@base-ui/react/fieldset";
+import type { ComponentPropsWithRef } from "react";
+export type FieldProps = FieldPrimitive.Root.Props;
+export type FieldLabelProps = FieldPrimitive.Label.Props;
+export type FieldDescriptionProps = FieldPrimitive.Description.Props;
+export type FieldErrorProps = FieldPrimitive.Error.Props;
+export type FieldControlProps = FieldPrimitive.Control.Props;
+export type FieldsetProps = FieldsetPrimitive.Root.Props;
+export type FieldsetLegendProps = FieldsetPrimitive.Legend.Props;
+export declare function Field({ className, ...props }: FieldProps): import("react").JSX.Element;
+export declare function FieldLabel({ className, ...props }: FieldLabelProps): import("react").JSX.Element;
+export declare function FieldDescription({ className, ...props }: FieldDescriptionProps): import("react").JSX.Element;
+export declare function FieldError({ className, match, ...props }: FieldErrorProps): import("react").JSX.Element;
+export declare function FieldControl({ className, ...props }: FieldControlProps): import("react").JSX.Element;
+export declare function Fieldset({ className, ...props }: FieldsetProps): import("react").JSX.Element;
+export declare function FieldsetLegend({ className, ...props }: FieldsetLegendProps): import("react").JSX.Element;
+export declare function FieldGroup({ className, ...props }: ComponentPropsWithRef<"div">): import("react").JSX.Element;

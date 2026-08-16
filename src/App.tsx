@@ -1,33 +1,49 @@
 import {
   Archive,
+  ArrowsOutLineHorizontal,
   ArrowsDownUp,
   ArrowCounterClockwise,
   ArrowRight,
   Bell,
+  Browsers,
   CaretDown,
   Check,
+  CheckCircle,
   Command,
+  Compass,
   Copy,
+  CursorText,
   Diamond,
   DotsThree,
+  DownloadSimple,
+  FileText,
   Gear,
+  GitBranch,
   LinkSimple,
   List,
   MagnifyingGlass,
   Moon,
   Monitor,
   Package,
+  Palette,
+  PersonArmsSpread,
   Star,
   Plus,
   Rows,
+  Selection,
   ShieldCheck,
+  SidebarSimple,
+  Stack,
   DeviceMobile,
   Sun,
+  Tag,
   TerminalWindow,
+  TextT,
   Trash,
+  WaveSine,
   X,
 } from "@phosphor-icons/react";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import packageManifest from "../package.json";
 import {
   ActionList,
@@ -45,8 +61,17 @@ import {
   Badge,
   Breadcrumbs,
   Button,
+  ButtonGroup,
+  ButtonGroupSeparator,
   Checkbox,
   Combobox,
+  ContextMenu,
+  ContextMenuCheckboxItem,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuTrigger,
   ContextSwitcher,
   Collapsible,
   CollapsibleContent,
@@ -59,13 +84,29 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  Field,
+  FieldControl,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  Fieldset,
+  FieldsetLegend,
   IconButton,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
   InlineEdit,
+  Kbd,
+  KbdGroup,
   Menu,
   MenuCheckboxItem,
   MenuContent,
   MenuItem,
   MenuLabel,
+  MenuRadioGroup,
+  MenuRadioItem,
   MenuSeparator,
   MenuTrigger,
   Popover,
@@ -79,6 +120,15 @@ import {
   SearchInput,
   SegmentedControl,
   Select,
+  Sheet,
+  SheetBody,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
   SharedDetail,
   Skeleton,
   SkeletonText,
@@ -96,6 +146,11 @@ import {
   TabsTrigger,
   TextField,
   Textarea,
+  Toolbar,
+  ToolbarButton,
+  ToolbarGroup,
+  ToolbarInput,
+  ToolbarSeparator,
   NumberField,
   EmptyState,
   toast,
@@ -117,14 +172,27 @@ import { componentGuidance, type ComponentGuidance } from "./component-guidance"
 import { copyText } from "./lib/copy-text";
 import { componentCode } from "./documentation/component-code";
 import { componentApi } from "./documentation/component-api";
+import { generatedComponentExports } from "./documentation/generated-component-exports";
 import { FoundationDetail, FoundationOverview, foundationItems, type FoundationId } from "./documentation/foundations";
 import { LiveSpecimen } from "./documentation/live-specimen";
 import { ComponentStatePreview, getStateFlags } from "./documentation/state-preview";
 import { PublicDocPage, publicDocItems, publicDocOutlines, type PublicDocId, type PublicDocGroup } from "./documentation/public-docs";
 
-const components = [
+const ReactAriaExample = lazy(() => import("./documentation/react-aria-previews").then((module) => ({ default: module.ReactAriaExample })));
+const ReactAriaPrimaryPreview = lazy(() => import("./documentation/react-aria-previews").then((module) => ({ default: module.ReactAriaPrimaryPreview })));
+
+function ReactAriaPreviewFallback() {
+  return <div className="react-aria-preview-fallback" aria-hidden="true">Loading preview…</div>;
+}
+
+export const components = [
   { id: "button", name: "Button", group: "Controls", description: "Compact actions with stable loading geometry and explicit hierarchy." },
   { id: "icon-button", name: "Icon Button", group: "Controls", description: "Square actions that require an accessible name and contextual tooltip." },
+  { id: "field", name: "Field & Fieldset", group: "Controls", description: "Accessible form structure that keeps labels, guidance, validation, and grouped choices connected." },
+  { id: "input-group", name: "Input Group", group: "Controls", description: "One text-entry boundary composed with contextual addons and compact actions." },
+  { id: "kbd", name: "Kbd", group: "Controls", description: "Quiet keyboard-hint notation for shortcuts, sequences, and modifier chords." },
+  { id: "button-group", name: "Button Group", group: "Controls", description: "Related actions composed with shared rhythm, hierarchy, and optional joined geometry." },
+  { id: "toolbar", name: "Toolbar", group: "Controls", description: "A compact set of frequently used controls with roving keyboard navigation." },
   { id: "text-field", name: "Text Field", group: "Controls", description: "Dense text entry with labels, descriptions, validation, and adornments." },
   { id: "textarea", name: "Textarea", group: "Controls", description: "Long-form input with persistent guidance, validation, and count feedback." },
   { id: "checkbox", name: "Checkbox", group: "Controls", description: "Binary or mixed selection with a generous invisible hit target." },
@@ -135,11 +203,14 @@ const components = [
   { id: "combobox", name: "Combobox", group: "Controls", description: "Filter and select from a larger predefined collection without free-form ambiguity." },
   { id: "search-input", name: "Search Input", group: "Controls", description: "Free-form query input with clear, loading, and keyboard-shortcut affordances." },
   { id: "number-field", name: "Number Field", group: "Controls", description: "Locale-aware numeric entry with keyboard stepping, bounds, and stable controls." },
+  { id: "date-picker", name: "Calendar & Date Picker", group: "Controls", description: "Locale-aware date entry and calendar selection with one shared validation contract." },
   { id: "segmented-control", name: "Segmented Control", group: "Controls", description: "Compact single selection between peer views or presentation modes." },
   { id: "tooltip", name: "Tooltip", group: "Overlays", description: "A concise label or shortcut hint for otherwise ambiguous controls." },
   { id: "popover", name: "Popover", group: "Overlays", description: "A lightweight, non-modal surface anchored to its trigger." },
   { id: "menu", name: "Menu", group: "Overlays", description: "A keyboard-navigable set of contextual actions and toggles." },
+  { id: "context-menu", name: "Context Menu", group: "Overlays", description: "Pointer and keyboard access to object-specific actions without adding permanent chrome." },
   { id: "dialog", name: "Dialog", group: "Overlays", description: "A focused modal task with trapped focus, explicit completion, and reversible dismissal." },
+  { id: "sheet", name: "Sheet", group: "Overlays", description: "An edge-aligned focused panel for compact workflows that benefit from visible page context." },
   { id: "alert-dialog", name: "Alert Dialog", group: "Overlays", description: "A blocking consequential decision that requires an explicit user response." },
   { id: "tabs", name: "Tabs", group: "Navigation", description: "A dense view switcher with automatic keyboard navigation." },
   { id: "breadcrumbs", name: "Breadcrumbs", group: "Navigation", description: "Compact location context with semantic current-page and collapsed-depth handling." },
@@ -154,13 +225,15 @@ const components = [
   { id: "badge", name: "Badge", group: "Data display", description: "Compact metadata, category, status, and removable-filter labeling." },
   { id: "avatar", name: "Avatar", group: "Data display", description: "Person or entity identity with deterministic fallback, size, status, and grouping." },
   { id: "table", name: "Table", group: "Data display", description: "Semantic tabular structure composed into product-specific sorting, filtering, and selection." },
+  { id: "tree", name: "Tree", group: "Data display", description: "Hierarchical navigation and selection with expansion, typeahead, and roving focus." },
+  { id: "reorderable-list", name: "Reorderable List", group: "Interaction", description: "Pointer, touch, keyboard, and screen-reader reordering with visible drop intent." },
   { id: "inline-edit", name: "Inline Edit", group: "Interaction", description: "Edit in place while preserving line geometry and focus origin.", contract: inlineEditContract },
   { id: "action-list", name: "Action List", group: "Interaction", description: "A filterable, keyboard-first action surface for dense workflows.", contract: actionListContract },
   { id: "shared-detail", name: "Shared Detail", group: "Interaction", description: "Move from a list object to its detail without losing identity.", contract: sharedDetailContract },
   { id: "undo-stack", name: "Undo Stack", group: "Interaction", description: "Make consequential actions recoverable through a real LIFO history.", contract: undoStackContract },
 ] as const;
 
-type ComponentId = (typeof components)[number]["id"];
+export type ComponentId = (typeof components)[number]["id"];
 
 const patterns = [
   {
@@ -231,9 +304,10 @@ function isPublicDocId(value: string): value is PublicDocId {
 }
 
 const currentCompatibility = [
-  { label: "React", value: packageManifest.dependencies.react.replace(/^[^\d]*/, "") },
+  { label: "React", value: packageManifest.peerDependencies.react },
   { label: "TypeScript", value: packageManifest.devDependencies.typescript.replace(/^[^\d]*/, "") },
   { label: "Base UI", value: packageManifest.dependencies["@base-ui/react"].replace(/^[^\d]*/, "") },
+  { label: "React Aria", value: packageManifest.dependencies["react-aria-components"].replace(/^[^\d]*/, "") },
   { label: "Release", value: packageManifest.private ? "Not published" : packageManifest.version },
 ] as const;
 
@@ -314,18 +388,19 @@ function ComponentGuidancePanel({ guidance, mode }: { guidance: ComponentGuidanc
 
 function ComponentApiPanel({ id }: { id: ComponentId }) {
   const rows = componentApi[id];
+  const publicExports = generatedComponentExports[id];
   const component = components.find((item) => item.id === id)!;
   const guidance = componentGuidance[id];
   const importName = component.name.replaceAll(" ", "");
   return (
     <section className="component-api" id="system-api" aria-labelledby="component-api-title">
       <div className="component-guidance__heading">
-        <div><span>Reference</span><h2 id="component-api-title">Props and defaults</h2></div>
-        <p>The public surface stays small, composable, and aligned with the live examples.</p>
+        <div><span>Reference</span><h2 id="component-api-title">Common props and defaults</h2></div>
+        <p>Start with the authored decisions below. Inherited primitive and native types remain inspectable in the generated public surface.</p>
       </div>
       <div className="component-api__facts" aria-label={`${component.name} reference summary`}>
         <article><span>Import</span><code>{importName}</code></article>
-        <article><span>Package</span><code>@index/ui</code></article>
+        <article><span>Package candidate</span><code>teum</code></article>
         <article><span>Primitive</span><strong>{guidance.source}</strong></article>
         <article><span>Coverage</span><strong>{guidance.states.length} states</strong></article>
       </div>
@@ -335,6 +410,21 @@ function ComponentApiPanel({ id }: { id: ComponentId }) {
         <tbody>{rows.map((row) => <tr key={row.name}><th scope="row"><code>{row.name}</code>{row.required && <span>Required</span>}</th><td><code>{row.type}</code></td><td><code>{row.defaultValue === "—" ? "None" : row.defaultValue}</code></td><td>{row.description}</td></tr>)}</tbody>
       </table>
       </div>
+      <details className="component-api__generated">
+        <summary>
+          <span><strong>Generated public surface</strong><small>Read from the TypeScript entry point</small></span>
+          <span><small>{publicExports.length} exports</small><CaretDown aria-hidden="true" /></span>
+        </summary>
+        <div className="component-api__export-list">
+          {publicExports.map((item) => (
+            <article key={item.name}>
+              <code>{item.name}</code>
+              <span>{item.kind}</span>
+              <code>{item.signature}</code>
+            </article>
+          ))}
+        </div>
+      </details>
       <div className="component-support" aria-label={`${component.name} compatibility and confidence`}>
         <div className="component-support__heading">
           <div><span>Compatibility</span><h3>Current workspace contract</h3></div>
@@ -407,17 +497,131 @@ function IconButtonDemo() {
   );
 }
 
+function FieldDemo() {
+  return (
+    <>
+      <Specimen label="Product recipe" note="Project metadata form">
+        <form className="field-family-demo" aria-label="Project metadata" onSubmit={(event) => event.preventDefault()}>
+          <Field>
+            <FieldLabel>Project name</FieldLabel>
+            <FieldControl placeholder="Teum" />
+            <FieldDescription>Shown to everyone in this workspace.</FieldDescription>
+          </Field>
+          <Field invalid>
+            <FieldLabel>Identifier</FieldLabel>
+            <FieldControl defaultValue="INT-" aria-invalid="true" />
+            <FieldError>Use a unique identifier.</FieldError>
+          </Field>
+          <Fieldset>
+            <FieldsetLegend>Include in export</FieldsetLegend>
+            <FieldGroup>
+              <Checkbox label="Component source" defaultChecked />
+              <Checkbox label="Interaction notes" defaultChecked />
+            </FieldGroup>
+          </Fieldset>
+        </form>
+      </Specimen>
+      <ApiStrip values={["label association", "description", "error", "required", "read only", "disabled", "fieldset legend"]} />
+    </>
+  );
+}
+
+function InputGroupDemo() {
+  return (
+    <>
+      <Specimen label="Product recipe" note="Repository destination">
+        <div className="input-group-demo">
+          <label htmlFor="repository-path">Repository</label>
+          <InputGroup>
+            <InputGroupAddon>github.com/</InputGroupAddon>
+            <InputGroupInput id="repository-path" defaultValue="minwook/teum" />
+            <InputGroupButton aria-label="Copy repository path"><Copy /></InputGroupButton>
+          </InputGroup>
+          <span>Use a repository you can publish from this workspace.</span>
+        </div>
+      </Specimen>
+      <ApiStrip values={["leading addon", "trailing action", "keyboard hint", "focus within", "invalid", "disabled"]} />
+    </>
+  );
+}
+
+function KbdDemo() {
+  return (
+    <>
+      <Specimen label="Shortcut language" note="Presentational, never a focus target">
+        <div className="kbd-demo-grid">
+          <div><span>Open command menu</span><KbdGroup><Kbd>⌘</Kbd><Kbd>K</Kbd></KbdGroup></div>
+          <div><span>Save changes</span><KbdGroup><Kbd>⌘</Kbd><Kbd>Enter</Kbd></KbdGroup></div>
+          <div><span>Move selection</span><KbdGroup><Kbd>↑</Kbd><Kbd>↓</Kbd></KbdGroup></div>
+        </div>
+      </Specimen>
+      <ApiStrip values={["single key", "modifier chord", "sequence", "inside button", "inside input"]} />
+    </>
+  );
+}
+
+function ButtonGroupDemo() {
+  return (
+    <>
+      <Specimen label="Product recipe" note="Issue view actions">
+        <div className="button-group-demo">
+          <ButtonGroup aria-label="Issue view actions" attached>
+            <Button variant="secondary" size="small">Preview</Button>
+            <Button variant="secondary" size="small">Open</Button>
+            <Button variant="secondary" size="small" aria-label="More issue actions"><DotsThree /></Button>
+          </ButtonGroup>
+          <ButtonGroup aria-label="Document actions">
+            <Button variant="ghost" size="small">Cancel</Button>
+            <ButtonGroupSeparator />
+            <Button variant="primary" size="small">Publish</Button>
+          </ButtonGroup>
+        </div>
+      </Specimen>
+      <ApiStrip values={["group label", "attached", "detached", "mixed hierarchy", "vertical", "disabled item"]} />
+    </>
+  );
+}
+
+function ToolbarDemo() {
+  return (
+    <>
+      <Specimen label="Product recipe" note="Issue formatting toolbar">
+        <Toolbar aria-label="Issue formatting">
+          <ToolbarGroup aria-label="Text style">
+            <ToolbarButton aria-label="Bold"><strong>B</strong></ToolbarButton>
+            <ToolbarButton aria-label="Italic"><em>I</em></ToolbarButton>
+            <ToolbarButton aria-label="Add link"><LinkSimple /></ToolbarButton>
+          </ToolbarGroup>
+          <ToolbarSeparator />
+          <ToolbarGroup aria-label="Insert">
+            <ToolbarButton aria-label="Add attachment"><Plus /></ToolbarButton>
+            <Menu>
+              <MenuTrigger render={<ToolbarButton aria-label="More formatting"><DotsThree /></ToolbarButton>} />
+              <MenuContent>
+                <MenuItem><List />Bulleted list</MenuItem>
+                <MenuItem><Command />Command block</MenuItem>
+              </MenuContent>
+            </Menu>
+          </ToolbarGroup>
+          <ToolbarInput aria-label="Find in issue" placeholder="Find…" />
+        </Toolbar>
+      </Specimen>
+      <ApiStrip values={["Arrow keys", "Home / End", "loop focus", "group", "separator", "popup trigger", "one trailing input"]} />
+    </>
+  );
+}
+
 function TextFieldDemo() {
   return (
     <>
       <Specimen label="Product recipe" note="Project settings form">
-        <div className="field-demo-grid">
-          <TextField label="Project name" defaultValue="Interaction Index" description="Shown to everyone in the workspace." />
-          <TextField label="Search" placeholder="Search components…" leading={<MagnifyingGlass />} trailing={<kbd>⌘K</kbd>} />
+        <form className="field-demo-form" aria-label="Project settings form" onSubmit={(event) => event.preventDefault()}>
+          <TextField fieldClassName="field-demo-form__name" label="Project name" defaultValue="Teum" description="Shown to everyone in the workspace." />
           <TextField label="Identifier" defaultValue="INT-" error="Use a unique identifier." />
-          <TextField label="Read only" value="Linear light" readOnly />
           <TextField label="Workspace key" value="INT" description="Managed by your organization." disabled />
-        </div>
+          <TextField label="Search" placeholder="Search components…" leading={<MagnifyingGlass />} trailing={<kbd>⌘K</kbd>} />
+          <TextField label="Read only" value="Linear light" readOnly />
+        </form>
       </Specimen>
       <ApiStrip values={["label", "description", "error", "leading", "trailing", "disabled", "readOnly"]} />
     </>
@@ -509,12 +713,38 @@ function MenuDemo() {
               <MenuItem><Archive />Archive <kbd>E</kbd></MenuItem>
               <MenuCheckboxItem checked={contracts} onCheckedChange={setContracts}>Show contracts</MenuCheckboxItem>
               <MenuSeparator />
-              <MenuItem className="ix-menu__item--danger"><Trash />Delete</MenuItem>
+              <MenuItem className="teum-menu__item--danger"><Trash />Delete</MenuItem>
             </MenuContent>
           </Menu>
         </div>
       </Specimen>
       <ApiStrip values={["Arrow keys", "Home / End", "Enter / Space", "typeahead", "checkbox item", "Escape"]} />
+    </>
+  );
+}
+
+function ContextMenuDemo() {
+  const [contracts, setContracts] = useState(true);
+  return (
+    <>
+      <Specimen label="Product recipe" note="Right click, long press, or use Shift + F10">
+        <ContextMenu>
+          <ContextMenuTrigger className="context-menu-demo-card">
+            <span className="product-context__icon"><Rows aria-hidden="true" /></span>
+            <span><strong>Motion contract</strong><small>INT-184 · In review</small></span>
+            <KbdGroup><Kbd>⇧</Kbd><Kbd>F10</Kbd></KbdGroup>
+          </ContextMenuTrigger>
+          <ContextMenuContent>
+            <ContextMenuLabel>Issue</ContextMenuLabel>
+            <ContextMenuItem><Copy />Duplicate <kbd>⌘D</kbd></ContextMenuItem>
+            <ContextMenuItem><Archive />Archive</ContextMenuItem>
+            <ContextMenuCheckboxItem checked={contracts} onCheckedChange={setContracts}>Show contracts</ContextMenuCheckboxItem>
+            <ContextMenuSeparator />
+            <ContextMenuItem className="teum-menu__item--danger"><Trash />Delete</ContextMenuItem>
+          </ContextMenuContent>
+        </ContextMenu>
+      </Specimen>
+      <ApiStrip values={["right click", "long press", "Shift + F10", "Arrow keys", "typeahead", "Escape", "focus return"]} />
     </>
   );
 }
@@ -540,15 +770,42 @@ function DialogDemo() {
   );
 }
 
+function SheetDemo() {
+  return (
+    <>
+      <Specimen label="Product recipe" note="Issue properties without losing the list">
+        <div className="sheet-preview-card">
+          <div><strong>Motion contract</strong><p>INT-184 · In review · Updated 8m ago</p></div>
+          <Sheet>
+            <SheetTrigger render={<Button variant="secondary">Open properties</Button>} />
+            <SheetContent>
+              <SheetHeader><SheetTitle>Issue properties</SheetTitle><SheetDescription>Update the fields that organize this issue.</SheetDescription></SheetHeader>
+              <SheetBody>
+                <TextField label="Title" defaultValue="Motion contract" />
+                <Select label="Priority" options={priorityOptions} defaultValue="medium" />
+                <TextField label="Identifier" value="INT-184" readOnly />
+              </SheetBody>
+              <SheetFooter><SheetClose render={<Button variant="ghost" />}>Cancel</SheetClose><SheetClose render={<Button variant="primary" />}>Save changes</SheetClose></SheetFooter>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </Specimen>
+      <ApiStrip values={["modal focus", "right · default", "left", "top", "bottom", "Escape · close", "focus return"]} />
+    </>
+  );
+}
+
 function TabsDemo() {
   return (
     <>
       <Specimen label="Product recipe" note="Issue detail views">
-        <Tabs defaultValue="preview">
+        <Tabs className="tabs-demo tabs-demo--recipes" defaultValue="preview">
           <TabsList><TabsTrigger value="preview">Overview</TabsTrigger><TabsTrigger value="states">Activity</TabsTrigger><TabsTrigger value="contract">Relations</TabsTrigger><TabsTrigger value="archive" disabled>Archive</TabsTrigger></TabsList>
-          <TabsContent value="preview"><div className="tab-card"><strong>Live component</strong><p>Inspect the component at product density.</p></div></TabsContent>
-          <TabsContent value="states"><div className="tab-card"><strong>State coverage</strong><p>Default, hover, active, focus, disabled, and loading.</p></div></TabsContent>
-          <TabsContent value="contract"><div className="tab-card"><strong>Behavior contract</strong><p>Origin, continuity, interruption, keyboard, and reduced motion.</p></div></TabsContent>
+          <div className="tabs-panel-viewport">
+            <TabsContent value="preview"><div className="tab-card"><strong>Live component</strong><p>Inspect the component at product density.</p></div></TabsContent>
+            <TabsContent value="states"><div className="tab-card"><strong>State coverage</strong><p>Default, hover, active, focus, disabled, and loading.</p></div></TabsContent>
+            <TabsContent value="contract"><div className="tab-card"><strong>Behavior contract</strong><p>Origin, continuity, interruption, keyboard, and reduced motion.</p></div></TabsContent>
+          </div>
         </Tabs>
       </Specimen>
       <ApiStrip values={["Arrow Left / Right", "Home / End", "automatic activation", "aria-controls"]} />
@@ -556,17 +813,19 @@ function TabsDemo() {
   );
 }
 
+const COMPONENT_FEEDBACK_TOAST_ID = "component-feedback";
+
 function ToastDemo() {
   return (
     <>
       <Specimen label="Product recipe" note="Mutation feedback">
         <div className="demo-row">
-          <Button variant="secondary" onClick={() => toast("Component duplicated", { description: "Button / Draft was added to the index." })}>Confirm action</Button>
-          <Button variant="secondary" onClick={() => toast("Component archived", { action: { label: "Undo", onClick: () => toast("Component restored") } })}>Show undo</Button>
-          <Button variant="secondary" onClick={() => toast.error("Couldn’t publish", { description: "Check the registry configuration and try again." })}>Show error</Button>
+          <Button variant="secondary" onClick={() => toast("Component duplicated", { id: COMPONENT_FEEDBACK_TOAST_ID, description: "Button / Draft was added to the index.", action: undefined })}>Confirm action</Button>
+          <Button variant="secondary" onClick={() => toast("Component archived", { id: COMPONENT_FEEDBACK_TOAST_ID, description: undefined, action: { label: "Undo", onClick: () => toast("Component restored", { id: COMPONENT_FEEDBACK_TOAST_ID, description: "Archive was reversed.", action: undefined }) } })}>Show undo</Button>
+          <Button variant="secondary" onClick={() => toast.error("Couldn’t publish", { id: COMPONENT_FEEDBACK_TOAST_ID, description: "Check the registry configuration and try again.", action: undefined })}>Show error</Button>
         </div>
       </Specimen>
-      <ApiStrip values={["polite live region", "close", "action", "4s default", "bottom-right"]} />
+      <ApiStrip values={["polite live region", "one foreground message", "upsert by id", "action", "4s default", "bottom-center"]} />
     </>
   );
 }
@@ -701,7 +960,7 @@ function AlertDemo() {
   return <>
     <Specimen label="Product recipe" note="Persistent feedback belongs beside the affected work">
       <div className="demo-stack demo-stack--wide">
-        <Alert title="Import complete">35 components were added to the local registry.</Alert>
+        <Alert title="Import complete">{components.length} components were added to the local registry.</Alert>
         <Alert variant="critical" title="Registry could not be verified" action={<Button size="small" variant="secondary">Review</Button>}>One source path no longer resolves.</Alert>
         {visible ? <Alert title="Keyboard review ready" onDismiss={() => setVisible(false)}>Run the documented tab order before release.</Alert> : <Button size="small" variant="quiet" onClick={() => setVisible(true)}>Restore dismissed alert</Button>}
       </div>
@@ -737,7 +996,7 @@ function AlertDialogDemo() {
 function NumberFieldDemo() {
   return <>
     <Specimen label="Product recipe" note="Locale-aware stepping and bounds">
-      <div className="field-demo-grid">
+      <div className="field-demo-grid number-field-demo-grid">
         <NumberField label="Cycle capacity" description="Issues available to this cycle." defaultValue={24} min={1} max={99} />
         <NumberField label="Estimate" defaultValue={3} min={0} max={100} suffix="pts" />
         <NumberField label="Failed value" defaultValue={120} min={0} max={100} error="Use a value from 0 to 100." />
@@ -745,6 +1004,15 @@ function NumberFieldDemo() {
       </div>
     </Specimen>
     <ApiStrip values={["Arrow Up / Down", "increment", "decrement", "min", "max", "step", "locale", "format", "readOnly", "disabled"]} />
+  </>;
+}
+
+function DatePickerDemo() {
+  return <>
+    <Specimen label="Product recipe" note="Locale-aware entry and calendar selection">
+      <Suspense fallback={<ReactAriaPreviewFallback />}><ReactAriaExample id="date-picker" /></Suspense>
+    </Specimen>
+    <ApiStrip values={["locale", "calendar system", "date segments", "Arrow keys", "Page Up / Down", "min / max", "unavailable dates", "validation"]} />
   </>;
 }
 
@@ -765,8 +1033,8 @@ function CollapsibleDemo() {
   return <>
     <Specimen label="Product recipe" note="Supporting detail without navigation">
       <div className="demo-stack demo-stack--wide">
-        <Collapsible className="ix-collapsible" defaultOpen><CollapsibleTrigger>Advanced filter rules</CollapsibleTrigger><CollapsibleContent>Matches components whose state contract includes focus restoration, keyboard dismissal, and a reduced-motion fallback.</CollapsibleContent></Collapsible>
-        <Collapsible className="ix-collapsible"><CollapsibleTrigger>Compatibility details</CollapsibleTrigger><CollapsibleContent>Tested with React {currentCompatibility[0].value}, TypeScript {currentCompatibility[1].value}, and Base UI {currentCompatibility[2].value}.</CollapsibleContent></Collapsible>
+        <Collapsible className="teum-collapsible" defaultOpen><CollapsibleTrigger>Advanced filter rules</CollapsibleTrigger><CollapsibleContent>Matches components whose state contract includes focus restoration, keyboard dismissal, and a reduced-motion fallback.</CollapsibleContent></Collapsible>
+        <Collapsible className="teum-collapsible"><CollapsibleTrigger>Compatibility details</CollapsibleTrigger><CollapsibleContent>Tested with React {currentCompatibility[0].value}, TypeScript {currentCompatibility[1].value}, Base UI {currentCompatibility[2].value}, and React Aria {currentCompatibility[3].value}.</CollapsibleContent></Collapsible>
       </div>
     </Specimen>
     <ApiStrip values={["closed", "open", "Enter / Space", "focus remains", "disabled", "hidden until found", "reduced motion"]} />
@@ -807,8 +1075,8 @@ function DataTableRecipe({ compact = false }: { compact?: boolean }) {
   return <div className="data-table-recipe" data-compact={compact || undefined}>
     <div className="data-table-recipe__toolbar"><SearchInput aria-label="Filter issues" value={query} onChange={(event) => updateQuery(event.target.value)} onClear={() => updateQuery("")} placeholder="Filter issues…" /><Badge variant="outline">{rows.length} results</Badge></div>
     <Table aria-label="Interaction quality issues">
-      <TableHeader><TableRow><TableHead className="data-table-recipe__select"><Checkbox aria-label="Select every visible issue" checked={allSelected} indeterminate={!allSelected && visibleRows.some((row) => selected.includes(row.id))} onCheckedChange={(checked) => toggleAll(Boolean(checked))} /></TableHead><TableHead aria-sort={ascending ? "ascending" : "descending"}><button className="ix-table-sort" type="button" aria-label={`Sort issues ${ascending ? "descending" : "ascending"}`} onClick={() => setAscending((value) => !value)}>Issue <ArrowsDownUp /></button></TableHead><TableHead>Status</TableHead><TableHead>Owner</TableHead><TableHead>Updated</TableHead></TableRow></TableHeader>
-      <TableBody>{visibleRows.map((row) => <TableRow key={row.id} data-selected={selected.includes(row.id) || undefined}><TableCell className="data-table-recipe__select"><Checkbox aria-label={`Select ${row.name}`} checked={selected.includes(row.id)} onCheckedChange={(checked) => toggleRow(row.id, Boolean(checked))} /></TableCell><TableCell><span className="data-table-recipe__identity"><strong>{row.name}</strong><small>{row.id}</small></span></TableCell><TableCell><Badge variant={row.status === "In review" ? "strong" : "outline"}>{row.status}</Badge></TableCell><TableCell>{row.owner}</TableCell><TableCell>{row.updated}</TableCell></TableRow>)}</TableBody>
+      <TableHeader><TableRow><TableHead className="data-table-recipe__select"><Checkbox aria-label="Select every visible issue" checked={allSelected} indeterminate={!allSelected && visibleRows.some((row) => selected.includes(row.id))} onCheckedChange={(checked) => toggleAll(Boolean(checked))} /></TableHead><TableHead aria-sort={ascending ? "ascending" : "descending"}><button className="teum-table-sort" type="button" aria-label={`Sort issues ${ascending ? "descending" : "ascending"}`} onClick={() => setAscending((value) => !value)}>Issue <ArrowsDownUp /></button></TableHead><TableHead>Status</TableHead><TableHead>Owner</TableHead><TableHead>Updated</TableHead></TableRow></TableHeader>
+      <TableBody>{visibleRows.map((row) => <TableRow key={row.id} data-selected={selected.includes(row.id) || undefined}><TableCell className="data-table-recipe__select"><Checkbox aria-label={`Select ${row.name}`} checked={selected.includes(row.id)} onCheckedChange={(checked) => toggleRow(row.id, Boolean(checked))} /></TableCell><TableCell><span className="data-table-recipe__identity"><strong>{row.name}</strong><small>{row.id}</small></span></TableCell><TableCell><Badge className="data-table-recipe__status" variant="outline" data-status={row.status.toLocaleLowerCase().replaceAll(" ", "-")}>{row.status}</Badge></TableCell><TableCell>{row.owner}</TableCell><TableCell>{row.updated}</TableCell></TableRow>)}</TableBody>
     </Table>
     {!rows.length && <EmptyState size="compact" title="No matching issues" description="Try another title, identifier, owner, or status." secondaryAction={<Button size="small" variant="ghost" onClick={() => updateQuery("")}>Clear search</Button>} />}
     <div className="data-table-recipe__footer"><span>{selected.length ? `${selected.length} selected` : `Page ${page} of ${totalPages}`}</span><Pagination label={compact ? "Issue table preview pages" : "Issue table pages"} page={page} totalPages={totalPages} onPageChange={setPage} siblingCount={0} /></div>
@@ -822,8 +1090,26 @@ function TableDemo() {
   </>;
 }
 
+function TreeDemo() {
+  return <>
+    <Specimen label="Product recipe" note="Hierarchical project navigation">
+      <Suspense fallback={<ReactAriaPreviewFallback />}><ReactAriaExample id="tree" /></Suspense>
+    </Specimen>
+    <ApiStrip values={["Arrow Up / Down", "Arrow Left / Right", "Home / End", "typeahead", "selection", "expanded keys", "disabled item"]} />
+  </>;
+}
+
+function ReorderableListDemo() {
+  return <>
+    <Specimen className="specimen--signature" label="Product recipe" note="Reorder with pointer, touch, or the keyboard drag handle">
+      <Suspense fallback={<ReactAriaPreviewFallback />}><ReactAriaExample id="reorderable-list" /></Suspense>
+    </Specimen>
+    <ApiStrip values={["pointer drag", "touch drag", "keyboard drag", "screen-reader announcements", "drop indicator", "controlled order", "reduced motion"]} />
+  </>;
+}
+
 function InlineEditDemo({ includeContract = true }: { includeContract?: boolean } = {}) {
-  const [title, setTitle] = useState("Interaction Index");
+  const [title, setTitle] = useState("Teum");
   const saveTitle = async (value: string) => {
     await new Promise((resolve) => window.setTimeout(resolve, 420));
     setTitle(value);
@@ -915,10 +1201,10 @@ function UndoStackDemo({ includeContract = true }: { includeContract?: boolean }
 
 function DemoFor({ id, includeContract = true }: { id: ComponentId; includeContract?: boolean }) {
   const demos: Record<ComponentId, ReactNode> = {
-    button: <ButtonDemo />, "icon-button": <IconButtonDemo />, "text-field": <TextFieldDemo />, textarea: <TextareaDemo />, checkbox: <CheckboxDemo />, "radio-group": <RadioGroupDemo />, switch: <SwitchDemo />, select: <SelectDemo />, "context-switcher": <ContextSwitcherDemo />, combobox: <ComboboxDemo />, "search-input": <SearchInputDemo />, "number-field": <NumberFieldDemo />, "segmented-control": <SegmentedControlDemo />,
-    tooltip: <TooltipDemo />, popover: <PopoverDemo />, menu: <MenuDemo />, dialog: <DialogDemo />, "alert-dialog": <AlertDialogDemo />, tabs: <TabsDemo />, toast: <ToastDemo />,
-    breadcrumbs: <BreadcrumbsDemo />, pagination: <PaginationDemo />, collapsible: <CollapsibleDemo />, progress: <ProgressDemo />, spinner: <SpinnerDemo />, skeleton: <SkeletonDemo />, alert: <AlertDemo />, "empty-state": <EmptyStateDemo />, badge: <BadgeDemo />, avatar: <AvatarDemo />, table: <TableDemo />,
-    "inline-edit": <InlineEditDemo includeContract={includeContract} />, "action-list": <ActionListDemo includeContract={includeContract} />, "shared-detail": <SharedDetailDemo includeContract={includeContract} />, "undo-stack": <UndoStackDemo includeContract={includeContract} />,
+    button: <ButtonDemo />, "icon-button": <IconButtonDemo />, field: <FieldDemo />, "input-group": <InputGroupDemo />, kbd: <KbdDemo />, "button-group": <ButtonGroupDemo />, toolbar: <ToolbarDemo />, "text-field": <TextFieldDemo />, textarea: <TextareaDemo />, checkbox: <CheckboxDemo />, "radio-group": <RadioGroupDemo />, switch: <SwitchDemo />, select: <SelectDemo />, "context-switcher": <ContextSwitcherDemo />, combobox: <ComboboxDemo />, "search-input": <SearchInputDemo />, "number-field": <NumberFieldDemo />, "date-picker": <DatePickerDemo />, "segmented-control": <SegmentedControlDemo />,
+    tooltip: <TooltipDemo />, popover: <PopoverDemo />, menu: <MenuDemo />, "context-menu": <ContextMenuDemo />, dialog: <DialogDemo />, sheet: <SheetDemo />, "alert-dialog": <AlertDialogDemo />, tabs: <TabsDemo />, toast: <ToastDemo />,
+    breadcrumbs: <BreadcrumbsDemo />, pagination: <PaginationDemo />, collapsible: <CollapsibleDemo />, progress: <ProgressDemo />, spinner: <SpinnerDemo />, skeleton: <SkeletonDemo />, alert: <AlertDemo />, "empty-state": <EmptyStateDemo />, badge: <BadgeDemo />, avatar: <AvatarDemo />, table: <TableDemo />, tree: <TreeDemo />,
+    "reorderable-list": <ReorderableListDemo />, "inline-edit": <InlineEditDemo includeContract={includeContract} />, "action-list": <ActionListDemo includeContract={includeContract} />, "shared-detail": <SharedDetailDemo includeContract={includeContract} />, "undo-stack": <UndoStackDemo includeContract={includeContract} />,
   };
   return demos[id];
 }
@@ -931,6 +1217,10 @@ const flowSpecimens = new Set<ComponentId>([
 
 const contextSpecimens = new Set<ComponentId>([
   "button",
+  "field",
+  "input-group",
+  "button-group",
+  "toolbar",
   "text-field",
   "textarea",
   "select",
@@ -942,10 +1232,15 @@ const contextSpecimens = new Set<ComponentId>([
   "popover",
   "menu",
   "dialog",
+  "sheet",
+  "date-picker",
+  "context-menu",
   "alert-dialog",
   "alert",
   "empty-state",
   "table",
+  "tree",
+  "reorderable-list",
   "inline-edit",
 ]);
 
@@ -982,7 +1277,7 @@ function TextFieldProductContext() {
         <span>Used in navigation, search, and shared links.</span>
       </div>
       <div className="product-context__field">
-        <TextField label="Project name" defaultValue="Interaction Index" description="Visible to everyone in the workspace." />
+        <TextField label="Project name" defaultValue="Teum" description="Visible to everyone in the workspace." />
       </div>
     </section>
   );
@@ -1002,7 +1297,7 @@ function MenuProductContext() {
           <MenuItem><Copy />Duplicate <kbd>⌘D</kbd></MenuItem>
           <MenuItem><Archive />Archive</MenuItem>
           <MenuSeparator />
-          <MenuItem className="ix-menu__item--danger"><Trash />Delete</MenuItem>
+          <MenuItem className="teum-menu__item--danger"><Trash />Delete</MenuItem>
         </MenuContent>
       </Menu>
     </section>
@@ -1028,9 +1323,33 @@ function DialogProductContext() {
   );
 }
 
-function PrimaryPreviewFor({ id }: { id: ComponentId }) {
+function SheetProductContext() {
+  return (
+    <section className="product-context product-context--toolbar" aria-label="Issue property panel example">
+      <div className="product-context__identity">
+        <span className="product-context__icon"><Rows aria-hidden="true" /></span>
+        <div><strong>Motion contract</strong><span>INT-184 · In review</span></div>
+      </div>
+      <Sheet>
+        <SheetTrigger render={<Button variant="secondary" size="small">Properties</Button>} />
+        <SheetContent>
+          <SheetHeader><SheetTitle>Issue properties</SheetTitle><SheetDescription>Organize this issue without leaving the list.</SheetDescription></SheetHeader>
+          <SheetBody><TextField label="Title" defaultValue="Motion contract" /><Select label="Priority" options={priorityOptions} defaultValue="medium" /></SheetBody>
+          <SheetFooter><SheetClose render={<Button variant="ghost" />}>Cancel</SheetClose><SheetClose render={<Button variant="primary" />}>Save changes</SheetClose></SheetFooter>
+        </SheetContent>
+      </Sheet>
+    </section>
+  );
+}
+
+export function PrimaryPreviewFor({ id }: { id: ComponentId }) {
   if (id === "button") return <ButtonProductContext />;
   if (id === "icon-button") return <IconButton variant="secondary" aria-label="Create item" tooltip="Create item"><Plus /></IconButton>;
+  if (id === "field") return <div className="primary-field-preview"><Field><FieldLabel>Project name</FieldLabel><FieldControl defaultValue="Teum" /><FieldDescription>Visible to everyone in the workspace.</FieldDescription></Field></div>;
+  if (id === "input-group") return <div className="primary-field-preview"><InputGroup><InputGroupAddon>github.com/</InputGroupAddon><InputGroupInput aria-label="Repository path" defaultValue="minwook/teum" /><InputGroupButton aria-label="Copy repository path"><Copy /></InputGroupButton></InputGroup></div>;
+  if (id === "kbd") return <KbdGroup><Kbd>⌘</Kbd><Kbd>K</Kbd></KbdGroup>;
+  if (id === "button-group") return <ButtonGroup aria-label="Issue actions" attached><Button size="small" variant="secondary">Preview</Button><Button size="small" variant="secondary">Open</Button><Button size="small" variant="secondary" aria-label="More actions"><DotsThree /></Button></ButtonGroup>;
+  if (id === "toolbar") return <Toolbar aria-label="Formatting"><ToolbarButton aria-label="Bold"><strong>B</strong></ToolbarButton><ToolbarButton aria-label="Italic"><em>I</em></ToolbarButton><ToolbarSeparator /><ToolbarButton aria-label="Add link"><LinkSimple /></ToolbarButton><ToolbarInput aria-label="Find" placeholder="Find…" /></Toolbar>;
   if (id === "text-field") return <TextFieldProductContext />;
   if (id === "textarea") return <div className="primary-field-preview"><Textarea label="Description" defaultValue="Document the interaction contract." description="Markdown is supported." /></div>;
   if (id === "checkbox") return <Checkbox label="Include interaction notes" description="Adds behavior contracts to the export." defaultChecked />;
@@ -1040,26 +1359,31 @@ function PrimaryPreviewFor({ id }: { id: ComponentId }) {
   if (id === "context-switcher") return <ContextSwitcher aria-label="Preview platform" options={contextSwitcherOptions} defaultValue="web" />;
   if (id === "combobox") return <div className="primary-field-preview"><Combobox label="Assignee" options={peopleOptions} defaultValue={peopleOptions[1]} /></div>;
   if (id === "search-input") return <SearchInput placeholder="Search components…" shortcut="⌘K" />;
-  if (id === "number-field") return <div className="primary-field-preview"><NumberField label="Cycle capacity" defaultValue={24} min={1} max={99} /></div>;
+  if (id === "number-field") return <div className="primary-field-preview primary-number-field-preview"><NumberField label="Cycle capacity" defaultValue={24} min={1} max={99} /></div>;
+  if (id === "date-picker") return <Suspense fallback={<ReactAriaPreviewFallback />}><ReactAriaPrimaryPreview id="date-picker" /></Suspense>;
   if (id === "segmented-control") return <SegmentedControl label="Issue view" defaultValue="list" options={[{ value: "list", label: "List" }, { value: "board", label: "Board" }, { value: "timeline", label: "Timeline" }]} />;
   if (id === "tooltip") return <Tooltip><TooltipTrigger render={<Button variant="secondary">Favorite</Button>} /><TooltipContent>Add to favorites <kbd>F</kbd></TooltipContent></Tooltip>;
-  if (id === "popover") return <Popover><PopoverTrigger render={<Button variant="secondary" trailingIcon={<CaretDown />}>View options</Button>} /><PopoverContent><div className="popover-copy"><PopoverTitle>View options</PopoverTitle><PopoverDescription>Choose which metadata is visible.</PopoverDescription></div><div className="primary-popover-row"><Switch label="Show contracts" defaultChecked /></div></PopoverContent></Popover>;
+  if (id === "popover") return <Popover><PopoverTrigger render={<Button variant="secondary" trailingIcon={<CaretDown />}>View options</Button>} /><PopoverContent className="teum-popover--compact" side="top" align="center"><div className="popover-copy"><PopoverTitle>View options</PopoverTitle></div><div className="primary-popover-row"><Switch label="Show contracts" defaultChecked /></div></PopoverContent></Popover>;
   if (id === "menu") return <MenuProductContext />;
+  if (id === "context-menu") return <ContextMenu><ContextMenuTrigger className="context-menu-demo-card context-menu-demo-card--primary"><span className="product-context__icon"><Rows aria-hidden="true" /></span><span><strong>Motion contract</strong><small>Right click or press Shift + F10</small></span></ContextMenuTrigger><ContextMenuContent><ContextMenuLabel>Issue</ContextMenuLabel><ContextMenuItem><Copy />Duplicate</ContextMenuItem><ContextMenuItem><Archive />Archive</ContextMenuItem><ContextMenuSeparator /><ContextMenuItem className="teum-menu__item--danger"><Trash />Delete</ContextMenuItem></ContextMenuContent></ContextMenu>;
   if (id === "dialog") return <DialogProductContext />;
+  if (id === "sheet") return <SheetProductContext />;
   if (id === "alert-dialog") return <AlertDialog><AlertDialogTrigger render={<Button variant="secondary" />}>Discard draft</AlertDialogTrigger><AlertDialogContent><AlertDialogHeader><AlertDialogTitle>Discard this component draft?</AlertDialogTitle><AlertDialogDescription>The draft and its unpublished interaction notes will be permanently removed.</AlertDialogDescription></AlertDialogHeader><AlertDialogFooter><AlertDialogClose render={<Button variant="ghost" />}>Keep draft</AlertDialogClose><AlertDialogClose render={<Button variant="primary" />}>Discard draft</AlertDialogClose></AlertDialogFooter></AlertDialogContent></AlertDialog>;
-  if (id === "tabs") return <Tabs defaultValue="overview"><TabsList><TabsTrigger value="overview">Overview</TabsTrigger><TabsTrigger value="activity">Activity</TabsTrigger><TabsTrigger value="relations">Relations</TabsTrigger></TabsList><TabsContent value="overview"><div className="tab-card"><strong>Live component</strong><p>Inspect the component at product density.</p></div></TabsContent><TabsContent value="activity"><div className="tab-card">Recent activity</div></TabsContent><TabsContent value="relations"><div className="tab-card">Related work</div></TabsContent></Tabs>;
+  if (id === "tabs") return <Tabs className="tabs-demo tabs-demo--primary" defaultValue="overview"><TabsList><TabsTrigger value="overview">Overview</TabsTrigger><TabsTrigger value="activity">Activity</TabsTrigger><TabsTrigger value="relations">Relations</TabsTrigger></TabsList><div className="tabs-panel-viewport"><TabsContent value="overview"><div className="tab-card"><strong>Live component</strong><p>Inspect the component at product density.</p></div></TabsContent><TabsContent value="activity"><div className="tab-card"><strong>Recent activity</strong><p>Review the latest component changes.</p></div></TabsContent><TabsContent value="relations"><div className="tab-card"><strong>Related work</strong><p>Trace connected patterns and dependencies.</p></div></TabsContent></div></Tabs>;
   if (id === "breadcrumbs") return <Breadcrumbs label="Component preview breadcrumb" items={[{ label: "Workspace", href: "#" }, { label: "Projects", href: "#" }, { label: "UI Refresh" }]} />;
   if (id === "pagination") return <PrimaryPagination />;
-  if (id === "collapsible") return <Collapsible className="ix-collapsible"><CollapsibleTrigger>Advanced filter rules</CollapsibleTrigger><CollapsibleContent>Match state contracts that restore focus and define reduced motion.</CollapsibleContent></Collapsible>;
-  if (id === "toast") return <Button variant="primary" onClick={() => toast.success("Component saved", { description: "Button is ready for review." })}>Show toast</Button>;
+  if (id === "collapsible") return <Collapsible className="teum-collapsible"><CollapsibleTrigger>Advanced filter rules</CollapsibleTrigger><CollapsibleContent>Match state contracts that restore focus and define reduced motion.</CollapsibleContent></Collapsible>;
+  if (id === "toast") return <Button variant="primary" onClick={() => toast.success("Component saved", { id: COMPONENT_FEEDBACK_TOAST_ID, description: "Button is ready for review.", action: undefined })}>Show toast</Button>;
   if (id === "progress") return <Progress label="Exporting data" value={68} />;
   if (id === "spinner") return <div className="demo-row demo-row--centered"><Spinner label="Loading content" /><span>Loading content</span></div>;
   if (id === "skeleton") return <div className="skeleton-recipe"><Skeleton radius="round" width={32} height={32} /><SkeletonText lines={3} /></div>;
-  if (id === "alert") return <Alert title="Import complete">35 components were added to the local registry.</Alert>;
+  if (id === "alert") return <Alert title="Import complete">{components.length} components were added to the local registry.</Alert>;
   if (id === "empty-state") return <EmptyState title="No matching components" description="Clear the active filters or add a component from the registry." primaryAction={<Button size="small" variant="primary">Add component</Button>} />;
   if (id === "badge") return <div className="demo-row demo-row--centered"><Badge>Draft</Badge><Badge variant="strong">In review</Badge><Badge variant="outline">Design</Badge></div>;
   if (id === "avatar") return <AvatarGroup aria-label="Project members"><Avatar fallback="AS" /><Avatar fallback="MP" status="online" /><Avatar fallback="NW" /></AvatarGroup>;
   if (id === "table") return <DataTableRecipe compact />;
+  if (id === "tree") return <Suspense fallback={<ReactAriaPreviewFallback />}><ReactAriaPrimaryPreview id="tree" /></Suspense>;
+  if (id === "reorderable-list") return <Suspense fallback={<ReactAriaPreviewFallback />}><ReactAriaPrimaryPreview id="reorderable-list" /></Suspense>;
   if (id === "inline-edit") return <PrimaryInlineEdit />;
   if (id === "action-list") return <PrimaryActionList />;
   if (id === "shared-detail") return <div className="primary-shared-detail"><SharedDetail items={sharedItems} defaultSelectedId="motion" focusOnOpen={false} regionLabel="Shared Detail product context" /></div>;
@@ -1072,7 +1396,7 @@ function PrimaryPagination() {
 }
 
 function PrimaryInlineEdit() {
-  const [value, setValue] = useState("Interaction Index");
+  const [value, setValue] = useState("Teum");
   return <div className="primary-inline-edit"><span>Project title</span><InlineEdit value={value} onSave={setValue} /></div>;
 }
 
@@ -1082,7 +1406,7 @@ function PrimaryActionList() {
     { id: "duplicate", label: "Duplicate current", description: "Copy states and behavior contract", icon: <Copy />, shortcut: "⌘D" },
     { id: "archive", label: "Archive component", description: "Move it out of the active index", icon: <Archive />, shortcut: "E" },
   ], []);
-  return <div className="primary-action-list"><ActionList items={items} onAction={(item) => toast(`${item.label} selected`)} /></div>;
+  return <div className="primary-action-list"><ActionList items={items} onAction={(item) => toast(`${item.label} selected`, { id: "action-list-selection" })} /></div>;
 }
 
 function PrimaryUndo() {
@@ -1113,7 +1437,19 @@ function ComponentLiveExample({ id }: { id: ComponentId }) {
         <button type="button" aria-pressed={mode === "product"} onClick={() => setMode("product")}>Product</button>
         <button type="button" aria-pressed={mode === "state"} onClick={() => setMode("state")}>State</button>
       </div>
-      {mode === "state" && <label className="live-specimen__state-picker"><span className="ix-sr-only">Preview state</span><select aria-label="Preview state" value={stateIndex} onChange={(event) => setStateIndex(Number(event.target.value))}>{states.map((state, index) => <option value={index} key={state}>{state}</option>)}</select><CaretDown aria-hidden="true" /></label>}
+      {mode === "state" && (
+        <Menu>
+          <MenuTrigger render={<button className="live-specimen__state-trigger" type="button" aria-label={`Preview state: ${selectedState}`}><span>{selectedState}</span><CaretDown aria-hidden="true" /></button>} />
+          <MenuContent className="live-specimen__state-menu" align="end" side="bottom" sideOffset={5} collisionAvoidance={{ side: "shift", align: "shift", fallbackAxisSide: "none" }}>
+            <MenuRadioGroup value={selectedState} onValueChange={(state: string) => {
+              const nextIndex = states.findIndex((option) => option === state);
+              if (nextIndex >= 0) setStateIndex(nextIndex);
+            }}>
+              {states.map((state) => <MenuRadioItem key={state} value={state}>{state}</MenuRadioItem>)}
+            </MenuRadioGroup>
+          </MenuContent>
+        </Menu>
+      )}
     </div>
   );
   const stateSlug = selectedState.toLocaleLowerCase().replaceAll(" ", "-");
@@ -1128,53 +1464,63 @@ function StatePreview({ id, state, index }: { id: ComponentId; state: string; in
   return <ComponentStatePreview id={id} state={state} index={index} />;
 }
 
-const stateGroupOrder = [
-  "Rest and content",
-  "Pointer feedback",
-  "Keyboard and focus",
-  "Lifecycle and async",
-  "Validation and recovery",
-] as const;
-
-type StateGroup = (typeof stateGroupOrder)[number];
-
-function getStateGroup(state: string): StateGroup {
-  const value = state.toLocaleLowerCase();
-  if (["error", "invalid", "required", "validation", "restored", "expired", "undoing"].some((token) => value.includes(token))) return "Validation and recovery";
-  if (["focus", "keyboard", "typeahead", "escape", "arrow"].some((token) => value.includes(token))) return "Keyboard and focus";
-  if (["hover", "pressed", "pointer", "highlighted"].some((token) => value.includes(token))) return "Pointer feedback";
-  if (["loading", "saving", "submitting", "confirming", "disabled", "open", "closed", "entering", "exiting", "opening", "closing", "detail", "retargeting", "queued"].some((token) => value.includes(token))) return "Lifecycle and async";
-  return "Rest and content";
-}
-
 function ComponentStateCoverage({ id, states }: { id: ComponentId; states: readonly string[] }) {
-  const groups = stateGroupOrder.map((label) => ({ label, states: states.filter((state) => getStateGroup(state) === label) })).filter((group) => group.states.length > 0);
   return (
     <section className="component-state-coverage" id="system-states" aria-labelledby="state-coverage-title">
       <div className="component-state-coverage__header"><div><span>State contract</span><h2 id="state-coverage-title">Inspect states without changing them</h2></div><p>Visual proofs stay locked and truthful. Use the interactive Product preview above for pointer and keyboard testing.</p></div>
-      <div className="state-contract-groups">
-        {groups.map((group) => <section className="state-contract-group" aria-labelledby={`${id}-${group.label.toLocaleLowerCase().replaceAll(" ", "-")}`} key={group.label}>
-          <header><h3 id={`${id}-${group.label.toLocaleLowerCase().replaceAll(" ", "-")}`}>{group.label}</h3></header>
-          <div className="state-gallery">
-            {group.states.map((state) => {
-              const index = states.indexOf(state);
-              return <article className="state-tile" data-state={state.toLocaleLowerCase().replaceAll(" ", "-")} data-state-flags={getStateFlags(state)} key={`${id}-${state}`}><span>{state}</span><div className="state-tile__preview" inert><StatePreview id={id} state={state} index={index} /></div></article>;
-            })}
-          </div>
-        </section>)}
-      </div>
+      <ul className="state-gallery" aria-label={`${components.find((component) => component.id === id)?.name ?? id} state contract`}>
+        {states.map((state, index) => (
+          <li className="state-tile" data-state={state.toLocaleLowerCase().replaceAll(" ", "-")} data-state-flags={getStateFlags(state)} key={`${id}-${state}`}>
+            <span>{state}</span>
+            <div className="state-tile__preview" inert><StatePreview id={id} state={state} index={index} /></div>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
 
 function NavigationSection({ label, count, expanded, active, onToggle, children }: { label: string; count?: number; expanded: boolean; active?: boolean; onToggle: () => void; children: ReactNode }) {
   return <section className="system-nav-group" data-expanded={expanded || undefined} data-active={active || undefined}>
-    <button type="button" className="system-nav-group__trigger" aria-expanded={expanded} onClick={onToggle}><CaretDown aria-hidden="true" /><span>{label}</span>{typeof count === "number" && <small>{count}</small>}</button>
+    <button type="button" className="system-nav-group__trigger" aria-expanded={expanded} onClick={onToggle}><span>{label}</span>{typeof count === "number" && <small>{count}</small>}<CaretDown className="system-nav-group__chevron" aria-hidden="true" /></button>
     <div className="system-nav-group__content" hidden={!expanded}>{children}</div>
   </section>;
 }
 
-function PageOutline({ view, onNavigate, onCopy }: { view: ViewId; onNavigate: (id: ViewId) => void; onCopy: () => void }) {
+const navigationLeafIcons: Partial<Record<string, typeof Compass>> = {
+  introduction: Compass,
+  installation: DownloadSimple,
+  "choosing-components": Selection,
+  "product-pilot": Monitor,
+  foundations: Stack,
+  "foundation-color": Palette,
+  "foundation-typography": TextT,
+  "foundation-spacing": ArrowsOutLineHorizontal,
+  "foundation-motion": WaveSine,
+  patterns: Stack,
+  "edit-in-place": CursorText,
+  "find-and-act": Command,
+  "preserve-context": SidebarSimple,
+  "recover-from-action": ArrowCounterClockwise,
+  "component-status": CheckCircle,
+  accessibility: PersonArmsSpread,
+  "browser-support": Browsers,
+  security: ShieldCheck,
+  contributing: GitBranch,
+  releases: Tag,
+  licensing: FileText,
+};
+
+function NavigationLeaf({ id, label, selected, meta, onSelect }: { id: string; label: string; selected: boolean; meta?: string; onSelect: () => void }) {
+  const Icon = navigationLeafIcons[id];
+  return <a className={Icon ? "system-nav-leaf system-nav-leaf--icon" : "system-nav-leaf"} href={`#${id}`} data-selected={selected || undefined} aria-current={selected ? "page" : undefined} onClick={(event) => { event.preventDefault(); onSelect(); }}>
+    {Icon && <span className="system-nav-leaf__icon"><Icon weight="regular" aria-hidden="true" /></span>}
+    <strong>{label}</strong>
+    {meta && <em>{meta}</em>}
+  </a>;
+}
+
+function PageOutline({ view, onNavigate }: { view: ViewId; onNavigate: (id: ViewId) => void }) {
   const componentView = components.some((item) => item.id === view);
   const patternView = patterns.some((item) => item.id === view);
   const docView = isPublicDocId(view);
@@ -1250,7 +1596,7 @@ function PageOutline({ view, onNavigate, onCopy }: { view: ViewId; onNavigate: (
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
   const activeIndex = Math.max(0, items.findIndex((item) => item.id === activeOutlineId));
-  return <aside className="system-outline system-outline--public" aria-label="Page outline"><div className="system-outline__section"><div className="system-outline__eyebrow"><span>On this page</span><small aria-live="polite">{String(activeIndex + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}</small></div>{items.map((item) => <button type="button" key={item.id} data-active={item.id === activeOutlineId || undefined} aria-current={item.id === activeOutlineId ? "location" : undefined} onClick={() => scrollTo(item.id)}>{item.label}</button>)}</div><div className="system-outline__section system-outline__actions"><button type="button" onClick={onCopy}><Copy aria-hidden="true" />Copy page link</button>{view !== "licensing" && <button type="button" onClick={() => onNavigate("licensing")}><ShieldCheck aria-hidden="true" />MIT license</button>}</div></aside>;
+  return <aside className="system-outline system-outline--public" aria-label="Page outline"><div className="system-outline__section"><div className="system-outline__eyebrow"><span>On this page</span><small aria-live="polite">{String(activeIndex + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}</small></div>{items.map((item) => <button type="button" key={item.id} data-active={item.id === activeOutlineId || undefined} aria-current={item.id === activeOutlineId ? "location" : undefined} onClick={() => scrollTo(item.id)}>{item.label}</button>)}</div>{view !== "licensing" && <div className="system-outline__section system-outline__actions"><button type="button" onClick={() => onNavigate("licensing")}><ShieldCheck aria-hidden="true" />MIT license</button></div>}</aside>;
 }
 
 function ConsolidatedDesignSystemMode({ view, onSelect, theme, onThemeChange }: { view: ViewId; onSelect: (id: ViewId) => void; theme: Theme; onThemeChange: (theme: Theme) => void }) {
@@ -1303,7 +1649,12 @@ function ConsolidatedDesignSystemMode({ view, onSelect, theme, onThemeChange }: 
     const onKeyDown = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLocaleLowerCase() === "k") {
         event.preventDefault();
-        document.querySelector<HTMLInputElement>(".system-component-search input")?.focus();
+        if (window.matchMedia("(max-width: 820px)").matches) {
+          setNavigationOpen(true);
+          window.requestAnimationFrame(() => document.querySelector<HTMLInputElement>(".system-nav--consolidated .system-component-search input")?.focus());
+          return;
+        }
+        document.querySelector<HTMLInputElement>(".system-topbar__search input")?.focus();
       }
     };
     window.addEventListener("keydown", onKeyDown);
@@ -1314,47 +1665,47 @@ function ConsolidatedDesignSystemMode({ view, onSelect, theme, onThemeChange }: 
     <div className="system-stage system-stage--consolidated">
       <div className="system-window system-window--consolidated">
         <aside className="system-nav system-nav--consolidated" aria-label="Design system navigation" data-open={navigationOpen || undefined}>
-          <div className="system-brand"><span className="system-brand__mark"><Command weight="bold" /></span><strong>Index</strong><span className="system-brand__divider">/</span><span>Docs</span><button type="button" className="system-nav__close" aria-label="Close navigation" onClick={() => setNavigationOpen(false)}><X aria-hidden="true" /></button></div>
+          <div className="system-brand"><span className="system-brand__mark"><Command weight="bold" /></span><strong>Teum</strong><span className="system-brand__divider">/</span><span>Docs</span><button type="button" className="system-nav__close" aria-label="Close navigation" onClick={() => setNavigationOpen(false)}><X aria-hidden="true" /></button></div>
           <label className="system-component-search system-component-search--global"><MagnifyingGlass aria-hidden="true" /><input value={filter} onChange={(event) => setFilter(event.target.value)} placeholder="Search docs…" aria-label="Search documentation" /><kbd>⌘K</kbd></label>
           <div className="system-nav__scroll">
             <nav className="system-nav__items" aria-label="System sections">
               {filter ? <div className="system-search-results" role="region" aria-label="Documentation search results">
                 <span className="system-nav__label">Search results</span>
-                {filteredDocs.length > 0 && <div className="system-component-group"><span>Documentation</span>{filteredDocs.map((doc) => <a href={`#${doc.id}`} key={doc.id} data-selected={doc.id === publicDoc?.id || undefined} onClick={(event) => { event.preventDefault(); navigate(doc.id); }}><strong>{doc.label}</strong></a>)}</div>}
-                {filteredFoundations.length > 0 && <div className="system-component-group"><span>Foundations</span>{filteredFoundations.map((foundation) => <a href={`#foundation-${foundation.id}`} key={foundation.id} data-selected={foundation.id === foundationId || undefined} onClick={(event) => { event.preventDefault(); openFoundation(foundation.id); }}><strong>{foundation.label}</strong></a>)}</div>}
-                {filtered.length > 0 && groups.map((group) => <div className="system-component-group" key={group}><span>{group}</span>{filtered.filter((component) => component.group === group).map((component) => <a href={`#${component.id}`} key={component.id} data-selected={component.id === activeId && componentsMode || undefined} onClick={(event) => { event.preventDefault(); openComponent(component.id); }}><strong>{component.name}</strong></a>)}</div>)}
-                {filteredPatterns.length > 0 && <div className="system-component-group"><span>Patterns</span>{filteredPatterns.map((pattern) => <a href={`#${pattern.id}`} key={pattern.id} data-selected={pattern.id === activePattern?.id || undefined} onClick={(event) => { event.preventDefault(); openPattern(pattern.id); }}><strong>{pattern.name}</strong></a>)}</div>}
+                {filteredDocs.length > 0 && <div className="system-component-group"><span>Documentation</span>{filteredDocs.map((doc) => <NavigationLeaf key={doc.id} id={doc.id} label={doc.label} selected={doc.id === publicDoc?.id} onSelect={() => navigate(doc.id)} />)}</div>}
+                {filteredFoundations.length > 0 && <div className="system-component-group"><span>Foundations</span>{filteredFoundations.map((foundation) => <NavigationLeaf key={foundation.id} id={`foundation-${foundation.id}`} label={foundation.label} selected={foundation.id === foundationId} onSelect={() => openFoundation(foundation.id)} />)}</div>}
+                {filtered.length > 0 && groups.map((group) => <div className="system-component-group" key={group}><span>{group}</span>{filtered.filter((component) => component.group === group).map((component) => <a href={`#${component.id}`} key={component.id} data-selected={component.id === activeId && componentsMode || undefined} aria-current={component.id === activeId && componentsMode ? "page" : undefined} onClick={(event) => { event.preventDefault(); openComponent(component.id); }}><strong>{component.name}</strong></a>)}</div>)}
+                {filteredPatterns.length > 0 && <div className="system-component-group"><span>Patterns</span>{filteredPatterns.map((pattern) => <NavigationLeaf key={pattern.id} id={pattern.id} label={pattern.name} selected={pattern.id === activePattern?.id} meta="Authored" onSelect={() => openPattern(pattern.id)} />)}</div>}
                 {!filteredDocs.length && !filteredFoundations.length && !filtered.length && !filteredPatterns.length && <div className="system-component-empty">No matching documentation</div>}
               </div> : <>
                 <NavigationSection label="Getting started" expanded={expandedSections["getting-started"]} active={activeSection === "getting-started"} onToggle={() => toggleSection("getting-started")}>
-                  <div className="system-component-list" role="region" aria-label="Getting started documentation"><div className="system-component-group">{publicDocItems.filter((doc) => doc.group === "Getting started").map((doc) => <a href={`#${doc.id}`} key={doc.id} data-selected={doc.id === publicDoc?.id || undefined} onClick={(event) => { event.preventDefault(); navigate(doc.id); }}><strong>{doc.label}</strong></a>)}</div></div>
+                  <div className="system-component-list" role="region" aria-label="Getting started documentation"><div className="system-component-group">{publicDocItems.filter((doc) => doc.group === "Getting started").map((doc) => <NavigationLeaf key={doc.id} id={doc.id} label={doc.label} selected={doc.id === publicDoc?.id} onSelect={() => navigate(doc.id)} />)}</div></div>
                 </NavigationSection>
 
                 <NavigationSection label="Foundations" count={foundationItems.length} expanded={expandedSections.foundations} active={activeSection === "foundations"} onToggle={() => toggleSection("foundations")}>
-                  <div className="system-component-list" role="region" aria-label="Foundation catalog"><div className="system-component-group"><a href="#foundations" data-selected={view === "foundations" || undefined} onClick={(event) => { event.preventDefault(); navigate("foundations"); }}><strong>Overview</strong></a>{foundationItems.map((foundation) => <a href={`#foundation-${foundation.id}`} key={foundation.id} data-selected={foundation.id === foundationId || undefined} onClick={(event) => { event.preventDefault(); openFoundation(foundation.id); }}><strong>{foundation.label}</strong></a>)}</div></div>
+                  <div className="system-component-list" role="region" aria-label="Foundation catalog"><div className="system-component-group"><NavigationLeaf id="foundations" label="Overview" selected={view === "foundations"} onSelect={() => navigate("foundations")} />{foundationItems.map((foundation) => <NavigationLeaf key={foundation.id} id={`foundation-${foundation.id}`} label={foundation.label} selected={foundation.id === foundationId} onSelect={() => openFoundation(foundation.id)} />)}</div></div>
                 </NavigationSection>
 
                 <NavigationSection label="Components" count={components.length} expanded={expandedSections.components} active={activeSection === "components"} onToggle={() => toggleSection("components")}>
-                  <div className="system-component-list" role="region" aria-label="Component catalog">{[...new Set(components.map((component) => component.group))].map((group) => <div className="system-component-group" key={group}><span>{group}</span>{components.filter((component) => component.group === group).map((component) => {
+                  <div className="system-component-list system-component-list--catalog" role="region" aria-label="Component catalog">{[...new Set(components.map((component) => component.group))].map((group) => <div className="system-component-group" key={group}><span>{group}</span>{components.filter((component) => component.group === group).map((component) => {
                     const authored = "contract" in component && component.contract;
-                    return <a href={`#${component.id}`} key={component.id} data-selected={component.id === activeId && componentsMode || undefined} onClick={(event) => { event.preventDefault(); openComponent(component.id); }}><strong>{component.name}</strong>{authored && <em>Authored</em>}</a>;
+                    return <a href={`#${component.id}`} key={component.id} data-selected={component.id === activeId && componentsMode || undefined} aria-current={component.id === activeId && componentsMode ? "page" : undefined} onClick={(event) => { event.preventDefault(); openComponent(component.id); }}><strong>{component.name}</strong>{authored && <em>Authored</em>}</a>;
                   })}</div>)}</div>
                 </NavigationSection>
 
                 <NavigationSection label="Patterns" count={patterns.length} expanded={expandedSections.patterns} active={activeSection === "patterns"} onToggle={() => toggleSection("patterns")}>
-                  <div className="system-component-list" role="region" aria-label="Pattern catalog"><div className="system-component-group"><a href="#patterns" data-selected={view === "patterns" || undefined} onClick={(event) => { event.preventDefault(); navigate("patterns"); }}><strong>Overview</strong></a>{patterns.map((pattern) => <a href={`#${pattern.id}`} key={pattern.id} data-selected={pattern.id === activePattern?.id || undefined} onClick={(event) => { event.preventDefault(); openPattern(pattern.id); }}><strong>{pattern.name}</strong><em>Authored</em></a>)}</div></div>
+                  <div className="system-component-list" role="region" aria-label="Pattern catalog"><div className="system-component-group"><NavigationLeaf id="patterns" label="Overview" selected={view === "patterns"} onSelect={() => navigate("patterns")} />{patterns.map((pattern) => <NavigationLeaf key={pattern.id} id={pattern.id} label={pattern.name} selected={pattern.id === activePattern?.id} meta="Authored" onSelect={() => openPattern(pattern.id)} />)}</div></div>
                 </NavigationSection>
 
-                {publicDocGroups.filter((group) => group.id === "quality" || group.id === "project").map((group) => <NavigationSection key={group.id} label={group.label} expanded={expandedSections[group.id]} active={activeSection === group.id} onToggle={() => toggleSection(group.id)}><div className="system-component-list" role="region" aria-label={`${group.label} documentation`}><div className="system-component-group">{publicDocItems.filter((doc) => doc.group === group.label).map((doc) => <a href={`#${doc.id}`} key={doc.id} data-selected={doc.id === publicDoc?.id || undefined} onClick={(event) => { event.preventDefault(); navigate(doc.id); }}><strong>{doc.label}</strong></a>)}</div></div></NavigationSection>)}
+                {publicDocGroups.filter((group) => group.id === "quality" || group.id === "project").map((group) => <NavigationSection key={group.id} label={group.label} expanded={expandedSections[group.id]} active={activeSection === group.id} onToggle={() => toggleSection(group.id)}><div className="system-component-list" role="region" aria-label={`${group.label} documentation`}><div className="system-component-group">{publicDocItems.filter((doc) => doc.group === group.label).map((doc) => <NavigationLeaf key={doc.id} id={doc.id} label={doc.label} selected={doc.id === publicDoc?.id} onSelect={() => navigate(doc.id)} />)}</div></div></NavigationSection>)}
               </>}
             </nav>
           </div>
-          <div className="system-nav__footer"><span><Package aria-hidden="true" /> @index/ui</span><button type="button" onClick={() => navigate("licensing")}>MIT licensed</button></div>
+          <div className="system-nav__footer"><span><Package aria-hidden="true" /> teum</span><button type="button" onClick={() => navigate("licensing")}>MIT licensed</button></div>
         </aside>
         {navigationOpen && <button type="button" className="system-nav-scrim" aria-label="Close navigation" onClick={() => setNavigationOpen(false)} />}
 
         <header className="system-topbar system-topbar--consolidated" aria-label="Workspace actions">
-          <div className="system-topbar__location"><button type="button" className="system-nav__open" aria-label="Open navigation" onClick={() => setNavigationOpen(true)}><List aria-hidden="true" /></button><span>{publicDoc?.label ?? (foundations ? foundationId ? foundationItems.find((item) => item.id === foundationId)?.label : "Foundations" : patternsMode ? activePattern?.name ?? "Patterns" : activeComponent.name)}</span></div>
+          <div className="system-topbar__location"><button type="button" className="system-nav__open" aria-label="Open navigation" onClick={() => setNavigationOpen(true)}><List aria-hidden="true" /></button><label className="system-component-search system-topbar__search"><MagnifyingGlass aria-hidden="true" /><input value={filter} onChange={(event) => setFilter(event.target.value)} placeholder="Search components and docs…" aria-label="Search components and documentation" /><kbd>⌘K</kbd></label></div>
           <div className="system-topbar__actions">
             <button type="button" className="theme-toggle" data-theme={theme} aria-label={"Current theme: " + theme + ". Switch to " + (theme === "light" ? "dark" : "light") + " theme"} onClick={() => onThemeChange(theme === "light" ? "dark" : "light")}>{theme === "light" ? <Sun aria-hidden="true" /> : <Moon aria-hidden="true" />}</button>
             <Button variant="ghost" size="small" leadingIcon={<LinkSimple />} aria-label="Copy page link" onClick={copyViewLink}>Copy link</Button>
@@ -1362,8 +1713,8 @@ function ConsolidatedDesignSystemMode({ view, onSelect, theme, onThemeChange }: 
         </header>
 
         <main className="system-detail system-detail--consolidated">
-          <div className="system-detail__scroll">
-            {publicDoc ? <PublicDocPage id={publicDoc.id} onNavigate={(id) => navigate(id as ViewId)} /> : foundations ? foundationId ? <FoundationDetail id={foundationId} onBack={() => navigate("foundations")} /> : <FoundationOverview onSelect={onSelect} /> : patternsMode ? activePattern ? <PatternDetail pattern={activePattern} /> : <PatternsOverview onSelect={openPattern} /> : <div className="system-detail__content">
+          <div className="system-detail__scroll" tabIndex={0} aria-label="Documentation content">
+            {publicDoc ? <PublicDocPage id={publicDoc.id} onNavigate={(id) => navigate(id as ViewId)} /> : foundations ? foundationId ? <FoundationDetail id={foundationId} onBack={() => navigate("foundations")} /> : <FoundationOverview onSelect={onSelect} /> : patternsMode ? activePattern ? <PatternDetail pattern={activePattern} /> : <PatternsOverview onSelect={openPattern} /> : <div className="system-detail__content system-reference-page system-component-page">
               <section className="system-overview" id="system-overview">
                 <h1>{activeComponent.name}</h1>
                 <p>{activeComponent.description}</p>
@@ -1382,11 +1733,11 @@ function ConsolidatedDesignSystemMode({ view, onSelect, theme, onThemeChange }: 
                 <ComponentGuidancePanel guidance={guidance} mode="accessibility" />
                 <ComponentApiPanel id={activeId} />
               </div>
-              <footer className="system-footer"><span>Interaction Index</span><span>Inter / 4px base</span></footer>
+              <footer className="system-footer"><span>Teum</span><span>Inter / 4px base</span></footer>
             </div>}
           </div>
         </main>
-        <PageOutline view={view} onNavigate={navigate} onCopy={copyViewLink} />
+        <PageOutline view={view} onNavigate={navigate} />
       </div>
     </div>
   );
@@ -1394,7 +1745,7 @@ function ConsolidatedDesignSystemMode({ view, onSelect, theme, onThemeChange }: 
 
 function PatternsOverview({ onSelect }: { onSelect: (id: PatternId) => void }) {
   return (
-    <div className="system-detail__content system-patterns">
+    <div className="system-detail__content system-patterns system-editorial-page">
       <section className="system-overview">
         <h1>Interaction patterns</h1>
         <p>Reusable product behaviors that connect components, state, motion, and recovery around a recurring user goal.</p>
@@ -1408,7 +1759,7 @@ function PatternsOverview({ onSelect }: { onSelect: (id: PatternId) => void }) {
           <div className="pattern-index__meta"><small>Built from</small><strong>{pattern.components.join(", ")}</strong><ArrowRight aria-hidden="true" /></div>
         </a>)}
       </div>
-      <footer className="system-footer"><span>Interaction Index</span><span>4 authored patterns</span></footer>
+      <footer className="system-footer"><span>Teum</span><span>4 authored patterns</span></footer>
     </div>
   );
 }
@@ -1449,7 +1800,7 @@ function PatternPlayground({ pattern }: { pattern: (typeof patterns)[number] }) 
 
 function PatternDetail({ pattern }: { pattern: (typeof patterns)[number] }) {
   return (
-    <div className="system-detail__content system-pattern-detail">
+    <div className="system-detail__content system-pattern-detail system-reference-page">
       <section className="system-overview">
         <h1>{pattern.name}</h1>
         <p>{pattern.description}</p>
@@ -1469,7 +1820,7 @@ function PatternDetail({ pattern }: { pattern: (typeof patterns)[number] }) {
         <div><span>Built from</span><h2>Components stay visible behind the behavior</h2></div>
         <div>{pattern.components.map((component) => <span key={component}>{component}</span>)}</div>
       </section>
-      <footer className="system-footer"><span>Interaction Index</span><span>Authored behavior contract</span></footer>
+      <footer className="system-footer"><span>Teum</span><span>Authored behavior contract</span></footer>
     </div>
   );
 }
@@ -1483,7 +1834,27 @@ function App() {
     return components.some((component) => component.id === hash) ? hash : "introduction";
   };
   const [view, setView] = useState<ViewId>(getInitial);
-  const [theme, setTheme] = useState<Theme>(() => window.localStorage.getItem("index-ui-theme") === "dark" ? "dark" : "light");
+  const [theme, setTheme] = useState<Theme>(() => {
+    const storedTheme = window.localStorage.getItem("teum-theme") ?? window.localStorage.getItem("index-ui-theme");
+    return storedTheme === "dark" ? "dark" : "light";
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const keyboardNavigationKeys = new Set(["Tab", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End", "PageUp", "PageDown", "Enter", " ", "Escape"]);
+    const usePointerModality = () => { root.dataset.inputModality = "pointer"; };
+    const useKeyboardModality = (event: KeyboardEvent) => {
+      if (keyboardNavigationKeys.has(event.key)) root.dataset.inputModality = "keyboard";
+    };
+    root.dataset.inputModality = "pointer";
+    window.addEventListener("pointerdown", usePointerModality, true);
+    window.addEventListener("keydown", useKeyboardModality, true);
+    return () => {
+      window.removeEventListener("pointerdown", usePointerModality, true);
+      window.removeEventListener("keydown", useKeyboardModality, true);
+      delete root.dataset.inputModality;
+    };
+  }, []);
 
   useLayoutEffect(() => {
     const hash = window.location.hash.slice(1);
@@ -1493,15 +1864,18 @@ function App() {
   useLayoutEffect(() => {
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
-    window.localStorage.setItem("index-ui-theme", theme);
+    window.localStorage.setItem("teum-theme", theme);
   }, [theme]);
+
+  useLayoutEffect(() => {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    document.querySelector<HTMLElement>(".system-detail__scroll")?.scrollTo?.({ top: 0, behavior: "auto" });
+  }, [view]);
 
   const select = (id: ViewId) => {
     setView(id);
     window.history.replaceState(null, "", `#${id}`);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    document.querySelector(".system-detail__scroll")?.scrollTo?.({ top: 0, behavior: "auto" });
   };
 
   useEffect(() => {
@@ -1509,7 +1883,6 @@ function App() {
       const next = window.location.hash.slice(1) as ViewId;
       if (isPublicDocId(next) || next === "foundations" || next === "patterns" || next === "product" || foundationItems.some((item) => `foundation-${item.id}` === next) || components.some((item) => item.id === next) || patterns.some((pattern) => pattern.id === next)) {
         setView(next === "product" ? "introduction" : next);
-        document.querySelector(".system-detail__scroll")?.scrollTo?.({ top: 0, behavior: "auto" });
       }
     };
     window.addEventListener("hashchange", onHashChange);

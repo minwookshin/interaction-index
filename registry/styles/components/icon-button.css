@@ -1,17 +1,17 @@
 /* Generated from src/styles.css. Do not edit directly. */
 
-@layer index.tokens, index.base, index.components;
+@layer teum.tokens, teum.base, teum.components;
 
-@layer index.components {
-.ix-icon-button { width: var(--ix-control-height-md); padding: 0; }
+@layer teum.components {
+.teum-icon-button { width: var(--teum-control-height-md); padding: 0; }
 
-.ix-icon-button.ix-button--small { width: var(--ix-control-height-sm); padding: 0; }
+.teum-icon-button.teum-button--small { width: var(--teum-control-height-sm); padding: 0; }
 
-.ix-icon-button.ix-button--large { width: var(--ix-control-height-lg); padding: 0; }
+.teum-icon-button.teum-button--large { width: var(--teum-control-height-lg); padding: 0; }
 
-.ix-icon-button .ix-button__content { display: grid; width: 100%; height: 100%; place-items: center; }
+.teum-icon-button .teum-button__content { display: grid; width: 100%; height: 100%; place-items: center; }
 
-.ix-icon-button .ix-button__content > span:last-child { display: grid; width: 100%; height: 100%; place-items: center; line-height: 0; }
+.teum-icon-button .teum-button__content > span:last-child { display: grid; width: 100%; height: 100%; place-items: center; line-height: 0; }
 
-.ix-icon-button svg { width: calc(var(--ix-icon-size) + 1px); height: calc(var(--ix-icon-size) + 1px); transform: none; }
+.teum-icon-button svg { width: calc(var(--teum-icon-size) + 1px); height: calc(var(--teum-icon-size) + 1px); transform: none; }
 }

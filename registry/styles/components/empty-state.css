@@ -1,29 +1,29 @@
 /* Generated from src/styles.css. Do not edit directly. */
 
-@layer index.tokens, index.base, index.components;
+@layer teum.tokens, teum.base, teum.components;
 
-@layer index.components {
-.ix-empty-state {
+@layer teum.components {
+.teum-empty-state {
   display: grid;
   width: min(460px, 100%);
   justify-items: center;
   gap: 14px;
   padding: 28px;
-  color: var(--ix-fg-default);
+  color: var(--teum-fg-default);
   text-align: center;
 }
 
-.ix-empty-state[data-size="compact"] { gap: 10px; padding: 18px; }
+.teum-empty-state[data-size="compact"] { gap: 10px; padding: 18px; }
 
-.ix-empty-state__icon { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; background: var(--ix-bg-subtle); color: var(--ix-fg-muted); }
+.teum-empty-state__icon { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; background: var(--teum-bg-subtle); color: var(--teum-fg-muted); }
 
-.ix-empty-state__icon svg { width: 17px; height: 17px; }
+.teum-empty-state__icon svg { width: 17px; height: 17px; }
 
-.ix-empty-state__copy { display: grid; justify-items: center; gap: 5px; }
+.teum-empty-state__copy { display: grid; justify-items: center; gap: 5px; }
 
-.ix-empty-state__copy strong { font-size: 15px; font-weight: 590; letter-spacing: -0.018em; }
+.teum-empty-state__copy strong { font-size: 15px; font-weight: 590; letter-spacing: -0.018em; }
 
-.ix-empty-state__copy p { max-width: 42ch; margin: 0; color: var(--ix-fg-muted); font-size: var(--ix-type-ui); line-height: 1.55; }
+.teum-empty-state__copy p { max-width: 42ch; margin: 0; color: var(--teum-fg-muted); font-size: var(--teum-type-ui); line-height: 1.55; }
 
-.ix-empty-state__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.teum-empty-state__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
 }

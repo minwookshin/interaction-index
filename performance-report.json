@@ -1,47 +1,80 @@
 {
   "budgets": {
-    "jsGzipBytes": 330000,
+    "initialJsGzipBytes": 350000,
+    "totalJsGzipBytes": 500000,
     "cssGzipBytes": 40000
   },
   "totals": {
-    "jsGzipBytes": 299309,
-    "cssGzipBytes": 30998
+    "initialJsGzipBytes": 343717,
+    "totalJsGzipBytes": 479849,
+    "cssGzipBytes": 39919
   },
+  "initialJavaScript": [
+    "HTMLProjectionNode-Z3sxfroM.js",
+    "_commonjsHelpers-CqkleIqs.js",
+    "base-ui-CuypfNDa.js",
+    "feedback-D5bZHH62.js",
+    "icons-C0W6cOqL.js",
+    "index-BlrNW9Cb.js",
+    "motion-BYJvC3Ml.js",
+    "react-CYjvl0oU.js",
+    "with-selector-BcJo0SNu.js"
+  ],
   "assets": [
     {
-      "file": "base-ui-BcqJza6k.js",
-      "bytes": 278030,
-      "gzipBytes": 92614
+      "file": "react-aria-previews-mrQ5TXVt.js",
+      "bytes": 479371,
+      "gzipBytes": 136132
     },
     {
-      "file": "index-CE-m0eG9.js",
-      "bytes": 272465,
-      "gzipBytes": 71715
+      "file": "index-BlrNW9Cb.js",
+      "bytes": 412690,
+      "gzipBytes": 98349
     },
     {
-      "file": "react-DIDUf3HZ.js",
-      "bytes": 194288,
-      "gzipBytes": 60738
+      "file": "base-ui-CuypfNDa.js",
+      "bytes": 272166,
+      "gzipBytes": 89284
     },
     {
-      "file": "motion-plzMhemS.js",
-      "bytes": 129921,
-      "gzipBytes": 42698
+      "file": "react-CYjvl0oU.js",
+      "bytes": 194239,
+      "gzipBytes": 60739
     },
     {
-      "file": "index-CIZ0olMl.css",
-      "bytes": 194550,
-      "gzipBytes": 30998
+      "file": "index-CGLgrlg_.css",
+      "bytes": 259706,
+      "gzipBytes": 39919
     },
     {
-      "file": "icons-Dv3BYFQ8.js",
-      "bytes": 100811,
-      "gzipBytes": 21757
+      "file": "icons-C0W6cOqL.js",
+      "bytes": 153074,
+      "gzipBytes": 32668
     },
     {
-      "file": "feedback-Cv4wrCNj.js",
+      "file": "HTMLProjectionNode-Z3sxfroM.js",
+      "bytes": 97028,
+      "gzipBytes": 32090
+    },
+    {
+      "file": "motion-BYJvC3Ml.js",
+      "bytes": 33708,
+      "gzipBytes": 11643
+    },
+    {
+      "file": "feedback-D5bZHH62.js",
       "bytes": 34801,
       "gzipBytes": 9787
+    },
+    {
+      "file": "with-selector-BcJo0SNu.js",
+      "bytes": 23026,
+      "gzipBytes": 9031
+    },
+    {
+      "file": "_commonjsHelpers-CqkleIqs.js",
+      "bytes": 116,
+      "gzipBytes": 126
     }
   ]
 }

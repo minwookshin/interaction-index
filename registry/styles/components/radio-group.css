@@ -1,87 +1,77 @@
 /* Generated from src/styles.css. Do not edit directly. */
 
-@layer index.tokens, index.base, index.components;
+@layer teum.tokens, teum.base, teum.components;
 
-@layer index.components {
-.ix-radio-field { display: grid; gap: 6px; min-width: 220px; }
+@layer teum.components {
+.teum-radio-field { display: grid; gap: 6px; min-width: 220px; }
 
-.ix-radio-field__label { color: var(--ix-ink); font-size: var(--ix-type-label); font-weight: 540; }
+.teum-radio-field__label { color: var(--teum-ink); font-size: var(--teum-type-label); font-weight: 540; }
 
-.ix-radio-group { display: flex; gap: 4px; }
+.teum-radio-group { display: flex; gap: 4px; }
 
-.ix-radio-option { display: flex; min-height: 32px; align-items: flex-start; gap: 9px; padding: 6px 0; color: var(--ix-ink); cursor: pointer; }
+.teum-radio-option { display: flex; min-height: 32px; align-items: flex-start; gap: 9px; padding: 6px 0; color: var(--teum-ink); cursor: pointer; }
 
-.ix-radio-option > span { display: grid; gap: 2px; line-height: 1.3; }
+.teum-radio-option > span { display: grid; gap: 2px; line-height: 1.3; }
 
-.ix-radio-option strong { font-size: var(--ix-type-ui); font-weight: 480; }
+.teum-radio-option strong { font-size: var(--teum-type-ui); font-weight: 480; }
 
-.ix-radio-option small { max-width: 280px; color: var(--ix-ink-tertiary); font-size: var(--ix-type-metadata); }
+.teum-radio-option small { max-width: 280px; color: var(--teum-ink-tertiary); font-size: var(--teum-type-metadata); }
 
-.ix-radio-option[data-disabled] { color: var(--ix-ink-disabled); cursor: not-allowed; }
+.teum-radio-option[data-disabled] { color: var(--teum-ink-disabled); cursor: not-allowed; }
 
-.ix-radio {
+.teum-radio {
   display: grid;
   width: 16px;
   height: 16px;
   margin-top: 1px;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px solid var(--ix-border-strong);
+  border: 1px solid var(--teum-border-strong);
   border-radius: 50%;
-  background: var(--ix-control-surface);
+  background: var(--teum-control-surface);
   cursor: inherit;
-  transition: border-color var(--ix-hover-duration) ease, background-color var(--ix-hover-duration) ease, transform var(--ix-press-duration) var(--ix-ease-out, ease-out);
+  transition: border-color var(--teum-hover-duration) ease, background-color var(--teum-hover-duration) ease, transform var(--teum-press-duration) var(--teum-ease-out, ease-out);
 }
 
-.ix-radio[data-checked] { border-color: var(--ix-inverse); background: var(--ix-inverse); }
+.teum-radio[data-checked] { border-color: var(--teum-inverse); background: var(--teum-inverse); }
 
-.ix-radio__indicator { width: 6px; height: 6px; border-radius: 50%; background: var(--ix-on-inverse); }
+.teum-radio__indicator { width: 6px; height: 6px; border-radius: 50%; background: var(--teum-on-inverse); }
 
-.ix-radio:focus-visible { outline: 2px solid var(--ix-focus-control); outline-offset: 2px; }
+.teum-radio:focus-visible { outline: 2px solid var(--teum-focus-control); outline-offset: 2px; }
 
-.ix-radio[data-disabled] { border-color: var(--ix-border); background: var(--ix-gray-100); }
+.teum-radio[data-disabled] { border-color: var(--teum-border); background: var(--teum-gray-100); }
 
 @media (hover: hover) and (pointer: fine) {
-.ix-radio-option:hover .ix-radio:not([data-disabled]) { border-color: var(--ix-gray-700); }
+.teum-radio-option:hover .teum-radio:not([data-disabled]) { border-color: var(--teum-gray-700); }
 }
 
-.ix-radio:active { transform: scale(0.97); }
+.teum-radio:active { transform: scale(0.97); }
 
-@media (prefers-reduced-motion: reduce) {
-.ix-radio { transition-duration: 0.01ms; }
-}
+.teum-field__description,
+.teum-field__error { color: var(--teum-ink-tertiary); font-size: 11.5px; line-height: 1.45; }
 
-.ix-field__description,
-.ix-field__error { color: var(--ix-ink-tertiary); font-size: 11.5px; line-height: 1.45; }
+.teum-field__error { color: var(--teum-fg-danger); font-weight: 520; }
 
-.ix-field__error { color: var(--ix-fg-default); font-weight: 520; }
+:root[data-theme="dark"] .teum-radio[data-disabled] { background: rgb(255 255 255 / 0.025); color: var(--teum-ink-disabled); }
 
-:root[data-theme="dark"] .ix-radio[data-disabled] { background: rgb(255 255 255 / 0.025); color: var(--ix-ink-disabled); }
+:root[data-theme="dark"] .teum-radio[data-checked] { box-shadow: none; }
 
-:root[data-theme="dark"] .ix-radio[data-checked] { box-shadow: none; }
-
-:root[data-theme="dark"] .ix-field__error { color: var(--ix-ink); }
-
-.ix-radio__indicator {
+.teum-radio__indicator {
   opacity: 1;
   transform: scale(1);
-  transition: opacity 140ms var(--ix-ease-out), transform 140ms var(--ix-ease-out);
+  transition: opacity 140ms var(--teum-ease-out), transform 140ms var(--teum-ease-out);
 }
 
 @starting-style {
-.ix-radio__indicator {
+.teum-radio__indicator {
     opacity: 0;
     transform: scale(.72);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-.ix-radio__indicator { transition-duration: 0.01ms; }
-}
+.teum-radio:active { transform: none; }
 
-@media (prefers-reduced-motion: reduce) {
-.ix-radio:active { transform: none; }
-
-.ix-radio__indicator { transition-duration: 0.01ms; }
+.teum-radio__indicator { transition-duration: 0.01ms; }
 }
 }

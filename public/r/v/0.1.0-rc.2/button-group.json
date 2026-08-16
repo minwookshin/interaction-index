@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group",
+  "title": "Button Group",
+  "description": "Related actions with shared rhythm and optional joined geometry.",
+  "registryDependencies": [
+    "@index/interaction-index-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/button-group.tsx",
+      "content": "import \"../../styles/index-base.css\";\nimport \"../../styles/components/button-group.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type ButtonGroupProps = ComponentPropsWithRef<\"div\"> & {\n  orientation?: \"horizontal\" | \"vertical\";\n  attached?: boolean;\n};\n\nexport function ButtonGroup({ className, orientation = \"horizontal\", attached = false, role = \"group\", ...props }: ButtonGroupProps) {\n  return (\n    <div\n      className={cn(\"ix-button-group\", className)}\n      role={role}\n      data-orientation={orientation}\n      data-attached={attached || undefined}\n      {...props}\n    />\n  );\n}\n\nexport type ButtonGroupSeparatorProps = ComponentPropsWithRef<\"span\"> & {\n  orientation?: \"horizontal\" | \"vertical\";\n};\n\nexport function ButtonGroupSeparator({ className, orientation = \"vertical\", ...props }: ButtonGroupSeparatorProps) {\n  return <span className={cn(\"ix-button-group__separator\", className)} role=\"separator\" aria-orientation={orientation} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/button-group.tsx"
+    },
+    {
+      "path": "registry/styles/components/button-group.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer index.tokens, index.base, index.components;\n\n@layer index.components {\n.ix-button-group { display: inline-flex; min-width: 0; align-items: center; gap: 4px; }\n\n.ix-button-group[data-orientation=\"vertical\"] { flex-direction: column; align-items: stretch; }\n\n.ix-button-group[data-attached] { gap: 0; }\n\n.ix-button-group[data-attached][data-orientation=\"horizontal\"] > .ix-button:not(:first-child) { margin-left: -1px; }\n\n.ix-button-group[data-attached][data-orientation=\"horizontal\"] > .ix-button:not(:first-child):not(:last-child) { border-radius: 0; }\n\n.ix-button-group[data-attached][data-orientation=\"horizontal\"] > .ix-button:first-child:not(:last-child) { border-radius: var(--ix-radius-control) 0 0 var(--ix-radius-control); }\n\n.ix-button-group[data-attached][data-orientation=\"horizontal\"] > .ix-button:last-child:not(:first-child) { border-radius: 0 var(--ix-radius-control) var(--ix-radius-control) 0; }\n\n.ix-button-group[data-attached][data-orientation=\"vertical\"] > .ix-button:not(:first-child) { margin-top: -1px; }\n\n.ix-button-group[data-attached][data-orientation=\"vertical\"] > .ix-button:first-child:not(:last-child) { border-radius: var(--ix-radius-control) var(--ix-radius-control) 0 0; }\n\n.ix-button-group[data-attached][data-orientation=\"vertical\"] > .ix-button:last-child:not(:first-child) { border-radius: 0 0 var(--ix-radius-control) var(--ix-radius-control); }\n\n.ix-button-group__separator { display: block; align-self: stretch; flex: 0 0 auto; background: var(--ix-separator); }\n\n.ix-button-group__separator[aria-orientation=\"vertical\"] { width: 1px; min-height: 20px; margin: 4px 2px; }\n\n.ix-button-group__separator[aria-orientation=\"horizontal\"] { height: 1px; min-width: 20px; margin: 2px 4px; }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/button-group.css"
+    }
+  ],
+  "type": "registry:ui"
+}

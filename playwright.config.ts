@@ -9,7 +9,10 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 2 : undefined,
   reporter: process.env.CI ? [["line"], ["html", { open: "never" }]] : "line",
-  snapshotPathTemplate: "{testDir}/{testFilePath}-snapshots/{arg}{ext}",
+  // Font rasterization and native control rendering differ between macOS and
+  // Linux. Keep an intentional baseline for each release environment instead
+  // of weakening the visual-diff threshold for every platform.
+  snapshotPathTemplate: "{testDir}/{testFilePath}-snapshots/{arg}-{platform}{ext}",
   use: {
     baseURL: "http://127.0.0.1:4174",
     trace: "retain-on-failure",

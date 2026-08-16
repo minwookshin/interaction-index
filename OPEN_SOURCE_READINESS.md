@@ -30,7 +30,7 @@ The repository and documentation may be shown as an unfinished system if the sta
 
 Required before asking strangers to install it:
 
-1. **Complete** — canonical GitHub repository, issue tracker, Pages homepage/HTTPS registry workflow, and private vulnerability-reporting path are configured for `minwookshin/interaction-index`.
+1. **Complete** — canonical GitHub repository, issue tracker, Pages homepage/HTTPS registry workflow, and private vulnerability-reporting path are configured for `minwookshin/teum`.
 2. **Complete** — generated complete-system and individual registry artifacts plus Button-only and complete-system clean-consumer TypeScript/production builds.
 3. **Complete** — CI-ready visual regression for entry, component product, focus, loading, error, Product pilot, light, dark, and reduced-motion configurations.
 4. **Partial** — automated axe, zoom proxy, forced colors, reduced motion, and RTL pass; Chrome/Safari zoom and Safari VoiceOver Dialog/Menu anchors are recorded. Edge, physical touch, manual high contrast, content expansion, and full-catalog manual coverage remain.

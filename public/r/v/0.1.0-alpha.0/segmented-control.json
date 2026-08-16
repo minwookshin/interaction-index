@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "segmented-control",
+  "title": "Segmented Control",
+  "description": "Compact single selection between visible peer views or presentation modes.",
+  "dependencies": [
+    "@base-ui/react@^1.7.0"
+  ],
+  "registryDependencies": [
+    "@index/interaction-index-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/segmented-control.tsx",
+      "content": "import \"../../styles/index-base.css\";\nimport \"../../styles/components/segmented-control.css\";\nimport { Toggle } from \"@base-ui/react/toggle\";\nimport { ToggleGroup } from \"@base-ui/react/toggle-group\";\nimport { useState, type ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type SegmentedControlOption = {\n  value: string;\n  label: ReactNode;\n  accessibleLabel?: string;\n  icon?: ReactNode;\n  disabled?: boolean;\n};\n\nexport type SegmentedControlProps = {\n  options: readonly SegmentedControlOption[];\n  label: string;\n  value?: string;\n  defaultValue?: string;\n  onValueChange?: (value: string | null) => void;\n  allowEmpty?: boolean;\n  disabled?: boolean;\n  orientation?: \"horizontal\" | \"vertical\";\n  size?: \"small\" | \"medium\";\n  className?: string;\n};\n\nexport function SegmentedControl({\n  options,\n  label,\n  value,\n  defaultValue,\n  onValueChange,\n  allowEmpty = false,\n  disabled = false,\n  orientation = \"horizontal\",\n  size = \"medium\",\n  className,\n}: SegmentedControlProps) {\n  const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue ?? options.find((option) => !option.disabled)?.value ?? null);\n  const selectedValue = value === undefined ? uncontrolledValue : value;\n  const handleValueChange = (nextValues: string[]) => {\n    const nextValue = nextValues[0] ?? null;\n    if (!allowEmpty && nextValue === null) return;\n    if (value === undefined) setUncontrolledValue(nextValue);\n    onValueChange?.(nextValue);\n  };\n\n  return (\n    <ToggleGroup\n      className={cn(\"ix-segmented-control\", className)}\n      data-size={size}\n      aria-label={label}\n      value={selectedValue ? [selectedValue] : []}\n      onValueChange={handleValueChange}\n      disabled={disabled}\n      orientation={orientation}\n    >\n      {options.map((option) => (\n        <Toggle key={option.value} className=\"ix-segmented-control__item\" value={option.value} disabled={option.disabled} aria-label={option.accessibleLabel}>\n          {option.icon && <span aria-hidden=\"true\">{option.icon}</span>}\n          <span>{option.label}</span>\n        </Toggle>\n      ))}\n    </ToggleGroup>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/segmented-control.tsx"
+    },
+    {
+      "path": "registry/styles/components/segmented-control.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer index.tokens, index.base, index.components;\n\n@layer index.components {\n.ix-segmented-control {\n  display: inline-flex;\n  width: fit-content;\n  max-width: 100%;\n  align-items: center;\n  gap: 2px;\n  padding: 2px;\n  border-radius: 8px;\n  background: var(--ix-bg-subtle);\n}\n\n.ix-segmented-control[data-orientation=\"vertical\"] { flex-direction: column; align-items: stretch; }\n\n.ix-segmented-control__item { display: inline-flex; min-width: 0; height: 28px; align-items: center; justify-content: center; gap: 6px; padding: 0 9px; border: 0; border-radius: 6px; background: transparent; color: var(--ix-fg-muted); font-size: var(--ix-type-label); white-space: nowrap; cursor: pointer; transition: color var(--ix-hover-duration), background-color var(--ix-hover-duration), box-shadow var(--ix-hover-duration), transform var(--ix-press-duration) var(--ix-ease-out); }\n\n.ix-segmented-control[data-size=\"small\"] .ix-segmented-control__item { height: 24px; padding-inline: 7px; font-size: var(--ix-type-metadata); }\n\n.ix-segmented-control__item > span { display: inline-flex; min-width: 0; align-items: center; }\n\n.ix-segmented-control__item svg { width: 13px; height: 13px; }\n\n.ix-segmented-control__item[data-pressed] { background: var(--ix-bg-control); color: var(--ix-fg-default); box-shadow: var(--ix-shadow-control); font-weight: 560; }\n\n.ix-segmented-control__item:focus-visible { z-index: 1; outline: 2px solid var(--ix-focus-control); outline-offset: 1px; }\n\n.ix-segmented-control__item:active { transform: scale(.97); }\n\n.ix-segmented-control__item[data-disabled] { color: var(--ix-fg-disabled); cursor: not-allowed; }\n\n@media (hover: hover) and (pointer: fine) {\n.ix-segmented-control__item:not([data-disabled]):not([data-pressed]):hover { background: var(--ix-hover); color: var(--ix-fg-default); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n.ix-segmented-control__item:active { transform: none; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/segmented-control.css"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -3,15 +3,41 @@ import { resolve } from "node:path";
 
 const root = process.cwd();
 const sourcePath = resolve(root, "src/styles.css");
+const tokenSourcePath = resolve(root, "src/tokens/generated.css");
+const tailwindBridgeSourcePath = resolve(root, "src/teum-tailwind.css");
 const registryPath = resolve(root, "registry.json");
 const generatedRoot = resolve(root, "registry");
 const source = await readFile(sourcePath, "utf8");
+const tokenSource = await readFile(tokenSourcePath, "utf8");
+const tailwindBridgeSource = await readFile(tailwindBridgeSourcePath, "utf8");
 const registry = JSON.parse(await readFile(registryPath, "utf8"));
+const packageJson = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
 const componentItems = registry.items.filter((item) => item.type === "registry:ui");
 
 const generatedHeader = "/* Generated from src/styles.css. Do not edit directly. */";
-const layerOrder = "@layer index.tokens, index.base, index.components;";
+const layerOrder = "@layer teum.tokens, teum.base, teum.components;";
 const fontImport = source.match(/^@import\s+[^;]+;/m)?.[0] ?? "";
+
+function packageName(specifier) {
+  if (specifier.startsWith("@")) {
+    const separator = specifier.indexOf("@", specifier.indexOf("/") + 1);
+    return separator === -1 ? specifier : specifier.slice(0, separator);
+  }
+  const separator = specifier.indexOf("@");
+  return separator === -1 ? specifier : specifier.slice(0, separator);
+}
+
+function versionDependency(specifier) {
+  const name = packageName(specifier);
+  if (name !== specifier) return specifier;
+  const version = packageJson.dependencies?.[name];
+  if (!version) throw new Error(`Registry dependency ${name} is not declared in package.json dependencies.`);
+  return `${name}@${version}`;
+}
+
+for (const item of registry.items) {
+  if (item.dependencies) item.dependencies = item.dependencies.map(versionDependency);
+}
 
 function splitSelectors(value) {
   const selectors = [];
@@ -146,7 +172,7 @@ function filterCss(css, keepSelector) {
 
 function collectKeyframes(css) {
   const keyframes = new Map();
-  const matcher = /@keyframes\s+(ix-[a-z0-9-]+)\s*\{/g;
+  const matcher = /@keyframes\s+(teum-[a-z0-9-]+)\s*\{/g;
   let match;
   while ((match = matcher.exec(css)) !== null) {
     const openIndex = css.indexOf("{", match.index);
@@ -171,12 +197,12 @@ const baseSelectors = new Set([
 ]);
 const baseSelector = (selector) => {
   const normalized = normalizeSelector(selector);
-  return baseSelectors.has(normalized) || normalized.startsWith(".ix-sr-only");
+  return baseSelectors.has(normalized) || normalized.startsWith(".teum-sr-only");
 };
 
-const tokenRules = filterCss(source, rootSelector);
+const tokenRules = filterCss(tokenSource, rootSelector);
 const baseRules = filterCss(source, baseSelector);
-if (!tokenRules.includes("--ix-bg-canvas") || !baseRules.includes("box-sizing")) {
+if (!tokenRules.includes("--teum-bg-canvas") || !baseRules.includes("box-sizing")) {
   throw new Error("Registry base extraction omitted required tokens or reset rules.");
 }
 
@@ -184,13 +210,13 @@ const baseCss = [
   generatedHeader,
   fontImport,
   layerOrder,
-  `@layer index.tokens {\n${tokenRules}\n}`,
-  `@layer index.base {\n${baseRules}\n}`,
+  `@layer teum.tokens {\n${tokenRules}\n}`,
+  `@layer teum.base {\n${baseRules}\n}`,
   "",
 ].filter(Boolean).join("\n\n");
 
 function classNamesFromSource(componentSource) {
-  return new Set(componentSource.match(/\bix-[a-z0-9_-]+/g) ?? []);
+  return new Set(componentSource.match(/\bteum-[a-z0-9_-]+/g) ?? []);
 }
 
 function escapeRegExp(value) {
@@ -211,7 +237,7 @@ async function componentOutput(item) {
   const sourceComponentPath = resolve(root, `src/components/ui/${item.name}.tsx`);
   const componentSource = await readFile(sourceComponentPath, "utf8");
   const classNames = classNamesFromSource(componentSource);
-  if (classNames.size === 0) throw new Error(`${item.name} does not expose an ix-* component class.`);
+  if (classNames.size === 0) throw new Error(`${item.name} does not expose an teum-* component class.`);
 
   let rules = filterCss(source, componentSelector(classNames));
   const requiredKeyframes = [...keyframes.entries()]
@@ -220,7 +246,7 @@ async function componentOutput(item) {
   if (requiredKeyframes.length > 0) rules = `${rules}\n\n${requiredKeyframes.join("\n\n")}`;
   if (!rules.trim()) throw new Error(`No component CSS was extracted for ${item.name}.`);
 
-  const layeredRules = `@layer index.components {\n${rules}\n}`;
+  const layeredRules = `@layer teum.components {\n${rules}\n}`;
   const componentCss = `${generatedHeader}\n\n${layerOrder}\n\n${layeredRules}\n`;
   const generatedComponentPath = resolve(generatedRoot, `styles/components/${item.name}.css`);
   const generatedSourcePath = resolve(generatedRoot, `components/ui/${item.name}.tsx`);
@@ -229,7 +255,7 @@ async function componentOutput(item) {
   await writeFile(generatedComponentPath, componentCss, "utf8");
   await writeFile(
     generatedSourcePath,
-    `import "../../styles/index-base.css";\nimport "../../styles/components/${item.name}.css";\n${componentSource}`,
+    `import "../../styles/teum-base.css";\nimport "../../styles/components/${item.name}.css";\n${componentSource}`,
     "utf8",
   );
 
@@ -269,41 +295,48 @@ await mkdir(resolve(generatedRoot, "components/ui"), { recursive: true });
 await copyFile(resolve(root, "src/lib/cn.ts"), resolve(generatedRoot, "lib/cn.ts"));
 await copyFile(resolve(root, "src/lib/behavior-contract.ts"), resolve(generatedRoot, "lib/behavior-contract.ts"));
 await copyFile(resolve(root, "src/components/ui/index.ts"), resolve(generatedRoot, "components/ui/index.ts"));
-await writeFile(resolve(generatedRoot, "styles/index-base.css"), baseCss, "utf8");
+await writeFile(resolve(generatedRoot, "styles/teum-base.css"), baseCss, "utf8");
+await writeFile(resolve(generatedRoot, "styles/teum-tailwind.css"), tailwindBridgeSource, "utf8");
 
 const componentResults = new Map();
 for (const item of componentItems) componentResults.set(item.name, await componentOutput(item));
 
 const registryAggregator = [
   generatedHeader,
-  '@import "./index-base.css";',
+  '@import "./teum-base.css";',
   "",
 ].join("\n");
-await writeFile(resolve(generatedRoot, "styles/interaction-index.css"), registryAggregator, "utf8");
+await writeFile(resolve(generatedRoot, "styles/teum.css"), registryAggregator, "utf8");
 
 const expandedAggregator = [
   baseCss.trim(),
   ...componentItems.map((item) => componentResults.get(item.name).layeredRules),
 ].join("\n\n");
-await writeFile(resolve(root, "src/interaction-index.css"), `${expandedAggregator}\n`, "utf8");
+await writeFile(resolve(root, "src/teum.css"), `${expandedAggregator}\n`, "utf8");
 
-const baseItem = registry.items.find((item) => item.name === "interaction-index-base");
+const baseItem = registry.items.find((item) => item.name === "teum-base");
 baseItem.description = "Inter, semantic monochrome tokens, global accessibility defaults, and the documented cascade contract.";
 baseItem.files = [
   { path: "registry/lib/cn.ts", type: "registry:lib", target: "lib/cn.ts" },
   { path: "registry/lib/behavior-contract.ts", type: "registry:lib", target: "lib/behavior-contract.ts" },
-  { path: "registry/styles/index-base.css", type: "registry:style", target: "styles/index-base.css" },
+  { path: "registry/styles/teum-base.css", type: "registry:style", target: "styles/teum-base.css" },
+];
+
+const tailwindItem = registry.items.find((item) => item.name === "teum-tailwind");
+tailwindItem.description = "Optional Tailwind CSS v4 semantic utility mapping backed by the same Teum tokens.";
+tailwindItem.files = [
+  { path: "registry/styles/teum-tailwind.css", type: "registry:style", target: "styles/teum-tailwind.css" },
 ];
 
 for (const item of componentItems) item.files = componentResults.get(item.name).files;
 
-const completeSystem = registry.items.find((item) => item.name === "interaction-index");
+const completeSystem = registry.items.find((item) => item.name === "teum");
 completeSystem.files = [
   ...baseItem.files,
   {
-    path: "registry/styles/interaction-index.css",
+    path: "registry/styles/teum.css",
     type: "registry:style",
-    target: "styles/interaction-index.css",
+    target: "styles/teum.css",
   },
   ...componentItems.flatMap((item) => item.files),
   {

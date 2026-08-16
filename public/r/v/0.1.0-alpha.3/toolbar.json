@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toolbar",
+  "title": "Toolbar",
+  "description": "Compact frequently used controls with roving keyboard navigation.",
+  "dependencies": [
+    "@base-ui/react@^1.7.0"
+  ],
+  "registryDependencies": [
+    "@index/interaction-index-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/toolbar.tsx",
+      "content": "import \"../../styles/index-base.css\";\nimport \"../../styles/components/toolbar.css\";\nimport { Toolbar as ToolbarPrimitive } from \"@base-ui/react/toolbar\";\nimport { cn } from \"../../lib/cn\";\n\nexport type ToolbarProps = ToolbarPrimitive.Root.Props;\nexport type ToolbarGroupProps = ToolbarPrimitive.Group.Props;\nexport type ToolbarButtonProps = ToolbarPrimitive.Button.Props;\nexport type ToolbarLinkProps = ToolbarPrimitive.Link.Props;\nexport type ToolbarInputProps = ToolbarPrimitive.Input.Props;\nexport type ToolbarSeparatorProps = ToolbarPrimitive.Separator.Props;\n\nexport function Toolbar({ className, ...props }: ToolbarProps) {\n  return <ToolbarPrimitive.Root className={cn(\"ix-toolbar\", className)} {...props} />;\n}\n\nexport function ToolbarGroup({ className, ...props }: ToolbarGroupProps) {\n  return <ToolbarPrimitive.Group className={cn(\"ix-toolbar__group\", className)} {...props} />;\n}\n\nexport function ToolbarButton({ className, ...props }: ToolbarButtonProps) {\n  return <ToolbarPrimitive.Button className={cn(\"ix-toolbar__button\", className)} {...props} />;\n}\n\nexport function ToolbarLink({ className, ...props }: ToolbarLinkProps) {\n  return <ToolbarPrimitive.Link className={cn(\"ix-toolbar__link\", className)} {...props} />;\n}\n\nexport function ToolbarInput({ className, ...props }: ToolbarInputProps) {\n  return <ToolbarPrimitive.Input className={cn(\"ix-toolbar__input\", className)} {...props} />;\n}\n\nexport function ToolbarSeparator({ className, ...props }: ToolbarSeparatorProps) {\n  return <ToolbarPrimitive.Separator className={cn(\"ix-toolbar__separator\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/toolbar.tsx"
+    },
+    {
+      "path": "registry/styles/components/toolbar.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer index.tokens, index.base, index.components;\n\n@layer index.components {\n.ix-toolbar {\n  display: inline-flex;\n  min-width: 0;\n  min-height: 36px;\n  align-items: center;\n  gap: 3px;\n  padding: 3px;\n  border-radius: 8px;\n  background: var(--ix-bg-stage);\n  color: var(--ix-fg-default);\n}\n\n.ix-toolbar[data-orientation=\"vertical\"] { flex-direction: column; align-items: stretch; }\n\n.ix-toolbar__group { display: inline-flex; align-items: center; gap: 2px; }\n\n.ix-toolbar[data-orientation=\"vertical\"] .ix-toolbar__group { flex-direction: column; align-items: stretch; }\n\n.ix-toolbar__button,\n.ix-toolbar__link {\n  display: inline-flex;\n  width: 28px;\n  height: 28px;\n  align-items: center;\n  justify-content: center;\n  padding: 0;\n  border: 0;\n  border-radius: 6px;\n  outline: 0;\n  background: transparent;\n  color: var(--ix-fg-muted);\n  font: inherit;\n  font-size: var(--ix-type-label);\n  text-decoration: none;\n  cursor: pointer;\n  transition: background-color var(--ix-hover-duration), color var(--ix-hover-duration), transform var(--ix-press-duration) var(--ix-ease-out);\n}\n\n.ix-toolbar__button svg,\n.ix-toolbar__link svg { width: 14px; height: 14px; }\n\n.ix-toolbar__button:hover:not(:disabled),\n.ix-toolbar__link:hover { background: var(--ix-hover); color: var(--ix-fg-default); }\n\n.ix-toolbar__button:active:not(:disabled),\n.ix-toolbar__link:active { transform: scale(.97); }\n\n.ix-toolbar__button:focus-visible,\n.ix-toolbar__link:focus-visible { background: var(--ix-hover); box-shadow: 0 0 0 2px var(--ix-focus-halo); color: var(--ix-fg-default); }\n\n.ix-toolbar__button[data-popup-open] { background: var(--ix-active); color: var(--ix-fg-default); }\n\n.ix-toolbar__button:disabled { color: var(--ix-fg-disabled); cursor: not-allowed; }\n\n.ix-toolbar__input {\n  width: 116px;\n  height: 28px;\n  margin-left: 2px;\n  padding: 0 7px;\n  border: 1px solid var(--ix-control-border);\n  border-radius: 6px;\n  outline: 0;\n  background: var(--ix-bg-control);\n  box-shadow: var(--ix-shadow-control);\n  color: var(--ix-fg-default);\n  font: inherit;\n  font-size: var(--ix-type-label);\n}\n\n.ix-toolbar__input:focus-visible { border-color: var(--ix-control-border-hover); box-shadow: var(--ix-shadow-control), 0 0 0 2px var(--ix-focus-halo); }\n\n.ix-toolbar__separator { width: 1px; height: 20px; margin: 0 2px; background: var(--ix-separator); }\n\n.ix-toolbar[data-orientation=\"vertical\"] .ix-toolbar__separator { width: auto; height: 1px; margin: 2px 0; }\n\n@media (prefers-reduced-motion: reduce) {\n.ix-toolbar__button,\n.ix-toolbar__link { transition-duration: 0.01ms; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/toolbar.css"
+    }
+  ],
+  "type": "registry:ui"
+}

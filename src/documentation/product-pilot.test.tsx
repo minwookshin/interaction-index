@@ -39,4 +39,22 @@ describe("ProductPilot", () => {
     await user.click(screen.getByRole("button", { name: "Undo" }));
     expect(await screen.findByRole("heading", { name: "Unify keyboard focus" })).toBeInTheDocument();
   });
+
+  it("composes Action List, Shared Detail, and Undo Stack in one task", async () => {
+    const user = userEvent.setup();
+    render(<ProductPilot />);
+
+    await user.click(screen.getByRole("button", { name: /Tune shared detail motion/ }));
+    expect(screen.getByRole("heading", { name: "Tune shared detail motion" })).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "Open issue actions (Command K)" }));
+    const dialog = screen.getByRole("dialog", { name: "Act on INT-198" });
+    await user.click(within(dialog).getByRole("option", { name: /Archive issue/ }));
+    await waitFor(() => expect(screen.getByText("Cycle 08 · 3 issues")).toBeInTheDocument());
+    expect(screen.getByText("Archive via ⌘K").closest("li")).toHaveAttribute("data-complete");
+
+    await user.click(screen.getByRole("button", { name: "Undo" }));
+    expect(await screen.findByRole("heading", { name: "Tune shared detail motion" })).toBeInTheDocument();
+    expect(screen.getByText("Choose Undo").closest("li")).toHaveAttribute("data-complete");
+  });
 });

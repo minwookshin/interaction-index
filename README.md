@@ -1,4 +1,4 @@
-# Interaction Index
+# Teum
 
 A dense, monochrome component and interaction system for product interfaces. It combines a Linear-led information hierarchy with cool, translucent Codex-like materials, then makes its own identity through stable geometry, shared origin, and reversible completion.
 
@@ -6,14 +6,25 @@ A dense, monochrome component and interaction system for product interfaces. It 
 
 | | Current state |
 | --- | --- |
-| Version | `0.1.0-alpha.0` |
-| Catalog | 35 documented components |
+| Version | `0.1.0-rc.3` |
+| Catalog | 45 documented components |
 | Themes | Light-first; fully reviewed dark theme |
-| Distribution | [Public source](https://github.com/minwookshin/interaction-index) and HTTPS shadcn registry; npm unpublished |
+| Distribution | [Public source](https://github.com/minwookshin/teum) and HTTPS shadcn registry; npm unpublished |
 | Package | MIT-licensed alpha; APIs may change |
 | License | [MIT](./LICENSE) |
 
 The source and generated registry are public under MIT. The npm package remains private and unpublished, and there is no production-adoption claim.
+
+## Integration modes
+
+Teum has one visual contract and four deliberate integration surfaces:
+
+- **React 18.2+ and React 19** — accessible behavior and composition.
+- **TypeScript** — authored source, generated declarations, and strict consumer verification.
+- **Plain CSS** — the framework-neutral source of truth for tokens, cascade layers, and component styles.
+- **Tailwind CSS v4** — an optional semantic bridge over the same `--teum-*` variables; Tailwind is not required.
+
+Current evaluation uses the source-owned shadcn registry. The future `teum` npm package is built and tested locally but remains unpublished.
 
 ## System
 
@@ -27,12 +38,12 @@ The source and generated registry are public under MIT. The npm package remains 
 
 | Group | Components |
 | --- | --- |
-| Controls | Button, Icon Button, Text Field, Number Field, Textarea, Checkbox, Radio Group, Switch, Select, Context Switcher, Combobox, Search Input, Segmented Control |
-| Overlays | Tooltip, Popover, Menu, Dialog, Alert Dialog |
+| Controls | Button, Icon Button, Field & Fieldset, Input Group, Kbd, Button Group, Toolbar, Text Field, Number Field, Calendar & Date Picker, Textarea, Checkbox, Radio Group, Switch, Select, Context Switcher, Combobox, Search Input, Segmented Control |
+| Overlays | Tooltip, Popover, Menu, Context Menu, Dialog, Sheet, Alert Dialog |
 | Navigation | Tabs, Breadcrumbs, Pagination, Collapsible |
 | Feedback | Toast, Alert, Progress, Spinner, Skeleton, Empty State |
-| Data display | Badge, Avatar, Table |
-| Authored interaction | Inline Edit, Action List, Shared Detail, Undo Stack |
+| Data display | Badge, Avatar, Table, Tree |
+| Authored interaction | Reorderable List, Inline Edit, Action List, Shared Detail, Undo Stack |
 
 The authored interaction layer documents input, origin, enter, active, exit, interruption, keyboard, and reduced-motion behavior in code. Table stays a semantic primitive; sorting, filtering, selection, empty results, and pagination are documented as a product recipe rather than hidden inside a monolith.
 
@@ -67,6 +78,47 @@ npm run quality
 
 `npm run quality` runs the complete automated suite, builds and verifies the registry, type-checks and builds the application, and verifies the worker output.
 
+### Executable component contracts
+
+Storybook is the isolated review and regression surface for all 45 public components. Every story renders the same Product preview and state source used by the documentation, then verifies its state count, keyboard-relevant behavior, accessibility tree, and light/dark theme contract.
+
+```bash
+npm run storybook                  # isolated local review surface
+npm run test:stories               # 45 light + 45 dark interaction and axe checks
+npm run test:stories:visual        # committed Product and State snapshots
+npm run test:stories:visual:update # intentionally accept a reviewed visual change
+npm run build:storybook            # static Storybook build
+```
+
+The visual suite captures the interactive Product composition and the complete inert State matrix separately, so offscreen state proofs cannot silently disappear from a full-page screenshot. macOS and Linux keep separate, equally strict baselines because font rasterization and native controls differ by platform. Snapshot updates are review actions, not automatic build artifacts; the Browser matrix workflow can generate a short-lived Linux baseline artifact for review.
+
+### Public TypeScript API
+
+The component source, documentation, registry, and emitted declarations share one checked public boundary:
+
+```bash
+npm run build:api # emit exact declarations, a review report, and documentation metadata
+npm run check:api # fail when source and committed API artifacts diverge
+```
+
+The generated artifacts live in `api/generated`: exact `.d.ts` files, `public-api.json` for automation, and `public-api.md` for review. Component pages expose the same generated export surface beside a curated table of common props and defaults. Registry verification also compares every generated wrapper byte-for-byte with its source and rejects any component/API catalog mismatch.
+
+The application uses the TypeScript 7 CLI for project type-checking. Its API extractor follows Microsoft’s recommended transition setup and uses the side-by-side `@typescript/typescript6` compatibility API because TypeScript 7.0 does not yet expose a stable programmatic compiler API.
+
+### Tokens
+
+`tokens/teum.tokens.json` is the source of truth for foundation and theme decisions. It follows the DTCG 2025.10 format, with light as the default value and a documented extension for dark-mode values.
+
+```bash
+npm run build:tokens   # generate CSS, typed TypeScript, and the Figma handoff manifest
+npm run check:tokens   # fail when committed generated files are stale
+npm run diff:tokens    # classify added, changed, and removed token paths against HEAD
+npm run build:figma    # generate the 45-component Figma library execution contract
+npm run check:figma    # reject token, component, state, page, or remote-ID drift
+```
+
+Generated files are committed so the documentation, registry, consumer CSS, TypeScript API, and Figma handoff can be reviewed in the same change. `tokens/generated/figma-variables.json` defines scoped Foundation and Theme variables plus text and effect styles, while `figma/generated/library-manifest.json` maps all 45 components to their Figma build contract. These files are deterministic handoff artifacts only; they do not claim that a Figma library has been created, published, or connected to code.
+
 The cross-browser suite is configured separately because it downloads browser binaries:
 
 ```bash
@@ -74,40 +126,75 @@ npx playwright install chromium firefox webkit
 npm run test:browsers
 ```
 
-## Registry
+## Teum Registry
 
 Build the shadcn-compatible artifacts:
 
 ```bash
 npm run build:registry
 npm run test:registry
+npm run diff:registry -- --from ./previous-manifest.json
 ```
 
-Generated files live in `public/r`. Configure the hosted namespace once in a consumer:
+Generated files live in `public/r`. Use the mutable namespace during active alpha evaluation, or pin the exact release path for reproducible review:
 
 ```bash
-npx shadcn@latest registry add @index=https://minwookshin.github.io/interaction-index/r/{name}.json
-npx shadcn@latest add @index/button
+npx shadcn@latest registry add @teum=https://interactions.minwookshin.com/r/{name}.json
+npx shadcn@latest add @teum/button
+
+npx shadcn@latest registry add @teum-pinned=https://interactions.minwookshin.com/r/v/0.1.0-rc.3/{name}.json
+npx shadcn@latest add @teum-pinned/button
 ```
+
+Teum owns the registry namespace, component source, tokens, APIs, and release contract. The shadcn CLI is the compatible transport that resolves and copies those files; it is not the design-system identity. A dedicated Teum CLI would be a separate future product boundary, not a relabeled command.
 
 Each installed component imports the shared token/reset contract and its own scoped stylesheet. The complete-system item also includes a stable application-root entry for the shared contract:
 
 ```ts
-import "./styles/interaction-index.css";
+import "./styles/teum.css";
 ```
 
-`@index/interaction-index` contains the complete system; each component item contains its source, scoped CSS, and namespaced local dependencies. The public cascade is `index.tokens → index.base → index.components`; ordinary unlayered product CSS can override it without a specificity contest. The registry test rejects documentation-style leakage and the clean-consumer test proves a Button-only install does not carry Dialog, Table, or Shared Detail CSS. Bare dependency names intentionally are not used because the shadcn CLI resolves those against its built-in registry.
+`@teum/teum` contains the complete system; each component item contains its source, scoped CSS, and namespaced local dependencies. The public cascade is `teum.tokens → teum.base → teum.components`; ordinary unlayered product CSS can override it without a specificity contest. The registry test rejects documentation-style leakage and the clean-consumer test proves a Button-only install does not carry Dialog, Table, or Shared Detail CSS. Bare dependency names intentionally are not used because the shadcn CLI resolves those against its built-in registry.
+
+Tailwind CSS v4 consumers can add the optional bridge without changing component source:
+
+```bash
+npx shadcn@latest add @teum/teum-tailwind
+```
+
+```css
+@import "tailwindcss";
+@import "./styles/teum-base.css";
+@import "./styles/teum-tailwind.css";
+```
+
+The bridge exposes semantic utilities such as `bg-background`, `text-foreground`, `rounded-control`, and `shadow-flyout`; each resolves to the same Teum variables used by plain CSS.
+
+`public/r/manifest.json` is the deterministic update boundary. It hashes each JSON artifact, each copied file, every public TypeScript export, and every semantic token contract. The mutable alpha channel remains reviewable; `public/r/v/<version>` is byte-for-byte pinned, rejects changed contents under an existing version, and is deployed with an immutable cache policy. `npm run test:consumer:upgrade` proves that a local source edit is preserved while an upstream candidate is staged for explicit acceptance. See [Registry updates](./REGISTRY_UPDATES.md).
 
 The repository can also be installed directly through shadcn without operating a separate registry server:
 
 ```bash
-npx shadcn@latest add minwookshin/interaction-index/interaction-index
+npx shadcn@latest add minwookshin/teum/teum
 ```
 
-Canonical metadata points to [minwookshin/interaction-index](https://github.com/minwookshin/interaction-index). The npm package remains private and unpublished.
+Canonical metadata points to [minwookshin/teum](https://github.com/minwookshin/teum). The npm package remains private and unpublished.
+
+### Private package candidate
+
+The repository also prepares the future package boundary without publishing it:
+
+```bash
+npm run build:package
+npm run check:package
+npm run test:package
+```
+
+The tarball exposes one React entry point, typed tokens, the reviewed stylesheet, and registry JSON subpaths. React stays a peer dependency. The package-candidate workflow can generate GitHub build provenance for the tarball, but it has no npm credential and no publish step.
 
 ## Project evidence
 
+- [Generated public API report](./api/generated/public-api.md)
 - [Compatibility](./COMPATIBILITY.md)
 - [Browser and support policy](./SUPPORT.md)
 - [Security policy](./SECURITY.md)
@@ -121,6 +208,7 @@ Canonical metadata points to [minwookshin/interaction-index](https://github.com/
 - [Migration policy](./MIGRATIONS.md)
 - [Maintainers](./MAINTAINERS.md)
 - [Publication configuration](./PUBLICATION.md)
+- [Registry update policy](./REGISTRY_UPDATES.md)
 - [Accessibility evidence](./ACCESSIBILITY_EVIDENCE.md)
 - [Interaction and bundle performance](./INTERACTION_PERFORMANCE.md)
 

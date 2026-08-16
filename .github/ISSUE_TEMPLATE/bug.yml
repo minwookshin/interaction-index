@@ -5,7 +5,7 @@ labels: [bug, needs-triage]
 body:
   - type: markdown
     attributes:
-      value: Thanks for helping improve Interaction Index. Security issues must use a private repository advisory.
+      value: Thanks for helping improve Teum. Security issues must use a private repository advisory.
   - type: input
     id: component
     attributes:

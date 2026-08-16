@@ -1,0 +1,13 @@
+import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar";
+export type ToolbarProps = ToolbarPrimitive.Root.Props;
+export type ToolbarGroupProps = ToolbarPrimitive.Group.Props;
+export type ToolbarButtonProps = ToolbarPrimitive.Button.Props;
+export type ToolbarLinkProps = ToolbarPrimitive.Link.Props;
+export type ToolbarInputProps = ToolbarPrimitive.Input.Props;
+export type ToolbarSeparatorProps = ToolbarPrimitive.Separator.Props;
+export declare function Toolbar({ className, ...props }: ToolbarProps): import("react").JSX.Element;
+export declare function ToolbarGroup({ className, ...props }: ToolbarGroupProps): import("react").JSX.Element;
+export declare function ToolbarButton({ className, ...props }: ToolbarButtonProps): import("react").JSX.Element;
+export declare function ToolbarLink({ className, ...props }: ToolbarLinkProps): import("react").JSX.Element;
+export declare function ToolbarInput({ className, ...props }: ToolbarInputProps): import("react").JSX.Element;
+export declare function ToolbarSeparator({ className, ...props }: ToolbarSeparatorProps): import("react").JSX.Element;

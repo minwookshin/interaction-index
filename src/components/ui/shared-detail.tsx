@@ -6,6 +6,14 @@ import { cn } from "../../lib/cn";
 import { IconButton } from "./icon-button";
 import { getSharedDetailMotionPreset, selectedSharedDetailMotionPreset, type SharedDetailMotionPresetId } from "./shared-detail-motion";
 
+export {
+  getSharedDetailMotionPreset,
+  selectedSharedDetailMotionPreset,
+  sharedDetailMotionPresets,
+  type SharedDetailMotionPreset,
+  type SharedDetailMotionPresetId,
+} from "./shared-detail-motion";
+
 export const sharedDetailContract: BehaviorContract = {
   input: ["Row click", "Enter on row", "Close button", "Escape"],
   origin: "The selected row title is the visual and focus origin for the detail surface.",
@@ -85,23 +93,23 @@ export function SharedDetail({
     if (!selected) return;
     if (focusOnOpen && interactedRef.current) requestAnimationFrame(() => panelRef.current?.focus({ preventScroll: true }));
     const onKeyDown = (event: globalThis.KeyboardEvent) => {
-      if (event.key === "Escape") { event.preventDefault(); close(); }
+      if (event.key === "Escape" && !event.defaultPrevented) { event.preventDefault(); close(); }
     };
-    window.addEventListener("keydown", onKeyDown, true);
-    return () => window.removeEventListener("keydown", onKeyDown, true);
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [selected]);
 
   return (
     <LayoutGroup id={layoutGroupId}>
-      <div className={cn("ix-shared-detail", className)} data-open={Boolean(selected) || undefined} data-motion-preset={motionPreset} data-motion-mode={motionMode}>
-        <div className="ix-shared-detail__list" aria-label="Objects">
+      <div className={cn("teum-shared-detail", className)} data-open={Boolean(selected) || undefined} data-motion-preset={motionPreset} data-motion-mode={motionMode}>
+        <div className="teum-shared-detail__list" aria-label="Objects">
           {items.map((item) => (
             <button
               type="button"
               key={item.id}
-              className="ix-shared-detail__row"
+              className="teum-shared-detail__row"
               aria-expanded={selectedId === item.id}
-              aria-controls={panelId(item.id)}
+              aria-controls={selectedId === item.id ? panelId(item.id) : undefined}
               onClick={(event) => {
                 interactedRef.current = true;
                 originRef.current = event.currentTarget;
@@ -109,12 +117,12 @@ export function SharedDetail({
                 setSelectedId(item.id);
               }}
             >
-              <span className="ix-shared-detail__dot" aria-hidden="true" />
-              <span className="ix-shared-detail__row-copy" data-title={item.title}>
+              <span className="teum-shared-detail__dot" aria-hidden="true" />
+              <span className="teum-shared-detail__row-copy" data-title={item.title}>
                 <motion.span layout={spatialMotion ? "position" : false} layoutId={spatialMotion ? titleId(item.id) : undefined} transition={spatialMotion ? preset.titleTransition : { duration: 0 }}>{item.title}</motion.span>
                 <small>{item.meta}</small>
               </span>
-              {item.status && <span className="ix-shared-detail__status">{item.status}</span>}
+              {item.status && <span className="teum-shared-detail__status">{item.status}</span>}
             </button>
           ))}
         </div>
@@ -123,7 +131,7 @@ export function SharedDetail({
             <motion.aside
               ref={panelRef}
               id={panelId(selected.id)}
-              className="ix-shared-detail__panel"
+              className="teum-shared-detail__panel"
               role="region"
               tabIndex={-1}
               aria-label={regionLabel}
@@ -133,21 +141,21 @@ export function SharedDetail({
               exit={panelExit}
               transition={panelTransition}
             >
-              <div className="ix-shared-detail__toolbar">
-                <IconButton className="ix-shared-detail__back" variant="ghost" size="small" aria-label="Back to list" tooltip="Back" onClick={close}><ArrowLeft /></IconButton>
+              <div className="teum-shared-detail__toolbar">
+                <IconButton className="teum-shared-detail__back" variant="ghost" size="small" aria-label="Back to list" tooltip="Back" onClick={close}><ArrowLeft /></IconButton>
                 <IconButton variant="ghost" size="small" aria-label="Close detail" tooltip="Close" onClick={close}><X /></IconButton>
               </div>
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.div
                   key={selected.id}
-                  className="ix-shared-detail__content"
+                  className="teum-shared-detail__content"
                   initial={contentInitial}
                   animate={{ opacity: 1, transform: "translateY(0px)", filter: "blur(0px)" }}
                   exit={contentExit}
                   transition={contentTransition}
                 >
                   <motion.h3 layout={spatialMotion ? "position" : false} id={titleId(selected.id)} layoutId={spatialMotion ? titleId(selected.id) : undefined} transition={spatialMotion ? preset.titleTransition : { duration: 0 }}>{selected.title}</motion.h3>
-                  <div className="ix-shared-detail__meta">{selected.meta}</div>
+                  <div className="teum-shared-detail__meta">{selected.meta}</div>
                   {renderDetail ? renderDetail(selected) : <><p>{selected.description}</p><dl><div><dt>Status</dt><dd>{selected.status ?? "Open"}</dd></div><div><dt>Interaction</dt><dd>Shared detail</dd></div></dl></>}
                 </motion.div>
               </AnimatePresence>

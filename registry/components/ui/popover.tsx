@@ -1,4 +1,4 @@
-import "../../styles/index-base.css";
+import "../../styles/teum-base.css";
 import "../../styles/components/popover.css";
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import { cn } from "../../lib/cn";
@@ -11,7 +11,7 @@ export function PopoverTrigger(props: PopoverPrimitive.Trigger.Props) {
   return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />;
 }
 
-type PopoverContentProps = PopoverPrimitive.Popup.Props &
+export type PopoverContentProps = PopoverPrimitive.Popup.Props &
   Pick<PopoverPrimitive.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">;
 
 export function PopoverContent({
@@ -24,8 +24,8 @@ export function PopoverContent({
 }: PopoverContentProps) {
   return (
     <PopoverPrimitive.Portal>
-      <PopoverPrimitive.Positioner className="ix-positioner" side={side} sideOffset={sideOffset} align={align} alignOffset={alignOffset}>
-        <PopoverPrimitive.Popup className={cn("ix-popover", className)} {...props} data-layer="flyout" />
+      <PopoverPrimitive.Positioner className="teum-positioner" side={side} sideOffset={sideOffset} align={align} alignOffset={alignOffset}>
+        <PopoverPrimitive.Popup className={cn("teum-popover", className)} {...props} data-layer="flyout" />
       </PopoverPrimitive.Positioner>
     </PopoverPrimitive.Portal>
   );

@@ -3,7 +3,7 @@ import { Button, type ButtonProps } from "./button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 import { cn } from "../../lib/cn";
 
-type IconButtonProps = Omit<ButtonProps, "children" | "leadingIcon" | "trailingIcon"> & {
+export type IconButtonProps = Omit<ButtonProps, "children" | "leadingIcon" | "trailingIcon"> & {
   children?: ReactNode;
   "aria-label": string;
   tooltip?: string;
@@ -12,7 +12,7 @@ type IconButtonProps = Omit<ButtonProps, "children" | "leadingIcon" | "trailingI
 export function IconButton({ children, className, tooltip, ...props }: IconButtonProps) {
   const button = (
     <Button
-      className={cn("ix-icon-button", className)}
+      className={cn("teum-icon-button", className)}
       focusableWhenDisabled={Boolean(tooltip) && props.disabled}
       {...props}
     >

@@ -1,0 +1,79 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer teum.tokens, teum.base, teum.components;
+
+@layer teum.components {
+.teum-field-layout {
+  display: grid;
+  min-width: 0;
+  gap: 6px;
+}
+
+.teum-field-layout__label,
+.teum-fieldset__legend {
+  color: var(--teum-fg-default);
+  font-size: var(--teum-type-label);
+  font-weight: var(--teum-label-weight);
+  line-height: var(--teum-line-label);
+}
+
+.teum-field-layout__description,
+.teum-field-layout__error {
+  color: var(--teum-fg-muted);
+  font-size: var(--teum-type-metadata);
+  line-height: var(--teum-line-metadata);
+}
+
+.teum-field-layout__error { color: var(--teum-fg-danger); }
+
+.teum-field-layout__control {
+  width: 100%;
+  min-width: 0;
+  height: var(--teum-control-height-md);
+  padding: 0 9px;
+  border: 1px solid var(--teum-control-border);
+  border-radius: var(--teum-radius-control);
+  outline: 0;
+  background: var(--teum-bg-control);
+  box-shadow: var(--teum-shadow-control);
+  color: var(--teum-fg-default);
+  font: inherit;
+  font-size: var(--teum-type-ui);
+  transition: background-color var(--teum-hover-duration), border-color var(--teum-hover-duration), box-shadow var(--teum-hover-duration);
+}
+
+.teum-field-layout__control::placeholder { color: var(--teum-fg-subtle); }
+
+.teum-field-layout__control:hover:not(:disabled):not(:read-only) { border-color: var(--teum-control-border-hover); }
+
+.teum-field-layout__control:focus-visible {
+  border-color: var(--teum-control-border-hover);
+  box-shadow: var(--teum-shadow-control), 0 0 0 2px var(--teum-focus-halo);
+}
+
+.teum-field-layout[data-invalid] .teum-field-layout__control,
+.teum-field-layout__control[aria-invalid="true"] {
+  border-color: color-mix(in oklch, var(--teum-fg-danger) 42%, var(--teum-control-border));
+  box-shadow: var(--teum-shadow-control), 0 0 0 2px color-mix(in oklch, var(--teum-fg-danger) 10%, transparent);
+}
+
+.teum-field-layout[data-disabled] .teum-field-layout__control,
+.teum-field-layout__control:disabled { background: var(--teum-bg-subtle); box-shadow: none; color: var(--teum-fg-disabled); cursor: not-allowed; }
+
+.teum-field-layout__control:read-only { color: var(--teum-fg-muted); }
+
+.teum-fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.teum-fieldset__legend { margin: 0 0 8px; padding: 0; }
+
+.teum-field-group { display: grid; gap: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+.teum-field-layout__control { transition-duration: 0.01ms; }
+}
+}

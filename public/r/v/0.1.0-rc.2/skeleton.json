@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "title": "Skeleton",
+  "description": "Layout-preserving content placeholder geometry.",
+  "registryDependencies": [
+    "@index/interaction-index-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/skeleton.tsx",
+      "content": "import \"../../styles/index-base.css\";\nimport \"../../styles/components/skeleton.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type SkeletonProps = ComponentPropsWithRef<\"div\"> & {\n  width?: number | string;\n  height?: number | string;\n  radius?: \"small\" | \"medium\" | \"round\";\n};\n\nexport function Skeleton({ className, width, height, radius = \"small\", style, ...props }: SkeletonProps) {\n  return <div className={cn(\"ix-skeleton\", `ix-skeleton--${radius}`, className)} style={{ width, height, ...style }} aria-hidden=\"true\" {...props} />;\n}\n\nexport function SkeletonText({ lines = 3 }: { lines?: number }) {\n  return <div className=\"ix-skeleton-text\" aria-hidden=\"true\">{Array.from({ length: lines }, (_, index) => <Skeleton key={index} height={10} width={index === lines - 1 ? \"68%\" : \"100%\"} />)}</div>;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/skeleton.tsx"
+    },
+    {
+      "path": "registry/styles/components/skeleton.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer index.tokens, index.base, index.components;\n\n@layer index.components {\n.ix-skeleton { position: relative; overflow: hidden; border-radius: var(--ix-radius-xs); background: var(--ix-gray-100); }\n\n.ix-skeleton::after { position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.65), transparent); content: \"\"; transform: translateX(-100%); animation: ix-skeleton-shimmer 1.6s linear infinite; }\n\n.ix-skeleton-text { display: grid; width: min(320px, 100%); gap: 8px; }\n\n@media (prefers-reduced-motion: reduce) {\n.ix-skeleton::after { animation-duration: 2.4s; }\n}\n\n@media (prefers-reduced-motion: reduce) {\n.ix-skeleton::after { animation-duration: 2.4s; }\n}\n\n@keyframes ix-skeleton-shimmer { to { transform: translateX(100%); } }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/skeleton.css"
+    }
+  ],
+  "type": "registry:ui"
+}

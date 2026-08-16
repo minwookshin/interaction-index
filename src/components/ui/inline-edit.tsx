@@ -1,5 +1,5 @@
 import { PencilSimple } from "@phosphor-icons/react";
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
 import type { BehaviorContract } from "../../lib/behavior-contract";
 import { cn } from "../../lib/cn";
 
@@ -33,6 +33,8 @@ export function InlineEdit({ value, onSave, label = "Edit value", placeholder, c
   const inputRef = useRef<HTMLInputElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const committingRef = useRef(false);
+  const generatedId = useId();
+  const errorId = `${generatedId}-error`;
 
   useEffect(() => setDraft(value), [value]);
 
@@ -101,32 +103,32 @@ export function InlineEdit({ value, onSave, label = "Edit value", placeholder, c
   };
 
   return (
-    <div className={cn("ix-inline-edit", className)} data-editing={editing || undefined} data-status={status}>
+    <div className={cn("teum-inline-edit", className)} data-editing={editing || undefined} data-status={status}>
       {editing ? (
         <>
-          <div className="ix-inline-edit__control">
+          <div className="teum-inline-edit__control">
             <input
               ref={inputRef}
-              className="ix-inline-edit__input"
+              className="teum-inline-edit__input"
               value={draft}
               placeholder={placeholder}
               aria-label={label}
               aria-invalid={status === "error" || undefined}
-              aria-describedby={error ? `${label.replace(/\s+/g, "-").toLocaleLowerCase()}-error` : undefined}
+              aria-describedby={error ? errorId : undefined}
               disabled={status === "saving"}
               onChange={(event) => { setDraft(event.target.value); setStatus("idle"); setError(""); }}
               onKeyDown={onKeyDown}
               onBlur={() => void commit(false)}
             />
-            {status === "saving" && <span className="ix-inline-edit__saving" aria-hidden="true"><span className="ix-spinner" /></span>}
+            {status === "saving" && <span className="teum-inline-edit__saving" aria-hidden="true"><span className="teum-spinner" /></span>}
           </div>
-          {error && <span id={`${label.replace(/\s+/g, "-").toLocaleLowerCase()}-error`} className="ix-inline-edit__error">{error}</span>}
+          {error && <span id={errorId} className="teum-inline-edit__error">{error}</span>}
         </>
       ) : (
         <button
           ref={triggerRef}
           type="button"
-          className="ix-inline-edit__value"
+          className="teum-inline-edit__value"
           onClick={() => setEditing(true)}
           aria-label={`${label}: ${value}`}
           disabled={disabled}
@@ -135,7 +137,7 @@ export function InlineEdit({ value, onSave, label = "Edit value", placeholder, c
           <PencilSimple aria-hidden="true" />
         </button>
       )}
-      <span className="ix-sr-only" aria-live="polite">{announcement}</span>
+      <span className="teum-sr-only" aria-live="polite">{announcement}</span>
     </div>
   );
 }

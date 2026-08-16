@@ -1,0 +1,57 @@
+/*
+ * Optional Tailwind CSS v4 bridge for Teum.
+ * Import after `tailwindcss` and `teum/tokens.css`.
+ * Teum's CSS variables remain the source of truth; this file only maps them
+ * to semantic Tailwind utilities such as bg-background and shadow-flyout.
+ */
+
+@theme inline {
+  --color-background: var(--teum-bg-canvas);
+  --color-foreground: var(--teum-fg-default);
+  --color-card: var(--teum-bg-surface);
+  --color-card-foreground: var(--teum-fg-default);
+  --color-popover: var(--teum-bg-flyout);
+  --color-popover-foreground: var(--teum-fg-default);
+  --color-primary: var(--teum-inverse);
+  --color-primary-foreground: var(--teum-on-inverse);
+  --color-secondary: var(--teum-bg-control);
+  --color-secondary-foreground: var(--teum-fg-default);
+  --color-muted: var(--teum-bg-subtle);
+  --color-muted-foreground: var(--teum-fg-muted);
+  --color-accent: var(--teum-hover);
+  --color-accent-foreground: var(--teum-fg-default);
+  --color-destructive: var(--teum-fg-danger);
+  --color-border: var(--teum-control-border);
+  --color-input: var(--teum-control-border);
+  --color-ring: var(--teum-focus-control);
+
+  --color-canvas: var(--teum-bg-canvas);
+  --color-stage: var(--teum-bg-stage);
+  --color-float: var(--teum-bg-float);
+  --color-flyout: var(--teum-bg-flyout);
+  --color-modal: var(--teum-bg-modal);
+
+  --radius-xs: var(--teum-radius-xs);
+  --radius-sm: var(--teum-radius-sm);
+  --radius-md: var(--teum-radius-md);
+  --radius-lg: var(--teum-radius-lg);
+  --radius-control: var(--teum-radius-control);
+  --radius-container: var(--teum-radius-container);
+  --radius-overlay: var(--teum-radius-overlay);
+
+  --shadow-control: var(--teum-shadow-control);
+  --shadow-float: var(--teum-shadow-float);
+  --shadow-flyout: var(--teum-shadow-flyout);
+  --shadow-modal: var(--teum-shadow-modal);
+
+  --font-sans: var(--teum-font-ui);
+  --font-mono: var(--teum-font-code);
+  --text-metadata: var(--teum-type-metadata);
+  --text-label: var(--teum-type-label);
+  --text-ui: var(--teum-type-ui);
+  --text-body: var(--teum-type-body);
+
+  --ease-teum-out: var(--teum-ease-out);
+  --ease-teum-in-out: var(--teum-ease-in-out);
+  --ease-teum-drawer: var(--teum-ease-drawer);
+}
