@@ -42,7 +42,7 @@
 - Component State contracts: 90 snapshots per platform.
 - Analytics recipes: 6 snapshots per platform.
 - Product Patterns: 6 snapshots per platform.
-- Snapshot platforms: darwin.
+- Snapshot platforms: darwin, linux.
 
 ## Claim boundary
 

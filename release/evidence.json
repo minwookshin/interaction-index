@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/build-evidence.mjs",
-  "generatedAt": "2026-08-17T06:18:10.376Z",
+  "generatedAt": "2026-08-17T06:45:23.249Z",
   "release": {
     "name": "teum",
     "version": "0.1.0-rc.22",
@@ -140,18 +140,10 @@
   },
   "visuals": {
     "platforms": [
-      "darwin"
+      "darwin",
+      "linux"
     ],
-    "incompletePlatformBaselines": [
-      {
-        "platform": "linux",
-        "shellCount": 130,
-        "landingCount": 2,
-        "storyCount": 180,
-        "analyticsCount": 0,
-        "productPatternCount": 0
-      }
-    ],
+    "incompletePlatformBaselines": [],
     "publicRouteSnapshotsPerPlatform": 138,
     "componentProductSnapshotsPerPlatform": 90,
     "componentStateSnapshotsPerPlatform": 90,
@@ -632,7 +624,6 @@
     }
   },
   "externalGates": [
-    "complete-platform-specific-visual-baselines",
     "windows-edge-and-high-contrast",
     "physical-ios-and-android",
     "macos-increase-contrast-and-reduce-transparency",
