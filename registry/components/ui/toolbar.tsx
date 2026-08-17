@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/toolbar.css";
 import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar";

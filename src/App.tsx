@@ -9,6 +9,7 @@ import {
   CaretDown,
   Check,
   CheckCircle,
+  ChartLine,
   Command,
   Compass,
   Copy,
@@ -18,6 +19,7 @@ import {
   DownloadSimple,
   FileText,
   Gear,
+  GithubLogo,
   GitBranch,
   LinkSimple,
   List,
@@ -44,6 +46,7 @@ import {
   X,
 } from "@phosphor-icons/react";
 import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import "./styles.css";
 import packageManifest from "../package.json";
 import {
   ActionList,
@@ -169,24 +172,30 @@ import {
 } from "./components/ui";
 import type { BehaviorContract } from "./lib/behavior-contract";
 import { componentGuidance, type ComponentGuidance } from "./component-guidance";
-import { copyText } from "./lib/copy-text";
 import { componentCode } from "./documentation/component-code";
 import { componentApi } from "./documentation/component-api";
 import { generatedComponentExports } from "./documentation/generated-component-exports";
 import { FoundationDetail, FoundationOverview, foundationItems, type FoundationId } from "./documentation/foundations";
 import { LiveSpecimen } from "./documentation/live-specimen";
 import { ComponentStatePreview, getStateFlags } from "./documentation/state-preview";
-import { PublicDocPage, publicDocItems, publicDocOutlines, type PublicDocId, type PublicDocGroup } from "./documentation/public-docs";
+import { publicDocItems, publicDocOutlines, type PublicDocId, type PublicDocGroup } from "./documentation/public-doc-metadata";
+import { LandingPage } from "./landing";
+import { copyText } from "./lib/copy-text";
 
-const ReactAriaExample = lazy(() => import("./documentation/react-aria-previews").then((module) => ({ default: module.ReactAriaExample })));
-const ReactAriaPrimaryPreview = lazy(() => import("./documentation/react-aria-previews").then((module) => ({ default: module.ReactAriaPrimaryPreview })));
+const DatePickerExample = lazy(() => import("./documentation/date-picker-previews").then((module) => ({ default: module.DatePickerExample })));
+const DatePickerPrimaryPreview = lazy(() => import("./documentation/date-picker-previews").then((module) => ({ default: module.DatePickerPrimaryPreview })));
+const TreeExample = lazy(() => import("./documentation/tree-previews").then((module) => ({ default: module.TreeExample })));
+const TreePrimaryPreview = lazy(() => import("./documentation/tree-previews").then((module) => ({ default: module.TreePrimaryPreview })));
+const ReorderableListExample = lazy(() => import("./documentation/reorderable-list-previews").then((module) => ({ default: module.ReorderableListExample })));
+const ReorderableListPrimaryPreview = lazy(() => import("./documentation/reorderable-list-previews").then((module) => ({ default: module.ReorderableListPrimaryPreview })));
+const PublicDocPage = lazy(() => import("./documentation/public-docs").then((module) => ({ default: module.PublicDocPage })));
 
 function ReactAriaPreviewFallback() {
   return <div className="react-aria-preview-fallback" aria-hidden="true">Loading preview…</div>;
 }
 
 export const components = [
-  { id: "button", name: "Button", group: "Controls", description: "Compact actions with stable loading geometry and explicit hierarchy." },
+  { id: "button", name: "Button", group: "Controls", description: "Compact actions with stable loading geometry and clear hierarchy." },
   { id: "icon-button", name: "Icon Button", group: "Controls", description: "Square actions that require an accessible name and contextual tooltip." },
   { id: "field", name: "Field & Fieldset", group: "Controls", description: "Accessible form structure that keeps labels, guidance, validation, and grouped choices connected." },
   { id: "input-group", name: "Input Group", group: "Controls", description: "One text-entry boundary composed with contextual addons and compact actions." },
@@ -209,9 +218,9 @@ export const components = [
   { id: "popover", name: "Popover", group: "Overlays", description: "A lightweight, non-modal surface anchored to its trigger." },
   { id: "menu", name: "Menu", group: "Overlays", description: "A keyboard-navigable set of contextual actions and toggles." },
   { id: "context-menu", name: "Context Menu", group: "Overlays", description: "Pointer and keyboard access to object-specific actions without adding permanent chrome." },
-  { id: "dialog", name: "Dialog", group: "Overlays", description: "A focused modal task with trapped focus, explicit completion, and reversible dismissal." },
+  { id: "dialog", name: "Dialog", group: "Overlays", description: "A focused modal task with trapped focus and reversible dismissal." },
   { id: "sheet", name: "Sheet", group: "Overlays", description: "An edge-aligned focused panel for compact workflows that benefit from visible page context." },
-  { id: "alert-dialog", name: "Alert Dialog", group: "Overlays", description: "A blocking consequential decision that requires an explicit user response." },
+  { id: "alert-dialog", name: "Alert Dialog", group: "Overlays", description: "A blocking decision that requires a user response." },
   { id: "tabs", name: "Tabs", group: "Navigation", description: "A dense view switcher with automatic keyboard navigation." },
   { id: "breadcrumbs", name: "Breadcrumbs", group: "Navigation", description: "Compact location context with semantic current-page and collapsed-depth handling." },
   { id: "pagination", name: "Pagination", group: "Navigation", description: "Bounded page navigation for data sets where stable positions matter." },
@@ -244,7 +253,7 @@ const patterns = [
     description: "Change a small value without leaving its surrounding context.",
     useWhen: "The value is short, the change is reversible, and preserving row or page context matters.",
     avoidWhen: "The task needs several fields, complex validation, or a dedicated review step.",
-    outcome: "Edit, save, cancel, and focus restoration happen without shifting the surrounding layout.",
+    outcome: "Edit a value without shifting the layout.",
     components: ["Inline Edit", "Icon Button", "Text Field"],
     contract: inlineEditContract,
   },
@@ -256,7 +265,7 @@ const patterns = [
     description: "Find one action quickly inside a dense keyboard-first surface.",
     useWhen: "People know roughly what they want and benefit from filtering, shortcuts, and fast execution.",
     avoidWhen: "People need to browse rich content, compare many attributes, or understand a new taxonomy.",
-    outcome: "Pointer and keyboard navigation share one active state from query to execution.",
+    outcome: "Search and run an action with one active state.",
     components: ["Action List", "Text Field", "Popover"],
     contract: actionListContract,
   },
@@ -268,7 +277,7 @@ const patterns = [
     description: "Move from a collection into detail while preserving identity and position.",
     useWhen: "People repeatedly inspect adjacent objects and need to return to the same place in a list.",
     avoidWhen: "The destination is a deep workflow that needs its own navigation, history, or full-width canvas.",
-    outcome: "Selection, detail, dismissal, and focus return read as one continuous spatial transition.",
+    outcome: "Open details without losing your place.",
     components: ["Shared Detail", "Icon Button", "List row"],
     contract: sharedDetailContract,
   },
@@ -280,7 +289,7 @@ const patterns = [
     description: "Let people act immediately while keeping recent reversible work recoverable.",
     useWhen: "The mutation is safe to apply optimistically and can be represented by a clear inverse action.",
     avoidWhen: "The action is legally, financially, or technically irreversible and requires confirmation first.",
-    outcome: "Each mutation enters a real LIFO history with explicit feedback and deterministic recovery.",
+    outcome: "Act immediately, then undo from the same history.",
     components: ["Undo Stack", "Toast", "Button"],
     contract: undoStackContract,
   },
@@ -288,8 +297,8 @@ const patterns = [
 
 type PatternId = (typeof patterns)[number]["id"];
 type FoundationRoute = `foundation-${FoundationId}`;
-type ViewId = ComponentId | PatternId | FoundationRoute | PublicDocId | "foundations" | "patterns" | "product";
-type Theme = "light" | "dark";
+export type ViewId = ComponentId | PatternId | FoundationRoute | PublicDocId | "foundations" | "patterns" | "home";
+export type Theme = "light" | "dark";
 
 type NavSectionId = "getting-started" | "foundations" | "components" | "patterns" | "quality" | "project";
 
@@ -301,6 +310,11 @@ const publicDocGroups: readonly { id: NavSectionId; label: PublicDocGroup }[] = 
 
 function isPublicDocId(value: string): value is PublicDocId {
   return publicDocItems.some((item) => item.id === value);
+}
+
+function readHashRoute() {
+  const [view = "", section] = window.location.hash.slice(1).split("/");
+  return { view, section };
 }
 
 const currentCompatibility = [
@@ -359,10 +373,7 @@ function ComponentGuidancePanel({ guidance, mode }: { guidance: ComponentGuidanc
   const titleId = `guidance-${mode}-title`;
   return (
     <section className="component-guidance" id={`system-${mode}`} aria-labelledby={titleId}>
-      <div className="component-guidance__heading">
-        <div><span>{mode === "usage" ? "Product guidance" : "Interaction coverage"}</span><h2 id={titleId}>{mode === "usage" ? "Use it with intent" : "Accessible in every state"}</h2></div>
-        <p>{mode === "usage" ? "Keep the decision rule close to the component without crowding its live preview." : "Review keyboard input, supported states, and the quality bar as one focused checklist."}</p>
-      </div>
+      <div className="component-guidance__heading"><h2 id={titleId}>{mode === "usage" ? "Usage" : "Accessibility"}</h2></div>
       {mode === "usage" ? <div className="guidance-usage">
         <article><span>Use when</span><p>{guidance.useWhen}</p></article>
         <article><span>Avoid when</span><p>{guidance.avoidWhen}</p></article>
@@ -373,11 +384,11 @@ function ComponentGuidancePanel({ guidance, mode }: { guidance: ComponentGuidanc
       </div>
       <div className="guidance-columns">
         <div className="guidance-section">
-          <div className="guidance-section__label"><span>Keyboard</span><small>Input contract</small></div>
+          <div className="guidance-section__label"><span>Keyboard</span></div>
           <ul>{guidance.keyboard.map((item) => <li key={item}><span className="guidance-marker"><Diamond aria-hidden="true" /></span><span>{item}</span></li>)}</ul>
         </div>
         <div className="guidance-section">
-          <div className="guidance-section__label"><span>Quality bar</span><small>Review checklist</small></div>
+          <div className="guidance-section__label"><span>Checks</span></div>
           <ul>{guidance.quality.map((item) => <li key={item}><span className="guidance-marker"><Diamond aria-hidden="true" /></span><span>{item}</span></li>)}</ul>
         </div>
       </div>
@@ -391,16 +402,21 @@ function ComponentApiPanel({ id }: { id: ComponentId }) {
   const publicExports = generatedComponentExports[id];
   const component = components.find((item) => item.id === id)!;
   const guidance = componentGuidance[id];
-  const importName = component.name.replaceAll(" ", "");
+  const primaryExport = publicExports.find((item) => item.kind === "function")?.name ?? publicExports[0]?.name ?? component.name;
+  const registryItem = `@teum-pinned/${id}`;
+  const installCommand = `npx shadcn@${packageManifest.devDependencies.shadcn} add ${registryItem}`;
+  const [installCopied, setInstallCopied] = useState(false);
+  const copyInstall = () => void copyText(installCommand).then((result) => {
+    setInstallCopied(result);
+    window.setTimeout(() => setInstallCopied(false), 1200);
+  });
   return (
     <section className="component-api" id="system-api" aria-labelledby="component-api-title">
-      <div className="component-guidance__heading">
-        <div><span>Reference</span><h2 id="component-api-title">Common props and defaults</h2></div>
-        <p>Start with the authored decisions below. Inherited primitive and native types remain inspectable in the generated public surface.</p>
-      </div>
-      <div className="component-api__facts" aria-label={`${component.name} reference summary`}>
-        <article><span>Import</span><code>{importName}</code></article>
-        <article><span>Package candidate</span><code>teum</code></article>
+      <div className="component-guidance__heading"><h2 id="component-api-title">API</h2></div>
+      <div className="component-api__install"><code>{installCommand}</code><button type="button" onClick={copyInstall} aria-label={`Copy ${component.name} install command`}><Copy aria-hidden="true" />{installCopied ? "Copied" : "Copy"}</button></div>
+      <div className="component-api__facts" role="region" aria-label={`${component.name} reference summary`}>
+        <article><span>Primary export</span><code>{primaryExport}</code></article>
+        <article><span>Registry item</span><code>{registryItem}</code></article>
         <article><span>Primitive</span><strong>{guidance.source}</strong></article>
         <article><span>Coverage</span><strong>{guidance.states.length} states</strong></article>
       </div>
@@ -427,13 +443,13 @@ function ComponentApiPanel({ id }: { id: ComponentId }) {
       </details>
       <div className="component-support" aria-label={`${component.name} compatibility and confidence`}>
         <div className="component-support__heading">
-          <div><span>Compatibility</span><h3>Current workspace contract</h3></div>
-          <p>Public preview. APIs may change before a stable release, so compatibility claims stay pinned to the versions tested here.</p>
+          <div><h3>Compatibility</h3></div>
+          <p>Pre-release. APIs may change.</p>
         </div>
         <dl className="component-support__versions">{currentCompatibility.map((item) => <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>)}</dl>
         <div className="component-support__confidence">
           <div><span>Keyboard contract</span><ul>{guidance.keyboard.map((item) => <li key={item}><Check aria-hidden="true" />{item}</li>)}</ul></div>
-          <div><span>Verification</span><ul><li><Check aria-hidden="true" />Every documented state renders in automated coverage</li><li><Check aria-hidden="true" />Light, dark, focus, and reduced-motion rules are reviewable</li><li><Check aria-hidden="true" />Manual assistive-technology QA remains a release gate</li></ul></div>
+          <div><span>Verification</span><ul><li><Check aria-hidden="true" />Documented states covered by automated tests</li><li><Check aria-hidden="true" />Light, dark, focus, and reduced motion covered</li><li><Check aria-hidden="true" />Assistive-technology review still required</li></ul></div>
         </div>
       </div>
     </section>
@@ -759,7 +775,7 @@ function DialogDemo() {
             <DialogTrigger render={<Button variant="secondary">Edit details</Button>} />
             <DialogContent>
               <DialogHeader><DialogTitle>Edit component metadata</DialogTitle><DialogDescription>Update the public name and summary for this component.</DialogDescription></DialogHeader>
-              <div className="dialog-form"><TextField label="Display name" defaultValue="Draft primitive" /><Select label="Maturity" defaultValue="alpha" options={[{ label: "Alpha", value: "alpha" }, { label: "Beta", value: "beta" }, { label: "Stable", value: "stable" }]} /><TextField label="Summary" defaultValue="A compact authored interaction." /></div>
+              <div className="dialog-form"><TextField label="Display name" defaultValue="Draft primitive" /><Select label="Maturity" defaultValue="alpha" options={[{ label: "Alpha", value: "alpha" }, { label: "Beta", value: "beta" }, { label: "Stable", value: "stable" }]} /><TextField label="Summary" defaultValue="A compact interaction." /></div>
               <DialogFooter><DialogClose render={<Button variant="ghost" />}>Cancel</DialogClose><DialogClose render={<Button variant="primary" />}>Save changes</DialogClose></DialogFooter>
             </DialogContent>
           </Dialog>
@@ -980,7 +996,7 @@ function EmptyStateDemo() {
 
 function AlertDialogDemo() {
   return <>
-    <Specimen label="Product recipe" note="Explicit response for a consequential action">
+    <Specimen label="Product recipe" note="Consequential action">
       <AlertDialog>
         <AlertDialogTrigger render={<Button variant="secondary" />}>Discard draft</AlertDialogTrigger>
         <AlertDialogContent>
@@ -1010,7 +1026,7 @@ function NumberFieldDemo() {
 function DatePickerDemo() {
   return <>
     <Specimen label="Product recipe" note="Locale-aware entry and calendar selection">
-      <Suspense fallback={<ReactAriaPreviewFallback />}><ReactAriaExample id="date-picker" /></Suspense>
+      <Suspense fallback={<ReactAriaPreviewFallback />}><DatePickerExample /></Suspense>
     </Specimen>
     <ApiStrip values={["locale", "calendar system", "date segments", "Arrow keys", "Page Up / Down", "min / max", "unavailable dates", "validation"]} />
   </>;
@@ -1093,7 +1109,7 @@ function TableDemo() {
 function TreeDemo() {
   return <>
     <Specimen label="Product recipe" note="Hierarchical project navigation">
-      <Suspense fallback={<ReactAriaPreviewFallback />}><ReactAriaExample id="tree" /></Suspense>
+      <Suspense fallback={<ReactAriaPreviewFallback />}><TreeExample /></Suspense>
     </Specimen>
     <ApiStrip values={["Arrow Up / Down", "Arrow Left / Right", "Home / End", "typeahead", "selection", "expanded keys", "disabled item"]} />
   </>;
@@ -1102,7 +1118,7 @@ function TreeDemo() {
 function ReorderableListDemo() {
   return <>
     <Specimen className="specimen--signature" label="Product recipe" note="Reorder with pointer, touch, or the keyboard drag handle">
-      <Suspense fallback={<ReactAriaPreviewFallback />}><ReactAriaExample id="reorderable-list" /></Suspense>
+      <Suspense fallback={<ReactAriaPreviewFallback />}><ReorderableListExample /></Suspense>
     </Specimen>
     <ApiStrip values={["pointer drag", "touch drag", "keyboard drag", "screen-reader announcements", "drop indicator", "controlled order", "reduced motion"]} />
   </>;
@@ -1258,7 +1274,7 @@ function ButtonProductContext() {
         <Badge variant="outline">Draft</Badge>
       </header>
       <div className="product-context__body">
-        <p>Make pointer and keyboard focus feel intentional across component previews.</p>
+        <p>Check pointer and keyboard focus across previews.</p>
         <div className="product-context__actions">
           <Button variant="primary">Create issue</Button>
           <Button variant="secondary">Save draft</Button>
@@ -1315,7 +1331,7 @@ function DialogProductContext() {
         <DialogTrigger render={<Button variant="secondary" size="small">Edit details</Button>} />
         <DialogContent>
           <DialogHeader><DialogTitle>Edit component metadata</DialogTitle><DialogDescription>Update the public name and summary without leaving the current catalog position.</DialogDescription></DialogHeader>
-          <div className="dialog-form"><TextField label="Display name" defaultValue="Draft primitive" /><Select label="Maturity" defaultValue="alpha" options={[{ label: "Alpha", value: "alpha" }, { label: "Beta", value: "beta" }, { label: "Stable", value: "stable" }]} /><TextField label="Summary" defaultValue="A compact authored interaction." /></div>
+          <div className="dialog-form"><TextField label="Display name" defaultValue="Draft primitive" /><Select label="Maturity" defaultValue="alpha" options={[{ label: "Alpha", value: "alpha" }, { label: "Beta", value: "beta" }, { label: "Stable", value: "stable" }]} /><TextField label="Summary" defaultValue="A compact interaction." /></div>
           <DialogFooter><DialogClose render={<Button variant="ghost" />}>Cancel</DialogClose><DialogClose render={<Button variant="primary" />}>Save changes</DialogClose></DialogFooter>
         </DialogContent>
       </Dialog>
@@ -1360,7 +1376,7 @@ export function PrimaryPreviewFor({ id }: { id: ComponentId }) {
   if (id === "combobox") return <div className="primary-field-preview"><Combobox label="Assignee" options={peopleOptions} defaultValue={peopleOptions[1]} /></div>;
   if (id === "search-input") return <SearchInput placeholder="Search components…" shortcut="⌘K" />;
   if (id === "number-field") return <div className="primary-field-preview primary-number-field-preview"><NumberField label="Cycle capacity" defaultValue={24} min={1} max={99} /></div>;
-  if (id === "date-picker") return <Suspense fallback={<ReactAriaPreviewFallback />}><ReactAriaPrimaryPreview id="date-picker" /></Suspense>;
+  if (id === "date-picker") return <Suspense fallback={<ReactAriaPreviewFallback />}><DatePickerPrimaryPreview /></Suspense>;
   if (id === "segmented-control") return <SegmentedControl label="Issue view" defaultValue="list" options={[{ value: "list", label: "List" }, { value: "board", label: "Board" }, { value: "timeline", label: "Timeline" }]} />;
   if (id === "tooltip") return <Tooltip><TooltipTrigger render={<Button variant="secondary">Favorite</Button>} /><TooltipContent>Add to favorites <kbd>F</kbd></TooltipContent></Tooltip>;
   if (id === "popover") return <Popover><PopoverTrigger render={<Button variant="secondary" trailingIcon={<CaretDown />}>View options</Button>} /><PopoverContent className="teum-popover--compact" side="top" align="center"><div className="popover-copy"><PopoverTitle>View options</PopoverTitle></div><div className="primary-popover-row"><Switch label="Show contracts" defaultChecked /></div></PopoverContent></Popover>;
@@ -1382,8 +1398,8 @@ export function PrimaryPreviewFor({ id }: { id: ComponentId }) {
   if (id === "badge") return <div className="demo-row demo-row--centered"><Badge>Draft</Badge><Badge variant="strong">In review</Badge><Badge variant="outline">Design</Badge></div>;
   if (id === "avatar") return <AvatarGroup aria-label="Project members"><Avatar fallback="AS" /><Avatar fallback="MP" status="online" /><Avatar fallback="NW" /></AvatarGroup>;
   if (id === "table") return <DataTableRecipe compact />;
-  if (id === "tree") return <Suspense fallback={<ReactAriaPreviewFallback />}><ReactAriaPrimaryPreview id="tree" /></Suspense>;
-  if (id === "reorderable-list") return <Suspense fallback={<ReactAriaPreviewFallback />}><ReactAriaPrimaryPreview id="reorderable-list" /></Suspense>;
+  if (id === "tree") return <Suspense fallback={<ReactAriaPreviewFallback />}><TreePrimaryPreview /></Suspense>;
+  if (id === "reorderable-list") return <Suspense fallback={<ReactAriaPreviewFallback />}><ReorderableListPrimaryPreview /></Suspense>;
   if (id === "inline-edit") return <PrimaryInlineEdit />;
   if (id === "action-list") return <PrimaryActionList />;
   if (id === "shared-detail") return <div className="primary-shared-detail"><SharedDetail items={sharedItems} defaultSelectedId="motion" focusOnOpen={false} regionLabel="Shared Detail product context" /></div>;
@@ -1454,7 +1470,7 @@ function ComponentLiveExample({ id }: { id: ComponentId }) {
   );
   const stateSlug = selectedState.toLocaleLowerCase().replaceAll(" ", "-");
   return (
-    <LiveSpecimen id={id} code={componentCode[id]} controls={controls} specimen={specimen} note={mode === "product" ? "Interactive · keyboard ready" : `${selectedState} · locked inspection`} onReset={reset}>
+    <LiveSpecimen id={id} code={componentCode[id]} controls={controls} specimen={specimen} note={mode === "product" ? "Interactive" : selectedState} onReset={reset}>
       {mode === "product" ? <div key={`${id}-product-${resetKey}`} className="primary-preview"><PrimaryPreviewFor id={id} /></div> : <article key={`${id}-${stateSlug}-${resetKey}`} className="state-tile state-tile--live" data-state={stateSlug} data-state-flags={getStateFlags(selectedState)} aria-label={`${selectedState} state preview`}><div className="state-tile__preview" inert><StatePreview id={id} state={selectedState} index={stateIndex} /></div></article>}
     </LiveSpecimen>
   );
@@ -1467,7 +1483,7 @@ function StatePreview({ id, state, index }: { id: ComponentId; state: string; in
 function ComponentStateCoverage({ id, states }: { id: ComponentId; states: readonly string[] }) {
   return (
     <section className="component-state-coverage" id="system-states" aria-labelledby="state-coverage-title">
-      <div className="component-state-coverage__header"><div><span>State contract</span><h2 id="state-coverage-title">Inspect states without changing them</h2></div><p>Visual proofs stay locked and truthful. Use the interactive Product preview above for pointer and keyboard testing.</p></div>
+      <div className="component-state-coverage__header"><div><h2 id="state-coverage-title">States</h2></div></div>
       <ul className="state-gallery" aria-label={`${components.find((component) => component.id === id)?.name ?? id} state contract`}>
         {states.map((state, index) => (
           <li className="state-tile" data-state={state.toLocaleLowerCase().replaceAll(" ", "-")} data-state-flags={getStateFlags(state)} key={`${id}-${state}`}>
@@ -1488,10 +1504,11 @@ function NavigationSection({ label, count, expanded, active, onToggle, children 
 }
 
 const navigationLeafIcons: Partial<Record<string, typeof Compass>> = {
-  introduction: Compass,
   installation: DownloadSimple,
   "choosing-components": Selection,
   "product-pilot": Monitor,
+  analytics: ChartLine,
+  "agent-native": TerminalWindow,
   foundations: Stack,
   "foundation-color": Palette,
   "foundation-typography": TextT,
@@ -1549,6 +1566,8 @@ function PageOutline({ view, onNavigate }: { view: ViewId; onNavigate: (id: View
     if (!scroller) return;
     const sectionIds = itemKey.split("|").filter(Boolean);
     let frame = 0;
+    let navigationFrame = 0;
+    let sectionObserver: MutationObserver | null = null;
     const update = () => {
       frame = 0;
       if (lockedOutlineId.current) {
@@ -1561,7 +1580,7 @@ function PageOutline({ view, onNavigate }: { view: ViewId; onNavigate: (id: View
         const section = document.getElementById(id);
         if (section && section.getBoundingClientRect().top <= readingLine) current = id;
       }
-      const nearBottom = scroller.scrollHeight - scroller.scrollTop - scroller.clientHeight <= 3;
+      const nearBottom = scroller.scrollTop > 1 && scroller.scrollHeight - scroller.scrollTop - scroller.clientHeight <= 3;
       setActiveOutlineId(nearBottom ? sectionIds.at(-1) ?? current : current);
     };
     const schedule = () => {
@@ -1572,9 +1591,30 @@ function PageOutline({ view, onNavigate }: { view: ViewId; onNavigate: (id: View
     const unlockFromKeyboard = (event: KeyboardEvent) => {
       if (["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "].includes(event.key)) unlock();
     };
-    lockedOutlineId.current = null;
-    setActiveOutlineId(sectionIds[0] ?? "system-overview");
-    update();
+    const requestedSection = readHashRoute().view === view ? readHashRoute().section : undefined;
+    lockedOutlineId.current = requestedSection && sectionIds.includes(requestedSection) ? requestedSection : null;
+    setActiveOutlineId(lockedOutlineId.current ?? sectionIds[0] ?? "system-overview");
+    if (lockedOutlineId.current) {
+      const scrollToRequestedSection = () => {
+        const id = lockedOutlineId.current;
+        if (!id) return false;
+        const section = document.getElementById(id);
+        if (!section) return false;
+        section.scrollIntoView({ behavior: "auto", block: "start" });
+        return true;
+      };
+      navigationFrame = window.requestAnimationFrame(() => {
+        if (scrollToRequestedSection()) return;
+        sectionObserver = new MutationObserver(() => {
+          if (!scrollToRequestedSection()) return;
+          sectionObserver?.disconnect();
+          sectionObserver = null;
+        });
+        sectionObserver.observe(scroller, { childList: true, subtree: true });
+      });
+    } else {
+      update();
+    }
     scroller.addEventListener("scroll", schedule, { passive: true });
     scroller.addEventListener("wheel", unlock, { passive: true });
     scroller.addEventListener("touchstart", unlock, { passive: true });
@@ -1587,19 +1627,22 @@ function PageOutline({ view, onNavigate }: { view: ViewId; onNavigate: (id: View
       window.removeEventListener("keydown", unlockFromKeyboard);
       window.removeEventListener("resize", schedule);
       if (frame) window.cancelAnimationFrame(frame);
+      if (navigationFrame) window.cancelAnimationFrame(navigationFrame);
+      sectionObserver?.disconnect();
     };
   }, [itemKey, view]);
 
   const scrollTo = (id: string) => {
     lockedOutlineId.current = id;
     setActiveOutlineId(id);
+    window.history.replaceState(null, "", `#${view}/${id}`);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
   const activeIndex = Math.max(0, items.findIndex((item) => item.id === activeOutlineId));
   return <aside className="system-outline system-outline--public" aria-label="Page outline"><div className="system-outline__section"><div className="system-outline__eyebrow"><span>On this page</span><small aria-live="polite">{String(activeIndex + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}</small></div>{items.map((item) => <button type="button" key={item.id} data-active={item.id === activeOutlineId || undefined} aria-current={item.id === activeOutlineId ? "location" : undefined} onClick={() => scrollTo(item.id)}>{item.label}</button>)}</div>{view !== "licensing" && <div className="system-outline__section system-outline__actions"><button type="button" onClick={() => onNavigate("licensing")}><ShieldCheck aria-hidden="true" />MIT license</button></div>}</aside>;
 }
 
-function ConsolidatedDesignSystemMode({ view, onSelect, theme, onThemeChange }: { view: ViewId; onSelect: (id: ViewId) => void; theme: Theme; onThemeChange: (theme: Theme) => void }) {
+function ConsolidatedDesignSystemMode({ view, onSelect, onHome, theme, onThemeChange }: { view: ViewId; onSelect: (id: ViewId) => void; onHome: () => void; theme: Theme; onThemeChange: (theme: Theme) => void }) {
   const publicDoc = isPublicDocId(view) ? publicDocItems.find((item) => item.id === view)! : undefined;
   const foundationId = view.startsWith("foundation-") ? view.replace("foundation-", "") as FoundationId : undefined;
   const foundations = view === "foundations" || Boolean(foundationId);
@@ -1615,24 +1658,41 @@ function ConsolidatedDesignSystemMode({ view, onSelect, theme, onThemeChange }: 
   const guidance = componentGuidance[activeId];
   const filtered = components.filter((component) => `${component.name} ${component.group} ${component.description}`.toLocaleLowerCase().includes(filter.trim().toLocaleLowerCase()));
   const filteredPatterns = patterns.filter((pattern) => `${pattern.name} ${pattern.intent} ${pattern.description}`.toLocaleLowerCase().includes(filter.trim().toLocaleLowerCase()));
-  const filteredDocs = publicDocItems.filter((doc) => `${doc.label} ${doc.group} ${doc.description}`.toLocaleLowerCase().includes(filter.trim().toLocaleLowerCase()));
+  const filteredDocs = publicDocItems.filter((doc) => `${doc.label} ${doc.group} ${doc.description} ${publicDocOutlines[doc.id].map((item) => item.label).join(" ")}`.toLocaleLowerCase().includes(filter.trim().toLocaleLowerCase()));
   const filteredFoundations = foundationItems.filter((foundation) => `${foundation.label} ${foundation.description}`.toLocaleLowerCase().includes(filter.trim().toLocaleLowerCase()));
   const groups = [...new Set(filtered.map((component) => component.group))];
+  const foundation = foundationItems.find((item) => item.id === foundationId);
+  const pageTitle = publicDoc?.label ?? foundation?.label ?? activePattern?.name ?? (view === "foundations" ? "Foundations" : view === "patterns" ? "Interaction patterns" : activeComponent.name);
+  const pageDescription = publicDoc?.description ?? foundation?.description ?? activePattern?.description ?? (view === "foundations" ? "Color, type, spacing, and motion tokens." : view === "patterns" ? "Patterns for editing, acting, inspecting, and recovery." : activeComponent.description);
 
-  const copyViewLink = () => {
-    void copyText(window.location.href).then((copied) => copied ? toast("View link copied") : toast.error("Could not copy view link"));
+  useLayoutEffect(() => {
+    document.title = `${pageTitle} — Teum`;
+    document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute("content", pageDescription);
+  }, [pageDescription, pageTitle]);
+
+  useLayoutEffect(() => {
+    const scroller = document.querySelector<HTMLElement>(".system-detail__scroll");
+    if (!scroller) return;
+    if (typeof scroller.scrollTo === "function") scroller.scrollTo({ top: 0, behavior: "auto" });
+    else scroller.scrollTop = 0;
+  }, [view]);
+
+  const focusDocumentOnCompactNavigation = () => {
+    if (!window.matchMedia("(max-width: 820px)").matches) return;
+    window.requestAnimationFrame(() => window.requestAnimationFrame(() => document.getElementById("teum-documentation-content")?.focus({ preventScroll: true })));
   };
-
   const openComponent = (id: ComponentId = activeId) => {
     setNavigationOpen(false);
     setExpandedSections({ "getting-started": false, foundations: false, components: true, patterns: false, quality: false, project: false });
     onSelect(id);
+    focusDocumentOnCompactNavigation();
   };
   const navigate = (id: ViewId) => {
     setNavigationOpen(false);
     const nextSection: NavSectionId = isPublicDocId(id) ? publicDocItems.find((item) => item.id === id)?.group === "Getting started" ? "getting-started" : publicDocItems.find((item) => item.id === id)?.group === "Quality" ? "quality" : "project" : id === "foundations" || id.startsWith("foundation-") ? "foundations" : id === "patterns" || patterns.some((pattern) => pattern.id === id) ? "patterns" : "components";
     setExpandedSections({ "getting-started": false, foundations: false, components: false, patterns: false, quality: false, project: false, [nextSection]: true });
     onSelect(id);
+    focusDocumentOnCompactNavigation();
   };
   const openPattern = (id: PatternId) => navigate(id);
   const openFoundation = (id: FoundationId) => navigate(`foundation-${id}`);
@@ -1654,7 +1714,7 @@ function ConsolidatedDesignSystemMode({ view, onSelect, theme, onThemeChange }: 
           window.requestAnimationFrame(() => document.querySelector<HTMLInputElement>(".system-nav--consolidated .system-component-search input")?.focus());
           return;
         }
-        document.querySelector<HTMLInputElement>(".system-topbar__search input")?.focus();
+        document.querySelector<HTMLInputElement>(".system-component-search--global input")?.focus();
       }
     };
     window.addEventListener("keydown", onKeyDown);
@@ -1664,8 +1724,10 @@ function ConsolidatedDesignSystemMode({ view, onSelect, theme, onThemeChange }: 
   return (
     <div className="system-stage system-stage--consolidated">
       <div className="system-window system-window--consolidated">
+        <a className="teum-skip-link" href="#teum-documentation-content" onClick={(event) => { event.preventDefault(); document.getElementById("teum-documentation-content")?.focus({ preventScroll: true }); }}>Skip to documentation</a>
+        <span className="teum-sr-only" role="status" aria-live="polite" aria-atomic="true">{pageTitle} page loaded</span>
         <aside className="system-nav system-nav--consolidated" aria-label="Design system navigation" data-open={navigationOpen || undefined}>
-          <div className="system-brand"><span className="system-brand__mark"><Command weight="bold" /></span><strong>Teum</strong><span className="system-brand__divider">/</span><span>Docs</span><button type="button" className="system-nav__close" aria-label="Close navigation" onClick={() => setNavigationOpen(false)}><X aria-hidden="true" /></button></div>
+          <div className="system-brand"><a className="system-brand__home" href="/" aria-label="Teum home" onClick={(event) => { event.preventDefault(); onHome(); }}><span className="system-brand__mark"><Command weight="bold" /></span><strong>Teum</strong></a><button type="button" className="system-nav__close" aria-label="Close navigation" onClick={() => setNavigationOpen(false)}><X aria-hidden="true" /></button></div>
           <label className="system-component-search system-component-search--global"><MagnifyingGlass aria-hidden="true" /><input value={filter} onChange={(event) => setFilter(event.target.value)} placeholder="Search docs…" aria-label="Search documentation" /><kbd>⌘K</kbd></label>
           <div className="system-nav__scroll">
             <nav className="system-nav__items" aria-label="System sections">
@@ -1674,7 +1736,7 @@ function ConsolidatedDesignSystemMode({ view, onSelect, theme, onThemeChange }: 
                 {filteredDocs.length > 0 && <div className="system-component-group"><span>Documentation</span>{filteredDocs.map((doc) => <NavigationLeaf key={doc.id} id={doc.id} label={doc.label} selected={doc.id === publicDoc?.id} onSelect={() => navigate(doc.id)} />)}</div>}
                 {filteredFoundations.length > 0 && <div className="system-component-group"><span>Foundations</span>{filteredFoundations.map((foundation) => <NavigationLeaf key={foundation.id} id={`foundation-${foundation.id}`} label={foundation.label} selected={foundation.id === foundationId} onSelect={() => openFoundation(foundation.id)} />)}</div>}
                 {filtered.length > 0 && groups.map((group) => <div className="system-component-group" key={group}><span>{group}</span>{filtered.filter((component) => component.group === group).map((component) => <a href={`#${component.id}`} key={component.id} data-selected={component.id === activeId && componentsMode || undefined} aria-current={component.id === activeId && componentsMode ? "page" : undefined} onClick={(event) => { event.preventDefault(); openComponent(component.id); }}><strong>{component.name}</strong></a>)}</div>)}
-                {filteredPatterns.length > 0 && <div className="system-component-group"><span>Patterns</span>{filteredPatterns.map((pattern) => <NavigationLeaf key={pattern.id} id={pattern.id} label={pattern.name} selected={pattern.id === activePattern?.id} meta="Authored" onSelect={() => openPattern(pattern.id)} />)}</div>}
+                {filteredPatterns.length > 0 && <div className="system-component-group"><span>Patterns</span>{filteredPatterns.map((pattern) => <NavigationLeaf key={pattern.id} id={pattern.id} label={pattern.name} selected={pattern.id === activePattern?.id} onSelect={() => openPattern(pattern.id)} />)}</div>}
                 {!filteredDocs.length && !filteredFoundations.length && !filtered.length && !filteredPatterns.length && <div className="system-component-empty">No matching documentation</div>}
               </div> : <>
                 <NavigationSection label="Getting started" expanded={expandedSections["getting-started"]} active={activeSection === "getting-started"} onToggle={() => toggleSection("getting-started")}>
@@ -1686,45 +1748,43 @@ function ConsolidatedDesignSystemMode({ view, onSelect, theme, onThemeChange }: 
                 </NavigationSection>
 
                 <NavigationSection label="Components" count={components.length} expanded={expandedSections.components} active={activeSection === "components"} onToggle={() => toggleSection("components")}>
-                  <div className="system-component-list system-component-list--catalog" role="region" aria-label="Component catalog">{[...new Set(components.map((component) => component.group))].map((group) => <div className="system-component-group" key={group}><span>{group}</span>{components.filter((component) => component.group === group).map((component) => {
-                    const authored = "contract" in component && component.contract;
-                    return <a href={`#${component.id}`} key={component.id} data-selected={component.id === activeId && componentsMode || undefined} aria-current={component.id === activeId && componentsMode ? "page" : undefined} onClick={(event) => { event.preventDefault(); openComponent(component.id); }}><strong>{component.name}</strong>{authored && <em>Authored</em>}</a>;
-                  })}</div>)}</div>
+                  <div className="system-component-list system-component-list--catalog" role="region" aria-label="Component catalog">{[...new Set(components.map((component) => component.group))].map((group) => <div className="system-component-group" key={group}><span>{group}</span>{components.filter((component) => component.group === group).map((component) => <a href={`#${component.id}`} key={component.id} data-selected={component.id === activeId && componentsMode || undefined} aria-current={component.id === activeId && componentsMode ? "page" : undefined} onClick={(event) => { event.preventDefault(); openComponent(component.id); }}><strong>{component.name}</strong></a>)}</div>)}</div>
                 </NavigationSection>
 
                 <NavigationSection label="Patterns" count={patterns.length} expanded={expandedSections.patterns} active={activeSection === "patterns"} onToggle={() => toggleSection("patterns")}>
-                  <div className="system-component-list" role="region" aria-label="Pattern catalog"><div className="system-component-group"><NavigationLeaf id="patterns" label="Overview" selected={view === "patterns"} onSelect={() => navigate("patterns")} />{patterns.map((pattern) => <NavigationLeaf key={pattern.id} id={pattern.id} label={pattern.name} selected={pattern.id === activePattern?.id} meta="Authored" onSelect={() => openPattern(pattern.id)} />)}</div></div>
+                  <div className="system-component-list" role="region" aria-label="Pattern catalog"><div className="system-component-group"><NavigationLeaf id="patterns" label="Overview" selected={view === "patterns"} onSelect={() => navigate("patterns")} />{patterns.map((pattern) => <NavigationLeaf key={pattern.id} id={pattern.id} label={pattern.name} selected={pattern.id === activePattern?.id} onSelect={() => openPattern(pattern.id)} />)}</div></div>
                 </NavigationSection>
 
                 {publicDocGroups.filter((group) => group.id === "quality" || group.id === "project").map((group) => <NavigationSection key={group.id} label={group.label} expanded={expandedSections[group.id]} active={activeSection === group.id} onToggle={() => toggleSection(group.id)}><div className="system-component-list" role="region" aria-label={`${group.label} documentation`}><div className="system-component-group">{publicDocItems.filter((doc) => doc.group === group.label).map((doc) => <NavigationLeaf key={doc.id} id={doc.id} label={doc.label} selected={doc.id === publicDoc?.id} onSelect={() => navigate(doc.id)} />)}</div></div></NavigationSection>)}
               </>}
             </nav>
           </div>
-          <div className="system-nav__footer"><span><Package aria-hidden="true" /> teum</span><button type="button" onClick={() => navigate("licensing")}>MIT licensed</button></div>
+          <div className="system-nav__footer"><a href="https://www.minwookshin.com/" target="_blank" rel="noreferrer">made by minwook</a><button type="button" onClick={() => navigate("licensing")}>MIT licensed</button></div>
         </aside>
         {navigationOpen && <button type="button" className="system-nav-scrim" aria-label="Close navigation" onClick={() => setNavigationOpen(false)} />}
 
         <header className="system-topbar system-topbar--consolidated" aria-label="Workspace actions">
-          <div className="system-topbar__location"><button type="button" className="system-nav__open" aria-label="Open navigation" onClick={() => setNavigationOpen(true)}><List aria-hidden="true" /></button><label className="system-component-search system-topbar__search"><MagnifyingGlass aria-hidden="true" /><input value={filter} onChange={(event) => setFilter(event.target.value)} placeholder="Search components and docs…" aria-label="Search components and documentation" /><kbd>⌘K</kbd></label></div>
+          <div className="system-topbar__location"><button type="button" className="system-nav__open" aria-label="Open navigation" onClick={() => setNavigationOpen(true)}><List aria-hidden="true" /></button></div>
+          <a className="system-topbar__title" href="#installation" onClick={(event) => { event.preventDefault(); navigate("installation"); }}>Documentation</a>
           <div className="system-topbar__actions">
-            <button type="button" className="theme-toggle" data-theme={theme} aria-label={"Current theme: " + theme + ". Switch to " + (theme === "light" ? "dark" : "light") + " theme"} onClick={() => onThemeChange(theme === "light" ? "dark" : "light")}>{theme === "light" ? <Sun aria-hidden="true" /> : <Moon aria-hidden="true" />}</button>
-            <Button variant="ghost" size="small" leadingIcon={<LinkSimple />} aria-label="Copy page link" onClick={copyViewLink}>Copy link</Button>
+            <Tooltip><TooltipTrigger render={<a className="system-icon-action" href="https://github.com/minwookshin/teum" target="_blank" rel="noreferrer" aria-label="View Teum on GitHub"><GithubLogo weight="fill" aria-hidden="true" /></a>} /><TooltipContent>GitHub</TooltipContent></Tooltip>
+            <Tooltip><TooltipTrigger render={<button type="button" className="theme-toggle" data-theme={theme} aria-label={"Current theme: " + theme + ". Switch to " + (theme === "light" ? "dark" : "light") + " theme"} onClick={() => onThemeChange(theme === "light" ? "dark" : "light")}>{theme === "light" ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}</button>} /><TooltipContent>{theme === "light" ? "Dark mode" : "Light mode"}</TooltipContent></Tooltip>
           </div>
         </header>
 
         <main className="system-detail system-detail--consolidated">
-          <div className="system-detail__scroll" tabIndex={0} aria-label="Documentation content">
-            {publicDoc ? <PublicDocPage id={publicDoc.id} onNavigate={(id) => navigate(id as ViewId)} /> : foundations ? foundationId ? <FoundationDetail id={foundationId} onBack={() => navigate("foundations")} /> : <FoundationOverview onSelect={onSelect} /> : patternsMode ? activePattern ? <PatternDetail pattern={activePattern} /> : <PatternsOverview onSelect={openPattern} /> : <div className="system-detail__content system-reference-page system-component-page">
+          <div id="teum-documentation-content" className="system-detail__scroll" tabIndex={0} role="region" aria-label="Documentation content">
+            {publicDoc ? <Suspense fallback={<div className="system-detail__content public-doc-page system-reference-page public-doc-loading" aria-hidden="true">Loading documentation…</div>}><PublicDocPage id={publicDoc.id} onNavigate={(id) => navigate(id as ViewId)} /></Suspense> : foundations ? foundationId ? <FoundationDetail id={foundationId} onBack={() => navigate("foundations")} /> : <FoundationOverview onSelect={onSelect} /> : patternsMode ? activePattern ? <PatternDetail pattern={activePattern} /> : <PatternsOverview onSelect={openPattern} /> : <div className="system-detail__content system-reference-page system-component-page">
               <section className="system-overview" id="system-overview">
                 <h1>{activeComponent.name}</h1>
                 <p>{activeComponent.description}</p>
               </section>
 
               <div className="system-doc-panel system-doc-panel--sequential" id="system-content">
-                <section className="system-section-heading" id="system-preview"><div><span>Preview</span><h2>Default composition</h2><p>Shown at the density and context the component needs. Overlays stay closed until their trigger is pressed.</p></div></section>
+                <section className="system-section-heading" id="system-preview"><div><h2>Preview</h2></div></section>
                 <ComponentLiveExample id={activeId} />
 
-                <section className="system-section-heading system-section-heading--variants" id="system-examples"><div><span>Examples</span><h2>Variants and product recipes</h2><p>Real composition, content pressure, size, and operational behavior.</p></div></section>
+                <section className="system-section-heading system-section-heading--variants" id="system-examples"><div><h2>Examples</h2></div></section>
                 <div className="system-specimens"><DemoFor id={activeId} /></div>
 
                 <ComponentStateCoverage id={activeId} states={guidance.states} />
@@ -1759,7 +1819,7 @@ function PatternsOverview({ onSelect }: { onSelect: (id: PatternId) => void }) {
           <div className="pattern-index__meta"><small>Built from</small><strong>{pattern.components.join(", ")}</strong><ArrowRight aria-hidden="true" /></div>
         </a>)}
       </div>
-      <footer className="system-footer"><span>Teum</span><span>4 authored patterns</span></footer>
+      <footer className="system-footer"><span>Teum</span><span>4 patterns</span></footer>
     </div>
   );
 }
@@ -1806,7 +1866,7 @@ function PatternDetail({ pattern }: { pattern: (typeof patterns)[number] }) {
         <p>{pattern.description}</p>
       </section>
 
-      <section className="system-section-heading" id="pattern-live"><div><span>Live pattern</span><h2>{pattern.outcome}</h2><p>Complete the task sequence, interrupt it, then replay it before reading the contract.</p></div></section>
+      <section className="system-section-heading" id="pattern-live"><div><h2>{pattern.outcome}</h2></div></section>
       <PatternPlayground pattern={pattern} />
 
       <section className="pattern-guidance" id="pattern-guidance" aria-label={`${pattern.name} guidance`}>
@@ -1820,18 +1880,18 @@ function PatternDetail({ pattern }: { pattern: (typeof patterns)[number] }) {
         <div><span>Built from</span><h2>Components stay visible behind the behavior</h2></div>
         <div>{pattern.components.map((component) => <span key={component}>{component}</span>)}</div>
       </section>
-      <footer className="system-footer"><span>Teum</span><span>Authored behavior contract</span></footer>
+      <footer className="system-footer"><span>Teum</span><span>Interaction pattern</span></footer>
     </div>
   );
 }
 
 function App() {
   const getInitial = (): ViewId => {
-    const hash = window.location.hash.slice(1) as ViewId;
-    if (hash === "product") return "introduction";
-    if (isPublicDocId(hash) || hash === "foundations" || hash === "patterns" || foundationItems.some((item) => `foundation-${item.id}` === hash)) return hash;
-    if (patterns.some((pattern) => pattern.id === hash)) return hash;
-    return components.some((component) => component.id === hash) ? hash : "introduction";
+    const hash = readHashRoute().view;
+    if (!hash || hash === "introduction" || hash === "product" || hash === "home") return "home";
+    if (isPublicDocId(hash) || hash === "foundations" || hash === "patterns" || foundationItems.some((item) => `foundation-${item.id}` === hash)) return hash as ViewId;
+    if (patterns.some((pattern) => pattern.id === hash)) return hash as PatternId;
+    return components.some((component) => component.id === hash) ? hash as ComponentId : "home";
   };
   const [view, setView] = useState<ViewId>(getInitial);
   const [theme, setTheme] = useState<Theme>(() => {
@@ -1857,8 +1917,8 @@ function App() {
   }, []);
 
   useLayoutEffect(() => {
-    const hash = window.location.hash.slice(1);
-    if (!hash || hash === "product") window.history.replaceState(null, "", `#${view}`);
+    const hash = readHashRoute().view;
+    if (hash === "introduction" || hash === "product" || hash === "home") window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
   }, []);
 
   useLayoutEffect(() => {
@@ -1875,14 +1935,19 @@ function App() {
 
   const select = (id: ViewId) => {
     setView(id);
-    window.history.replaceState(null, "", `#${id}`);
+    window.history.replaceState(null, "", id === "home" ? `${window.location.pathname}${window.location.search}` : `#${id}`);
   };
 
   useEffect(() => {
     const onHashChange = () => {
-      const next = window.location.hash.slice(1) as ViewId;
-      if (isPublicDocId(next) || next === "foundations" || next === "patterns" || next === "product" || foundationItems.some((item) => `foundation-${item.id}` === next) || components.some((item) => item.id === next) || patterns.some((pattern) => pattern.id === next)) {
-        setView(next === "product" ? "introduction" : next);
+      const next = readHashRoute().view;
+      if (!next || next === "introduction" || next === "product" || next === "home") {
+        setView("home");
+        if (next) window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+        return;
+      }
+      if (isPublicDocId(next) || next === "foundations" || next === "patterns" || foundationItems.some((item) => `foundation-${item.id}` === next) || components.some((item) => item.id === next) || patterns.some((pattern) => pattern.id === next)) {
+        setView(next as ViewId);
       }
     };
     window.addEventListener("hashchange", onHashChange);
@@ -1892,7 +1957,33 @@ function App() {
   return (
     <TooltipProvider>
       <UndoStackProvider>
-        <ConsolidatedDesignSystemMode view={view} onSelect={select} theme={theme} onThemeChange={setTheme} />
+        {view === "home" ? <LandingPage theme={theme} onThemeChange={setTheme} onOpenDocumentation={() => select("installation")} onOpenComponents={() => select("button")} onOpenPatterns={() => select("patterns")} /> : <ConsolidatedDesignSystemMode view={view} onSelect={select} onHome={() => select("home")} theme={theme} onThemeChange={setTheme} />}
+        <Toaster />
+      </UndoStackProvider>
+    </TooltipProvider>
+  );
+}
+
+export function DocumentationApp({ view, onSelect, onHome, theme, onThemeChange }: {
+  view: string;
+  onSelect: (id: ViewId) => void;
+  onHome: () => void;
+  theme: Theme;
+  onThemeChange: (theme: Theme) => void;
+}) {
+  const normalizedView: ViewId = isPublicDocId(view)
+    || view === "foundations"
+    || view === "patterns"
+    || foundationItems.some((item) => `foundation-${item.id}` === view)
+    || patterns.some((pattern) => pattern.id === view)
+    || components.some((component) => component.id === view)
+    ? view as ViewId
+    : "installation";
+
+  return (
+    <TooltipProvider>
+      <UndoStackProvider>
+        <ConsolidatedDesignSystemMode view={normalizedView} onSelect={onSelect} onHome={onHome} theme={theme} onThemeChange={onThemeChange} />
         <Toaster />
       </UndoStackProvider>
     </TooltipProvider>

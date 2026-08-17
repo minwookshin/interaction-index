@@ -23,13 +23,17 @@ const excludedPrefixes = [
 
 const isExcluded = (path) => excludedPrefixes.some((prefix) => path === prefix.slice(0, -1) || path.startsWith(prefix));
 
-async function run(command, args, cwd = fixture) {
-  const result = await exec(command, args, { cwd, maxBuffer: 128 * 1024 * 1024 });
+async function run(command, args, cwd = fixture, env = process.env) {
+  const result = await exec(command, args, { cwd, env, maxBuffer: 128 * 1024 * 1024 });
   process.stdout.write(result.stdout);
   process.stderr.write(result.stderr);
 }
 
 try {
+  await exec(git, ["clone", "--no-hardlinks", "--no-checkout", "--quiet", root, fixture], {
+    cwd: work,
+    maxBuffer: 64 * 1024 * 1024,
+  });
   const listed = await exec(git, ["ls-files", "--cached", "--others", "--exclude-standard", "-z"], {
     cwd: root,
     encoding: "buffer",
@@ -58,7 +62,21 @@ try {
   const packageJson = JSON.parse(await readFile(resolve(fixture, "package.json"), "utf8"));
   console.log(`[clean-room] copied ${files.length} candidate files for ${packageJson.version}`);
   await run(npm, ["ci", "--no-audit", "--no-fund"]);
-  await run(npm, ["run", "verify:clean"]);
+  // The local no-hardlinks clone carries the history required by immutable
+  // registry checks without exposing the owner's .git directory to consumer
+  // fixtures that initialize their own repositories.
+  const cleanSteps = packageJson.scripts["verify:clean"].split(" && ").map((command) => {
+    const match = command.match(/^npm run ([a-z0-9:-]+)$/);
+    if (!match) throw new Error(`[clean-room] unsupported verification command: ${command}`);
+    return match[1];
+  });
+  for (const step of cleanSteps) {
+    if (step === "test") {
+      await run(npm, ["exec", "--", "vitest", "run", "--maxWorkers=1"]);
+    } else {
+      await run(npm, ["run", step]);
+    }
+  }
   console.log(`[clean-room] ${packageJson.version} passed a fresh npm ci, build, registry, package, consumer, dogfood, and Sites verification`);
 } finally {
   await rm(work, { recursive: true, force: true });

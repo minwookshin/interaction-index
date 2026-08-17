@@ -1,0 +1,23 @@
+:root {
+  --teum-radius-control: 9px;
+  background: var(--teum-bg-canvas);
+  color: var(--teum-fg-default);
+  font-family: var(--teum-font-ui);
+}
+
+* { box-sizing: border-box; }
+body { min-width: 320px; min-height: 100vh; margin: 0; }
+
+.quickstart-shell {
+  display: grid;
+  min-height: 100vh;
+  place-content: center;
+  gap: 12px;
+  padding: 24px;
+}
+
+.quickstart-shell p,
+.quickstart-shell h1 { margin: 0; }
+.quickstart-shell p { color: var(--teum-fg-muted); font-size: 13px; }
+.quickstart-shell h1 { font-size: 28px; letter-spacing: -0.035em; }
+.quickstart-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }

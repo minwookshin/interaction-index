@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/verify-runtime-performance.mjs",
+  "generatedAt": "2026-08-17T06:12:35.908Z",
+  "releaseVersion": "0.1.0-rc.22",
+  "status": "passed",
+  "mode": "local-production-preview",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "reducedMotion": true,
+  "budgets": {
+    "landingFcpMs": 1500,
+    "landingLcpMs": 2500,
+    "documentationFcpMs": 1800,
+    "documentationLcpMs": 2500,
+    "cls": 0.05,
+    "longestTaskMs": 250,
+    "documentationTransitionMs": 1500,
+    "sharedDetailSelectionMs": 750,
+    "dialogOpenMs": 750
+  },
+  "measurements": {
+    "landing": {
+      "fcpMs": 148,
+      "lcpMs": 148,
+      "cls": 0.0002,
+      "longestTaskMs": 0,
+      "longTaskCount": 0,
+      "domContentLoadedMs": 64,
+      "loadMs": 64,
+      "resourceRequests": 5,
+      "resourceTransferBytes": 135546
+    },
+    "documentation": {
+      "fcpMs": 124,
+      "lcpMs": 440,
+      "cls": 0.0132,
+      "longestTaskMs": 0,
+      "longTaskCount": 0,
+      "domContentLoadedMs": 66,
+      "loadMs": 66,
+      "resourceRequests": 13,
+      "resourceTransferBytes": 468061
+    },
+    "documentationTransitionMs": 388,
+    "interactions": {
+      "sharedDetailSelectionMs": 5,
+      "dialogOpenMs": 10,
+      "longestTaskMs": 67
+    }
+  },
+  "environment": {
+    "platform": "darwin",
+    "architecture": "arm64",
+    "node": "v22.14.0",
+    "browser": "bundled Chromium"
+  },
+  "externalGates": [
+    "production-field-core-web-vitals",
+    "real-network-and-device-latency",
+    "production-rum-inp"
+  ]
+}

@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/context-switcher.css";
 import { CaretUpDown, Check } from "@phosphor-icons/react";

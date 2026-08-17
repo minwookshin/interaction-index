@@ -42,7 +42,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ["Components", ["Controls", "Overlays", "Navigation", "Disclosure", "Feedback", "Data display", "Interaction"]],
+        order: ["Components", ["Controls", "Overlays", "Navigation", "Disclosure", "Feedback", "Data display", "Interaction"], "Product", ["Analytics"]],
       },
     },
   },

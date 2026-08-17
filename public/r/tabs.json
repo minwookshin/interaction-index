@@ -11,7 +11,7 @@
   "files": [
     {
       "path": "registry/components/ui/tabs.tsx",
-      "content": "import \"../../styles/teum-base.css\";\nimport \"../../styles/components/tabs.css\";\nimport { Tabs as TabsPrimitive } from \"@base-ui/react/tabs\";\nimport { cn } from \"../../lib/cn\";\n\nexport function Tabs({ className, ...props }: TabsPrimitive.Root.Props) {\n  return <TabsPrimitive.Root className={cn(\"teum-tabs\", className)} {...props} />;\n}\n\nexport function TabsList({ className, activateOnFocus = true, ...props }: TabsPrimitive.List.Props) {\n  return <TabsPrimitive.List className={cn(\"teum-tabs__list\", className)} activateOnFocus={activateOnFocus} {...props} />;\n}\n\nexport function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {\n  return <TabsPrimitive.Tab className={cn(\"teum-tabs__trigger\", className)} {...props} />;\n}\n\nexport function TabsContent({ className, ...props }: TabsPrimitive.Panel.Props) {\n  return <TabsPrimitive.Panel className={cn(\"teum-tabs__panel\", className)} {...props} />;\n}\n",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/tabs.css\";\nimport { Tabs as TabsPrimitive } from \"@base-ui/react/tabs\";\nimport { cn } from \"../../lib/cn\";\n\nexport function Tabs({ className, ...props }: TabsPrimitive.Root.Props) {\n  return <TabsPrimitive.Root className={cn(\"teum-tabs\", className)} {...props} />;\n}\n\nexport function TabsList({ className, activateOnFocus = true, ...props }: TabsPrimitive.List.Props) {\n  return <TabsPrimitive.List className={cn(\"teum-tabs__list\", className)} activateOnFocus={activateOnFocus} {...props} />;\n}\n\nexport function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {\n  return <TabsPrimitive.Tab className={cn(\"teum-tabs__trigger\", className)} {...props} />;\n}\n\nexport function TabsContent({ className, ...props }: TabsPrimitive.Panel.Props) {\n  return <TabsPrimitive.Panel className={cn(\"teum-tabs__panel\", className)} {...props} />;\n}\n",
       "type": "registry:ui",
       "target": "components/ui/tabs.tsx"
     },
@@ -22,5 +22,13 @@
       "target": "styles/components/tabs.css"
     }
   ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/tabs",
+      "useWhen": "Peer views of the same object can switch without navigation.",
+      "avoidWhen": "The sections form a sequence or users need to compare them simultaneously."
+    }
+  },
   "type": "registry:ui"
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/search-input.css";
 import { MagnifyingGlass, X } from "@phosphor-icons/react";

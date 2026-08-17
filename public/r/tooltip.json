@@ -11,7 +11,7 @@
   "files": [
     {
       "path": "registry/components/ui/tooltip.tsx",
-      "content": "import \"../../styles/teum-base.css\";\nimport \"../../styles/components/tooltip.css\";\nimport { Tooltip as TooltipPrimitive } from \"@base-ui/react/tooltip\";\nimport { cn } from \"../../lib/cn\";\n\nexport function TooltipProvider({ delay = 350, ...props }: TooltipPrimitive.Provider.Props) {\n  return <TooltipPrimitive.Provider delay={delay} {...props} />;\n}\n\nexport function Tooltip(props: TooltipPrimitive.Root.Props) {\n  return <TooltipPrimitive.Root data-slot=\"tooltip\" {...props} />;\n}\n\nexport function TooltipTrigger(props: TooltipPrimitive.Trigger.Props) {\n  return <TooltipPrimitive.Trigger data-slot=\"tooltip-trigger\" {...props} />;\n}\n\nexport type TooltipContentProps = TooltipPrimitive.Popup.Props &\n  Pick<TooltipPrimitive.Positioner.Props, \"align\" | \"alignOffset\" | \"side\" | \"sideOffset\">;\n\nexport function TooltipContent({\n  className,\n  side = \"top\",\n  sideOffset = 6,\n  align = \"center\",\n  alignOffset = 0,\n  children,\n  ...props\n}: TooltipContentProps) {\n  return (\n    <TooltipPrimitive.Portal>\n      <TooltipPrimitive.Positioner\n        className=\"teum-positioner\"\n        side={side}\n        sideOffset={sideOffset}\n        align={align}\n        alignOffset={alignOffset}\n      >\n        <TooltipPrimitive.Popup className={cn(\"teum-tooltip\", className)} {...props}>\n          {children}\n          <TooltipPrimitive.Arrow className=\"teum-tooltip__arrow\" />\n        </TooltipPrimitive.Popup>\n      </TooltipPrimitive.Positioner>\n    </TooltipPrimitive.Portal>\n  );\n}\n",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/tooltip.css\";\nimport { Tooltip as TooltipPrimitive } from \"@base-ui/react/tooltip\";\nimport { cn } from \"../../lib/cn\";\n\nexport function TooltipProvider({ delay = 350, ...props }: TooltipPrimitive.Provider.Props) {\n  return <TooltipPrimitive.Provider delay={delay} {...props} />;\n}\n\nexport function Tooltip(props: TooltipPrimitive.Root.Props) {\n  return <TooltipPrimitive.Root data-slot=\"tooltip\" {...props} />;\n}\n\nexport function TooltipTrigger(props: TooltipPrimitive.Trigger.Props) {\n  return <TooltipPrimitive.Trigger data-slot=\"tooltip-trigger\" {...props} />;\n}\n\nexport type TooltipContentProps = TooltipPrimitive.Popup.Props &\n  Pick<TooltipPrimitive.Positioner.Props, \"align\" | \"alignOffset\" | \"side\" | \"sideOffset\">;\n\nexport function TooltipContent({\n  className,\n  side = \"top\",\n  sideOffset = 6,\n  align = \"center\",\n  alignOffset = 0,\n  children,\n  ...props\n}: TooltipContentProps) {\n  return (\n    <TooltipPrimitive.Portal>\n      <TooltipPrimitive.Positioner\n        className=\"teum-positioner\"\n        side={side}\n        sideOffset={sideOffset}\n        align={align}\n        alignOffset={alignOffset}\n      >\n        <TooltipPrimitive.Popup className={cn(\"teum-tooltip\", className)} {...props}>\n          {children}\n          <TooltipPrimitive.Arrow className=\"teum-tooltip__arrow\" />\n        </TooltipPrimitive.Popup>\n      </TooltipPrimitive.Positioner>\n    </TooltipPrimitive.Portal>\n  );\n}\n",
       "type": "registry:ui",
       "target": "components/ui/tooltip.tsx"
     },
@@ -22,5 +22,13 @@
       "target": "styles/components/tooltip.css"
     }
   ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/tooltip",
+      "useWhen": "A concise label clarifies an otherwise understandable control.",
+      "avoidWhen": "The content is required to complete the task or contains actions."
+    }
+  },
   "type": "registry:ui"
 }

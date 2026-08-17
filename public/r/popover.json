@@ -11,7 +11,7 @@
   "files": [
     {
       "path": "registry/components/ui/popover.tsx",
-      "content": "import \"../../styles/teum-base.css\";\nimport \"../../styles/components/popover.css\";\nimport { Popover as PopoverPrimitive } from \"@base-ui/react/popover\";\nimport { cn } from \"../../lib/cn\";\n\nexport function Popover(props: PopoverPrimitive.Root.Props) {\n  return <PopoverPrimitive.Root data-slot=\"popover\" {...props} />;\n}\n\nexport function PopoverTrigger(props: PopoverPrimitive.Trigger.Props) {\n  return <PopoverPrimitive.Trigger data-slot=\"popover-trigger\" {...props} />;\n}\n\nexport type PopoverContentProps = PopoverPrimitive.Popup.Props &\n  Pick<PopoverPrimitive.Positioner.Props, \"align\" | \"alignOffset\" | \"side\" | \"sideOffset\">;\n\nexport function PopoverContent({\n  className,\n  side = \"bottom\",\n  sideOffset = 6,\n  align = \"start\",\n  alignOffset = 0,\n  ...props\n}: PopoverContentProps) {\n  return (\n    <PopoverPrimitive.Portal>\n      <PopoverPrimitive.Positioner className=\"teum-positioner\" side={side} sideOffset={sideOffset} align={align} alignOffset={alignOffset}>\n        <PopoverPrimitive.Popup className={cn(\"teum-popover\", className)} {...props} data-layer=\"flyout\" />\n      </PopoverPrimitive.Positioner>\n    </PopoverPrimitive.Portal>\n  );\n}\n\nexport const PopoverTitle = PopoverPrimitive.Title;\nexport const PopoverDescription = PopoverPrimitive.Description;\n",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/popover.css\";\nimport { Popover as PopoverPrimitive } from \"@base-ui/react/popover\";\nimport { cn } from \"../../lib/cn\";\n\nexport function Popover(props: PopoverPrimitive.Root.Props) {\n  return <PopoverPrimitive.Root data-slot=\"popover\" {...props} />;\n}\n\nexport function PopoverTrigger(props: PopoverPrimitive.Trigger.Props) {\n  return <PopoverPrimitive.Trigger data-slot=\"popover-trigger\" {...props} />;\n}\n\nexport type PopoverContentProps = PopoverPrimitive.Popup.Props &\n  Pick<PopoverPrimitive.Positioner.Props, \"align\" | \"alignOffset\" | \"side\" | \"sideOffset\">;\n\nexport function PopoverContent({\n  className,\n  side = \"bottom\",\n  sideOffset = 6,\n  align = \"start\",\n  alignOffset = 0,\n  ...props\n}: PopoverContentProps) {\n  return (\n    <PopoverPrimitive.Portal>\n      <PopoverPrimitive.Positioner className=\"teum-positioner\" side={side} sideOffset={sideOffset} align={align} alignOffset={alignOffset}>\n        <PopoverPrimitive.Popup className={cn(\"teum-popover\", className)} {...props} data-layer=\"flyout\" />\n      </PopoverPrimitive.Positioner>\n    </PopoverPrimitive.Portal>\n  );\n}\n\nexport const PopoverTitle = PopoverPrimitive.Title;\nexport const PopoverDescription = PopoverPrimitive.Description;\n",
       "type": "registry:ui",
       "target": "components/ui/popover.tsx"
     },
@@ -22,5 +22,13 @@
       "target": "styles/components/popover.css"
     }
   ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/popover",
+      "useWhen": "A small set of controls belongs next to its trigger.",
+      "avoidWhen": "The task requires full attention, long forms, or a destructive decision."
+    }
+  },
   "type": "registry:ui"
 }

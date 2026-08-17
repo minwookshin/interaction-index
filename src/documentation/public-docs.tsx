@@ -1,102 +1,44 @@
-import { ArrowCounterClockwise, ArrowRight, Check, CheckCircle, Circle, Copy, Cube, CursorClick, ShieldCheck, Stack } from "@phosphor-icons/react";
-import { useState, type ReactNode } from "react";
+import { Check, Copy, ShieldCheck } from "@phosphor-icons/react";
+import { lazy, Suspense, useState, type ReactNode } from "react";
 import packageManifest from "../../package.json";
+import packageContractEvidence from "../../release/package-contract.json";
+import accessibilityEvidence from "../../release/accessibility.json";
+import agentEvaluation from "../../release/agent-evaluation.json";
+import nextQuickstartManifest from "../../examples/quickstart-next/package.json";
 import { componentMaturity, maturityDefinitions, readyCriteria } from "../component-maturity";
-import { Badge, Button } from "../components/ui";
 import { copyText } from "../lib/copy-text";
-import { ProductPilot } from "./product-pilot";
+import {
+  teumDataComponentContracts,
+  teumDataRecipeContracts,
+  teumDataViewStateContract,
+} from "../lib/teum-data-contract";
+import {
+  teumAnalyticsComponentContracts,
+  teumAnalyticsRecipeContracts,
+  teumAnalyticsStateContract,
+} from "../lib/teum-analytics-contract";
+import {
+  teumProductPatternContracts,
+  teumProductPatternSystemContract,
+} from "../lib/teum-product-patterns-contract";
+import {
+  teumAgentForbiddenRules,
+  teumAgentRecipeContracts,
+  teumAgentSelectionRules,
+  teumAgentSystemContract,
+} from "../lib/teum-agent-contract";
+import { publicDocItems, type PublicDocId } from "./public-doc-metadata";
 
-export const publicDocItems = [
-  { id: "introduction", label: "Introduction", group: "Getting started", description: "The system, its principles, and the shortest path through the documentation." },
-  { id: "installation", label: "Installation", group: "Getting started", description: "Add the registry, install a component, and load the shared tokens." },
-  { id: "choosing-components", label: "Choosing components", group: "Getting started", description: "Choose adjacent primitives by task, focus, and recovery contract instead of appearance." },
-  { id: "product-pilot", label: "Product pilot", group: "Getting started", description: "A real issue-management slice that pressure-tests composition, state, continuity, and recovery." },
-  { id: "component-status", label: "Component status", group: "Quality", description: "The maturity level, promotion evidence, and migration contract for every public component." },
-  { id: "accessibility", label: "Accessibility", group: "Quality", description: "Keyboard, focus, motion, contrast, and assistive-technology expectations." },
-  { id: "browser-support", label: "Browser support", group: "Quality", description: "The support policy, automated browser targets, and manual release matrix." },
-  { id: "security", label: "Security", group: "Quality", description: "How vulnerabilities are reported, assessed, fixed, and disclosed." },
-  { id: "contributing", label: "Contributing", group: "Project", description: "The evidence and review bar required for a system change." },
-  { id: "releases", label: "Releases", group: "Project", description: "Versioning, deprecation, release evidence, and support windows." },
-  { id: "licensing", label: "Licensing", group: "Project", description: "MIT permissions, attribution, third-party notices, and commercial use." },
-] as const;
-
-export type PublicDocId = (typeof publicDocItems)[number]["id"];
-export type PublicDocGroup = (typeof publicDocItems)[number]["group"];
-
-export const publicDocOutlines: Record<PublicDocId, readonly { id: string; label: string }[]> = {
-  introduction: [
-    { id: "what-it-is", label: "What it is" },
-    { id: "system-map", label: "System map" },
-    { id: "behavior-signature", label: "Behavior signature" },
-    { id: "current-status", label: "Current status" },
-  ],
-  installation: [
-    { id: "requirements", label: "Requirements" },
-    { id: "add-registry", label: "Add the registry" },
-    { id: "plain-css-setup", label: "Plain CSS setup" },
-    { id: "add-component", label: "Add a component" },
-    { id: "source-ownership", label: "Source ownership" },
-    { id: "load-styles", label: "Load styles" },
-    { id: "theme-contract", label: "Theme contract" },
-    { id: "cascade-contract", label: "Cascade contract" },
-    { id: "integrity-contract", label: "Integrity contract" },
-    { id: "update-safely", label: "Update safely" },
-  ],
-  "choosing-components": [
-    { id: "selection", label: "Selection" },
-    { id: "temporary-surfaces", label: "Temporary surfaces" },
-    { id: "feedback-recovery", label: "Feedback and recovery" },
-    { id: "decision-rule", label: "Decision rule" },
-  ],
-  "product-pilot": [
-    { id: "pilot-workspace", label: "Live workspace" },
-    { id: "pilot-purpose", label: "Why this exists" },
-    { id: "pilot-coverage", label: "System coverage" },
-    { id: "pilot-findings", label: "API findings" },
-  ],
-  "component-status": [
-    { id: "status-model", label: "Status model" },
-    { id: "promotion-gate", label: "Promotion gate" },
-    { id: "current-matrix", label: "Current matrix" },
-    { id: "migration-contract", label: "Migration contract" },
-  ],
-  accessibility: [
-    { id: "baseline-contract", label: "Baseline contract" },
-    { id: "keyboard-focus", label: "Keyboard and focus" },
-    { id: "motion-contrast", label: "Motion and contrast" },
-    { id: "manual-review", label: "Manual review" },
-  ],
-  "browser-support": [
-    { id: "support-policy", label: "Support policy" },
-    { id: "browser-matrix", label: "Browser matrix" },
-    { id: "viewport-matrix", label: "Viewport matrix" },
-    { id: "failure-policy", label: "Failure policy" },
-  ],
-  security: [
-    { id: "reporting", label: "Reporting" },
-    { id: "response", label: "Response process" },
-    { id: "supported-versions", label: "Supported versions" },
-  ],
-  contributing: [
-    { id: "entry-criteria", label: "Entry criteria" },
-    { id: "workflow", label: "Workflow" },
-    { id: "review-evidence", label: "Review evidence" },
-    { id: "change-boundaries", label: "Change boundaries" },
-  ],
-  releases: [
-    { id: "version-policy", label: "Version policy" },
-    { id: "release-evidence", label: "Release evidence" },
-    { id: "package-candidate", label: "Package candidate" },
-    { id: "deprecation", label: "Deprecation" },
-    { id: "support-window", label: "Support window" },
-  ],
-  licensing: [
-    { id: "license", label: "MIT license" },
-    { id: "permissions", label: "Permissions" },
-    { id: "attribution", label: "Attribution" },
-    { id: "third-party", label: "Third-party work" },
-  ],
-};
+const ProductPilot = lazy(() => import("./product-pilot").then((module) => ({ default: module.ProductPilot })));
+const CustomerDirectoryRecipe = lazy(() => import("./data-recipes").then((module) => ({ default: module.CustomerDirectoryRecipe })));
+const AuditLogRecipe = lazy(() => import("./data-recipes").then((module) => ({ default: module.AuditLogRecipe })));
+const SaaSOverviewRecipe = lazy(() => import("./analytics-recipes").then((module) => ({ default: module.SaaSOverviewRecipe })));
+const ProductUsageRecipe = lazy(() => import("./analytics-recipes").then((module) => ({ default: module.ProductUsageRecipe })));
+const ConversionRetentionRecipe = lazy(() => import("./analytics-recipes").then((module) => ({ default: module.ConversionRetentionRecipe })));
+const CustomerWorkspaceRecipe = lazy(() => import("./product-pattern-recipes").then((module) => ({ default: module.CustomerWorkspaceRecipe })));
+const BillingUsageRecipe = lazy(() => import("./product-pattern-recipes").then((module) => ({ default: module.BillingUsageRecipe })));
+const MembersPermissionsRecipe = lazy(() => import("./product-pattern-recipes").then((module) => ({ default: module.MembersPermissionsRecipe })));
+const shadcnCli = `shadcn@${packageManifest.devDependencies.shadcn}`;
 
 function DocSection({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return <section className="public-doc-section" id={id}><h2>{title}</h2>{children}</section>;
@@ -115,8 +57,8 @@ function CheckList({ items }: { items: readonly string[] }) {
   return <ul className="public-doc-checks">{items.map((item) => <li key={item}><Check aria-hidden="true" /><span>{item}</span></li>)}</ul>;
 }
 
-function StatusTable({ label, rows }: { label: string; rows: readonly (readonly [string, string, string])[] }) {
-  return <div className="public-doc-table-wrap" role="region" aria-label={`${label} scroll area`} tabIndex={0}><table aria-label={label}><thead><tr><th scope="col">Target</th><th scope="col">Level</th><th scope="col">Evidence</th></tr></thead><tbody>{rows.map(([target, level, evidence]) => <tr key={target}><th scope="row">{target}</th><td>{level}</td><td>{evidence}</td></tr>)}</tbody></table></div>;
+function StatusTable({ label, rows, columns = ["Target", "Level", "Evidence"] }: { label: string; rows: readonly (readonly [string, string, string])[]; columns?: readonly [string, string, string] }) {
+  return <div className="public-doc-table-wrap" role="region" aria-label={`${label} scroll area`} tabIndex={0}><table aria-label={label}><thead><tr>{columns.map((column) => <th scope="col" key={column}>{column}</th>)}</tr></thead><tbody>{rows.map(([target, level, evidence]) => <tr key={target}><th scope="row">{target}</th><td>{level}</td><td>{evidence}</td></tr>)}</tbody></table></div>;
 }
 
 function MaturityTable() {
@@ -132,78 +74,93 @@ function DecisionTable({ label, rows }: { label: string; rows: readonly (readonl
   return <div className="public-doc-table-wrap public-doc-decision-table" role="region" aria-label={`${label} scroll area`} tabIndex={0}><table aria-label={label}><thead><tr><th scope="col">User need</th><th scope="col">Choose</th><th scope="col">Do not use it when</th></tr></thead><tbody>{rows.map(([need, choice, boundary]) => <tr key={need}><th scope="row">{need}</th><td><strong>{choice}</strong></td><td>{boundary}</td></tr>)}</tbody></table></div>;
 }
 
-const introductionIssues = [
-  { id: "motion", code: "INT-204", title: "Motion contracts", detail: "Keep repeated actions fast while preserving spatial context for temporary surfaces." },
-  { id: "focus", code: "INT-198", title: "Keyboard focus", detail: "Return focus to a predictable origin after menus, dialogs, and shared detail views close." },
-  { id: "registry", code: "INT-191", title: "Registry output", detail: "Confirm installed source, tokens, and local dependencies match the published contract." },
-] as const;
-
-function IntroductionProof() {
-  const [selectedId, setSelectedId] = useState<string>(introductionIssues[0].id);
-  const [completedId, setCompletedId] = useState<string | null>(null);
-  const selected = introductionIssues.find((issue) => issue.id === selectedId) ?? introductionIssues[0];
-  const completed = completedId === selected.id;
-  return <div className="entry-proof" aria-label="Interactive component composition">
-    <header><span>Live composition</span><Badge variant="outline">Interactive</Badge></header>
-    <div className="entry-proof__workspace">
-      <div className="entry-proof__list" aria-label="Issues">
-        {introductionIssues.map((issue) => {
-          const done = completedId === issue.id;
-          return <button type="button" key={issue.id} aria-pressed={selectedId === issue.id} data-selected={selectedId === issue.id || undefined} onClick={() => setSelectedId(issue.id)}>
-            {done ? <CheckCircle weight="fill" aria-hidden="true" /> : <Circle aria-hidden="true" />}
-            <span><strong>{issue.title}</strong><small>{issue.code}</small></span>
-          </button>;
-        })}
-      </div>
-      <article className="entry-proof__detail" aria-live="polite">
-        <span>{selected.code}</span>
-        <h3>{selected.title}</h3>
-        <p>{selected.detail}</p>
-        <div><Badge variant={completed ? "strong" : "outline"}>{completed ? "Done" : "In progress"}</Badge><Button size="small" variant="secondary" onClick={() => setCompletedId(completed ? null : selected.id)}>{completed ? "Reopen" : "Mark done"}</Button></div>
-      </article>
-    </div>
-    <footer>
-      <span>Stable geometry</span><span>Shared origin</span><span>Reversible completion</span>
-      {completedId && <button type="button" onClick={() => setCompletedId(null)}><ArrowCounterClockwise aria-hidden="true" />Undo</button>}
-    </footer>
-  </div>;
-}
-
-function Introduction({ onNavigate }: { onNavigate: (id: string) => void }) {
+function ProductPilotPage() {
   return <>
-    <section className="entry-hero" id="what-it-is">
-      <div className="entry-hero__copy">
-        <h1 className="entry-hero__route">Introduction</h1>
-        <h2>Build interfaces that stay clear through change.</h2>
-        <p>Accessible React components and authored interaction patterns for compact, recoverable product workflows.</p>
-        <div className="entry-hero__actions"><Button variant="primary" trailingIcon={<ArrowRight />} onClick={() => onNavigate("installation")}>Get started</Button><button type="button" onClick={() => onNavigate("button")}>Explore components<ArrowRight aria-hidden="true" /></button></div>
-      </div>
-      <IntroductionProof />
-    </section>
-    <DocSection id="system-map" title="Start with the task in front of you">
-      <div className="entry-paths">
-        <button className="entry-paths__primary" type="button" onClick={() => onNavigate("installation")}><span className="entry-paths__icon"><Stack aria-hidden="true" /></span><span><strong>Start building</strong><small>Install one component, load the shared tokens, and understand source ownership.</small></span><ArrowRight aria-hidden="true" /></button>
-        <button type="button" onClick={() => onNavigate("button")}><span className="entry-paths__icon"><Cube aria-hidden="true" /></span><span><strong>Choose a component</strong><small>Compare live states, usage, accessibility, and API contracts.</small></span><ArrowRight aria-hidden="true" /></button>
-        <button type="button" onClick={() => onNavigate("patterns")}><span className="entry-paths__icon"><CursorClick aria-hidden="true" /></span><span><strong>Study behavior</strong><small>Explore four authored patterns for editing, inspecting, acting, and recovery.</small></span><ArrowRight aria-hidden="true" /></button>
-      </div>
+    <section className="public-doc-section public-doc-section--pilot" id="data-workspace" aria-labelledby="data-workspace-title"><h2 id="data-workspace-title">Issues Workspace</h2><p>Search, filter, compare, inspect, act, and undo from one collection.</p><Suspense fallback={<div className="pilot-workspace pilot-workspace--loading" role="status">Loading Issues Workspace…</div>}><ProductPilot /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="customer-directory" aria-labelledby="customer-directory-title"><h2 id="customer-directory-title">Customer Directory</h2><p>Server state, URL state, saved views, pinned columns, and export.</p><Suspense fallback={<div className="teum-data-recipe teum-data-recipe--loading" role="status">Loading Customer Directory…</div>}><CustomerDirectoryRecipe /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="audit-log" aria-labelledby="audit-log-title"><h2 id="audit-log-title">Audit Log</h2><p>Ten thousand immutable events with date filtering and virtual rows.</p><Suspense fallback={<div className="teum-data-recipe teum-data-recipe--loading" role="status">Loading Audit Log…</div>}><AuditLogRecipe /></Suspense></section>
+    <DocSection id="data-layer" title="Product primitives">
+      <StatusTable
+        label="Teum Data product primitives"
+        columns={["Primitive", "Job", "States"]}
+        rows={teumDataComponentContracts.map((component) => [component.id, component.intent, component.states.join(", ")] as const)}
+      />
     </DocSection>
-    <DocSection id="behavior-signature" title="Three rules make the system recognizable">
-      <dl className="public-doc-principles"><div><dt>Stable geometry</dt><dd>Loading and state changes preserve the surrounding layout.</dd></div><div><dt>Shared origin</dt><dd>Overlays and detail surfaces reveal where they came from.</dd></div><div><dt>Reversible completion</dt><dd>Consequential actions expose a clear path back when the product allows it.</dd></div></dl>
+    <DocSection id="data-contract" title="Composition contract">
+      <p>One validated state model connects URL, server requests, saved views, and display choices.</p>
+      <CodeBlock label="data-view-state.contract.json">{JSON.stringify(teumDataViewStateContract, null, 2)}</CodeBlock>
+      <p>Each recipe then names its task sequence, component vocabulary, and invariants.</p>
+      <CodeBlock label="data-recipes.contract.json">{JSON.stringify(teumDataRecipeContracts, null, 2)}</CodeBlock>
     </DocSection>
-    <DocSection id="current-status" title="Current status">
-      <StatusTable label="Current system status" rows={[["Components", `${componentMaturity.length} documented`, "Live product and locked state specimens"], ["Themes", "Light and dark", "1280 x 720 route review"], ["Distribution", "Public preview", "GitHub source and HTTPS shadcn registry; npm unpublished"], ["License", "MIT", "License text included in the repository"]]} />
+    <DocSection id="data-install" title="Install the vertical slice">
+      <CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx ${shadcnCli} add @teum-pinned/teum-data`}</CodeBlock>
+      <p>The block installs source, scoped CSS, the data primitives, three recipes, and their authored contracts. It remains pre-release.</p>
     </DocSection>
   </>;
 }
 
-function ProductPilotPage() {
+function AnalyticsPage() {
   return <>
-    <section className="public-doc-section public-doc-section--pilot" id="pilot-workspace" aria-labelledby="pilot-workspace-title"><h2 id="pilot-workspace-title">Live workspace</h2><p>Find an issue, inspect it in Shared Detail, archive it from Action List, then restore it from Undo Stack. The same state model also supports create, edit, and completion.</p><ProductPilot /></section>
-    <DocSection id="pilot-purpose" title="Prove the system inside a product">
-      <p>This is not a showcase dashboard. It is one executable task: find and act, inspect without losing place, mutate, and recover. Search, selection, Action List, Shared Detail, and Undo Stack share one source of truth.</p>
+    <section className="public-doc-section public-doc-section--pilot" id="saas-overview" aria-labelledby="saas-overview-title"><h2 id="saas-overview-title">SaaS Overview</h2><p>Revenue, retention, targets, and expansion in one period.</p><Suspense fallback={<div className="teum-analytics-recipe" role="status">Loading SaaS Overview…</div>}><SaaSOverviewRecipe /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="product-usage" aria-labelledby="product-usage-title"><h2 id="product-usage-title">Product Usage</h2><p>Two synchronized charts connect usage, features, and release events.</p><Suspense fallback={<div className="teum-analytics-recipe" role="status">Loading Product Usage…</div>}><ProductUsageRecipe /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="conversion-retention" aria-labelledby="conversion-retention-title"><h2 id="conversion-retention-title">Conversion &amp; Retention</h2><p>A selected funnel stage updates the trend, cohort context, and supporting records.</p><Suspense fallback={<div className="teum-analytics-recipe" role="status">Loading Conversion &amp; Retention…</div>}><ConversionRetentionRecipe /></Suspense></section>
+    <DocSection id="analytics-layer" title="Product primitives">
+      <StatusTable label="Teum Analytics product primitives" columns={["Primitive", "Job", "States"]} rows={teumAnalyticsComponentContracts.map((component) => [component.id, component.intent, component.states.join(", ")] as const)} />
     </DocSection>
-    <DocSection id="pilot-coverage" title="System coverage"><CheckList items={["Button, Icon Button, Text Field, Search Input, Select, Menu, Dialog, Tabs, Badge, Table, Toast, Inline Edit, Action List, Shared Detail, and Undo Stack compose in one task.", "The pointer path and Command K path operate on the same selected issue and recovery history.", "Light, dark, reduced-motion, narrow viewport, and content-pressure states remain part of the release matrix."]} /></DocSection>
-    <DocSection id="pilot-findings" title="API findings"><p>The pilot exposed two composition requirements: Shared Detail needs a product-owned detail slot, and Action List must execute against the selected object without taking ownership of that object. The composed task now verifies both boundaries and restores archived data through the real Undo Stack inverse.</p></DocSection>
+    <DocSection id="analytics-contract" title="Composition contract">
+      <p>Controlled product state stays outside the visual layer. Point inspection and series visibility remain shareable across charts.</p>
+      <CodeBlock label="analytics-state.contract.json">{JSON.stringify(teumAnalyticsStateContract, null, 2)}</CodeBlock>
+      <CodeBlock label="analytics-recipes.contract.json">{JSON.stringify(teumAnalyticsRecipeContracts, null, 2)}</CodeBlock>
+    </DocSection>
+    <DocSection id="analytics-install" title="Install the vertical slice">
+      <CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx ${shadcnCli} add @teum-pinned/teum-analytics`}</CodeBlock>
+      <p>The block installs source-owned analytics primitives, semantic tables, three recipes, and their contracts. It remains pre-release.</p>
+    </DocSection>
+  </>;
+}
+
+function ProductPatternsPage() {
+  return <>
+    <section className="public-doc-section public-doc-section--pilot" id="customer-workspace" aria-labelledby="customer-workspace-title"><h2 id="customer-workspace-title">Customer Workspace</h2><p>Find an account, inspect health, and finish a follow-up without losing the list.</p><Suspense fallback={<div className="teum-product-pattern" role="status">Loading Customer Workspace…</div>}><CustomerWorkspaceRecipe /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="billing-usage" aria-labelledby="billing-usage-title"><h2 id="billing-usage-title">Billing &amp; Usage</h2><p>Plan, spend, limits, usage, and invoices share one billing period.</p><Suspense fallback={<div className="teum-product-pattern" role="status">Loading Billing &amp; Usage…</div>}><BillingUsageRecipe /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="members-permissions" aria-labelledby="members-permissions-title"><h2 id="members-permissions-title">Members &amp; Permissions</h2><p>Membership, invitations, roles, and access policy stay in one task.</p><Suspense fallback={<div className="teum-product-pattern" role="status">Loading Members &amp; Permissions…</div>}><MembersPermissionsRecipe /></Suspense></section>
+    <DocSection id="product-pattern-contract" title="Composition contract">
+      <p>Each pattern names its task, state ownership, failure states, and accessibility boundaries.</p>
+      <CodeBlock label="product-patterns.contract.json">{JSON.stringify(teumProductPatternContracts, null, 2)}</CodeBlock>
+      <CodeBlock label="product-pattern-system.contract.json">{JSON.stringify(teumProductPatternSystemContract, null, 2)}</CodeBlock>
+    </DocSection>
+    <DocSection id="product-pattern-install" title="Install the product patterns">
+      <CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx ${shadcnCli} add @teum-pinned/teum-product-patterns`}</CodeBlock>
+      <p>The block installs the three source-owned B2B recipes and their composition contract. It remains pre-release.</p>
+    </DocSection>
+  </>;
+}
+
+function AgentNativePage() {
+  return <>
+    <DocSection id="agent-contract" title="One contract for people and agents">
+      <p>The generated catalog records every installable item, product recipe, selection boundary, and forbidden rule. Registry metadata, the Teum skill, and this page use the same source.</p>
+      <CodeBlock label="teum-agent.json">{`${packageManifest.homepage}/agent/teum-agent.json`}</CodeBlock>
+      <CodeBlock label="system.contract.json">{JSON.stringify(teumAgentSystemContract, null, 2)}</CodeBlock>
+    </DocSection>
+    <DocSection id="selection-rules" title="Choose by task boundary">
+      <StatusTable label="Agent selection rules" columns={["Task", "Choose", "Reject when"]} rows={teumAgentSelectionRules.map((rule) => [rule.task, rule.choose, rule.rejectWhen.join(" ")] as const)} />
+    </DocSection>
+    <DocSection id="composition-rules" title="Start from a complete recipe">
+      <p>Nine recipes connect product intent to public exports, required state, and composition rules. Agents should select one recipe before adding individual components.</p>
+      <StatusTable label="Agent product recipes" columns={["Recipe", "Registry item", "Composition"]} rows={teumAgentRecipeContracts.map((recipe) => [recipe.title, `@teum-pinned/${recipe.registryItem}`, recipe.components.join(", ")] as const)} />
+    </DocSection>
+    <DocSection id="forbidden-rules" title="Reject invalid shortcuts">
+      <CheckList items={teumAgentForbiddenRules} />
+    </DocSection>
+    <DocSection id="skill-install" title="Install the Teum skill">
+      <CodeBlock label="Project skill">{`npx skills add minwookshin/teum --skill teum --copy --yes`}</CodeBlock>
+      <p>The skill inspects the project, selects a documented recipe, installs source through the pinned registry, and runs the product's own quality gates. Review installed skills before use.</p>
+    </DocSection>
+    <DocSection id="agent-evaluation" title="Deterministic product-task evaluation">
+      <StatusTable label="Agent evaluation evidence" rows={[["Recipe selection", `${agentEvaluation.selectedCorrectly} / ${agentEvaluation.taskCount}`, "Thirty fixed B2B product requests"], ["Clean install and build", agentEvaluation.productionBuild, agentEvaluation.scope], ["Contract violations", String(agentEvaluation.contractViolations), "Required and forbidden component checks"]]} />
+      <p>This is repository-owned contract evidence, not a benchmark of external models or proof of production adoption.</p>
+    </DocSection>
   </>;
 }
 
@@ -227,17 +184,76 @@ function ComponentStatus() {
 }
 
 function Installation() {
+  const pinnedRegistry = `${packageManifest.homepage}/r/v/${packageManifest.version}/{name}.json`;
+  const viteConfig = JSON.stringify({
+    $schema: "https://ui.shadcn.com/schema.json",
+    style: "new-york",
+    rsc: false,
+    tsx: true,
+    tailwind: { config: "", css: "src/index.css", baseColor: "neutral", cssVariables: true, prefix: "" },
+    iconLibrary: "lucide",
+    aliases: { components: "components", utils: "lib/utils", ui: "components/ui", lib: "lib", hooks: "hooks" },
+    registries: { "@teum-pinned": pinnedRegistry },
+  }, null, 2);
+  const nextConfig = JSON.stringify({
+    $schema: "https://ui.shadcn.com/schema.json",
+    style: "new-york",
+    rsc: true,
+    tsx: true,
+    tailwind: { config: "", css: "src/app/globals.css", baseColor: "neutral", cssVariables: true, prefix: "" },
+    iconLibrary: "lucide",
+    aliases: { components: "@/components", utils: "@/lib/utils", ui: "@/components/ui", lib: "@/lib", hooks: "@/hooks" },
+    registries: { "@teum-pinned": pinnedRegistry },
+  }, null, 2);
   return <>
-    <DocSection id="requirements" title="Requirements"><p>Use React 18.2 or newer, including React 19. Teum is authored in TypeScript and ships typed React APIs, framework-neutral CSS variables, and an optional Tailwind CSS v4 bridge. Tailwind is never required to render a component.</p><StatusTable label="Supported integration modes" rows={[["React", "18.2+ and 19", "Fresh Vite consumers compile against both major lines"], ["TypeScript", "First-class", "Declarations and strict consumer builds are release-gated"], ["Plain CSS", "Source of truth", "Semantic variables, cascade layers, and scoped component CSS"], ["Tailwind CSS", "Optional v4 bridge", "Semantic utilities map back to the same Teum variables"]]} /></DocSection>
-    <DocSection id="add-registry" title="Connect the Teum Registry"><CodeBlock label="Mutable alpha channel">{`npx shadcn@latest registry add @teum=${packageManifest.homepage}/r/{name}.json`}</CodeBlock><p><strong>Teum Registry</strong> is the product and source boundary. The shadcn CLI is the compatible transport used to resolve and copy the files; it does not define the component API, tokens, visual language, or release policy. Use the mutable channel while evaluating active alpha work.</p><CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx shadcn@latest registry add @teum-pinned=${packageManifest.homepage}/r/v/${packageManifest.version}/{name}.json`}</CodeBlock><p>The versioned channel pins every internal dependency to the same <code>@teum-pinned</code> scope. Its path and dependency graph are content-locked, served with a one-year immutable cache policy, and can change only under a new package version.</p></DocSection>
-    <DocSection id="plain-css-setup" title="Use the CLI without adopting Tailwind"><p>Existing shadcn projects already have <code>components.json</code> and can skip this step. In a plain CSS project, add the minimal CLI map below once. The field named <code>tailwind</code> belongs to the shadcn configuration schema; it does not install, import, or require Tailwind CSS.</p><CodeBlock label="components.json">{'{\n  "$schema": "https://ui.shadcn.com/schema.json",\n  "style": "new-york",\n  "rsc": false,\n  "tsx": true,\n  "tailwind": { "config": "", "css": "src/index.css", "baseColor": "neutral", "cssVariables": true, "prefix": "" },\n  "iconLibrary": "lucide",\n  "aliases": {\n    "components": "components",\n    "utils": "lib/utils",\n    "ui": "components/ui",\n    "lib": "lib",\n    "hooks": "hooks"\n  }\n}'}</CodeBlock></DocSection>
-    <DocSection id="add-component" title="Install from Teum"><CodeBlock label="Mutable channel">npx shadcn@latest add @teum/button</CodeBlock><CodeBlock label={`Pinned ${packageManifest.version}`}>npx shadcn@latest add @teum-pinned/button</CodeBlock><p>The namespaces keep the source and update policy visible while using an established installer. Install only what the product needs; <code>@teum/teum</code> remains available for evaluation and internal prototypes. The future <code>teum</code> npm package is verified as a private candidate but is not published yet.</p></DocSection>
-    <DocSection id="source-ownership" title="Know what enters the product"><p>The registry copies component source, its scoped stylesheet, shared tokens and utilities, and declared package dependencies. The product owns those files after installation: review them, adapt them deliberately, and keep local changes visible during updates.</p></DocSection>
-    <DocSection id="load-styles" title="Choose plain CSS or add the Tailwind bridge"><CodeBlock label="Plain CSS component source">{'import "../../styles/teum-base.css";\nimport "../../styles/components/button.css";'}</CodeBlock><p>Plain CSS is the default. Each generated component loads the shared contract and only its own scoped stylesheet; no Tailwind runtime or configuration is required. The complete-system item also includes <code>styles/teum.css</code> as a stable application-root entry.</p><CodeBlock label="Optional Tailwind CSS v4 bridge">{'npx shadcn@latest add @teum/teum-tailwind\n\n/* app.css */\n@import "tailwindcss";\n@import "./styles/teum-base.css";\n@import "./styles/teum-tailwind.css";'}</CodeBlock><p>The bridge adds semantic utilities such as <code>bg-background</code>, <code>text-foreground</code>, <code>rounded-control</code>, and <code>shadow-flyout</code>. They resolve to the same <code>--teum-*</code> variables as the components, so CSS and Tailwind stay visually identical.</p></DocSection>
-    <DocSection id="theme-contract" title="Set theme once, then override semantic roles"><CodeBlock label="Theme control">document.documentElement.dataset.theme = "dark";</CodeBlock><p>Light is the default. Set <code>data-theme="dark"</code> on the root element and override public <code>--teum-*</code> semantic roles after the shared stylesheet. Components should never require product-specific raw gray values.</p></DocSection>
-    <DocSection id="cascade-contract" title="Override without specificity fights"><CodeBlock label="Public layer order">@layer teum.tokens, teum.base, teum.components;</CodeBlock><p>Tokens, global defaults, and component rules have an explicit order. Ordinary unlayered product CSS takes precedence, so adopters can customize copied components without escalating selector specificity or depending on accidental import order.</p></DocSection>
-    <DocSection id="integrity-contract" title="Verify what changed"><CodeBlock label="Registry review">npm run diff:registry -- --from ./previous-manifest.json</CodeBlock><p>The public manifest records SHA-256 hashes for every registry artifact and copied file, plus compiler-extracted API and semantic-token contract hashes. The mutable channel proves what changed; the versioned channel adds an immutable path and matching release manifest.</p></DocSection>
-    <DocSection id="update-safely" title="Update with evidence"><CheckList items={["Commit product-owned customizations before fetching upstream source.", "Review the manifest diff, changelog, migration note, and staged registry candidate before accepting an overwrite.", "Keep locally modified files unchanged until the consumer explicitly accepts the upstream candidate.", "Run the product's type, browser, accessibility, interaction, and visual checks after every update."]} /></DocSection>
+    <DocSection id="quickstart" title="Choose a path">
+      <p>Install one source-owned Button, change one semantic token, then build the product. Start with the framework already in use.</p>
+      <CheckList items={[
+        "Vite — React 18 and 19, plain CSS, and the optional Tailwind CSS v4 bridge.",
+        `Next.js ${nextQuickstartManifest.dependencies.next} — App Router with one explicit client boundary for interaction.`,
+        "Registry update — dry-run and file diff keep local source unchanged until explicit acceptance.",
+      ]} />
+    </DocSection>
+    <DocSection id="vite" title="Vite">
+      <CodeBlock label="1 · Create or open a React + TypeScript app">npm create vite@latest teum-app -- --template react-ts</CodeBlock>
+      <CodeBlock label="2 · Add components.json">{viteConfig}</CodeBlock>
+      <CodeBlock label="3 · Install Button">{`npx ${shadcnCli} add @teum-pinned/button`}</CodeBlock>
+      <CodeBlock label="4 · Render it">{'import { Button } from "./components/ui/button";\n\nexport function App() {\n  return <Button variant="primary">Create issue</Button>;\n}'}</CodeBlock>
+      <p>The verified fixture lives in <code>examples/quickstart-vite</code>. It builds against React 18 and React 19 without a Tailwind runtime.</p>
+    </DocSection>
+    <DocSection id="next" title="Next.js App Router">
+      <CodeBlock label="1 · Create or open an App Router project">{`npx create-next-app@${nextQuickstartManifest.dependencies.next} teum-app --ts --app --src-dir --use-npm --empty --no-tailwind --yes`}</CodeBlock>
+      <CodeBlock label="2 · Add components.json">{nextConfig}</CodeBlock>
+      <CodeBlock label="3 · Install Button">{`npx ${shadcnCli} add @teum-pinned/button`}</CodeBlock>
+      <CodeBlock label="4 · Keep interaction behind a client boundary">{'"use client";\n\nimport { Button } from "@/components/ui/button";\n\nexport function CreateIssue() {\n  return <Button variant="primary">Create issue</Button>;\n}'}</CodeBlock>
+      <p>Import <code>src/app/globals.css</code> once from the root layout. The layout and page stay Server Components; only interactive compositions need <code>"use client"</code>.</p>
+    </DocSection>
+    <DocSection id="theme" title="Theme and customize">
+      <CodeBlock label="Switch the public theme contract">document.documentElement.dataset.theme = "dark";</CodeBlock>
+      <CodeBlock label="Override one semantic role in product CSS">{':root {\n  --teum-radius-control: 9px;\n}'}</CodeBlock>
+      <p>Light is the default. Product CSS is unlayered and therefore overrides Teum's <code>teum.tokens → teum.base → teum.components</code> cascade without selector escalation. Use <code>--teum-*</code> roles instead of copying raw graphite values.</p>
+    </DocSection>
+    <DocSection id="registry" title="Pin what enters the product">
+      <CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx ${shadcnCli} registry add @teum-pinned=${pinnedRegistry}\nnpx ${shadcnCli} view @teum-pinned/button\nnpx ${shadcnCli} add @teum-pinned/button`}</CodeBlock>
+      <p>The registry copies source, scoped CSS, shared tokens, utilities, and declared dependencies into the product. Review and own those files. Use the mutable <code>@teum</code> channel only for active pre-release evaluation.</p>
+    </DocSection>
+    <DocSection id="update" title="Review before overwrite">
+      <CodeBlock label="Inspect the next pinned candidate">{`npx ${shadcnCli} add @teum-pinned/button --dry-run\nnpx ${shadcnCli} add @teum-pinned/button --diff src/components/ui/button.tsx`}</CodeBlock>
+      <CodeBlock label="Accept only after review">{`npx ${shadcnCli} add @teum-pinned/button --overwrite --yes\nnpm run typecheck\nnpm run build`}</CodeBlock>
+      <p>Commit local edits first. Dry-run and diff never write; overwrite is the explicit acceptance step. The previous pinned path remains the rollback boundary.</p>
+    </DocSection>
+    <DocSection id="migrate" title="Migrate deliberately">
+      <CheckList items={["Read CHANGELOG.md and MIGRATIONS.md for every version between the current and target candidate.", "Review props, tokens, dependencies, behavior, and CSS together; copied source may contain local edits.", "Use a codemod only when the migration note names one; do not run unrelated shadcn migrations by default.", "Keep the previous pinned registry URL and the pre-update commit until product checks pass."]} />
+    </DocSection>
+    <DocSection id="troubleshooting" title="Common failures">
+      <StatusTable label="Installation troubleshooting" columns={["Symptom", "Cause", "Fix"]} rows={[
+        ["@teum-pinned cannot resolve", "The registry entry is absent or points to a different candidate", "Copy the pinned registries block into components.json and run view before add"],
+        ["Button has no Teum styles", "A generated CSS import was removed or moved", "Restore teum-base.css and the component stylesheet beside the copied source"],
+        ["Next.js reports a client boundary error", "An interactive component was rendered through an invalid Server Component boundary", "Move the interactive composition into a small file with an explicit use client directive"],
+        ["Update would replace local edits", "Copied source differs from the candidate", "Commit, dry-run, inspect the exact file diff, then overwrite only after acceptance"],
+      ]} />
+      <p>The npm package remains unpublished. Registry source is the supported evaluation path for this candidate.</p>
+    </DocSection>
   </>;
 }
 
@@ -277,16 +293,16 @@ function ChoosingComponents() {
 
 function Accessibility() {
   return <>
-    <DocSection id="baseline-contract" title="Baseline contract"><CheckList items={["Semantic HTML, Base UI, and React Aria primitives provide the starting behavior.", "Every icon-only control requires an accessible name.", "Disabled, validation, loading, empty, and recovery states remain perceivable.", "Automated checks support manual review. They never replace it."]} /></DocSection>
-    <DocSection id="keyboard-focus" title="Keyboard and focus"><p>Keyboard input must complete the same task as pointer input. Focus appears for keyboard navigation and explicit focus specimens, returns to the initiating control after dismissal, and never gets trapped outside a modal contract.</p></DocSection>
+    <DocSection id="baseline-contract" title="Baseline contract"><CheckList items={["Semantic HTML, Base UI, and React Aria primitives provide the starting behavior.", "Every public view owns one main landmark and one page heading.", "Every icon-only control requires an accessible name.", "Disabled, validation, loading, empty, and recovery states remain perceivable.", "Automated checks support manual review. They never replace it."]} /></DocSection>
+    <DocSection id="keyboard-focus" title="Keyboard and focus"><p>Keyboard input must complete the same task as pointer input. Skip links bypass repeated product chrome, in-app route changes announce the selected document without stealing desktop focus, and compact navigation hands focus to the document after its drawer closes. Focus returns to the initiating control after dismissal and never gets trapped outside a modal contract.</p></DocSection>
     <DocSection id="motion-contrast" title="Motion and contrast"><p>Reduced motion removes spatial travel while preserving state feedback. Light, dark, increased-contrast, and forced-color modes keep structure and meaning without depending on a brand accent.</p></DocSection>
-    <DocSection id="manual-review" title="Evidence matrix"><StatusTable label="Accessibility release review" rows={[[`${componentMaturity.length} component routes`, "Automated gate", "Serious and critical axe findings, overflow, and atomic shortcut geometry"], ["200% equivalent", "Automated + browser review", "All component routes at a 640px CSS viewport with no lost content or horizontal page overflow"], ["Forced colors / reduced motion", "Automated gate", "System colors preserve structure; non-essential spatial motion is removed or reduced"], ["Keyboard", "Automated task paths", "Menu and Dialog focus return plus the Product pilot Command K archive and Undo task"], ["Screen reader / physical devices", "External gate", "Manual assistive-technology and touch-device sign-off remains required before any component becomes Ready"]]} /></DocSection>
+    <DocSection id="manual-review" title="Evidence matrix"><StatusTable label="Accessibility release review" rows={[[`${accessibilityEvidence.routes.public} public routes`, "Automated gate", `${accessibilityEvidence.passed} applicable checks passed, ${accessibilityEvidence.skipped} intentional project skips, zero failures`], [`${componentMaturity.length} component routes`, "Automated gate", "Serious and critical axe findings, overflow, atomic shortcut geometry, and one-page-heading ownership"], ["200% equivalent", "Automated + browser review", "All component routes at a 640px CSS viewport with no lost content or horizontal page overflow"], ["Forced colors / reduced motion", "Automated gate", "System colors preserve structure; non-essential spatial motion is removed or reduced"], ["Keyboard", "Five-project task paths", "Skip paths, route announcements, compact focus handoff, Menu and Dialog focus return, and Teum Data recovery"], ["Screen reader / physical devices", "External gate", "Manual assistive-technology and touch-device sign-off remains required before any component becomes Ready"]]} /></DocSection>
   </>;
 }
 
 function BrowserSupport() {
   return <>
-    <DocSection id="support-policy" title="Support the engines people ship"><p>The automated matrix covers Chromium, Firefox, and WebKit on desktop, plus mobile Chromium and mobile WebKit emulation. Branded Chrome and Safari anchor routes are manually verified; Edge and physical-device interaction remain explicit targets.</p></DocSection>
+    <DocSection id="support-policy" title="Support the engines people ship"><p>The automated matrix covers Chromium, Firefox, and WebKit on desktop, plus mobile Chromium and mobile WebKit emulation. Chrome and Safari anchor routes are manually verified; Edge and physical devices remain manual targets.</p></DocSection>
     <DocSection id="browser-matrix" title="Browser matrix"><StatusTable label="Browser support matrix" rows={[["Chromium / Firefox / WebKit", "Automated verified", "Desktop route, disclosure, theme, and overflow coverage"], ["Chrome 151", "Anchor verified", "Button keyboard focus and confirmed 200% zoom on macOS 26.5.2"], ["Safari 26.5.2", "Anchor verified", "Button keyboard/zoom plus VoiceOver Dialog and Menu on macOS 26.5.2"], ["Mobile engines", "Automated verified", "Pixel 5 and iPhone 12 emulation; drawer, route, and overflow coverage"], ["Edge / physical devices", "Manual target", "Edge unavailable; connected iPhone and iPad detected but touch was not remotely exercised"]]} /></DocSection>
     <DocSection id="viewport-matrix" title="Viewport matrix"><CheckList items={["1280 x 720 desktop documentation and component routes.", "1024 px compact desktop with the page outline removed.", "768 px tablet with a modal navigation drawer.", "390 px mobile with touch targets, zoom, and safe overflow.", "200 percent zoom and forced-colors review."]} /></DocSection>
     <DocSection id="failure-policy" title="Failures block the claim"><p>A failing engine is marked unverified. The release notes name the affected component, state, platform, and workaround. Support is evidence-based, not inferred from shared browser ancestry.</p></DocSection>
@@ -297,7 +313,8 @@ function Security() {
   return <>
     <DocSection id="reporting" title="Report privately"><p>Use the repository's private security-advisory flow once the canonical repository is public. Do not include exploit details in a public issue.</p></DocSection>
     <DocSection id="response" title="Response process"><dl className="public-doc-principles"><div><dt>Acknowledge</dt><dd>Confirm receipt and establish a private communication channel.</dd></div><div><dt>Validate</dt><dd>Reproduce the issue, assess affected versions, and agree on disclosure timing.</dd></div><div><dt>Resolve</dt><dd>Ship a tested fix, credit the reporter when requested, and publish an advisory.</dd></div></dl></DocSection>
-    <DocSection id="supported-versions" title="Supported versions"><p>Before 1.0, only the latest alpha receives security fixes. A stable release must document its support window before publication.</p></DocSection>
+    <DocSection id="release-integrity" title="Release integrity"><CheckList items={["Public install commands pin the shadcn CLI; versioned artifacts pin internal and external dependency edges.", "Every historical registry directory is checked against an append-only content ledger; release-anchored versions also match their source commit byte-for-byte.", "GitHub Actions use reviewed full commit SHAs, read-only checkout credentials, and job-scoped deployment or attestation authority.", "A package candidate contains exactly one tarball, a CycloneDX SBOM, a manifest, and checksums before that exact tarball can be attested.", "The npm package remains private. A verified candidate or attestation is not publication."]} /></DocSection>
+    <DocSection id="supported-versions" title="Supported versions"><p>Before 1.0, only the latest pre-release candidate receives security fixes. Historical registry artifacts remain available for reproducibility, not ongoing support. A stable release must document its support window before publication.</p></DocSection>
   </>;
 }
 
@@ -314,9 +331,9 @@ function Releases() {
   return <>
     <DocSection id="version-policy" title="Version policy"><p>The project follows Semantic Versioning once a stable public API exists. During 0.x, every breaking change is still documented and paired with a migration path.</p></DocSection>
     <DocSection id="release-evidence" title="Release evidence"><CheckList items={["All tests, types, registry checks, clean-consumer and production builds pass.", "The immutable version path preserves source bytes, pins internal dependencies to its release scope, and rejects changed content without a version bump.", "The clean consumer preserves a local modification, stages the upstream candidate, and builds after explicit acceptance.", "Cross-browser, 200% reflow, forced-colors, reduced-motion, keyboard, and accessibility matrices match the support claim.", "Representative light, dark, focus, loading, error, and product visual baselines are reviewed.", "The changelog, migration note, compatibility table, maintainer ownership, and security status are current."]} /></DocSection>
-    <DocSection id="package-candidate" title="Package candidate is not publication"><p>The private package candidate has explicit exports, React peer boundaries, an allowlisted tarball, and a fresh TypeScript/Vite consumer test. Its GitHub workflow can attest the tarball without an npm credential. npm publication and trusted-publisher configuration remain separate maintainer decisions.</p></DocSection>
+    <DocSection id="package-candidate" title="Package candidate is not publication"><p>The private package candidate has defined exports, React peer boundaries, an allowlisted tarball, and a fresh TypeScript/Vite consumer test. Its entry preserves a React client boundary; the recorded package fixture exposes {packageContractEvidence.runtimeExports} runtime exports, server-renders a representative tree, and hydrates with {packageContractEvidence.hydrationRecoverableErrors} recoverable mismatch errors. Framework-specific RSC integration, npm publication, and trusted-publisher configuration remain separate maintainer decisions.</p></DocSection>
     <DocSection id="deprecation" title="Deprecation"><p>Deprecated APIs remain documented for at least one minor release after 1.0. Warnings name the replacement and the last supported version.</p></DocSection>
-    <DocSection id="support-window" title="Support window"><p>Alpha releases support only the latest version. The first stable release must publish a defined maintenance window before the package is described as production-ready.</p></DocSection>
+    <DocSection id="support-window" title="Support window"><p>Pre-release builds support only the latest candidate. The first stable release must publish a defined maintenance window before the package is described as production-ready.</p></DocSection>
   </>;
 }
 
@@ -330,10 +347,12 @@ function Licensing() {
 }
 
 const contentById: Record<PublicDocId, (props: { onNavigate: (id: string) => void }) => ReactNode> = {
-  introduction: Introduction,
   installation: Installation,
   "choosing-components": ChoosingComponents,
   "product-pilot": ProductPilotPage,
+  analytics: AnalyticsPage,
+  "product-patterns": ProductPatternsPage,
+  "agent-native": AgentNativePage,
   "component-status": ComponentStatus,
   accessibility: Accessibility,
   "browser-support": BrowserSupport,
@@ -346,10 +365,8 @@ const contentById: Record<PublicDocId, (props: { onNavigate: (id: string) => voi
 export function PublicDocPage({ id, onNavigate }: { id: PublicDocId; onNavigate: (id: string) => void }) {
   const doc = publicDocItems.find((item) => item.id === id)!;
   const Content = contentById[id];
-  const introduction = id === "introduction";
-  const pageMode = introduction ? " public-doc-page--editorial system-editorial-page" : " system-reference-page";
-  return <div className={"system-detail__content public-doc-page" + pageMode + (id === "product-pilot" ? " public-doc-page--pilot" : "")}>
-    {introduction ? <div className="public-doc-body public-doc-body--entry"><Content onNavigate={onNavigate} /></div> : <><section className="system-overview" id="system-overview"><span className="public-doc-kicker">{doc.group}</span><h1>{doc.label}</h1><p>{doc.description}</p></section><div className="public-doc-body"><Content onNavigate={onNavigate} /></div></>}
+  return <div className={"system-detail__content public-doc-page system-reference-page" + (["product-pilot", "analytics", "product-patterns"].includes(id) ? " public-doc-page--pilot" : "")}>
+    <section className="system-overview" id="system-overview"><span className="public-doc-kicker">{doc.group}</span><h1>{doc.label}</h1><p>{doc.description}</p></section><div className="public-doc-body"><Content onNavigate={onNavigate} /></div>
     <footer className="system-footer"><span>Teum</span><span>Public system documentation</span></footer>
   </div>;
 }

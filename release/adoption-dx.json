@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/build-adoption-evidence.mjs",
+  "generatedAt": "2026-08-17T06:14:41.730Z",
+  "version": "0.1.0-rc.22",
+  "status": "passed",
+  "targetMs": 600000,
+  "longestAutomatedJourneyMs": 17537,
+  "journeys": {
+    "viteReact18": {
+      "elapsedMs": 15468,
+      "typecheck": true,
+      "productionBuild": true,
+      "themeCustomization": true
+    },
+    "viteReact19": {
+      "elapsedMs": 11699,
+      "typecheck": true,
+      "productionBuild": true,
+      "themeCustomization": true,
+      "optionalTailwindBridge": true
+    },
+    "nextAppRouter": {
+      "version": "16.3.1",
+      "elapsedMs": 17537,
+      "typecheck": true,
+      "productionBuild": true,
+      "themeCustomization": true,
+      "clientBoundary": true
+    },
+    "reviewedUpdate": {
+      "fromVersion": "0.1.0-rc.21",
+      "elapsedMs": 14523,
+      "dryRun": true,
+      "fileDiff": true,
+      "localSourcePreserved": true,
+      "explicitAcceptance": true
+    }
+  },
+  "claimBoundary": "Repository-owned automated journeys are under ten minutes. No independent first-time-user timing, external adoption, deployment, or publication is claimed."
+}

@@ -12,12 +12,12 @@ async function choosePreviewState(page: Page, label: string) {
 }
 
 test("public entry remains visually stable in light and dark", async ({ page }) => {
-  await page.goto("/#introduction");
-  await expect(page.getByRole("heading", { level: 1, name: "Introduction" })).toBeVisible();
-  await expect(page).toHaveScreenshot("introduction-light.png", { animations: "disabled", fullPage: false });
+  await page.goto("/");
+  await expect(page.getByRole("heading", { level: 1, name: "Interfaces that stay clear through change." })).toBeVisible();
+  await expect(page).toHaveScreenshot("landing-light.png", { animations: "disabled", fullPage: false });
 
-  await page.getByRole("button", { name: "Current theme: light. Switch to dark theme" }).click();
-  await expect(page).toHaveScreenshot("introduction-dark.png", { animations: "disabled", fullPage: false });
+  await page.getByRole("button", { name: "Switch to dark theme" }).click();
+  await expect(page).toHaveScreenshot("landing-dark.png", { animations: "disabled", fullPage: false });
 });
 
 test("component document and focus-state specimen remain visually stable", async ({ page }) => {
@@ -41,9 +41,9 @@ test("field validation specimen remains visually stable", async ({ page }) => {
   await expect(page).toHaveScreenshot("text-field-error-light.png", { animations: "disabled", fullPage: false });
 });
 
-test("product pilot remains visually stable", async ({ page }) => {
+test("Teum Data remains visually stable", async ({ page }) => {
   await page.goto("/#product-pilot");
-  await expect(page.getByRole("heading", { level: 1, name: "Product pilot" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Teum Data" })).toBeVisible();
   await expect(page).toHaveScreenshot("product-pilot-light.png", { animations: "disabled", fullPage: false });
   await page.getByRole("button", { name: "Current theme: light. Switch to dark theme" }).click();
   await expect(page).toHaveScreenshot("product-pilot-dark.png", { animations: "disabled", fullPage: false });

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "goal",
+  "title": "Goal",
+  "description": "Progress toward one explicit target with visible actual and target values.",
+  "registryDependencies": [
+    "@teum-pinned/teum-base",
+    "@teum-pinned/analytics"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/goal.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/goal.css\";\nimport type { HTMLAttributes, ReactNode } from \"react\";\nimport { formatAnalyticsValue } from \"../../lib/analytics\";\nimport { cn } from \"../../lib/cn\";\n\nexport type GoalProps = Omit<HTMLAttributes<HTMLDivElement>, \"title\"> & {\n  label: string;\n  value: number;\n  target: number;\n  formatter?: (value: number) => string;\n  description?: ReactNode;\n};\n\nexport function Goal({ label, value, target, formatter = formatAnalyticsValue, description, className, ...props }: GoalProps) {\n  const ratio = target > 0 ? Math.max(0, value / target) : 0;\n  const progress = Math.min(1, ratio);\n  const goalStyle = { \"--teum-goal-progress\": progress } as React.CSSProperties;\n  return (\n    <div className={cn(\"teum-goal\", className)} style={goalStyle} {...props}>\n      <div className=\"teum-goal__heading\"><span>{label}</span><strong>{Math.round(ratio * 100)}%</strong></div>\n      <div className=\"teum-goal__track\" role=\"progressbar\" aria-label={label} aria-valuemin={0} aria-valuemax={target} aria-valuenow={Math.min(target, Math.max(0, value))} aria-valuetext={`${formatter(value)} of ${formatter(target)}`}>\n        <span className=\"teum-goal__indicator\" />\n      </div>\n      <div className=\"teum-goal__meta\"><span>{formatter(value)}</span><span>Target {formatter(target)}</span></div>\n      {description && <div className=\"teum-goal__description\">{description}</div>}\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/goal.tsx"
+    },
+    {
+      "path": "registry/styles/components/goal.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-goal { display: grid; min-width: 0; gap: 8px; }\n\n.teum-goal__heading,\n.teum-goal__meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; }\n\n.teum-goal__heading { color: var(--teum-fg-default); font-size: var(--teum-type-ui); }\n\n.teum-goal__heading strong { font-variant-numeric: tabular-nums; font-weight: 590; }\n\n.teum-goal__track { height: 5px; overflow: hidden; border-radius: 999px; background: var(--teum-bg-subtle); }\n\n.teum-goal__indicator { display: block; width: calc(var(--teum-goal-progress) * 100%); height: 100%; border-radius: inherit; background: var(--teum-fg-default); transition: width var(--teum-medium) var(--teum-ease-in-out); }\n\n.teum-goal__meta { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; }\n\n.teum-goal__description { color: var(--teum-fg-muted); font-size: var(--teum-type-metadata); line-height: 1.45; }\n\n@media (prefers-reduced-motion: reduce) {\n.teum-goal__indicator { transition-duration: 0ms; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/goal.css"
+    }
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,39 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer teum.tokens, teum.base, teum.components;
+
+@layer teum.components {
+.teum-funnel { display: grid; min-width: 0; gap: 2px; margin: 0; padding: 0; list-style: none; }
+
+.teum-funnel { gap: 4px; }
+
+.teum-funnel li > div,
+.teum-funnel li > button { display: grid; width: 100%; gap: 5px; padding: 8px; border: 0; border-radius: 8px; background: transparent; color: inherit; font: inherit; text-align: left; }
+
+.teum-funnel li > button { cursor: pointer; }
+
+.teum-funnel__heading,
+.teum-funnel__meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+
+.teum-funnel__heading strong { font-size: var(--teum-type-ui); font-weight: 570; }
+
+.teum-funnel__heading b { font-size: var(--teum-type-ui); font-variant-numeric: tabular-nums; font-weight: 590; }
+
+.teum-funnel__track { height: 7px; overflow: hidden; border-radius: 999px; background: var(--teum-bg-subtle); }
+
+.teum-funnel__track i { display: block; width: calc(var(--teum-funnel-progress) * 100%); height: 100%; border-radius: inherit; background: var(--teum-fg-default); }
+
+.teum-funnel__meta { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+
+.teum-funnel__meta small { font-size: inherit; }
+
+.teum-funnel li > button:focus { outline: 0; }
+
+@media (hover: hover) and (pointer: fine) {
+.teum-funnel li > button:hover { background: var(--teum-hover); color: var(--teum-fg-default); }
+}
+
+.teum-funnel li > button:active { transform: scale(.985); }
+
+.teum-funnel li > button[aria-pressed="true"] { background: var(--teum-selected); }
+}

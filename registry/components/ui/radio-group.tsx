@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/radio-group.css";
 import { Radio } from "@base-ui/react/radio";

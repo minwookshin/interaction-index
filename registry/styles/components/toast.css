@@ -3,8 +3,6 @@
 @layer teum.tokens, teum.base, teum.components;
 
 @layer teum.components {
-.teum-toaster { --width: 326px; z-index: var(--teum-layer-toast); }
-
 .teum-toast { position: relative; display: flex; width: 326px; max-width: calc(100vw - 32px); min-height: 52px; align-items: center; gap: 10px; padding: 10px 40px 10px 12px; border: 1px solid var(--teum-border-subtle); border-radius: 8px; background: var(--teum-bg-flyout); color: var(--teum-ink); box-shadow: var(--teum-shadow-flyout); font-family: inherit; }
 
 .teum-toast__content { display: grid; flex: 1; gap: 2px; }

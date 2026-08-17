@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/action-list.css";
 import { MagnifyingGlass } from "@phosphor-icons/react";

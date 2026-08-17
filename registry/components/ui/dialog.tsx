@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/dialog.css";
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";

@@ -46,7 +46,7 @@ const publication = {
   homepage,
   registryNamespace: "@teum",
   packageCandidate: "teum",
-  registryInstall: `npx shadcn@latest add ${repository}/teum`,
+  registryInstall: `npx shadcn@${packageJson.devDependencies.shadcn} add ${repository}/teum#v${packageJson.version}`,
 };
 await writeFile(resolve(root, "publication.json"), `${JSON.stringify(publication, null, 2)}\n`);
 

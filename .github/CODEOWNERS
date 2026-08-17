@@ -1,0 +1,11 @@
+# Public release and workflow boundaries require maintainer review.
+/.github/workflows/ @minwookshin
+/.github/dependabot.yml @minwookshin
+/public/r/v/ @minwookshin
+/release/registry-history.json @minwookshin
+/scripts/build-versioned-registry.mjs @minwookshin
+/scripts/verify-registry-history.mjs @minwookshin
+/scripts/versioned-registry-contract.mjs @minwookshin
+/scripts/assemble-release-candidate.mjs @minwookshin
+/worker/ @minwookshin
+/SECURITY.md @minwookshin

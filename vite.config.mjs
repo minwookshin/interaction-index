@@ -5,6 +5,7 @@ export default defineConfig({
   base: process.env.GITHUB_PAGES === "true" ? "/teum/" : "/",
   build: {
     outDir: "dist/client",
+    manifest: true,
     rollupOptions: {
       output: {
         onlyExplicitManualChunks: true,
@@ -16,7 +17,6 @@ export default defineConfig({
             || moduleId.includes("/node_modules/scheduler/")
           ) return "react";
           if (moduleId.includes("/node_modules/@base-ui/")) return "base-ui";
-          if (moduleId.includes("/node_modules/@phosphor-icons/")) return "icons";
           if (moduleId.includes("/node_modules/motion/") || moduleId.includes("/node_modules/framer-motion/")) return "motion";
           if (moduleId.includes("/node_modules/sonner/")) return "feedback";
         },

@@ -1,0 +1,69 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer teum.tokens, teum.base, teum.components;
+
+@layer teum.components {
+.teum-sr-only,
+.teum-sr-only:not(:focus):not(:active) {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.teum-metric {
+  display: flex;
+  min-width: 0;
+  min-height: 104px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 0;
+}
+
+.teum-metric__body { display: grid; min-width: 0; gap: 5px; }
+
+.teum-metric__label { color: var(--teum-fg-muted); font-size: var(--teum-type-ui); font-weight: 540; }
+
+.teum-metric__value {
+  min-width: 64px;
+  color: var(--teum-fg-default);
+  font-size: clamp(24px, 3vw, 32px);
+  font-variant-numeric: tabular-nums;
+  font-weight: 610;
+  letter-spacing: -.035em;
+  line-height: 1.05;
+}
+
+.teum-metric__meta { display: flex; min-width: 0; flex-wrap: wrap; align-items: center; gap: 5px 9px; color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+
+.teum-metric__trend { display: inline-flex; align-items: center; gap: 3px; }
+
+.teum-metric__trend svg { width: 12px; height: 12px; }
+
+.teum-metric__trend strong { color: var(--teum-fg-default); font-variant-numeric: tabular-nums; font-weight: 570; }
+
+.teum-metric__trend[data-sentiment="negative"] { color: var(--teum-fg-danger); }
+
+.teum-metric__trend[data-sentiment="negative"] strong { color: inherit; }
+
+.teum-metric__visual { display: grid; min-height: 36px; align-items: end; }
+
+.teum-metric__placeholder {
+  display: inline-block;
+  width: 84px;
+  height: .78em;
+  border-radius: 5px;
+  background: var(--teum-bg-subtle);
+  animation: teum-analytics-pulse 1.35s var(--teum-ease) infinite alternate;
+}
+
+@media (max-width: 640px) {
+.teum-metric { min-height: 92px; gap: 12px; }
+
+.teum-metric__value { font-size: 25px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+.teum-metric__placeholder { animation: none; }
+}
+
+@keyframes teum-analytics-pulse { from { opacity: .5; } to { opacity: 1; } }
+}

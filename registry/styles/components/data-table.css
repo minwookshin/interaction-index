@@ -1,0 +1,262 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer teum.tokens, teum.base, teum.components;
+
+@layer teum.components {
+.teum-sr-only,
+.teum-sr-only:not(:focus):not(:active) {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.teum-data-table {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  color: var(--teum-fg-default);
+}
+
+.teum-data-table > .teum-table__container {
+  border-color: color-mix(in oklch, var(--teum-separator) 76%, transparent);
+  border-radius: 9px;
+  box-shadow: var(--teum-shadow-control);
+}
+
+.teum-data-table .teum-table__head,
+.teum-data-table .teum-table__cell { padding-inline: 11px; }
+
+.teum-data-table__header-content {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  align-items: center;
+}
+
+.teum-data-table .teum-table__head[data-align="center"],
+.teum-data-table .teum-table__cell[data-align="center"] { text-align: center; }
+
+.teum-data-table .teum-table__head[data-align="end"],
+.teum-data-table .teum-table__cell[data-align="end"] { text-align: end; }
+
+.teum-data-table__selection-head,
+.teum-data-table__selection-cell {
+  width: 40px;
+  min-width: 40px;
+  padding-inline: 11px 0 !important;
+}
+
+.teum-data-table__selection-head .teum-choice-row,
+.teum-data-table__selection-cell .teum-choice-row { width: 16px; }
+
+.teum-data-table__sort {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  gap: 5px;
+  margin-inline: -5px;
+  padding: 4px 5px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 560;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--teum-hover-duration), background-color var(--teum-hover-duration);
+}
+
+.teum-data-table__sort > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.teum-data-table__sort svg {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 auto;
+  color: var(--teum-fg-subtle);
+}
+
+.teum-data-table__resize {
+  position: absolute;
+  z-index: 5;
+  inset-block: 0;
+  inset-inline-end: -7px;
+  width: 14px;
+  touch-action: none;
+  user-select: none;
+  cursor: col-resize;
+}
+
+.teum-data-table__resize::after {
+  position: absolute;
+  width: 1px;
+  height: 16px;
+  border-radius: 999px;
+  background: transparent;
+  content: "";
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+}
+
+.teum-data-table__resize[data-resizing]::after {
+  background: var(--teum-fg-muted);
+}
+
+.teum-data-table__resize:focus-visible { outline: 0; }
+
+.teum-data-table [data-pinned="start"],
+.teum-data-table [data-pinned="end"] { background: var(--teum-bg-surface); }
+
+.teum-data-table .teum-table__head[data-pinned] {
+  z-index: 4 !important;
+  background: color-mix(in oklch, var(--teum-bg-surface) 96%, var(--teum-fg-default));
+}
+
+.teum-data-table .teum-table__row[data-selected] > [data-pinned] {
+  background: color-mix(in oklch, var(--teum-bg-surface) 91%, var(--teum-fg-default));
+}
+
+.teum-data-table .teum-table__head[data-pinned="start"],
+.teum-data-table .teum-table__cell[data-pinned="start"] {
+  box-shadow: 10px 0 14px -16px rgb(0 0 0 / .42);
+}
+
+.teum-data-table .teum-table__head[data-pinned="end"],
+.teum-data-table .teum-table__cell[data-pinned="end"] {
+  box-shadow: -10px 0 14px -16px rgb(0 0 0 / .42);
+}
+
+.teum-data-table__selection-head[data-pinned],
+.teum-data-table__selection-cell[data-pinned] {
+  position: sticky;
+  z-index: 3;
+  inset-inline-start: 0;
+}
+
+.teum-data-table__selection-head[data-pinned] { z-index: 5; }
+
+.teum-data-table__state {
+  height: 240px !important;
+  padding: 24px !important;
+}
+
+.teum-data-table__state .teum-empty-state { min-height: 190px; }
+
+.teum-data-table__empty-value { color: var(--teum-fg-subtle); }
+
+.teum-data-table__virtual-viewport {
+  width: 100%;
+  overflow: auto;
+  border: 1px solid color-mix(in oklch, var(--teum-separator) 76%, transparent);
+  border-radius: 9px;
+  background: var(--teum-bg-surface);
+  box-shadow: var(--teum-shadow-control);
+  overscroll-behavior: contain;
+}
+
+.teum-data-table__virtual-table {
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.teum-data-table__virtual-table .teum-table__header {
+  position: sticky;
+  z-index: 6;
+  top: 0;
+}
+
+.teum-data-table__virtual-spacer .teum-table__cell {
+  height: 0;
+  padding: 0;
+  border: 0;
+}
+
+.teum-data-table__fetching {
+  position: absolute;
+  z-index: 8;
+  top: 7px;
+  right: 8px;
+  display: inline-flex;
+  height: 22px;
+  align-items: center;
+  gap: 5px;
+  padding-inline: 7px;
+  border-radius: 6px;
+  background: color-mix(in oklch, var(--teum-bg-surface) 92%, transparent);
+  color: var(--teum-fg-subtle);
+  box-shadow: var(--teum-shadow-control);
+  font-size: var(--teum-type-metadata);
+  backdrop-filter: blur(10px);
+}
+
+.teum-data-table__fetching .teum-loading-spinner { width: 12px; height: 12px; }
+
+.teum-data-table__footer {
+  display: flex;
+  min-height: 45px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 6px 2px 0;
+}
+
+.teum-data-table__footer > span {
+  color: var(--teum-fg-subtle);
+  font-size: var(--teum-type-metadata);
+  font-variant-numeric: tabular-nums;
+}
+
+.teum-data-table__footer .teum-pagination { margin-left: auto; }
+
+.teum-data-table__unknown-pages {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  color: var(--teum-fg-subtle);
+  font-size: var(--teum-type-metadata);
+  font-variant-numeric: tabular-nums;
+}
+
+.teum-data-table__unknown-pages button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+}
+
+.teum-data-table__unknown-pages button:disabled { opacity: .36; }
+
+.teum-data-table__unknown-pages svg { width: 13px; height: 13px; }
+
+.teum-data-table .teum-table__row[data-activatable] { cursor: default; }
+
+@media (hover: hover) and (pointer: fine) {
+.teum-data-table__sort:hover,
+.teum-data-table__unknown-pages button:not(:disabled):hover { background: var(--teum-hover); color: var(--teum-fg-default); }
+
+.teum-data-table__resize:hover::after { background: var(--teum-control-border-hover); }
+
+.teum-data-table .teum-table__body .teum-table__row:hover > [data-pinned] {
+    background: color-mix(in oklch, var(--teum-bg-surface) 95%, var(--teum-fg-default));
+  }
+}
+
+@media (max-width: 700px) {
+.teum-data-table__footer { align-items: flex-start; flex-direction: column; }
+
+.teum-data-table__footer .teum-pagination { margin-left: 0; }
+
+.teum-data-table__unknown-pages { margin-left: 0; }
+}
+}

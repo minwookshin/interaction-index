@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/menu.css";
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";

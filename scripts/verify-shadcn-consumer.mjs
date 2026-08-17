@@ -1,152 +1,143 @@
-import { execFile } from "node:child_process";
-import { createServer } from "node:http";
-import { access, mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
-import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
-import { promisify } from "node:util";
+import { access, readFile, writeFile } from "node:fs/promises";
+import { performance } from "node:perf_hooks";
+import { resolve } from "node:path";
+import {
+  configureAndInstall,
+  createExampleFixture,
+  packageJson,
+  readFilesContaining,
+  removeFixture,
+  root,
+  run,
+  shadcnCli,
+  shadcnExecutable,
+  startRegistryServer,
+} from "./adoption-test-utils.mjs";
 
-const exec = promisify(execFile);
-const root = process.cwd();
-const packageJson = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
-const version = packageJson.version;
-const versionedRoot = resolve(root, "public/r/v", version);
-const fixture = await mkdtemp(join(tmpdir(), "teum-shadcn-consumer-"));
-const executable = process.platform === "win32"
-  ? resolve(root, "node_modules/.bin/shadcn.cmd")
-  : resolve(root, "node_modules/.bin/shadcn");
+const evidencePath = resolve(root, "release/quickstart.json");
+const maxJourneyMs = 10 * 60 * 1000;
+const matrices = [
+  {
+    label: "React 18",
+    react: "18.3.1",
+    reactDom: "18.3.1",
+    reactTypes: "18.3.31",
+    reactDomTypes: "18.3.7",
+  },
+  {
+    label: "React 19",
+    react: packageJson.devDependencies.react,
+    reactDom: packageJson.devDependencies["react-dom"],
+    reactTypes: packageJson.devDependencies["@types/react"],
+    reactDomTypes: packageJson.devDependencies["@types/react-dom"],
+  },
+];
 
-let server;
-let template = process.env.TEUM_REGISTRY_TEMPLATE;
-
-async function startRegistryServer() {
-  server = createServer(async (request, response) => {
-    const name = decodeURIComponent(new URL(request.url ?? "/", "http://localhost").pathname.slice(1));
-    if (!/^[a-z0-9.-]+\.json$/.test(name)) {
-      response.writeHead(404).end("Not found");
-      return;
-    }
-    try {
-      const source = await readFile(resolve(versionedRoot, name));
-      response.writeHead(200, {
-        "content-type": "application/json; charset=utf-8",
-        "cache-control": "public, max-age=31536000, immutable",
-        "x-content-type-options": "nosniff",
-      });
-      response.end(source);
-    } catch {
-      response.writeHead(404).end("Not found");
-    }
-  });
-  await new Promise((resolveListen, reject) => {
-    server.once("error", reject);
-    server.listen(0, "127.0.0.1", resolveListen);
-  });
-  const address = server.address();
-  if (!address || typeof address === "string") throw new Error("[shadcn-consumer] local registry did not bind a port");
-  return `http://127.0.0.1:${address.port}/{name}.json`;
-}
+const registry = await startRegistryServer();
+const results = [];
 
 try {
-  if (!template) template = await startRegistryServer();
-  if (!template.includes("{name}")) throw new Error("[shadcn-consumer] registry template must contain {name}");
+  for (const matrix of matrices) {
+    const fixture = await createExampleFixture("quickstart-vite", `teum-vite-${matrix.react.split(".")[0]}-`);
+    try {
+      const fixturePackagePath = resolve(fixture, "package.json");
+      const fixturePackage = JSON.parse(await readFile(fixturePackagePath, "utf8"));
+      fixturePackage.dependencies.react = matrix.react;
+      fixturePackage.dependencies["react-dom"] = matrix.reactDom;
+      fixturePackage.devDependencies["@types/react"] = matrix.reactTypes;
+      fixturePackage.devDependencies["@types/react-dom"] = matrix.reactDomTypes;
+      await writeFile(fixturePackagePath, `${JSON.stringify(fixturePackage, null, 2)}\n`, "utf8");
 
-  await mkdir(resolve(fixture, "src"), { recursive: true });
-  await writeFile(resolve(fixture, "src/index.css"), "/* Plain CSS consumer: Tailwind is intentionally not installed. */\n");
-  await writeFile(resolve(fixture, "package.json"), `${JSON.stringify({
-    name: "teum-shadcn-consumer",
-    private: true,
-    version: "0.0.0",
-    type: "module",
-    dependencies: {
-      react: packageJson.devDependencies.react,
-      "react-dom": packageJson.devDependencies["react-dom"],
-    },
-    devDependencies: {
-      "@types/react": packageJson.devDependencies["@types/react"],
-      "@types/react-dom": packageJson.devDependencies["@types/react-dom"],
-      typescript: packageJson.devDependencies.typescript,
-      vite: packageJson.devDependencies.vite,
-    },
-    registries: { "@teum-pinned": template },
-  }, null, 2)}\n`);
-  await writeFile(resolve(fixture, "components.json"), `${JSON.stringify({
-    $schema: "https://ui.shadcn.com/schema.json",
-    style: "new-york",
-    rsc: false,
-    tsx: true,
-    tailwind: {
-      config: "",
-      css: "src/index.css",
-      baseColor: "neutral",
-      cssVariables: true,
-      prefix: "",
-    },
-    iconLibrary: "lucide",
-    aliases: {
-      components: "components",
-      utils: "lib/utils",
-      ui: "components/ui",
-      lib: "lib",
-      hooks: "hooks",
-    },
-  }, null, 2)}\n`);
-  await writeFile(resolve(fixture, "tsconfig.json"), `${JSON.stringify({
-    compilerOptions: {
-      target: "ES2022",
-      lib: ["ES2022", "DOM", "DOM.Iterable"],
-      module: "ESNext",
-      moduleResolution: "Bundler",
-      types: ["vite/client"],
-      jsx: "react-jsx",
-      strict: true,
-      noEmit: true,
-    },
-    include: ["**/*.ts", "**/*.tsx"],
-  }, null, 2)}\n`);
-  await writeFile(resolve(fixture, "src/main.tsx"), 'import { Button } from "./components/ui/button";\nexport const ConsumerProof = () => <Button>Verified action</Button>;\n');
+      const startedAt = performance.now();
+      await configureAndInstall(fixture, registry.template);
 
-  const result = await exec(executable, ["add", "@teum-pinned/button", "@teum-pinned/teum-tailwind", "-y", "-c", fixture], {
-    cwd: root,
-    env: { ...process.env, CI: "1" },
-    maxBuffer: 16 * 1024 * 1024,
-    timeout: 120_000,
-  });
-  process.stdout.write(result.stdout);
-  process.stderr.write(result.stderr);
+      for (const path of [
+        "src/components/ui/button.tsx",
+        "src/lib/cn.ts",
+        "src/styles/teum-base.css",
+        "src/styles/components/button.css",
+      ]) {
+        await access(resolve(fixture, path)).catch(() => {
+          throw new Error(`[vite-adoption] CLI did not install ${path} for ${matrix.label}`);
+        });
+      }
 
-  for (const path of [
-    "src/components/ui/button.tsx",
-    "src/lib/cn.ts",
-    "src/styles/teum-base.css",
-    "src/styles/components/button.css",
-    "src/styles/teum-tailwind.css",
-  ]) {
-    await access(resolve(fixture, path)).catch(() => {
-      throw new Error(`[shadcn-consumer] CLI did not install ${path}`);
-    });
+      const installedPackage = JSON.parse(await readFile(fixturePackagePath, "utf8"));
+      for (const dependency of ["@base-ui/react", "@fontsource-variable/inter", "class-variance-authority", "clsx", "tailwind-merge"]) {
+        if (!installedPackage.dependencies?.[dependency]) throw new Error(`[vite-adoption] CLI omitted ${dependency}`);
+      }
+      if (installedPackage.dependencies?.tailwindcss || installedPackage.devDependencies?.tailwindcss) {
+        throw new Error("[vite-adoption] plain CSS install unexpectedly added Tailwind CSS");
+      }
+
+      await run("npm", ["run", "typecheck"], { cwd: fixture });
+      await run("npm", ["run", "build"], { cwd: fixture });
+      await access(resolve(fixture, "dist/index.html"));
+
+      const builtCss = await readFilesContaining(resolve(fixture, "dist/assets"), /\.css$/);
+      const builtJavaScript = await readFilesContaining(resolve(fixture, "dist/assets"), /\.js$/);
+      if (!builtCss.includes(".teum-button") || !/--teum-radius-control:\s*9px/.test(builtCss)) {
+        throw new Error(`[vite-adoption] ${matrix.label} build omitted Teum Button CSS or the semantic override`);
+      }
+      if (!builtCss.includes(':root[data-theme="dark"]') && !builtCss.includes(":root[data-theme=dark]")) {
+        throw new Error(`[vite-adoption] ${matrix.label} build omitted the dark theme contract`);
+      }
+      if (!builtJavaScript.includes("Create issue") || !builtJavaScript.includes("dataset.theme")) {
+        throw new Error(`[vite-adoption] ${matrix.label} build omitted the rendered action or theme control`);
+      }
+
+      if (matrix.label === "React 19") {
+        await run(shadcnExecutable, ["add", "@teum-pinned/teum-tailwind", "-y", "-c", fixture]);
+        await access(resolve(fixture, "src/styles/teum-tailwind.css"));
+      }
+
+      const elapsedMs = Math.round(performance.now() - startedAt);
+      if (elapsedMs >= maxJourneyMs) throw new Error(`[vite-adoption] ${matrix.label} journey exceeded ten minutes`);
+      results.push({
+        runtime: matrix.label,
+        react: matrix.react,
+        reactDom: matrix.reactDom,
+        elapsedMs,
+        typecheck: "passed",
+        productionBuild: "passed",
+        plainCss: true,
+        themeToggle: true,
+        semanticOverride: "--teum-radius-control: 9px",
+      });
+      console.log(`[vite-adoption] ${matrix.label} installed, customized, type-checked, and built in ${elapsedMs} ms`);
+    } finally {
+      await removeFixture(fixture);
+    }
   }
 
-  const installedPackage = JSON.parse(await readFile(resolve(fixture, "package.json"), "utf8"));
-  const dependencies = installedPackage.dependencies ?? {};
-  for (const dependency of ["@base-ui/react", "@fontsource-variable/inter", "class-variance-authority", "clsx", "tailwind-merge"]) {
-    if (!dependencies[dependency]) throw new Error(`[shadcn-consumer] CLI omitted ${dependency}`);
+  if (process.env.TEUM_QUICKSTART_EVIDENCE === "1") {
+    await writeFile(evidencePath, `${JSON.stringify({
+      schemaVersion: 2,
+      generatedBy: "scripts/verify-shadcn-consumer.mjs",
+      generatedAt: new Date().toISOString(),
+      version: packageJson.version,
+      status: "passed",
+      framework: "Vite",
+      fixture: "examples/quickstart-vite",
+      targetMs: maxJourneyMs,
+      automatedJourney: "configure pinned registry, install Button, customize one semantic role, switch theme, type-check, and production-build",
+      humanNoviceTimingClaim: false,
+      results,
+      commands: [
+        `npx ${shadcnCli} registry add @teum-pinned=${packageJson.homepage}/r/v/${packageJson.version}/{name}.json`,
+        `npx ${shadcnCli} add @teum-pinned/button`,
+        "npm run typecheck",
+        "npm run build",
+      ],
+      verifiedFiles: [
+        "src/components/ui/button.tsx",
+        "src/lib/cn.ts",
+        "src/styles/teum-base.css",
+        "src/styles/components/button.css",
+      ],
+      optionalTailwindBridgeVerified: true,
+    }, null, 2)}\n`, "utf8");
   }
-  if (dependencies.tailwindcss || installedPackage.devDependencies?.tailwindcss) {
-    throw new Error("[shadcn-consumer] plain CSS install unexpectedly added Tailwind CSS");
-  }
-  if (Object.keys(installedPackage.registries ?? {}).some((name) => name === "@teum")) {
-    throw new Error("[shadcn-consumer] pinned install silently depends on the mutable registry");
-  }
-
-  const tsc = process.platform === "win32"
-    ? resolve(fixture, "node_modules/.bin/tsc.cmd")
-    : resolve(fixture, "node_modules/.bin/tsc");
-  const typecheck = await exec(tsc, ["--noEmit"], { cwd: fixture, maxBuffer: 16 * 1024 * 1024, timeout: 120_000 });
-  process.stdout.write(typecheck.stdout);
-  process.stderr.write(typecheck.stderr);
-
-  console.log(`[shadcn-consumer] ${version} installed and type-checked Button, base CSS, and the optional Tailwind bridge from ${template}`);
 } finally {
-  if (server) await new Promise((resolveClose, reject) => server.close((error) => error ? reject(error) : resolveClose()));
-  if (!process.env.TEUM_KEEP_FIXTURE) await rm(fixture, { recursive: true, force: true });
+  await registry.close();
 }

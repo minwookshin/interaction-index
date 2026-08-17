@@ -4,7 +4,10 @@
   "entryPoint": "src/components/ui/index.ts",
   "typescriptVersion": "6.0.3",
   "componentCount": 45,
-  "exportCount": 210,
+  "productComponentCount": 15,
+  "publicComponentCount": 60,
+  "exportCount": 345,
+  "runtimeExportCount": 197,
   "indexExports": [
     "ActionList",
     "ActionListItem",
@@ -19,6 +22,13 @@
     "AlertDialogTitle",
     "AlertDialogTrigger",
     "AlertProps",
+    "AnalyticsDatum",
+    "AnalyticsDomainOptions",
+    "AnalyticsPlotBox",
+    "AnalyticsPointPosition",
+    "AnalyticsSeries",
+    "AnalyticsSeriesTone",
+    "AnalyticsValue",
     "Avatar",
     "AvatarGroup",
     "AvatarProps",
@@ -27,6 +37,11 @@
     "BreadcrumbItem",
     "Breadcrumbs",
     "BreadcrumbsProps",
+    "Breakdown",
+    "BreakdownItem",
+    "BreakdownProps",
+    "BulkActionBar",
+    "BulkActionBarProps",
     "Button",
     "ButtonGroup",
     "ButtonGroupProps",
@@ -35,15 +50,26 @@
     "ButtonProps",
     "Calendar",
     "CalendarProps",
+    "Chart",
+    "ChartAnnotation",
+    "ChartProps",
     "Checkbox",
     "CheckboxProps",
+    "Cohort",
+    "CohortProps",
+    "CohortRow",
     "Collapsible",
     "CollapsibleContent",
     "CollapsibleContentProps",
     "CollapsibleTrigger",
+    "ColumnManager",
+    "ColumnManagerColumn",
+    "ColumnManagerProps",
     "Combobox",
     "ComboboxOption",
     "ComboboxProps",
+    "Comparison",
+    "ComparisonProps",
     "ContextMenu",
     "ContextMenuCheckboxItem",
     "ContextMenuContent",
@@ -57,8 +83,41 @@
     "ContextSwitcher",
     "ContextSwitcherOption",
     "ContextSwitcherProps",
+    "DATA_VIEW_STATE_VERSION",
+    "DataDateRange",
+    "DataExportArtifact",
+    "DataExportColumn",
+    "DataExportFormat",
+    "DataExportMenu",
+    "DataExportMenuProps",
+    "DataExportOptions",
+    "DataFilter",
+    "DataFilterOperator",
+    "DataFilterValue",
+    "DataRequest",
+    "DataSavedView",
+    "DataTable",
+    "DataTableColumn",
+    "DataTableColumnPinning",
+    "DataTableProps",
+    "DataTableSort",
+    "DataTableVirtualization",
+    "DataToolbar",
+    "DataToolbarProps",
+    "DataViewCodecOptions",
+    "DataViewColumnPinning",
+    "DataViewFilter",
+    "DataViewLocationAdapter",
+    "DataViewPagination",
+    "DataViewSort",
+    "DataViewState",
+    "DataViewStateInput",
+    "DataViewStorageAdapter",
     "DatePicker",
     "DatePickerProps",
+    "DateRangeFilter",
+    "DateRangeFilterProps",
+    "DateRangePreset",
     "Dialog",
     "DialogClose",
     "DialogContent",
@@ -85,6 +144,15 @@
     "FieldsetLegend",
     "FieldsetLegendProps",
     "FieldsetProps",
+    "FilterBuilder",
+    "FilterBuilderProps",
+    "FilterField",
+    "FilterOperator",
+    "Funnel",
+    "FunnelProps",
+    "FunnelStage",
+    "Goal",
+    "GoalProps",
     "IconButton",
     "IconButtonProps",
     "InlineEdit",
@@ -111,6 +179,9 @@
     "MenuRadioItem",
     "MenuSeparator",
     "MenuTrigger",
+    "Metric",
+    "MetricProps",
+    "MetricTrend",
     "NumberField",
     "NumberFieldProps",
     "Pagination",
@@ -129,6 +200,9 @@
     "ReorderableItem",
     "ReorderableList",
     "ReorderableListProps",
+    "SavedView",
+    "SavedViews",
+    "SavedViewsProps",
     "SearchInput",
     "SearchInputProps",
     "SegmentedControl",
@@ -156,6 +230,8 @@
     "Skeleton",
     "SkeletonProps",
     "SkeletonText",
+    "Sparkline",
+    "SparklineProps",
     "Spinner",
     "SpinnerProps",
     "Switch",
@@ -173,10 +249,23 @@
     "TabsContent",
     "TabsList",
     "TabsTrigger",
+    "TeumAgentPlan",
+    "TeumAgentRecipeContract",
+    "TeumAgentRecipeId",
+    "TeumAgentSelectionRule",
+    "TeumAnalyticsComponentContract",
+    "TeumDataComponentContract",
+    "TeumMotionContract",
+    "TeumMotionFrequency",
+    "TeumMotionRule",
+    "TeumProductPatternContract",
     "TextField",
     "TextFieldProps",
     "Textarea",
     "TextareaProps",
+    "Timeline",
+    "TimelineItem",
+    "TimelineProps",
     "ToastApi",
     "ToastId",
     "ToastMessage",
@@ -206,15 +295,263 @@
     "UndoBar",
     "UndoContextValue",
     "UndoStackProvider",
+    "UseDataViewStateOptions",
+    "UseDataViewStateResult",
+    "UseSavedViewsOptions",
     "actionListContract",
+    "auditLogContract",
+    "billingUsageContract",
+    "buildDataExport",
     "buttonVariants",
+    "clampAnalyticsIndex",
+    "createAnalyticsAreaPath",
+    "createAnalyticsPath",
+    "createAnalyticsTicks",
+    "createBrowserDataViewLocationAdapter",
+    "createBrowserDataViewStorageAdapter",
+    "createDataViewState",
+    "customerDirectoryContract",
+    "customerWorkspaceContract",
+    "describeAnalyticsDatum",
+    "downloadDataExport",
+    "formatAnalyticsValue",
+    "getAnalyticsDomain",
+    "getAnalyticsPointPosition",
+    "getDataRequestKey",
+    "getPercentChange",
     "getSharedDetailMotionPreset",
     "inlineEditContract",
+    "issuesWorkspaceContract",
+    "membersPermissionsContract",
+    "mergeDataViewSearch",
+    "parseDataViewState",
+    "parseSavedViews",
+    "patchDataViewState",
+    "selectTeumRecipe",
     "selectedSharedDetailMotionPreset",
+    "serializeDataViewState",
+    "serializeSavedViews",
     "sharedDetailContract",
     "sharedDetailMotionPresets",
+    "summarizeAnalyticsSeries",
+    "teumAgentForbiddenRules",
+    "teumAgentRecipeContracts",
+    "teumAgentSelectionRules",
+    "teumAgentSystemContract",
+    "teumAnalyticsComponentContracts",
+    "teumAnalyticsRecipeContracts",
+    "teumAnalyticsStateContract",
+    "teumDataComponentContracts",
+    "teumDataRecipeContracts",
+    "teumDataTableFeatures",
+    "teumDataViewStateContract",
+    "teumMotionContract",
+    "teumProductPatternContracts",
+    "teumProductPatternSystemContract",
+    "toDataRequest",
     "toast",
     "undoStackContract",
+    "useDataViewState",
+    "useSavedViews",
+    "useUndoStack"
+  ],
+  "indexRuntimeExports": [
+    "ActionList",
+    "Alert",
+    "AlertDialog",
+    "AlertDialogClose",
+    "AlertDialogContent",
+    "AlertDialogDescription",
+    "AlertDialogFooter",
+    "AlertDialogHeader",
+    "AlertDialogTitle",
+    "AlertDialogTrigger",
+    "Avatar",
+    "AvatarGroup",
+    "Badge",
+    "Breadcrumbs",
+    "Breakdown",
+    "BulkActionBar",
+    "Button",
+    "ButtonGroup",
+    "ButtonGroupSeparator",
+    "Calendar",
+    "Chart",
+    "Checkbox",
+    "Cohort",
+    "Collapsible",
+    "CollapsibleContent",
+    "CollapsibleTrigger",
+    "ColumnManager",
+    "Combobox",
+    "Comparison",
+    "ContextMenu",
+    "ContextMenuCheckboxItem",
+    "ContextMenuContent",
+    "ContextMenuItem",
+    "ContextMenuLabel",
+    "ContextMenuRadioGroup",
+    "ContextMenuRadioItem",
+    "ContextMenuSeparator",
+    "ContextMenuTrigger",
+    "ContextSwitcher",
+    "DATA_VIEW_STATE_VERSION",
+    "DataExportMenu",
+    "DataTable",
+    "DataToolbar",
+    "DatePicker",
+    "DateRangeFilter",
+    "Dialog",
+    "DialogClose",
+    "DialogContent",
+    "DialogDescription",
+    "DialogFooter",
+    "DialogHeader",
+    "DialogTitle",
+    "DialogTrigger",
+    "EmptyState",
+    "Field",
+    "FieldControl",
+    "FieldDescription",
+    "FieldError",
+    "FieldGroup",
+    "FieldLabel",
+    "Fieldset",
+    "FieldsetLegend",
+    "FilterBuilder",
+    "Funnel",
+    "Goal",
+    "IconButton",
+    "InlineEdit",
+    "InputGroup",
+    "InputGroupAddon",
+    "InputGroupButton",
+    "InputGroupInput",
+    "Kbd",
+    "KbdGroup",
+    "Menu",
+    "MenuCheckboxItem",
+    "MenuContent",
+    "MenuItem",
+    "MenuLabel",
+    "MenuRadioGroup",
+    "MenuRadioItem",
+    "MenuSeparator",
+    "MenuTrigger",
+    "Metric",
+    "NumberField",
+    "Pagination",
+    "Popover",
+    "PopoverContent",
+    "PopoverDescription",
+    "PopoverTitle",
+    "PopoverTrigger",
+    "Progress",
+    "RadioGroup",
+    "ReorderableList",
+    "SavedViews",
+    "SearchInput",
+    "SegmentedControl",
+    "Select",
+    "SharedDetail",
+    "Sheet",
+    "SheetBody",
+    "SheetClose",
+    "SheetContent",
+    "SheetDescription",
+    "SheetFooter",
+    "SheetHeader",
+    "SheetTitle",
+    "SheetTrigger",
+    "Skeleton",
+    "SkeletonText",
+    "Sparkline",
+    "Spinner",
+    "Switch",
+    "Table",
+    "TableBody",
+    "TableCaption",
+    "TableCell",
+    "TableFooter",
+    "TableHead",
+    "TableHeader",
+    "TableRow",
+    "Tabs",
+    "TabsContent",
+    "TabsList",
+    "TabsTrigger",
+    "TextField",
+    "Textarea",
+    "Timeline",
+    "Toaster",
+    "Toolbar",
+    "ToolbarButton",
+    "ToolbarGroup",
+    "ToolbarInput",
+    "ToolbarLink",
+    "ToolbarSeparator",
+    "Tooltip",
+    "TooltipContent",
+    "TooltipProvider",
+    "TooltipTrigger",
+    "Tree",
+    "UndoBar",
+    "UndoStackProvider",
+    "actionListContract",
+    "auditLogContract",
+    "billingUsageContract",
+    "buildDataExport",
+    "buttonVariants",
+    "clampAnalyticsIndex",
+    "createAnalyticsAreaPath",
+    "createAnalyticsPath",
+    "createAnalyticsTicks",
+    "createBrowserDataViewLocationAdapter",
+    "createBrowserDataViewStorageAdapter",
+    "createDataViewState",
+    "customerDirectoryContract",
+    "customerWorkspaceContract",
+    "describeAnalyticsDatum",
+    "downloadDataExport",
+    "formatAnalyticsValue",
+    "getAnalyticsDomain",
+    "getAnalyticsPointPosition",
+    "getDataRequestKey",
+    "getPercentChange",
+    "getSharedDetailMotionPreset",
+    "inlineEditContract",
+    "issuesWorkspaceContract",
+    "membersPermissionsContract",
+    "mergeDataViewSearch",
+    "parseDataViewState",
+    "parseSavedViews",
+    "patchDataViewState",
+    "selectTeumRecipe",
+    "selectedSharedDetailMotionPreset",
+    "serializeDataViewState",
+    "serializeSavedViews",
+    "sharedDetailContract",
+    "sharedDetailMotionPresets",
+    "summarizeAnalyticsSeries",
+    "teumAgentForbiddenRules",
+    "teumAgentRecipeContracts",
+    "teumAgentSelectionRules",
+    "teumAgentSystemContract",
+    "teumAnalyticsComponentContracts",
+    "teumAnalyticsRecipeContracts",
+    "teumAnalyticsStateContract",
+    "teumDataComponentContracts",
+    "teumDataRecipeContracts",
+    "teumDataTableFeatures",
+    "teumDataViewStateContract",
+    "teumMotionContract",
+    "teumProductPatternContracts",
+    "teumProductPatternSystemContract",
+    "toDataRequest",
+    "toast",
+    "undoStackContract",
+    "useDataViewState",
+    "useSavedViews",
     "useUndoStack"
   ],
   "components": {
@@ -1999,6 +2336,1116 @@
           "kind": "type",
           "signature": "TreeProps = Omit<AriaTreeProps<TreeNode>, \"children\" | \"className\" | \"items\"> & { items: readonly TreeNode[]; className?: string; }",
           "typeHash": "283123a6d5bbad5b10833009f62a883e570abde3c2cb3b65b6ac9f4d352d2d94",
+          "description": ""
+        }
+      ]
+    }
+  },
+  "productComponents": {
+    "data-table": {
+      "source": "src/components/ui/data-table.tsx",
+      "sourceHash": "3697eaf98b672797dd559dc261b44600e15ee95b45bbe9667482d14e69fd3ce8",
+      "declaration": "api/generated/types/components/ui/data-table.d.ts",
+      "exports": [
+        {
+          "name": "DataTable",
+          "kind": "function",
+          "signature": "DataTable<TData extends object>({ ariaLabel, data, columns, getRowId, getRowLabel, className, selectable, selectedRowIds, defaultSelectedRowIds, onSelectedRowIdsChange, sorting, defaultSorting, onSortingChange, manualSorting, columnVisibil…",
+          "typeHash": "69ad85368bf671104c32ad2be8e845d6f665373c4d28f2f1d7a45bfbf7d40e21",
+          "description": ""
+        },
+        {
+          "name": "DataTableColumn",
+          "kind": "type",
+          "signature": "DataTableColumn = { id: string; header: ReactNode; accessor?: keyof TData | ((row: TData) => unknown); cell?: (row: TData) => ReactNode; sortable?: boolean; sortType?: \"alphanumeric\" | \"basic\" | \"datetime\"; hideable?: boolean; resizable?: …",
+          "typeHash": "0c5fa9ac9c730a5770efef5e4c2f4003ba7baa89d21e01defe3f611b8789b8f8",
+          "description": ""
+        },
+        {
+          "name": "DataTableColumnPinning",
+          "kind": "type",
+          "signature": "DataTableColumnPinning = DataViewColumnPinning",
+          "typeHash": "570b1c890e5f4752ba24ffa2853fa32dbebeca1a84e00cd891d61f7390424870",
+          "description": ""
+        },
+        {
+          "name": "DataTableProps",
+          "kind": "type",
+          "signature": "DataTableProps = { ariaLabel: string; data: readonly TData[]; columns: readonly DataTableColumn<TData>[]; getRowId: (row: TData, index: number) => string; getRowLabel?: (row: TData) => string; className?: string; selectable?: boolean; sele…",
+          "typeHash": "ff197471b0610c3ac6105baea443b57186e05da0e28b954c587126d68ae5891c",
+          "description": ""
+        },
+        {
+          "name": "DataTableSort",
+          "kind": "type",
+          "signature": "DataTableSort = DataViewSort",
+          "typeHash": "b385f3b6ce9224f61aaff8fc186726082eff541c1bc8d304ef1b2db58133f81d",
+          "description": ""
+        },
+        {
+          "name": "DataTableVirtualization",
+          "kind": "type",
+          "signature": "DataTableVirtualization = { height?: number; estimateRowHeight?: number; overscan?: number; }",
+          "typeHash": "81cf9df216b3d017a666cf132b16b20090a37722380d15ee8990e9802149eb19",
+          "description": ""
+        },
+        {
+          "name": "teumDataTableFeatures",
+          "kind": "const",
+          "signature": "teumDataTableFeatures: { columnSizingFeature: import(\"@tanstack/table-core\").TableFeature; columnResizingFeature: import(\"@tanstack/table-core\").TableFeature; columnPinningFeature: import(\"@tanstack/table-core\").TableFeature; columnVisibil…",
+          "typeHash": "230af307754ba9bdec8a4d4c6351f4ed9ed024b362219ec04a70229e7965d1ee",
+          "description": ""
+        }
+      ]
+    },
+    "filter-builder": {
+      "source": "src/components/ui/filter-builder.tsx",
+      "sourceHash": "e9c064cdfa49d49b68ec0fed79d1504b31c946f2d7c49172f34262a802298973",
+      "declaration": "api/generated/types/components/ui/filter-builder.d.ts",
+      "exports": [
+        {
+          "name": "DataFilter",
+          "kind": "type",
+          "signature": "DataFilter = DataViewFilter",
+          "typeHash": "c3db6e2959bf20110319bf8c9a0c72b2f9a644f64fa16b3436fca3dcac318d09",
+          "description": ""
+        },
+        {
+          "name": "FilterBuilder",
+          "kind": "function",
+          "signature": "FilterBuilder({ fields, filters, onFiltersChange, className, label }: FilterBuilderProps): import(\"react\").JSX.Element",
+          "typeHash": "d2ed8b7922ed055c2916a38afedb067124c3643ea8a02e84f7ad0bb347c642df",
+          "description": ""
+        },
+        {
+          "name": "FilterBuilderProps",
+          "kind": "type",
+          "signature": "FilterBuilderProps = { fields: readonly FilterField[]; filters: readonly DataFilter[]; onFiltersChange: (filters: readonly DataFilter[]) => void; className?: string; label?: string; }",
+          "typeHash": "e56b2181444d075352a7a0328507a4c06951d0aa1848d95676731a22feaea0f7",
+          "description": ""
+        },
+        {
+          "name": "FilterField",
+          "kind": "type",
+          "signature": "FilterField = { id: string; label: string; kind?: \"option\" | \"text\" | \"number\"; values?: readonly { label: string; value: string }[]; operators?: readonly FilterOperator[]; placeholder?: string; }",
+          "typeHash": "ccdf56e89ccf9fddbbadec0444ef1db220212c26daed79091cfe7cc1a85e6bd6",
+          "description": ""
+        },
+        {
+          "name": "FilterOperator",
+          "kind": "type",
+          "signature": "FilterOperator = DataFilterOperator",
+          "typeHash": "f6f9096fc6b7f37e84d7edfb2973b7c90063fa5333416f6292e626222023c592",
+          "description": ""
+        }
+      ]
+    },
+    "data-toolbar": {
+      "source": "src/components/ui/data-toolbar.tsx",
+      "sourceHash": "ab70305e8f8d87f5cfcee82fc782700b928149b74078a9ef43d10cc92a28a9d1",
+      "declaration": "api/generated/types/components/ui/data-toolbar.d.ts",
+      "exports": [
+        {
+          "name": "ColumnManager",
+          "kind": "function",
+          "signature": "ColumnManager({ columns, onVisibilityChange, onResetSizing, label }: ColumnManagerProps): import(\"react\").JSX.Element",
+          "typeHash": "4c775c497e8a49e99905740194ff4d5363989acbcb720245cf8c950cb9a8fc7a",
+          "description": ""
+        },
+        {
+          "name": "ColumnManagerColumn",
+          "kind": "type",
+          "signature": "ColumnManagerColumn = { id: string; label: string; visible: boolean; required?: boolean; }",
+          "typeHash": "34b4bf9a30f385f395750d1cc541d39cfbde6da8a54113184e491904cec210ec",
+          "description": ""
+        },
+        {
+          "name": "ColumnManagerProps",
+          "kind": "type",
+          "signature": "ColumnManagerProps = { columns: readonly ColumnManagerColumn[]; onVisibilityChange: (id: string, visible: boolean) => void; onResetSizing?: () => void; label?: string; }",
+          "typeHash": "0e727ff2187eee6479fba3f88e2119dc38cf469dc0c0178c8d7b53a03bf1ba63",
+          "description": ""
+        },
+        {
+          "name": "DataToolbar",
+          "kind": "function",
+          "signature": "DataToolbar({ label, start, end, className, ...props }: DataToolbarProps): import(\"react\").JSX.Element",
+          "typeHash": "0a369582b320db39390976f4be3df19891d1a4028331e0f691fbd23f94f126b1",
+          "description": ""
+        },
+        {
+          "name": "DataToolbarProps",
+          "kind": "type",
+          "signature": "DataToolbarProps = HTMLAttributes<HTMLDivElement> & { label: string; start?: ReactNode; end?: ReactNode; }",
+          "typeHash": "4e44ddeaa09286d1494f250957b242a3650f640d997a29d19c5ab02242f99e5a",
+          "description": ""
+        },
+        {
+          "name": "SavedView",
+          "kind": "type",
+          "signature": "SavedView = { id: string; label: string; description?: string; count?: number; scope?: \"system\" | \"personal\"; }",
+          "typeHash": "393fd8620575767672d26b6fb99b5e975e8570a02ace734fb68e63b29c14e312",
+          "description": ""
+        },
+        {
+          "name": "SavedViews",
+          "kind": "function",
+          "signature": "SavedViews({ views, value, onValueChange, onSaveCurrent, onUpdateCurrent, onDeleteCurrent, label }: SavedViewsProps): import(\"react\").JSX.Element",
+          "typeHash": "f033f7236951f0d9a42186d8738de8dc6aeeddec3f3d38355f52bb7dba43febb",
+          "description": ""
+        },
+        {
+          "name": "SavedViewsProps",
+          "kind": "type",
+          "signature": "SavedViewsProps = { views: readonly SavedView[]; value: string; onValueChange: (value: string) => void; onSaveCurrent?: () => void; onUpdateCurrent?: () => void; onDeleteCurrent?: () => void; label?: string; }",
+          "typeHash": "beaaa07682ceeb5b6bdd7e262ee793bfea009460e120b05d23f45f894e64bf3f",
+          "description": ""
+        }
+      ]
+    },
+    "bulk-action-bar": {
+      "source": "src/components/ui/bulk-action-bar.tsx",
+      "sourceHash": "b5b3c6a2fb9152e736dc3705bc51161aeffe4850a3be121e4999ea006d14c564",
+      "declaration": "api/generated/types/components/ui/bulk-action-bar.d.ts",
+      "exports": [
+        {
+          "name": "BulkActionBar",
+          "kind": "function",
+          "signature": "BulkActionBar({ count, noun, actions, onClear, busy, className, ...props }: BulkActionBarProps): import(\"react\").JSX.Element | null",
+          "typeHash": "3bc5492c6b64e8fce908cfad0cb886b74cff59b777c43d18d8bb3c717302936f",
+          "description": ""
+        },
+        {
+          "name": "BulkActionBarProps",
+          "kind": "type",
+          "signature": "BulkActionBarProps = HTMLAttributes<HTMLDivElement> & { count: number; noun?: string; actions: ReactNode; onClear: () => void; busy?: boolean; }",
+          "typeHash": "43425363201c2f38582b0870275d27da2e7ef3c4387f4493add51424683253ad",
+          "description": ""
+        }
+      ]
+    },
+    "date-range-filter": {
+      "source": "src/components/ui/date-range-filter.tsx",
+      "sourceHash": "25fec7be0fdeee8beb4e39240a3a81a87da699a483750bac08b8370bb86cc794",
+      "declaration": "api/generated/types/components/ui/date-range-filter.d.ts",
+      "exports": [
+        {
+          "name": "DateRangeFilter",
+          "kind": "function",
+          "signature": "DateRangeFilter({ value, onValueChange, label, presets, minValue, maxValue, disabled, }: DateRangeFilterProps): import(\"react\").JSX.Element",
+          "typeHash": "c0dc8b71602853bc8643b89f5c54430a2f63dbb6ab6accdb9e1ad1ff54d43960",
+          "description": ""
+        },
+        {
+          "name": "DateRangeFilterProps",
+          "kind": "type",
+          "signature": "DateRangeFilterProps = { value: DataDateRange; onValueChange: (value: DataDateRange) => void; label?: string; presets?: readonly DateRangePreset[]; minValue?: DateValue; maxValue?: DateValue; disabled?: boolean; }",
+          "typeHash": "21bfc7b9fceb58c603cd2d7d27da7779d6b1f54271ba542913f427230e7e81f1",
+          "description": ""
+        },
+        {
+          "name": "DateRangePreset",
+          "kind": "type",
+          "signature": "DateRangePreset = { id: string; label: string; getValue: () => DataDateRange; }",
+          "typeHash": "fb4f6b1551a76a5f17d70ba99e970a48b8ed0d84a08aacf1b3c6e2fa0afd8c78",
+          "description": ""
+        }
+      ]
+    },
+    "data-export-menu": {
+      "source": "src/components/ui/data-export-menu.tsx",
+      "sourceHash": "f941cac9d96071ab56d50a91c2c1ff4aaff3cff1a5c83a2b71302a97f5b9ccc0",
+      "declaration": "api/generated/types/components/ui/data-export-menu.d.ts",
+      "exports": [
+        {
+          "name": "DataExportMenu",
+          "kind": "function",
+          "signature": "DataExportMenu<TData>({ rows, selectedRows, columns, fileName, label, download, disabled, onExport, }: DataExportMenuProps<TData>): import(\"react\").JSX.Element",
+          "typeHash": "5a34196a4aa86d892e27df9e8ed00342ffb32d5fc45cef87a53b136041158f87",
+          "description": ""
+        },
+        {
+          "name": "DataExportMenuProps",
+          "kind": "type",
+          "signature": "DataExportMenuProps = { rows: readonly TData[]; selectedRows?: readonly TData[]; columns: readonly DataExportColumn<TData>[]; fileName: string; label?: string; download?: boolean; disabled?: boolean; onExport?: (artifact: DataExportArtifac…",
+          "typeHash": "99082a91428b5d77c2f115a1cbf6b198b96ed630a77a4aad678df9d89ff2dd22",
+          "description": ""
+        }
+      ]
+    },
+    "sparkline": {
+      "source": "src/components/ui/sparkline.tsx",
+      "sourceHash": "d1c0e2d8af8cb373964ffd019b8e84c915569feabc005029801ae2663947ddc0",
+      "declaration": "api/generated/types/components/ui/sparkline.d.ts",
+      "exports": [
+        {
+          "name": "Sparkline",
+          "kind": "function",
+          "signature": "Sparkline({ values, label, width, height, tone, fill, decorative, className, style, ...props }: SparklineProps): import(\"react\").JSX.Element",
+          "typeHash": "a28e9f1f338675ef9472921624ab07e480bec3fafde512b4ea520e85a112434d",
+          "description": ""
+        },
+        {
+          "name": "SparklineProps",
+          "kind": "type",
+          "signature": "SparklineProps = Omit<SVGProps<SVGSVGElement>, \"children\" | \"width\" | \"height\" | \"fill\" | \"values\"> & { values: readonly (number | null)[]; label?: string; width?: number; height?: number; tone?: AnalyticsSeriesTone; fill?: boolean; decora…",
+          "typeHash": "6c9f7228b6f558b1f24e345e09df917afd92b714c8c377700c2da153a3db18b4",
+          "description": ""
+        }
+      ]
+    },
+    "metric": {
+      "source": "src/components/ui/metric.tsx",
+      "sourceHash": "c399da31ba4ef5000cb1cfb546b5b3ad5cd1d7faf408bb20e8c923ff801990cd",
+      "declaration": "api/generated/types/components/ui/metric.d.ts",
+      "exports": [
+        {
+          "name": "Metric",
+          "kind": "function",
+          "signature": "Metric({ label, value, trend, context, visual, loading, className, ...props }: MetricProps): import(\"react\").JSX.Element",
+          "typeHash": "7900b475e7f30d0d379adff34003e07a8ce3dca4edd16fc99584bc6d515a5560",
+          "description": ""
+        },
+        {
+          "name": "MetricProps",
+          "kind": "type",
+          "signature": "MetricProps = HTMLAttributes<HTMLDivElement> & { label: string; value: ReactNode; trend?: MetricTrend; context?: ReactNode; visual?: ReactNode; loading?: boolean; }",
+          "typeHash": "664b2edde4d639eb63db20b62a3ee8a5bc80a8cf8ebf10c07c807bb76892c6d3",
+          "description": ""
+        },
+        {
+          "name": "MetricTrend",
+          "kind": "type",
+          "signature": "MetricTrend = { label: string; value?: ReactNode; direction?: \"up\" | \"down\" | \"flat\"; sentiment?: \"positive\" | \"negative\" | \"neutral\"; }",
+          "typeHash": "acbad46dfab72e7c818472b02bba38c45e23e26fce2a648e47425bcb967cc811",
+          "description": ""
+        }
+      ]
+    },
+    "chart": {
+      "source": "src/components/ui/chart.tsx",
+      "sourceHash": "ddafdef4cb3e81ccabca34518b0d924af3afbdec40c5244c5b49ea8cb1bb5b79",
+      "declaration": "api/generated/types/components/ui/chart.d.ts",
+      "exports": [
+        {
+          "name": "Chart",
+          "kind": "function",
+          "signature": "Chart({ title, description, data, series, className, height, includeZero, domain, area, annotations, valueFormatter, activeIndex, defaultActiveIndex, onActiveIndexChange, visibleSeries, defaultVisibleSeries, onVisibleSeriesChange, onDatumA…",
+          "typeHash": "b96f2c025380dbf08ce85cfdda6c57b5b1697b91ab5c4b6f4d11de96a5e3a945",
+          "description": ""
+        },
+        {
+          "name": "ChartAnnotation",
+          "kind": "type",
+          "signature": "ChartAnnotation = { id: string; index: number; label: string; tone?: \"neutral\" | \"danger\"; }",
+          "typeHash": "f91bd7242db726454d5074732f50b84db2b6e4cd62f00b9b818a2812797fe27b",
+          "description": ""
+        },
+        {
+          "name": "ChartProps",
+          "kind": "type",
+          "signature": "ChartProps = { title: string; description?: string; data: readonly AnalyticsDatum[]; series: readonly AnalyticsSeries[]; className?: string; height?: number; includeZero?: boolean; domain?: readonly [number, number]; area?: boolean; annota…",
+          "typeHash": "7b24a7b09de09b3b3778726970da2515eb9e4ed61b28e2cac3cc7035234ba521",
+          "description": ""
+        }
+      ]
+    },
+    "comparison": {
+      "source": "src/components/ui/comparison.tsx",
+      "sourceHash": "7122a060bdbeed819598c04dfd85b0e4919ef3843dae5896d3e1dbbbaadde051",
+      "declaration": "api/generated/types/components/ui/comparison.d.ts",
+      "exports": [
+        {
+          "name": "Comparison",
+          "kind": "function",
+          "signature": "Comparison({ label, current, previous, currentLabel, previousLabel, formatter, positiveDirection, className, ...props }: ComparisonProps): import(\"react\").JSX.Element",
+          "typeHash": "66f670fd3d7d7c842a0e9ace3c0e8b96d35bb390e29be62b7665427b9bc809d8",
+          "description": ""
+        },
+        {
+          "name": "ComparisonProps",
+          "kind": "type",
+          "signature": "ComparisonProps = HTMLAttributes<HTMLDListElement> & { label: string; current: number; previous: number; currentLabel?: string; previousLabel?: string; formatter?: (value: number) => string; positiveDirection?: \"up\" | \"down\" | \"neutral\"; }",
+          "typeHash": "b599f3d0402ce1decdf5a2315f95a1b419fe8e01614edab3811b1ec7c5eba598",
+          "description": ""
+        }
+      ]
+    },
+    "breakdown": {
+      "source": "src/components/ui/breakdown.tsx",
+      "sourceHash": "65e0622623aebe8d958af5306c13165e3674e9f8c509a1df68cfc2b5f048c801",
+      "declaration": "api/generated/types/components/ui/breakdown.d.ts",
+      "exports": [
+        {
+          "name": "Breakdown",
+          "kind": "function",
+          "signature": "Breakdown({ label, items, formatter, max, selectedId, onSelect, className, ...props }: BreakdownProps): import(\"react\").JSX.Element",
+          "typeHash": "f9546c9b35615b5963529cb78e2b39a1e88c92bb245220fa3bef82ebf8aabc77",
+          "description": ""
+        },
+        {
+          "name": "BreakdownItem",
+          "kind": "type",
+          "signature": "BreakdownItem = { id: string; label: string; value: number; detail?: ReactNode; tone?: \"primary\" | \"secondary\" | \"tertiary\"; }",
+          "typeHash": "d9c1d659d4241228e3f6fc612f5fb029554d78d0e17b15abfe3ac49ea28cfb06",
+          "description": ""
+        },
+        {
+          "name": "BreakdownProps",
+          "kind": "type",
+          "signature": "BreakdownProps = Omit<HTMLAttributes<HTMLOListElement>, \"onSelect\"> & { label: string; items: readonly BreakdownItem[]; formatter?: (value: number, item: BreakdownItem) => string; max?: number; selectedId?: string; onSelect?: (item: Breakd…",
+          "typeHash": "16d15bc57b537fd7b373f1860146dc626398775e9a2d30ea8fac5f6d36285ded",
+          "description": ""
+        }
+      ]
+    },
+    "goal": {
+      "source": "src/components/ui/goal.tsx",
+      "sourceHash": "e13d0e5fdf863031f7e8083c21840d8119137a2e5ae194363248cd96fb0fea8f",
+      "declaration": "api/generated/types/components/ui/goal.d.ts",
+      "exports": [
+        {
+          "name": "Goal",
+          "kind": "function",
+          "signature": "Goal({ label, value, target, formatter, description, className, ...props }: GoalProps): import(\"react\").JSX.Element",
+          "typeHash": "d1ff7fe20ddd367a6d6f27c6c7947191fcad39aa37eb77bc886b63abd2b17f85",
+          "description": ""
+        },
+        {
+          "name": "GoalProps",
+          "kind": "type",
+          "signature": "GoalProps = Omit<HTMLAttributes<HTMLDivElement>, \"title\"> & { label: string; value: number; target: number; formatter?: (value: number) => string; description?: ReactNode; }",
+          "typeHash": "faa523447d2b3061876e42a375f05633fad1ed5936af38a04e59d3023686d964",
+          "description": ""
+        }
+      ]
+    },
+    "funnel": {
+      "source": "src/components/ui/funnel.tsx",
+      "sourceHash": "aed86cdabd24e4ce9d6db3c049cc3fb0c68fee39de67d288424828c5532fe58f",
+      "declaration": "api/generated/types/components/ui/funnel.d.ts",
+      "exports": [
+        {
+          "name": "Funnel",
+          "kind": "function",
+          "signature": "Funnel({ label, stages, formatter, selectedId, onSelect, className, ...props }: FunnelProps): import(\"react\").JSX.Element",
+          "typeHash": "059c2939f2bdad61377af16e87d08722c3d08e69179e9f196651ab607fed761b",
+          "description": ""
+        },
+        {
+          "name": "FunnelProps",
+          "kind": "type",
+          "signature": "FunnelProps = Omit<HTMLAttributes<HTMLOListElement>, \"onSelect\"> & { label: string; stages: readonly FunnelStage[]; formatter?: (value: number, stage: FunnelStage) => string; selectedId?: string; onSelect?: (stage: FunnelStage) => void; }",
+          "typeHash": "ae4cf3b1ed6d72f5e406373208be4ab939ded6bd446f178a5c5aad9ccd33c782",
+          "description": ""
+        },
+        {
+          "name": "FunnelStage",
+          "kind": "type",
+          "signature": "FunnelStage = { id: string; label: string; value: number; detail?: ReactNode; }",
+          "typeHash": "d3e44158bbe30d64d8b92a2f6573a3cf9c9c64563cd409e56fbf6c2782b0e694",
+          "description": ""
+        }
+      ]
+    },
+    "cohort": {
+      "source": "src/components/ui/cohort.tsx",
+      "sourceHash": "6c9dfd1898285b12f8f2996028d74c78a88dacaeb8ece2fe66731450dd2d366d",
+      "declaration": "api/generated/types/components/ui/cohort.d.ts",
+      "exports": [
+        {
+          "name": "Cohort",
+          "kind": "function",
+          "signature": "Cohort({ label, periods, rows, formatter, showSize, className, ...props }: CohortProps): import(\"react\").JSX.Element",
+          "typeHash": "5975db357808ddf0542a96921fb656236213dffd8f5e4218dbeaedcbf32d64a8",
+          "description": ""
+        },
+        {
+          "name": "CohortProps",
+          "kind": "type",
+          "signature": "CohortProps = HTMLAttributes<HTMLDivElement> & { label: string; periods: readonly string[]; rows: readonly CohortRow[]; formatter?: (value: number) => string; showSize?: boolean; }",
+          "typeHash": "6aeb27858dc296e77f4689a5de0edd129c74e72b7c89c99302e6daa635e0a9ff",
+          "description": ""
+        },
+        {
+          "name": "CohortRow",
+          "kind": "type",
+          "signature": "CohortRow = { id: string; label: string; size?: number; values: readonly (number | null)[]; }",
+          "typeHash": "5ab0cf28eef0af19145bb7867169e2939e1e35e0b820970348332259a6d850cd",
+          "description": ""
+        }
+      ]
+    },
+    "timeline": {
+      "source": "src/components/ui/timeline.tsx",
+      "sourceHash": "8fa851b0632113e6ab4dccf70145b355df335e7525694171d9e4f8846f631d59",
+      "declaration": "api/generated/types/components/ui/timeline.d.ts",
+      "exports": [
+        {
+          "name": "Timeline",
+          "kind": "function",
+          "signature": "Timeline({ label, items, activeId, onSelect, className, ...props }: TimelineProps): import(\"react\").JSX.Element",
+          "typeHash": "73581565c13fa6b49c5bbce8de5f95cc148ff5c17e178ab3e227374995f6741d",
+          "description": ""
+        },
+        {
+          "name": "TimelineItem",
+          "kind": "type",
+          "signature": "TimelineItem = { id: string; label: string; timestamp: ReactNode; description?: ReactNode; value?: ReactNode; tone?: \"neutral\" | \"accent\" | \"danger\"; }",
+          "typeHash": "1ec533681a9e5299dfc8011e833090e2c2dbaccb15b6518107ed600dfc9f2a32",
+          "description": ""
+        },
+        {
+          "name": "TimelineProps",
+          "kind": "type",
+          "signature": "TimelineProps = Omit<HTMLAttributes<HTMLOListElement>, \"onSelect\"> & { label: string; items: readonly TimelineItem[]; activeId?: string; onSelect?: (item: TimelineItem) => void; }",
+          "typeHash": "51315fb3cdbec54c74069e23d96f6f553dc7329c0bcac428ad8f9f99bbf1618d",
+          "description": ""
+        }
+      ]
+    }
+  },
+  "contracts": {
+    "motion-contract": {
+      "source": "lib/motion-contract.ts",
+      "sourceHash": "3beb040dace4334c0c206a71fc384b49dac47b24a80a7662df71e93eccca0fa4",
+      "declaration": "api/generated/types/lib/motion-contract.d.ts",
+      "exports": [
+        {
+          "name": "teumMotionContract",
+          "kind": "const",
+          "signature": "teumMotionContract: { readonly version: \"1.0.0\"; readonly principles: readonly [\"Respond at the moment of input.\", \"Use motion only to explain origin, continuity, state, or recovery.\", \"Keep repeated keyboard paths instant.\", \"Let interrup…",
+          "typeHash": "3020894386b90b28039d7da770d2c06a76f12bc34c3517545c4387d790175bcf",
+          "description": ""
+        },
+        {
+          "name": "TeumMotionContract",
+          "kind": "type",
+          "signature": "TeumMotionContract = typeof teumMotionContract",
+          "typeHash": "af30d85b45540a4a77fe655c176309d99d206a65650b24d7ecc90ac927f5fd5d",
+          "description": ""
+        },
+        {
+          "name": "TeumMotionFrequency",
+          "kind": "type",
+          "signature": "TeumMotionFrequency = \"constant\" | \"frequent\" | \"occasional\" | \"rare\"",
+          "typeHash": "cec7fd4062b565abe4432407ac3dbc98829c1424a94ab3fac345c11576000b65",
+          "description": ""
+        },
+        {
+          "name": "TeumMotionRule",
+          "kind": "type",
+          "signature": "TeumMotionRule = { frequency: TeumMotionFrequency; treatment: \"instant\" | \"tonal\" | \"spatial\" | \"expressive\"; rationale: string; }",
+          "typeHash": "59a0ae5595d9dbac0251509aa955c0260c24267dd307bd7c8297fdae637733b1",
+          "description": ""
+        }
+      ]
+    },
+    "data-view-state": {
+      "source": "lib/data-view-state.ts",
+      "sourceHash": "9951969832c229e8398fd4333901d231e38f05e7d4591365b17ab8c890256d7a",
+      "declaration": "api/generated/types/lib/data-view-state.d.ts",
+      "exports": [
+        {
+          "name": "createBrowserDataViewLocationAdapter",
+          "kind": "function",
+          "signature": "createBrowserDataViewLocationAdapter(): DataViewLocationAdapter | null",
+          "typeHash": "b79c0ee68c0a62b7e5add6c84e6c70007107cd3396547e39cca42241fda6ac83",
+          "description": ""
+        },
+        {
+          "name": "createBrowserDataViewStorageAdapter",
+          "kind": "function",
+          "signature": "createBrowserDataViewStorageAdapter(): DataViewStorageAdapter | null",
+          "typeHash": "280068ee139f239d8d6cd4fa43cc1450d5efa067f6043bbaca83f1b831b9ac93",
+          "description": ""
+        },
+        {
+          "name": "createDataViewState",
+          "kind": "function",
+          "signature": "createDataViewState(input?: DataViewStateInput): DataViewState",
+          "typeHash": "52bc8ba7695c4ce685602f778969da8945274ec056cabcaf717941bd1cff4672",
+          "description": ""
+        },
+        {
+          "name": "DATA_VIEW_STATE_VERSION",
+          "kind": "const",
+          "signature": "DATA_VIEW_STATE_VERSION: 1",
+          "typeHash": "d19cda827cb30c3c998c3abbfbd864446a17af90b1d330083508453957ca8de7",
+          "description": ""
+        },
+        {
+          "name": "DataDateRange",
+          "kind": "type",
+          "signature": "DataDateRange = { from: string | null; to: string | null; }",
+          "typeHash": "74caebfd915bb206e8422e7ab4db1fa05bba5618570f1146d9dce48e13f835cc",
+          "description": ""
+        },
+        {
+          "name": "DataFilterOperator",
+          "kind": "type",
+          "signature": "DataFilterOperator = | \"is\" | \"is-not\" | \"contains\" | \"does-not-contain\" | \"greater-than\" | \"less-than\" | \"is-empty\" | \"is-not-empty\"",
+          "typeHash": "d790ba7b1c2970162288c88ad044c95bb27917840bc27baee62b451d81eb36cb",
+          "description": ""
+        },
+        {
+          "name": "DataFilterValue",
+          "kind": "type",
+          "signature": "DataFilterValue = string | number | boolean | readonly string[] | DataDateRange | null",
+          "typeHash": "8e03190a99ee1c0eb9c9cc621bfbc857dc96d3f8c40bac5498151d3e722b52e1",
+          "description": ""
+        },
+        {
+          "name": "DataRequest",
+          "kind": "type",
+          "signature": "DataRequest = Pick<DataViewState, \"query\" | \"filters\" | \"sorting\" | \"pagination\" | \"dateRange\">",
+          "typeHash": "714bc3f304e2c4a91e5f0b957116762f43c91730d3a2013b9d68842c8e7e9a93",
+          "description": ""
+        },
+        {
+          "name": "DataSavedView",
+          "kind": "type",
+          "signature": "DataSavedView = { id: string; label: string; description?: string; state: DataViewState; scope: \"system\" | \"personal\"; createdAt: string; updatedAt: string; }",
+          "typeHash": "e233177fde1c64191da7b1337dc32ba43bfe36d6b0e1310eea6f2ebbd1f2256f",
+          "description": ""
+        },
+        {
+          "name": "DataViewCodecOptions",
+          "kind": "type",
+          "signature": "DataViewCodecOptions = { prefix?: string; baseline?: DataViewStateInput; }",
+          "typeHash": "857b7e58246c7f7ff803c6dd3d7c8b021d497962231fc447e4485b2c3a419b90",
+          "description": ""
+        },
+        {
+          "name": "DataViewColumnPinning",
+          "kind": "type",
+          "signature": "DataViewColumnPinning = { start: readonly string[]; end: readonly string[]; }",
+          "typeHash": "5a491b2549291c20b19d80aa030f2a86617be0716b30c80ecb0284733756fb9b",
+          "description": ""
+        },
+        {
+          "name": "DataViewFilter",
+          "kind": "type",
+          "signature": "DataViewFilter = { id: string; fieldId: string; operator: DataFilterOperator; value: DataFilterValue; }",
+          "typeHash": "4619bb61722d4f4bcda3cc0ad7b041aceca351120e53e5481898c4f25c981bba",
+          "description": ""
+        },
+        {
+          "name": "DataViewLocationAdapter",
+          "kind": "type",
+          "signature": "DataViewLocationAdapter = { read: () => string; write: (search: string, mode: \"push\" | \"replace\") => void; subscribe: (listener: () => void) => () => void; }",
+          "typeHash": "8558316efa406b9effc4b4f5fca1d8a03ff50dbe310f692918e93f50affae30c",
+          "description": ""
+        },
+        {
+          "name": "DataViewPagination",
+          "kind": "type",
+          "signature": "DataViewPagination = { page: number; pageSize: number; }",
+          "typeHash": "bbc2ea3dc1c0199a17b3a7d1cd5c03926ccf76ced09f8982923506a584c86646",
+          "description": ""
+        },
+        {
+          "name": "DataViewSort",
+          "kind": "type",
+          "signature": "DataViewSort = { id: string; direction: \"asc\" | \"desc\"; }",
+          "typeHash": "fa8fbf40717054a3bae57e7c6a1ccac5fdd617356b6998c4ed9c0a4a1cdb7cf6",
+          "description": ""
+        },
+        {
+          "name": "DataViewState",
+          "kind": "type",
+          "signature": "DataViewState = { version: typeof DATA_VIEW_STATE_VERSION; query: string; filters: readonly DataViewFilter[]; sorting: readonly DataViewSort[]; pagination: DataViewPagination; columnVisibility: Readonly<Record<string, boolean>>; columnSizi…",
+          "typeHash": "208fad89d022fbd2657cbe37d31f8690455c228dd17d52d534fbd4808b46c851",
+          "description": ""
+        },
+        {
+          "name": "DataViewStateInput",
+          "kind": "type",
+          "signature": "DataViewStateInput = Partial<Omit<DataViewState, \"version\" | \"pagination\" | \"columnPinning\" | \"dateRange\">> & { pagination?: Partial<DataViewPagination>; columnPinning?: Partial<DataViewColumnPinning>; dateRange?: Partial<DataDateRange>; }",
+          "typeHash": "310e5dce81ad97f1784efcf106da83a70c142f2c10a17c619f89313ba581b1fd",
+          "description": ""
+        },
+        {
+          "name": "DataViewStorageAdapter",
+          "kind": "type",
+          "signature": "DataViewStorageAdapter = { read: (key: string) => string | null; write: (key: string, value: string) => void; remove: (key: string) => void; }",
+          "typeHash": "6c608d4fb8809c20caba3b777f933e7d4e5a8160d7ad2fc6708bbd5fa05bb67d",
+          "description": ""
+        },
+        {
+          "name": "getDataRequestKey",
+          "kind": "function",
+          "signature": "getDataRequestKey(state: DataViewState): string",
+          "typeHash": "b8833e6e43a9e7273ab4be191b31117ecf0e0b0b1c7c45ead1b465cbd976ca69",
+          "description": ""
+        },
+        {
+          "name": "mergeDataViewSearch",
+          "kind": "function",
+          "signature": "mergeDataViewSearch(currentSearch: string, state: DataViewState, options?: DataViewCodecOptions): string",
+          "typeHash": "1c21fab62c1d995ee06b3dea8f55a4667de860f280b62824c14b1f69bcc2821d",
+          "description": ""
+        },
+        {
+          "name": "parseDataViewState",
+          "kind": "function",
+          "signature": "parseDataViewState(search: string, fallback?: DataViewStateInput, options?: DataViewCodecOptions): DataViewState",
+          "typeHash": "63a7614d79a5191ab20b03e814a0927c761b82247fe73bbf007cdcd251aff72d",
+          "description": ""
+        },
+        {
+          "name": "parseSavedViews",
+          "kind": "function",
+          "signature": "parseSavedViews(serialized: string | null): readonly DataSavedView[]",
+          "typeHash": "7ddde3a4b016c4d301c79cc3aeb2e5c897ff0a12fb0f4c3cd0435b7d8c0a339a",
+          "description": ""
+        },
+        {
+          "name": "patchDataViewState",
+          "kind": "function",
+          "signature": "patchDataViewState(current: DataViewState, patch: DataViewStateInput, options?: { resetPage?: boolean; }): DataViewState",
+          "typeHash": "feb7bfd5c42e2d12ef85f742e490e48cab71283e122be09004491801c8ebc7b0",
+          "description": ""
+        },
+        {
+          "name": "serializeDataViewState",
+          "kind": "function",
+          "signature": "serializeDataViewState(state: DataViewState, options?: DataViewCodecOptions): string",
+          "typeHash": "4873c402422c5e17be4eb9adbaed4cee986a1fa1161c3a10c204031e4cea0d90",
+          "description": ""
+        },
+        {
+          "name": "serializeSavedViews",
+          "kind": "function",
+          "signature": "serializeSavedViews(views: readonly DataSavedView[]): string",
+          "typeHash": "03362e56bf7bd138b17f1fefd319a1f6d760988bd30ce0566f3c221e1a5addb8",
+          "description": ""
+        },
+        {
+          "name": "toDataRequest",
+          "kind": "function",
+          "signature": "toDataRequest(state: DataViewState): DataRequest",
+          "typeHash": "e92eabe535ebb7b51219d46294c7c90d504a6c2dfe0fe07512c37c455d7c1db0",
+          "description": ""
+        },
+        {
+          "name": "useDataViewState",
+          "kind": "function",
+          "signature": "useDataViewState({ initialState, syncToUrl, location, historyMode, parameterPrefix, onStateChange, }?: UseDataViewStateOptions): UseDataViewStateResult",
+          "typeHash": "28ece0e5980702a58ff9c78f2c269d4a839d8ff7123c70da1e4573552a324ec4",
+          "description": ""
+        },
+        {
+          "name": "UseDataViewStateOptions",
+          "kind": "type",
+          "signature": "UseDataViewStateOptions = { initialState?: DataViewStateInput; syncToUrl?: boolean; location?: DataViewLocationAdapter | null; historyMode?: \"push\" | \"replace\"; parameterPrefix?: string; onStateChange?: (state: DataViewState) => void; }",
+          "typeHash": "c0ca73aaf7d38139cc4d8acf63cb55d95d2c2da5b3160c3a7fe2826cebb12edc",
+          "description": ""
+        },
+        {
+          "name": "UseDataViewStateResult",
+          "kind": "type",
+          "signature": "UseDataViewStateResult = { state: DataViewState; setState: Dispatch<SetStateAction<DataViewState>>; patchState: (patch: DataViewStateInput, options?: { resetPage?: boolean }) => void; resetState: () => void; isHydrated: boolean; }",
+          "typeHash": "31b53f32f51950cde82efa0c4ede41ed4a56ea69e5a986a439e17290518c7a60",
+          "description": ""
+        },
+        {
+          "name": "useSavedViews",
+          "kind": "function",
+          "signature": "useSavedViews({ storageKey, systemViews, storage, now, createId, onStorageError, }: UseSavedViewsOptions): { views: DataSavedView[]; personalViews: readonly DataSavedView[]; isHydrated: boolean; saveView: (label: string, state: DataViewSta…",
+          "typeHash": "61b673d2eec86a7489e9829d06d2771c194fc7e367023e9f3b6a2581350a10bc",
+          "description": ""
+        },
+        {
+          "name": "UseSavedViewsOptions",
+          "kind": "type",
+          "signature": "UseSavedViewsOptions = { storageKey: string; systemViews?: readonly DataSavedView[]; storage?: DataViewStorageAdapter | null; now?: () => Date; createId?: () => string; onStorageError?: (error: unknown) => void; }",
+          "typeHash": "906d4db47b9b4e3374506b2762596d3afac0aa7d0f12bbd2d2bbb07efcfb553e",
+          "description": ""
+        }
+      ]
+    },
+    "data-export": {
+      "source": "lib/data-export.ts",
+      "sourceHash": "190fa8d7561f4d89630ab02d5b420f7d0d8714de323c602bbdde96ed983f0d1d",
+      "declaration": "api/generated/types/lib/data-export.d.ts",
+      "exports": [
+        {
+          "name": "buildDataExport",
+          "kind": "function",
+          "signature": "buildDataExport<TData>({ rows, columns, format, fileName, includeBom, }: DataExportOptions<TData>): DataExportArtifact",
+          "typeHash": "b1e6a9d9bf9b4d6755080d82df035deb269cbfd440b9fa74805d4952c205c1f3",
+          "description": ""
+        },
+        {
+          "name": "DataExportArtifact",
+          "kind": "type",
+          "signature": "DataExportArtifact = { content: string; fileName: string; mimeType: string; rowCount: number; format: DataExportFormat; }",
+          "typeHash": "6f7bb4096ecb3e3d80b614eb4af9d28435be80df81b759b569570c987bef9bb5",
+          "description": ""
+        },
+        {
+          "name": "DataExportColumn",
+          "kind": "type",
+          "signature": "DataExportColumn = { id: string; header: string; value: keyof TData | ((row: TData) => unknown); format?: (value: unknown, row: TData) => string | number | boolean | null; }",
+          "typeHash": "3c7396983bdbb367edea9677452bcf5b2f7da3372d2d46a148c219ddb05745e1",
+          "description": ""
+        },
+        {
+          "name": "DataExportFormat",
+          "kind": "type",
+          "signature": "DataExportFormat = \"csv\" | \"json\"",
+          "typeHash": "acfaaa27407e3f0773c1763b40771e79ada48c70a41886dcce2ffd83fbb0511a",
+          "description": ""
+        },
+        {
+          "name": "DataExportOptions",
+          "kind": "type",
+          "signature": "DataExportOptions = { rows: readonly TData[]; columns: readonly DataExportColumn<TData>[]; format: DataExportFormat; fileName: string; includeBom?: boolean; }",
+          "typeHash": "aeefd353fa627edb12d25c3c74b4693bbb55469c18644ecb2a9f5a97022f1d6f",
+          "description": ""
+        },
+        {
+          "name": "downloadDataExport",
+          "kind": "function",
+          "signature": "downloadDataExport(artifact: DataExportArtifact): void",
+          "typeHash": "142677ccffb5bed6a57228088bd11c08eb473e9360f2f00a165fd7bd0beea5d0",
+          "description": ""
+        }
+      ]
+    },
+    "teum-data-contract": {
+      "source": "lib/teum-data-contract.ts",
+      "sourceHash": "da87f1d4d9e0fab1c0114004a38702aa663d79668c3f0f5e761d190fb439c706",
+      "declaration": "api/generated/types/lib/teum-data-contract.d.ts",
+      "exports": [
+        {
+          "name": "auditLogContract",
+          "kind": "const",
+          "signature": "auditLogContract: { readonly id: \"audit-log\"; readonly intent: \"Inspect and export a large immutable event collection without rendering every row.\"; readonly taskSequence: readonly [\"Choose a date range\", \"Search or filter\", \"Compare event…",
+          "typeHash": "001f49281f07a68d0bbafc457d2ff839cf6f215f7a1c958daeb9c46ebb0d05fd",
+          "description": ""
+        },
+        {
+          "name": "customerDirectoryContract",
+          "kind": "const",
+          "signature": "customerDirectoryContract: { readonly id: \"customer-directory\"; readonly intent: \"Find and compare a server-owned customer collection without losing a shareable view.\"; readonly taskSequence: readonly [\"Search or restore a view\", \"Filter r…",
+          "typeHash": "6ba3f67663f4eb37062a97f55d35d47c7094942330b5c28ce8f810e36e4422ed",
+          "description": ""
+        },
+        {
+          "name": "issuesWorkspaceContract",
+          "kind": "const",
+          "signature": "issuesWorkspaceContract: { readonly id: \"issues-workspace\"; readonly intent: \"Find, compare, inspect, mutate, and recover work from one shared issue collection.\"; readonly taskSequence: readonly [\"Search or filter\", \"Sort and compare\", \"Se…",
+          "typeHash": "117adb5d845ae239697a0b561488d11a70e1e38614f5ec1d94f95537e0584b90",
+          "description": ""
+        },
+        {
+          "name": "TeumDataComponentContract",
+          "kind": "type",
+          "signature": "TeumDataComponentContract = { id: string; intent: string; useWhen: readonly string[]; avoidWhen: readonly string[]; requires: readonly string[]; states: readonly string[]; compositionRules: readonly string[]; accessibility: readonly string…",
+          "typeHash": "bc1204fa55ee67aa56fcaa72af9aa1df7f8915d83b4966c4993e8c2e503f0232",
+          "description": ""
+        },
+        {
+          "name": "teumDataComponentContracts",
+          "kind": "const",
+          "signature": "teumDataComponentContracts: readonly [{ readonly id: \"data-table\"; readonly intent: \"Compare and act on structured records without hiding the underlying table semantics.\"; readonly useWhen: readonly [\"Rows share comparable attributes.\", \"S…",
+          "typeHash": "5c8b45005d489700aec599b1de3b6ad61c7c494eb0c2df1282f1edd16b17673e",
+          "description": ""
+        },
+        {
+          "name": "teumDataRecipeContracts",
+          "kind": "const",
+          "signature": "teumDataRecipeContracts: readonly [{ readonly id: \"issues-workspace\"; readonly intent: \"Find, compare, inspect, mutate, and recover work from one shared issue collection.\"; readonly taskSequence: readonly [\"Search or filter\", \"Sort and com…",
+          "typeHash": "885365880cbc21b59e1be71ab5e34aad965c7670eb8c5e445c738b0d934fa0d3",
+          "description": ""
+        },
+        {
+          "name": "teumDataViewStateContract",
+          "kind": "const",
+          "signature": "teumDataViewStateContract: { readonly version: 1; readonly serverOwned: readonly [\"query\", \"filters\", \"sorting\", \"pagination\", \"dateRange\"]; readonly viewOwned: readonly [\"columnVisibility\", \"columnSizing\", \"columnPinning\", \"viewId\"]; read…",
+          "typeHash": "48c4d0ad1f8541c6510816cb00e0339c5abb5396a60d9e3f88ceba4727e9b778",
+          "description": ""
+        }
+      ]
+    },
+    "analytics": {
+      "source": "lib/analytics.ts",
+      "sourceHash": "15426f3e86f211349287d236ab2dda512d1888c6ec4d44c9402bdc0ed89e8f4c",
+      "declaration": "api/generated/types/lib/analytics.d.ts",
+      "exports": [
+        {
+          "name": "AnalyticsDatum",
+          "kind": "type",
+          "signature": "AnalyticsDatum = { id: string; label: string; values: Readonly<Record<string, AnalyticsValue>>; }",
+          "typeHash": "4accdb77175955c4c1d12cec1e88c79245b3f9d759f2531137568829990af252",
+          "description": ""
+        },
+        {
+          "name": "AnalyticsDomainOptions",
+          "kind": "type",
+          "signature": "AnalyticsDomainOptions = { includeZero?: boolean; paddingRatio?: number; domain?: readonly [number, number]; }",
+          "typeHash": "46e7d10121f3d45ebe12c31fbd05a55725c7403260c1274d5bed11ac2d75d659",
+          "description": ""
+        },
+        {
+          "name": "AnalyticsPlotBox",
+          "kind": "type",
+          "signature": "AnalyticsPlotBox = { width: number; height: number; left: number; right: number; top: number; bottom: number; }",
+          "typeHash": "8e407a61d3ab1ccae66e4273664aa62809a97b79cb5099f73dd319195280b09d",
+          "description": ""
+        },
+        {
+          "name": "AnalyticsPointPosition",
+          "kind": "type",
+          "signature": "AnalyticsPointPosition = { x: number; y: number; value: number; }",
+          "typeHash": "b02f1567ca60470d672a2857ff8313a5ddb0b8ffa0e1483bffbd99bfb2738931",
+          "description": ""
+        },
+        {
+          "name": "AnalyticsSeries",
+          "kind": "type",
+          "signature": "AnalyticsSeries = { id: string; label: string; tone?: AnalyticsSeriesTone; lineStyle?: \"solid\" | \"dashed\" | \"dotted\"; }",
+          "typeHash": "83ba5b316ba956c972f0c220ae15043f0f2bdc4eef70f8a9e7a226c26ccd0997",
+          "description": ""
+        },
+        {
+          "name": "AnalyticsSeriesTone",
+          "kind": "type",
+          "signature": "AnalyticsSeriesTone = \"primary\" | \"secondary\" | \"tertiary\"",
+          "typeHash": "b22a12e4d92821df79020e86e2d7f25ef0ae13e248180c7724269736f0e53b48",
+          "description": ""
+        },
+        {
+          "name": "AnalyticsValue",
+          "kind": "type",
+          "signature": "AnalyticsValue = number | null",
+          "typeHash": "6fbaba914bf7f97ecedf6c5784970f2352d4f1969b123313d1a4c7d01ac76b7e",
+          "description": ""
+        },
+        {
+          "name": "clampAnalyticsIndex",
+          "kind": "function",
+          "signature": "clampAnalyticsIndex(index: number | null | undefined, length: number): number | null",
+          "typeHash": "59b284a6688123b3121ecb400a464e4b5ec2540283bb6c55358cacb9f6750808",
+          "description": ""
+        },
+        {
+          "name": "createAnalyticsAreaPath",
+          "kind": "function",
+          "signature": "createAnalyticsAreaPath(data: readonly AnalyticsDatum[], seriesId: string, domain: readonly [number, number], box: AnalyticsPlotBox): string",
+          "typeHash": "3eb696313b3ccf736352d5e2e5486109e130027afa13302be7fa25dac49fa67c",
+          "description": ""
+        },
+        {
+          "name": "createAnalyticsPath",
+          "kind": "function",
+          "signature": "createAnalyticsPath(data: readonly AnalyticsDatum[], seriesId: string, domain: readonly [number, number], box: AnalyticsPlotBox): string",
+          "typeHash": "db5ca35d7227b7ba52b1cfe1ee4f29ed147539c11fa72996f5462e75e57b07f1",
+          "description": ""
+        },
+        {
+          "name": "createAnalyticsTicks",
+          "kind": "function",
+          "signature": "createAnalyticsTicks(domain: readonly [number, number], tickCount?: number): readonly number[]",
+          "typeHash": "da1cc96de7c9db61574df0677e7a52cbde763b102ff421242e4e98b31d3634e9",
+          "description": ""
+        },
+        {
+          "name": "describeAnalyticsDatum",
+          "kind": "function",
+          "signature": "describeAnalyticsDatum(datum: AnalyticsDatum, series: readonly AnalyticsSeries[], valueFormatter?: (value: number, series: AnalyticsSeries) => string): string",
+          "typeHash": "d7de8b52a45e2674904b3f8982fd3306c8cc613ecf084b7b8853b9896046559f",
+          "description": ""
+        },
+        {
+          "name": "formatAnalyticsValue",
+          "kind": "function",
+          "signature": "formatAnalyticsValue(value: number, options?: Intl.NumberFormatOptions): string",
+          "typeHash": "131ff8a35fe130f35ffb33b453f37d694101a1903beea97b2fe55197256de701",
+          "description": ""
+        },
+        {
+          "name": "getAnalyticsDomain",
+          "kind": "function",
+          "signature": "getAnalyticsDomain(data: readonly AnalyticsDatum[], seriesIds: readonly string[], { includeZero, paddingRatio, domain }?: AnalyticsDomainOptions): readonly [number, number]",
+          "typeHash": "79000b2bb519f96112eeba6cae3b991c5a765c265227b254d6c2dafea2e6f264",
+          "description": ""
+        },
+        {
+          "name": "getAnalyticsPointPosition",
+          "kind": "function",
+          "signature": "getAnalyticsPointPosition(data: readonly AnalyticsDatum[], index: number, seriesId: string, domain: readonly [number, number], box: AnalyticsPlotBox): AnalyticsPointPosition | null",
+          "typeHash": "9331d2fba19bd1df1e7b6bba7cb2c2f1a0c097d104ada3c7949806e41df89569",
+          "description": ""
+        },
+        {
+          "name": "getPercentChange",
+          "kind": "function",
+          "signature": "getPercentChange(current: number, previous: number): number | null",
+          "typeHash": "9f627bc2f5662508ad7d49064a49ade666342d64b7126848e0e3835eeff73597",
+          "description": ""
+        },
+        {
+          "name": "summarizeAnalyticsSeries",
+          "kind": "function",
+          "signature": "summarizeAnalyticsSeries(data: readonly AnalyticsDatum[], series: AnalyticsSeries, valueFormatter?: (value: number, series: AnalyticsSeries) => string): string",
+          "typeHash": "e3e3241737a25395fc854e1eeab93132538a1cce653aab2c5b72a32d60f63dde",
+          "description": ""
+        }
+      ]
+    },
+    "teum-analytics-contract": {
+      "source": "lib/teum-analytics-contract.ts",
+      "sourceHash": "7fd10014084fb3163a1f34bb3555020edc69d1975c9538cae0abf20e57627308",
+      "declaration": "api/generated/types/lib/teum-analytics-contract.d.ts",
+      "exports": [
+        {
+          "name": "TeumAnalyticsComponentContract",
+          "kind": "type",
+          "signature": "TeumAnalyticsComponentContract = { id: string; intent: string; useWhen: readonly string[]; avoidWhen: readonly string[]; requires: readonly string[]; states: readonly string[]; compatibleWith: readonly string[]; dataSchema: string; interac…",
+          "typeHash": "5eec30ab71f33cdf115d482fa246440af807b1718accab551e81e2e26572a352",
+          "description": ""
+        },
+        {
+          "name": "teumAnalyticsComponentContracts",
+          "kind": "const",
+          "signature": "teumAnalyticsComponentContracts: readonly [{ readonly id: \"metric\"; readonly intent: \"State one important value, its direction, and comparison context without turning a dashboard into a card grid.\"; readonly useWhen: readonly [\"One value c…",
+          "typeHash": "a23458122e2b40785bea82e3fccc4266a1448b8784f8e6256ec77b41fcd9dbda",
+          "description": ""
+        },
+        {
+          "name": "teumAnalyticsRecipeContracts",
+          "kind": "const",
+          "signature": "teumAnalyticsRecipeContracts: readonly [{ readonly id: \"saas-overview\"; readonly intent: \"Review recurring revenue, growth, target progress, and expansion drivers from one calm overview.\"; readonly taskSequence: readonly [\"Choose range\", \"…",
+          "typeHash": "bf9f8105848154b3965becf2bdcd35e6a22f5f113867004e1b2cbc1d68b53467",
+          "description": ""
+        },
+        {
+          "name": "teumAnalyticsStateContract",
+          "kind": "const",
+          "signature": "teumAnalyticsStateContract: { readonly version: 1; readonly controlled: readonly [\"date range\", \"comparison period\", \"visible series\", \"active datum\", \"selected segment\"]; readonly derived: readonly [\"domain\", \"ticks\", \"percent change\", \"c…",
+          "typeHash": "76bca1695eb706a524268efec959f43220b897c3bf1de07d11843367dac1c118",
+          "description": ""
+        }
+      ]
+    },
+    "teum-product-patterns-contract": {
+      "source": "lib/teum-product-patterns-contract.ts",
+      "sourceHash": "49803545d44496bd6ba5c67dc405c7db1281c5bec5c3c0e555d1e2d733eab8d3",
+      "declaration": "api/generated/types/lib/teum-product-patterns-contract.d.ts",
+      "exports": [
+        {
+          "name": "billingUsageContract",
+          "kind": "const",
+          "signature": "billingUsageContract: { readonly id: \"billing-usage\"; readonly intent: \"Compare plan usage, limits, and invoices before changing a subscription or exporting a receipt.\"; readonly roles: readonly [\"Workspace owner\", \"Billing admin\", \"Financ…",
+          "typeHash": "449cb69ad7c305848ff64a11b8f81539b52a1a0c93a11e1507e59dca568752bd",
+          "description": ""
+        },
+        {
+          "name": "customerWorkspaceContract",
+          "kind": "const",
+          "signature": "customerWorkspaceContract: { readonly id: \"customer-workspace\"; readonly intent: \"Find an account, inspect its health and activity, then complete a follow-up without losing the customer list.\"; readonly roles: readonly [\"Customer success\",…",
+          "typeHash": "692647da644de77a56c1f5e26f61b519966d23d6c78847aca256c5fceead2de2",
+          "description": ""
+        },
+        {
+          "name": "membersPermissionsContract",
+          "kind": "const",
+          "signature": "membersPermissionsContract: { readonly id: \"members-permissions\"; readonly intent: \"Invite people, change roles, and audit permission boundaries without separating membership from access policy.\"; readonly roles: readonly [\"Workspace owner…",
+          "typeHash": "9cf58431a51ba3e502c54a5c648200d22d2ad238067a54489cae2aa77b1db1c3",
+          "description": ""
+        },
+        {
+          "name": "TeumProductPatternContract",
+          "kind": "type",
+          "signature": "TeumProductPatternContract = { id: string; intent: string; roles: readonly string[]; taskSequence: readonly string[]; components: readonly string[]; stateOwnership: { shareable: readonly string[]; persisted: readonly string[]; transient: r…",
+          "typeHash": "ce26ef4c8e87f991048ca9296defc84b0fb02ac19f999855490035f8c8787781",
+          "description": ""
+        },
+        {
+          "name": "teumProductPatternContracts",
+          "kind": "const",
+          "signature": "teumProductPatternContracts: readonly [{ readonly id: \"customer-workspace\"; readonly intent: \"Find an account, inspect its health and activity, then complete a follow-up without losing the customer list.\"; readonly roles: readonly [\"Custom…",
+          "typeHash": "229f1274a5be907dcac97a4f9107545fdc3f44304c59b95a5e825ff2bbe92c72",
+          "description": ""
+        },
+        {
+          "name": "teumProductPatternSystemContract",
+          "kind": "const",
+          "signature": "teumProductPatternSystemContract: { readonly version: 1; readonly layers: readonly [\"Core controls\", \"Data state\", \"Analytics context\", \"Product task\"]; readonly rules: readonly [\"Patterns compose public Teum components and keep product st…",
+          "typeHash": "87a48e46befd7c6c64acdf53aaf58706915f6349fe728291d4e93c1aa30ca0b3",
+          "description": ""
+        }
+      ]
+    },
+    "teum-agent-contract": {
+      "source": "lib/teum-agent-contract.ts",
+      "sourceHash": "6dbbe971cee0d2284bc63aaeef5150e6cab8269a5b7e313f96ebb11dc59b099a",
+      "declaration": "api/generated/types/lib/teum-agent-contract.d.ts",
+      "exports": [
+        {
+          "name": "selectTeumRecipe",
+          "kind": "function",
+          "signature": "selectTeumRecipe(task: string): TeumAgentPlan | null",
+          "typeHash": "73dec6de24e158bd2f76abf6d765342400608e016d74b3111701e7d036c69791",
+          "description": ""
+        },
+        {
+          "name": "teumAgentForbiddenRules",
+          "kind": "const",
+          "signature": "teumAgentForbiddenRules: readonly [\"Do not invent undocumented props, exports, registry items, or private CSS selectors.\", \"Do not merge components because their closed shapes look similar; preserve task, focus, and recovery boundaries.\", …",
+          "typeHash": "f9f313a8b19ac47a70778adedb3d82411fc2035c67cc063d34cc1099b2a05333",
+          "description": ""
+        },
+        {
+          "name": "TeumAgentPlan",
+          "kind": "type",
+          "signature": "TeumAgentPlan = { recipe: TeumAgentRecipeContract; score: number; matchedSignals: readonly string[]; }",
+          "typeHash": "6af395bd0abef9c05e70c1f1f9e350e92dfd22834227c121d26aa61af2f92189",
+          "description": ""
+        },
+        {
+          "name": "TeumAgentRecipeContract",
+          "kind": "type",
+          "signature": "TeumAgentRecipeContract = { id: TeumAgentRecipeId; title: string; domain: \"data\" | \"analytics\" | \"product\"; intent: string; signals: readonly string[]; registryItem: \"teum-data\" | \"teum-analytics\" | \"teum-product-patterns\"; modulePath: str…",
+          "typeHash": "c3050009ae0350d0211f2aa76caa2eca352bebd27220d852e5879cee7332146d",
+          "description": ""
+        },
+        {
+          "name": "teumAgentRecipeContracts",
+          "kind": "const",
+          "signature": "teumAgentRecipeContracts: readonly [{ readonly id: \"issues-workspace\"; readonly title: \"Issues Workspace\"; readonly domain: \"data\"; readonly intent: \"Triage, inspect, mutate, and recover issue work from one shared collection.\"; readonly si…",
+          "typeHash": "5bc1ecf125d8c80e3dfa00f241be7d7d9f37aef97dbacfb5fedeee4b45b6058d",
+          "description": ""
+        },
+        {
+          "name": "TeumAgentRecipeId",
+          "kind": "type",
+          "signature": "TeumAgentRecipeId = | \"issues-workspace\" | \"customer-directory\" | \"audit-log\" | \"saas-overview\" | \"product-usage\" | \"conversion-retention\" | \"customer-workspace\" | \"billing-usage\" | \"members-permissions\"",
+          "typeHash": "65e5b182855b37c529f00a612c8f4225509685c69ff29dcff593c38edc797248",
+          "description": ""
+        },
+        {
+          "name": "TeumAgentSelectionRule",
+          "kind": "type",
+          "signature": "TeumAgentSelectionRule = { task: string; choose: string; insteadOf: readonly string[]; when: readonly string[]; rejectWhen: readonly string[]; }",
+          "typeHash": "b5498b254b2d9920a18ebce190161434bf87db2baa2d0e49c892674475571a22",
+          "description": ""
+        },
+        {
+          "name": "teumAgentSelectionRules",
+          "kind": "const",
+          "signature": "teumAgentSelectionRules: readonly [{ readonly task: \"Choose one submitted value\"; readonly choose: \"Select\"; readonly insteadOf: readonly [\"Combobox\", \"ContextSwitcher\"]; readonly when: readonly [\"The values are short and predefined.\"]; re…",
+          "typeHash": "e7f0607b0c918433a8a5e6a0c2a5f7768d5732912023942eaa6dee0e04a958ef",
+          "description": ""
+        },
+        {
+          "name": "teumAgentSystemContract",
+          "kind": "const",
+          "signature": "teumAgentSystemContract: { readonly schemaVersion: 1; readonly product: \"Teum\"; readonly principles: readonly [\"stable geometry\", \"shared origin\", \"reversible completion\"]; readonly workflow: readonly [\"inspect project\", \"classify task\", \"…",
+          "typeHash": "b70c83fe311024121d009b55d22dfd649bf531b418026f7f2fea2bdbf4080ce8",
           "description": ""
         }
       ]

@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/switch.css";
 import { Switch as SwitchPrimitive } from "@base-ui/react/switch";

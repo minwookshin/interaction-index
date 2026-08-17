@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "title": "Textarea",
+  "description": "Long-form input with guidance, validation, and character count.",
+  "registryDependencies": [
+    "@teum-pinned/teum-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/textarea.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/textarea.css\";\nimport { useId, useState, type ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type TextareaProps = ComponentPropsWithRef<\"textarea\"> & {\n  label?: string;\n  description?: string;\n  error?: string;\n  showCount?: boolean;\n};\n\nexport function Textarea({ id: providedId, label, description, error, showCount, maxLength, className, value, defaultValue, onChange, ref, ...props }: TextareaProps) {\n  const generatedId = useId();\n  const id = providedId ?? generatedId;\n  const descriptionId = description ? `${id}-description` : undefined;\n  const errorId = error ? `${id}-error` : undefined;\n  const describedBy = [props[\"aria-describedby\"], descriptionId, errorId].filter(Boolean).join(\" \") || undefined;\n  const initialValue = value ?? defaultValue ?? \"\";\n  const [uncontrolledCount, setUncontrolledCount] = useState(typeof initialValue === \"string\" ? initialValue.length : 0);\n  const count = typeof value === \"string\" ? value.length : uncontrolledCount;\n\n  return (\n    <div className=\"teum-field teum-textarea-field\" data-invalid={Boolean(error) || undefined}>\n      {label && <label className=\"teum-field__label\" htmlFor={id}>{label}</label>}\n      <textarea\n        ref={ref}\n        id={id}\n        className={cn(\"teum-input teum-textarea\", className)}\n        aria-invalid={Boolean(error) || undefined}\n        aria-describedby={describedBy}\n        maxLength={maxLength}\n        value={value}\n        defaultValue={defaultValue}\n        onChange={(event) => { setUncontrolledCount(event.currentTarget.value.length); onChange?.(event); }}\n        {...props}\n      />\n      <div className=\"teum-textarea-field__meta\">\n        <span>\n          {description && <span id={descriptionId} className=\"teum-field__description\">{description}</span>}\n          {error && <span id={errorId} className=\"teum-field__error\">{error}</span>}\n        </span>\n        {showCount && maxLength && <output aria-label=\"Character count\">{count}/{maxLength}</output>}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/textarea.tsx"
+    },
+    {
+      "path": "registry/styles/components/textarea.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-textarea {\n  min-height: 96px;\n  resize: vertical;\n  padding: 9px 10px;\n  line-height: 1.5;\n}\n\n.teum-textarea-field__meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }\n\n.teum-textarea-field__meta > span { min-width: 0; }\n\n.teum-textarea-field__meta output { flex: 0 0 auto; color: var(--teum-ink-tertiary); font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; }\n\n.teum-field { display: grid; min-width: 0; gap: 6px; }\n\n.teum-field__label { color: var(--teum-ink); font-size: 12px; font-weight: 550; }\n\n.teum-field[data-invalid] .teum-field__control { border-color: color-mix(in oklch, var(--teum-fg-danger) 46%, var(--teum-control-border)); box-shadow: 0 0 0 2px color-mix(in oklch, var(--teum-fg-danger) 11%, transparent); }\n\n.teum-input { width: 100%; min-width: 0; height: 100%; padding: 0 9px; border: 0; outline: 0; background: transparent; color: var(--teum-ink); font-size: 13.5px; }\n\n.teum-input::placeholder { color: var(--teum-fg-subtle); }\n\n.teum-input:disabled { background: var(--teum-bg-subtle); color: var(--teum-fg-disabled); cursor: not-allowed; }\n\n.teum-input:read-only { color: var(--teum-fg-muted); }\n\n.teum-field__description,\n.teum-field__error { color: var(--teum-ink-tertiary); font-size: 11.5px; line-height: 1.45; }\n\n.teum-field__error { color: var(--teum-fg-danger); font-weight: 520; }\n\n:root[data-theme=\"dark\"] .teum-input:disabled { background: rgb(255 255 255 / 0.025); color: var(--teum-ink-disabled); }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/textarea.css"
+    }
+  ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/textarea",
+      "useWhen": "The user needs to enter more than one line of unstructured text.",
+      "avoidWhen": "The value is short or highly structured. Use Text Field or a purpose-built selector."
+    }
+  },
+  "type": "registry:ui"
+}

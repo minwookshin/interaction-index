@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, Check, Copy, Play } from "@phosphor-icons/react"
 import { useState } from "react";
 import { Button, Switch } from "../components/ui";
 import { copyText } from "../lib/copy-text";
+import { teumMotionContract } from "../lib/motion-contract";
 import { tokenByPath, type TokenPath } from "../tokens/generated";
 
 function token(path: TokenPath) {
@@ -47,7 +48,7 @@ export function FoundationOverview({ onSelect }: { onSelect: (id: FoundationRout
     <div className="system-detail__content system-foundations system-reference-page">
       <section className="system-overview system-overview--foundation">
         <h1>Foundations</h1>
-        <p>The semantic grammar shared by every component and interaction. Quiet enough for dense product work, explicit enough to implement without guessing.</p>
+        <p>Shared tokens for components and interactions.</p>
       </section>
 
       <div className="foundation-index" aria-label="Foundation index">
@@ -147,7 +148,7 @@ function ColorFoundation() {
         <div className="graphite-scale">{graphiteScale.map(([step, value]) => <div key={step}><span style={{ background: value }} /><strong>{step}</strong><small>{value}</small></div>)}</div>
       </FoundationSection>
 
-      <FoundationSection eyebrow="Roles" title="Semantic tokens" description="Light and dark themes share one role set. Opacity carries elevation while contrast remains explicit.">
+      <FoundationSection eyebrow="Roles" title="Semantic tokens" description="Light and dark themes use the same roles.">
         <table className="foundation-token-table" aria-label="Semantic color tokens"><tbody>
           {semanticColors.map(([token, role, light, dark, usage]) => <tr key={token}>
             <td><span className="token-swatch" style={{ background: `var(${token})` }} aria-hidden="true" /></td>
@@ -273,8 +274,8 @@ function MotionFoundation() {
   const [reduced, setReduced] = useState(false);
   return (
     <>
-      <FoundationSection eyebrow="Principles" title="Motion explains, then gets out of the way" description="Repeated actions stay nearly instant. Spatial transitions animate only when continuity, state, or feedback would otherwise be unclear.">
-        <div className="motion-principles"><article><span>01</span><strong>Responsive</strong><p>Feedback begins immediately after input.</p></article><article><span>02</span><strong>Spatial</strong><p>Overlays emerge from their trigger; dialogs remain centered.</p></article><article><span>03</span><strong>Interruptible</strong><p>Rapid changes retarget instead of restarting.</p></article></div>
+      <FoundationSection eyebrow={`Contract v${teumMotionContract.version}`} title="Motion explains, then gets out of the way" description="Repeated actions stay nearly instant. Spatial transitions animate only when continuity, state, or feedback would otherwise be unclear.">
+        <div className="motion-principles"><article><span>01</span><strong>Responsive</strong><p>{teumMotionContract.principles[0]}</p></article><article><span>02</span><strong>Purposeful</strong><p>{teumMotionContract.principles[1]}</p></article><article><span>03</span><strong>Interruptible</strong><p>{teumMotionContract.principles[3]}</p></article></div>
       </FoundationSection>
       <FoundationSection eyebrow="Live behavior" title="A purposeful entrance" description="Replay the same state change with and without spatial movement. Reduced motion preserves hierarchy and state.">
         <div className="motion-stage">
@@ -286,7 +287,7 @@ function MotionFoundation() {
         <div className="motion-token-grid">{motionTokens.map(([name, path, usage]) => <div key={name}><span>{name}</span><strong>{resolvedToken(path)}</strong><small>{usage}</small></div>)}</div>
         <div className="easing-list"><div><span>Enter / exit</span><code>{resolvedToken("foundation.motion.easing.ease-out")}</code><CopyValue value={resolvedToken("foundation.motion.easing.ease-out")} /></div><div><span>Spatial change</span><code>{resolvedToken("foundation.motion.easing.ease-in-out")}</code><CopyValue value={resolvedToken("foundation.motion.easing.ease-in-out")} /></div></div>
       </FoundationSection>
-      <FoundationSection eyebrow="Accessibility" title="Reduced motion is a behavior contract" description="Remove translation, scaling, and layout choreography. Keep instant state changes, focus movement, and short opacity feedback.">
+      <FoundationSection eyebrow="Accessibility" title="Reduced motion is a behavior contract" description={teumMotionContract.principles[4]}>
         <div className="foundation-code-line foundation-code-line--multiline"><code>{`@media (prefers-reduced-motion: reduce) {\n  .overlay { transition: opacity 120ms var(--teum-ease-out); transform: none; }\n}`}</code><CopyValue value={'@media (prefers-reduced-motion: reduce) {\n  .overlay { transition: opacity 120ms var(--teum-ease-out); transform: none; }\n}'} /></div>
       </FoundationSection>
     </>

@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/toast.css";
 import { Toaster as SonnerToaster, toast as sonnerToast } from "sonner";

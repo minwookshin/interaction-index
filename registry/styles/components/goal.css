@@ -1,0 +1,26 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer teum.tokens, teum.base, teum.components;
+
+@layer teum.components {
+.teum-goal { display: grid; min-width: 0; gap: 8px; }
+
+.teum-goal__heading,
+.teum-goal__meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+
+.teum-goal__heading { color: var(--teum-fg-default); font-size: var(--teum-type-ui); }
+
+.teum-goal__heading strong { font-variant-numeric: tabular-nums; font-weight: 590; }
+
+.teum-goal__track { height: 5px; overflow: hidden; border-radius: 999px; background: var(--teum-bg-subtle); }
+
+.teum-goal__indicator { display: block; width: 100%; height: 100%; border-radius: inherit; background: var(--teum-fg-default); transform: scaleX(var(--teum-goal-progress)); transform-origin: left center; transition: transform var(--teum-medium) var(--teum-ease-out); }
+
+.teum-goal__meta { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; }
+
+.teum-goal__description { color: var(--teum-fg-muted); font-size: var(--teum-type-metadata); line-height: 1.45; }
+
+@media (prefers-reduced-motion: reduce) {
+.teum-goal__indicator { transition-duration: 0ms; }
+}
+}

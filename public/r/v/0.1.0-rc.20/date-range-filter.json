@@ -1,0 +1,38 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-range-filter",
+  "title": "Date Range Filter",
+  "description": "Draft, preset, validate, and explicitly apply an open or bounded collection date range.",
+  "dependencies": [
+    "@internationalized/date@3.12.3",
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@teum-pinned/teum-base",
+    "@teum-pinned/button",
+    "@teum-pinned/data-view-state",
+    "@teum-pinned/date-picker",
+    "@teum-pinned/popover"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/date-range-filter.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/date-range-filter.css\";\nimport { getLocalTimeZone, parseDate, today, CalendarDate, type DateValue } from \"@internationalized/date\";\nimport { CalendarBlank } from \"@phosphor-icons/react\";\nimport { useMemo, useState } from \"react\";\nimport type { DataDateRange } from \"../../lib/data-view-state\";\nimport { Button } from \"./button\";\nimport { DatePicker } from \"./date-picker\";\nimport { Popover, PopoverContent, PopoverTrigger } from \"./popover\";\n\nexport type DateRangePreset = {\n  id: string;\n  label: string;\n  getValue: () => DataDateRange;\n};\n\nexport type DateRangeFilterProps = {\n  value: DataDateRange;\n  onValueChange: (value: DataDateRange) => void;\n  label?: string;\n  presets?: readonly DateRangePreset[];\n  minValue?: DateValue;\n  maxValue?: DateValue;\n  disabled?: boolean;\n};\n\nconst DEFAULT_DATE_RANGE_PRESETS: readonly DateRangePreset[] = [\n  {\n    id: \"last-7-days\",\n    label: \"Last 7 days\",\n    getValue: () => {\n      const end = today(getLocalTimeZone());\n      return { from: end.subtract({ days: 6 }).toString(), to: end.toString() };\n    },\n  },\n  {\n    id: \"last-30-days\",\n    label: \"Last 30 days\",\n    getValue: () => {\n      const end = today(getLocalTimeZone());\n      return { from: end.subtract({ days: 29 }).toString(), to: end.toString() };\n    },\n  },\n  {\n    id: \"this-month\",\n    label: \"This month\",\n    getValue: () => {\n      const current = today(getLocalTimeZone());\n      const start = new CalendarDate(current.year, current.month, 1);\n      const end = start.add({ months: 1 }).subtract({ days: 1 });\n      return { from: start.toString(), to: end.toString() };\n    },\n  },\n];\n\nfunction toDate(value: string | null): CalendarDate | null {\n  if (!value) return null;\n  try {\n    return parseDate(value);\n  } catch {\n    return null;\n  }\n}\n\nfunction formatRange(value: DataDateRange, label: string): string {\n  if (!value.from && !value.to) return label;\n  const formatter = new Intl.DateTimeFormat(undefined, { month: \"short\", day: \"numeric\", year: \"numeric\" });\n  const format = (date: string | null) => date ? formatter.format(new Date(`${date}T12:00:00`)) : \"Any time\";\n  return `${format(value.from)} – ${format(value.to)}`;\n}\n\nexport function DateRangeFilter({\n  value,\n  onValueChange,\n  label = \"Date range\",\n  presets = DEFAULT_DATE_RANGE_PRESETS,\n  minValue,\n  maxValue,\n  disabled = false,\n}: DateRangeFilterProps) {\n  const [open, setOpen] = useState(false);\n  const [draft, setDraft] = useState<DataDateRange>(value);\n  const invalid = Boolean(draft.from && draft.to && draft.from > draft.to);\n  const description = useMemo(() => invalid ? \"The start date must be before the end date.\" : \"Choose either boundary or a complete range.\", [invalid]);\n\n  const setOpenState = (next: boolean) => {\n    if (next) setDraft(value);\n    setOpen(next);\n  };\n\n  const apply = () => {\n    if (invalid) return;\n    onValueChange(draft);\n    setOpen(false);\n  };\n\n  return (\n    <Popover open={open} onOpenChange={setOpenState}>\n      <PopoverTrigger\n        render={<Button size=\"small\" variant=\"secondary\" leadingIcon={<CalendarBlank />} disabled={disabled} aria-label={`${label}: ${formatRange(value, \"Any time\")}`} />}\n      >\n        {formatRange(value, label)}\n      </PopoverTrigger>\n      <PopoverContent className=\"teum-date-range\" align=\"start\">\n        <div className=\"teum-date-range__heading\">\n          <strong>{label}</strong>\n          <span>{description}</span>\n        </div>\n        {presets.length > 0 && (\n          <div className=\"teum-date-range__presets\" aria-label=\"Date range presets\">\n            {presets.map((preset) => <Button key={preset.id} size=\"small\" variant=\"ghost\" onClick={() => setDraft(preset.getValue())}>{preset.label}</Button>)}\n          </div>\n        )}\n        <div className=\"teum-date-range__fields\">\n          <DatePicker\n            label=\"From\"\n            value={toDate(draft.from)}\n            minValue={minValue}\n            maxValue={toDate(draft.to) ?? maxValue}\n            onChange={(date) => setDraft((current) => ({ ...current, from: date?.toString() ?? null }))}\n            errorMessage={invalid ? \"Choose an earlier date.\" : undefined}\n          />\n          <DatePicker\n            label=\"To\"\n            value={toDate(draft.to)}\n            minValue={toDate(draft.from) ?? minValue}\n            maxValue={maxValue}\n            onChange={(date) => setDraft((current) => ({ ...current, to: date?.toString() ?? null }))}\n          />\n        </div>\n        <div className=\"teum-date-range__actions\">\n          {(draft.from || draft.to) && <Button size=\"small\" variant=\"ghost\" onClick={() => setDraft({ from: null, to: null })}>Clear</Button>}\n          <span />\n          <Button size=\"small\" variant=\"ghost\" onClick={() => setOpen(false)}>Cancel</Button>\n          <Button size=\"small\" variant=\"primary\" disabled={invalid} onClick={apply}>Apply</Button>\n        </div>\n      </PopoverContent>\n    </Popover>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/date-range-filter.tsx"
+    },
+    {
+      "path": "registry/styles/components/date-range-filter.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-date-range { width: min(520px, calc(100vw - 24px)); }\n\n.teum-date-range__heading {\n  display: grid;\n  gap: 2px;\n  margin-bottom: 10px;\n}\n\n.teum-date-range__heading strong { font-size: var(--teum-type-ui); font-weight: 600; }\n\n.teum-date-range__heading span { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }\n\n.teum-date-range__presets {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 4px;\n  margin: 0 -5px 12px;\n}\n\n.teum-date-range__fields {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: 10px;\n}\n\n.teum-date-range__fields .teum-date-picker { width: 100%; }\n\n.teum-date-range__actions {\n  display: grid;\n  grid-template-columns: auto 1fr auto auto;\n  align-items: center;\n  gap: 6px;\n  margin-top: 14px;\n}\n\n@media (max-width: 700px) {\n.teum-date-range__fields { grid-template-columns: minmax(0, 1fr); }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/date-range-filter.css"
+    }
+  ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/date-range-filter"
+    }
+  },
+  "type": "registry:component"
+}

@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { execFile } from "node:child_process";
-import { access, readFile } from "node:fs/promises";
-import { resolve } from "node:path";
+import { access, readFile, readdir } from "node:fs/promises";
+import { isAbsolute, relative, resolve } from "node:path";
 import { promisify } from "node:util";
 
 const exec = promisify(execFile);
@@ -29,13 +29,38 @@ visit(packageJson.exports);
 for (const target of exportTargets.filter((target) => !target.includes("*"))) {
   await access(resolve(root, target)).catch(() => fail(`export target is missing: ${target}`));
 }
+const packageEntry = await readFile(resolve(root, packageJson.exports["."].import), "utf8");
+if (!packageEntry.startsWith('"use client";')) fail("React entry must preserve its client boundary");
+const tokenEntry = await readFile(resolve(root, packageJson.exports["./tokens"].import), "utf8");
+if (tokenEntry.startsWith('"use client";')) fail("framework-neutral token helpers must not inherit the React client boundary");
 
 const packageRoot = resolve(root, "dist/package");
 const integrity = JSON.parse(await readFile(resolve(packageRoot, "integrity.json"), "utf8"));
+const integrityPaths = Object.keys(integrity.files).sort();
 for (const [path, expected] of Object.entries(integrity.files)) {
-  const source = await readFile(resolve(packageRoot, path)).catch(() => fail(`integrity file is missing: ${path}`));
+  const target = resolve(packageRoot, path);
+  const confined = relative(packageRoot, target);
+  if (!path || path.includes("\\") || isAbsolute(path) || confined.startsWith("..") || isAbsolute(confined)) {
+    fail(`integrity path escapes the package root: ${path}`);
+  }
+  const source = await readFile(target).catch(() => fail(`integrity file is missing: ${path}`));
   if (source.length !== expected.bytes || hash(source) !== expected.sha256) fail(`integrity mismatch: ${path}`);
 }
+
+async function packageFiles(directory, base = directory) {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const files = [];
+  for (const entry of entries) {
+    const path = resolve(directory, entry.name);
+    if (entry.isSymbolicLink()) fail(`package output contains a symbolic link: ${relative(base, path)}`);
+    if (entry.isDirectory()) files.push(...(await packageFiles(path, base)));
+    else if (entry.isFile() && entry.name !== "integrity.json") files.push(relative(base, path).split("\\").join("/"));
+    else if (!entry.isFile()) fail(`package output contains an unsupported entry: ${relative(base, path)}`);
+  }
+  return files.sort();
+}
+const builtPaths = await packageFiles(packageRoot);
+if (JSON.stringify(builtPaths) !== JSON.stringify(integrityPaths)) fail("integrity manifest does not cover the exact package output set");
 
 const { stdout } = await exec(process.platform === "win32" ? "npm.cmd" : "npm", ["pack", "--dry-run", "--json"], {
   cwd: root,
@@ -43,8 +68,18 @@ const { stdout } = await exec(process.platform === "win32" ? "npm.cmd" : "npm", 
 });
 const report = JSON.parse(stdout)[0];
 const paths = report.files.map((file) => file.path);
-for (const forbidden of ["src/", "tests/", ".storybook/", "figma/", ".env", "AGENTS.md"]) {
-  if (paths.some((path) => path === forbidden || path.startsWith(forbidden))) fail(`tarball leaked ${forbidden}`);
+const allowedRootFiles = new Set([
+  "CHANGELOG.md",
+  "COMPATIBILITY.md",
+  "LICENSE",
+  "MIGRATIONS.md",
+  "README.md",
+  "SECURITY.md",
+  "package.json",
+]);
+for (const path of paths) {
+  const allowed = allowedRootFiles.has(path) || path.startsWith("dist/package/") || /^public\/r\/[^/]+\.json$/.test(path);
+  if (!allowed) fail(`tarball path is outside the closed allowlist: ${path}`);
 }
 for (const required of ["dist/package/index.js", "dist/package/styles.css", "dist/package/tokens.css", "dist/package/tailwind.css", "dist/package/integrity.json", "public/r/manifest.json", "LICENSE", "README.md"]) {
   if (!paths.includes(required)) fail(`tarball omitted ${required}`);

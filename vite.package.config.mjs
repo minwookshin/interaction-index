@@ -20,6 +20,7 @@ export default defineConfig({
       external,
       output: {
         exports: "named",
+        banner: (chunk) => chunk.name === "index" ? '"use client";' : "",
       },
     },
   },

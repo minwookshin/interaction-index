@@ -26,9 +26,10 @@ test("toast feedback owns the highest non-navigation product layer", async ({ pa
   await trigger.click();
 
   const toaster = page.locator(".teum-toaster");
-  await expect(toaster).toBeVisible();
   const visibleToast = page.locator(".teum-toast:visible");
   await expect(visibleToast).toHaveCount(1);
+  await expect(visibleToast).toBeVisible();
+  await expect(toaster).toHaveCount(1);
   await expect(toaster).toHaveCSS("z-index", "130");
 
   const [toastBox, viewport] = await Promise.all([

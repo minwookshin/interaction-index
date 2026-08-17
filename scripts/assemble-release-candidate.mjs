@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { execFile } from "node:child_process";
-import { copyFile, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
-import { resolve } from "node:path";
+import { copyFile, lstat, mkdir, mkdtemp, readFile, readdir, rename, rm, writeFile } from "node:fs/promises";
+import { dirname, resolve } from "node:path";
 import { promisify } from "node:util";
 
 const exec = promisify(execFile);
@@ -20,7 +20,11 @@ if (status.stdout.trim()) throw new Error("[rc] assemble from a clean local comm
 
 const commit = (await exec(git, ["rev-parse", "HEAD"], { cwd: root })).stdout.trim();
 const output = resolve(root, "artifacts/release-candidate", version);
-await mkdir(output, { recursive: true });
+if (await lstat(output).then(() => true).catch(() => false)) {
+  throw new Error(`[rc] output already exists; inspect or archive it before assembling again: ${output}`);
+}
+await mkdir(dirname(output), { recursive: true });
+const staging = await mkdtemp(resolve(dirname(output), `.${version}-`));
 
 const required = [
   "COMPATIBILITY.md",
@@ -29,29 +33,39 @@ const required = [
   "RELEASE_QA.md",
   "RC_EXTERNAL_GATES.md",
   "performance-report.json",
+  "release/runtime-performance.json",
   "release/public-surface.freeze.json",
+  "release/evidence.json",
+  "release/evidence.md",
+  "release/quickstart.json",
+  "release/package-contract.json",
+  "release/accessibility.json",
+  "release/teum-data-install.json",
+  "release/teum-analytics-install.json",
+  "release/teum-product-patterns-install.json",
   `public/r/v/${version}/release.json`,
   "dist/package/integrity.json",
 ];
 for (const path of required) await readFile(resolve(root, path));
 
-const packed = await exec(npm, ["pack", "--json", "--pack-destination", output], {
+try {
+const packed = await exec(npm, ["pack", "--json", "--pack-destination", staging], {
   cwd: root,
   maxBuffer: 64 * 1024 * 1024,
 });
 const packReport = JSON.parse(packed.stdout)[0];
-const tarballPath = resolve(output, packReport.filename);
+const tarballPath = resolve(staging, packReport.filename);
 const tarball = await readFile(tarballPath);
 
 const sbom = await exec(npm, ["sbom", "--sbom-format", "cyclonedx"], {
   cwd: root,
   maxBuffer: 64 * 1024 * 1024,
 });
-await writeFile(resolve(output, "sbom.cdx.json"), sbom.stdout, "utf8");
+await writeFile(resolve(staging, "sbom.cdx.json"), sbom.stdout, "utf8");
 
 for (const path of required) {
   const target = path.replaceAll("/", "__");
-  await copyFile(resolve(root, path), resolve(output, target));
+  await copyFile(resolve(root, path), resolve(staging, target));
 }
 
 const candidate = {
@@ -71,12 +85,26 @@ const candidate = {
   },
   externalGates: "RC_EXTERNAL_GATES.md",
 };
-await writeFile(resolve(output, "candidate.json"), `${JSON.stringify(candidate, null, 2)}\n`, "utf8");
+await writeFile(resolve(staging, "candidate.json"), `${JSON.stringify(candidate, null, 2)}\n`, "utf8");
 
-const files = (await readdir(output)).filter((name) => name !== "SHA256SUMS").sort();
+const expectedFiles = [
+  packReport.filename,
+  "sbom.cdx.json",
+  "candidate.json",
+  ...required.map((path) => path.replaceAll("/", "__")),
+].sort();
+const files = (await readdir(staging)).filter((name) => name !== "SHA256SUMS").sort();
+if (JSON.stringify(files) !== JSON.stringify(expectedFiles)) {
+  throw new Error(`[rc] unexpected candidate file set: ${files.join(", ")}`);
+}
 const checksums = [];
-for (const name of files) checksums.push(`${sha256(await readFile(resolve(output, name)))}  ${name}`);
-await writeFile(resolve(output, "SHA256SUMS"), `${checksums.join("\n")}\n`, "utf8");
+for (const name of files) checksums.push(`${sha256(await readFile(resolve(staging, name)))}  ${name}`);
+await writeFile(resolve(staging, "SHA256SUMS"), `${checksums.join("\n")}\n`, "utf8");
+await rename(staging, output);
 
 console.log(`[rc] assembled unpublished ${version} from ${commit.slice(0, 12)} at ${output}`);
 console.log(`[rc] ${packReport.filename}: ${candidate.package.sha256}`);
+} catch (error) {
+  await rm(staging, { recursive: true, force: true });
+  throw error;
+}

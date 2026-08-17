@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "title": "Spinner",
+  "description": "Compact labelled ongoing-work status.",
+  "registryDependencies": [
+    "@teum-pinned/teum-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/spinner.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/spinner.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type SpinnerProps = ComponentPropsWithRef<\"span\"> & {\n  size?: \"small\" | \"medium\" | \"large\";\n  label?: string;\n};\n\nexport function Spinner({ className, size = \"medium\", label = \"Loading\", ...props }: SpinnerProps) {\n  return <span className={cn(\"teum-loading-spinner\", `teum-loading-spinner--${size}`, className)} role=\"status\" aria-label={label} {...props}><span aria-hidden=\"true\" /></span>;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/spinner.tsx"
+    },
+    {
+      "path": "registry/styles/components/spinner.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-loading-spinner { display: inline-grid; place-items: center; color: currentColor; }\n\n.teum-loading-spinner > span { width: 100%; height: 100%; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: teum-spin 620ms linear infinite; }\n\n@media (prefers-reduced-motion: reduce) {\n.teum-loading-spinner > span { animation-duration: 2.4s; }\n}\n\n@keyframes teum-spin { to { transform: rotate(360deg); } }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/spinner.css"
+    }
+  ],
+  "type": "registry:ui"
+}

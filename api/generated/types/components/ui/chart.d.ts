@@ -1,0 +1,33 @@
+import { type ReactNode } from "react";
+import { type AnalyticsDatum, type AnalyticsSeries } from "../../lib/analytics";
+export type ChartAnnotation = {
+    id: string;
+    index: number;
+    label: string;
+    tone?: "neutral" | "danger";
+};
+export type ChartProps = {
+    title: string;
+    description?: string;
+    data: readonly AnalyticsDatum[];
+    series: readonly AnalyticsSeries[];
+    className?: string;
+    height?: number;
+    includeZero?: boolean;
+    domain?: readonly [number, number];
+    area?: boolean;
+    annotations?: readonly ChartAnnotation[];
+    valueFormatter?: (value: number, series: AnalyticsSeries) => string;
+    activeIndex?: number | null;
+    defaultActiveIndex?: number | null;
+    onActiveIndexChange?: (index: number | null) => void;
+    visibleSeries?: readonly string[];
+    defaultVisibleSeries?: readonly string[];
+    onVisibleSeriesChange?: (ids: readonly string[]) => void;
+    onDatumActivate?: (datum: AnalyticsDatum, index: number) => void;
+    loading?: boolean;
+    empty?: ReactNode;
+    showLegend?: boolean;
+    showDataByDefault?: boolean;
+};
+export declare function Chart({ title, description, data, series, className, height, includeZero, domain, area, annotations, valueFormatter, activeIndex, defaultActiveIndex, onActiveIndexChange, visibleSeries, defaultVisibleSeries, onVisibleSeriesChange, onDatumActivate, loading, empty, showLegend, showDataByDefault, }: ChartProps): import("react").JSX.Element;

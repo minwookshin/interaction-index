@@ -17,7 +17,16 @@ The maintainer will acknowledge a complete report, validate the affected version
 
 ## Supported versions
 
-Before `1.0`, only the latest alpha is eligible for security fixes. A stable release must publish its maintenance window before it is described as production-ready.
+Before `1.0`, only the latest pre-release candidate is eligible for security fixes. A stable release must publish its maintenance window before it is described as production-ready. Historical versioned registry artifacts remain available for reproducibility, but availability does not imply ongoing security support.
+
+## Release and supply-chain controls
+
+- GitHub Actions are pinned to full commit SHAs and updated through reviewed dependency pull requests.
+- Checkout credentials are not persisted, and Pages or attestation identity permissions are isolated to the jobs that use them.
+- Public install instructions pin the shadcn CLI. Versioned registry artifacts pin internal registry references to one release and external dependencies to exact resolved versions.
+- Versioned registry directories are append-only and checked against `release/registry-history.json`; release-anchored versions are also compared byte-for-byte with their source commit.
+- Package candidates contain exactly one tarball, a CycloneDX SBOM, a candidate manifest, and checksums. Attestation targets that exact tarball in a separate least-privilege job.
+- npm publication remains disabled while the package is private. Verification or attestation is not a publication event.
 
 ## Scope
 

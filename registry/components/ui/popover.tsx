@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/popover.css";
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";

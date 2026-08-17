@@ -1,0 +1,161 @@
+export type TeumAnalyticsComponentContract = {
+  id: string;
+  intent: string;
+  useWhen: readonly string[];
+  avoidWhen: readonly string[];
+  requires: readonly string[];
+  states: readonly string[];
+  compatibleWith: readonly string[];
+  dataSchema: string;
+  interactionModel: readonly string[];
+  accessibility: readonly string[];
+};
+
+export const teumAnalyticsComponentContracts = [
+  {
+    id: "metric",
+    intent: "State one important value, its direction, and comparison context without turning a dashboard into a card grid.",
+    useWhen: ["One value carries a clear product decision.", "The comparison period can be named."],
+    avoidWhen: ["Several dimensions need comparison.", "The value has no stable definition or time window."],
+    requires: ["Metric label", "Formatted value", "Named trend period when a trend is shown"],
+    states: ["default", "trend up", "trend down", "flat", "loading"],
+    compatibleWith: ["Sparkline", "Comparison", "Goal"],
+    dataSchema: "{ label, value, trend?, context?, visual? }",
+    interactionModel: ["Static by default.", "Any linked drill-down is owned by the surrounding recipe."],
+    accessibility: ["Trend direction is written in text and never encoded by color alone.", "Loading preserves final geometry and announces the metric label."],
+  },
+  {
+    id: "sparkline",
+    intent: "Add a compact directional trace beside a value without introducing a second chart-reading task.",
+    useWhen: ["Exact intermediate values are secondary.", "Surrounding content already names the measure and period."],
+    avoidWhen: ["People need exact values, comparisons, or annotations.", "The trace would be the only representation of the data."],
+    requires: ["Ordered numeric values", "Accessible label unless decorative"],
+    states: ["line", "area", "gaps", "empty", "decorative"],
+    compatibleWith: ["Metric", "Comparison"],
+    dataSchema: "readonly (number | null)[]",
+    interactionModel: ["Never interactive.", "Use Chart when point inspection matters."],
+    accessibility: ["Decorative traces are hidden from assistive technology.", "Standalone traces expose a concise image label."],
+  },
+  {
+    id: "chart",
+    intent: "Compare ordered series and inspect exact values through one keyboard, pointer, and table contract.",
+    useWhen: ["Change over an ordered dimension matters.", "Exact values and comparisons need a shared visual frame."],
+    avoidWhen: ["A ranked list communicates the task more directly.", "Categories have no meaningful order."],
+    requires: ["Stable datum ids", "Human labels", "Named series", "Value formatter", "Short description"],
+    states: ["default", "active point", "filtered series", "comparison", "annotated", "loading", "empty", "data table"],
+    compatibleWith: ["Metric", "Comparison", "Timeline", "SegmentedControl", "DateRangeFilter"],
+    dataSchema: "AnalyticsDatum[] + AnalyticsSeries[]",
+    interactionModel: ["Pointer position and Left/Right keys share one active index.", "Home and End jump to bounds.", "Escape clears inspection.", "Enter may open the active datum.", "Visible series can be controlled to synchronize charts."],
+    accessibility: ["The chart has a short text summary.", "A semantic HTML table is always present and can be made visible.", "A polite live region announces the active point.", "Series use labels and line patterns, not color alone."],
+  },
+  {
+    id: "comparison",
+    intent: "Keep current, previous, and relative change in one compact definition list.",
+    useWhen: ["Two values use the same unit and definition.", "Relative change is meaningful."],
+    avoidWhen: ["The previous value is zero or not comparable without explanation.", "More than two periods need comparison."],
+    requires: ["Current value", "Previous value", "Shared formatter"],
+    states: ["increase", "decrease", "flat", "not comparable"],
+    compatibleWith: ["Metric", "Chart"],
+    dataSchema: "{ current: number, previous: number }",
+    interactionModel: ["Static by default."],
+    accessibility: ["Direction and percentage are both text.", "Positive and negative meaning is configurable instead of inferred."],
+  },
+  {
+    id: "breakdown",
+    intent: "Rank parts of one total with labels, values, and restrained proportional bars.",
+    useWhen: ["Categories share one unit.", "Rank and magnitude both matter."],
+    avoidWhen: ["Spatial composition is the main task.", "There are too many categories to scan."],
+    requires: ["Stable item ids", "Labels", "Values", "Shared formatter"],
+    states: ["default", "selected", "compact", "empty"],
+    compatibleWith: ["Chart", "Metric", "DataTable"],
+    dataSchema: "BreakdownItem[]",
+    interactionModel: ["Static unless a recipe provides onSelect.", "Selected identity can control a detail or table filter."],
+    accessibility: ["Every bar also has a visible label and value.", "Interactive rows are native buttons with pressed state."],
+  },
+  {
+    id: "goal",
+    intent: "Show progress toward one explicit target without hiding the actual and target values.",
+    useWhen: ["A target is stable for the displayed period.", "Progress can be expressed on one bounded scale."],
+    avoidWhen: ["There is no agreed target.", "Higher is not necessarily better."],
+    requires: ["Current value", "Target value", "Shared formatter"],
+    states: ["in progress", "complete", "over target", "zero target"],
+    compatibleWith: ["Metric", "Comparison"],
+    dataSchema: "{ value: number, target: number }",
+    interactionModel: ["Static."],
+    accessibility: ["Uses a progressbar contract with value text.", "Actual and target values remain visible."],
+  },
+  {
+    id: "funnel",
+    intent: "Show ordered stage volume and the loss between adjacent stages.",
+    useWhen: ["Every stage is a strict next step.", "Adjacent conversion is the decision."],
+    avoidWhen: ["People can skip stages or move backward frequently.", "Categories are independent."],
+    requires: ["Ordered stages", "Stable stage ids", "Non-negative values"],
+    states: ["default", "selected", "zero stage", "single stage"],
+    compatibleWith: ["Metric", "Breakdown", "DataTable"],
+    dataSchema: "FunnelStage[]",
+    interactionModel: ["Static unless a recipe provides onSelect.", "Selection may filter supporting records."],
+    accessibility: ["Ordered-list semantics preserve stage order.", "Every stage exposes value and adjacent conversion as text."],
+  },
+  {
+    id: "cohort",
+    intent: "Compare retention across start groups and elapsed periods in a semantic matrix.",
+    useWhen: ["Rows share one cohort definition.", "Columns represent the same elapsed intervals."],
+    avoidWhen: ["Calendar periods rather than elapsed periods are primary.", "Sparse records would make the matrix misleading."],
+    requires: ["Cohort labels", "Period labels", "Normalized values", "Missing-value policy"],
+    states: ["default", "partial row", "missing cell", "scrolling"],
+    compatibleWith: ["Metric", "Chart", "DataTable"],
+    dataSchema: "CohortRow[] + period labels",
+    interactionModel: ["The table scrolls as one keyboard-reachable region.", "Cells stay static until a product case justifies drill-down."],
+    accessibility: ["Uses a real HTML table with row and column headers.", "Every heat cell includes a text value; tone is redundant."],
+  },
+  {
+    id: "timeline",
+    intent: "Relate dated product events to an analytic change without forcing every event onto the plot.",
+    useWhen: ["Events have meaningful order and concise labels.", "A person may inspect one event in context."],
+    avoidWhen: ["Events are dense enough to require filtering or a data table.", "Time is not relevant."],
+    requires: ["Stable event ids", "Timestamps", "Labels"],
+    states: ["default", "selected", "danger event", "empty"],
+    compatibleWith: ["Chart", "SharedDetail", "DataTable"],
+    dataSchema: "TimelineItem[]",
+    interactionModel: ["Static unless a recipe provides onSelect.", "Selection can control a chart annotation or detail pane."],
+    accessibility: ["Uses ordered-list semantics.", "Interactive events are native buttons with pressed state."],
+  },
+] as const satisfies readonly TeumAnalyticsComponentContract[];
+
+export const teumAnalyticsStateContract = {
+  version: 1,
+  controlled: ["date range", "comparison period", "visible series", "active datum", "selected segment"],
+  derived: ["domain", "ticks", "percent change", "conversion", "retention strength"],
+  transient: ["pointer position", "visual tooltip", "table disclosure"],
+  rules: [
+    "Charts that describe the same ordered data may share a controlled active index.",
+    "Keyboard inspection updates the same state as pointer inspection without animation delay.",
+    "Changing range or comparison clears stale active data.",
+    "Every visual encoding has a textual value, label, or semantic table equivalent.",
+    "Recipes own URL and server state; visual primitives remain transport-agnostic.",
+  ],
+} as const;
+
+export const teumAnalyticsRecipeContracts = [
+  {
+    id: "saas-overview",
+    intent: "Review recurring revenue, growth, target progress, and expansion drivers from one calm overview.",
+    taskSequence: ["Choose range", "Read metric", "Compare period", "Inspect point", "Open revenue detail"],
+    components: ["Metric", "Sparkline", "Chart", "Comparison", "Goal", "Breakdown"],
+    invariants: ["All values share the same date range.", "Current and previous periods use the same metric definition.", "Chart inspection and summary table agree."],
+  },
+  {
+    id: "product-usage",
+    intent: "Compare active usage, feature adoption, and release events without losing the selected period.",
+    taskSequence: ["Choose range", "Filter series", "Inspect a day", "Select a release", "Review feature breakdown"],
+    components: ["Metric", "Chart", "Breakdown", "Timeline"],
+    invariants: ["Two charts share one active index.", "Legend filtering never changes date order.", "Release selection maps to one stable annotation."],
+  },
+  {
+    id: "conversion-retention",
+    intent: "Trace acquisition through activation, then compare retained behavior by cohort.",
+    taskSequence: ["Read conversion", "Select a stage", "Inspect supporting trend", "Compare cohorts", "Open records"],
+    components: ["Metric", "Funnel", "Chart", "Cohort", "DataTable"],
+    invariants: ["Funnel stages are strictly ordered.", "Retention cells state values in text.", "Selected stage and supporting records share one id."],
+  },
+] as const;

@@ -7,17 +7,18 @@ on:
         description: Candidate version, for example 0.1.0-rc.1
         required: true
 
-permissions:
-  contents: read
-  id-token: write
-  attestations: write
-
 jobs:
   package:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 22.14.0
           cache: npm
@@ -33,21 +34,51 @@ jobs:
       - run: npm run test:package
       - run: npm run test:dogfood
       - run: npm audit --audit-level=high
-      - run: mkdir -p package-candidate
-      - run: npm pack --pack-destination package-candidate
-      - run: npm sbom --sbom-format cyclonedx > package-candidate/sbom.cdx.json
-      - name: Attest package tarball
-        uses: actions/attest@v4
-        with:
-          subject-path: package-candidate/*.tgz
-      - uses: actions/upload-artifact@v7
+      - run: npm run check:security
+      - name: Assemble exact package candidate
+        env:
+          TEUM_PACKAGE_CANDIDATE_DIR: ${{ runner.temp }}/teum-package-candidate
+        run: npm run assemble:package-candidate
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: teum-package-${{ inputs.version }}
-          path: package-candidate
+          path: ${{ runner.temp }}/teum-package-candidate
           if-no-files-found: error
 
-  publication-remains-manual:
+  attest:
     needs: package
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        with:
+          name: teum-package-${{ inputs.version }}
+          path: ${{ runner.temp }}/teum-package-candidate
+      - name: Verify exact attestation subject
+        id: subject
+        shell: bash
+        env:
+          CANDIDATE_DIR: ${{ runner.temp }}/teum-package-candidate
+        run: |
+          set -euo pipefail
+          mapfile -d '' subjects < <(find "$CANDIDATE_DIR" -maxdepth 1 -type f -name '*.tgz' -print0)
+          test "${#subjects[@]}" -eq 1
+          (cd "$CANDIDATE_DIR" && sha256sum --check SHA256SUMS)
+          printf 'subject_path=%s\n' "${subjects[0]}" >> "$GITHUB_OUTPUT"
+      - name: Attest exact package tarball
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-path: ${{ steps.subject.outputs.subject_path }}
+
+  publication-remains-manual:
+    needs: attest
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {}
     steps:
       - run: echo "Candidate verified and attested. This workflow does not publish to npm or create a release."

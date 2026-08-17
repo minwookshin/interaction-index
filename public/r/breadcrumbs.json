@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "registry/components/ui/breadcrumbs.tsx",
-      "content": "import \"../../styles/teum-base.css\";\nimport \"../../styles/components/breadcrumbs.css\";\nimport { CaretRight, DotsThree } from \"@phosphor-icons/react\";\nimport type { ComponentPropsWithRef, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type BreadcrumbItem = { label: string; href?: string; icon?: ReactNode };\nexport type BreadcrumbsProps = ComponentPropsWithRef<\"nav\"> & { items: readonly BreadcrumbItem[]; maxItems?: number; label?: string };\n\nexport function Breadcrumbs({ items, maxItems = 4, label = \"Breadcrumb\", className, ...props }: BreadcrumbsProps) {\n  const collapsed = items.length > maxItems;\n  const visibleItems = collapsed ? [items[0], { label: \"More\" }, ...items.slice(-(maxItems - 2))] : items;\n  return (\n    <nav className={cn(\"teum-breadcrumbs\", className)} aria-label={label} {...props}>\n      <ol>\n        {visibleItems.map((item, index) => {\n          const current = index === visibleItems.length - 1;\n          const collapsedItem = collapsed && index === 1;\n          return (\n            <li key={`${item.label}-${index}`}>\n              {index > 0 && <CaretRight className=\"teum-breadcrumbs__separator\" aria-hidden=\"true\" />}\n              {collapsedItem ? <span className=\"teum-breadcrumbs__ellipsis\" role=\"img\" aria-label=\"Collapsed breadcrumbs\"><DotsThree weight=\"bold\" /></span> : item.href && !current ? <a href={item.href}>{item.icon}{item.label}</a> : <span aria-current={current ? \"page\" : undefined}>{item.icon}{item.label}</span>}\n            </li>\n          );\n        })}\n      </ol>\n    </nav>\n  );\n}\n",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/breadcrumbs.css\";\nimport { CaretRight, DotsThree } from \"@phosphor-icons/react\";\nimport type { ComponentPropsWithRef, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type BreadcrumbItem = { label: string; href?: string; icon?: ReactNode };\nexport type BreadcrumbsProps = ComponentPropsWithRef<\"nav\"> & { items: readonly BreadcrumbItem[]; maxItems?: number; label?: string };\n\nexport function Breadcrumbs({ items, maxItems = 4, label = \"Breadcrumb\", className, ...props }: BreadcrumbsProps) {\n  const collapsed = items.length > maxItems;\n  const visibleItems = collapsed ? [items[0], { label: \"More\" }, ...items.slice(-(maxItems - 2))] : items;\n  return (\n    <nav className={cn(\"teum-breadcrumbs\", className)} aria-label={label} {...props}>\n      <ol>\n        {visibleItems.map((item, index) => {\n          const current = index === visibleItems.length - 1;\n          const collapsedItem = collapsed && index === 1;\n          return (\n            <li key={`${item.label}-${index}`}>\n              {index > 0 && <CaretRight className=\"teum-breadcrumbs__separator\" aria-hidden=\"true\" />}\n              {collapsedItem ? <span className=\"teum-breadcrumbs__ellipsis\" role=\"img\" aria-label=\"Collapsed breadcrumbs\"><DotsThree weight=\"bold\" /></span> : item.href && !current ? <a href={item.href}>{item.icon}{item.label}</a> : <span aria-current={current ? \"page\" : undefined}>{item.icon}{item.label}</span>}\n            </li>\n          );\n        })}\n      </ol>\n    </nav>\n  );\n}\n",
       "type": "registry:ui",
       "target": "components/ui/breadcrumbs.tsx"
     },
@@ -23,5 +23,13 @@
       "target": "styles/components/breadcrumbs.css"
     }
   ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/breadcrumbs",
+      "useWhen": "Users benefit from seeing and navigating the hierarchy above the current destination.",
+      "avoidWhen": "The product is flat or the path duplicates a nearby persistent navigation tree."
+    }
+  },
   "type": "registry:ui"
 }

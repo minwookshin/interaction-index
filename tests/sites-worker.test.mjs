@@ -3,6 +3,22 @@ import { access } from "node:fs/promises";
 import test from "node:test";
 import worker from "../worker/index.js";
 
+const requiredSecurityHeaders = {
+  "content-security-policy": "default-src 'self'",
+  "cross-origin-opener-policy": "same-origin",
+  "permissions-policy": "camera=()",
+  "referrer-policy": "strict-origin-when-cross-origin",
+  "strict-transport-security": "max-age=63072000",
+  "x-content-type-options": "nosniff",
+  "x-frame-options": "DENY",
+};
+
+function assertSecurityHeaders(response) {
+  for (const [name, expected] of Object.entries(requiredSecurityHeaders)) {
+    assert.match(response.headers.get(name) ?? "", new RegExp(expected.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+}
+
 test("serves existing static assets without a fallback", async () => {
   const calls = [];
   const response = await worker.fetch(new Request("https://example.test/assets/app.js"), {
@@ -16,6 +32,8 @@ test("serves existing static assets without a fallback", async () => {
 
   assert.equal(response.status, 200);
   assert.deepEqual(calls, ["/assets/app.js"]);
+  assert.equal(response.headers.get("cache-control"), "public, max-age=31536000, immutable");
+  assertSecurityHeaders(response);
 });
 
 test("falls back to index.html for an unknown app route", async () => {
@@ -39,11 +57,16 @@ test("falls back to index.html for an unknown app route", async () => {
 
   assert.equal(response.status, 200);
   assert.deepEqual(calls, ["/flow/step-two?source=share", "/index.html"]);
+  assert.equal(response.headers.get("cache-control"), "no-cache");
+  assert.match(response.headers.get("vary") ?? "", /Accept/);
+  assertSecurityHeaders(response);
 });
 
-test("does not turn missing API or write requests into the app shell", async () => {
+test("does not turn missing registry, API, quality-zero HTML, or write requests into the app shell", async () => {
   for (const request of [
+    new Request("https://example.test/r/v/0.1.0-rc.8/missing.json", { headers: { accept: "text/html" } }),
     new Request("https://example.test/api/missing", { headers: { accept: "application/json" } }),
+    new Request("https://example.test/flow", { headers: { accept: "text/html;q=0, application/json" } }),
     new Request("https://example.test/flow", { method: "POST", headers: { accept: "text/html" } }),
   ]) {
     let calls = 0;
@@ -58,6 +81,23 @@ test("does not turn missing API or write requests into the app shell", async () 
 
     assert.equal(response.status, 404);
     assert.equal(calls, 1);
+    assertSecurityHeaders(response);
+  }
+});
+
+test("uses separate mutable and immutable registry cache policies", async () => {
+  for (const [pathname, expected] of [
+    ["/r/button.json", "public, max-age=0, must-revalidate"],
+    ["/r/v/0.1.0-rc.8/button.json", "public, max-age=31536000, immutable"],
+  ]) {
+    const response = await worker.fetch(new Request(`https://example.test${pathname}`), {
+      ASSETS: {
+        fetch: async () => new Response("{}", { status: 200, headers: { "content-type": "application/json" } }),
+      },
+    });
+
+    assert.equal(response.headers.get("cache-control"), expected);
+    assertSecurityHeaders(response);
   }
 });
 

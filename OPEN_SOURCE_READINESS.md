@@ -1,22 +1,24 @@
 # Open-source readiness
 
-Date: 2026-08-14
+Date: 2026-08-17
 
 ## Decision
 
-Continue, but stop optimizing for component count. The current 35-component catalog is already broad enough for an alpha. The next quality gain comes from proving installation, composition, accessibility, compatibility, and maintenance in a real consumer—not from adding another row to the index.
+Continue, but stop optimizing for component count. The current 45-component catalog and 15 product primitives are broad enough for a public beta. The next quality gain comes from independent installation, repeated API feedback, manual support evidence, and a measured stability window—not another row in the index.
+
+The machine-readable source for current counts is [`release/evidence.json`](./release/evidence.json), with a readable summary in [`release/evidence.md`](./release/evidence.md).
 
 ## Current maturity
 
 | Dimension | Evidence today | Readiness |
 | --- | --- | --- |
 | System identity | Stable geometry, shared origin, reversible completion, four authored interactions | Strong |
-| Component breadth | 35 documented components across controls, overlays, navigation, feedback, data, and interaction | Enough for alpha |
+| Component breadth | 45 documented components across controls, overlays, navigation, feedback, data, and interaction | Enough for alpha |
 | Documentation | Preview, code, recipes, states, usage, accessibility, API, public project guidance | Strong alpha candidate |
-| Distribution | Public GitHub source, GitHub Pages workflow, granular shadcn artifacts, and clean-consumer builds | Public path configured; npm remains private and unpublished |
-| Automated behavior | 108 Vitest checks plus five-engine/device Playwright matrix and a nested modal/flyout stack assertion | Strong baseline |
-| Accessibility | Keyboard contracts, axe anchor routes, RTL, forced colors, reduced motion, zoom proxy, Chrome/Safari zoom, and Safari VoiceOver anchors | Edge, physical touch, manual high contrast, content expansion, and full-catalog manual coverage remain |
-| Visual stability | Eight cross-platform screenshot baselines across entry, component, focus, loading, error, pilot, light, and dark states | CI-ready baseline complete |
+| Distribution | Public GitHub source, granular shadcn artifacts, an adopter-side quickstart, and a private package candidate with client-boundary, Node SSR, and clean hydration evidence | Public path configured; npm remains private and unpublished |
+| Automated behavior | 203 Vitest checks plus a five-project desktop and mobile Playwright matrix and a nested modal/flyout stack assertion | Strong baseline |
+| Accessibility | Versioned five-project evidence for 69 routes, skip paths, route announcements, focus handoff, axe, RTL, forced colors, reduced motion, reflow, and content expansion; Chrome/Safari and VoiceOver anchors | Edge, physical touch, manual OS contrast/transparency modes, human translation/RTL, independent review, and full-catalog manual coverage remain |
+| Visual stability | 330 release-level visual baselines per platform across all public routes, every Core Product/State contract, three Analytics recipes, and three Product Patterns | macOS complete; Linux additions pending review |
 | Adoption | Internal Product pilot composes the public API; no shipped external consumer | Composition proven, adoption unproven |
 | Governance | MIT, templates, ownership, conduct, security, support, migration and release policies, release-candidate workflow | Public repository, Issues, and private vulnerability reporting configured |
 
@@ -32,15 +34,19 @@ Required before asking strangers to install it:
 
 1. **Complete** — canonical GitHub repository, issue tracker, Pages homepage/HTTPS registry workflow, and private vulnerability-reporting path are configured for `minwookshin/teum`.
 2. **Complete** — generated complete-system and individual registry artifacts plus Button-only and complete-system clean-consumer TypeScript/production builds.
+   The documented pinned-registry quickstart is executed against a fresh React + TypeScript + Vite fixture and preserved in `release/quickstart.json`; elapsed time is reported as local observation rather than a universal promise.
+   The private package candidate also preserves its React client boundary, server-renders a representative tree, and hydrates with zero recoverable mismatches in the recorded ESM consumer. This is package-contract evidence, not proof of every framework runtime.
 3. **Complete** — CI-ready visual regression for entry, component product, focus, loading, error, Product pilot, light, dark, and reduced-motion configurations.
-4. **Partial** — automated axe, zoom proxy, forced colors, reduced motion, and RTL pass; Chrome/Safari zoom and Safari VoiceOver Dialog/Menu anchors are recorded. Edge, physical touch, manual high contrast, content expansion, and full-catalog manual coverage remain.
+4. **Partial** — the versioned accessibility matrix recorded 55 applicable checks passed and 30 intentional project-ownership skips with zero failures or flakes; Chrome/Safari zoom and Safari VoiceOver Dialog/Menu anchors are also recorded. Edge, physical touch, manual OS contrast/transparency modes, human translation/RTL, independent review, and full-catalog manual coverage remain.
 5. **Complete as internal proof** — a real issue-management slice composes search, create, fields, dialog, table, toast, Shared Detail, archive, and Undo Stack. It does not count as external adoption.
-6. **Complete as local alpha evidence** — gzip budgets plus recorded Shared Detail selection and dialog-open measurements. Production field data remains a beta concern.
+6. **Complete as local alpha evidence** — route-aware gzip budgets plus a versioned local production-preview record for FCP, LCP, CLS, transition latency, Shared Detail selection, Dialog open, and long tasks. Production p75 Core Web Vitals, real-device/network latency, and RUM remain external gates.
 7. **Complete locally** — issue/PR templates, maintainer ownership, generated release categories, release-candidate verification, release process, and migration policy.
 
-### Beta
+### Public beta
 
-Require repeated real use, external API feedback, resolved composition problems, and a measured stability period. Component count is not a beta criterion.
+The verified `0.1.0-rc.22` candidate may be offered for real evaluation once its GitHub prerelease, live site, and immutable registry bytes point to the same commit. npm is a separate channel and must remain described as unpublished until its public beta is verifiably available.
+
+Promotion beyond the initial beta requires repeated real use, external API feedback, resolved composition problems, and a measured stability period. Component count is not a beta criterion. The machine-readable gate is [`release/beta-readiness.json`](./release/beta-readiness.json).
 
 ### 1.0
 
@@ -54,8 +60,8 @@ The public path, internal product slice, decision guide, and granular CSS bounda
 
 1. **Independent evidence** — the Product pilot and generated clean fixtures prove composition internally, not adoption or upgrade safety in another maintainer-owned repository.
 2. **Manual evidence** — Chrome/Safari zoom and Safari VoiceOver anchors are verified, but Edge, full-catalog branded coverage, physical touch, manual high contrast, and translated-content expansion remain named release gates.
-3. **Reference drift** — API prose should ultimately be generated or parity-checked against exported TypeScript.
-4. **Upgrade safety** — copied-source customization needs a realistic modified-consumer fixture before beta.
+3. **Framework integration** — the package-level client boundary, Node SSR, and hydration contract pass, while full Next.js/Remix integration remains unverified.
+4. **External upgrade evidence** — the local modified-consumer fixture preserves an adopter edit and stages upstream change for explicit acceptance; an independently maintained consumer has not yet exercised that path.
 
 The public repository keeps the resulting contracts and executable checks; raw local audit captures are intentionally excluded from the source distribution.
 

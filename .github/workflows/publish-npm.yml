@@ -1,0 +1,97 @@
+name: Stage npm beta
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Exact prerelease version
+        required: true
+      confirmation:
+        description: Type stage-teum-beta
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22.14.0
+          cache: npm
+      - run: npm ci
+      - name: Verify requested beta
+        env:
+          EXPECTED_VERSION: ${{ inputs.version }}
+          CONFIRMATION: ${{ inputs.confirmation }}
+        run: node -e "const pkg=require('./package.json'); if(pkg.version!==process.env.EXPECTED_VERSION || pkg.private!==true || !/-/.test(pkg.version) || process.env.CONFIRMATION!=='stage-teum-beta') process.exit(1)"
+      - run: npm run verify:rc:core
+      - run: npm run build:package
+      - run: npm run check:package
+      - run: npm run test:package
+      - name: Assemble publishable beta tarball
+        env:
+          TEUM_PUBLIC_PACKAGE_DIR: ${{ runner.temp }}/teum-public-package
+        run: npm run assemble:public-package
+      - name: Verify publishable beta tarball
+        env:
+          TEUM_PUBLIC_PACKAGE_DIR: ${{ runner.temp }}/teum-public-package
+        run: npm run check:public-package
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: teum-public-package-${{ inputs.version }}
+          path: ${{ runner.temp }}/teum-public-package
+          if-no-files-found: error
+
+  stage:
+    if: ${{ vars.NPM_TRUSTED_STAGE_PUBLISH == 'enabled' }}
+    needs: build
+    environment: npm-publication
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        with:
+          name: teum-public-package-${{ inputs.version }}
+          path: ${{ runner.temp }}/teum-public-package
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22.14.0
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - run: npm install --global npm@11.18.0
+      - name: Verify exact staged subject
+        id: subject
+        shell: bash
+        env:
+          CANDIDATE_DIR: ${{ runner.temp }}/teum-public-package
+          EXPECTED_VERSION: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+          (cd "$CANDIDATE_DIR" && sha256sum --check SHA256SUMS)
+          mapfile -d '' subjects < <(find "$CANDIDATE_DIR" -maxdepth 1 -type f -name '*.tgz' -print0)
+          test "${#subjects[@]}" -eq 1
+          node -e "const c=require(process.env.CANDIDATE_DIR+'/public-package.json'); if(c.version!==process.env.EXPECTED_VERSION || c.distTag!=='beta') process.exit(1)"
+          printf 'tarball=%s\n' "${subjects[0]}" >> "$GITHUB_OUTPUT"
+      - name: Stage beta for maintainer 2FA approval
+        run: npm stage publish "${{ steps.subject.outputs.tarball }}" --tag beta --access public
+
+  trusted-publisher-required:
+    if: ${{ vars.NPM_TRUSTED_STAGE_PUBLISH != 'enabled' }}
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {}
+    steps:
+      - run: |
+          echo "The tarball passed, but npm staging is locked. Bootstrap the package, configure publish-npm.yml as a stage-only trusted publisher, and set NPM_TRUSTED_STAGE_PUBLISH=enabled."
+          exit 1

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "funnel",
+  "title": "Funnel",
+  "description": "Ordered stage volume with explicit adjacent conversion and optional supporting-record selection.",
+  "registryDependencies": [
+    "@teum-pinned/teum-base",
+    "@teum-pinned/analytics"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/funnel.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/funnel.css\";\nimport type { CSSProperties, HTMLAttributes, ReactNode } from \"react\";\nimport { formatAnalyticsValue } from \"../../lib/analytics\";\nimport { cn } from \"../../lib/cn\";\n\nexport type FunnelStage = {\n  id: string;\n  label: string;\n  value: number;\n  detail?: ReactNode;\n};\n\nexport type FunnelProps = Omit<HTMLAttributes<HTMLOListElement>, \"onSelect\"> & {\n  label: string;\n  stages: readonly FunnelStage[];\n  formatter?: (value: number, stage: FunnelStage) => string;\n  selectedId?: string;\n  onSelect?: (stage: FunnelStage) => void;\n};\n\nexport function Funnel({ label, stages, formatter = (value) => formatAnalyticsValue(value), selectedId, onSelect, className, ...props }: FunnelProps) {\n  const baseline = Math.max(1, stages[0]?.value ?? 0, ...stages.map((stage) => stage.value));\n  return (\n    <ol className={cn(\"teum-funnel\", className)} aria-label={label} {...props}>\n      {stages.map((stage, index) => {\n        const previous = stages[index - 1]?.value;\n        const conversion = index === 0 || !previous ? null : stage.value / previous * 100;\n        const width = Math.max(0.08, Math.min(1, stage.value / baseline));\n        const body = <>\n          <span className=\"teum-funnel__heading\"><strong>{stage.label}</strong><b>{formatter(stage.value, stage)}</b></span>\n          <span className=\"teum-funnel__track\" aria-hidden=\"true\"><i style={{ \"--teum-funnel-progress\": width } as CSSProperties} /></span>\n          <span className=\"teum-funnel__meta\">{conversion === null ? \"Entry\" : `${conversion.toFixed(1)}% from previous`}{stage.detail && <small>{stage.detail}</small>}</span>\n        </>;\n        return <li key={stage.id}>{onSelect ? <button type=\"button\" aria-pressed={stage.id === selectedId} onClick={() => onSelect(stage)}>{body}</button> : <div>{body}</div>}</li>;\n      })}\n    </ol>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/funnel.tsx"
+    },
+    {
+      "path": "registry/styles/components/funnel.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-funnel { display: grid; min-width: 0; gap: 2px; margin: 0; padding: 0; list-style: none; }\n\n.teum-funnel { gap: 4px; }\n\n.teum-funnel li > div,\n.teum-funnel li > button { display: grid; width: 100%; gap: 5px; padding: 8px; border: 0; border-radius: 8px; background: transparent; color: inherit; font: inherit; text-align: left; }\n\n.teum-funnel li > button { cursor: pointer; }\n\n.teum-funnel__heading,\n.teum-funnel__meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; }\n\n.teum-funnel__heading strong { font-size: var(--teum-type-ui); font-weight: 570; }\n\n.teum-funnel__heading b { font-size: var(--teum-type-ui); font-variant-numeric: tabular-nums; font-weight: 590; }\n\n.teum-funnel__track { height: 7px; overflow: hidden; border-radius: 999px; background: var(--teum-bg-subtle); }\n\n.teum-funnel__track i { display: block; width: calc(var(--teum-funnel-progress) * 100%); height: 100%; border-radius: inherit; background: var(--teum-fg-default); }\n\n.teum-funnel__meta { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }\n\n.teum-funnel__meta small { font-size: inherit; }\n\n@media (hover: hover) and (pointer: fine) {\n.teum-funnel li > button:hover { background: var(--teum-hover); color: var(--teum-fg-default); }\n}\n\n.teum-funnel li > button:active { transform: scale(.985); }\n\n.teum-funnel li > button[aria-pressed=\"true\"] { background: var(--teum-selected); }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/funnel.css"
+    }
+  ],
+  "type": "registry:component"
+}

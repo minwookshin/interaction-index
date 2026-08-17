@@ -4,8 +4,8 @@
   "repositoryUrl": "https://github.com/minwookshin/teum",
   "issueTracker": "https://github.com/minwookshin/teum/issues",
   "securityAdvisories": "https://github.com/minwookshin/teum/security/advisories/new",
-  "homepage": "https://interactions.minwookshin.com",
+  "homepage": "https://teum.minwookshin.com",
   "registryNamespace": "@teum",
   "packageCandidate": "teum",
-  "registryInstall": "npx shadcn@latest add minwookshin/teum/teum"
+  "registryInstall": "npx shadcn@4.18.0 add minwookshin/teum/teum#v0.1.0-rc.22"
 }

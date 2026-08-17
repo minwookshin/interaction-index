@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/build-beta-readiness.mjs",
+  "generatedAt": "2026-08-17T06:14:41.920Z",
+  "candidate": "0.1.0-rc.22",
+  "programStage": "public-beta-preparation",
+  "localCandidate": {
+    "status": "passed",
+    "releaseEvidence": true,
+    "adoptionDx": true,
+    "publicationLocked": true
+  },
+  "publicBeta": {
+    "ready": false,
+    "publication": {
+      "githubRelease": false,
+      "site": false,
+      "registry": false,
+      "npm": false
+    }
+  },
+  "v1": {
+    "ready": false,
+    "checks": {
+      "independentInstallation": false,
+      "feedbackRounds": false,
+      "stableApiWindow": false,
+      "externalReviews": false,
+      "npmPublication": false
+    },
+    "independentInstallations": 0,
+    "completedFeedbackRounds": 0,
+    "completedExternalReviews": 0,
+    "stabilityDays": 0,
+    "minimumStabilityDays": 28
+  },
+  "blockers": [
+    "Publish the verified GitHub prerelease",
+    "Promote and verify the candidate site",
+    "Verify the live immutable registry bytes",
+    "Publish and verify the npm beta package",
+    "Record one independent install, typecheck, and production build",
+    "Complete two feedback rounds (0/2)",
+    "Complete the 28-day API stability window (0/28)",
+    "Complete the external support matrix (0/7)"
+  ],
+  "claimBoundary": "Only dated evidence from an independently maintained consumer counts as external adoption. Empty gates remain unverified."
+}

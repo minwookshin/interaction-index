@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/empty-state.css";
 import { Package } from "@phosphor-icons/react";

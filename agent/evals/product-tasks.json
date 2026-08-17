@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "tasks": [
+    {
+      "id": "issues-triage-backlog",
+      "prompt": "Build an issue triage workspace for a backlog with filters, shared detail, bulk assign, and undo.",
+      "expectedRecipe": "issues-workspace",
+      "requiredComponents": ["DataTable", "SharedDetail", "BulkActionBar", "UndoStack"],
+      "forbiddenComponents": ["AlertDialog"]
+    },
+    {
+      "id": "issues-bulk-close",
+      "prompt": "Create an issue workspace where support leads can bulk close matching issues and undo the mutation.",
+      "expectedRecipe": "issues-workspace",
+      "requiredComponents": ["FilterBuilder", "BulkActionBar", "UndoStack"],
+      "forbiddenComponents": ["AlertDialog"]
+    },
+    {
+      "id": "issues-inspect-without-leaving",
+      "prompt": "Design issue triage that opens one issue in shared detail without losing the issue backlog.",
+      "expectedRecipe": "issues-workspace",
+      "requiredComponents": ["DataTable", "SharedDetail", "ActionList"],
+      "forbiddenComponents": ["Sheet"]
+    },
+    {
+      "id": "issues-keyboard-actions",
+      "prompt": "Make a keyboard-first issue workspace with searchable actions, stable selection, and undo issue recovery.",
+      "expectedRecipe": "issues-workspace",
+      "requiredComponents": ["ActionList", "DataTable", "UndoStack"],
+      "forbiddenComponents": ["ContextMenu"]
+    },
+    {
+      "id": "customers-renewal-directory",
+      "prompt": "Build a server customer list for renewals with a saved customer view, date filter, and explicit export.",
+      "expectedRecipe": "customer-directory",
+      "requiredComponents": ["SavedViews", "DateRangeFilter", "DataExportMenu", "DataTable"],
+      "forbiddenComponents": ["BulkActionBar"]
+    },
+    {
+      "id": "customers-shareable-view",
+      "prompt": "Create a customer directory with shareable URL filters, server sorting, and resizable columns.",
+      "expectedRecipe": "customer-directory",
+      "requiredComponents": ["FilterBuilder", "ColumnManager", "DataTable"],
+      "forbiddenComponents": ["UndoStack"]
+    },
+    {
+      "id": "customers-export-segment",
+      "prompt": "Make a customer export workflow that restores a saved customer view and exports only declared columns.",
+      "expectedRecipe": "customer-directory",
+      "requiredComponents": ["SavedViews", "DataExportMenu"],
+      "forbiddenComponents": ["BulkActionBar"]
+    },
+    {
+      "id": "customers-large-server-list",
+      "prompt": "Build a customer table for a large server customer list with query, filters, pagination, and pinned columns.",
+      "expectedRecipe": "customer-directory",
+      "requiredComponents": ["SearchInput", "FilterBuilder", "ColumnManager", "DataTable"],
+      "forbiddenComponents": ["Table"]
+    },
+    {
+      "id": "audit-compliance-events",
+      "prompt": "Create a compliance audit log for ten thousand immutable events with virtualization and CSV export.",
+      "expectedRecipe": "audit-log",
+      "requiredComponents": ["DateRangeFilter", "DataExportMenu", "DataTable"],
+      "forbiddenComponents": ["BulkActionBar", "UndoStack"]
+    },
+    {
+      "id": "audit-security-search",
+      "prompt": "Build a searchable security events audit log with actor filters, pinned time context, and JSON export.",
+      "expectedRecipe": "audit-log",
+      "requiredComponents": ["SearchInput", "FilterBuilder", "DataExportMenu", "DataTable"],
+      "forbiddenComponents": ["InlineEdit"]
+    },
+    {
+      "id": "audit-activity-window",
+      "prompt": "Design an activity audit surface for immutable events bounded by a custom date range.",
+      "expectedRecipe": "audit-log",
+      "requiredComponents": ["DateRangeFilter", "DataTable"],
+      "forbiddenComponents": ["BulkActionBar"]
+    },
+    {
+      "id": "analytics-mrr-overview",
+      "prompt": "Build an MRR overview with current value, previous period, revenue target, and expansion breakdown.",
+      "expectedRecipe": "saas-overview",
+      "requiredComponents": ["Metric", "Comparison", "Goal", "Breakdown"],
+      "forbiddenComponents": ["Funnel"]
+    },
+    {
+      "id": "analytics-arr-growth",
+      "prompt": "Create an ARR and recurring revenue dashboard that compares growth over one shared range.",
+      "expectedRecipe": "saas-overview",
+      "requiredComponents": ["Metric", "Chart", "Comparison"],
+      "forbiddenComponents": ["Cohort"]
+    },
+    {
+      "id": "analytics-revenue-target",
+      "prompt": "Show revenue overview, recurring revenue movement, and progress toward the revenue target.",
+      "expectedRecipe": "saas-overview",
+      "requiredComponents": ["Sparkline", "Chart", "Goal"],
+      "forbiddenComponents": ["Progress"]
+    },
+    {
+      "id": "analytics-expansion-drivers",
+      "prompt": "Design an expansion revenue overview with exact trend values and ranked expansion drivers.",
+      "expectedRecipe": "saas-overview",
+      "requiredComponents": ["Chart", "Breakdown"],
+      "forbiddenComponents": ["DataTable"]
+    },
+    {
+      "id": "usage-feature-adoption",
+      "prompt": "Build product usage analytics that connects active usage, feature adoption, and each release event.",
+      "expectedRecipe": "product-usage",
+      "requiredComponents": ["Metric", "Chart", "Breakdown", "Timeline"],
+      "forbiddenComponents": ["Funnel"]
+    },
+    {
+      "id": "usage-synchronized-trends",
+      "prompt": "Create a usage trend view with two synchronized charts and a feature breakdown.",
+      "expectedRecipe": "product-usage",
+      "requiredComponents": ["Chart", "Breakdown"],
+      "forbiddenComponents": ["Cohort"]
+    },
+    {
+      "id": "usage-release-impact",
+      "prompt": "Show how each release event changed active usage without losing the selected day across charts.",
+      "expectedRecipe": "product-usage",
+      "requiredComponents": ["Chart", "Timeline"],
+      "forbiddenComponents": ["Sparkline"]
+    },
+    {
+      "id": "conversion-activation-funnel",
+      "prompt": "Build an activation funnel connected to its trend and supporting records.",
+      "expectedRecipe": "conversion-retention",
+      "requiredComponents": ["Funnel", "Chart", "DataTable"],
+      "forbiddenComponents": ["Sparkline"]
+    },
+    {
+      "id": "conversion-cohort-retention",
+      "prompt": "Create a conversion funnel and cohort retention matrix with textual values for every cell.",
+      "expectedRecipe": "conversion-retention",
+      "requiredComponents": ["Funnel", "Cohort"],
+      "forbiddenComponents": ["Goal"]
+    },
+    {
+      "id": "conversion-signup-loss",
+      "prompt": "Show signup conversion loss by stage and compare cohort retention after activation.",
+      "expectedRecipe": "conversion-retention",
+      "requiredComponents": ["Metric", "Funnel", "Cohort"],
+      "forbiddenComponents": ["Breakdown"]
+    },
+    {
+      "id": "customer-health-follow-up",
+      "prompt": "Build a customer health workspace where customer success can inspect activity and finish an account follow-up.",
+      "expectedRecipe": "customer-workspace",
+      "requiredComponents": ["SharedDetail", "Metric", "Timeline", "Toast"],
+      "forbiddenComponents": ["Dialog"]
+    },
+    {
+      "id": "customer-account-activity",
+      "prompt": "Create a customer success workspace for account health, renewal context, and customer activity.",
+      "expectedRecipe": "customer-workspace",
+      "requiredComponents": ["FilterBuilder", "SharedDetail", "Tabs", "Timeline"],
+      "forbiddenComponents": ["Sheet"]
+    },
+    {
+      "id": "customer-owner-workflow",
+      "prompt": "Design an account follow-up workflow that keeps the customer list visible while health and usage change in detail.",
+      "expectedRecipe": "customer-workspace",
+      "requiredComponents": ["DataToolbar", "SharedDetail", "Metric", "Progress"],
+      "forbiddenComponents": ["AlertDialog"]
+    },
+    {
+      "id": "billing-plan-limits",
+      "prompt": "Build billing usage with plan limits, exact consumption, invoices, and a reviewed subscription change.",
+      "expectedRecipe": "billing-usage",
+      "requiredComponents": ["Progress", "DataTable", "Dialog"],
+      "forbiddenComponents": ["AlertDialog", "Menu"]
+    },
+    {
+      "id": "billing-payment-risk",
+      "prompt": "Create a billing usage page that keeps payment failure visible beside plan and invoice context.",
+      "expectedRecipe": "billing-usage",
+      "requiredComponents": ["Alert", "DataTable", "Button"],
+      "forbiddenComponents": ["Menu"]
+    },
+    {
+      "id": "billing-period-comparison",
+      "prompt": "Show subscription usage and invoices for one shared billing period with a usage limit warning.",
+      "expectedRecipe": "billing-usage",
+      "requiredComponents": ["SegmentedControl", "Metric", "Chart", "Progress"],
+      "forbiddenComponents": ["DateRangeFilter"]
+    },
+    {
+      "id": "members-invite-role",
+      "prompt": "Build members permissions where an admin can invite member records and assign workspace roles.",
+      "expectedRecipe": "members-permissions",
+      "requiredComponents": ["DataTable", "Select", "Dialog", "TextField"],
+      "forbiddenComponents": ["Combobox"]
+    },
+    {
+      "id": "members-permission-matrix",
+      "prompt": "Create a permission matrix that compares role permissions and preserves member filters between views.",
+      "expectedRecipe": "members-permissions",
+      "requiredComponents": ["Tabs", "DataTable", "Checkbox"],
+      "forbiddenComponents": ["SegmentedControl"]
+    },
+    {
+      "id": "members-last-owner",
+      "prompt": "Design an access policy workflow that protects the last owner during role permissions changes.",
+      "expectedRecipe": "members-permissions",
+      "requiredComponents": ["Select", "Dialog", "Toast"],
+      "forbiddenComponents": ["UndoStack"]
+    }
+  ]
+}

@@ -51,7 +51,7 @@ export function ComponentStoryContract({ id }: { id: ComponentId }) {
 
       <footer className="story-contract__footer">
         <div><span>Keyboard</span><ul>{guidance.keyboard.map((item) => <li key={item}>{item}</li>)}</ul></div>
-        <div><span>Quality bar</span><ul>{guidance.quality.map((item) => <li key={item}>{item}</li>)}</ul></div>
+        <div><span>Checks</span><ul>{guidance.quality.map((item) => <li key={item}>{item}</li>)}</ul></div>
       </footer>
     </main>
   );

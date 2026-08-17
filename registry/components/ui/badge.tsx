@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/badge.css";
 import { X } from "@phosphor-icons/react";

@@ -1,0 +1,110 @@
+export const publicDocItems = [
+  { id: "installation", label: "Installation", group: "Getting started", description: "Install your first component." },
+  { id: "choosing-components", label: "Choosing components", group: "Getting started", description: "Choose by task, focus, and recovery." },
+  { id: "product-pilot", label: "Teum Data", group: "Getting started", description: "Data primitives composed into three working product recipes." },
+  { id: "analytics", label: "Teum Analytics", group: "Getting started", description: "Metrics, charts, and product analysis composed into three working recipes." },
+  { id: "product-patterns", label: "Product Patterns", group: "Getting started", description: "Customers, billing, and access composed from the same Teum contracts." },
+  { id: "agent-native", label: "Agent integration", group: "Getting started", description: "Give coding agents the same selection, composition, and quality rules as the documentation." },
+  { id: "component-status", label: "Component status", group: "Quality", description: "Maturity and release status for every component." },
+  { id: "accessibility", label: "Accessibility", group: "Quality", description: "Keyboard, focus, motion, contrast, and assistive technology." },
+  { id: "browser-support", label: "Browser support", group: "Quality", description: "Tested browsers, viewports, and release requirements." },
+  { id: "security", label: "Security", group: "Quality", description: "Report vulnerabilities and review supported versions." },
+  { id: "contributing", label: "Contributing", group: "Project", description: "How changes are proposed, tested, and reviewed." },
+  { id: "releases", label: "Releases", group: "Project", description: "Versioning, deprecation, and support policy." },
+  { id: "licensing", label: "Licensing", group: "Project", description: "MIT terms and third-party notices." },
+] as const;
+
+export type PublicDocId = (typeof publicDocItems)[number]["id"];
+export type PublicDocGroup = (typeof publicDocItems)[number]["group"];
+
+export const publicDocOutlines: Record<PublicDocId, readonly { id: string; label: string }[]> = {
+  installation: [
+    { id: "quickstart", label: "Choose a path" },
+    { id: "vite", label: "Vite" },
+    { id: "next", label: "Next.js" },
+    { id: "theme", label: "Theme" },
+    { id: "registry", label: "Registry" },
+    { id: "update", label: "Update" },
+    { id: "migrate", label: "Migrate" },
+    { id: "troubleshooting", label: "Troubleshooting" },
+  ],
+  "choosing-components": [
+    { id: "selection", label: "Selection" },
+    { id: "temporary-surfaces", label: "Temporary surfaces" },
+    { id: "feedback-recovery", label: "Feedback and recovery" },
+    { id: "decision-rule", label: "Decision rule" },
+  ],
+  "product-pilot": [
+    { id: "data-workspace", label: "Issues Workspace" },
+    { id: "customer-directory", label: "Customer Directory" },
+    { id: "audit-log", label: "Audit Log" },
+    { id: "data-layer", label: "Product primitives" },
+    { id: "data-contract", label: "Composition contract" },
+    { id: "data-install", label: "Install" },
+  ],
+  analytics: [
+    { id: "saas-overview", label: "SaaS Overview" },
+    { id: "product-usage", label: "Product Usage" },
+    { id: "conversion-retention", label: "Conversion & Retention" },
+    { id: "analytics-layer", label: "Product primitives" },
+    { id: "analytics-contract", label: "Composition contract" },
+    { id: "analytics-install", label: "Install" },
+  ],
+  "product-patterns": [
+    { id: "customer-workspace", label: "Customer Workspace" },
+    { id: "billing-usage", label: "Billing & Usage" },
+    { id: "members-permissions", label: "Members & Permissions" },
+    { id: "product-pattern-contract", label: "Composition contract" },
+    { id: "product-pattern-install", label: "Install" },
+  ],
+  "agent-native": [
+    { id: "agent-contract", label: "Machine contract" },
+    { id: "selection-rules", label: "Selection rules" },
+    { id: "composition-rules", label: "Composition rules" },
+    { id: "forbidden-rules", label: "Forbidden rules" },
+    { id: "skill-install", label: "Install the skill" },
+    { id: "agent-evaluation", label: "Evaluation" },
+  ],
+  "component-status": [
+    { id: "status-model", label: "Status model" },
+    { id: "promotion-gate", label: "Promotion gate" },
+    { id: "current-matrix", label: "Current matrix" },
+    { id: "migration-contract", label: "Migration contract" },
+  ],
+  accessibility: [
+    { id: "baseline-contract", label: "Baseline contract" },
+    { id: "keyboard-focus", label: "Keyboard and focus" },
+    { id: "motion-contrast", label: "Motion and contrast" },
+    { id: "manual-review", label: "Manual review" },
+  ],
+  "browser-support": [
+    { id: "support-policy", label: "Support policy" },
+    { id: "browser-matrix", label: "Browser matrix" },
+    { id: "viewport-matrix", label: "Viewport matrix" },
+    { id: "failure-policy", label: "Failure policy" },
+  ],
+  security: [
+    { id: "reporting", label: "Reporting" },
+    { id: "response", label: "Response process" },
+    { id: "supported-versions", label: "Supported versions" },
+  ],
+  contributing: [
+    { id: "entry-criteria", label: "Entry criteria" },
+    { id: "workflow", label: "Workflow" },
+    { id: "review-evidence", label: "Review evidence" },
+    { id: "change-boundaries", label: "Change boundaries" },
+  ],
+  releases: [
+    { id: "version-policy", label: "Version policy" },
+    { id: "release-evidence", label: "Release evidence" },
+    { id: "package-candidate", label: "Package candidate" },
+    { id: "deprecation", label: "Deprecation" },
+    { id: "support-window", label: "Support window" },
+  ],
+  licensing: [
+    { id: "license", label: "MIT license" },
+    { id: "permissions", label: "Permissions" },
+    { id: "attribution", label: "Attribution" },
+    { id: "third-party", label: "Third-party work" },
+  ],
+};

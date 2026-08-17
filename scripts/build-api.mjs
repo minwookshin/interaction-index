@@ -54,10 +54,14 @@ const emit = program.emit(undefined, (fileName, data) => {
 if (emit.emitSkipped) fail("TypeScript skipped declaration emission");
 
 const registry = JSON.parse(await readFile(resolve(root, "registry.json"), "utf8"));
-const componentIds = registry.items
+const coreComponentIds = registry.items
   .filter((item) => item.type === "registry:ui")
   .map((item) => item.name);
-if (componentIds.length === 0) fail("registry exposes no public components");
+const productComponentIds = registry.items
+  .filter((item) => item.type === "registry:component")
+  .map((item) => item.name);
+const componentIds = [...coreComponentIds, ...productComponentIds];
+if (coreComponentIds.length === 0) fail("registry exposes no public Core components");
 if (new Set(componentIds).size !== componentIds.length) fail("registry contains duplicate public component names");
 
 function declarationKind(symbol, declaration) {
@@ -106,7 +110,7 @@ if (!entrySource || !entrySymbol) fail("public entry point could not be resolved
 const indexExports = checker.getExportsOfModule(entrySymbol).map((symbol) => symbol.name).sort();
 const indexExportSet = new Set(indexExports);
 
-const components = {};
+const componentModules = {};
 for (const id of componentIds) {
   const sourcePath = resolve(sourceRoot, `components/ui/${id}.tsx`);
   const sourceFile = program.getSourceFile(sourcePath);
@@ -124,7 +128,7 @@ for (const id of componentIds) {
     if (!indexExportSet.has(item.name)) fail(`${id}/${item.name} is not re-exported from the public entry point`);
   }
   const source = await readFile(sourcePath, "utf8");
-  components[id] = {
+  componentModules[id] = {
     source: relative(root, sourcePath),
     sourceHash: hash(source),
     declaration: `api/generated/types/components/ui/${id}.d.ts`,
@@ -132,15 +136,63 @@ for (const id of componentIds) {
   };
 }
 
+const components = Object.fromEntries(coreComponentIds.map((id) => [id, componentModules[id]]));
+const productComponents = Object.fromEntries(productComponentIds.map((id) => [id, componentModules[id]]));
+const contractDefinitions = [
+  { id: "motion-contract", source: "lib/motion-contract.ts" },
+  { id: "data-view-state", source: "lib/data-view-state.ts" },
+  { id: "data-export", source: "lib/data-export.ts" },
+  { id: "teum-data-contract", source: "lib/teum-data-contract.ts" },
+  { id: "analytics", source: "lib/analytics.ts" },
+  { id: "teum-analytics-contract", source: "lib/teum-analytics-contract.ts" },
+  { id: "teum-product-patterns-contract", source: "lib/teum-product-patterns-contract.ts" },
+  { id: "teum-agent-contract", source: "lib/teum-agent-contract.ts" },
+];
+const contracts = {};
+for (const { id, source } of contractDefinitions) {
+  const sourcePath = resolve(sourceRoot, source);
+  const sourceFile = program.getSourceFile(sourcePath);
+  const moduleSymbol = sourceFile && checker.getSymbolAtLocation(sourceFile);
+  if (!sourceFile || !moduleSymbol) fail(`${id} contract module could not be resolved`);
+  const exports = checker.getExportsOfModule(moduleSymbol)
+    .map((symbol) => {
+      const declaration = symbol.declarations?.[0] ?? symbol.valueDeclaration;
+      if (!declaration) fail(`${id}/${symbol.name} has no declaration`);
+      return publicSignature(symbol, declaration);
+    })
+    .sort((left, right) => left.name.localeCompare(right.name));
+  for (const item of exports) {
+    if (!indexExportSet.has(item.name)) fail(`${id}/${item.name} is not re-exported from the public entry point`);
+  }
+  contracts[id] = {
+    source,
+    sourceHash: hash(await readFile(sourcePath, "utf8")),
+    declaration: `api/generated/types/${source.replace(/\.ts$/, ".d.ts")}`,
+    exports,
+  };
+}
+const indexRuntimeExports = [...new Set([
+  ...Object.values(componentModules),
+  ...Object.values(contracts),
+].flatMap((module) => module.exports
+  .filter((item) => item.kind === "function" || item.kind === "const")
+  .map((item) => item.name)))].sort();
+
 const manifest = {
   schemaVersion: 1,
   generatedBy: "scripts/build-api.mjs",
   entryPoint: relative(root, entryPoint),
   typescriptVersion: ts.version,
-  componentCount: componentIds.length,
+  componentCount: coreComponentIds.length,
+  productComponentCount: productComponentIds.length,
+  publicComponentCount: componentIds.length,
   exportCount: indexExports.length,
+  runtimeExportCount: indexRuntimeExports.length,
   indexExports,
+  indexRuntimeExports,
   components,
+  productComponents,
+  contracts,
 };
 
 const report = [
@@ -150,21 +202,43 @@ const report = [
   "",
   `- Entry point: \`${manifest.entryPoint}\``,
   `- TypeScript: \`${manifest.typescriptVersion}\``,
-  `- Components: \`${manifest.componentCount}\``,
+  `- Core components: \`${manifest.componentCount}\``,
+  `- Product components: \`${manifest.productComponentCount}\``,
   `- Public exports: \`${manifest.exportCount}\``,
+  `- Runtime exports: \`${manifest.runtimeExportCount}\``,
   "",
-  ...componentIds.flatMap((id) => [
+  ...coreComponentIds.flatMap((id) => [
     `## ${id}`,
     "",
     `Declaration: [\`${id}.d.ts\`](./types/components/ui/${id}.d.ts)`,
     "",
-    ...components[id].exports.map((item) => `- **${item.name}** · ${item.kind} · \`${item.signature.replaceAll("`", "\\`")}\``),
+    ...componentModules[id].exports.map((item) => `- **${item.name}** · ${item.kind} · \`${item.signature.replaceAll("`", "\\`")}\``),
+    "",
+  ]),
+  "# Product components",
+  "",
+  ...productComponentIds.flatMap((id) => [
+    `## ${id}`,
+    "",
+    `Declaration: [\`${id}.d.ts\`](./types/components/ui/${id}.d.ts)`,
+    "",
+    ...componentModules[id].exports.map((item) => `- **${item.name}** · ${item.kind} · \`${item.signature.replaceAll("`", "\\`")}\``),
+    "",
+  ]),
+  "# Contracts",
+  "",
+  ...contractDefinitions.flatMap(({ id }) => [
+    `## ${id}`,
+    "",
+    `Declaration: [\`${contracts[id].declaration.split("/").at(-1)}\`](./types/lib/${contracts[id].declaration.split("/").at(-1)})`,
+    "",
+    ...contracts[id].exports.map((item) => `- **${item.name}** · ${item.kind} · \`${item.signature.replaceAll("`", "\\`")}\``),
     "",
   ]),
 ].join("\n");
 const reportOutput = `${report.trimEnd()}\n`;
 
-const documentationExports = Object.fromEntries(componentIds.map((id) => [
+const documentationExports = Object.fromEntries(coreComponentIds.map((id) => [
   id,
   components[id].exports.map(({ name, kind, signature }) => ({ name, kind, signature })),
 ]));
@@ -205,4 +279,4 @@ for (const entry of generatedTypeFiles) {
   if (!expectedTypePaths.has(path)) fail(`${relative(root, path)} is an orphaned declaration; rebuild the API artifacts`);
 }
 
-console.log(`[api] ${checkOnly ? "verified" : "generated"} ${manifest.componentCount} component modules, ${manifest.exportCount} public exports, and ${declarationFiles.size} declaration files`);
+console.log(`[api] ${checkOnly ? "verified" : "generated"} ${manifest.componentCount} Core modules, ${manifest.productComponentCount} product modules, ${manifest.exportCount} public exports (${manifest.runtimeExportCount} runtime), and ${declarationFiles.size} declaration files`);

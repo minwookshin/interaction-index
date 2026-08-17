@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/components/ui/text-field.tsx",
-      "content": "import \"../../styles/teum-base.css\";\nimport \"../../styles/components/text-field.css\";\nimport { useId, type ComponentPropsWithRef, type ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type TextFieldProps = Omit<ComponentPropsWithRef<\"input\">, \"size\"> & {\n  label?: string;\n  description?: string;\n  error?: string;\n  leading?: ReactNode;\n  trailing?: ReactNode;\n  fieldClassName?: string;\n};\n\nexport function TextField({\n  id: providedId,\n  label,\n  description,\n  error,\n  leading,\n  trailing,\n  className,\n  fieldClassName,\n  ref,\n  ...props\n}: TextFieldProps) {\n  const generatedId = useId();\n  const id = providedId ?? generatedId;\n  const descriptionId = description ? `${id}-description` : undefined;\n  const errorId = error ? `${id}-error` : undefined;\n  const describedBy = [props[\"aria-describedby\"], descriptionId, errorId].filter(Boolean).join(\" \") || undefined;\n\n  return (\n    <div className={cn(\"teum-field\", fieldClassName)} data-invalid={Boolean(error) || undefined}>\n      {label && <label className=\"teum-field__label\" htmlFor={id}>{label}</label>}\n      <div className=\"teum-field__control\">\n        {leading && <span className=\"teum-field__adornment\" aria-hidden=\"true\">{leading}</span>}\n        <input\n          ref={ref}\n          id={id}\n          className={cn(\"teum-input\", className)}\n          aria-invalid={Boolean(error) || undefined}\n          aria-describedby={describedBy}\n          {...props}\n        />\n        {trailing && <span className=\"teum-field__adornment\">{trailing}</span>}\n      </div>\n      {description && <div id={descriptionId} className=\"teum-field__description\">{description}</div>}\n      {error && <div id={errorId} className=\"teum-field__error\">{error}</div>}\n    </div>\n  );\n}\n",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/text-field.css\";\nimport { useId, type ComponentPropsWithRef, type ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type TextFieldProps = Omit<ComponentPropsWithRef<\"input\">, \"size\"> & {\n  label?: string;\n  description?: string;\n  error?: string;\n  leading?: ReactNode;\n  trailing?: ReactNode;\n  fieldClassName?: string;\n};\n\nexport function TextField({\n  id: providedId,\n  label,\n  description,\n  error,\n  leading,\n  trailing,\n  className,\n  fieldClassName,\n  ref,\n  ...props\n}: TextFieldProps) {\n  const generatedId = useId();\n  const id = providedId ?? generatedId;\n  const descriptionId = description ? `${id}-description` : undefined;\n  const errorId = error ? `${id}-error` : undefined;\n  const describedBy = [props[\"aria-describedby\"], descriptionId, errorId].filter(Boolean).join(\" \") || undefined;\n\n  return (\n    <div className={cn(\"teum-field\", fieldClassName)} data-invalid={Boolean(error) || undefined}>\n      {label && <label className=\"teum-field__label\" htmlFor={id}>{label}</label>}\n      <div className=\"teum-field__control\">\n        {leading && <span className=\"teum-field__adornment\" aria-hidden=\"true\">{leading}</span>}\n        <input\n          ref={ref}\n          id={id}\n          className={cn(\"teum-input\", className)}\n          aria-invalid={Boolean(error) || undefined}\n          aria-describedby={describedBy}\n          {...props}\n        />\n        {trailing && <span className=\"teum-field__adornment\">{trailing}</span>}\n      </div>\n      {description && <div id={descriptionId} className=\"teum-field__description\">{description}</div>}\n      {error && <div id={errorId} className=\"teum-field__error\">{error}</div>}\n    </div>\n  );\n}\n",
       "type": "registry:ui",
       "target": "components/ui/text-field.tsx"
     },
@@ -20,5 +20,13 @@
       "target": "styles/components/text-field.css"
     }
   ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/text-field",
+      "useWhen": "The user enters a short, unstructured value.",
+      "avoidWhen": "A finite option set can be selected with less effort."
+    }
+  },
   "type": "registry:ui"
 }
