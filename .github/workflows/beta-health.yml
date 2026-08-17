@@ -11,6 +11,8 @@ concurrency:
 
 permissions:
   contents: read
+  actions: read
+  issues: read
 
 jobs:
   verify:
@@ -31,12 +33,24 @@ jobs:
       - run: npm run check:security
       - name: Verify live public beta
         run: npm run verify:public-beta -- --write-evidence
+      - name: Collect maintainer-accepted external evidence
+        run: npm run verify:beta:external -- --write-evidence
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Verify consecutive stability coverage
+        run: npm run verify:beta:stability -- --write-evidence
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Build live beta readiness
+        run: npm run build:beta
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: teum-public-beta-health-${{ github.run_number }}
           path: |
             release/public-beta-live.json
             release/beta-readiness.json
+            release/beta-external-evidence.json
+            release/beta-stability.json
             release/public-surface.freeze.json
             release/registry-history.json
           if-no-files-found: error

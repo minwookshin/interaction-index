@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/build-beta-readiness.mjs",
-  "generatedAt": "2026-08-17T08:44:16.387Z",
+  "generatedAt": "2026-08-17T09:53:52.656Z",
   "candidate": "0.1.0-rc.22",
   "programStage": "public-beta",
   "localCandidate": {
@@ -41,5 +41,5 @@
     "Complete the 28-day API stability window (0/28)",
     "Complete the external support matrix (0/7)"
   ],
-  "claimBoundary": "Only dated evidence from an independently maintained consumer counts as external adoption. Empty gates remain unverified."
+  "claimBoundary": "Only dated, maintainer-accepted evidence from an independently maintained consumer counts as external adoption. Feedback evidence cannot be reused across rounds, and interrupted stability coverage remains unverified."
 }

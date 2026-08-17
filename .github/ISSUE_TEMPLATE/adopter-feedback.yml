@@ -54,6 +54,12 @@ body:
       description: React, TypeScript, browser, framework, commands, checks, and a public reproduction when available.
     validations:
       required: true
+  - type: input
+    id: public_evidence
+    attributes:
+      label: Public evidence URL
+      description: Optional for general feedback. Required for the independent-installation v1 gate; link to a public consumer repository, commit, or CI run that shows this evaluation.
+      placeholder: https://github.com/your-org/your-project/actions/runs/...
   - type: dropdown
     id: independence
     attributes:
@@ -85,16 +91,26 @@ body:
         - Yes, this public issue only
     validations:
       required: true
-  - type: checkboxes
-    id: verification
+  - type: dropdown
+    id: typecheck_result
     attributes:
-      label: Consumer verification
-      description: Required before an independent evaluation can count toward the v1 gate.
+      label: TypeScript check result
       options:
-        - label: I recorded the consumer project's TypeScript check result in Environment and evidence.
-          required: true
-        - label: I recorded the consumer project's production-build result in Environment and evidence.
-          required: true
+        - Passed
+        - Failed
+        - Not run
+    validations:
+      required: true
+  - type: dropdown
+    id: production_build_result
+    attributes:
+      label: Production build result
+      options:
+        - Passed
+        - Failed
+        - Not run
+    validations:
+      required: true
   - type: checkboxes
     id: checks
     attributes:

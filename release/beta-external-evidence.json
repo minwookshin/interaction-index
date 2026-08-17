@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/verify-beta-external-evidence.mjs",
+  "generatedAt": "2026-08-17T09:52:27.333Z",
+  "candidate": "0.1.0-rc.22",
+  "repository": "minwookshin/teum",
+  "reviewedIssues": 1,
+  "verifiedFeedback": [],
+  "verifiedInstallations": [],
+  "candidates": [
+    {
+      "issue": 15,
+      "url": "https://github.com/minwookshin/teum/issues/15",
+      "author": "minwookshin",
+      "createdAt": "2026-08-17T09:45:16Z",
+      "candidate": null,
+      "distribution": null,
+      "publicEvidenceUrl": null,
+      "feedback": {
+        "verified": false,
+        "reasons": [
+          "issue-open",
+          "missing-feedback-accepted-label",
+          "author-not-independent",
+          "project-not-independent",
+          "candidate-mismatch",
+          "citation-not-authorized",
+          "feedback-fields-incomplete"
+        ]
+      },
+      "installation": {
+        "verified": false,
+        "reasons": [
+          "issue-open",
+          "missing-feedback-accepted-label",
+          "author-not-independent",
+          "project-not-independent",
+          "candidate-mismatch",
+          "citation-not-authorized",
+          "feedback-fields-incomplete",
+          "missing-adoption-verified-label",
+          "unsupported-distribution",
+          "typecheck-not-passed",
+          "production-build-not-passed",
+          "public-evidence-url-missing"
+        ]
+      }
+    }
+  ],
+  "claimBoundary": "Only closed, maintainer-accepted issues from independent authors count. Installation credit additionally requires a public evidence URL and passing consumer typecheck and production build results."
+}

@@ -31,4 +31,4 @@ v1: open
 
 ## Claim boundary
 
-Only dated evidence from an independently maintained consumer counts as external adoption. Empty gates remain unverified.
+Only dated, maintainer-accepted evidence from an independently maintained consumer counts as external adoption. Feedback evidence cannot be reused across rounds, and interrupted stability coverage remains unverified.

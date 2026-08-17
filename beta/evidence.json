@@ -7,15 +7,21 @@
     {
       "round": 1,
       "status": "open",
+      "openedAt": "2026-08-17T08:42:11Z",
+      "completedAt": null,
       "evidenceUrls": [],
       "changes": [],
+      "decisionUrl": null,
       "summary": ""
     },
     {
       "round": 2,
       "status": "pending",
+      "openedAt": null,
+      "completedAt": null,
       "evidenceUrls": [],
       "changes": [],
+      "decisionUrl": null,
       "summary": ""
     }
   ],
@@ -42,5 +48,5 @@
     "registry": "https://teum.minwookshin.com/r/v/0.1.0-rc.22/release.json",
     "npm": null
   },
-  "claimBoundary": "Only dated evidence from an independently maintained consumer counts as external adoption. Empty gates remain unverified."
+  "claimBoundary": "Only dated, maintainer-accepted evidence from an independently maintained consumer counts as external adoption. Feedback evidence cannot be reused across rounds, and interrupted stability coverage remains unverified."
 }

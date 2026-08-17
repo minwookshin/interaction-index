@@ -20,6 +20,8 @@ Use the repository's [Adopter feedback form](https://github.com/minwookshin/teum
 
 Teum records no usage telemetry. An evaluation counts toward v1 only when it comes from an independently maintained consumer and has dated, permissioned evidence. Private evaluations may be recorded without publishing product details.
 
+Submitting the form does not automatically satisfy a gate. A maintainer checks the candidate version, project ownership, public evidence, TypeScript result, and production build before closing the issue with `feedback-accepted` or `adoption-verified`. The daily beta-health workflow records accepted evidence without converting incomplete reports into adoption claims.
+
 ## Promotion rule
 
 The beta does not become v1 because a date arrives or the catalog grows. v1 requires:
@@ -30,4 +32,4 @@ The beta does not become v1 because a date arrives or the catalog grows. v1 requ
 - the remaining claimed browser, device, language, and accessibility support evidence;
 - a public package and registry whose bytes match the verified release.
 
-Current machine-readable status is generated in [`release/beta-readiness.json`](./release/beta-readiness.json). Empty evidence remains a blocker.
+Current machine-readable status is generated in [`release/beta-readiness.json`](./release/beta-readiness.json). [`beta-external-evidence.json`](./release/beta-external-evidence.json) records accepted public reports, and [`beta-stability.json`](./release/beta-stability.json) records successful daily health coverage. Empty or interrupted evidence remains a blocker.
