@@ -58,4 +58,4 @@ Read `CHANGELOG.md` and `MIGRATIONS.md`, run product checks, and keep the previo
 
 Keep the install command, elapsed time, changed files, token overrides, keyboard path, and update diff in the adopting repository. Teum sends no usage telemetry.
 
-Use the **Adopter feedback** issue form for non-sensitive findings, **Bug report** for reproducible defects, and `SECURITY.md` for private vulnerability reporting. External adoption counts only with dated, permissioned evidence from an independently maintained consumer.
+Use the [Adopter feedback form](https://github.com/minwookshin/teum/issues/new?template=adopter-feedback.yml) for non-sensitive findings, **Bug report** for reproducible defects, and `SECURITY.md` for private vulnerability reporting. External adoption counts only with dated, permissioned evidence from an independently maintained consumer whose typecheck and production build pass.

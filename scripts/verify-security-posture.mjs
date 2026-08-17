@@ -74,6 +74,12 @@ requireContract(/environment: npm-publication/.test(npmWorkflow), "npm staging m
 requireContract(/NPM_TRUSTED_STAGE_PUBLISH/.test(npmWorkflow), "npm staging must remain locked behind the trusted-publisher gate");
 requireContract(!/(?:NPM_TOKEN|NODE_AUTH_TOKEN)/.test(npmWorkflow), "npm workflow must not depend on a long-lived publication token");
 
+const betaHealthWorkflow = await read(".github/workflows/beta-health.yml");
+requireContract(/schedule:\s*\n\s*- cron:/.test(betaHealthWorkflow), "public beta health verification must run on a schedule");
+requireContract(/verify:public-beta -- --write-evidence/.test(betaHealthWorkflow), "public beta health verification must archive fresh live evidence");
+requireContract(/retention-days:\s*35/.test(betaHealthWorkflow), "public beta health evidence must outlive the 28-day stability window");
+requireContract(!/(?:id-token|attestations|pages|contents):\s*write/.test(betaHealthWorkflow), "public beta health workflow must remain read-only");
+
 const releaseAssembler = await read("scripts/assemble-release-candidate.mjs");
 requireContract(/mkdtemp\(/.test(releaseAssembler), "release candidate must assemble in a fresh staging directory");
 requireContract(/output already exists/.test(releaseAssembler), "release candidate must reject a reused output directory");

@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
@@ -6,11 +7,15 @@ const allowUnpublished = process.argv.includes("--allow-unpublished");
 const writeEvidence = process.argv.includes("--write-evidence");
 const packageJson = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
 const publication = JSON.parse(await readFile(resolve(root, "publication.json"), "utf8"));
+const recordedLiveEvidence = await readFile(resolve(root, "release/public-beta-live.json"), "utf8")
+  .then((value) => JSON.parse(value))
+  .catch(() => null);
 const version = packageJson.version;
 const tag = `v${version}`;
 const baseUrl = (process.env.TEUM_PUBLIC_BETA_URL ?? publication.homepage).replace(/\/$/, "");
 const repository = publication.repository;
 const fail = (message) => { throw new Error(`[public-beta] ${message}`); };
+const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 
 async function request(url, options = {}) {
   const response = await fetch(url, {
@@ -65,10 +70,59 @@ if (repo.private !== false || repo.archived === true) fail("GitHub repository is
 
 const releaseResponse = await request(`https://api.github.com/repos/${repository}/releases/tags/${tag}`);
 let release = null;
+let releaseAssetsVerified = false;
+let releaseAssetDigests = {};
 if (releaseResponse.ok) {
   release = await releaseResponse.json();
   if (release.draft === true || release.prerelease !== true) fail(`${tag} must be a published prerelease`);
   if (release.target_commitish !== "main" && release.tag_name !== tag) fail(`${tag} release metadata is inconsistent`);
+
+  const tarballName = `${packageJson.name}-${version}.tgz`;
+  const requiredAssets = ["SHA256SUMS", "public-package.json", "sbom.cdx.json", tarballName].sort();
+  const assets = new Map((release.assets ?? []).map((asset) => [asset.name, asset]));
+  if (JSON.stringify([...assets.keys()].sort()) !== JSON.stringify(requiredAssets)) {
+    fail(`${tag} release asset inventory is not exact`);
+  }
+
+  const checksumAsset = assets.get("SHA256SUMS");
+  const checksumResponse = await requireResponse(checksumAsset.browser_download_url, "release checksums");
+  const checksumBytes = Buffer.from(await checksumResponse.arrayBuffer());
+  const checksumDigest = sha256(checksumBytes);
+  if (checksumAsset.digest !== `sha256:${checksumDigest}`) fail("release checksum asset digest does not match GitHub metadata");
+  const checksums = new Map(checksumBytes.toString("utf8").trim().split("\n").map((line) => {
+    const match = line.match(/^([a-f0-9]{64})  ([^/]+)$/);
+    if (!match) fail(`invalid release checksum line: ${line}`);
+    return [match[2], match[1]];
+  }));
+
+  const payloadNames = ["public-package.json", "sbom.cdx.json", tarballName].sort();
+  if (JSON.stringify([...checksums.keys()].sort()) !== JSON.stringify(payloadNames)) fail("release checksum inventory is not exact");
+  const downloaded = new Map();
+  releaseAssetDigests = { SHA256SUMS: checksumDigest };
+  for (const name of payloadNames) {
+    const asset = assets.get(name);
+    const assetResponse = await requireResponse(asset.browser_download_url, `release asset ${name}`);
+    const bytes = Buffer.from(await assetResponse.arrayBuffer());
+    const digest = sha256(bytes);
+    if (checksums.get(name) !== digest || asset.digest !== `sha256:${digest}`) fail(`release asset digest mismatch: ${name}`);
+    downloaded.set(name, bytes);
+    releaseAssetDigests[name] = digest;
+  }
+
+  const candidate = JSON.parse(downloaded.get("public-package.json").toString("utf8"));
+  if (candidate.status !== "publishable-beta-candidate" || candidate.version !== version || candidate.distTag !== "beta") {
+    fail("release package candidate metadata is inconsistent");
+  }
+  if (candidate.package?.file !== tarballName || candidate.package?.sha256 !== releaseAssetDigests[tarballName]) {
+    fail("release package candidate does not name the verified tarball");
+  }
+  const pinnedDigests = recordedLiveEvidence?.candidate === version && recordedLiveEvidence.github?.assetsVerified
+    ? recordedLiveEvidence.github.assetDigests
+    : null;
+  if (pinnedDigests && JSON.stringify(pinnedDigests) !== JSON.stringify(releaseAssetDigests)) {
+    fail(`${tag} release assets changed after their first verified publication`);
+  }
+  releaseAssetsVerified = true;
 } else if (!allowUnpublished) {
   fail(`GitHub prerelease ${tag} returned ${releaseResponse.status}`);
 }
@@ -102,6 +156,8 @@ const report = {
     public: true,
     release: release?.html_url ?? null,
     prerelease: release?.prerelease ?? false,
+    assetsVerified: releaseAssetsVerified,
+    assetDigests: releaseAssetDigests,
   },
   npm: {
     published: npm !== null,
