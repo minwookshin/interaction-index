@@ -24,8 +24,8 @@
 | Accessibility matrix | 55 passed, 30 intentional skips, 10 required contracts |
 | Landing initial JavaScript | 78.8 kB gzip |
 | Heaviest component route | 420.3 kB JavaScript gzip |
-| Local production-preview LCP | 140 ms landing, 432 ms documentation |
-| Local interaction timing | 8 ms Shared Detail, 10 ms Dialog |
+| Local production-preview LCP | 148 ms landing, 440 ms documentation |
+| Local interaction timing | 5 ms Shared Detail, 10 ms Dialog |
 
 ## Route ownership
 
