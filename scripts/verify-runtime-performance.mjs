@@ -7,7 +7,7 @@ import { chromium } from "@playwright/test";
 const root = process.cwd();
 const packageJson = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
 const output = resolve(root, "release/runtime-performance.json");
-const npm = process.platform === "win32" ? "npm.cmd" : "npm";
+const vite = resolve(root, "node_modules/vite/bin/vite.js");
 
 const budgets = {
   landingFcpMs: 1500,
@@ -46,6 +46,20 @@ async function waitForServer(url, child, outputLog) {
     await new Promise((resolveWait) => setTimeout(resolveWait, 120));
   }
   throw new Error(`[runtime-performance] preview did not become ready\n${outputLog.join("")}`);
+}
+
+async function stopChild(child) {
+  if (child.exitCode !== null || child.signalCode !== null) return;
+  const exited = new Promise((resolveExit) => child.once("exit", resolveExit));
+  child.kill("SIGTERM");
+  const stopped = await Promise.race([
+    exited.then(() => true),
+    new Promise((resolveWait) => setTimeout(() => resolveWait(false), 5_000)),
+  ]);
+  if (!stopped && child.exitCode === null && child.signalCode === null) {
+    child.kill("SIGKILL");
+    await exited;
+  }
 }
 
 async function installObservers(context) {
@@ -154,7 +168,7 @@ const port = await availablePort();
 if (!port) throw new Error("[runtime-performance] could not allocate a preview port");
 const baseUrl = `http://127.0.0.1:${port}`;
 const previewOutput = [];
-const preview = spawn(npm, ["run", "preview", "--", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
+const preview = spawn(process.execPath, [vite, "preview", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
   cwd: root,
   env: { ...process.env, NO_COLOR: "1", FORCE_COLOR: "0" },
   stdio: ["ignore", "pipe", "pipe"],
@@ -214,5 +228,5 @@ try {
   console.log(`[runtime-performance] docs transition ${documentationTransitionMs}ms, Shared Detail ${interactions.sharedDetailSelectionMs}ms, Dialog ${interactions.dialogOpenMs}ms`);
 } finally {
   await browser?.close();
-  if (preview.exitCode === null) preview.kill("SIGTERM");
+  await stopChild(preview);
 }

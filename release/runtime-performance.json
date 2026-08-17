@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/verify-runtime-performance.mjs",
-  "generatedAt": "2026-08-17T06:12:35.908Z",
+  "generatedAt": "2026-08-17T08:16:19.676Z",
   "releaseVersion": "0.1.0-rc.22",
   "status": "passed",
   "mode": "local-production-preview",
@@ -23,30 +23,30 @@
   },
   "measurements": {
     "landing": {
-      "fcpMs": 148,
-      "lcpMs": 148,
+      "fcpMs": 228,
+      "lcpMs": 228,
       "cls": 0.0002,
       "longestTaskMs": 0,
       "longTaskCount": 0,
-      "domContentLoadedMs": 64,
-      "loadMs": 64,
+      "domContentLoadedMs": 98,
+      "loadMs": 105,
       "resourceRequests": 5,
       "resourceTransferBytes": 135546
     },
     "documentation": {
-      "fcpMs": 124,
-      "lcpMs": 440,
+      "fcpMs": 204,
+      "lcpMs": 488,
       "cls": 0.0132,
       "longestTaskMs": 0,
       "longTaskCount": 0,
-      "domContentLoadedMs": 66,
-      "loadMs": 66,
+      "domContentLoadedMs": 100,
+      "loadMs": 108,
       "resourceRequests": 13,
       "resourceTransferBytes": 468061
     },
-    "documentationTransitionMs": 388,
+    "documentationTransitionMs": 405,
     "interactions": {
-      "sharedDetailSelectionMs": 5,
+      "sharedDetailSelectionMs": 7,
       "dialogOpenMs": 10,
       "longestTaskMs": 67
     }
