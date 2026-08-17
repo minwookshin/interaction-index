@@ -106,9 +106,10 @@ requireContract(/value > 0/.test(worker), "Sites worker does not honor Accept qu
 const vercel = JSON.parse(await read("vercel.json"));
 requireContract(!vercel.rewrites, "Vercel must not rewrite missing registry paths to the application shell");
 const globalHeaders = vercel.headers?.find((entry) => entry.source === "/(.*)")?.headers ?? [];
-for (const name of ["Content-Security-Policy", "Permissions-Policy", "Referrer-Policy", "X-Content-Type-Options"]) {
+for (const name of ["Content-Security-Policy", "Cache-Control", "Permissions-Policy", "Referrer-Policy", "X-Content-Type-Options"]) {
   requireContract(globalHeaders.some((header) => header.key === name), `Vercel global policy is missing ${name}`);
 }
+requireContract(globalHeaders.some((header) => header.key === "Cache-Control" && header.value === "no-cache"), "Vercel HTML fallback must opt out of stale caching");
 
 if (failures.length > 0) {
   throw new Error(`[security] posture verification failed:\n- ${failures.join("\n- ")}`);
