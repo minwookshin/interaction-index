@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/build-beta-readiness.mjs",
-  "generatedAt": "2026-08-17T06:14:41.920Z",
+  "generatedAt": "2026-08-17T08:44:16.387Z",
   "candidate": "0.1.0-rc.22",
-  "programStage": "public-beta-preparation",
+  "programStage": "public-beta",
   "localCandidate": {
     "status": "passed",
     "releaseEvidence": true,
@@ -11,11 +11,11 @@
     "publicationLocked": true
   },
   "publicBeta": {
-    "ready": false,
+    "ready": true,
     "publication": {
-      "githubRelease": false,
-      "site": false,
-      "registry": false,
+      "githubRelease": true,
+      "site": true,
+      "registry": true,
       "npm": false
     }
   },
@@ -35,9 +35,6 @@
     "minimumStabilityDays": 28
   },
   "blockers": [
-    "Publish the verified GitHub prerelease",
-    "Promote and verify the candidate site",
-    "Verify the live immutable registry bytes",
     "Publish and verify the npm beta package",
     "Record one independent install, typecheck, and production build",
     "Complete two feedback rounds (0/2)",

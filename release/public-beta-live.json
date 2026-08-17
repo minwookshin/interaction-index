@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/verify-public-beta.mjs",
+  "generatedAt": "2026-08-17T08:43:15.387Z",
+  "candidate": "0.1.0-rc.22",
+  "site": {
+    "url": "https://teum.minwookshin.com",
+    "status": "passed",
+    "securityHeaders": true
+  },
+  "registry": {
+    "manifest": "https://teum.minwookshin.com/r/manifest.json",
+    "immutableArtifact": "https://teum.minwookshin.com/r/v/0.1.0-rc.22/button.json",
+    "exactCandidateBytes": true
+  },
+  "github": {
+    "repository": "https://github.com/minwookshin/teum",
+    "public": true,
+    "release": "https://github.com/minwookshin/teum/releases/tag/v0.1.0-rc.22",
+    "prerelease": true
+  },
+  "npm": {
+    "published": false,
+    "url": null
+  }
+}
