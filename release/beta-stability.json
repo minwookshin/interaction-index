@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/verify-beta-stability.mjs",
+  "generatedAt": "2026-08-17T09:52:27.861Z",
+  "candidate": "0.1.0-rc.22",
+  "repository": "minwookshin/teum",
+  "workflow": "beta-health.yml",
+  "startedAt": "2026-08-17T08:42:11Z",
+  "minimumDays": 28,
+  "targetEndsOn": "2026-09-13",
+  "expectedCompletedDays": 0,
+  "consecutiveCompletedDays": 0,
+  "missingDates": [],
+  "verifiedThrough": null,
+  "status": "collecting",
+  "creditedRuns": [],
+  "claimBoundary": "A stability day is credited only when the completed UTC day has a successful public-beta-health workflow run. The first missing day stops the consecutive window."
+}

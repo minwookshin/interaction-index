@@ -15,6 +15,8 @@ const publication = await readJson("publication.json");
 const releaseEvidence = await readJson("release/evidence.json");
 const adoption = await readJson("release/adoption-dx.json");
 const beta = await readJson("beta/evidence.json");
+const externalEvidence = await readJson("release/beta-external-evidence.json");
+const stabilityEvidence = await readJson("release/beta-stability.json");
 
 if (beta.schemaVersion !== 1) fail("unsupported beta evidence schema");
 if (beta.candidate !== packageJson.version) fail(`beta evidence belongs to ${beta.candidate}, not ${packageJson.version}`);
@@ -27,18 +29,64 @@ if (releaseEvidence.automation?.accessibility?.status !== "passed" || releaseEvi
 if (adoption.version !== packageJson.version || adoption.status !== "passed") fail("Adoption DX evidence is stale");
 if (packageJson.private !== true) fail("the repository package lock must remain enabled until the publication step");
 if (publication.repository !== "minwookshin/teum" || publication.homepage !== packageJson.homepage) fail("canonical publication metadata drifted");
+if (externalEvidence.schemaVersion !== 1
+  || externalEvidence.generatedBy !== "scripts/verify-beta-external-evidence.mjs"
+  || externalEvidence.candidate !== packageJson.version
+  || externalEvidence.repository !== publication.repository) {
+  fail("external beta evidence is stale or belongs to another repository");
+}
+if (!Array.isArray(externalEvidence.verifiedFeedback) || !Array.isArray(externalEvidence.verifiedInstallations)) {
+  fail("external beta evidence inventory is invalid");
+}
+if (stabilityEvidence.schemaVersion !== 1
+  || stabilityEvidence.generatedBy !== "scripts/verify-beta-stability.mjs"
+  || stabilityEvidence.candidate !== packageJson.version
+  || stabilityEvidence.repository !== publication.repository) {
+  fail("beta stability evidence is stale or belongs to another repository");
+}
 if (!Array.isArray(beta.feedbackRounds) || beta.feedbackRounds.length !== 2) fail("exactly two feedback rounds must be tracked");
+
+const verifiedFeedbackByUrl = new Map(externalEvidence.verifiedFeedback.map((entry) => [entry.url, entry]));
+const verifiedInstallations = new Map(externalEvidence.verifiedInstallations.map((entry) => [entry.id, entry]));
+const usedFeedbackUrls = new Set();
 
 for (const [index, round] of beta.feedbackRounds.entries()) {
   if (round.round !== index + 1) fail("feedback rounds must be ordered 1 then 2");
   if (!["pending", "open", "complete"].includes(round.status)) fail(`feedback round ${round.round} has an invalid status`);
   if (!Array.isArray(round.evidenceUrls) || !Array.isArray(round.changes)) fail(`feedback round ${round.round} must own evidence and changes arrays`);
-  if (round.status === "complete" && (!round.evidenceUrls.length || !round.evidenceUrls.every(isUrl) || (!round.changes.length && !round.summary.trim()))) {
-    fail(`feedback round ${round.round} cannot be complete without linked evidence and a recorded decision`);
+  if (round.changes.some((url) => !isUrl(url))) fail(`feedback round ${round.round} changes must be evidence URLs`);
+  if (round.status === "pending" && (round.openedAt !== null || round.completedAt !== null)) fail(`pending feedback round ${round.round} cannot have dates`);
+  if (round.status === "open" && (!isDate(round.openedAt) || round.completedAt !== null)) fail(`open feedback round ${round.round} needs only an opened date`);
+  if (round.status === "complete") {
+    if (!isDate(round.openedAt) || !isDate(round.completedAt) || Date.parse(round.completedAt) < Date.parse(round.openedAt)) {
+      fail(`feedback round ${round.round} has invalid completion dates`);
+    }
+    if (!round.evidenceUrls.length || !round.evidenceUrls.every((url) => isUrl(url) && verifiedFeedbackByUrl.has(url))) {
+      fail(`feedback round ${round.round} requires maintainer-accepted independent feedback evidence`);
+    }
+    for (const url of round.evidenceUrls) {
+      if (usedFeedbackUrls.has(url)) fail(`feedback evidence cannot be reused across rounds: ${url}`);
+      usedFeedbackUrls.add(url);
+      const createdAt = verifiedFeedbackByUrl.get(url).createdAt;
+      if (!isDate(createdAt) || Date.parse(createdAt) < Date.parse(round.openedAt) || Date.parse(createdAt) > Date.parse(round.completedAt)) {
+        fail(`feedback evidence for round ${round.round} falls outside the round dates`);
+      }
+    }
+    if (!isUrl(round.decisionUrl) || !round.summary.trim()) {
+      fail(`feedback round ${round.round} cannot be complete without a linked decision and summary`);
+    }
   }
+}
+if (beta.feedbackRounds[1].status !== "pending" && beta.feedbackRounds[0].status !== "complete") {
+  fail("feedback round 2 cannot open before round 1 is complete");
+}
+if (beta.feedbackRounds[1].openedAt && Date.parse(beta.feedbackRounds[1].openedAt) < Date.parse(beta.feedbackRounds[0].completedAt)) {
+  fail("feedback round 2 must start after round 1 completes");
 }
 
 if (!Array.isArray(beta.independentInstallations)) fail("independentInstallations must be an array");
+const usedInstallIds = new Set();
+const usedInstallEvidenceUrls = new Set();
 for (const install of beta.independentInstallations) {
   if (!install.id || install.version !== packageJson.version || install.maintainerIndependent !== true || !isDate(install.recordedAt)) {
     fail(`independent install ${install.id ?? "<missing>"} is incomplete`);
@@ -48,6 +96,13 @@ for (const install of beta.independentInstallations) {
   }
   const checks = new Set(install.checks);
   if (!checks.has("typecheck") || !checks.has("production-build")) fail(`independent install ${install.id} lacks build evidence`);
+  if (usedInstallIds.has(install.id) || usedInstallEvidenceUrls.has(install.evidenceUrl)) fail(`independent install ${install.id} duplicates existing evidence`);
+  usedInstallIds.add(install.id);
+  usedInstallEvidenceUrls.add(install.evidenceUrl);
+  const verified = verifiedInstallations.get(install.id);
+  if (!verified || verified.evidenceUrl !== install.evidenceUrl || verified.version !== install.version || verified.distribution !== install.distribution) {
+    fail(`independent install ${install.id} is not present in the verified external evidence ledger`);
+  }
 }
 
 const reviewEntries = Object.entries(beta.externalReviews ?? {});
@@ -72,9 +127,27 @@ const completedRounds = beta.feedbackRounds.filter((round) => round.status === "
 const completedReviews = reviewEntries.filter(([, review]) => review.status === "pass").length;
 const started = isDate(beta.stableApiWindow?.startedAt) ? Date.parse(beta.stableApiWindow.startedAt) : null;
 const ended = isDate(beta.stableApiWindow?.endedAt) ? Date.parse(beta.stableApiWindow.endedAt) : null;
-const stabilityDays = started !== null && ended !== null && ended >= started ? Math.floor((ended - started) / 86_400_000) : 0;
 const minimumStabilityDays = beta.stableApiWindow?.minimumDays;
 if (!Number.isInteger(minimumStabilityDays) || minimumStabilityDays < 28) fail("stable API window must be at least 28 days");
+if (stabilityEvidence.startedAt !== beta.stableApiWindow.startedAt || stabilityEvidence.minimumDays !== minimumStabilityDays) {
+  fail("beta stability evidence does not match the declared API window");
+}
+if (!["collecting", "passed"].includes(stabilityEvidence.status)
+  || !Number.isInteger(stabilityEvidence.consecutiveCompletedDays)
+  || stabilityEvidence.consecutiveCompletedDays < 0
+  || stabilityEvidence.consecutiveCompletedDays > minimumStabilityDays
+  || !Array.isArray(stabilityEvidence.missingDates)
+  || !Array.isArray(stabilityEvidence.creditedRuns)) {
+  fail("beta stability evidence has an invalid coverage record");
+}
+const stabilityDays = stabilityEvidence.consecutiveCompletedDays;
+const stabilityPassed = stabilityEvidence.status === "passed"
+  && stabilityDays >= minimumStabilityDays
+  && stabilityEvidence.missingDates.length === 0
+  && stabilityEvidence.creditedRuns.length >= minimumStabilityDays
+  && started !== null
+  && ended !== null
+  && ended >= started + minimumStabilityDays * 86_400_000;
 
 const publicationChecks = {
   githubRelease: isUrl(beta.publication?.githubRelease),
@@ -86,7 +159,7 @@ const publicBetaReady = publicationChecks.githubRelease && publicationChecks.sit
 const v1Checks = {
   independentInstallation: beta.independentInstallations.length >= 1,
   feedbackRounds: completedRounds === 2,
-  stableApiWindow: stabilityDays >= minimumStabilityDays,
+  stableApiWindow: stabilityPassed,
   externalReviews: completedReviews === requiredReviews.length,
   npmPublication: publicationChecks.npm,
 };
