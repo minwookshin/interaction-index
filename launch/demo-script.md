@@ -28,7 +28,7 @@ Voiceover: “The issue workspace is an internal API proof, not an adoption clai
 
 ## 72–90 seconds — Honest handoff
 
-Return to Installation, show the exact `rc.8` command, then end on GitHub.
+Return to Installation, show the exact `0.1.0-rc.22` command, then end on GitHub.
 
 Voiceover: “The pinned registry is ready to evaluate. The npm package is not published, APIs may still change, and external adoption and device evidence remain open. Try one real component and tell me where the system stops helping.”
 
