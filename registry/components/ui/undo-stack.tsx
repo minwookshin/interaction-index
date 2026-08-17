@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/undo-stack.css";
 import { ArrowCounterClockwise } from "@phosphor-icons/react";

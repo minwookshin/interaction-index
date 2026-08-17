@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "candidate": "0.1.0-rc.22",
+  "programStage": "public-beta-preparation",
+  "independentInstallations": [],
+  "feedbackRounds": [
+    {
+      "round": 1,
+      "status": "open",
+      "evidenceUrls": [],
+      "changes": [],
+      "summary": ""
+    },
+    {
+      "round": 2,
+      "status": "pending",
+      "evidenceUrls": [],
+      "changes": [],
+      "summary": ""
+    }
+  ],
+  "stableApiWindow": {
+    "minimumDays": 28,
+    "startedAt": null,
+    "endedAt": null
+  },
+  "externalReviews": {
+    "edgeWindows": { "status": "pending", "evidenceUrls": [] },
+    "iosSafari": { "status": "pending", "evidenceUrls": [] },
+    "androidChrome": { "status": "pending", "evidenceUrls": [] },
+    "operatingSystemAccessibilityModes": {
+      "status": "pending",
+      "evidenceUrls": []
+    },
+    "humanTranslationAndRtl": { "status": "pending", "evidenceUrls": [] },
+    "independentAccessibility": { "status": "pending", "evidenceUrls": [] },
+    "linuxVisualBaselines": { "status": "pending", "evidenceUrls": [] }
+  },
+  "publication": {
+    "githubRelease": null,
+    "site": null,
+    "registry": null,
+    "npm": null
+  },
+  "claimBoundary": "Only dated evidence from an independently maintained consumer counts as external adoption. Empty gates remain unverified."
+}

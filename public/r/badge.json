@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "registry/components/ui/badge.tsx",
-      "content": "import \"../../styles/teum-base.css\";\nimport \"../../styles/components/badge.css\";\nimport { X } from \"@phosphor-icons/react\";\nimport type { ComponentPropsWithRef, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type BadgeProps = ComponentPropsWithRef<\"span\"> & {\n  variant?: \"neutral\" | \"strong\" | \"outline\" | \"success\" | \"warning\" | \"danger\";\n  leadingIcon?: ReactNode;\n  removable?: boolean;\n  onRemove?: () => void;\n  removeLabel?: string;\n};\n\nexport function Badge({\n  className,\n  variant = \"neutral\",\n  leadingIcon,\n  removable,\n  onRemove,\n  removeLabel = \"Remove\",\n  children,\n  ...props\n}: BadgeProps) {\n  return (\n    <span className={cn(\"teum-badge\", `teum-badge--${variant}`, className)} {...props}>\n      {leadingIcon && <span className=\"teum-badge__icon\" aria-hidden=\"true\">{leadingIcon}</span>}\n      <span className=\"teum-badge__label\">{children}</span>\n      {removable && (\n        <button type=\"button\" className=\"teum-badge__remove\" aria-label={removeLabel} onClick={onRemove}>\n          <X aria-hidden=\"true\" />\n        </button>\n      )}\n    </span>\n  );\n}\n",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/badge.css\";\nimport { X } from \"@phosphor-icons/react\";\nimport type { ComponentPropsWithRef, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type BadgeProps = ComponentPropsWithRef<\"span\"> & {\n  variant?: \"neutral\" | \"strong\" | \"outline\" | \"success\" | \"warning\" | \"danger\";\n  leadingIcon?: ReactNode;\n  removable?: boolean;\n  onRemove?: () => void;\n  removeLabel?: string;\n};\n\nexport function Badge({\n  className,\n  variant = \"neutral\",\n  leadingIcon,\n  removable,\n  onRemove,\n  removeLabel = \"Remove\",\n  children,\n  ...props\n}: BadgeProps) {\n  return (\n    <span className={cn(\"teum-badge\", `teum-badge--${variant}`, className)} {...props}>\n      {leadingIcon && <span className=\"teum-badge__icon\" aria-hidden=\"true\">{leadingIcon}</span>}\n      <span className=\"teum-badge__label\">{children}</span>\n      {removable && (\n        <button type=\"button\" className=\"teum-badge__remove\" aria-label={removeLabel} onClick={onRemove}>\n          <X aria-hidden=\"true\" />\n        </button>\n      )}\n    </span>\n  );\n}\n",
       "type": "registry:ui",
       "target": "components/ui/badge.tsx"
     },
@@ -23,5 +23,13 @@
       "target": "styles/components/badge.css"
     }
   ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/badge",
+      "useWhen": "A short label adds secondary classification or compact status context.",
+      "avoidWhen": "The label triggers a primary action or contains a sentence."
+    }
+  },
   "type": "registry:ui"
 }

@@ -319,7 +319,7 @@ export function EditComponentMetadata() {
         <DialogTitle>Edit component metadata</DialogTitle>
         <DialogDescription>Update the public name and summary.</DialogDescription>
         <TextField label="Display name" defaultValue="Draft primitive" />
-        <TextField label="Summary" defaultValue="A compact authored interaction." />
+        <TextField label="Summary" defaultValue="A compact interaction." />
         <DialogFooter>
           <DialogClose render={<Button variant="ghost" />}>Cancel</DialogClose>
           <DialogClose render={<Button variant="primary" />}>Save changes</DialogClose>

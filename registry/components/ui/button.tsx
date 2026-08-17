@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/button.css";
 import { Button as ButtonPrimitive } from "@base-ui/react/button";

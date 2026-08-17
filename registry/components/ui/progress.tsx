@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/progress.css";
 import { Progress as ProgressPrimitive } from "@base-ui/react/progress";

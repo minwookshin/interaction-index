@@ -1,0 +1,54 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer teum.tokens, teum.base, teum.components;
+
+@layer teum.components {
+.teum-sr-only,
+.teum-sr-only:not(:focus):not(:active) {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.teum-bulk-action-bar {
+  display: flex;
+  min-height: 46px;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 7px 6px 12px;
+  border-radius: 9px;
+  background: var(--teum-inverse);
+  color: var(--teum-on-inverse);
+  box-shadow: 0 12px 32px rgb(0 0 0 / .18);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 160ms var(--teum-ease-out), transform 180ms var(--teum-ease-out);
+}
+
+@starting-style {
+.teum-bulk-action-bar { opacity: 0; transform: translateY(8px); }
+}
+
+.teum-bulk-action-bar__selection {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.teum-bulk-action-bar__selection strong { font-size: var(--teum-type-ui); font-weight: 650; font-variant-numeric: tabular-nums; }
+
+.teum-bulk-action-bar__selection span { color: color-mix(in oklch, var(--teum-on-inverse) 72%, transparent); font-size: var(--teum-type-label); }
+
+.teum-bulk-action-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.teum-bulk-action-bar .teum-button,
+.teum-bulk-action-bar .teum-icon-button { color: var(--teum-on-inverse); }
+
+@media (prefers-reduced-motion: reduce) {
+.teum-bulk-action-bar { transform: none; transition: opacity 120ms var(--teum-ease-out); }
+}
+}

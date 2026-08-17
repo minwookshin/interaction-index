@@ -77,7 +77,9 @@ import {
   NumberField,
 } from "../components/ui";
 
-const ReactAriaStatePreview = lazy(() => import("./react-aria-previews").then((module) => ({ default: module.ReactAriaStatePreview })));
+const DatePickerStatePreview = lazy(() => import("./date-picker-previews").then((module) => ({ default: module.DatePickerStatePreview })));
+const TreeStatePreview = lazy(() => import("./tree-previews").then((module) => ({ default: module.TreeStatePreview })));
+const ReorderableListStatePreview = lazy(() => import("./reorderable-list-previews").then((module) => ({ default: module.ReorderableListStatePreview })));
 
 function ReactAriaStateFallback() {
   return <div className="react-aria-preview-fallback" aria-hidden="true">Loading preview…</div>;
@@ -363,7 +365,7 @@ export function ComponentStatePreview({ id, state, index }: { id: string; state:
   if (id === "combobox") return <div className="state-control-stack"><Combobox aria-label={state} options={peopleOptions} defaultValue={has(normalized, "selected", "clear") ? peopleOptions[1] : undefined} defaultInputValue={has(normalized, "filtering", "highlighted") ? "mi" : has(normalized, "no results") ? "zzz" : undefined} error={error ? "Choose an assignee." : undefined} disabled={disabled} />{has(normalized, "filtering", "highlighted", "no results") && <InlineComboboxSurface state={normalized} />}</div>;
   if (id === "search-input") return <SearchInput aria-label={state} value={has(normalized, "query", "results", "clear") ? "button" : ""} readOnly loading={loading} disabled={disabled} onClear={has(normalized, "clear") ? () => undefined : undefined} placeholder={has(normalized, "no results") ? "No matching results" : "Search…"} />;
   if (id === "number-field") return <NumberField inputProps={{ "aria-label": state }} defaultValue={has(normalized, "empty") ? undefined : has(normalized, "bounds") ? 100 : has(normalized, "stepped") ? 25 : 24} min={0} max={100} error={error ? "Use a value from 0 to 100." : undefined} readOnly={has(normalized, "read")} disabled={disabled} suffix="%" />;
-  if (id === "date-picker") return <Suspense fallback={<ReactAriaStateFallback />}><ReactAriaStatePreview id="date-picker" state={normalized} /></Suspense>;
+  if (id === "date-picker") return <Suspense fallback={<ReactAriaStateFallback />}><DatePickerStatePreview state={normalized} /></Suspense>;
   if (id === "segmented-control") return <SegmentedControl className={has(normalized, "focus") ? "state-forced-focus" : undefined} label={state} defaultValue={has(normalized, "selected", "keyboard") ? "board" : "list"} disabled={has(normalized, "disabled group")} options={[{ value: "list", label: "List" }, { value: "board", label: has(normalized, "long") ? "Project board view" : "Board", disabled: has(normalized, "disabled item") }]} />;
   if (id === "tooltip") return <TooltipState state={normalized} />;
   if (id === "popover") return <PopoverState state={normalized} />;
@@ -385,8 +387,8 @@ export function ComponentStatePreview({ id, state, index }: { id: string; state:
   if (id === "badge") return <Badge variant={has(normalized, "strong") ? "strong" : has(normalized, "outline") ? "outline" : has(normalized, "semantic") ? "danger" : "neutral"} leadingIcon={has(normalized, "icon") ? <Star /> : undefined} removable={has(normalized, "remove", "action")}>{has(normalized, "truncated") ? "Exceptionally long status label" : has(normalized, "semantic") ? "Blocked" : "In review"}</Badge>;
   if (id === "avatar") return has(normalized, "group") ? <AvatarGroup><Avatar fallback="AS" /><Avatar fallback="MP" status="online" /><Avatar fallback="NW" /></AvatarGroup> : <Avatar fallback="AS" size={has(normalized, "small") ? "small" : has(normalized, "large") ? "large" : "medium"} status={has(normalized, "online") ? "online" : has(normalized, "away") ? "away" : has(normalized, "busy") ? "busy" : has(normalized, "offline") ? "offline" : undefined} />;
   if (id === "table") return <TableState state={normalized} />;
-  if (id === "tree") return <Suspense fallback={<ReactAriaStateFallback />}><ReactAriaStatePreview id="tree" state={normalized} /></Suspense>;
-  if (id === "reorderable-list") return <Suspense fallback={<ReactAriaStateFallback />}><ReactAriaStatePreview id="reorderable-list" state={normalized} /></Suspense>;
+  if (id === "tree") return <Suspense fallback={<ReactAriaStateFallback />}><TreeStatePreview state={normalized} /></Suspense>;
+  if (id === "reorderable-list") return <Suspense fallback={<ReactAriaStateFallback />}><ReorderableListStatePreview state={normalized} /></Suspense>;
   if (id === "inline-edit") return <InlineEditState state={normalized} />;
   if (id === "action-list") return <ActionListState state={normalized} />;
   if (id === "shared-detail") return <SharedDetailState state={normalized} />;

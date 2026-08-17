@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/textarea.css";
 import { useId, useState, type ComponentPropsWithRef } from "react";

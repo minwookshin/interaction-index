@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/field.css";
 import { Field as FieldPrimitive } from "@base-ui/react/field";

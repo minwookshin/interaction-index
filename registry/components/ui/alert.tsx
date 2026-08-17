@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/alert.css";
 import { Info, WarningCircle, X } from "@phosphor-icons/react";

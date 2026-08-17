@@ -1,0 +1,45 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer teum.tokens, teum.base, teum.components;
+
+@layer teum.components {
+.teum-timeline { display: grid; min-width: 0; gap: 2px; margin: 0; padding: 0; list-style: none; }
+
+.teum-timeline { gap: 0; }
+
+.teum-timeline li { position: relative; }
+
+.teum-timeline li:not(:last-child)::after { position: absolute; top: 26px; bottom: -6px; left: 13px; width: 1px; background: var(--teum-separator); content: ""; }
+
+.teum-timeline li > div,
+.teum-timeline li > button { position: relative; z-index: 1; display: grid; width: 100%; min-height: 52px; grid-template-columns: 14px minmax(0, 1fr) auto; align-items: start; gap: 10px; padding: 8px 7px; border: 0; border-radius: 8px; background: transparent; color: inherit; font: inherit; text-align: left; }
+
+.teum-timeline li > button { cursor: pointer; }
+
+.teum-timeline__marker { width: 8px; height: 8px; margin-top: 5px; border: 2px solid var(--teum-bg-surface); border-radius: 50%; background: var(--teum-fg-subtle); box-shadow: 0 0 0 1px var(--teum-separator-strong); }
+
+.teum-timeline__marker[data-tone="accent"] { background: var(--teum-fg-default); }
+
+.teum-timeline__marker[data-tone="danger"] { background: var(--teum-fg-danger); }
+
+.teum-timeline__content { display: grid; min-width: 0; gap: 2px; }
+
+.teum-timeline__content > span { display: flex; min-width: 0; align-items: baseline; justify-content: space-between; gap: 12px; }
+
+.teum-timeline__content strong { overflow: hidden; font-size: var(--teum-type-ui); font-weight: 570; text-overflow: ellipsis; white-space: nowrap; }
+
+.teum-timeline__content time,
+.teum-timeline__content small { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+
+.teum-timeline__value { padding-top: 1px; font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; font-weight: 570; }
+
+.teum-timeline li > button:focus { outline: 0; }
+
+@media (hover: hover) and (pointer: fine) {
+.teum-timeline li > button:hover { background: var(--teum-hover); color: var(--teum-fg-default); }
+}
+
+.teum-timeline li > button:active { transform: scale(.985); }
+
+.teum-timeline li > button[aria-pressed="true"] { background: var(--teum-selected); }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "title": "Skeleton",
+  "description": "Layout-preserving content placeholder geometry.",
+  "registryDependencies": [
+    "@teum-pinned/teum-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/skeleton.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/skeleton.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type SkeletonProps = ComponentPropsWithRef<\"div\"> & {\n  width?: number | string;\n  height?: number | string;\n  radius?: \"small\" | \"medium\" | \"round\";\n};\n\nexport function Skeleton({ className, width, height, radius = \"small\", style, ...props }: SkeletonProps) {\n  return <div className={cn(\"teum-skeleton\", `teum-skeleton--${radius}`, className)} style={{ width, height, ...style }} aria-hidden=\"true\" {...props} />;\n}\n\nexport function SkeletonText({ lines = 3 }: { lines?: number }) {\n  return <div className=\"teum-skeleton-text\" aria-hidden=\"true\">{Array.from({ length: lines }, (_, index) => <Skeleton key={index} height={10} width={index === lines - 1 ? \"68%\" : \"100%\"} />)}</div>;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/skeleton.tsx"
+    },
+    {
+      "path": "registry/styles/components/skeleton.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-skeleton { position: relative; overflow: hidden; border-radius: var(--teum-radius-xs); background: var(--teum-gray-100); }\n\n.teum-skeleton::after { position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.65), transparent); content: \"\"; transform: translateX(-100%); animation: teum-skeleton-shimmer 1.6s linear infinite; }\n\n.teum-skeleton-text { display: grid; width: min(320px, 100%); gap: 8px; }\n\n@media (prefers-reduced-motion: reduce) {\n.teum-skeleton::after { animation-duration: 2.4s; }\n}\n\n@keyframes teum-skeleton-shimmer { to { transform: translateX(100%); } }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/skeleton.css"
+    }
+  ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/skeleton",
+      "useWhen": "The final layout is known and content is expected imminently.",
+      "avoidWhen": "The layout is unknown, the wait is long, or progress can be quantified."
+    }
+  },
+  "type": "registry:ui"
+}

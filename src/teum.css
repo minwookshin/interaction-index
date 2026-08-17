@@ -1386,8 +1386,6 @@ button,
 }
 
 @layer teum.components {
-.teum-toaster { --width: 326px; z-index: var(--teum-layer-toast); }
-
 .teum-toast { position: relative; display: flex; width: 326px; max-width: calc(100vw - 32px); min-height: 52px; align-items: center; gap: 10px; padding: 10px 40px 10px 12px; border: 1px solid var(--teum-border-subtle); border-radius: 8px; background: var(--teum-bg-flyout); color: var(--teum-ink); box-shadow: var(--teum-shadow-flyout); font-family: inherit; }
 
 .teum-toast__content { display: grid; flex: 1; gap: 2px; }
@@ -2693,4 +2691,988 @@ button,
 @media (prefers-reduced-motion: reduce) {
 .teum-tree__chevron { transition-duration: 0.01ms; }
 }
+}
+
+@layer teum.components {
+.teum-sr-only,
+.teum-sr-only:not(:focus):not(:active) {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.teum-data-table {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  color: var(--teum-fg-default);
+}
+
+.teum-data-table > .teum-table__container {
+  border-color: color-mix(in oklch, var(--teum-separator) 76%, transparent);
+  border-radius: 9px;
+  box-shadow: var(--teum-shadow-control);
+}
+
+.teum-data-table .teum-table__head,
+.teum-data-table .teum-table__cell { padding-inline: 11px; }
+
+.teum-data-table__header-content {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  align-items: center;
+}
+
+.teum-data-table .teum-table__head[data-align="center"],
+.teum-data-table .teum-table__cell[data-align="center"] { text-align: center; }
+
+.teum-data-table .teum-table__head[data-align="end"],
+.teum-data-table .teum-table__cell[data-align="end"] { text-align: end; }
+
+.teum-data-table__selection-head,
+.teum-data-table__selection-cell {
+  width: 40px;
+  min-width: 40px;
+  padding-inline: 11px 0 !important;
+}
+
+.teum-data-table__selection-head .teum-choice-row,
+.teum-data-table__selection-cell .teum-choice-row { width: 16px; }
+
+.teum-data-table__sort {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  gap: 5px;
+  margin-inline: -5px;
+  padding: 4px 5px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 560;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--teum-hover-duration), background-color var(--teum-hover-duration);
+}
+
+.teum-data-table__sort > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.teum-data-table__sort svg {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 auto;
+  color: var(--teum-fg-subtle);
+}
+
+.teum-data-table__resize {
+  position: absolute;
+  z-index: 5;
+  inset-block: 0;
+  inset-inline-end: -7px;
+  width: 14px;
+  touch-action: none;
+  user-select: none;
+  cursor: col-resize;
+}
+
+.teum-data-table__resize::after {
+  position: absolute;
+  width: 1px;
+  height: 16px;
+  border-radius: 999px;
+  background: transparent;
+  content: "";
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+}
+
+.teum-data-table__resize[data-resizing]::after {
+  background: var(--teum-fg-muted);
+}
+
+.teum-data-table__resize:focus-visible { outline: 0; }
+
+.teum-data-table [data-pinned="start"],
+.teum-data-table [data-pinned="end"] { background: var(--teum-bg-surface); }
+
+.teum-data-table .teum-table__head[data-pinned] {
+  z-index: 4 !important;
+  background: color-mix(in oklch, var(--teum-bg-surface) 96%, var(--teum-fg-default));
+}
+
+.teum-data-table .teum-table__row[data-selected] > [data-pinned] {
+  background: color-mix(in oklch, var(--teum-bg-surface) 91%, var(--teum-fg-default));
+}
+
+.teum-data-table .teum-table__head[data-pinned="start"],
+.teum-data-table .teum-table__cell[data-pinned="start"] {
+  box-shadow: 10px 0 14px -16px rgb(0 0 0 / .42);
+}
+
+.teum-data-table .teum-table__head[data-pinned="end"],
+.teum-data-table .teum-table__cell[data-pinned="end"] {
+  box-shadow: -10px 0 14px -16px rgb(0 0 0 / .42);
+}
+
+.teum-data-table__selection-head[data-pinned],
+.teum-data-table__selection-cell[data-pinned] {
+  position: sticky;
+  z-index: 3;
+  inset-inline-start: 0;
+}
+
+.teum-data-table__selection-head[data-pinned] { z-index: 5; }
+
+.teum-data-table__state {
+  height: 240px !important;
+  padding: 24px !important;
+}
+
+.teum-data-table__state .teum-empty-state { min-height: 190px; }
+
+.teum-data-table__empty-value { color: var(--teum-fg-subtle); }
+
+.teum-data-table__virtual-viewport {
+  width: 100%;
+  overflow: auto;
+  border: 1px solid color-mix(in oklch, var(--teum-separator) 76%, transparent);
+  border-radius: 9px;
+  background: var(--teum-bg-surface);
+  box-shadow: var(--teum-shadow-control);
+  overscroll-behavior: contain;
+}
+
+.teum-data-table__virtual-table {
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.teum-data-table__virtual-table .teum-table__header {
+  position: sticky;
+  z-index: 6;
+  top: 0;
+}
+
+.teum-data-table__virtual-spacer .teum-table__cell {
+  height: 0;
+  padding: 0;
+  border: 0;
+}
+
+.teum-data-table__fetching {
+  position: absolute;
+  z-index: 8;
+  top: 7px;
+  right: 8px;
+  display: inline-flex;
+  height: 22px;
+  align-items: center;
+  gap: 5px;
+  padding-inline: 7px;
+  border-radius: 6px;
+  background: color-mix(in oklch, var(--teum-bg-surface) 92%, transparent);
+  color: var(--teum-fg-subtle);
+  box-shadow: var(--teum-shadow-control);
+  font-size: var(--teum-type-metadata);
+  backdrop-filter: blur(10px);
+}
+
+.teum-data-table__fetching .teum-loading-spinner { width: 12px; height: 12px; }
+
+.teum-data-table__footer {
+  display: flex;
+  min-height: 45px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 6px 2px 0;
+}
+
+.teum-data-table__footer > span {
+  color: var(--teum-fg-subtle);
+  font-size: var(--teum-type-metadata);
+  font-variant-numeric: tabular-nums;
+}
+
+.teum-data-table__footer .teum-pagination { margin-left: auto; }
+
+.teum-data-table__unknown-pages {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  color: var(--teum-fg-subtle);
+  font-size: var(--teum-type-metadata);
+  font-variant-numeric: tabular-nums;
+}
+
+.teum-data-table__unknown-pages button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+}
+
+.teum-data-table__unknown-pages button:disabled { opacity: .36; }
+
+.teum-data-table__unknown-pages svg { width: 13px; height: 13px; }
+
+.teum-data-table .teum-table__row[data-activatable] { cursor: default; }
+
+@media (hover: hover) and (pointer: fine) {
+.teum-data-table__sort:hover,
+.teum-data-table__unknown-pages button:not(:disabled):hover { background: var(--teum-hover); color: var(--teum-fg-default); }
+
+.teum-data-table__resize:hover::after { background: var(--teum-control-border-hover); }
+
+.teum-data-table .teum-table__body .teum-table__row:hover > [data-pinned] {
+    background: color-mix(in oklch, var(--teum-bg-surface) 95%, var(--teum-fg-default));
+  }
+}
+
+@media (max-width: 700px) {
+.teum-data-table__footer { align-items: flex-start; flex-direction: column; }
+
+.teum-data-table__footer .teum-pagination { margin-left: 0; }
+
+.teum-data-table__unknown-pages { margin-left: 0; }
+}
+}
+
+@layer teum.components {
+.teum-sr-only,
+.teum-sr-only:not(:focus):not(:active) {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.teum-filter-builder {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.teum-filter-builder__count {
+  display: grid;
+  min-width: 17px;
+  height: 17px;
+  place-items: center;
+  padding-inline: 4px;
+  border-radius: 999px;
+  background: var(--teum-selected);
+  color: var(--teum-fg-default);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.teum-filter-builder__popover { width: min(360px, calc(100vw - 24px)); }
+
+.teum-filter-builder__heading {
+  display: grid;
+  gap: 2px;
+  margin-bottom: 12px;
+}
+
+.teum-filter-builder__heading strong { font-size: var(--teum-type-ui); font-weight: 600; }
+
+.teum-filter-builder__heading span { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+
+.teum-filter-builder__form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(88px, .72fr);
+  gap: 9px;
+}
+
+.teum-filter-builder__form .teum-field:last-child { grid-column: 1 / -1; }
+
+.teum-filter-builder__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.teum-filter-builder__clear {
+  display: inline-flex;
+  height: 26px;
+  align-items: center;
+  gap: 4px;
+  padding: 0 5px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--teum-fg-subtle);
+  font: inherit;
+  font-size: var(--teum-type-metadata);
+  cursor: pointer;
+  transition: color var(--teum-hover-duration), background-color var(--teum-hover-duration);
+}
+
+.teum-filter-builder__clear svg { width: 11px; height: 11px; }
+
+@media (hover: hover) and (pointer: fine) {
+.teum-filter-builder__clear:hover { background: var(--teum-hover); color: var(--teum-fg-default); }
+}
+}
+
+@layer teum.components {
+.teum-menu__item--danger { color: var(--teum-fg-danger); }
+
+.teum-menu__item--danger svg { color: currentColor; }
+
+.teum-data-toolbar {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  padding: 8px 0;
+}
+
+.teum-data-toolbar__start,
+.teum-data-toolbar__end {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.teum-data-toolbar__end { justify-content: flex-end; margin-left: auto; }
+
+.teum-saved-views { min-width: 232px; }
+
+.teum-saved-views__copy {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 1px;
+}
+
+.teum-saved-views__copy strong { font-size: var(--teum-type-label); font-weight: 560; }
+
+.teum-saved-views__copy small,
+.teum-saved-views__count { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+
+.teum-saved-views__count { margin-left: auto; font-variant-numeric: tabular-nums; }
+
+.teum-column-manager { min-width: 216px; }
+
+.teum-column-manager__required {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: auto;
+  color: var(--teum-fg-subtle);
+  font-size: var(--teum-type-metadata);
+}
+
+.teum-column-manager__required svg { width: 10px; height: 10px; }
+
+@media (max-width: 700px) {
+.teum-data-toolbar { align-items: stretch; flex-direction: column; }
+
+.teum-data-toolbar__end { width: 100%; justify-content: flex-start; margin-left: 0; }
+}
+}
+
+@layer teum.components {
+.teum-sr-only,
+.teum-sr-only:not(:focus):not(:active) {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.teum-bulk-action-bar {
+  display: flex;
+  min-height: 46px;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 7px 6px 12px;
+  border-radius: 9px;
+  background: var(--teum-inverse);
+  color: var(--teum-on-inverse);
+  box-shadow: 0 12px 32px rgb(0 0 0 / .18);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 160ms var(--teum-ease-out), transform 180ms var(--teum-ease-out);
+}
+
+@starting-style {
+.teum-bulk-action-bar { opacity: 0; transform: translateY(8px); }
+}
+
+.teum-bulk-action-bar__selection {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.teum-bulk-action-bar__selection strong { font-size: var(--teum-type-ui); font-weight: 650; font-variant-numeric: tabular-nums; }
+
+.teum-bulk-action-bar__selection span { color: color-mix(in oklch, var(--teum-on-inverse) 72%, transparent); font-size: var(--teum-type-label); }
+
+.teum-bulk-action-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.teum-bulk-action-bar .teum-button,
+.teum-bulk-action-bar .teum-icon-button { color: var(--teum-on-inverse); }
+
+@media (prefers-reduced-motion: reduce) {
+.teum-bulk-action-bar { transform: none; transition: opacity 120ms var(--teum-ease-out); }
+}
+}
+
+@layer teum.components {
+.teum-date-range { width: min(520px, calc(100vw - 24px)); }
+
+.teum-date-range__heading {
+  display: grid;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.teum-date-range__heading strong { font-size: var(--teum-type-ui); font-weight: 600; }
+
+.teum-date-range__heading span { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+
+.teum-date-range__presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0 -5px 12px;
+}
+
+.teum-date-range__fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.teum-date-range__fields .teum-date-picker { width: 100%; }
+
+.teum-date-range__actions {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+@media (max-width: 700px) {
+.teum-date-range__fields { grid-template-columns: minmax(0, 1fr); }
+}
+}
+
+@layer teum.components {
+.teum-sr-only,
+.teum-sr-only:not(:focus):not(:active) {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.teum-data-export { min-width: 210px; }
+
+.teum-data-export .teum-menu__item svg { width: 14px; height: 14px; color: var(--teum-fg-subtle); }
+}
+
+@layer teum.components {
+.teum-sparkline {
+  display: block;
+  flex: none;
+  width: var(--teum-sparkline-width);
+  height: var(--teum-sparkline-height);
+  overflow: visible;
+  color: var(--teum-fg-default);
+}
+
+.teum-sparkline[data-tone="secondary"] { color: var(--teum-fg-muted); }
+
+.teum-sparkline[data-tone="tertiary"] { color: var(--teum-fg-subtle); }
+
+.teum-sparkline__line,
+.teum-sparkline__empty {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.teum-sparkline__area { fill: currentColor; opacity: .075; }
+
+.teum-sparkline__empty { opacity: .24; stroke-dasharray: 2 3; }
+}
+
+@layer teum.components {
+.teum-sr-only,
+.teum-sr-only:not(:focus):not(:active) {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.teum-metric {
+  display: flex;
+  min-width: 0;
+  min-height: 104px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 0;
+}
+
+.teum-metric__body { display: grid; min-width: 0; gap: 5px; }
+
+.teum-metric__label { color: var(--teum-fg-muted); font-size: var(--teum-type-ui); font-weight: 540; }
+
+.teum-metric__value {
+  min-width: 64px;
+  color: var(--teum-fg-default);
+  font-size: clamp(24px, 3vw, 32px);
+  font-variant-numeric: tabular-nums;
+  font-weight: 610;
+  letter-spacing: -.035em;
+  line-height: 1.05;
+}
+
+.teum-metric__meta { display: flex; min-width: 0; flex-wrap: wrap; align-items: center; gap: 5px 9px; color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+
+.teum-metric__trend { display: inline-flex; align-items: center; gap: 3px; }
+
+.teum-metric__trend svg { width: 12px; height: 12px; }
+
+.teum-metric__trend strong { color: var(--teum-fg-default); font-variant-numeric: tabular-nums; font-weight: 570; }
+
+.teum-metric__trend[data-sentiment="negative"] { color: var(--teum-fg-danger); }
+
+.teum-metric__trend[data-sentiment="negative"] strong { color: inherit; }
+
+.teum-metric__visual { display: grid; min-height: 36px; align-items: end; }
+
+.teum-metric__placeholder {
+  display: inline-block;
+  width: 84px;
+  height: .78em;
+  border-radius: 5px;
+  background: var(--teum-bg-subtle);
+  animation: teum-analytics-pulse 1.35s var(--teum-ease) infinite alternate;
+}
+
+@media (max-width: 640px) {
+.teum-metric { min-height: 92px; gap: 12px; }
+
+.teum-metric__value { font-size: 25px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+.teum-metric__placeholder { animation: none; }
+}
+
+@keyframes teum-analytics-pulse { from { opacity: .5; } to { opacity: 1; } }
+}
+
+@layer teum.components {
+.teum-sr-only,
+.teum-sr-only:not(:focus):not(:active) {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.teum-chart { display: grid; width: 100%; min-width: 0; margin: 0; gap: 12px; }
+
+.teum-chart__header { display: flex; min-width: 0; align-items: flex-start; justify-content: space-between; gap: 20px; }
+
+.teum-chart__header > div { display: grid; min-width: 0; gap: 3px; }
+
+.teum-chart__header h3 { margin: 0; color: var(--teum-fg-default); font-size: var(--teum-type-section); font-weight: 610; letter-spacing: -.022em; }
+
+.teum-chart__header p { margin: 0; color: var(--teum-fg-muted); font-size: var(--teum-type-metadata); line-height: 1.45; }
+
+.teum-chart__data-toggle {
+  min-height: 28px;
+  flex: none;
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--teum-radius-control);
+  background: transparent;
+  color: var(--teum-fg-muted);
+  font: inherit;
+  font-size: var(--teum-type-metadata);
+  cursor: pointer;
+  transition: background-color var(--teum-hover-duration) var(--teum-ease), color var(--teum-hover-duration) var(--teum-ease);
+}
+
+.teum-chart__legend { display: flex; min-width: 0; flex-wrap: wrap; gap: 4px; }
+
+.teum-chart__legend button {
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  gap: 6px;
+  padding: 0 7px;
+  border: 0;
+  border-radius: var(--teum-radius-control);
+  background: transparent;
+  color: var(--teum-fg-muted);
+  font: inherit;
+  font-size: var(--teum-type-metadata);
+  cursor: pointer;
+  transition: background-color var(--teum-hover-duration) var(--teum-ease), color var(--teum-hover-duration) var(--teum-ease), opacity var(--teum-hover-duration) var(--teum-ease);
+}
+
+.teum-chart__legend button > span { width: 16px; height: 2px; border-radius: 999px; background: var(--teum-fg-default); }
+
+.teum-chart__legend button[data-tone="secondary"] > span { opacity: .56; }
+
+.teum-chart__legend button[data-tone="tertiary"] > span { opacity: .32; }
+
+.teum-chart__legend button[data-line-style="dashed"] > span { background: repeating-linear-gradient(90deg, currentColor 0 5px, transparent 5px 8px); }
+
+.teum-chart__legend button[data-line-style="dotted"] > span { background: repeating-linear-gradient(90deg, currentColor 0 2px, transparent 2px 5px); }
+
+.teum-chart__legend button[aria-pressed="false"] > span { opacity: .28; }
+
+.teum-chart__legend button[aria-disabled="true"] { cursor: default; }
+
+.teum-chart__plot {
+  position: relative;
+  min-width: 0;
+  height: var(--teum-chart-height);
+  overflow: hidden;
+  border-radius: var(--teum-radius-container);
+  background: color-mix(in srgb, var(--teum-bg-stage) 76%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--teum-fg-default) 7%, transparent);
+}
+
+.teum-chart__plot:focus { outline: 0; }
+
+.teum-chart__plot svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+.teum-chart__grid line { stroke: var(--teum-separator); stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+.teum-chart__grid text,
+.teum-chart__x-axis text { fill: var(--teum-fg-subtle); font-family: var(--teum-font-ui); font-size: 10px; font-variant-numeric: tabular-nums; }
+
+.teum-chart__grid text { text-anchor: end; dominant-baseline: middle; }
+
+.teum-chart__area { fill: var(--teum-fg-default); opacity: .045; }
+
+.teum-chart__series path { fill: none; stroke: var(--teum-fg-default); stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.65; vector-effect: non-scaling-stroke; transition: opacity var(--teum-fast) var(--teum-ease); }
+
+.teum-chart__series path[data-tone="secondary"] { opacity: .58; }
+
+.teum-chart__series path[data-tone="tertiary"] { opacity: .34; }
+
+.teum-chart__series path[data-line-style="dashed"] { stroke-dasharray: 6 5; }
+
+.teum-chart__series path[data-line-style="dotted"] { stroke-dasharray: 1.5 4; }
+
+.teum-chart__annotations line { stroke: var(--teum-fg-subtle); stroke-dasharray: 2 4; stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+.teum-chart__annotations text { fill: var(--teum-fg-subtle); font-family: var(--teum-font-ui); font-size: 9px; }
+
+.teum-chart__annotations [data-tone="danger"] line { stroke: var(--teum-fg-danger); }
+
+.teum-chart__annotations [data-tone="danger"] text { fill: var(--teum-fg-danger); }
+
+.teum-chart__active line { stroke: color-mix(in srgb, var(--teum-fg-default) 22%, transparent); stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+.teum-chart__active circle { fill: var(--teum-bg-surface); stroke: var(--teum-fg-default); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+
+.teum-chart__active circle[data-tone="secondary"] { opacity: .65; }
+
+.teum-chart__active circle[data-tone="tertiary"] { opacity: .45; }
+
+.teum-chart__tooltip {
+  position: absolute;
+  top: 12px;
+  left: clamp(82px, var(--teum-chart-active-x), calc(100% - 82px));
+  z-index: 2;
+  display: grid;
+  min-width: 144px;
+  gap: 6px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  background: var(--teum-bg-flyout);
+  box-shadow: var(--teum-shadow-flyout);
+  color: var(--teum-fg-default);
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.teum-chart__tooltip > strong { font-size: var(--teum-type-metadata); font-weight: 590; }
+
+.teum-chart__tooltip > span { display: grid; grid-template-columns: 7px minmax(0, 1fr) auto; align-items: center; gap: 6px; font-size: var(--teum-type-metadata); }
+
+.teum-chart__tooltip i { width: 6px; height: 6px; border-radius: 50%; background: var(--teum-fg-default); }
+
+.teum-chart__tooltip i[data-tone="secondary"] { opacity: .58; }
+
+.teum-chart__tooltip i[data-tone="tertiary"] { opacity: .34; }
+
+.teum-chart__tooltip em { overflow: hidden; color: var(--teum-fg-muted); font-style: normal; text-overflow: ellipsis; white-space: nowrap; }
+
+.teum-chart__tooltip b { font-variant-numeric: tabular-nums; font-weight: 580; }
+
+.teum-chart__loading,
+.teum-chart__empty { display: grid; width: 100%; height: 100%; place-content: center; color: var(--teum-fg-subtle); font-size: var(--teum-type-ui); }
+
+.teum-chart__loading { grid-auto-flow: column; align-items: center; gap: 8px; }
+
+.teum-chart__loading > span { width: 12px; height: 12px; border: 1.5px solid var(--teum-separator-strong); border-top-color: var(--teum-fg-default); border-radius: 50%; animation: teum-spinner .7s linear infinite; }
+
+.teum-chart__table { min-width: 0; overflow: auto; border-radius: var(--teum-radius-container); background: var(--teum-bg-stage); }
+
+.teum-chart__table--visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+
+.teum-chart__table table { width: 100%; border-collapse: collapse; font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; }
+
+.teum-chart__table caption { padding: 10px 12px; text-align: left; color: var(--teum-fg-default); font-weight: 590; }
+
+.teum-chart__table th,
+.teum-chart__table td { padding: 8px 12px; border-top: 1px solid var(--teum-separator); text-align: right; white-space: nowrap; }
+
+.teum-chart__table th:first-child { text-align: left; }
+
+.teum-chart__table thead th { color: var(--teum-fg-subtle); font-weight: 540; }
+
+.teum-chart__table tbody th { color: var(--teum-fg-muted); font-weight: 520; }
+
+.teum-chart__data-toggle:focus,
+.teum-chart__legend button:focus { outline: 0; }
+
+@media (hover: hover) and (pointer: fine) {
+.teum-chart__data-toggle:hover,
+.teum-chart__legend button:not([aria-disabled="true"]):hover { background: var(--teum-hover); color: var(--teum-fg-default); }
+}
+
+.teum-chart__data-toggle:active,
+.teum-chart__legend button:not([aria-disabled="true"]):active { transform: scale(.985); }
+
+@media (max-width: 640px) {
+.teum-chart__header { align-items: center; }
+
+.teum-chart__plot { height: min(var(--teum-chart-height), 230px); }
+
+.teum-chart__tooltip { min-width: 128px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+.teum-chart__loading > span { animation: none; }
+
+.teum-chart__series path { transition-duration: 0ms; }
+}
+
+@keyframes teum-spin { to { transform: rotate(360deg); } }
+}
+
+@layer teum.components {
+.teum-sr-only,
+.teum-sr-only:not(:focus):not(:active) {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.teum-comparison {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .8fr) auto;
+  align-items: end;
+  gap: 16px;
+  margin: 0;
+}
+
+.teum-comparison > div { display: grid; min-width: 0; gap: 3px; }
+
+.teum-comparison dt { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+
+.teum-comparison dd { margin: 0; color: var(--teum-fg-default); font-size: var(--teum-type-ui); font-variant-numeric: tabular-nums; font-weight: 570; }
+
+.teum-comparison__primary dd { font-size: 20px; letter-spacing: -.025em; }
+
+.teum-comparison__change dd { display: inline-flex; align-items: center; gap: 3px; }
+
+.teum-comparison__change svg { width: 12px; height: 12px; }
+
+.teum-comparison__change[data-sentiment="negative"] dd { color: var(--teum-fg-danger); }
+
+@media (max-width: 640px) {
+.teum-comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.teum-comparison__change { grid-column: 1 / -1; }
+}
+}
+
+@layer teum.components {
+.teum-breakdown { display: grid; min-width: 0; gap: 2px; margin: 0; padding: 0; list-style: none; }
+
+.teum-breakdown li > div,
+.teum-breakdown li > button { display: grid; width: 100%; min-height: 36px; grid-template-columns: minmax(0, 1fr) minmax(56px, .72fr) auto; align-items: center; gap: 10px; padding: 5px 6px; border: 0; border-radius: var(--teum-radius-control); background: transparent; color: inherit; font: inherit; text-align: left; }
+
+.teum-breakdown li > button { cursor: pointer; }
+
+.teum-breakdown__label { overflow: hidden; color: var(--teum-fg-muted); font-size: var(--teum-type-ui); text-overflow: ellipsis; white-space: nowrap; }
+
+.teum-breakdown__bar { height: 4px; overflow: hidden; border-radius: 999px; background: var(--teum-bg-subtle); }
+
+.teum-breakdown__bar > span { display: block; width: calc(var(--teum-breakdown-progress) * 100%); height: 100%; border-radius: inherit; background: var(--teum-fg-default); }
+
+.teum-breakdown__bar > span[data-tone="secondary"] { opacity: .58; }
+
+.teum-breakdown__bar > span[data-tone="tertiary"] { opacity: .34; }
+
+.teum-breakdown strong { min-width: 46px; text-align: right; font-size: var(--teum-type-ui); font-variant-numeric: tabular-nums; font-weight: 570; }
+
+.teum-breakdown small { grid-column: 1 / -1; color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+
+.teum-breakdown li > button:focus { outline: 0; }
+
+@media (hover: hover) and (pointer: fine) {
+.teum-breakdown li > button:hover { background: var(--teum-hover); color: var(--teum-fg-default); }
+}
+
+.teum-breakdown li > button:active { transform: scale(.985); }
+
+.teum-breakdown li > button[aria-pressed="true"] { background: var(--teum-selected); }
+
+@media (max-width: 640px) {
+.teum-breakdown li > div,
+.teum-breakdown li > button { grid-template-columns: minmax(86px, .8fr) minmax(54px, 1fr) auto; gap: 7px; }
+}
+}
+
+@layer teum.components {
+.teum-goal { display: grid; min-width: 0; gap: 8px; }
+
+.teum-goal__heading,
+.teum-goal__meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+
+.teum-goal__heading { color: var(--teum-fg-default); font-size: var(--teum-type-ui); }
+
+.teum-goal__heading strong { font-variant-numeric: tabular-nums; font-weight: 590; }
+
+.teum-goal__track { height: 5px; overflow: hidden; border-radius: 999px; background: var(--teum-bg-subtle); }
+
+.teum-goal__indicator { display: block; width: 100%; height: 100%; border-radius: inherit; background: var(--teum-fg-default); transform: scaleX(var(--teum-goal-progress)); transform-origin: left center; transition: transform var(--teum-medium) var(--teum-ease-out); }
+
+.teum-goal__meta { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; }
+
+.teum-goal__description { color: var(--teum-fg-muted); font-size: var(--teum-type-metadata); line-height: 1.45; }
+
+@media (prefers-reduced-motion: reduce) {
+.teum-goal__indicator { transition-duration: 0ms; }
+}
+}
+
+@layer teum.components {
+.teum-funnel { display: grid; min-width: 0; gap: 2px; margin: 0; padding: 0; list-style: none; }
+
+.teum-funnel { gap: 4px; }
+
+.teum-funnel li > div,
+.teum-funnel li > button { display: grid; width: 100%; gap: 5px; padding: 8px; border: 0; border-radius: 8px; background: transparent; color: inherit; font: inherit; text-align: left; }
+
+.teum-funnel li > button { cursor: pointer; }
+
+.teum-funnel__heading,
+.teum-funnel__meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+
+.teum-funnel__heading strong { font-size: var(--teum-type-ui); font-weight: 570; }
+
+.teum-funnel__heading b { font-size: var(--teum-type-ui); font-variant-numeric: tabular-nums; font-weight: 590; }
+
+.teum-funnel__track { height: 7px; overflow: hidden; border-radius: 999px; background: var(--teum-bg-subtle); }
+
+.teum-funnel__track i { display: block; width: calc(var(--teum-funnel-progress) * 100%); height: 100%; border-radius: inherit; background: var(--teum-fg-default); }
+
+.teum-funnel__meta { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+
+.teum-funnel__meta small { font-size: inherit; }
+
+.teum-funnel li > button:focus { outline: 0; }
+
+@media (hover: hover) and (pointer: fine) {
+.teum-funnel li > button:hover { background: var(--teum-hover); color: var(--teum-fg-default); }
+}
+
+.teum-funnel li > button:active { transform: scale(.985); }
+
+.teum-funnel li > button[aria-pressed="true"] { background: var(--teum-selected); }
+}
+
+@layer teum.components {
+.teum-cohort { min-width: 0; overflow: auto; border-radius: var(--teum-radius-container); background: var(--teum-bg-stage); }
+
+.teum-cohort:focus { outline: 0; }
+
+.teum-cohort table { width: 100%; min-width: 620px; border-collapse: separate; border-spacing: 3px; padding: 7px; font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; }
+
+.teum-cohort caption { padding: 3px 4px 8px; text-align: left; color: var(--teum-fg-default); font-weight: 590; }
+
+.teum-cohort th,
+.teum-cohort td { height: 32px; padding: 0 8px; border-radius: 5px; text-align: center; }
+
+.teum-cohort thead th { color: var(--teum-fg-subtle); font-weight: 520; }
+
+.teum-cohort tbody th { min-width: 104px; color: var(--teum-fg-muted); font-weight: 540; text-align: left; white-space: nowrap; }
+
+.teum-cohort td { background: color-mix(in srgb, var(--teum-fg-default) calc(4% + var(--teum-cohort-strength) * 22%), transparent); color: var(--teum-fg-default); }
+
+.teum-cohort td[data-empty] { background: transparent; color: var(--teum-fg-subtle); }
+}
+
+@layer teum.components {
+.teum-timeline { display: grid; min-width: 0; gap: 2px; margin: 0; padding: 0; list-style: none; }
+
+.teum-timeline { gap: 0; }
+
+.teum-timeline li { position: relative; }
+
+.teum-timeline li:not(:last-child)::after { position: absolute; top: 26px; bottom: -6px; left: 13px; width: 1px; background: var(--teum-separator); content: ""; }
+
+.teum-timeline li > div,
+.teum-timeline li > button { position: relative; z-index: 1; display: grid; width: 100%; min-height: 52px; grid-template-columns: 14px minmax(0, 1fr) auto; align-items: start; gap: 10px; padding: 8px 7px; border: 0; border-radius: 8px; background: transparent; color: inherit; font: inherit; text-align: left; }
+
+.teum-timeline li > button { cursor: pointer; }
+
+.teum-timeline__marker { width: 8px; height: 8px; margin-top: 5px; border: 2px solid var(--teum-bg-surface); border-radius: 50%; background: var(--teum-fg-subtle); box-shadow: 0 0 0 1px var(--teum-separator-strong); }
+
+.teum-timeline__marker[data-tone="accent"] { background: var(--teum-fg-default); }
+
+.teum-timeline__marker[data-tone="danger"] { background: var(--teum-fg-danger); }
+
+.teum-timeline__content { display: grid; min-width: 0; gap: 2px; }
+
+.teum-timeline__content > span { display: flex; min-width: 0; align-items: baseline; justify-content: space-between; gap: 12px; }
+
+.teum-timeline__content strong { overflow: hidden; font-size: var(--teum-type-ui); font-weight: 570; text-overflow: ellipsis; white-space: nowrap; }
+
+.teum-timeline__content time,
+.teum-timeline__content small { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+
+.teum-timeline__value { padding-top: 1px; font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; font-weight: 570; }
+
+.teum-timeline li > button:focus { outline: 0; }
+
+@media (hover: hover) and (pointer: fine) {
+.teum-timeline li > button:hover { background: var(--teum-hover); color: var(--teum-fg-default); }
+}
+
+.teum-timeline li > button:active { transform: scale(.985); }
+
+.teum-timeline li > button[aria-pressed="true"] { background: var(--teum-selected); }
 }

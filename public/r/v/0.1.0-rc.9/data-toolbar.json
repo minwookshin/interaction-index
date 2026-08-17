@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "data-toolbar",
+  "title": "Data Toolbar",
+  "description": "Saved views, query controls, and display settings in one labelled collection boundary.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@teum-pinned/teum-base",
+    "@teum-pinned/button",
+    "@teum-pinned/menu"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/data-toolbar.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/data-toolbar.css\";\nimport { CaretDown, Check, FloppyDisk, SlidersHorizontal } from \"@phosphor-icons/react\";\nimport type { HTMLAttributes, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\nimport { Button } from \"./button\";\nimport {\n  Menu,\n  MenuCheckboxItem,\n  MenuContent,\n  MenuItem,\n  MenuLabel,\n  MenuRadioGroup,\n  MenuRadioItem,\n  MenuSeparator,\n  MenuTrigger,\n} from \"./menu\";\n\nexport type DataToolbarProps = HTMLAttributes<HTMLDivElement> & {\n  label: string;\n  start?: ReactNode;\n  end?: ReactNode;\n};\n\nexport function DataToolbar({ label, start, end, className, ...props }: DataToolbarProps) {\n  return <div className={cn(\"teum-data-toolbar\", className)} role=\"toolbar\" aria-label={label} {...props}><div className=\"teum-data-toolbar__start\">{start}</div><div className=\"teum-data-toolbar__end\">{end}</div></div>;\n}\n\nexport type SavedView = {\n  id: string;\n  label: string;\n  description?: string;\n  count?: number;\n};\n\nexport type SavedViewsProps = {\n  views: readonly SavedView[];\n  value: string;\n  onValueChange: (value: string) => void;\n  onSaveCurrent?: () => void;\n  label?: string;\n};\n\nexport function SavedViews({ views, value, onValueChange, onSaveCurrent, label = \"View\" }: SavedViewsProps) {\n  const selected = views.find((view) => view.id === value) ?? views[0];\n  return (\n    <Menu>\n      <MenuTrigger render={<Button size=\"small\" variant=\"ghost\" trailingIcon={<CaretDown />} aria-label={`${label}: ${selected?.label ?? \"None\"}`} />}>{selected?.label ?? label}</MenuTrigger>\n      <MenuContent className=\"teum-saved-views\" align=\"start\">\n        <MenuLabel>{label}</MenuLabel>\n        <MenuRadioGroup value={value} onValueChange={(nextValue) => onValueChange(nextValue)}>\n          {views.map((view) => <MenuRadioItem key={view.id} value={view.id} closeOnClick><span className=\"teum-saved-views__copy\"><strong>{view.label}</strong>{view.description && <small>{view.description}</small>}</span>{typeof view.count === \"number\" && <small className=\"teum-saved-views__count\">{view.count}</small>}</MenuRadioItem>)}\n        </MenuRadioGroup>\n        {onSaveCurrent && <><MenuSeparator /><MenuItem onClick={onSaveCurrent}><FloppyDisk aria-hidden=\"true\" />Save current view</MenuItem></>}\n      </MenuContent>\n    </Menu>\n  );\n}\n\nexport type ColumnManagerColumn = {\n  id: string;\n  label: string;\n  visible: boolean;\n  required?: boolean;\n};\n\nexport type ColumnManagerProps = {\n  columns: readonly ColumnManagerColumn[];\n  onVisibilityChange: (id: string, visible: boolean) => void;\n  label?: string;\n};\n\nexport function ColumnManager({ columns, onVisibilityChange, label = \"Columns\" }: ColumnManagerProps) {\n  const visibleCount = columns.filter((column) => column.visible).length;\n  return (\n    <Menu>\n      <MenuTrigger render={<Button size=\"small\" variant=\"ghost\" leadingIcon={<SlidersHorizontal />} aria-label={`${visibleCount} of ${columns.length} columns visible`} />}>{label}</MenuTrigger>\n      <MenuContent className=\"teum-column-manager\" align=\"end\">\n        <MenuLabel>Visible columns</MenuLabel>\n        {columns.map((column) => <MenuCheckboxItem key={column.id} checked={column.visible} disabled={column.required} closeOnClick={false} onCheckedChange={(checked) => onVisibilityChange(column.id, checked)}>{column.label}{column.required && <span className=\"teum-column-manager__required\"><Check aria-hidden=\"true\" />Required</span>}</MenuCheckboxItem>)}\n      </MenuContent>\n    </Menu>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/data-toolbar.tsx"
+    },
+    {
+      "path": "registry/styles/components/data-toolbar.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-data-toolbar {\n  display: flex;\n  min-width: 0;\n  align-items: center;\n  justify-content: space-between;\n  gap: 10px 16px;\n  padding: 8px 0;\n}\n\n.teum-data-toolbar__start,\n.teum-data-toolbar__end {\n  display: flex;\n  min-width: 0;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 6px;\n}\n\n.teum-data-toolbar__end { justify-content: flex-end; margin-left: auto; }\n\n.teum-saved-views { min-width: 232px; }\n\n.teum-saved-views__copy {\n  display: grid;\n  min-width: 0;\n  flex: 1;\n  gap: 1px;\n}\n\n.teum-saved-views__copy strong { font-size: var(--teum-type-label); font-weight: 560; }\n\n.teum-saved-views__copy small,\n.teum-saved-views__count { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }\n\n.teum-saved-views__count { margin-left: auto; font-variant-numeric: tabular-nums; }\n\n.teum-column-manager { min-width: 216px; }\n\n.teum-column-manager__required {\n  display: inline-flex;\n  align-items: center;\n  gap: 3px;\n  margin-left: auto;\n  color: var(--teum-fg-subtle);\n  font-size: var(--teum-type-metadata);\n}\n\n.teum-column-manager__required svg { width: 10px; height: 10px; }\n\n@media (max-width: 700px) {\n.teum-data-toolbar { align-items: stretch; flex-direction: column; }\n\n.teum-data-toolbar__end { width: 100%; justify-content: flex-start; margin-left: 0; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/data-toolbar.css"
+    }
+  ],
+  "type": "registry:component"
+}

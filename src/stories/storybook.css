@@ -249,3 +249,20 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+.analytics-story {
+  min-height: 100vh;
+  padding: 48px;
+  color: var(--teum-ink);
+  background: var(--teum-canvas);
+}
+
+.analytics-story > .teum-analytics-recipe,
+.analytics-story > .teum-product-pattern {
+  width: min(1120px, 100%);
+  margin-inline: auto;
+}
+
+@media (max-width: 720px) {
+  .analytics-story { padding: 24px 16px; }
+}

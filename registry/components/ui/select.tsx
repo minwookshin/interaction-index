@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/select.css";
 import { Check, CaretDown } from "@phosphor-icons/react";

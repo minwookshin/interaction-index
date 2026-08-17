@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/kbd.css";
 import type { ComponentPropsWithRef } from "react";

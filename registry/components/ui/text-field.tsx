@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/text-field.css";
 import { useId, type ComponentPropsWithRef, type ReactNode } from "react";

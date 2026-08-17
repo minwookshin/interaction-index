@@ -6,11 +6,12 @@ A dense, monochrome component and interaction system for product interfaces. It 
 
 | | Current state |
 | --- | --- |
-| Version | `0.1.0-rc.4` |
+| Version | `0.1.0-rc.22` |
 | Catalog | 45 documented components |
+| Product layer | 15 primitives, 6 vertical recipes, and 3 B2B product patterns |
 | Themes | Light-first; fully reviewed dark theme |
 | Distribution | [Public source](https://github.com/minwookshin/teum) and HTTPS shadcn registry; npm unpublished |
-| Package | MIT-licensed alpha; APIs may change |
+| Package | MIT-licensed pre-release; APIs may change |
 | License | [MIT](./LICENSE) |
 
 The source and generated registry are public under MIT. The npm package remains private and unpublished, and there is no production-adoption claim.
@@ -32,7 +33,9 @@ Current evaluation uses the source-owned shadcn registry. The future `teum` npm 
 - **Components** — Interactive Product labs, locked State inspection, exact code, realistic recipes, meaningful state contracts, use/avoid guidance, accessibility contracts, compatibility, and typed APIs.
 - **Choosing components** — Task, focus, and recovery boundaries for adjacent controls and surfaces that should not be merged by shape.
 - **Patterns** — Working Playgrounds for Edit in place, Find and act, Preserve context, and Recover from action.
-- **Product pilot** — A compact issue-management workspace that composes search, fields, dialog, table, toast, Shared Detail, and Undo Stack into one working task flow.
+- **Teum Data** — Data Table, Filter Builder, Data Toolbar, Bulk Action Bar, Date Range Filter, and Data Export Menu, composed into Issues Workspace, Customer Directory, and Audit Log recipes.
+- **Teum Analytics** — Sparkline, Metric, Chart, Comparison, Breakdown, Goal, Funnel, Cohort, and Timeline, composed into SaaS Overview, Product Usage, and Conversion & Retention recipes.
+- **Product Patterns** — Customer Workspace, Billing & Usage, and Members & Permissions compose Core, Data, and Analytics into complete B2B tasks with shared state ownership and recovery contracts.
 
 ### Components
 
@@ -85,6 +88,7 @@ Storybook is the isolated review and regression surface for all 45 public compon
 ```bash
 npm run storybook                  # isolated local review surface
 npm run test:stories               # 45 light + 45 dark interaction and axe checks
+npm run test:a11y:evidence         # five-project accessibility matrix + release/accessibility.json
 npm run test:stories:visual        # committed Product and State snapshots
 npm run test:stories:visual:update # intentionally accept a reviewed visual change
 npm run build:storybook            # static Storybook build
@@ -126,6 +130,110 @@ npx playwright install chromium firefox webkit
 npm run test:browsers
 ```
 
+## Quickstart
+
+From a React + TypeScript project with `components.json`, connect the pinned release-candidate registry and add one source-owned component:
+
+```bash
+npx shadcn@4.18.0 registry add @teum-pinned=https://teum.minwookshin.com/r/v/0.1.0-rc.22/{name}.json
+npx shadcn@4.18.0 add @teum-pinned/button
+```
+
+```tsx
+import { Button } from "./components/ui/button";
+
+export function App() {
+  return <Button variant="primary">Create issue</Button>;
+}
+```
+
+Use [`examples/quickstart-vite`](./examples/quickstart-vite) for Vite or [`examples/quickstart-next`](./examples/quickstart-next) for Next.js App Router. The repository installs and production-builds both starters; Vite is checked on React 18 and React 19, and Next keeps its layout and page server-rendered with one explicit client component for interaction.
+
+Theme and product customization stay in semantic CSS:
+
+```ts
+document.documentElement.dataset.theme = "dark";
+```
+
+```css
+:root { --teum-radius-control: 9px; }
+```
+
+Before updating copied source, inspect without writing:
+
+```bash
+npx shadcn@4.18.0 add @teum-pinned/button --dry-run
+npx shadcn@4.18.0 add @teum-pinned/button --diff src/components/ui/button.tsx
+```
+
+See [Adoption](./ADOPTION.md) and [Registry updates](./REGISTRY_UPDATES.md) for the complete reviewed path.
+
+Install the complete Teum Data slice:
+
+```bash
+npx shadcn@4.18.0 add @teum-pinned/teum-data
+```
+
+```tsx
+import { IssuesWorkspace } from "./components/patterns/issues-workspace";
+
+export function App() {
+  return <IssuesWorkspace />;
+}
+```
+
+The same registry block also installs `CustomerDirectoryRecipe` and `AuditLogRecipe`. Together the three recipes verify controlled and server-oriented state, compact URL serialization, persistent personal views, filtering, sorting, pagination, column sizing and pinning, 10,000-row virtualization, date ranges, selection, mutation recovery, and CSV/JSON export. The 45-component Core catalog remains unchanged.
+
+Install the complete Teum Analytics slice:
+
+```bash
+npx shadcn@4.18.0 add @teum-pinned/teum-analytics
+```
+
+```tsx
+import { SaaSOverviewRecipe } from "./components/patterns/analytics-recipes";
+
+export function App() {
+  return <SaaSOverviewRecipe />;
+}
+```
+
+The same block installs `ProductUsageRecipe` and `ConversionRetentionRecipe`, nine analytics primitives, their semantic styles, and agent-readable composition contracts. Charts use native SVG and semantic table fallbacks; no chart runtime is added.
+
+Install the complete Product Patterns slice:
+
+```bash
+npx shadcn@4.18.0 add @teum-pinned/teum-product-patterns
+```
+
+```tsx
+import { CustomerWorkspaceRecipe } from "./components/patterns/product-pattern-recipes";
+
+export function App() {
+  return <CustomerWorkspaceRecipe />;
+}
+```
+
+The same block installs `BillingUsageRecipe` and `MembersPermissionsRecipe`, their scoped styles, representative Core/Data/Analytics dependencies, and the machine-readable composition contract. These are reference implementations with local verification, not external production-adoption evidence.
+
+## Agent integration
+
+Install the machine-readable contract and all nine product recipes through the source registry:
+
+```bash
+npx shadcn@4.18.0 add @teum-pinned/teum-agent
+```
+
+The same contract is available at [`/agent/teum-agent.json`](https://teum.minwookshin.com/agent/teum-agent.json). It defines documented component-selection boundaries, nine complete product recipes, fourteen forbidden rules, and the public quality gates. The installable `teum` skill uses that contract instead of inventing component names or props.
+
+```bash
+npx skills add minwookshin/teum --skill teum --copy --yes
+```
+
+`npm run test:agent` evaluates thirty fixed B2B product requests, installs the registry contract into one clean React + TypeScript + Vite consumer, and collectively type-checks and production-builds all thirty generated task modules. This is deterministic repository evidence, not an external model benchmark or production-adoption claim.
+
+Button imports the shared plain-CSS contract and its scoped stylesheet itself. The latest fresh Vite consumer verified the namespace command, install, TypeScript check, and production build; see [`release/quickstart.json`](./release/quickstart.json). Exact elapsed time is observational because network and package-manager caches vary.
+
 ## Teum Registry
 
 Build the shadcn-compatible artifacts:
@@ -136,14 +244,14 @@ npm run test:registry
 npm run diff:registry -- --from ./previous-manifest.json
 ```
 
-Generated files live in `public/r`. Use the mutable namespace during active alpha evaluation, or pin the exact release path for reproducible review:
+Generated files live in `public/r`. Use the mutable namespace during active pre-release evaluation, or pin the exact release path for reproducible review:
 
 ```bash
-npx shadcn@latest registry add @teum=https://interactions.minwookshin.com/r/{name}.json
-npx shadcn@latest add @teum/button
+npx shadcn@4.18.0 registry add @teum=https://teum.minwookshin.com/r/{name}.json
+npx shadcn@4.18.0 add @teum/button
 
-npx shadcn@latest registry add @teum-pinned=https://interactions.minwookshin.com/r/v/0.1.0-rc.4/{name}.json
-npx shadcn@latest add @teum-pinned/button
+npx shadcn@4.18.0 registry add @teum-pinned=https://teum.minwookshin.com/r/v/0.1.0-rc.22/{name}.json
+npx shadcn@4.18.0 add @teum-pinned/button
 ```
 
 Teum owns the registry namespace, component source, tokens, APIs, and release contract. The shadcn CLI is the compatible transport that resolves and copies those files; it is not the design-system identity. A dedicated Teum CLI would be a separate future product boundary, not a relabeled command.
@@ -179,7 +287,7 @@ import "./styles/teum.css";
 Tailwind CSS v4 consumers can add the optional bridge without changing component source:
 
 ```bash
-npx shadcn@latest add @teum/teum-tailwind
+npx shadcn@4.18.0 add @teum/teum-tailwind
 ```
 
 ```css
@@ -190,15 +298,17 @@ npx shadcn@latest add @teum/teum-tailwind
 
 The bridge exposes semantic utilities such as `bg-background`, `text-foreground`, `rounded-control`, and `shadow-flyout`; each resolves to the same Teum variables used by plain CSS.
 
-`public/r/manifest.json` is the deterministic update boundary. It hashes each JSON artifact, each copied file, every public TypeScript export, and every semantic token contract. The mutable alpha channel remains reviewable; `public/r/v/<version>` is content-locked, rewrites internal dependencies into the same-version `@teum-pinned` scope, rejects changed contents under an existing version, and is deployed with an immutable cache policy. `npm run test:registry` now performs a real shadcn CLI install with only that pinned registry configured. `npm run test:consumer:upgrade` proves that a local source edit is preserved while an upstream candidate is staged for explicit acceptance. See [Registry updates](./REGISTRY_UPDATES.md).
+`public/r/manifest.json` is the deterministic update boundary. It hashes each JSON artifact, each copied file, every public TypeScript export, and every semantic token contract. The mutable pre-release channel remains reviewable; `public/r/v/<version>` is content-locked, rewrites internal dependencies into the same-version `@teum-pinned` scope, pins external packages and the installer, rejects changed contents under an existing version, and is deployed with an immutable cache policy. An append-only history ledger checks every prior version, while release-anchored directories must also match their source commit byte-for-byte. `npm run test:registry` performs a real shadcn CLI install with only that pinned registry configured. `npm run test:consumer:upgrade` proves that a local source edit is preserved while an upstream candidate is staged for explicit acceptance. See [Registry updates](./REGISTRY_UPDATES.md).
 
 The repository can also be installed directly through shadcn without operating a separate registry server:
 
 ```bash
-npx shadcn@latest add minwookshin/teum/teum
+npx shadcn@4.18.0 add minwookshin/teum/teum#v0.1.0-rc.22
 ```
 
 Canonical metadata points to [minwookshin/teum](https://github.com/minwookshin/teum). The npm package remains private and unpublished.
+
+The public beta program and its evidence boundary are documented in [BETA.md](./BETA.md). The repository does not convert internal fixtures into adoption claims; v1 remains blocked until an independent project installs and builds the candidate and two feedback rounds are recorded.
 
 ### Private package candidate
 
@@ -210,11 +320,18 @@ npm run check:package
 npm run test:package
 ```
 
-The tarball exposes one React entry point, typed tokens, the reviewed stylesheet, and registry JSON subpaths. React stays a peer dependency. The package-candidate workflow can generate GitHub build provenance for the tarball, but it has no npm credential and no publish step.
+The tarball exposes one React client-boundary entry point, typed tokens, the reviewed stylesheet, and registry JSON subpaths. React stays a peer dependency. A fresh ESM consumer type-checks and production-builds the package, renders a representative component tree with Node SSR, then hydrates it with zero recoverable mismatch errors; the machine-readable result lives in [`release/package-contract.json`](./release/package-contract.json). The source registry also installs and builds in a clean Next.js App Router consumer; that proof does not yet cover the unpublished package entry point or Remix. The package-candidate workflow can generate GitHub build provenance for the tarball, but it has no npm credential and no publish step.
 
 ## Project evidence
 
+- [Teum Data milestone](./release/teum-data-milestone.md)
+- [Teum Analytics milestone](./release/teum-analytics-milestone.md)
+- [Generated release evidence](./release/evidence.md)
+- [Adoption guide](./ADOPTION.md)
+- [Adoption DX milestone](./release/teum-adoption-dx-milestone.md)
+- [Current release-candidate notes](./release/0.1.0-rc.22.md)
 - [Generated public API report](./api/generated/public-api.md)
+- [Package SSR and hydration contract](./release/package-contract.json)
 - [Compatibility](./COMPATIBILITY.md)
 - [Browser and support policy](./SUPPORT.md)
 - [Security policy](./SECURITY.md)

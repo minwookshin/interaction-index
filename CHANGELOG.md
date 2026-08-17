@@ -1,6 +1,198 @@
 # Changelog
 
-This project follows Semantic Versioning once a public API is released. During `0.x`, documented APIs may still change; every breaking alpha change must be called out here.
+This project follows Semantic Versioning once a public API is released. During `0.x`, documented APIs may still change; every breaking pre-release change must be called out here.
+
+## 0.1.0-rc.22 — 2026-08-17
+
+### Public beta
+
+- Added a machine-readable beta gate for the live site, GitHub prerelease, immutable registry, npm beta, independent installs, feedback rounds, external review, and the API stability window.
+- Added an isolated public-package assembler and verifier while keeping the repository package private.
+- Added a stage-only npm trusted-publishing workflow with no long-lived publication token.
+- Added a live verifier that compares deployed registry artifacts with the candidate bytes and checks release, cache, and security-header contracts.
+- Replaced the landing quickstart with an exact tag-pinned GitHub registry command that works before npm publication.
+
+### Evidence boundary
+
+- Public beta publication is separate from v1 readiness. Independent adoption, two feedback rounds, external support reviews, and the 28-day stability window remain open until dated evidence exists.
+
+## 0.1.0-rc.21 — 2026-08-17
+
+### Security
+
+- Pinned every GitHub Action to a reviewed full commit SHA and disabled persisted checkout credentials.
+- Isolated Pages deployment and package attestation permissions from dependency installation and build steps.
+- Added exact candidate file allowlists, fresh staging directories, immutable registry history verification, and shared hosting security-header checks.
+- Isolated clean-room verification in a no-hardlinks Git clone so nested consumer fixtures cannot mutate the owner's repository metadata.
+
+### Quality
+
+- Refreshed the complete package, registry, browser, accessibility, visual, and performance evidence for one reproducible public RC.
+- Kept npm publication, deployment, tagging, and GitHub Release creation manual and disabled in repository scripts.
+
+## 0.1.0-rc.20 — 2026-08-17
+
+### Added
+
+- Added exact Vite and Next.js App Router quickstarts for the pinned source registry.
+- Added concise theme, update, migration, and troubleshooting guidance for first-time adopters.
+- Added clean-consumer Adoption DX evidence for React 18, React 19, Next.js, and reviewed source updates.
+
+### Quality
+
+- Verified registry installation, one semantic token override, light and dark themes, strict type checking, and production builds in clean consumers.
+- Verified that update dry-run and file diff do not write, while overwrite remains an explicit adopter decision.
+- Kept the ten-minute target scoped to automated clean-room journeys; no independent novice timing or production adoption is claimed.
+
+## 0.1.0-rc.19 — 2026-08-16
+
+### Added
+
+- Added one generated agent contract covering 69 installable registry items, nine product recipes, fourteen adjacent-component selection rules, and fourteen forbidden composition rules.
+- Added an installable `teum` coding-agent skill, machine-readable registry metadata, public JSON Schema, and concise Agent integration documentation.
+- Added a deterministic 30-task B2B product evaluation with required and forbidden component assertions.
+
+### Quality
+
+- Verified 30/30 recipe selections, zero contract violations, skill validation and project-local installation, and one clean React + TypeScript + Vite install, typecheck, and production build containing all thirty generated task modules.
+- Kept the Core, Data, Analytics, and Product Patterns contracts unchanged; Goal 5 describes and validates their composition rather than introducing another visual primitive.
+- Kept npm publication and deployment locked. The evaluation is internal contract evidence, not an external model benchmark or production-adoption claim.
+
+## 0.1.0-rc.18 — 2026-08-16
+
+### Fixed
+
+- Added the missing accessible name for the Billing & Usage invoice action column found by the light-theme Storybook accessibility gate.
+
+### Quality
+
+- Preserved the rejected `rc.17` preview byte-for-byte and opened a new immutable candidate for the corrected Product Patterns registry source.
+
+## 0.1.0-rc.17 — 2026-08-16
+
+### Added
+
+- Added three complete B2B product patterns: Customer Workspace, Billing & Usage, and Members & Permissions.
+- Added an agent-readable Product Patterns contract covering task sequence, state ownership, invariants, failure states, accessibility, and composition boundaries.
+- Added an installable `teum-product-patterns` registry block with a fresh React + TypeScript + Vite consumer proof.
+
+### Quality
+
+- Added light and dark Storybook baselines, recipe interaction tests, automated accessibility checks, reduced-motion and reflow coverage, and a dedicated route-level performance budget.
+- Kept the 45-component Core and 15-component Data/Analytics layers unchanged; Goal 4 composes those approved parts instead of adding another primitive.
+- Preserved every earlier versioned registry artifact byte-for-byte and opened a new immutable candidate for the additive pattern contract.
+- The generated preview was rejected before release after Storybook found an unnamed invoice action column; `rc.18` supersedes it.
+
+## 0.1.0-rc.16 — 2026-08-16
+
+### Added
+
+- Added Teum Analytics v1 as an additive product layer: Sparkline, Metric, Chart, Comparison, Breakdown, Goal, Funnel, Cohort, and Timeline.
+- Added SaaS Overview, Product Usage, and Conversion & Retention recipes with synchronized inspection, legend filtering, exact-value tables, cohorts, funnels, and supporting records.
+- Added typed analytics data helpers and agent-readable component, state, and recipe contracts.
+- Added an installable `teum-analytics` registry block and a clean React + TypeScript + Vite consumer proof.
+
+### Quality
+
+- Added light and dark Storybook contracts, recipe-level visual baselines, keyboard and reduced-motion browser coverage, and route-aware bundle budgets.
+- Kept the 45-component Core catalog unchanged and preserved all earlier versioned registry artifacts byte-for-byte.
+- Replaced the rejected `rc.15` preview with a new immutable candidate after correcting its registry and release evidence.
+
+## 0.1.0-rc.14 — 2026-08-16
+
+### Fixed
+
+- Completed the standalone Data Table registry dependency graph for Button, Spinner, and the shared view-state contract.
+- Added an import-to-registry-dependency integrity check for every individually installable product component, so aggregate blocks can no longer hide a missing atomic dependency.
+
+### Quality
+
+- Preserved `rc.13` byte-for-byte after its clean-room failure and opened a new immutable candidate for the corrected install graph.
+
+## 0.1.0-rc.13 — 2026-08-16
+
+### Added
+
+- Expanded Teum Data to six public product primitives with Date Range Filter and Data Export Menu.
+- Added a versioned, compact URL state codec; controlled and server-oriented request contracts; persistent personal saved views; column resizing and pinning; and CSV/JSON export helpers.
+- Added Customer Directory and Audit Log alongside Issues Workspace, covering 5,000-record server data and a virtualized 10,000-event immutable collection.
+- Added agent-readable component, view-state, and three-recipe contracts plus a complete registry block for the product layer.
+
+### Quality
+
+- Added browser coverage for shareable state, saved-view persistence, large-row virtualization, and export choices.
+- Prevented deep-link navigation from programmatically scrolling the persistent application shell off-screen on narrow viewports.
+- Preserved every earlier immutable registry candidate; `rc.13` is the first candidate containing the complete Teum Data v1 boundary.
+
+## 0.1.0-rc.11 — 2026-08-16
+
+### Quality
+
+- Added compiler-owned runtime export and contract metadata so package, registry, and freeze checks verify the same Teum Data boundary.
+- Preserved the immutable rc.10 preview and opened a new candidate rather than rewriting its generated manifest.
+
+## 0.1.0-rc.10 — 2026-08-16
+
+### Added
+
+- Added Teum Data as the first product layer: Data Table, Filter Builder, Data Toolbar, Bulk Action Bar, and a composed Issues Workspace.
+- Added Motion Contract v1 and an agent-readable Issues Workspace composition contract.
+- Added individual registry items and a `teum-data` vertical-slice install.
+
+### Quality
+
+- Kept the 45-component Core catalog frozen while recording four additive product-component APIs separately.
+- Added clean React + TypeScript + Vite installation proof for the complete Teum Data slice.
+- Verified the Issues Workspace in light and dark themes, at 200% equivalent reflow, and across desktop and mobile Chromium, Firefox, and WebKit paths.
+
+## 0.1.0-rc.8 — 2026-08-16
+
+### Fixed
+
+- Kept Toast inside Teum's documented elevation scale instead of inheriting Sonner's global maximum z-index.
+- Made the Toast layer contract assert the visible feedback surface while still verifying the zero-height positioning container and single-message upsert behavior.
+- Prevented the page outline from selecting the final section before a document has actually scrolled near the bottom.
+
+### Quality
+
+- Refreshed the intentionally more spacious landing-page baseline and added a semantic first-section assertion for the Installation scroll spy.
+- Preserved `0.1.0-rc.7` byte-for-byte and opened a new immutable candidate for the corrected public Toast CSS.
+
+## 0.1.0-rc.7 — 2026-08-16
+
+### Security
+
+- Pinned public shadcn commands, versioned-registry package dependencies, and GitHub Actions to reviewed exact versions or commit SHAs.
+- Isolated Pages and attestation authority from build steps, disabled persisted checkout credentials, and added reviewed dependency-update automation.
+- Added an append-only history ledger for every immutable registry directory plus source-commit comparison for anchored releases.
+- Added consistent hosting security headers, route-specific cache contracts, and a hard 404 boundary for missing registry artifacts.
+
+### Quality
+
+- Made package and RC assembly use fresh staging directories, exact file allowlists, checksums, and atomic finalization.
+- Added an adopter evaluation guide, structured feedback form, current-candidate release notes, and launch drafts that preserve the unpublished and adoption-unproven status.
+- Kept npm publication locked; candidate generation and attestation remain non-publishing workflows.
+
+## 0.1.0-rc.6 — 2026-08-16
+
+### Changed
+
+- Split the public landing route from the documentation application so the first viewport loads a small editorial shell while the full component workbench remains lazy.
+- Added an adopter-side pinned-registry quickstart, readable wrapped commands, installation troubleshooting, section-aware search, section deep links, and accurate per-component registry references.
+- Replaced display-name-derived import guesses with compiler-derived primary exports in component reference pages.
+
+### Quality
+
+- Added machine-readable quickstart evidence from a fresh React + TypeScript + Vite consumer and made the release summary reject missing or stale install proof.
+- Preserved explicit React client boundaries in the package and copied registry source, then added a fresh-consumer Node SSR and zero-recoverable-error hydration gate.
+- Began a new immutable candidate because React client-boundary and package-consumer contract work changes generated source; every earlier versioned registry artifact remains byte-for-byte preserved.
+
+## 0.1.0-rc.5 — 2026-08-16
+
+### Changed
+
+- Moved the canonical Teum documentation and mutable registry origin to `https://teum.minwookshin.com` while retaining every earlier versioned registry artifact byte-for-byte.
+- Made the landing-to-documentation header share one viewport coordinate contract so the wordmark, centered Documentation entry, GitHub action, and theme action no longer move during the transition.
 
 ## 0.1.0-rc.4 — 2026-08-15
 

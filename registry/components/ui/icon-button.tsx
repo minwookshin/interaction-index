@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/icon-button.css";
 import type { ReactNode } from "react";

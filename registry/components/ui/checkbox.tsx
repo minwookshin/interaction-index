@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/checkbox.css";
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";

@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "registry/components/ui/toolbar.tsx",
-      "content": "import \"../../styles/teum-base.css\";\nimport \"../../styles/components/toolbar.css\";\nimport { Toolbar as ToolbarPrimitive } from \"@base-ui/react/toolbar\";\nimport { cn } from \"../../lib/cn\";\n\nexport type ToolbarProps = ToolbarPrimitive.Root.Props;\nexport type ToolbarGroupProps = ToolbarPrimitive.Group.Props;\nexport type ToolbarButtonProps = ToolbarPrimitive.Button.Props;\nexport type ToolbarLinkProps = ToolbarPrimitive.Link.Props;\nexport type ToolbarInputProps = ToolbarPrimitive.Input.Props;\nexport type ToolbarSeparatorProps = ToolbarPrimitive.Separator.Props;\n\nexport function Toolbar({ className, ...props }: ToolbarProps) {\n  return <ToolbarPrimitive.Root className={cn(\"teum-toolbar\", className)} {...props} />;\n}\n\nexport function ToolbarGroup({ className, ...props }: ToolbarGroupProps) {\n  return <ToolbarPrimitive.Group className={cn(\"teum-toolbar__group\", className)} {...props} />;\n}\n\nexport function ToolbarButton({ className, ...props }: ToolbarButtonProps) {\n  return <ToolbarPrimitive.Button className={cn(\"teum-toolbar__button\", className)} {...props} />;\n}\n\nexport function ToolbarLink({ className, ...props }: ToolbarLinkProps) {\n  return <ToolbarPrimitive.Link className={cn(\"teum-toolbar__link\", className)} {...props} />;\n}\n\nexport function ToolbarInput({ className, ...props }: ToolbarInputProps) {\n  return <ToolbarPrimitive.Input className={cn(\"teum-toolbar__input\", className)} {...props} />;\n}\n\nexport function ToolbarSeparator({ className, ...props }: ToolbarSeparatorProps) {\n  return <ToolbarPrimitive.Separator className={cn(\"teum-toolbar__separator\", className)} {...props} />;\n}\n",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/toolbar.css\";\nimport { Toolbar as ToolbarPrimitive } from \"@base-ui/react/toolbar\";\nimport { cn } from \"../../lib/cn\";\n\nexport type ToolbarProps = ToolbarPrimitive.Root.Props;\nexport type ToolbarGroupProps = ToolbarPrimitive.Group.Props;\nexport type ToolbarButtonProps = ToolbarPrimitive.Button.Props;\nexport type ToolbarLinkProps = ToolbarPrimitive.Link.Props;\nexport type ToolbarInputProps = ToolbarPrimitive.Input.Props;\nexport type ToolbarSeparatorProps = ToolbarPrimitive.Separator.Props;\n\nexport function Toolbar({ className, ...props }: ToolbarProps) {\n  return <ToolbarPrimitive.Root className={cn(\"teum-toolbar\", className)} {...props} />;\n}\n\nexport function ToolbarGroup({ className, ...props }: ToolbarGroupProps) {\n  return <ToolbarPrimitive.Group className={cn(\"teum-toolbar__group\", className)} {...props} />;\n}\n\nexport function ToolbarButton({ className, ...props }: ToolbarButtonProps) {\n  return <ToolbarPrimitive.Button className={cn(\"teum-toolbar__button\", className)} {...props} />;\n}\n\nexport function ToolbarLink({ className, ...props }: ToolbarLinkProps) {\n  return <ToolbarPrimitive.Link className={cn(\"teum-toolbar__link\", className)} {...props} />;\n}\n\nexport function ToolbarInput({ className, ...props }: ToolbarInputProps) {\n  return <ToolbarPrimitive.Input className={cn(\"teum-toolbar__input\", className)} {...props} />;\n}\n\nexport function ToolbarSeparator({ className, ...props }: ToolbarSeparatorProps) {\n  return <ToolbarPrimitive.Separator className={cn(\"teum-toolbar__separator\", className)} {...props} />;\n}\n",
       "type": "registry:ui",
       "target": "components/ui/toolbar.tsx"
     },
@@ -23,5 +23,13 @@
       "target": "styles/components/toolbar.css"
     }
   ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/toolbar",
+      "useWhen": "A compact set of frequent peer controls benefits from one arrow-navigable region.",
+      "avoidWhen": "Actions are infrequent, form submission is the main task, or controls need explanatory copy."
+    }
+  },
   "type": "registry:ui"
 }

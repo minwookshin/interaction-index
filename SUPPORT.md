@@ -1,6 +1,6 @@
 # Support policy
 
-Teum is an MIT-licensed alpha. Support claims are based on recorded tests, not browser similarity or assumed compatibility.
+Teum is an MIT-licensed pre-release. Support claims are based on recorded tests, not browser similarity or assumed compatibility.
 
 ## Support levels
 

@@ -11,10 +11,10 @@ async function runAxe(page: import("@playwright/test").Page) {
   return page.evaluate(() => (window as typeof window & { axe: { run: () => Promise<AxeResult> } }).axe.run());
 }
 
-for (const [route, heading] of [["introduction", "Introduction"], ["button", "Button"], ["product-pilot", "Product pilot"]] as const) {
+for (const [route, heading] of [["", "Interfaces that stay clear through change."], ["button", "Button"], ["product-pilot", "Teum Data"], ["product-patterns", "Product Patterns"]] as const) {
   test(route + " has no serious or critical automated accessibility violations", async ({ page }) => {
     test.setTimeout(90_000);
-    await page.goto("/#" + route);
+    await page.goto(route ? "/#" + route : "/");
     await expect(page.getByRole("heading", { level: 1, name: heading })).toBeVisible();
     const result = await runAxe(page);
     expect(result.violations.filter((violation) => violation.impact === "serious" || violation.impact === "critical")).toEqual([]);
@@ -32,13 +32,65 @@ test("all public documents have no serious or critical automated violations", as
   }
 });
 
+test("landing and documentation expose a keyboard-first skip path", async ({ page }) => {
+  await page.goto("/");
+  const landingSkipLink = page.getByRole("link", { name: "Skip to main content" });
+  await expect(page.locator(".teum-landing").locator("a[href], button, input, [tabindex='0']").first()).toHaveClass(/teum-skip-link/);
+  await landingSkipLink.focus();
+  await expect(landingSkipLink).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(page.locator("#teum-landing-content")).toBeFocused();
+
+  await page.goto("/#button");
+  await expect(page.getByRole("heading", { level: 1, name: "Button" })).toBeVisible();
+  const documentationSkipLink = page.getByRole("link", { name: "Skip to documentation" });
+  await expect(page.locator(".system-window--consolidated").locator("a[href], button, input, [tabindex='0']").first()).toHaveClass(/teum-skip-link/);
+  await documentationSkipLink.focus();
+  await expect(documentationSkipLink).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("region", { name: "Documentation content" })).toBeFocused();
+});
+
+test("documentation announces in-app route changes without moving desktop focus", async ({ page, isMobile }) => {
+  test.skip(Boolean(isMobile), "Desktop route changes preserve navigation focus; the mobile drawer has a separate focus handoff.");
+  await page.goto("/#button");
+  const routeStatus = page.locator(".system-window--consolidated > [role='status'].teum-sr-only");
+  await expect(routeStatus).toHaveText("Button page loaded");
+  const popoverLink = page.getByRole("link", { name: "Popover", exact: true });
+  await popoverLink.focus();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("heading", { level: 1, name: "Popover" })).toBeVisible();
+  await expect(routeStatus).toHaveText("Popover page loaded");
+  await expect(popoverLink).toBeFocused();
+});
+
+test("mobile navigation hands focus to the selected document", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 720 });
+  await page.goto("/#button");
+  await page.getByRole("button", { name: "Open navigation" }).click();
+  await page.getByRole("link", { name: "Popover", exact: true }).click();
+  await expect(page.getByRole("heading", { level: 1, name: "Popover" })).toBeVisible();
+  await expect(page.getByRole("region", { name: "Documentation content" })).toBeFocused();
+});
+
+test("every public view owns one main landmark and one page heading", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "chromium", "The complete landmark scan runs once; shared landmark behavior is covered in every engine.");
+  test.slow();
+  const routes = [["", "Interfaces that stay clear through change."], ...publicRoutes] as const;
+  for (const [route, heading] of routes) {
+    await page.goto(route ? `/#${route}` : "/");
+    await expect(page.locator("main")).toHaveCount(1);
+    await expect(page.getByRole("heading", { level: 1, name: heading })).toHaveCount(1);
+  }
+});
+
 test("pilot preserves structure in RTL, forced colors, and reduced motion", async ({ page }) => {
   await page.emulateMedia({ forcedColors: "active", reducedMotion: "reduce" });
   await page.goto("/#product-pilot");
   await page.evaluate(() => { document.documentElement.dir = "rtl"; });
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   expect(overflow).toBeLessThanOrEqual(1);
-  await expect(page.getByRole("heading", { level: 1, name: "Product pilot" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Teum Data" })).toBeVisible();
   await expect(page.getByRole("button", { name: "New issue" })).toBeVisible();
 });
 
@@ -48,7 +100,7 @@ test("documentation remains usable at a 200 percent equivalent viewport", async 
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   expect(overflow).toBeLessThanOrEqual(1);
   await expect(page.getByRole("button", { name: "Open navigation" })).toBeVisible();
-  await expect(page.getByRole("heading", { level: 1, name: "Product pilot" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Teum Data" })).toBeVisible();
 });
 
 test("all public routes preserve content at a 200 percent equivalent viewport", async ({ page }, testInfo) => {
@@ -93,7 +145,8 @@ test("representative product surfaces tolerate synthetic translated-content expa
     ["button", "Button"],
     ["dialog", "Dialog"],
     ["shared-detail", "Shared Detail"],
-    ["product-pilot", "Product pilot"],
+    ["product-pilot", "Teum Data"],
+    ["product-patterns", "Product Patterns"],
   ] as const;
 
   for (const width of [1280, 640]) {

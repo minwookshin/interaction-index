@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "registry/components/ui/collapsible.tsx",
-      "content": "import \"../../styles/teum-base.css\";\nimport \"../../styles/components/collapsible.css\";\nimport { Collapsible as CollapsiblePrimitive } from \"@base-ui/react/collapsible\";\nimport { CaretDown } from \"@phosphor-icons/react\";\nimport type { ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport const Collapsible = CollapsiblePrimitive.Root;\n\nexport type CollapsibleContentProps = CollapsiblePrimitive.Panel.Props & { children?: ReactNode };\n\nexport function CollapsibleTrigger({ className, children, ...props }: CollapsiblePrimitive.Trigger.Props) {\n  return (\n    <CollapsiblePrimitive.Trigger className={cn(\"teum-collapsible__trigger\", className)} {...props}>\n      <span>{children}</span>\n      <CaretDown aria-hidden=\"true\" />\n    </CollapsiblePrimitive.Trigger>\n  );\n}\n\nexport function CollapsibleContent({ className, children, ...props }: CollapsibleContentProps) {\n  return (\n    <CollapsiblePrimitive.Panel className={cn(\"teum-collapsible__panel\", className)} {...props}>\n      <div className=\"teum-collapsible__content\">{children}</div>\n    </CollapsiblePrimitive.Panel>\n  );\n}\n",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/collapsible.css\";\nimport { Collapsible as CollapsiblePrimitive } from \"@base-ui/react/collapsible\";\nimport { CaretDown } from \"@phosphor-icons/react\";\nimport type { ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport const Collapsible = CollapsiblePrimitive.Root;\n\nexport type CollapsibleContentProps = CollapsiblePrimitive.Panel.Props & { children?: ReactNode };\n\nexport function CollapsibleTrigger({ className, children, ...props }: CollapsiblePrimitive.Trigger.Props) {\n  return (\n    <CollapsiblePrimitive.Trigger className={cn(\"teum-collapsible__trigger\", className)} {...props}>\n      <span>{children}</span>\n      <CaretDown aria-hidden=\"true\" />\n    </CollapsiblePrimitive.Trigger>\n  );\n}\n\nexport function CollapsibleContent({ className, children, ...props }: CollapsibleContentProps) {\n  return (\n    <CollapsiblePrimitive.Panel className={cn(\"teum-collapsible__panel\", className)} {...props}>\n      <div className=\"teum-collapsible__content\">{children}</div>\n    </CollapsiblePrimitive.Panel>\n  );\n}\n",
       "type": "registry:ui",
       "target": "components/ui/collapsible.tsx"
     },
@@ -24,5 +24,13 @@
       "target": "styles/components/collapsible.css"
     }
   ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/collapsible",
+      "useWhen": "Supporting content is useful on demand but should not compete with the primary task.",
+      "avoidWhen": "The content is required, represents a destination, or several sections need accordion coordination."
+    }
+  },
   "type": "registry:ui"
 }

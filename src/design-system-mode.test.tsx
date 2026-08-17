@@ -23,14 +23,16 @@ describe("design system workspace", () => {
     expect(screen.queryByRole("region", { name: "Inbox" })).not.toBeInTheDocument();
   });
 
-  it("opens the public documentation introduction as the default route", () => {
+  it("opens the public landing page as the default route", () => {
     window.history.replaceState(null, "", window.location.pathname);
     render(<App />);
 
-    expect(window.location.hash).toBe("#introduction");
-    expect(screen.getByRole("heading", { level: 1, name: "Introduction" })).toBeInTheDocument();
-    expect(screen.getByRole("table", { name: "Current system status" })).toBeInTheDocument();
-    expect(screen.getByRole("complementary", { name: "Page outline" })).toHaveTextContent("System map");
+    expect(window.location.hash).toBe("");
+    expect(screen.getByRole("heading", { level: 1, name: "Interfaces that stay clear through change." })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "Teum interaction system preview" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Documentation" })).toHaveAttribute("href", "#installation");
+    expect(screen.getByRole("link", { name: "made by minwook" })).toHaveAttribute("href", "https://www.minwookshin.com/");
+    expect(screen.queryByRole("complementary", { name: "Design system navigation" })).not.toBeInTheDocument();
   });
 
   it("switches the live documentation when a component is selected", async () => {
@@ -45,7 +47,7 @@ describe("design system workspace", () => {
     expect(screen.queryByText("Authored behavior")).not.toBeInTheDocument();
     expect(screen.getByLabelText("Action List reference summary")).toHaveTextContent("Authored");
     expect(screen.getAllByText("Filtering").length).toBeGreaterThan(0);
-    expect(screen.getByRole("heading", { name: "Accessible in every state" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Accessibility" })).toBeInTheDocument();
   });
 
   it("keeps direct component routes inside the same system workspace", () => {
@@ -164,12 +166,14 @@ describe("design system workspace", () => {
     expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("teum");
   });
 
-  it("keeps one persistent page-copy action", () => {
+  it("keeps only GitHub and theme actions in the documentation top bar", () => {
     render(<App />);
 
     const outline = screen.getByRole("complementary", { name: "Page outline" });
-    expect(screen.getAllByRole("button", { name: "Copy page link" })).toHaveLength(1);
-    expect(within(outline).queryByRole("button", { name: "Copy page link" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Copy page link" })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "View Teum on GitHub" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Documentation" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "made by minwook" })).toHaveAttribute("href", "https://www.minwookshin.com/");
     expect(within(outline).getByRole("button", { name: "MIT license" })).toBeInTheDocument();
   });
 

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs",
+  "title": "Tabs",
+  "dependencies": [
+    "@base-ui/react@1.7.0"
+  ],
+  "registryDependencies": [
+    "@teum-pinned/teum-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/tabs.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/tabs.css\";\nimport { Tabs as TabsPrimitive } from \"@base-ui/react/tabs\";\nimport { cn } from \"../../lib/cn\";\n\nexport function Tabs({ className, ...props }: TabsPrimitive.Root.Props) {\n  return <TabsPrimitive.Root className={cn(\"teum-tabs\", className)} {...props} />;\n}\n\nexport function TabsList({ className, activateOnFocus = true, ...props }: TabsPrimitive.List.Props) {\n  return <TabsPrimitive.List className={cn(\"teum-tabs__list\", className)} activateOnFocus={activateOnFocus} {...props} />;\n}\n\nexport function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {\n  return <TabsPrimitive.Tab className={cn(\"teum-tabs__trigger\", className)} {...props} />;\n}\n\nexport function TabsContent({ className, ...props }: TabsPrimitive.Panel.Props) {\n  return <TabsPrimitive.Panel className={cn(\"teum-tabs__panel\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/tabs.tsx"
+    },
+    {
+      "path": "registry/styles/components/tabs.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-tabs { display: grid; gap: 16px; }\n\n.teum-tabs__list { display: inline-flex; width: fit-content; height: 30px; align-items: center; gap: 2px; padding: 2px; border: 1px solid var(--teum-border-subtle); border-radius: 6px; background: var(--teum-subtle); }\n\n.teum-tabs__trigger { position: relative; height: 24px; padding: 0 8px; border: 0; border-radius: 4px; outline: 0; background: transparent; color: var(--teum-ink-secondary); font-size: 12.5px; cursor: pointer; }\n\n.teum-tabs__trigger:hover { color: var(--teum-fg-default); }\n\n.teum-tabs__trigger[data-active] { background: var(--teum-control-surface); color: var(--teum-ink); box-shadow: var(--teum-shadow-control), 0 0 0 1px var(--teum-border-subtle); }\n\n.teum-tabs__trigger[data-disabled] { opacity: 0.42; cursor: not-allowed; }\n\n.teum-tabs__trigger:focus-visible { outline: 0; box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--teum-focus-control) 48%, transparent); }\n\n.teum-tabs__trigger[data-active]:focus-visible { box-shadow: var(--teum-shadow-control), inset 0 0 0 1px color-mix(in oklch, var(--teum-focus-control) 54%, transparent); }\n\n.teum-tabs__panel { outline: 0; }\n\n@media (forced-colors: active) {\n.teum-tabs__list { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }\n\n.teum-tabs__trigger[data-active] { outline: 2px solid Highlight; outline-offset: -2px; }\n}\n\n:root[data-theme=\"dark\"] .teum-tabs__trigger:hover { color: var(--teum-ink); }\n\n.teum-tabs__trigger { transition: color var(--teum-hover-duration), background-color var(--teum-hover-duration), box-shadow var(--teum-hover-duration); }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/tabs.css"
+    }
+  ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/tabs",
+      "useWhen": "Peer views of the same object can switch without navigation.",
+      "avoidWhen": "The sections form a sequence or users need to compare them simultaneously."
+    }
+  },
+  "type": "registry:ui"
+}

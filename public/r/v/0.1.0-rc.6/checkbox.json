@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "title": "Checkbox",
+  "dependencies": [
+    "@base-ui/react@^1.7.0",
+    "@phosphor-icons/react@^2.1.10"
+  ],
+  "registryDependencies": [
+    "@teum-pinned/teum-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/checkbox.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/checkbox.css\";\nimport { Checkbox as CheckboxPrimitive } from \"@base-ui/react/checkbox\";\nimport { Check, Minus } from \"@phosphor-icons/react\";\nimport { useId } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type CheckboxProps = CheckboxPrimitive.Root.Props & {\n  label?: string;\n  description?: string;\n};\n\nexport function Checkbox({ className, label, description, id: providedId, \"aria-describedby\": ariaDescribedBy, \"aria-labelledby\": ariaLabelledBy, ...props }: CheckboxProps) {\n  const generatedId = useId();\n  const id = providedId ?? generatedId;\n  const labelId = label ? `${id}-label` : undefined;\n  const descriptionId = description ? `${id}-description` : undefined;\n  const describedBy = [ariaDescribedBy, descriptionId].filter(Boolean).join(\" \") || undefined;\n  return (\n    <div className=\"teum-choice-row\">\n      <CheckboxPrimitive.Root id={id} className={cn(\"teum-checkbox\", className)} aria-labelledby={ariaLabelledBy ?? labelId} aria-describedby={describedBy} {...props}>\n        <CheckboxPrimitive.Indicator className=\"teum-checkbox__indicator\">\n          <Check className=\"teum-checkbox__check\" weight=\"bold\" />\n          <Minus className=\"teum-checkbox__mixed\" weight=\"bold\" />\n        </CheckboxPrimitive.Indicator>\n      </CheckboxPrimitive.Root>\n      {label && (\n        <label htmlFor={id} className=\"teum-choice-copy\">\n          <span id={labelId}>{label}</span>\n          {description && <small id={descriptionId}>{description}</small>}\n        </label>\n      )}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/checkbox.tsx"
+    },
+    {
+      "path": "registry/styles/components/checkbox.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-choice-row { display: flex; align-items: flex-start; gap: 9px; }\n\n.teum-choice-copy { display: grid; gap: 3px; color: var(--teum-ink); font-size: 13.5px; cursor: pointer; }\n\n.teum-choice-copy small { color: var(--teum-ink-tertiary); font-size: 11.5px; font-weight: 400; line-height: 1.45; }\n\n.teum-checkbox { position: relative; display: grid; width: 16px; height: 16px; flex: none; margin-top: 1px; padding: 0; place-items: center; border: 1px solid var(--teum-border-strong); border-radius: 4px; background: var(--teum-surface); color: var(--teum-on-inverse); cursor: pointer; transition: background var(--teum-hover-duration), border-color var(--teum-hover-duration), transform var(--teum-press-duration) var(--teum-ease-out); }\n\n.teum-checkbox::after { position: absolute; inset: -8px; content: \"\"; }\n\n.teum-checkbox[data-checked] { border-color: var(--teum-inverse); background: var(--teum-inverse); color: var(--teum-on-inverse); }\n\n.teum-checkbox[data-indeterminate] { border-color: var(--teum-inverse); background: var(--teum-inverse); color: var(--teum-on-inverse); }\n\n.teum-checkbox[data-disabled] { opacity: 0.42; cursor: not-allowed; }\n\n.teum-checkbox:active:not([data-disabled]) { transform: scale(0.96); }\n\n.teum-checkbox__indicator { display: grid; place-items: center; }\n\n.teum-checkbox__indicator svg { width: 11px; height: 11px; }\n\n.teum-checkbox__mixed { display: none; }\n\n.teum-checkbox[data-indeterminate] .teum-checkbox__check { display: none; }\n\n.teum-checkbox[data-indeterminate] .teum-checkbox__mixed { display: block; }\n\n.teum-choice-row:has([data-disabled]) .teum-choice-copy { opacity: 0.48; cursor: not-allowed; }\n\n@media (forced-colors: active) {\n.teum-checkbox { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }\n\n.teum-checkbox[data-checked],\n.teum-checkbox[data-indeterminate] { background: Highlight; color: HighlightText; }\n}\n\n:root[data-theme=\"dark\"] .teum-checkbox[data-checked],\n:root[data-theme=\"dark\"] .teum-checkbox[data-indeterminate] { box-shadow: none; }\n\n.teum-checkbox__indicator {\n  opacity: 1;\n  transform: scale(1);\n  transition: opacity 140ms var(--teum-ease-out), transform 140ms var(--teum-ease-out);\n}\n\n@starting-style {\n.teum-checkbox__indicator {\n    opacity: 0;\n    transform: scale(.72);\n  }\n}\n\n@media (prefers-reduced-motion: reduce) {\n.teum-checkbox:active:not([data-disabled]) { transform: none; }\n\n.teum-checkbox__indicator { transition-duration: 0.01ms; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/checkbox.css"
+    }
+  ],
+  "type": "registry:ui"
+}

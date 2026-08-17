@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "registry/components/ui/alert-dialog.tsx",
-      "content": "import \"../../styles/teum-base.css\";\nimport \"../../styles/components/alert-dialog.css\";\nimport { AlertDialog as AlertDialogPrimitive } from \"@base-ui/react/alert-dialog\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport const AlertDialog = AlertDialogPrimitive.Root;\nexport const AlertDialogTrigger = AlertDialogPrimitive.Trigger;\nexport const AlertDialogClose = AlertDialogPrimitive.Close;\nexport const AlertDialogTitle = AlertDialogPrimitive.Title;\nexport const AlertDialogDescription = AlertDialogPrimitive.Description;\n\nexport function AlertDialogContent({ className, children, ...props }: AlertDialogPrimitive.Popup.Props) {\n  return (\n    <AlertDialogPrimitive.Portal>\n      <AlertDialogPrimitive.Backdrop className=\"teum-dialog__backdrop\" />\n      <AlertDialogPrimitive.Viewport className=\"teum-alert-dialog__viewport\">\n        <AlertDialogPrimitive.Popup className={cn(\"teum-dialog\", \"teum-alert-dialog\", className)} {...props} data-layer=\"modal\">\n          {children}\n        </AlertDialogPrimitive.Popup>\n      </AlertDialogPrimitive.Viewport>\n    </AlertDialogPrimitive.Portal>\n  );\n}\n\nexport function AlertDialogHeader({ className, ...props }: ComponentPropsWithRef<\"div\">) {\n  return <div className={cn(\"teum-dialog__header\", className)} {...props} />;\n}\n\nexport function AlertDialogFooter({ className, ...props }: ComponentPropsWithRef<\"div\">) {\n  return <div className={cn(\"teum-dialog__footer\", className)} {...props} />;\n}\n",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/alert-dialog.css\";\nimport { AlertDialog as AlertDialogPrimitive } from \"@base-ui/react/alert-dialog\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport const AlertDialog = AlertDialogPrimitive.Root;\nexport const AlertDialogTrigger = AlertDialogPrimitive.Trigger;\nexport const AlertDialogClose = AlertDialogPrimitive.Close;\nexport const AlertDialogTitle = AlertDialogPrimitive.Title;\nexport const AlertDialogDescription = AlertDialogPrimitive.Description;\n\nexport function AlertDialogContent({ className, children, ...props }: AlertDialogPrimitive.Popup.Props) {\n  return (\n    <AlertDialogPrimitive.Portal>\n      <AlertDialogPrimitive.Backdrop className=\"teum-dialog__backdrop\" />\n      <AlertDialogPrimitive.Viewport className=\"teum-alert-dialog__viewport\">\n        <AlertDialogPrimitive.Popup className={cn(\"teum-dialog\", \"teum-alert-dialog\", className)} {...props} data-layer=\"modal\">\n          {children}\n        </AlertDialogPrimitive.Popup>\n      </AlertDialogPrimitive.Viewport>\n    </AlertDialogPrimitive.Portal>\n  );\n}\n\nexport function AlertDialogHeader({ className, ...props }: ComponentPropsWithRef<\"div\">) {\n  return <div className={cn(\"teum-dialog__header\", className)} {...props} />;\n}\n\nexport function AlertDialogFooter({ className, ...props }: ComponentPropsWithRef<\"div\">) {\n  return <div className={cn(\"teum-dialog__footer\", className)} {...props} />;\n}\n",
       "type": "registry:ui",
       "target": "components/ui/alert-dialog.tsx"
     },
@@ -23,5 +23,13 @@
       "target": "styles/components/alert-dialog.css"
     }
   ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/alert-dialog",
+      "useWhen": "A consequential action must interrupt the task and requires an explicit response.",
+      "avoidWhen": "The action is safely reversible with Undo or ordinary information is being displayed."
+    }
+  },
   "type": "registry:ui"
 }

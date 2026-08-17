@@ -1,0 +1,636 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/evaluate-agent-layer.mjs",
+  "generatedAt": "2026-08-17T05:48:28.608Z",
+  "version": "0.1.0-rc.22",
+  "status": "passed",
+  "scope": "One clean React + TypeScript + Vite consumer installed the Teum agent registry item; 30 generated task modules were collectively type-checked and production-built.",
+  "taskCount": 30,
+  "selectedCorrectly": 30,
+  "selectionSuccessRate": 1,
+  "installBuildSuccessRate": 1,
+  "contractViolations": 0,
+  "cleanInstall": "passed",
+  "typecheck": "passed",
+  "productionBuild": "passed",
+  "installedItem": "@teum-pinned/teum-agent",
+  "registryChannel": "immutable versioned",
+  "elapsedMs": 16604,
+  "results": [
+    {
+      "id": "issues-triage-backlog",
+      "expectedRecipe": "issues-workspace",
+      "selectedRecipe": "issues-workspace",
+      "matchedSignals": [
+        "issue triage",
+        "bulk assign"
+      ],
+      "score": 4,
+      "requiredComponents": [
+        "DataTable",
+        "SharedDetail",
+        "BulkActionBar",
+        "UndoStack"
+      ],
+      "forbiddenComponents": [
+        "AlertDialog"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "issues-bulk-close",
+      "expectedRecipe": "issues-workspace",
+      "selectedRecipe": "issues-workspace",
+      "matchedSignals": [
+        "bulk close",
+        "issue workspace"
+      ],
+      "score": 4,
+      "requiredComponents": [
+        "FilterBuilder",
+        "BulkActionBar",
+        "UndoStack"
+      ],
+      "forbiddenComponents": [
+        "AlertDialog"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "issues-inspect-without-leaving",
+      "expectedRecipe": "issues-workspace",
+      "selectedRecipe": "issues-workspace",
+      "matchedSignals": [
+        "issue triage",
+        "issue backlog"
+      ],
+      "score": 4,
+      "requiredComponents": [
+        "DataTable",
+        "SharedDetail",
+        "ActionList"
+      ],
+      "forbiddenComponents": [
+        "Sheet"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "issues-keyboard-actions",
+      "expectedRecipe": "issues-workspace",
+      "selectedRecipe": "issues-workspace",
+      "matchedSignals": [
+        "undo issue",
+        "issue workspace"
+      ],
+      "score": 4,
+      "requiredComponents": [
+        "ActionList",
+        "DataTable",
+        "UndoStack"
+      ],
+      "forbiddenComponents": [
+        "ContextMenu"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "customers-renewal-directory",
+      "expectedRecipe": "customer-directory",
+      "selectedRecipe": "customer-directory",
+      "matchedSignals": [
+        "saved customer view",
+        "server customer list"
+      ],
+      "score": 6,
+      "requiredComponents": [
+        "SavedViews",
+        "DateRangeFilter",
+        "DataExportMenu",
+        "DataTable"
+      ],
+      "forbiddenComponents": [
+        "BulkActionBar"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "customers-shareable-view",
+      "expectedRecipe": "customer-directory",
+      "selectedRecipe": "customer-directory",
+      "matchedSignals": [
+        "customer directory"
+      ],
+      "score": 2,
+      "requiredComponents": [
+        "FilterBuilder",
+        "ColumnManager",
+        "DataTable"
+      ],
+      "forbiddenComponents": [
+        "UndoStack"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "customers-export-segment",
+      "expectedRecipe": "customer-directory",
+      "selectedRecipe": "customer-directory",
+      "matchedSignals": [
+        "customer export",
+        "saved customer view"
+      ],
+      "score": 5,
+      "requiredComponents": [
+        "SavedViews",
+        "DataExportMenu"
+      ],
+      "forbiddenComponents": [
+        "BulkActionBar"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "customers-large-server-list",
+      "expectedRecipe": "customer-directory",
+      "selectedRecipe": "customer-directory",
+      "matchedSignals": [
+        "server customer list",
+        "customer table"
+      ],
+      "score": 5,
+      "requiredComponents": [
+        "SearchInput",
+        "FilterBuilder",
+        "ColumnManager",
+        "DataTable"
+      ],
+      "forbiddenComponents": [
+        "Table"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "audit-compliance-events",
+      "expectedRecipe": "audit-log",
+      "selectedRecipe": "audit-log",
+      "matchedSignals": [
+        "audit log",
+        "immutable events"
+      ],
+      "score": 4,
+      "requiredComponents": [
+        "DateRangeFilter",
+        "DataExportMenu",
+        "DataTable"
+      ],
+      "forbiddenComponents": [
+        "BulkActionBar",
+        "UndoStack"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "audit-security-search",
+      "expectedRecipe": "audit-log",
+      "selectedRecipe": "audit-log",
+      "matchedSignals": [
+        "audit log",
+        "security events"
+      ],
+      "score": 4,
+      "requiredComponents": [
+        "SearchInput",
+        "FilterBuilder",
+        "DataExportMenu",
+        "DataTable"
+      ],
+      "forbiddenComponents": [
+        "InlineEdit"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "audit-activity-window",
+      "expectedRecipe": "audit-log",
+      "selectedRecipe": "audit-log",
+      "matchedSignals": [
+        "immutable events",
+        "activity audit"
+      ],
+      "score": 4,
+      "requiredComponents": [
+        "DateRangeFilter",
+        "DataTable"
+      ],
+      "forbiddenComponents": [
+        "BulkActionBar"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "analytics-mrr-overview",
+      "expectedRecipe": "saas-overview",
+      "selectedRecipe": "saas-overview",
+      "matchedSignals": [
+        "mrr",
+        "revenue target"
+      ],
+      "score": 3,
+      "requiredComponents": [
+        "Metric",
+        "Comparison",
+        "Goal",
+        "Breakdown"
+      ],
+      "forbiddenComponents": [
+        "Funnel"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "analytics-arr-growth",
+      "expectedRecipe": "saas-overview",
+      "selectedRecipe": "saas-overview",
+      "matchedSignals": [
+        "arr",
+        "recurring revenue"
+      ],
+      "score": 3,
+      "requiredComponents": [
+        "Metric",
+        "Chart",
+        "Comparison"
+      ],
+      "forbiddenComponents": [
+        "Cohort"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "analytics-revenue-target",
+      "expectedRecipe": "saas-overview",
+      "selectedRecipe": "saas-overview",
+      "matchedSignals": [
+        "revenue overview",
+        "recurring revenue",
+        "revenue target"
+      ],
+      "score": 6,
+      "requiredComponents": [
+        "Sparkline",
+        "Chart",
+        "Goal"
+      ],
+      "forbiddenComponents": [
+        "Progress"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "analytics-expansion-drivers",
+      "expectedRecipe": "saas-overview",
+      "selectedRecipe": "saas-overview",
+      "matchedSignals": [
+        "revenue overview",
+        "expansion revenue"
+      ],
+      "score": 4,
+      "requiredComponents": [
+        "Chart",
+        "Breakdown"
+      ],
+      "forbiddenComponents": [
+        "DataTable"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "usage-feature-adoption",
+      "expectedRecipe": "product-usage",
+      "selectedRecipe": "product-usage",
+      "matchedSignals": [
+        "product usage",
+        "feature adoption",
+        "active usage",
+        "release event"
+      ],
+      "score": 8,
+      "requiredComponents": [
+        "Metric",
+        "Chart",
+        "Breakdown",
+        "Timeline"
+      ],
+      "forbiddenComponents": [
+        "Funnel"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "usage-synchronized-trends",
+      "expectedRecipe": "product-usage",
+      "selectedRecipe": "product-usage",
+      "matchedSignals": [
+        "usage trend",
+        "feature breakdown"
+      ],
+      "score": 4,
+      "requiredComponents": [
+        "Chart",
+        "Breakdown"
+      ],
+      "forbiddenComponents": [
+        "Cohort"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "usage-release-impact",
+      "expectedRecipe": "product-usage",
+      "selectedRecipe": "product-usage",
+      "matchedSignals": [
+        "active usage",
+        "release event"
+      ],
+      "score": 4,
+      "requiredComponents": [
+        "Chart",
+        "Timeline"
+      ],
+      "forbiddenComponents": [
+        "Sparkline"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "conversion-activation-funnel",
+      "expectedRecipe": "conversion-retention",
+      "selectedRecipe": "conversion-retention",
+      "matchedSignals": [
+        "activation funnel"
+      ],
+      "score": 2,
+      "requiredComponents": [
+        "Funnel",
+        "Chart",
+        "DataTable"
+      ],
+      "forbiddenComponents": [
+        "Sparkline"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "conversion-cohort-retention",
+      "expectedRecipe": "conversion-retention",
+      "selectedRecipe": "conversion-retention",
+      "matchedSignals": [
+        "conversion funnel",
+        "cohort retention"
+      ],
+      "score": 4,
+      "requiredComponents": [
+        "Funnel",
+        "Cohort"
+      ],
+      "forbiddenComponents": [
+        "Goal"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "conversion-signup-loss",
+      "expectedRecipe": "conversion-retention",
+      "selectedRecipe": "conversion-retention",
+      "matchedSignals": [
+        "cohort retention",
+        "signup conversion"
+      ],
+      "score": 4,
+      "requiredComponents": [
+        "Metric",
+        "Funnel",
+        "Cohort"
+      ],
+      "forbiddenComponents": [
+        "Breakdown"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "customer-health-follow-up",
+      "expectedRecipe": "customer-workspace",
+      "selectedRecipe": "customer-workspace",
+      "matchedSignals": [
+        "customer health",
+        "account follow-up",
+        "customer success"
+      ],
+      "score": 7,
+      "requiredComponents": [
+        "SharedDetail",
+        "Metric",
+        "Timeline",
+        "Toast"
+      ],
+      "forbiddenComponents": [
+        "Dialog"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "customer-account-activity",
+      "expectedRecipe": "customer-workspace",
+      "selectedRecipe": "customer-workspace",
+      "matchedSignals": [
+        "customer success workspace",
+        "account health",
+        "customer activity",
+        "customer success"
+      ],
+      "score": 9,
+      "requiredComponents": [
+        "FilterBuilder",
+        "SharedDetail",
+        "Tabs",
+        "Timeline"
+      ],
+      "forbiddenComponents": [
+        "Sheet"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "customer-owner-workflow",
+      "expectedRecipe": "customer-workspace",
+      "selectedRecipe": "customer-workspace",
+      "matchedSignals": [
+        "account follow-up"
+      ],
+      "score": 3,
+      "requiredComponents": [
+        "DataToolbar",
+        "SharedDetail",
+        "Metric",
+        "Progress"
+      ],
+      "forbiddenComponents": [
+        "AlertDialog"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "billing-plan-limits",
+      "expectedRecipe": "billing-usage",
+      "selectedRecipe": "billing-usage",
+      "matchedSignals": [
+        "billing usage",
+        "plan limit",
+        "invoice",
+        "subscription"
+      ],
+      "score": 6,
+      "requiredComponents": [
+        "Progress",
+        "DataTable",
+        "Dialog"
+      ],
+      "forbiddenComponents": [
+        "AlertDialog",
+        "Menu"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "billing-payment-risk",
+      "expectedRecipe": "billing-usage",
+      "selectedRecipe": "billing-usage",
+      "matchedSignals": [
+        "billing usage",
+        "invoice",
+        "payment failure"
+      ],
+      "score": 5,
+      "requiredComponents": [
+        "Alert",
+        "DataTable",
+        "Button"
+      ],
+      "forbiddenComponents": [
+        "Menu"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "billing-period-comparison",
+      "expectedRecipe": "billing-usage",
+      "selectedRecipe": "billing-usage",
+      "matchedSignals": [
+        "invoice",
+        "subscription",
+        "usage limit"
+      ],
+      "score": 4,
+      "requiredComponents": [
+        "SegmentedControl",
+        "Metric",
+        "Chart",
+        "Progress"
+      ],
+      "forbiddenComponents": [
+        "DateRangeFilter"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "members-invite-role",
+      "expectedRecipe": "members-permissions",
+      "selectedRecipe": "members-permissions",
+      "matchedSignals": [
+        "members permissions",
+        "invite member",
+        "workspace roles"
+      ],
+      "score": 6,
+      "requiredComponents": [
+        "DataTable",
+        "Select",
+        "Dialog",
+        "TextField"
+      ],
+      "forbiddenComponents": [
+        "Combobox"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "members-permission-matrix",
+      "expectedRecipe": "members-permissions",
+      "selectedRecipe": "members-permissions",
+      "matchedSignals": [
+        "role permissions",
+        "permission matrix"
+      ],
+      "score": 4,
+      "requiredComponents": [
+        "Tabs",
+        "DataTable",
+        "Checkbox"
+      ],
+      "forbiddenComponents": [
+        "SegmentedControl"
+      ],
+      "violations": [],
+      "status": "passed"
+    },
+    {
+      "id": "members-last-owner",
+      "expectedRecipe": "members-permissions",
+      "selectedRecipe": "members-permissions",
+      "matchedSignals": [
+        "role permissions",
+        "access policy"
+      ],
+      "score": 4,
+      "requiredComponents": [
+        "Select",
+        "Dialog",
+        "Toast"
+      ],
+      "forbiddenComponents": [
+        "UndoStack"
+      ],
+      "violations": [],
+      "status": "passed"
+    }
+  ]
+}

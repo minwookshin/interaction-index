@@ -112,6 +112,8 @@ const manifest = {
       releaseManifest: `${publication.homepage}/r/v/${packageJson.version}/release.json`,
       cacheControl: "public, max-age=31536000, immutable",
       updatePolicy: "bump-version-review-apply",
+      dependencyPolicy: "same-version-internal-and-exact-external",
+      installer: `shadcn@${packageJson.devDependencies.shadcn}`,
     },
   },
   sources: {

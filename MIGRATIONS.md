@@ -2,6 +2,17 @@
 
 Teum is pre-1.0. Public APIs may change, but every breaking alpha change must be explicit and recoverable.
 
+## Move between candidates
+
+1. Commit copied Teum source and product overrides.
+2. Change only the `@teum-pinned` URL in `components.json` to the target candidate.
+3. Read every intervening entry in `CHANGELOG.md` and this file.
+4. Run `shadcn add <item> --dry-run`, then `--diff <file>`.
+5. Accept with `--overwrite --yes` only after reviewing props, tokens, dependencies, behavior, and CSS.
+6. Run the product's type, build, interaction, accessibility, and visual checks.
+
+The previous pinned URL and pre-update commit are the rollback boundary. Teum does not silently rewrite historical registry artifacts.
+
 ## Required for a breaking change
 
 1. Add a `Breaking` entry to `CHANGELOG.md` with the first affected version.

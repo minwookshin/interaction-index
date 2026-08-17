@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/tabs.css";
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";

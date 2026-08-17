@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/shared-detail.css";
 import { ArrowLeft, X } from "@phosphor-icons/react";

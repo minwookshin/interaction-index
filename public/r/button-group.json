@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/components/ui/button-group.tsx",
-      "content": "import \"../../styles/teum-base.css\";\nimport \"../../styles/components/button-group.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type ButtonGroupProps = ComponentPropsWithRef<\"div\"> & {\n  orientation?: \"horizontal\" | \"vertical\";\n  attached?: boolean;\n};\n\nexport function ButtonGroup({ className, orientation = \"horizontal\", attached = false, role = \"group\", ...props }: ButtonGroupProps) {\n  return (\n    <div\n      className={cn(\"teum-button-group\", className)}\n      role={role}\n      data-orientation={orientation}\n      data-attached={attached || undefined}\n      {...props}\n    />\n  );\n}\n\nexport type ButtonGroupSeparatorProps = ComponentPropsWithRef<\"span\"> & {\n  orientation?: \"horizontal\" | \"vertical\";\n};\n\nexport function ButtonGroupSeparator({ className, orientation = \"vertical\", ...props }: ButtonGroupSeparatorProps) {\n  return <span className={cn(\"teum-button-group__separator\", className)} role=\"separator\" aria-orientation={orientation} {...props} />;\n}\n",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/button-group.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type ButtonGroupProps = ComponentPropsWithRef<\"div\"> & {\n  orientation?: \"horizontal\" | \"vertical\";\n  attached?: boolean;\n};\n\nexport function ButtonGroup({ className, orientation = \"horizontal\", attached = false, role = \"group\", ...props }: ButtonGroupProps) {\n  return (\n    <div\n      className={cn(\"teum-button-group\", className)}\n      role={role}\n      data-orientation={orientation}\n      data-attached={attached || undefined}\n      {...props}\n    />\n  );\n}\n\nexport type ButtonGroupSeparatorProps = ComponentPropsWithRef<\"span\"> & {\n  orientation?: \"horizontal\" | \"vertical\";\n};\n\nexport function ButtonGroupSeparator({ className, orientation = \"vertical\", ...props }: ButtonGroupSeparatorProps) {\n  return <span className={cn(\"teum-button-group__separator\", className)} role=\"separator\" aria-orientation={orientation} {...props} />;\n}\n",
       "type": "registry:ui",
       "target": "components/ui/button-group.tsx"
     },
@@ -20,5 +20,13 @@
       "target": "styles/components/button-group.css"
     }
   ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/button-group",
+      "useWhen": "Two or more related actions benefit from shared alignment or joined geometry.",
+      "avoidWhen": "Actions are unrelated, one action dominates an entire form, or arrow-key navigation is expected."
+    }
+  },
   "type": "registry:ui"
 }

@@ -4,8 +4,10 @@
 
 - Entry point: `src/components/ui/index.ts`
 - TypeScript: `6.0.3`
-- Components: `45`
-- Public exports: `210`
+- Core components: `45`
+- Product components: `15`
+- Public exports: `345`
+- Runtime exports: `197`
 
 ## button
 
@@ -441,3 +443,257 @@ Declaration: [`tree.d.ts`](./types/components/ui/tree.d.ts)
 - **Tree** · function · `Tree({ items, className, selectionMode, ...props }: TreeProps): import("react").JSX.Element`
 - **TreeNode** · type · `TreeNode = { id: Key; label: string; description?: string; icon?: ReactNode; children?: readonly TreeNode[]; disabled?: boolean; }`
 - **TreeProps** · type · `TreeProps = Omit<AriaTreeProps<TreeNode>, "children" | "className" | "items"> & { items: readonly TreeNode[]; className?: string; }`
+
+# Product components
+
+## data-table
+
+Declaration: [`data-table.d.ts`](./types/components/ui/data-table.d.ts)
+
+- **DataTable** · function · `DataTable<TData extends object>({ ariaLabel, data, columns, getRowId, getRowLabel, className, selectable, selectedRowIds, defaultSelectedRowIds, onSelectedRowIdsChange, sorting, defaultSorting, onSortingChange, manualSorting, columnVisibil…`
+- **DataTableColumn** · type · `DataTableColumn = { id: string; header: ReactNode; accessor?: keyof TData | ((row: TData) => unknown); cell?: (row: TData) => ReactNode; sortable?: boolean; sortType?: "alphanumeric" | "basic" | "datetime"; hideable?: boolean; resizable?: …`
+- **DataTableColumnPinning** · type · `DataTableColumnPinning = DataViewColumnPinning`
+- **DataTableProps** · type · `DataTableProps = { ariaLabel: string; data: readonly TData[]; columns: readonly DataTableColumn<TData>[]; getRowId: (row: TData, index: number) => string; getRowLabel?: (row: TData) => string; className?: string; selectable?: boolean; sele…`
+- **DataTableSort** · type · `DataTableSort = DataViewSort`
+- **DataTableVirtualization** · type · `DataTableVirtualization = { height?: number; estimateRowHeight?: number; overscan?: number; }`
+- **teumDataTableFeatures** · const · `teumDataTableFeatures: { columnSizingFeature: import("@tanstack/table-core").TableFeature; columnResizingFeature: import("@tanstack/table-core").TableFeature; columnPinningFeature: import("@tanstack/table-core").TableFeature; columnVisibil…`
+
+## filter-builder
+
+Declaration: [`filter-builder.d.ts`](./types/components/ui/filter-builder.d.ts)
+
+- **DataFilter** · type · `DataFilter = DataViewFilter`
+- **FilterBuilder** · function · `FilterBuilder({ fields, filters, onFiltersChange, className, label }: FilterBuilderProps): import("react").JSX.Element`
+- **FilterBuilderProps** · type · `FilterBuilderProps = { fields: readonly FilterField[]; filters: readonly DataFilter[]; onFiltersChange: (filters: readonly DataFilter[]) => void; className?: string; label?: string; }`
+- **FilterField** · type · `FilterField = { id: string; label: string; kind?: "option" | "text" | "number"; values?: readonly { label: string; value: string }[]; operators?: readonly FilterOperator[]; placeholder?: string; }`
+- **FilterOperator** · type · `FilterOperator = DataFilterOperator`
+
+## data-toolbar
+
+Declaration: [`data-toolbar.d.ts`](./types/components/ui/data-toolbar.d.ts)
+
+- **ColumnManager** · function · `ColumnManager({ columns, onVisibilityChange, onResetSizing, label }: ColumnManagerProps): import("react").JSX.Element`
+- **ColumnManagerColumn** · type · `ColumnManagerColumn = { id: string; label: string; visible: boolean; required?: boolean; }`
+- **ColumnManagerProps** · type · `ColumnManagerProps = { columns: readonly ColumnManagerColumn[]; onVisibilityChange: (id: string, visible: boolean) => void; onResetSizing?: () => void; label?: string; }`
+- **DataToolbar** · function · `DataToolbar({ label, start, end, className, ...props }: DataToolbarProps): import("react").JSX.Element`
+- **DataToolbarProps** · type · `DataToolbarProps = HTMLAttributes<HTMLDivElement> & { label: string; start?: ReactNode; end?: ReactNode; }`
+- **SavedView** · type · `SavedView = { id: string; label: string; description?: string; count?: number; scope?: "system" | "personal"; }`
+- **SavedViews** · function · `SavedViews({ views, value, onValueChange, onSaveCurrent, onUpdateCurrent, onDeleteCurrent, label }: SavedViewsProps): import("react").JSX.Element`
+- **SavedViewsProps** · type · `SavedViewsProps = { views: readonly SavedView[]; value: string; onValueChange: (value: string) => void; onSaveCurrent?: () => void; onUpdateCurrent?: () => void; onDeleteCurrent?: () => void; label?: string; }`
+
+## bulk-action-bar
+
+Declaration: [`bulk-action-bar.d.ts`](./types/components/ui/bulk-action-bar.d.ts)
+
+- **BulkActionBar** · function · `BulkActionBar({ count, noun, actions, onClear, busy, className, ...props }: BulkActionBarProps): import("react").JSX.Element | null`
+- **BulkActionBarProps** · type · `BulkActionBarProps = HTMLAttributes<HTMLDivElement> & { count: number; noun?: string; actions: ReactNode; onClear: () => void; busy?: boolean; }`
+
+## date-range-filter
+
+Declaration: [`date-range-filter.d.ts`](./types/components/ui/date-range-filter.d.ts)
+
+- **DateRangeFilter** · function · `DateRangeFilter({ value, onValueChange, label, presets, minValue, maxValue, disabled, }: DateRangeFilterProps): import("react").JSX.Element`
+- **DateRangeFilterProps** · type · `DateRangeFilterProps = { value: DataDateRange; onValueChange: (value: DataDateRange) => void; label?: string; presets?: readonly DateRangePreset[]; minValue?: DateValue; maxValue?: DateValue; disabled?: boolean; }`
+- **DateRangePreset** · type · `DateRangePreset = { id: string; label: string; getValue: () => DataDateRange; }`
+
+## data-export-menu
+
+Declaration: [`data-export-menu.d.ts`](./types/components/ui/data-export-menu.d.ts)
+
+- **DataExportMenu** · function · `DataExportMenu<TData>({ rows, selectedRows, columns, fileName, label, download, disabled, onExport, }: DataExportMenuProps<TData>): import("react").JSX.Element`
+- **DataExportMenuProps** · type · `DataExportMenuProps = { rows: readonly TData[]; selectedRows?: readonly TData[]; columns: readonly DataExportColumn<TData>[]; fileName: string; label?: string; download?: boolean; disabled?: boolean; onExport?: (artifact: DataExportArtifac…`
+
+## sparkline
+
+Declaration: [`sparkline.d.ts`](./types/components/ui/sparkline.d.ts)
+
+- **Sparkline** · function · `Sparkline({ values, label, width, height, tone, fill, decorative, className, style, ...props }: SparklineProps): import("react").JSX.Element`
+- **SparklineProps** · type · `SparklineProps = Omit<SVGProps<SVGSVGElement>, "children" | "width" | "height" | "fill" | "values"> & { values: readonly (number | null)[]; label?: string; width?: number; height?: number; tone?: AnalyticsSeriesTone; fill?: boolean; decora…`
+
+## metric
+
+Declaration: [`metric.d.ts`](./types/components/ui/metric.d.ts)
+
+- **Metric** · function · `Metric({ label, value, trend, context, visual, loading, className, ...props }: MetricProps): import("react").JSX.Element`
+- **MetricProps** · type · `MetricProps = HTMLAttributes<HTMLDivElement> & { label: string; value: ReactNode; trend?: MetricTrend; context?: ReactNode; visual?: ReactNode; loading?: boolean; }`
+- **MetricTrend** · type · `MetricTrend = { label: string; value?: ReactNode; direction?: "up" | "down" | "flat"; sentiment?: "positive" | "negative" | "neutral"; }`
+
+## chart
+
+Declaration: [`chart.d.ts`](./types/components/ui/chart.d.ts)
+
+- **Chart** · function · `Chart({ title, description, data, series, className, height, includeZero, domain, area, annotations, valueFormatter, activeIndex, defaultActiveIndex, onActiveIndexChange, visibleSeries, defaultVisibleSeries, onVisibleSeriesChange, onDatumA…`
+- **ChartAnnotation** · type · `ChartAnnotation = { id: string; index: number; label: string; tone?: "neutral" | "danger"; }`
+- **ChartProps** · type · `ChartProps = { title: string; description?: string; data: readonly AnalyticsDatum[]; series: readonly AnalyticsSeries[]; className?: string; height?: number; includeZero?: boolean; domain?: readonly [number, number]; area?: boolean; annota…`
+
+## comparison
+
+Declaration: [`comparison.d.ts`](./types/components/ui/comparison.d.ts)
+
+- **Comparison** · function · `Comparison({ label, current, previous, currentLabel, previousLabel, formatter, positiveDirection, className, ...props }: ComparisonProps): import("react").JSX.Element`
+- **ComparisonProps** · type · `ComparisonProps = HTMLAttributes<HTMLDListElement> & { label: string; current: number; previous: number; currentLabel?: string; previousLabel?: string; formatter?: (value: number) => string; positiveDirection?: "up" | "down" | "neutral"; }`
+
+## breakdown
+
+Declaration: [`breakdown.d.ts`](./types/components/ui/breakdown.d.ts)
+
+- **Breakdown** · function · `Breakdown({ label, items, formatter, max, selectedId, onSelect, className, ...props }: BreakdownProps): import("react").JSX.Element`
+- **BreakdownItem** · type · `BreakdownItem = { id: string; label: string; value: number; detail?: ReactNode; tone?: "primary" | "secondary" | "tertiary"; }`
+- **BreakdownProps** · type · `BreakdownProps = Omit<HTMLAttributes<HTMLOListElement>, "onSelect"> & { label: string; items: readonly BreakdownItem[]; formatter?: (value: number, item: BreakdownItem) => string; max?: number; selectedId?: string; onSelect?: (item: Breakd…`
+
+## goal
+
+Declaration: [`goal.d.ts`](./types/components/ui/goal.d.ts)
+
+- **Goal** · function · `Goal({ label, value, target, formatter, description, className, ...props }: GoalProps): import("react").JSX.Element`
+- **GoalProps** · type · `GoalProps = Omit<HTMLAttributes<HTMLDivElement>, "title"> & { label: string; value: number; target: number; formatter?: (value: number) => string; description?: ReactNode; }`
+
+## funnel
+
+Declaration: [`funnel.d.ts`](./types/components/ui/funnel.d.ts)
+
+- **Funnel** · function · `Funnel({ label, stages, formatter, selectedId, onSelect, className, ...props }: FunnelProps): import("react").JSX.Element`
+- **FunnelProps** · type · `FunnelProps = Omit<HTMLAttributes<HTMLOListElement>, "onSelect"> & { label: string; stages: readonly FunnelStage[]; formatter?: (value: number, stage: FunnelStage) => string; selectedId?: string; onSelect?: (stage: FunnelStage) => void; }`
+- **FunnelStage** · type · `FunnelStage = { id: string; label: string; value: number; detail?: ReactNode; }`
+
+## cohort
+
+Declaration: [`cohort.d.ts`](./types/components/ui/cohort.d.ts)
+
+- **Cohort** · function · `Cohort({ label, periods, rows, formatter, showSize, className, ...props }: CohortProps): import("react").JSX.Element`
+- **CohortProps** · type · `CohortProps = HTMLAttributes<HTMLDivElement> & { label: string; periods: readonly string[]; rows: readonly CohortRow[]; formatter?: (value: number) => string; showSize?: boolean; }`
+- **CohortRow** · type · `CohortRow = { id: string; label: string; size?: number; values: readonly (number | null)[]; }`
+
+## timeline
+
+Declaration: [`timeline.d.ts`](./types/components/ui/timeline.d.ts)
+
+- **Timeline** · function · `Timeline({ label, items, activeId, onSelect, className, ...props }: TimelineProps): import("react").JSX.Element`
+- **TimelineItem** · type · `TimelineItem = { id: string; label: string; timestamp: ReactNode; description?: ReactNode; value?: ReactNode; tone?: "neutral" | "accent" | "danger"; }`
+- **TimelineProps** · type · `TimelineProps = Omit<HTMLAttributes<HTMLOListElement>, "onSelect"> & { label: string; items: readonly TimelineItem[]; activeId?: string; onSelect?: (item: TimelineItem) => void; }`
+
+# Contracts
+
+## motion-contract
+
+Declaration: [`motion-contract.d.ts`](./types/lib/motion-contract.d.ts)
+
+- **teumMotionContract** · const · `teumMotionContract: { readonly version: "1.0.0"; readonly principles: readonly ["Respond at the moment of input.", "Use motion only to explain origin, continuity, state, or recovery.", "Keep repeated keyboard paths instant.", "Let interrup…`
+- **TeumMotionContract** · type · `TeumMotionContract = typeof teumMotionContract`
+- **TeumMotionFrequency** · type · `TeumMotionFrequency = "constant" | "frequent" | "occasional" | "rare"`
+- **TeumMotionRule** · type · `TeumMotionRule = { frequency: TeumMotionFrequency; treatment: "instant" | "tonal" | "spatial" | "expressive"; rationale: string; }`
+
+## data-view-state
+
+Declaration: [`data-view-state.d.ts`](./types/lib/data-view-state.d.ts)
+
+- **createBrowserDataViewLocationAdapter** · function · `createBrowserDataViewLocationAdapter(): DataViewLocationAdapter | null`
+- **createBrowserDataViewStorageAdapter** · function · `createBrowserDataViewStorageAdapter(): DataViewStorageAdapter | null`
+- **createDataViewState** · function · `createDataViewState(input?: DataViewStateInput): DataViewState`
+- **DATA_VIEW_STATE_VERSION** · const · `DATA_VIEW_STATE_VERSION: 1`
+- **DataDateRange** · type · `DataDateRange = { from: string | null; to: string | null; }`
+- **DataFilterOperator** · type · `DataFilterOperator = | "is" | "is-not" | "contains" | "does-not-contain" | "greater-than" | "less-than" | "is-empty" | "is-not-empty"`
+- **DataFilterValue** · type · `DataFilterValue = string | number | boolean | readonly string[] | DataDateRange | null`
+- **DataRequest** · type · `DataRequest = Pick<DataViewState, "query" | "filters" | "sorting" | "pagination" | "dateRange">`
+- **DataSavedView** · type · `DataSavedView = { id: string; label: string; description?: string; state: DataViewState; scope: "system" | "personal"; createdAt: string; updatedAt: string; }`
+- **DataViewCodecOptions** · type · `DataViewCodecOptions = { prefix?: string; baseline?: DataViewStateInput; }`
+- **DataViewColumnPinning** · type · `DataViewColumnPinning = { start: readonly string[]; end: readonly string[]; }`
+- **DataViewFilter** · type · `DataViewFilter = { id: string; fieldId: string; operator: DataFilterOperator; value: DataFilterValue; }`
+- **DataViewLocationAdapter** · type · `DataViewLocationAdapter = { read: () => string; write: (search: string, mode: "push" | "replace") => void; subscribe: (listener: () => void) => () => void; }`
+- **DataViewPagination** · type · `DataViewPagination = { page: number; pageSize: number; }`
+- **DataViewSort** · type · `DataViewSort = { id: string; direction: "asc" | "desc"; }`
+- **DataViewState** · type · `DataViewState = { version: typeof DATA_VIEW_STATE_VERSION; query: string; filters: readonly DataViewFilter[]; sorting: readonly DataViewSort[]; pagination: DataViewPagination; columnVisibility: Readonly<Record<string, boolean>>; columnSizi…`
+- **DataViewStateInput** · type · `DataViewStateInput = Partial<Omit<DataViewState, "version" | "pagination" | "columnPinning" | "dateRange">> & { pagination?: Partial<DataViewPagination>; columnPinning?: Partial<DataViewColumnPinning>; dateRange?: Partial<DataDateRange>; }`
+- **DataViewStorageAdapter** · type · `DataViewStorageAdapter = { read: (key: string) => string | null; write: (key: string, value: string) => void; remove: (key: string) => void; }`
+- **getDataRequestKey** · function · `getDataRequestKey(state: DataViewState): string`
+- **mergeDataViewSearch** · function · `mergeDataViewSearch(currentSearch: string, state: DataViewState, options?: DataViewCodecOptions): string`
+- **parseDataViewState** · function · `parseDataViewState(search: string, fallback?: DataViewStateInput, options?: DataViewCodecOptions): DataViewState`
+- **parseSavedViews** · function · `parseSavedViews(serialized: string | null): readonly DataSavedView[]`
+- **patchDataViewState** · function · `patchDataViewState(current: DataViewState, patch: DataViewStateInput, options?: { resetPage?: boolean; }): DataViewState`
+- **serializeDataViewState** · function · `serializeDataViewState(state: DataViewState, options?: DataViewCodecOptions): string`
+- **serializeSavedViews** · function · `serializeSavedViews(views: readonly DataSavedView[]): string`
+- **toDataRequest** · function · `toDataRequest(state: DataViewState): DataRequest`
+- **useDataViewState** · function · `useDataViewState({ initialState, syncToUrl, location, historyMode, parameterPrefix, onStateChange, }?: UseDataViewStateOptions): UseDataViewStateResult`
+- **UseDataViewStateOptions** · type · `UseDataViewStateOptions = { initialState?: DataViewStateInput; syncToUrl?: boolean; location?: DataViewLocationAdapter | null; historyMode?: "push" | "replace"; parameterPrefix?: string; onStateChange?: (state: DataViewState) => void; }`
+- **UseDataViewStateResult** · type · `UseDataViewStateResult = { state: DataViewState; setState: Dispatch<SetStateAction<DataViewState>>; patchState: (patch: DataViewStateInput, options?: { resetPage?: boolean }) => void; resetState: () => void; isHydrated: boolean; }`
+- **useSavedViews** · function · `useSavedViews({ storageKey, systemViews, storage, now, createId, onStorageError, }: UseSavedViewsOptions): { views: DataSavedView[]; personalViews: readonly DataSavedView[]; isHydrated: boolean; saveView: (label: string, state: DataViewSta…`
+- **UseSavedViewsOptions** · type · `UseSavedViewsOptions = { storageKey: string; systemViews?: readonly DataSavedView[]; storage?: DataViewStorageAdapter | null; now?: () => Date; createId?: () => string; onStorageError?: (error: unknown) => void; }`
+
+## data-export
+
+Declaration: [`data-export.d.ts`](./types/lib/data-export.d.ts)
+
+- **buildDataExport** · function · `buildDataExport<TData>({ rows, columns, format, fileName, includeBom, }: DataExportOptions<TData>): DataExportArtifact`
+- **DataExportArtifact** · type · `DataExportArtifact = { content: string; fileName: string; mimeType: string; rowCount: number; format: DataExportFormat; }`
+- **DataExportColumn** · type · `DataExportColumn = { id: string; header: string; value: keyof TData | ((row: TData) => unknown); format?: (value: unknown, row: TData) => string | number | boolean | null; }`
+- **DataExportFormat** · type · `DataExportFormat = "csv" | "json"`
+- **DataExportOptions** · type · `DataExportOptions = { rows: readonly TData[]; columns: readonly DataExportColumn<TData>[]; format: DataExportFormat; fileName: string; includeBom?: boolean; }`
+- **downloadDataExport** · function · `downloadDataExport(artifact: DataExportArtifact): void`
+
+## teum-data-contract
+
+Declaration: [`teum-data-contract.d.ts`](./types/lib/teum-data-contract.d.ts)
+
+- **auditLogContract** · const · `auditLogContract: { readonly id: "audit-log"; readonly intent: "Inspect and export a large immutable event collection without rendering every row."; readonly taskSequence: readonly ["Choose a date range", "Search or filter", "Compare event…`
+- **customerDirectoryContract** · const · `customerDirectoryContract: { readonly id: "customer-directory"; readonly intent: "Find and compare a server-owned customer collection without losing a shareable view."; readonly taskSequence: readonly ["Search or restore a view", "Filter r…`
+- **issuesWorkspaceContract** · const · `issuesWorkspaceContract: { readonly id: "issues-workspace"; readonly intent: "Find, compare, inspect, mutate, and recover work from one shared issue collection."; readonly taskSequence: readonly ["Search or filter", "Sort and compare", "Se…`
+- **TeumDataComponentContract** · type · `TeumDataComponentContract = { id: string; intent: string; useWhen: readonly string[]; avoidWhen: readonly string[]; requires: readonly string[]; states: readonly string[]; compositionRules: readonly string[]; accessibility: readonly string…`
+- **teumDataComponentContracts** · const · `teumDataComponentContracts: readonly [{ readonly id: "data-table"; readonly intent: "Compare and act on structured records without hiding the underlying table semantics."; readonly useWhen: readonly ["Rows share comparable attributes.", "S…`
+- **teumDataRecipeContracts** · const · `teumDataRecipeContracts: readonly [{ readonly id: "issues-workspace"; readonly intent: "Find, compare, inspect, mutate, and recover work from one shared issue collection."; readonly taskSequence: readonly ["Search or filter", "Sort and com…`
+- **teumDataViewStateContract** · const · `teumDataViewStateContract: { readonly version: 1; readonly serverOwned: readonly ["query", "filters", "sorting", "pagination", "dateRange"]; readonly viewOwned: readonly ["columnVisibility", "columnSizing", "columnPinning", "viewId"]; read…`
+
+## analytics
+
+Declaration: [`analytics.d.ts`](./types/lib/analytics.d.ts)
+
+- **AnalyticsDatum** · type · `AnalyticsDatum = { id: string; label: string; values: Readonly<Record<string, AnalyticsValue>>; }`
+- **AnalyticsDomainOptions** · type · `AnalyticsDomainOptions = { includeZero?: boolean; paddingRatio?: number; domain?: readonly [number, number]; }`
+- **AnalyticsPlotBox** · type · `AnalyticsPlotBox = { width: number; height: number; left: number; right: number; top: number; bottom: number; }`
+- **AnalyticsPointPosition** · type · `AnalyticsPointPosition = { x: number; y: number; value: number; }`
+- **AnalyticsSeries** · type · `AnalyticsSeries = { id: string; label: string; tone?: AnalyticsSeriesTone; lineStyle?: "solid" | "dashed" | "dotted"; }`
+- **AnalyticsSeriesTone** · type · `AnalyticsSeriesTone = "primary" | "secondary" | "tertiary"`
+- **AnalyticsValue** · type · `AnalyticsValue = number | null`
+- **clampAnalyticsIndex** · function · `clampAnalyticsIndex(index: number | null | undefined, length: number): number | null`
+- **createAnalyticsAreaPath** · function · `createAnalyticsAreaPath(data: readonly AnalyticsDatum[], seriesId: string, domain: readonly [number, number], box: AnalyticsPlotBox): string`
+- **createAnalyticsPath** · function · `createAnalyticsPath(data: readonly AnalyticsDatum[], seriesId: string, domain: readonly [number, number], box: AnalyticsPlotBox): string`
+- **createAnalyticsTicks** · function · `createAnalyticsTicks(domain: readonly [number, number], tickCount?: number): readonly number[]`
+- **describeAnalyticsDatum** · function · `describeAnalyticsDatum(datum: AnalyticsDatum, series: readonly AnalyticsSeries[], valueFormatter?: (value: number, series: AnalyticsSeries) => string): string`
+- **formatAnalyticsValue** · function · `formatAnalyticsValue(value: number, options?: Intl.NumberFormatOptions): string`
+- **getAnalyticsDomain** · function · `getAnalyticsDomain(data: readonly AnalyticsDatum[], seriesIds: readonly string[], { includeZero, paddingRatio, domain }?: AnalyticsDomainOptions): readonly [number, number]`
+- **getAnalyticsPointPosition** · function · `getAnalyticsPointPosition(data: readonly AnalyticsDatum[], index: number, seriesId: string, domain: readonly [number, number], box: AnalyticsPlotBox): AnalyticsPointPosition | null`
+- **getPercentChange** · function · `getPercentChange(current: number, previous: number): number | null`
+- **summarizeAnalyticsSeries** · function · `summarizeAnalyticsSeries(data: readonly AnalyticsDatum[], series: AnalyticsSeries, valueFormatter?: (value: number, series: AnalyticsSeries) => string): string`
+
+## teum-analytics-contract
+
+Declaration: [`teum-analytics-contract.d.ts`](./types/lib/teum-analytics-contract.d.ts)
+
+- **TeumAnalyticsComponentContract** · type · `TeumAnalyticsComponentContract = { id: string; intent: string; useWhen: readonly string[]; avoidWhen: readonly string[]; requires: readonly string[]; states: readonly string[]; compatibleWith: readonly string[]; dataSchema: string; interac…`
+- **teumAnalyticsComponentContracts** · const · `teumAnalyticsComponentContracts: readonly [{ readonly id: "metric"; readonly intent: "State one important value, its direction, and comparison context without turning a dashboard into a card grid."; readonly useWhen: readonly ["One value c…`
+- **teumAnalyticsRecipeContracts** · const · `teumAnalyticsRecipeContracts: readonly [{ readonly id: "saas-overview"; readonly intent: "Review recurring revenue, growth, target progress, and expansion drivers from one calm overview."; readonly taskSequence: readonly ["Choose range", "…`
+- **teumAnalyticsStateContract** · const · `teumAnalyticsStateContract: { readonly version: 1; readonly controlled: readonly ["date range", "comparison period", "visible series", "active datum", "selected segment"]; readonly derived: readonly ["domain", "ticks", "percent change", "c…`
+
+## teum-product-patterns-contract
+
+Declaration: [`teum-product-patterns-contract.d.ts`](./types/lib/teum-product-patterns-contract.d.ts)
+
+- **billingUsageContract** · const · `billingUsageContract: { readonly id: "billing-usage"; readonly intent: "Compare plan usage, limits, and invoices before changing a subscription or exporting a receipt."; readonly roles: readonly ["Workspace owner", "Billing admin", "Financ…`
+- **customerWorkspaceContract** · const · `customerWorkspaceContract: { readonly id: "customer-workspace"; readonly intent: "Find an account, inspect its health and activity, then complete a follow-up without losing the customer list."; readonly roles: readonly ["Customer success",…`
+- **membersPermissionsContract** · const · `membersPermissionsContract: { readonly id: "members-permissions"; readonly intent: "Invite people, change roles, and audit permission boundaries without separating membership from access policy."; readonly roles: readonly ["Workspace owner…`
+- **TeumProductPatternContract** · type · `TeumProductPatternContract = { id: string; intent: string; roles: readonly string[]; taskSequence: readonly string[]; components: readonly string[]; stateOwnership: { shareable: readonly string[]; persisted: readonly string[]; transient: r…`
+- **teumProductPatternContracts** · const · `teumProductPatternContracts: readonly [{ readonly id: "customer-workspace"; readonly intent: "Find an account, inspect its health and activity, then complete a follow-up without losing the customer list."; readonly roles: readonly ["Custom…`
+- **teumProductPatternSystemContract** · const · `teumProductPatternSystemContract: { readonly version: 1; readonly layers: readonly ["Core controls", "Data state", "Analytics context", "Product task"]; readonly rules: readonly ["Patterns compose public Teum components and keep product st…`
+
+## teum-agent-contract
+
+Declaration: [`teum-agent-contract.d.ts`](./types/lib/teum-agent-contract.d.ts)
+
+- **selectTeumRecipe** · function · `selectTeumRecipe(task: string): TeumAgentPlan | null`
+- **teumAgentForbiddenRules** · const · `teumAgentForbiddenRules: readonly ["Do not invent undocumented props, exports, registry items, or private CSS selectors.", "Do not merge components because their closed shapes look similar; preserve task, focus, and recovery boundaries.", …`
+- **TeumAgentPlan** · type · `TeumAgentPlan = { recipe: TeumAgentRecipeContract; score: number; matchedSignals: readonly string[]; }`
+- **TeumAgentRecipeContract** · type · `TeumAgentRecipeContract = { id: TeumAgentRecipeId; title: string; domain: "data" | "analytics" | "product"; intent: string; signals: readonly string[]; registryItem: "teum-data" | "teum-analytics" | "teum-product-patterns"; modulePath: str…`
+- **teumAgentRecipeContracts** · const · `teumAgentRecipeContracts: readonly [{ readonly id: "issues-workspace"; readonly title: "Issues Workspace"; readonly domain: "data"; readonly intent: "Triage, inspect, mutate, and recover issue work from one shared collection."; readonly si…`
+- **TeumAgentRecipeId** · type · `TeumAgentRecipeId = | "issues-workspace" | "customer-directory" | "audit-log" | "saas-overview" | "product-usage" | "conversion-retention" | "customer-workspace" | "billing-usage" | "members-permissions"`
+- **TeumAgentSelectionRule** · type · `TeumAgentSelectionRule = { task: string; choose: string; insteadOf: readonly string[]; when: readonly string[]; rejectWhen: readonly string[]; }`
+- **teumAgentSelectionRules** · const · `teumAgentSelectionRules: readonly [{ readonly task: "Choose one submitted value"; readonly choose: "Select"; readonly insteadOf: readonly ["Combobox", "ContextSwitcher"]; readonly when: readonly ["The values are short and predefined."]; re…`
+- **teumAgentSystemContract** · const · `teumAgentSystemContract: { readonly schemaVersion: 1; readonly product: "Teum"; readonly principles: readonly ["stable geometry", "shared origin", "reversible completion"]; readonly workflow: readonly ["inspect project", "classify task", "…`

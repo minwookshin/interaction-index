@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/tooltip.css";
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";

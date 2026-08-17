@@ -1,0 +1,197 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer teum.tokens, teum.base, teum.components;
+
+@layer teum.components {
+.teum-sr-only,
+.teum-sr-only:not(:focus):not(:active) {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.teum-chart { display: grid; width: 100%; min-width: 0; margin: 0; gap: 12px; }
+
+.teum-chart__header { display: flex; min-width: 0; align-items: flex-start; justify-content: space-between; gap: 20px; }
+
+.teum-chart__header > div { display: grid; min-width: 0; gap: 3px; }
+
+.teum-chart__header h3 { margin: 0; color: var(--teum-fg-default); font-size: var(--teum-type-section); font-weight: 610; letter-spacing: -.022em; }
+
+.teum-chart__header p { margin: 0; color: var(--teum-fg-muted); font-size: var(--teum-type-metadata); line-height: 1.45; }
+
+.teum-chart__data-toggle {
+  min-height: 28px;
+  flex: none;
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--teum-radius-control);
+  background: transparent;
+  color: var(--teum-fg-muted);
+  font: inherit;
+  font-size: var(--teum-type-metadata);
+  cursor: pointer;
+  transition: background-color var(--teum-hover-duration) var(--teum-ease), color var(--teum-hover-duration) var(--teum-ease);
+}
+
+.teum-chart__legend { display: flex; min-width: 0; flex-wrap: wrap; gap: 4px; }
+
+.teum-chart__legend button {
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  gap: 6px;
+  padding: 0 7px;
+  border: 0;
+  border-radius: var(--teum-radius-control);
+  background: transparent;
+  color: var(--teum-fg-muted);
+  font: inherit;
+  font-size: var(--teum-type-metadata);
+  cursor: pointer;
+  transition: background-color var(--teum-hover-duration) var(--teum-ease), color var(--teum-hover-duration) var(--teum-ease), opacity var(--teum-hover-duration) var(--teum-ease);
+}
+
+.teum-chart__legend button > span { width: 16px; height: 2px; border-radius: 999px; background: var(--teum-fg-default); }
+
+.teum-chart__legend button[data-tone="secondary"] > span { opacity: .56; }
+
+.teum-chart__legend button[data-tone="tertiary"] > span { opacity: .32; }
+
+.teum-chart__legend button[data-line-style="dashed"] > span { background: repeating-linear-gradient(90deg, currentColor 0 5px, transparent 5px 8px); }
+
+.teum-chart__legend button[data-line-style="dotted"] > span { background: repeating-linear-gradient(90deg, currentColor 0 2px, transparent 2px 5px); }
+
+.teum-chart__legend button[aria-pressed="false"] > span { opacity: .28; }
+
+.teum-chart__legend button[aria-disabled="true"] { cursor: default; }
+
+.teum-chart__plot {
+  position: relative;
+  min-width: 0;
+  height: var(--teum-chart-height);
+  overflow: hidden;
+  border-radius: var(--teum-radius-container);
+  background: color-mix(in srgb, var(--teum-bg-stage) 76%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--teum-fg-default) 7%, transparent);
+}
+
+.teum-chart__plot:focus { outline: 0; }
+
+.teum-chart__plot svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+.teum-chart__grid line { stroke: var(--teum-separator); stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+.teum-chart__grid text,
+.teum-chart__x-axis text { fill: var(--teum-fg-subtle); font-family: var(--teum-font-ui); font-size: 10px; font-variant-numeric: tabular-nums; }
+
+.teum-chart__grid text { text-anchor: end; dominant-baseline: middle; }
+
+.teum-chart__area { fill: var(--teum-fg-default); opacity: .045; }
+
+.teum-chart__series path { fill: none; stroke: var(--teum-fg-default); stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.65; vector-effect: non-scaling-stroke; transition: opacity var(--teum-fast) var(--teum-ease); }
+
+.teum-chart__series path[data-tone="secondary"] { opacity: .58; }
+
+.teum-chart__series path[data-tone="tertiary"] { opacity: .34; }
+
+.teum-chart__series path[data-line-style="dashed"] { stroke-dasharray: 6 5; }
+
+.teum-chart__series path[data-line-style="dotted"] { stroke-dasharray: 1.5 4; }
+
+.teum-chart__annotations line { stroke: var(--teum-fg-subtle); stroke-dasharray: 2 4; stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+.teum-chart__annotations text { fill: var(--teum-fg-subtle); font-family: var(--teum-font-ui); font-size: 9px; }
+
+.teum-chart__annotations [data-tone="danger"] line { stroke: var(--teum-fg-danger); }
+
+.teum-chart__annotations [data-tone="danger"] text { fill: var(--teum-fg-danger); }
+
+.teum-chart__active line { stroke: color-mix(in srgb, var(--teum-fg-default) 22%, transparent); stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+.teum-chart__active circle { fill: var(--teum-bg-surface); stroke: var(--teum-fg-default); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+
+.teum-chart__active circle[data-tone="secondary"] { opacity: .65; }
+
+.teum-chart__active circle[data-tone="tertiary"] { opacity: .45; }
+
+.teum-chart__tooltip {
+  position: absolute;
+  top: 12px;
+  left: clamp(82px, var(--teum-chart-active-x), calc(100% - 82px));
+  z-index: 2;
+  display: grid;
+  min-width: 144px;
+  gap: 6px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  background: var(--teum-bg-flyout);
+  box-shadow: var(--teum-shadow-flyout);
+  color: var(--teum-fg-default);
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.teum-chart__tooltip > strong { font-size: var(--teum-type-metadata); font-weight: 590; }
+
+.teum-chart__tooltip > span { display: grid; grid-template-columns: 7px minmax(0, 1fr) auto; align-items: center; gap: 6px; font-size: var(--teum-type-metadata); }
+
+.teum-chart__tooltip i { width: 6px; height: 6px; border-radius: 50%; background: var(--teum-fg-default); }
+
+.teum-chart__tooltip i[data-tone="secondary"] { opacity: .58; }
+
+.teum-chart__tooltip i[data-tone="tertiary"] { opacity: .34; }
+
+.teum-chart__tooltip em { overflow: hidden; color: var(--teum-fg-muted); font-style: normal; text-overflow: ellipsis; white-space: nowrap; }
+
+.teum-chart__tooltip b { font-variant-numeric: tabular-nums; font-weight: 580; }
+
+.teum-chart__loading,
+.teum-chart__empty { display: grid; width: 100%; height: 100%; place-content: center; color: var(--teum-fg-subtle); font-size: var(--teum-type-ui); }
+
+.teum-chart__loading { grid-auto-flow: column; align-items: center; gap: 8px; }
+
+.teum-chart__loading > span { width: 12px; height: 12px; border: 1.5px solid var(--teum-separator-strong); border-top-color: var(--teum-fg-default); border-radius: 50%; animation: teum-spinner .7s linear infinite; }
+
+.teum-chart__table { min-width: 0; overflow: auto; border-radius: var(--teum-radius-container); background: var(--teum-bg-stage); }
+
+.teum-chart__table--visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+
+.teum-chart__table table { width: 100%; border-collapse: collapse; font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; }
+
+.teum-chart__table caption { padding: 10px 12px; text-align: left; color: var(--teum-fg-default); font-weight: 590; }
+
+.teum-chart__table th,
+.teum-chart__table td { padding: 8px 12px; border-top: 1px solid var(--teum-separator); text-align: right; white-space: nowrap; }
+
+.teum-chart__table th:first-child { text-align: left; }
+
+.teum-chart__table thead th { color: var(--teum-fg-subtle); font-weight: 540; }
+
+.teum-chart__table tbody th { color: var(--teum-fg-muted); font-weight: 520; }
+
+.teum-chart__data-toggle:focus,
+.teum-chart__legend button:focus { outline: 0; }
+
+@media (hover: hover) and (pointer: fine) {
+.teum-chart__data-toggle:hover,
+.teum-chart__legend button:not([aria-disabled="true"]):hover { background: var(--teum-hover); color: var(--teum-fg-default); }
+}
+
+.teum-chart__data-toggle:active,
+.teum-chart__legend button:not([aria-disabled="true"]):active { transform: scale(.985); }
+
+@media (max-width: 640px) {
+.teum-chart__header { align-items: center; }
+
+.teum-chart__plot { height: min(var(--teum-chart-height), 230px); }
+
+.teum-chart__tooltip { min-width: 128px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+.teum-chart__loading > span { animation: none; }
+
+.teum-chart__series path { transition-duration: 0ms; }
+}
+
+@keyframes teum-spin { to { transform: rotate(360deg); } }
+}

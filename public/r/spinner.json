@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/components/ui/spinner.tsx",
-      "content": "import \"../../styles/teum-base.css\";\nimport \"../../styles/components/spinner.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type SpinnerProps = ComponentPropsWithRef<\"span\"> & {\n  size?: \"small\" | \"medium\" | \"large\";\n  label?: string;\n};\n\nexport function Spinner({ className, size = \"medium\", label = \"Loading\", ...props }: SpinnerProps) {\n  return <span className={cn(\"teum-loading-spinner\", `teum-loading-spinner--${size}`, className)} role=\"status\" aria-label={label} {...props}><span aria-hidden=\"true\" /></span>;\n}\n",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/spinner.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type SpinnerProps = ComponentPropsWithRef<\"span\"> & {\n  size?: \"small\" | \"medium\" | \"large\";\n  label?: string;\n};\n\nexport function Spinner({ className, size = \"medium\", label = \"Loading\", ...props }: SpinnerProps) {\n  return <span className={cn(\"teum-loading-spinner\", `teum-loading-spinner--${size}`, className)} role=\"status\" aria-label={label} {...props}><span aria-hidden=\"true\" /></span>;\n}\n",
       "type": "registry:ui",
       "target": "components/ui/spinner.tsx"
     },
@@ -20,5 +20,13 @@
       "target": "styles/components/spinner.css"
     }
   ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/spinner",
+      "useWhen": "Ongoing work needs a compact indicator and progress cannot be quantified.",
+      "avoidWhen": "The loading layout is large enough for a Skeleton or progress is measurable."
+    }
+  },
   "type": "registry:ui"
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/input-group.css";
 import { createContext, useContext, type ComponentPropsWithRef } from "react";

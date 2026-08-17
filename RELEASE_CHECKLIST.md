@@ -1,6 +1,6 @@
 # Release checklist
 
-The current build is an MIT-licensed public-source alpha with an unpublished npm package. Complete every open item below before publishing the package or calling the system stable.
+The current build is an MIT-licensed public-source pre-release with an unpublished npm package. Complete every open item below before publishing the package or calling the system stable.
 
 ## Legal and ownership
 
@@ -22,7 +22,7 @@ The source is available under MIT. Package publication, browser support, and pro
 
 - [x] Install the complete registry item into a fresh Vite consumer project.
 - [x] Install every individual item into the same fresh consumer project.
-- [x] Install Button from the live HTTPS registry with `shadcn@latest` in a clean Vite canary and complete a production build.
+- [x] Install Button from the versioned registry with the exact audited `shadcn@4.18.0` CLI in a clean Vite canary and complete a production build.
 - [x] Verify generated source imports and the documented system stylesheet in a consumer TypeScript and production build.
 - [x] Generate deterministic SHA-256 integrity metadata for registry artifacts, copied files, public APIs, and tokens.
 - [x] Add a manifest diff that flags removed or type-changed API and token contracts before an update.
@@ -42,6 +42,7 @@ The source is available under MIT. Package publication, browser support, and pro
 
 - [x] Build a realistic product slice with dense controls, overlay, Table, Toast, Shared Detail, and Undo Stack.
 - [x] Add axe anchor-route checks plus automated RTL, forced-colors, reduced-motion, and 200% layout-proxy checks.
+- [x] Add skip links, SPA route announcements, compact-navigation focus handoff, landmark ownership, and versioned five-project accessibility evidence.
 - [x] Add issue/PR templates, maintainer ownership, migration policy, release-note categories, and a non-publishing release-candidate workflow.
 - [x] Complete and record Safari VoiceOver Dialog and Menu anchor review.
 - [x] Complete automated long-content expansion, 24 CSS pixel effective target, touch-emulation, virtual-keyboard proxy, forced-colors, and reduced-motion checks.
@@ -59,11 +60,34 @@ The source is available under MIT. Package publication, browser support, and pro
 
 ## Local RC acceptance
 
-- [x] Freeze 45 components, 210 public exports, and 145 semantic tokens in a machine-readable contract.
-- [x] Store 312 release-level light/dark visual baselines across the public shell and component Product/State specimens.
+- [x] Freeze 45 Core components, 15 product components, 345 public exports, and 145 semantic tokens in a machine-readable contract.
+- [x] Store 330 release-level light/dark visual baselines across the public shell, component Product/State specimens, Analytics recipes, and Product Patterns.
 - [x] Keep `private: true`, omit every publish command, and require an exact RC SemVer for artifact assembly.
 - [x] Pass the fresh `npm ci` clean-room reproduction gate.
 - [x] Assemble the checksummed `0.1.0-rc.1` tarball, SBOM, registry release, integrity reports, and QA records from one clean local commit.
 - [x] Assemble the checksummed `0.1.0-rc.2` tarball, SBOM, registry release, integrity reports, and QA records from one clean local commit.
 - [x] Assemble the renamed and checksummed `0.1.0-rc.3` Teum tarball, SBOM, registry release, integrity reports, and QA records from one clean commit after the full visual and browser matrix passes.
-- [ ] Assemble `0.1.0-rc.4` from one clean commit after the pinned-registry CLI install and full release matrix pass.
+- [ ] Assemble `0.1.0-rc.8` from one clean commit after the pinned-registry, package/SSR, security, accessibility, Storybook, and full browser matrix passes.
+- [x] Complete the local `0.1.0-rc.14` Teum Data acceptance gates without publishing or claiming external adoption.
+- [ ] Assemble `0.1.0-rc.14` from one clean commit after the complete Teum Data clean-install, API, registry, accessibility, visual, and full browser gates pass.
+- [x] Complete the local `0.1.0-rc.16` Teum Analytics acceptance gates without publishing or claiming external adoption.
+- [ ] Assemble `0.1.0-rc.16` from one clean commit after the complete Analytics clean-install, API, registry, accessibility, visual, and full browser gates pass.
+- [x] Reject the local `0.1.0-rc.17` preview after Storybook accessibility review found an unnamed invoice action column; preserve its immutable registry bytes.
+- [x] Complete the local `0.1.0-rc.18` Product Patterns acceptance gates without publishing or claiming external adoption.
+- [ ] Assemble `0.1.0-rc.18` from one clean commit after the complete Product Patterns clean-install, API, registry, accessibility, visual, and full browser gates pass.
+- [x] Complete the local `0.1.0-rc.19` Agent integration acceptance gates without presenting internal task evaluation as an external model benchmark.
+- [x] Complete the local `0.1.0-rc.20` Adoption DX acceptance gates across React 18, React 19, Next.js, and reviewed source updates without claiming independent novice timing.
+- [x] Complete the local `0.1.0-rc.22` security, package, registry, browser, accessibility, and performance evidence refresh without deploying or publishing.
+- [x] Rehearse `0.1.0-rc.22` assembly from an isolated synthetic local commit and verify every checksum, the CycloneDX SBOM, exact package subject, and evidence bundle.
+- [ ] Assemble `0.1.0-rc.22` from one clean commit after the complete Goal 7 matrix passes; keep the dirty-worktree result explicitly non-distributable until then.
+
+## Public beta to v1
+
+- [ ] Publish one clean `0.1.0-rc.22` commit as a GitHub prerelease and deploy the same commit to the canonical site.
+- [ ] Fetch the live immutable registry and match its bytes, cache policy, and manifest to the tagged candidate.
+- [ ] Bootstrap and verify the `teum` npm beta, then move future publishing to a stage-only OIDC trusted publisher.
+- [ ] Record at least one independently maintained install with typecheck and production-build evidence.
+- [ ] Complete two evidence-linked adopter feedback rounds.
+- [ ] Complete the 28-day public API stability window without an undocumented breaking change.
+- [ ] Close the external support matrix or narrow the v1 support claim to the environments with evidence.
+- [ ] Publish `1.0.0` only when `release/beta-readiness.json` reports `v1.ready: true`.

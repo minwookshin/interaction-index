@@ -1,6 +1,6 @@
 # Contributing
 
-Teum is an MIT-licensed alpha. This guide defines the quality bar for changes proposed through the canonical public repository.
+Teum is an MIT-licensed pre-release. This guide defines the quality bar for changes proposed through the canonical public repository.
 
 ## Before adding a component
 

@@ -1,7 +1,14 @@
 import { access, readFile, readdir } from "node:fs/promises";
-import { resolve } from "node:path";
+import { posix, resolve } from "node:path";
 import { gzipSync } from "node:zlib";
-import { createVersionedArtifactSources, mutableRegistryScope, pinnedRegistryScope, sha256 } from "./versioned-registry-contract.mjs";
+import {
+  createVersionedArtifactSources,
+  dependencyName,
+  dependencyVersionsFromLockfile,
+  mutableRegistryScope,
+  pinnedRegistryScope,
+  sha256,
+} from "./versioned-registry-contract.mjs";
 
 const root = process.cwd();
 const registryPath = resolve(root, "registry.json");
@@ -17,12 +24,10 @@ const hash = sha256;
 const packageName = (specifier) => specifier.startsWith("@")
   ? specifier.split("/").slice(0, 2).join("/")
   : specifier.split("/")[0];
-const dependencyName = (dependency) => {
-  const separator = dependency.startsWith("@")
-    ? dependency.indexOf("@", dependency.indexOf("/") + 1)
-    : dependency.indexOf("@");
-  return separator === -1 ? dependency : dependency.slice(0, separator);
-};
+const packageJson = await readJson(resolve(root, "package.json"));
+const packageLock = await readJson(resolve(root, "package-lock.json"));
+const dependencyVersions = dependencyVersionsFromLockfile(packageLock);
+const installerVersion = packageJson.devDependencies?.shadcn;
 const registry = await readJson(registryPath);
 const publicApi = await readJson(publicApiPath).catch(() => fail("generated public API manifest is missing; run npm run build:api"));
 const items = registry.items ?? [];
@@ -32,12 +37,19 @@ const uniqueNames = new Set(names);
 if (uniqueNames.size !== names.length) fail("item names must be unique");
 
 const components = items.filter((item) => item.type === "registry:ui");
-if (components.length === 0) fail("registry exposes no public components");
+const productComponents = items.filter((item) => item.type === "registry:component");
+const installableComponents = [...components, ...productComponents];
+if (components.length === 0) fail("registry exposes no public core components");
 
 const apiComponentNames = Object.keys(publicApi.components ?? {}).sort();
 const registryComponentNames = components.map((item) => item.name).sort();
 if (JSON.stringify(apiComponentNames) !== JSON.stringify(registryComponentNames)) {
   fail("registry components and generated API component modules are out of sync");
+}
+const apiProductComponentNames = Object.keys(publicApi.productComponents ?? {}).sort();
+const registryProductComponentNames = productComponents.map((item) => item.name).sort();
+if (JSON.stringify(apiProductComponentNames) !== JSON.stringify(registryProductComponentNames)) {
+  fail("registry product components and generated API product modules are out of sync");
 }
 
 for (const item of items) {
@@ -82,6 +94,31 @@ for (const item of items) {
   }
 }
 
+// Product components are individually installable. Verify that every local
+// source import is represented by an atomic registry dependency so aggregate
+// blocks cannot accidentally mask an incomplete standalone install graph.
+const atomicOwnerByTarget = new Map();
+for (const item of items.filter((candidate) => candidate.type !== "registry:block")) {
+  for (const file of item.files) {
+    if (file.target && !atomicOwnerByTarget.has(file.target)) atomicOwnerByTarget.set(file.target, item.name);
+  }
+}
+for (const item of productComponents) {
+  const declared = new Set(item.registryDependencies ?? []);
+  for (const file of item.files) {
+    if (!/\.[cm]?[jt]sx?$/.test(file.path)) continue;
+    const source = await readFile(resolve(root, file.path), "utf8");
+    for (const match of source.matchAll(/(?:from\s+|import\s*\()["'](\.{1,2}\/[^"']+)["']/g)) {
+      const base = posix.normalize(posix.join(posix.dirname(file.target), match[1]));
+      const candidates = [base, `${base}.ts`, `${base}.tsx`, `${base}.css`, `${base}/index.ts`, `${base}/index.tsx`];
+      const owner = candidates.map((candidate) => atomicOwnerByTarget.get(candidate)).find(Boolean);
+      if (!owner || owner === item.name) continue;
+      const dependency = `@teum/${owner}`;
+      if (!declared.has(dependency)) fail(`${item.name} imports ${match[1]} from ${owner} without declaring ${dependency}`);
+    }
+  }
+}
+
 const layerOrder = "@layer teum.tokens, teum.base, teum.components;";
 const registryBasePath = resolve(root, "registry/styles/teum-base.css");
 const registryBase = await readFile(registryBasePath, "utf8").catch(() => fail("generated base stylesheet is missing"));
@@ -94,7 +131,7 @@ for (const selector of [".teum-button", ".teum-dialog", ".teum-table", ".teum-sh
 }
 if (Buffer.byteLength(registryBase) > 12_000) fail("base stylesheet exceeds the 12 KB source budget");
 
-for (const item of components) {
+for (const item of installableComponents) {
   const componentSourcePath = `registry/components/ui/${item.name}.tsx`;
   const componentStylePath = `registry/styles/components/${item.name}.css`;
   const paths = new Set(item.files.map((file) => file.path));
@@ -102,19 +139,28 @@ for (const item of components) {
   if (!paths.has(componentStylePath)) fail(`${item.name} does not ship its scoped stylesheet`);
 
   const wrapper = await readFile(resolve(root, componentSourcePath), "utf8");
-  const expectedImports = `import "../../styles/teum-base.css";\nimport "../../styles/components/${item.name}.css";`;
+  const expectedImports = `"use client";\n\nimport "../../styles/teum-base.css";\nimport "../../styles/components/${item.name}.css";`;
   if (!wrapper.startsWith(expectedImports)) {
-    fail(`${item.name} does not automatically load the shared contract and its scoped stylesheet`);
+    fail(`${item.name} does not declare its client boundary and automatically load the shared contract plus scoped stylesheet`);
   }
   const source = await readFile(resolve(root, `src/components/ui/${item.name}.tsx`), "utf8");
   if (wrapper !== `${expectedImports}\n${source}`) {
     fail(`${item.name} registry wrapper is stale relative to its TypeScript source`);
   }
-  const apiEntry = publicApi.components[item.name];
-  if (apiEntry.source !== `src/components/ui/${item.name}.tsx`) {
-    fail(`${item.name} API manifest points to ${apiEntry.source}`);
+  const apiEntry = item.type === "registry:ui"
+    ? publicApi.components[item.name]
+    : publicApi.productComponents[item.name];
+  if (item.type === "registry:ui") {
+    if (apiEntry.source !== `src/components/ui/${item.name}.tsx`) {
+      fail(`${item.name} API manifest points to ${apiEntry.source}`);
+    }
+    await access(resolve(root, apiEntry.declaration)).catch(() => fail(`${item.name} generated declaration is missing`));
+  } else {
+    if (!apiEntry || apiEntry.source !== `src/components/ui/${item.name}.tsx`) {
+      fail(`${item.name} product API manifest is missing or points to the wrong source`);
+    }
+    await access(resolve(root, apiEntry.declaration)).catch(() => fail(`${item.name} generated declaration is missing`));
   }
-  await access(resolve(root, apiEntry.declaration)).catch(() => fail(`${item.name} generated declaration is missing`));
 
   const componentStyle = await readFile(resolve(root, componentStylePath), "utf8");
   if (componentStyle.includes("@import")) fail(`${item.name} stylesheet contains an unexpected transitive import`);
@@ -124,7 +170,10 @@ for (const item of components) {
   for (const documentationSelector of [".system-window", ".live-specimen", ".component-api", ".state-tile", ".foundation-", ".pattern-"]) {
     if (componentStyle.includes(documentationSelector)) fail(`${item.name} stylesheet leaked documentation selector ${documentationSelector}`);
   }
-  if (Buffer.byteLength(componentStyle) > 8_000) fail(`${item.name} stylesheet exceeds the 8 KB source budget`);
+  const stylesheetBudget = item.type === "registry:component" ? 12_288 : 8_192;
+  if (Buffer.byteLength(componentStyle) > stylesheetBudget) {
+    fail(`${item.name} stylesheet exceeds its ${stylesheetBudget / 1_024} KiB source budget`);
+  }
 }
 
 const buttonStyle = await readFile(resolve(root, "registry/styles/components/button.css"), "utf8");
@@ -134,6 +183,117 @@ for (const unrelatedSelector of [".teum-dialog", ".teum-table", ".teum-shared-de
 
 const completeSystem = items.find((item) => item.name === "teum");
 if (!completeSystem) fail("missing teum complete-system item");
+
+const teumData = items.find((item) => item.name === "teum-data");
+if (!teumData) fail("missing Teum Data product-layer item");
+for (const path of [
+  "registry/components/patterns/issues-workspace.tsx",
+  "registry/components/patterns/data-recipes.tsx",
+  "registry/lib/data-view-state.ts",
+  "registry/lib/data-export.ts",
+  "registry/lib/teum-data-contract.ts",
+  "registry/styles/patterns/issues-workspace.css",
+  "registry/styles/patterns/data-recipes.css",
+]) {
+  if (!teumData.files.some((file) => file.path === path)) fail(`Teum Data is missing ${path}`);
+}
+const issuesWorkspaceSource = await readFile(resolve(root, "registry/components/patterns/issues-workspace.tsx"), "utf8");
+if (!issuesWorkspaceSource.startsWith('"use client";\n\nimport "../../styles/teum-base.css";\nimport "../../styles/patterns/issues-workspace.css";')) {
+  fail("Issues Workspace does not load the shared contract and its scoped pattern stylesheet");
+}
+if (!issuesWorkspaceSource.includes("export function IssuesWorkspace")) fail("Issues Workspace does not expose its public composition");
+const issuesWorkspaceStyle = await readFile(resolve(root, "registry/styles/patterns/issues-workspace.css"), "utf8");
+if (!issuesWorkspaceStyle.includes(layerOrder) || !issuesWorkspaceStyle.includes(".pilot-workspace")) {
+  fail("Issues Workspace stylesheet is missing its public layer or root selector");
+}
+for (const documentationSelector of [".system-window", ".live-specimen", ".component-api", ".state-tile", ".public-doc-"]) {
+  if (issuesWorkspaceStyle.includes(documentationSelector)) fail(`Issues Workspace stylesheet leaked documentation selector ${documentationSelector}`);
+}
+if (Buffer.byteLength(issuesWorkspaceStyle) > 20_000) fail("Issues Workspace stylesheet exceeds the 20 KB source budget");
+
+const dataRecipesSource = await readFile(resolve(root, "registry/components/patterns/data-recipes.tsx"), "utf8");
+if (!dataRecipesSource.startsWith('"use client";\n\nimport "../../styles/teum-base.css";\nimport "../../styles/patterns/data-recipes.css";')) {
+  fail("Teum Data recipes do not load the shared contract and scoped pattern stylesheet");
+}
+for (const recipe of ["CustomerDirectoryRecipe", "AuditLogRecipe"]) {
+  if (!dataRecipesSource.includes(`export function ${recipe}`)) fail(`Teum Data recipes omit ${recipe}`);
+}
+const dataRecipesStyle = await readFile(resolve(root, "registry/styles/patterns/data-recipes.css"), "utf8");
+if (!dataRecipesStyle.includes(layerOrder) || !dataRecipesStyle.includes(".teum-data-recipe")) {
+  fail("Teum Data recipe stylesheet is missing its public layer or root selector");
+}
+for (const documentationSelector of [".system-window", ".live-specimen", ".component-api", ".state-tile", ".public-doc-"]) {
+  if (dataRecipesStyle.includes(documentationSelector)) fail(`Teum Data recipe stylesheet leaked documentation selector ${documentationSelector}`);
+}
+if (Buffer.byteLength(dataRecipesStyle) > 12_000) fail("Teum Data recipe stylesheet exceeds the 12 KB source budget");
+
+const teumAnalytics = items.find((item) => item.name === "teum-analytics");
+if (!teumAnalytics) fail("missing Teum Analytics product-layer item");
+for (const path of [
+  "registry/components/patterns/analytics-recipes.tsx",
+  "registry/lib/analytics.ts",
+  "registry/lib/teum-analytics-contract.ts",
+  "registry/styles/patterns/analytics-recipes.css",
+]) {
+  if (!teumAnalytics.files.some((file) => file.path === path)) fail(`Teum Analytics is missing ${path}`);
+}
+const analyticsRecipesSource = await readFile(resolve(root, "registry/components/patterns/analytics-recipes.tsx"), "utf8");
+if (!analyticsRecipesSource.startsWith('"use client";\n\nimport "../../styles/teum-base.css";\nimport "../../styles/patterns/analytics-recipes.css";')) {
+  fail("Teum Analytics recipes do not load the shared contract and scoped pattern stylesheet");
+}
+for (const recipe of ["SaaSOverviewRecipe", "ProductUsageRecipe", "ConversionRetentionRecipe"]) {
+  if (!analyticsRecipesSource.includes(`export function ${recipe}`)) fail(`Teum Analytics recipes omit ${recipe}`);
+}
+const analyticsRecipesStyle = await readFile(resolve(root, "registry/styles/patterns/analytics-recipes.css"), "utf8");
+if (!analyticsRecipesStyle.includes(layerOrder) || !analyticsRecipesStyle.includes(".teum-analytics-recipe")) {
+  fail("Teum Analytics recipe stylesheet is missing its public layer or root selector");
+}
+for (const documentationSelector of [".system-window", ".live-specimen", ".component-api", ".state-tile", ".public-doc-"]) {
+  if (analyticsRecipesStyle.includes(documentationSelector)) fail(`Teum Analytics recipe stylesheet leaked documentation selector ${documentationSelector}`);
+}
+if (Buffer.byteLength(analyticsRecipesStyle) > 8_000) fail("Teum Analytics recipe stylesheet exceeds the 8 KB source budget");
+
+const teumProductPatterns = items.find((item) => item.name === "teum-product-patterns");
+if (!teumProductPatterns) fail("missing Teum Product Patterns block");
+for (const path of [
+  "registry/components/patterns/product-pattern-recipes.tsx",
+  "registry/lib/teum-product-patterns-contract.ts",
+  "registry/styles/patterns/product-pattern-recipes.css",
+]) {
+  if (!teumProductPatterns.files.some((file) => file.path === path)) fail(`Teum Product Patterns is missing ${path}`);
+}
+const productPatternRecipesSource = await readFile(resolve(root, "registry/components/patterns/product-pattern-recipes.tsx"), "utf8");
+if (!productPatternRecipesSource.startsWith('"use client";\n\nimport "../../styles/teum-base.css";\nimport "../../styles/patterns/product-pattern-recipes.css";')) {
+  fail("Teum Product Pattern recipes do not load the shared contract and scoped pattern stylesheet");
+}
+for (const recipe of ["CustomerWorkspaceRecipe", "BillingUsageRecipe", "MembersPermissionsRecipe"]) {
+  if (!productPatternRecipesSource.includes(`export function ${recipe}`)) fail(`Teum Product Pattern recipes omit ${recipe}`);
+}
+const productPatternRecipesStyle = await readFile(resolve(root, "registry/styles/patterns/product-pattern-recipes.css"), "utf8");
+if (!productPatternRecipesStyle.includes(layerOrder) || !productPatternRecipesStyle.includes(".teum-product-pattern")) {
+  fail("Teum Product Pattern recipe stylesheet is missing its public layer or root selector");
+}
+for (const documentationSelector of [".system-window", ".live-specimen", ".component-api", ".state-tile", ".public-doc-"]) {
+  if (productPatternRecipesStyle.includes(documentationSelector)) fail(`Teum Product Pattern recipe stylesheet leaked documentation selector ${documentationSelector}`);
+}
+if (Buffer.byteLength(productPatternRecipesStyle) > 12_000) fail("Teum Product Pattern recipe stylesheet exceeds the 12 KB source budget");
+
+const teumAgent = items.find((item) => item.name === "teum-agent");
+if (!teumAgent) fail("missing Teum Agent contract item");
+for (const path of ["registry/lib/teum-agent-contract.ts", "registry/agent/teum-agent.json"]) {
+  if (!teumAgent.files.some((file) => file.path === path)) fail(`Teum Agent is missing ${path}`);
+}
+for (const dependency of ["@teum/teum-data", "@teum/teum-analytics", "@teum/teum-product-patterns"]) {
+  if (!teumAgent.registryDependencies?.includes(dependency)) fail(`Teum Agent is missing ${dependency}`);
+}
+const agentContract = await readJson(resolve(root, "registry/agent/teum-agent.json")).catch(() => fail("Teum Agent machine contract is missing or invalid"));
+if (agentContract.schemaVersion !== 1 || agentContract.version !== packageJson.version) fail("Teum Agent machine contract version is stale");
+if (agentContract.recipes?.length !== 9 || agentContract.selectionRules?.length < 12 || agentContract.forbiddenRules?.length < 12) {
+  fail("Teum Agent machine contract does not expose the required recipe and rule coverage");
+}
+for (const item of installableComponents) {
+  if (item.meta?.teum?.contract !== "/agent/teum-agent.json") fail(`${item.name} does not expose Teum agent metadata`);
+}
 
 const tailwindBridge = items.find((item) => item.name === "teum-tailwind");
 if (!tailwindBridge) fail("missing optional Tailwind bridge item");
@@ -168,13 +328,21 @@ if (!/className=(?:"teum-toaster"|\{[^}]*["']teum-toaster["'][^}]*\})/s.test(toa
 for (const documentationSelector of [".system-window", ".live-specimen", ".component-api", ".state-tile"]) {
   if (registryStyle.includes(documentationSelector)) fail(`registry stylesheet leaked documentation selector ${documentationSelector}`);
 }
-if (Buffer.byteLength(registryStyle) > 120_000) fail("registry stylesheet exceeds the 120 KB source budget");
-if (gzipSync(registryStyle).byteLength > 18_000) fail("registry stylesheet exceeds the 18 KB gzip budget");
+if (Buffer.byteLength(registryStyle) > 160_000) fail("Core plus Data plus Analytics registry stylesheet exceeds the 160 KB source budget");
+if (gzipSync(registryStyle).byteLength > 22_000) fail("registry stylesheet exceeds the 22 KB gzip budget");
 
 const completePaths = new Set(completeSystem.files.map((file) => file.path));
 const requiredCompletePaths = new Set([
   ...items.find((item) => item.name === "teum-base").files.map((file) => file.path),
-  ...components.flatMap((item) => item.files.map((file) => file.path)),
+  ...installableComponents.flatMap((item) => item.files.map((file) => file.path)),
+  "registry/lib/data-view-state.ts",
+  "registry/lib/data-export.ts",
+  "registry/lib/teum-data-contract.ts",
+  "registry/lib/analytics.ts",
+  "registry/lib/teum-analytics-contract.ts",
+  "registry/lib/teum-product-patterns-contract.ts",
+  "registry/lib/teum-agent-contract.ts",
+  "registry/agent/teum-agent.json",
   "registry/styles/teum.css",
   "registry/components/ui/index.ts",
 ]);
@@ -203,7 +371,7 @@ for (const item of items) {
 const releaseManifestPath = resolve(outputDirectory, "manifest.json");
 const releaseManifestSource = await readFile(releaseManifestPath, "utf8").catch(() => fail("registry integrity manifest is missing; run npm run build:registry"));
 const releaseManifest = JSON.parse(releaseManifestSource);
-if (releaseManifest.version !== (await readJson(resolve(root, "package.json"))).version) fail("registry integrity manifest version is stale");
+if (releaseManifest.version !== packageJson.version) fail("registry integrity manifest version is stale");
 if (releaseManifest.catalog?.componentCount !== components.length || releaseManifest.catalog?.itemCount !== items.length) {
   fail("registry integrity manifest catalog counts are stale");
 }
@@ -221,9 +389,13 @@ if (versionedRelease.version !== releaseManifest.version || versionedRelease.imm
 if (versionedRelease.cacheControl !== "public, max-age=31536000, immutable") {
   fail("versioned registry release does not declare the immutable cache contract");
 }
-if (versionedRelease.schemaVersion !== 2 || versionedRelease.registryScope !== pinnedRegistryScope) {
+if (versionedRelease.schemaVersion !== 3 || versionedRelease.registryScope !== pinnedRegistryScope) {
   fail("versioned registry release does not declare the pinned dependency scope");
 }
+if (
+  versionedRelease.dependencyPolicy !== "same-version-internal-and-exact-external"
+  || versionedRelease.installer !== `shadcn@${installerVersion}`
+) fail("versioned registry release does not declare its exact installer and dependency policy");
 const versionedArtifacts = (await readdir(versionedDirectory)).filter((name) => name.endsWith(".json") && name !== "release.json").sort();
 const mutableArtifacts = (await readdir(outputDirectory, { withFileTypes: true })).filter((entry) => entry.isFile() && entry.name.endsWith(".json")).map((entry) => entry.name).sort();
 if (JSON.stringify(versionedArtifacts) !== JSON.stringify(mutableArtifacts)) {
@@ -232,7 +404,7 @@ if (JSON.stringify(versionedArtifacts) !== JSON.stringify(mutableArtifacts)) {
 
 const mutableSources = new Map();
 for (const name of mutableArtifacts) mutableSources.set(name, await readFile(resolve(outputDirectory, name), "utf8"));
-const expectedVersionedSources = createVersionedArtifactSources(mutableSources);
+const expectedVersionedSources = createVersionedArtifactSources(mutableSources, { dependencyVersions, installerVersion });
 for (const name of mutableArtifacts) {
   const versionedSource = await readFile(resolve(versionedDirectory, name), "utf8");
   if (versionedSource !== expectedVersionedSources.get(name)) fail(`versioned ${name} does not match the pinned release contract`);
@@ -241,6 +413,12 @@ for (const name of mutableArtifacts) {
 
 const versionedRegistry = await readJson(resolve(versionedDirectory, "registry.json"));
 for (const item of versionedRegistry.items ?? []) {
+  for (const dependency of item.dependencies ?? []) {
+    const name = dependencyName(dependency);
+    if (dependency !== `${name}@${dependencyVersions.get(name)}`) {
+      fail(`${item.name} dependency ${dependency} is not pinned to package-lock.json`);
+    }
+  }
   for (const dependency of item.registryDependencies ?? []) {
     if (dependency.startsWith(`${mutableRegistryScope}/`)) {
       fail(`${item.name} leaks mutable dependency ${dependency} into the pinned release`);
@@ -256,12 +434,17 @@ const versionedManifest = JSON.parse(versionedManifestSource);
 if (versionedManifest.distribution?.immutableRegistry?.registryScope !== pinnedRegistryScope) {
   fail("versioned integrity manifest does not declare the pinned registry scope");
 }
+if (
+  versionedManifest.distribution?.immutableRegistry?.dependencyPolicy !== "same-version-internal-and-exact-external"
+  || versionedManifest.distribution?.immutableRegistry?.installer !== `shadcn@${installerVersion}`
+) fail("versioned integrity manifest does not declare exact external resolution");
 if (versionedManifest.sources?.registry?.sha256 !== releaseManifest.sources?.registry?.sha256) {
   fail("versioned integrity manifest no longer identifies the authored registry source");
 }
 if (
   versionedManifest.versionedFrom?.mutableManifestSha256 !== hash(releaseManifestSource)
   || versionedManifest.versionedFrom?.dependencyScopeRewrite !== `${mutableRegistryScope}/* -> ${pinnedRegistryScope}/*`
+  || versionedManifest.versionedFrom?.installer !== `shadcn@${installerVersion}`
 ) {
   fail("versioned integrity manifest does not identify its mutable source and dependency rewrite");
 }

@@ -1,0 +1,64 @@
+/* Generated from src/styles.css. Do not edit directly. */
+
+@layer teum.tokens, teum.base, teum.components;
+
+@layer teum.components {
+.teum-menu__item--danger { color: var(--teum-fg-danger); }
+
+.teum-menu__item--danger svg { color: currentColor; }
+
+.teum-data-toolbar {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  padding: 8px 0;
+}
+
+.teum-data-toolbar__start,
+.teum-data-toolbar__end {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.teum-data-toolbar__end { justify-content: flex-end; margin-left: auto; }
+
+.teum-saved-views { min-width: 232px; }
+
+.teum-saved-views__copy {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 1px;
+}
+
+.teum-saved-views__copy strong { font-size: var(--teum-type-label); font-weight: 560; }
+
+.teum-saved-views__copy small,
+.teum-saved-views__count { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+
+.teum-saved-views__count { margin-left: auto; font-variant-numeric: tabular-nums; }
+
+.teum-column-manager { min-width: 216px; }
+
+.teum-column-manager__required {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: auto;
+  color: var(--teum-fg-subtle);
+  font-size: var(--teum-type-metadata);
+}
+
+.teum-column-manager__required svg { width: 10px; height: 10px; }
+
+@media (max-width: 700px) {
+.teum-data-toolbar { align-items: stretch; flex-direction: column; }
+
+.teum-data-toolbar__end { width: 100%; justify-content: flex-start; margin-left: 0; }
+}
+}

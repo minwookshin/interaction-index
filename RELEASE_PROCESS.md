@@ -15,8 +15,9 @@ Teum uses verified, maintainer-approved releases. A passing workflow is evidence
 1. Confirm the canonical repository, issue tracker, homepage, registry install path, and private security-advisory channel.
 2. Create a signed or annotated version tag from the verified commit. Never claim the tagged registry address before the tag exists.
 3. Generate release notes from `.github/release.yml`, then add breaking changes and migrations by hand.
-4. Publish a GitHub prerelease for `0.x` alphas.
-5. Keep the npm package private until package distribution is separately approved. A package candidate and attestation are not an npm publication.
+4. Publish a GitHub prerelease for the public beta only after its assets and tag identify the verified commit.
+5. Bootstrap the first npm beta only from the verified public-package tarball with maintainer 2FA. After the package exists, configure the exact GitHub workflow as a stage-only trusted publisher before allowing automated package updates.
+6. Publish prerelease packages under the `beta` dist-tag. Do not move `latest` until the v1 evidence gate passes.
 
 ## Rollback
 

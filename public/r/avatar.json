@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/components/ui/avatar.tsx",
-      "content": "import \"../../styles/teum-base.css\";\nimport \"../../styles/components/avatar.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type AvatarProps = ComponentPropsWithRef<\"span\"> & {\n  src?: string;\n  alt?: string;\n  fallback: string;\n  size?: \"small\" | \"medium\" | \"large\";\n  status?: \"online\" | \"away\" | \"busy\" | \"offline\";\n};\n\nfunction fallbackTone(value: string) {\n  return [...value].reduce((total, character) => total + (character.codePointAt(0) ?? 0), 0) % 4;\n}\n\nexport function Avatar({ className, src, alt = \"\", fallback, size = \"medium\", status, ...props }: AvatarProps) {\n  return (\n    <span className={cn(\"teum-avatar\", `teum-avatar--${size}`, className)} data-status={status || undefined} data-tone={src ? undefined : fallbackTone(fallback)} {...props}>\n      {src ? <img src={src} alt={alt} /> : <span className=\"teum-avatar__fallback\" aria-hidden={alt ? undefined : \"true\"}>{fallback.slice(0, 2).toLocaleUpperCase()}</span>}\n      {status && <span className=\"teum-avatar__status\" data-status={status} role=\"img\" aria-label={`${status} presence`} />}\n    </span>\n  );\n}\n\nexport function AvatarGroup({ className, children, ...props }: ComponentPropsWithRef<\"div\">) {\n  return <div role=\"group\" className={cn(\"teum-avatar-group\", className)} {...props}>{children}</div>;\n}\n",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/avatar.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type AvatarProps = ComponentPropsWithRef<\"span\"> & {\n  src?: string;\n  alt?: string;\n  fallback: string;\n  size?: \"small\" | \"medium\" | \"large\";\n  status?: \"online\" | \"away\" | \"busy\" | \"offline\";\n};\n\nfunction fallbackTone(value: string) {\n  return [...value].reduce((total, character) => total + (character.codePointAt(0) ?? 0), 0) % 4;\n}\n\nexport function Avatar({ className, src, alt = \"\", fallback, size = \"medium\", status, ...props }: AvatarProps) {\n  return (\n    <span className={cn(\"teum-avatar\", `teum-avatar--${size}`, className)} data-status={status || undefined} data-tone={src ? undefined : fallbackTone(fallback)} {...props}>\n      {src ? <img src={src} alt={alt} /> : <span className=\"teum-avatar__fallback\" aria-hidden={alt ? undefined : \"true\"}>{fallback.slice(0, 2).toLocaleUpperCase()}</span>}\n      {status && <span className=\"teum-avatar__status\" data-status={status} role=\"img\" aria-label={`${status} presence`} />}\n    </span>\n  );\n}\n\nexport function AvatarGroup({ className, children, ...props }: ComponentPropsWithRef<\"div\">) {\n  return <div role=\"group\" className={cn(\"teum-avatar-group\", className)} {...props}>{children}</div>;\n}\n",
       "type": "registry:ui",
       "target": "components/ui/avatar.tsx"
     },
@@ -20,5 +20,13 @@
       "target": "styles/components/avatar.css"
     }
   ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/avatar",
+      "useWhen": "Visual identity helps people recognize a person or entity faster than text alone.",
+      "avoidWhen": "No identity exists or the image adds decoration without meaning."
+    }
+  },
   "type": "registry:ui"
 }

@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 2,
+  "name": "teum",
+  "version": "0.1.0-rc.5",
+  "immutable": true,
+  "channel": "versioned",
+  "registryScope": "@teum-pinned",
+  "urlTemplate": "https://teum.minwookshin.com/r/v/0.1.0-rc.5/{name}.json",
+  "cacheControl": "public, max-age=31536000, immutable",
+  "sourceManifestSha256": "dde1025e8a0a464c341c8d77fcacaa5f868756fdb78306b23fc9a705838d2264",
+  "versionedManifestSha256": "09b7b102939a7de3ae2bf412f84d2778378be0d585f0b55b32a816aadf095ff6",
+  "artifacts": {
+    "action-list.json": {
+      "bytes": 10456,
+      "sha256": "0908cd96b181bccfd519d78451a4c2448576a5b9dc197cda01713c49125b4405"
+    },
+    "alert-dialog.json": {
+      "bytes": 5258,
+      "sha256": "2fe30851a20097efb2b84462013caf4c69e2e85c38495d2be1cd23947d4b96f2"
+    },
+    "alert.json": {
+      "bytes": 3763,
+      "sha256": "df88e43dc5a73e42411f3718116869431753d9d533f98e9144ca94fd0ab4b8e9"
+    },
+    "avatar.json": {
+      "bytes": 4183,
+      "sha256": "5c4de8e8024201b6d5cbe65a2915622f1287cddd195dad9e0cc847933a2dba18"
+    },
+    "badge.json": {
+      "bytes": 3424,
+      "sha256": "49c91582643cd290f4c7d1ff56b7e6d16f1b8f3843e3f558534baaec72bc7416"
+    },
+    "breadcrumbs.json": {
+      "bytes": 3484,
+      "sha256": "d18d9a6c6fc15b73da3828db721ca444f172b8ea82089b53d09240701a5d91f8"
+    },
+    "button-group.json": {
+      "bytes": 3640,
+      "sha256": "fc2ad498f33a2757d6ade9757ab0fde57c7fa3054a042dc8db23866c65ebc3e5"
+    },
+    "button.json": {
+      "bytes": 7013,
+      "sha256": "818d2f62b4efe8d214c11b955515e6e8fb7f91056cfa861a747f9e5800ba58b9"
+    },
+    "checkbox.json": {
+      "bytes": 4970,
+      "sha256": "c56834b03d21123529a8d7ac9ca0eb9ef9c86edd5d3fb81d0869415863c80fce"
+    },
+    "collapsible.json": {
+      "bytes": 3797,
+      "sha256": "685a05b690d6df09ad5a6e8ad9835b4385391bb2045a6c81bb18705eb9f29d97"
+    },
+    "combobox.json": {
+      "bytes": 10212,
+      "sha256": "35bb9fbe8c4da88564a2757f50253dd5c3bd69b216e2e7c4d89ff76b0e2033eb"
+    },
+    "context-menu.json": {
+      "bytes": 7283,
+      "sha256": "3d4e3a5e51ab42861bdbcaab396f5ce66b69e2d3711170a089c447788c992cc5"
+    },
+    "context-switcher.json": {
+      "bytes": 10684,
+      "sha256": "074a9e4f2235048d5bff526e01d68888dc0d217b535114dd7f5c622c95acaafb"
+    },
+    "date-picker.json": {
+      "bytes": 9569,
+      "sha256": "20d40ac8010a575a14ce9431e3903a181d192d8b4df4fdcb57f004a576c8c1bb"
+    },
+    "dialog.json": {
+      "bytes": 5168,
+      "sha256": "58bf2c4577d0e67f58ca9b3dc3c6902ad91b9196f0ca312b72dbb1b0147182b9"
+    },
+    "empty-state.json": {
+      "bytes": 3241,
+      "sha256": "90cf836f7a30aad691d80d911babc4796fb48dd0d930e3ddfc6c7bd4078985f3"
+    },
+    "field.json": {
+      "bytes": 5427,
+      "sha256": "c8bd59f08f271a3989eea71026d1b07071c4f46ef41de9577a79370afbfd9a5c"
+    },
+    "icon-button.json": {
+      "bytes": 2428,
+      "sha256": "8405db52967e976b00a7011bd8b7426508fb1829d7e19c20cc66149430ec4baa"
+    },
+    "inline-edit.json": {
+      "bytes": 8584,
+      "sha256": "837e2c1370e1568fcc70c280f05efe7fb42d6044705d773ca6ae105de17ef99f"
+    },
+    "input-group.json": {
+      "bytes": 5194,
+      "sha256": "bb882b229add134bae8c834eec39f8b734557836286ac7039f7223af700e0166"
+    },
+    "kbd.json": {
+      "bytes": 1974,
+      "sha256": "07da677786a01ee08285587f13d502df0cd445cf7a0856b71ba3c9d2ef9fcb19"
+    },
+    "menu.json": {
+      "bytes": 6675,
+      "sha256": "56815880a984a87f91dd78836e7bee111bd5047d8efa8701aeebd232098f51e7"
+    },
+    "number-field.json": {
+      "bytes": 6025,
+      "sha256": "cbd1cf130181cf340b4356aab40c0a5ffa1108dcf2ba6ed67f46c48590f7ba2b"
+    },
+    "pagination.json": {
+      "bytes": 4548,
+      "sha256": "194064724f50630987fe2795eb0783ea713710d578c3612cd8b9d709099be280"
+    },
+    "popover.json": {
+      "bytes": 2991,
+      "sha256": "f0419cfb5f2a78aa4fbc8bcd7350d672d112db6a67a471198de10dd22d77a645"
+    },
+    "progress.json": {
+      "bytes": 3566,
+      "sha256": "afc24d66eeb90a93ab408d8cf51efdeac5b13861ef0e32d10a24800ee4837be1"
+    },
+    "radio-group.json": {
+      "bytes": 5660,
+      "sha256": "35b871b10ad30778a664722e05a53d4ee139c730e07eda4160b413c23e1512a9"
+    },
+    "registry.json": {
+      "bytes": 48566,
+      "sha256": "0226794cb86ec23ff710899dc95664c24c05d06bbc70796c040525177685c760"
+    },
+    "reorderable-list.json": {
+      "bytes": 6808,
+      "sha256": "a2e5ad7dd08bfa43dcd79ec8dca35205dafd66faa3a3bc08133812e02b8009e3"
+    },
+    "search-input.json": {
+      "bytes": 5346,
+      "sha256": "15f2d1c3568097536cf80359f08d17242e9d64de7c674a37f1c235c386614bf5"
+    },
+    "segmented-control.json": {
+      "bytes": 5034,
+      "sha256": "d1a9377fade0cd71de64b093d1ecaac27cf65e721400a79e7bb1bf35f7cf97d1"
+    },
+    "select.json": {
+      "bytes": 9185,
+      "sha256": "35c7a87d531f2cf78a5f43ee3027b179d50c13b5e95c8b52afe70651d50fcb55"
+    },
+    "shared-detail.json": {
+      "bytes": 20570,
+      "sha256": "3187fb1c79f209e81e39cc61b2268e0aff8650792b4797327efa5057dfdd8d1c"
+    },
+    "sheet.json": {
+      "bytes": 6557,
+      "sha256": "7743c1c78c3423e8ac164a886af8307aca4bf3008965fa875037d0a42f0fb146"
+    },
+    "skeleton.json": {
+      "bytes": 2303,
+      "sha256": "0e68a0bdc754924f6d95ff2ade96e478beffd7d210c2b035e9c5f0eef2996829"
+    },
+    "spinner.json": {
+      "bytes": 1811,
+      "sha256": "03eef77962b14547dbddcb5cd5908059b50df212b3cbdb1c7bd210c1a835b7a8"
+    },
+    "switch.json": {
+      "bytes": 4094,
+      "sha256": "347a8ecda9eda60c28385eb293993b071428d1e7710aa3afabb8f4e8bb55cd0b"
+    },
+    "table.json": {
+      "bytes": 4739,
+      "sha256": "c7008e8314b7b7684ff3b1a96c1cefc2894a5bba9fc65ced5525dea063bb0a7a"
+    },
+    "tabs.json": {
+      "bytes": 3317,
+      "sha256": "fc12e9f7afda80104f63bbe3984b45871b316260388d5a25a2f311589bd52438"
+    },
+    "teum-base.json": {
+      "bytes": 10426,
+      "sha256": "c2f44b647e52524b3fe72f8445b19e75282dc17931d111ef2cdf50eb28344f68"
+    },
+    "teum-tailwind.json": {
+      "bytes": 2717,
+      "sha256": "d32f640daef182ee7c3788e3cbe3b508e370269ae300d202619269a752a84b89"
+    },
+    "teum.json": {
+      "bytes": 250790,
+      "sha256": "94d3890954781b706db502f301388bce9759c6e2c06919b1acf7ae42ef2fa04f"
+    },
+    "text-field.json": {
+      "bytes": 4874,
+      "sha256": "cbb8a2b6f939e933d7a241ec316f5c9833e869a0f125fea3c206729f09169242"
+    },
+    "textarea.json": {
+      "bytes": 4492,
+      "sha256": "95dd4296caa1ebd51618d55d342475915a3956f1877c8732cbb2415ad475ed0d"
+    },
+    "toast.json": {
+      "bytes": 4663,
+      "sha256": "38facc354a72bbb165b60e5af51b940d1bbffce89717e5f55eadaae6ecda589a"
+    },
+    "toolbar.json": {
+      "bytes": 5157,
+      "sha256": "9cf32b647341b89dfa3a72905deb4a607e05e7e74ff87c4595869f2def477e7f"
+    },
+    "tooltip.json": {
+      "bytes": 3889,
+      "sha256": "7a44bc918f929b2fd044b0bf3fd8b12894843bd7e99e56f9fc9248e6b7c00085"
+    },
+    "tree.json": {
+      "bytes": 5772,
+      "sha256": "d315b3578d40bc21f5f86380a7ee78c3cad148b9d27677d1eb928f1cccb4fe56"
+    },
+    "undo-stack.json": {
+      "bytes": 6297,
+      "sha256": "42868980de314a909a4127370f9ec454724f5977001bd7f487327c6c84139a9c"
+    },
+    "manifest.json": {
+      "bytes": 154422,
+      "sha256": "09b7b102939a7de3ae2bf412f84d2778378be0d585f0b55b32a816aadf095ff6"
+    }
+  }
+}

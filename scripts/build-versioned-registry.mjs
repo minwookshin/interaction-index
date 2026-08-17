@@ -1,10 +1,17 @@
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { createVersionedArtifactSources, pinnedRegistryScope, sha256 } from "./versioned-registry-contract.mjs";
+import {
+  createVersionedArtifactSources,
+  dependencyVersionsFromLockfile,
+  exactDependencyVersionsFromRegistry,
+  pinnedRegistryScope,
+  sha256,
+} from "./versioned-registry-contract.mjs";
 
 const root = process.cwd();
 const sourceRoot = resolve(root, "public/r");
 const packageJson = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
+const packageLock = JSON.parse(await readFile(resolve(root, "package-lock.json"), "utf8"));
 const publication = JSON.parse(await readFile(resolve(root, "publication.json"), "utf8"));
 const version = packageJson.version;
 const checkOnly = process.argv.includes("--check");
@@ -31,19 +38,25 @@ for (const name of artifactNames) {
   mutableSources.set(name, source);
 }
 
-const expectedFiles = createVersionedArtifactSources(mutableSources);
+const dependencyVersions = dependencyVersionsFromLockfile(packageLock);
+const installerVersion = packageJson.devDependencies?.shadcn;
+const expectedFiles = createVersionedArtifactSources(mutableSources, { dependencyVersions, installerVersion });
+const externalDependencyVersions = exactDependencyVersionsFromRegistry(JSON.parse(expectedFiles.get("registry.json")));
 const artifacts = {};
 for (const [name, source] of expectedFiles) {
   artifacts[name] = { bytes: Buffer.byteLength(source), sha256: sha256(source) };
 }
 
 const release = {
-  schemaVersion: 2,
+  schemaVersion: 3,
   name: packageJson.name,
   version,
   immutable: true,
   channel: "versioned",
   registryScope: pinnedRegistryScope,
+  dependencyPolicy: "same-version-internal-and-exact-external",
+  installer: `shadcn@${installerVersion}`,
+  externalDependencyVersions: Object.fromEntries([...externalDependencyVersions].sort(([a], [b]) => a.localeCompare(b))),
   urlTemplate: `${publication.homepage}/r/v/${version}/{name}.json`,
   cacheControl: "public, max-age=31536000, immutable",
   sourceManifestSha256: sha256(mutableSources.get("manifest.json")),

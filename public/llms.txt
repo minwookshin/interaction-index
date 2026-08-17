@@ -4,11 +4,17 @@ Teum is a dense, monochrome React component and interaction system for product i
 
 ## Documentation routes
 
-- /#introduction - system overview and behavior signature
-- /#installation - registry and stylesheet setup
+- / - public overview, behavior principles, and product demo
+- /#installation - verified pinned-registry quickstart, CSS setup, troubleshooting, and update safety
+- /#choosing-components - task, focus, and recovery boundaries between adjacent components
+- /#product-pilot - Teum Data primitives plus Issues Workspace, Customer Directory, and Audit Log recipes
+- /#analytics - Teum Analytics primitives plus SaaS Overview, Product Usage, and Conversion & Retention recipes
+- /#product-patterns - Customer Workspace, Billing & Usage, and Members & Permissions B2B compositions
+- /#agent-native - machine-readable contracts, selection and composition rules, Teum skill, and 30-task evaluation
 - /#foundations - color, typography, spacing, motion, and Component DNA
 - /#button - component documentation begins with Button; the sidebar lists all 45 components
-- /#patterns - authored interaction patterns
+- /#patterns - interaction patterns
+- /#component-status - maturity, evidence, and promotion gates
 - /#accessibility - keyboard, focus, motion, contrast, and manual review
 - /#browser-support - browser and viewport support policy
 - /#security - vulnerability reporting and supported versions
@@ -19,11 +25,40 @@ Teum is a dense, monochrome React component and interaction system for product i
 ## Install
 
 ```bash
-npx shadcn@latest registry add @teum=https://interactions.minwookshin.com/r/{name}.json
-npx shadcn@latest add @teum/button
+npx shadcn@4.18.0 registry add @teum-pinned=https://teum.minwookshin.com/r/v/0.1.0-rc.22/{name}.json
+npx shadcn@4.18.0 add @teum-pinned/button
 ```
 
-Installed component source imports the shared contract and its scoped stylesheet. The complete-system item also provides `styles/teum.css` as the application-root base entry. Plain CSS is the source of truth; Tailwind CSS v4 consumers may additionally install `@teum/teum-tailwind` for semantic utilities backed by the same variables.
+Executable starters:
+
+- examples/quickstart-vite
+- examples/quickstart-next
+
+Before accepting an update, run the install with `--dry-run`, inspect the target file with `--diff <path>`, then use `--overwrite --yes` only after review. Teum does not automatically merge copied source.
+
+Install the Teum Data vertical slice:
+
+```bash
+npx shadcn@4.18.0 add @teum-pinned/teum-data
+```
+
+Teum Data exposes Data Table, Filter Builder, Data Toolbar, Bulk Action Bar, Date Range Filter, Data Export Menu, Motion Contract v1, a versioned view-state codec, and three agent-readable recipe contracts. Issues Workspace proves mutation and recovery; Customer Directory proves controlled server state, URL state, and saved views; Audit Log proves date filtering and 10,000-row virtualization. The 45-component Core catalog remains frozen.
+
+Install the complete B2B Product Patterns slice:
+
+```bash
+npx shadcn@4.18.0 add @teum-pinned/teum-product-patterns
+npx shadcn@4.18.0 add @teum-pinned/teum-agent
+
+Agent contract:
+https://teum.minwookshin.com/agent/teum-agent.json
+```
+
+Product Patterns composes the approved Core, Data, and Analytics layers into Customer Workspace, Billing & Usage, and Members & Permissions. Its machine-readable contract records task sequence, state ownership, invariants, failure handling, keyboard behavior, and reduced-motion behavior.
+
+This exact namespace/install path is exercised in a fresh React + TypeScript + Vite consumer before release. Installed component source imports the shared contract and its scoped stylesheet. The complete-system item also provides `styles/teum.css` as the application-root base entry. Plain CSS is the source of truth; Tailwind CSS v4 consumers may additionally install `@teum-pinned/teum-tailwind` for semantic utilities backed by the same variables.
+
+Every component route ends with a copyable pinned-registry install command, common props and defaults, the compiler-extracted public surface, verified dependency versions, and the remaining manual review boundary. Section links use `/#<route>/<section>`, for example `/#installation/troubleshooting`.
 
 ## Source documents
 
@@ -34,4 +69,9 @@ Installed component source imports the shared contract and its scoped stylesheet
 - SUPPORT.md
 - RELEASE_CHECKLIST.md
 - CHANGELOG.md
+- release/evidence.md
+- release/quickstart.json
+- release/next-quickstart.json
+- release/registry-upgrade.json
+- release/adoption-dx.json
 - LICENSE

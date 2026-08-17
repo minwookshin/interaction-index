@@ -1,6 +1,6 @@
 # RC external gates
 
-The local `0.1.0-rc.4` artifact may be assembled when automated verification passes. A stable compatibility promise or npm publication remains blocked until the applicable external gates below have dated evidence.
+The local `0.1.0-rc.22` artifact may be assembled from a clean commit when automated verification passes. A stable compatibility promise or npm publication remains blocked until the applicable external gates below have dated evidence.
 
 These are environment gates, not hidden implementation TODOs. Each gate names what local automation already proves and what still requires the real platform.
 
@@ -57,13 +57,21 @@ These are environment gates, not hidden implementation TODOs. Each gate names wh
 
 **Pass condition:** content remains understandable and operable with no semantic direction error or concealed required action.
 
+## 5. Linux Analytics and Product Patterns visual baselines
+
+**Current evidence:** the complete `rc.21` route, Core specimen, Analytics recipe, and Product Patterns set is reviewed on macOS. Linux retains the earlier Core baselines but is missing the newest documentation pairs plus the Analytics and Product Patterns documentation and recipe pairs.
+
+**Required external run:** run the catalog, Analytics, and Product Patterns Storybook visual suites in the reviewed Linux CI image, inspect the new captures, and commit the platform-specific files only after approval.
+
+**Pass condition:** 138 public-route and 192 isolated Storybook snapshots exist and pass for Linux without copying macOS raster output.
+
 ## Evidence record
 
 Copy this block for every external run:
 
 ```text
 Gate:
-Candidate version: 0.1.0-rc.4
+Candidate version: 0.1.0-rc.22
 Candidate SHA-256:
 Date:
 Tester:

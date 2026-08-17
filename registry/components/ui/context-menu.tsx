@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/context-menu.css";
 import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu";

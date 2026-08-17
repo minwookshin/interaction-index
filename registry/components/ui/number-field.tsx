@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/number-field.css";
 import { NumberField as NumberFieldPrimitive } from "@base-ui/react/number-field";

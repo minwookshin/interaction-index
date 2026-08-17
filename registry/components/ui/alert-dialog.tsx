@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/alert-dialog.css";
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";

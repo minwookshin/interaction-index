@@ -1,0 +1,94 @@
+name: Adopter feedback
+description: Share installation, composition, customization, or update experience from a real Teum evaluation.
+title: "[Adopter]: "
+labels: [feedback, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for evaluating Teum in a real product task. Do not include private product data or security details here.
+  - type: input
+    id: version
+    attributes:
+      label: Teum version
+      description: Use the exact pinned registry version or source commit.
+      placeholder: 0.1.0-rc.21
+    validations:
+      required: true
+  - type: dropdown
+    id: distribution
+    attributes:
+      label: Integration path
+      options:
+        - Pinned HTTPS registry
+        - GitHub registry
+        - npm beta
+        - Local source checkout
+    validations:
+      required: true
+  - type: input
+    id: components
+    attributes:
+      label: Components or patterns evaluated
+      placeholder: Button, Text Field, Shared Detail, Undo Stack
+    validations:
+      required: true
+  - type: textarea
+    id: task
+    attributes:
+      label: Product task
+      description: What user decision or workflow did Teum support?
+    validations:
+      required: true
+  - type: textarea
+    id: experience
+    attributes:
+      label: What worked and what created friction?
+      description: Include installation, API, composition, styling, accessibility, and update details that would change your decision.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and evidence
+      description: React, TypeScript, browser, framework, commands, checks, and a public reproduction when available.
+    validations:
+      required: true
+  - type: dropdown
+    id: independence
+    attributes:
+      label: Project ownership
+      description: This distinguishes repository-owned fixtures from independent adoption evidence.
+      options:
+        - Independently maintained project
+        - Teum repository or maintainer-owned fixture
+    validations:
+      required: true
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: Evaluation outcome
+      options:
+        - Still evaluating
+        - Kept in an internal prototype
+        - Kept in a shipped product
+        - Removed after evaluation
+    validations:
+      required: true
+  - type: dropdown
+    id: citation
+    attributes:
+      label: May the maintainer cite this evaluation publicly?
+      description: Choosing yes permits a factual reference to this issue; it does not permit sharing private product details.
+      options:
+        - No
+        - Yes, this public issue only
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Preflight
+      options:
+        - label: This contains no confidential data or public security disclosure.
+          required: true

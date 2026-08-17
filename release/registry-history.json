@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "currentCandidate": "0.1.0-rc.22",
+  "policy": "Versioned registry directories are append-only. Anchored releases must match their source commit byte-for-byte; legacy previews and the current candidate are locked by this reviewed content ledger until a release commit exists.",
+  "versions": [
+    {
+      "version": "0.1.0-alpha.0",
+      "status": "anchored",
+      "anchorCommit": "62c779acd30cf2be006737ac71a232319eda2564",
+      "fileCount": 40,
+      "treeSha256": "7da4f3cf774f4a8caa67e7f7d8789829c14d24cdee33cd539f45a01fee750063"
+    },
+    {
+      "version": "0.1.0-alpha.1",
+      "status": "anchored",
+      "anchorCommit": "62c779acd30cf2be006737ac71a232319eda2564",
+      "fileCount": 40,
+      "treeSha256": "b39e4a55e993786e19f8be613785b001a3ec43517d97f53972ac0358b8add1aa"
+    },
+    {
+      "version": "0.1.0-alpha.2",
+      "status": "anchored",
+      "anchorCommit": "62c779acd30cf2be006737ac71a232319eda2564",
+      "fileCount": 40,
+      "treeSha256": "1567bd505d29db36275b10d428cf0c28b80a5c4f79c85cbe3caf4aceb018df7a"
+    },
+    {
+      "version": "0.1.0-alpha.3",
+      "status": "anchored",
+      "anchorCommit": "62c779acd30cf2be006737ac71a232319eda2564",
+      "fileCount": 50,
+      "treeSha256": "83462b54f07d912720cb05976e2716d5c8b7d0f9083d4ffbf16f88b4af729115"
+    },
+    {
+      "version": "0.1.0-rc.1",
+      "status": "anchored",
+      "anchorCommit": "62c779acd30cf2be006737ac71a232319eda2564",
+      "fileCount": 50,
+      "treeSha256": "05af5d7d195e3d75350be83044d751dad5fbb2ab9ef7ab65129a0ceb15e82676"
+    },
+    {
+      "version": "0.1.0-rc.2",
+      "status": "anchored",
+      "anchorCommit": "62c779acd30cf2be006737ac71a232319eda2564",
+      "fileCount": 50,
+      "treeSha256": "24f8adf73bf2b40aa1b1a3cba345cfb754a06161d137978d3e6f92b892323103"
+    },
+    {
+      "version": "0.1.0-rc.3",
+      "status": "anchored",
+      "anchorCommit": "62c779acd30cf2be006737ac71a232319eda2564",
+      "fileCount": 51,
+      "treeSha256": "cfa1675b92e5f74781b509919bc480410fb6da161170e094295cca539afe621e"
+    },
+    {
+      "version": "0.1.0-rc.4",
+      "status": "anchored",
+      "anchorCommit": "510bb10fe956e754c889bd368b09f38175f71570",
+      "fileCount": 51,
+      "treeSha256": "ed90ccd8934c8498806a4222067970c53b114dfcee60dfadf4b60bdaf25bcefb"
+    },
+    {
+      "version": "0.1.0-rc.5",
+      "status": "legacy-preview",
+      "fileCount": 51,
+      "treeSha256": "8ad75713c490b5fc096627a9787f7ef634798f79a128ac339208fa194d6759a9"
+    },
+    {
+      "version": "0.1.0-rc.6",
+      "status": "legacy-preview",
+      "fileCount": 51,
+      "treeSha256": "4b36fee9d46833a7110a6fc41f324b48a2f905146d505f97a49ff2801a25fae8"
+    },
+    {
+      "version": "0.1.0-rc.7",
+      "status": "legacy-preview",
+      "fileCount": 51,
+      "treeSha256": "63660235b360a861b12c37458290998956472671e4c115a8114b567e627c29af"
+    },
+    {
+      "version": "0.1.0-rc.8",
+      "status": "legacy-preview",
+      "fileCount": 51,
+      "treeSha256": "ce0dc8eb8bf5d90a1d0f3323cd896d86e1e96596fba8e18eca22ad3108983ca7"
+    },
+    {
+      "version": "0.1.0-rc.9",
+      "status": "legacy-preview",
+      "fileCount": 56,
+      "treeSha256": "f9d3a805856eb0d9635056affb5d9ad42cb9779e1a436651670e57a58d2c6475"
+    },
+    {
+      "version": "0.1.0-rc.10",
+      "status": "legacy-preview",
+      "fileCount": 56,
+      "treeSha256": "15f70fbb25fffe3409f1cf15d9c1bb168a9082ad91155d30ec036faea91511f3"
+    },
+    {
+      "version": "0.1.0-rc.11",
+      "status": "legacy-preview",
+      "fileCount": 56,
+      "treeSha256": "2d43e96ffe9daae8cf412bb59912467f592cda33a43d6d0895a8731d02b1c5eb"
+    },
+    {
+      "version": "0.1.0-rc.12",
+      "status": "legacy-preview",
+      "fileCount": 60,
+      "treeSha256": "c524ac96410d29c90602d6a66d41f02b8fe6c5bbb6366c8fb1bdc6a885e4cc76"
+    },
+    {
+      "version": "0.1.0-rc.13",
+      "status": "legacy-preview",
+      "fileCount": 60,
+      "treeSha256": "082ec01a9907b58cb402efbc5578a9c6062d673bba0e97e2ef5aa9efcc8b26df"
+    },
+    {
+      "version": "0.1.0-rc.14",
+      "status": "legacy-preview",
+      "fileCount": 60,
+      "treeSha256": "bfda03fa7e598d919b73c0bc317fa87b58f1d71bfefbfb319bc031aec2946716"
+    },
+    {
+      "version": "0.1.0-rc.15",
+      "status": "legacy-preview",
+      "fileCount": 72,
+      "treeSha256": "b043249482e2b5c8a75e49410addb49b97f1b5e357df04653650b985bd67d1ec"
+    },
+    {
+      "version": "0.1.0-rc.16",
+      "status": "legacy-preview",
+      "fileCount": 72,
+      "treeSha256": "9763b0b1690f365d3939fc9b2cf4fb99b712de50fcb00d00a421da75b4e1d3d2"
+    },
+    {
+      "version": "0.1.0-rc.17",
+      "status": "legacy-preview",
+      "fileCount": 74,
+      "treeSha256": "90b8bf1d640665af82723255c8d5818d176f877619fcc28795bd62cb4f6e410c"
+    },
+    {
+      "version": "0.1.0-rc.18",
+      "status": "legacy-preview",
+      "fileCount": 74,
+      "treeSha256": "9b6c74990e2c90c46c1dffa0cca24169f11c2f21bd6fe26678347aa7a39ed471"
+    },
+    {
+      "version": "0.1.0-rc.19",
+      "status": "legacy-preview",
+      "fileCount": 75,
+      "treeSha256": "cc1007f845c48307a51d09d2ceea1a0b6f2a4a8760ed8e0832e628ebf72a5207"
+    },
+    {
+      "version": "0.1.0-rc.20",
+      "status": "legacy-preview",
+      "fileCount": 75,
+      "treeSha256": "b93bbf8bbf85f292c1a755883363c7aafc86605e0b5b875454f2cc063d11622f"
+    },
+    {
+      "version": "0.1.0-rc.21",
+      "status": "legacy-preview",
+      "fileCount": 75,
+      "treeSha256": "3719e40ceef48c5292f6affc136d89da51d443fe0c12f6dacb80c1d93c966242"
+    },
+    {
+      "version": "0.1.0-rc.22",
+      "status": "candidate",
+      "fileCount": 75,
+      "treeSha256": "97f96f35664f81e740412c853d8ec6640b5cb9ead3f6e07f099c9dd6b7736730"
+    }
+  ]
+}

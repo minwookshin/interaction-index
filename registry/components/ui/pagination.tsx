@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/pagination.css";
 import { CaretLeft, CaretRight, DotsThree } from "@phosphor-icons/react";

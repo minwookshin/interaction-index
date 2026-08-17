@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "teum",
-  "homepage": "https://interactions.minwookshin.com",
+  "homepage": "https://teum.minwookshin.com",
   "items": [
     {
       "name": "teum-base",
@@ -23,6 +23,11 @@
           "path": "registry/lib/behavior-contract.ts",
           "type": "registry:lib",
           "target": "lib/behavior-contract.ts"
+        },
+        {
+          "path": "registry/lib/motion-contract.ts",
+          "type": "registry:lib",
+          "target": "lib/motion-contract.ts"
         },
         {
           "path": "registry/styles/teum-base.css",
@@ -70,7 +75,15 @@
           "type": "registry:style",
           "target": "styles/components/button.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/button",
+          "useWhen": "The user needs to start or confirm a discrete action.",
+          "avoidWhen": "Navigation is the intent. Use a link that can still look like a button."
+        }
+      }
     },
     {
       "name": "icon-button",
@@ -92,7 +105,15 @@
           "type": "registry:style",
           "target": "styles/components/icon-button.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/icon-button",
+          "useWhen": "A familiar icon can represent a frequent action in a constrained area.",
+          "avoidWhen": "The icon is ambiguous without explanation. Prefer a labelled Button."
+        }
+      }
     },
     {
       "name": "field",
@@ -116,7 +137,15 @@
           "type": "registry:style",
           "target": "styles/components/field.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/field",
+          "useWhen": "A control needs a persistent label, supporting guidance, validation, or grouping semantics.",
+          "avoidWhen": "The content is not form input or the label would only repeat nearby visible context."
+        }
+      }
     },
     {
       "name": "input-group",
@@ -138,7 +167,15 @@
           "type": "registry:style",
           "target": "styles/components/input-group.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/input-group",
+          "useWhen": "An addon or action belongs inside the same visual entry boundary as one text input.",
+          "avoidWhen": "The adjacent controls perform unrelated work or several inputs form a compound value."
+        }
+      }
     },
     {
       "name": "kbd",
@@ -159,7 +196,15 @@
           "type": "registry:style",
           "target": "styles/components/kbd.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/kbd",
+          "useWhen": "A visible hint explains a real keyboard shortcut or key sequence.",
+          "avoidWhen": "The key is interactive on its own or no working shortcut exists."
+        }
+      }
     },
     {
       "name": "button-group",
@@ -180,7 +225,15 @@
           "type": "registry:style",
           "target": "styles/components/button-group.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/button-group",
+          "useWhen": "Two or more related actions benefit from shared alignment or joined geometry.",
+          "avoidWhen": "Actions are unrelated, one action dominates an entire form, or arrow-key navigation is expected."
+        }
+      }
     },
     {
       "name": "toolbar",
@@ -204,7 +257,15 @@
           "type": "registry:style",
           "target": "styles/components/toolbar.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/toolbar",
+          "useWhen": "A compact set of frequent peer controls benefits from one arrow-navigable region.",
+          "avoidWhen": "Actions are infrequent, form submission is the main task, or controls need explanatory copy."
+        }
+      }
     },
     {
       "name": "text-field",
@@ -225,7 +286,15 @@
           "type": "registry:style",
           "target": "styles/components/text-field.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/text-field",
+          "useWhen": "The user enters a short, unstructured value.",
+          "avoidWhen": "A finite option set can be selected with less effort."
+        }
+      }
     },
     {
       "name": "number-field",
@@ -250,7 +319,15 @@
           "type": "registry:style",
           "target": "styles/components/number-field.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/number-field",
+          "useWhen": "The value is numeric and stepping, bounds, or locale-aware formatting reduce entry errors.",
+          "avoidWhen": "The number is an identifier, phone number, postal code, or another string that is not mathematically stepped."
+        }
+      }
     },
     {
       "name": "segmented-control",
@@ -274,7 +351,15 @@
           "type": "registry:style",
           "target": "styles/components/segmented-control.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/segmented-control",
+          "useWhen": "Two to four short peer options should remain visible and switch immediately.",
+          "avoidWhen": "Options are numerous, require descriptions, or submit later as part of a form."
+        }
+      }
     },
     {
       "name": "date-picker",
@@ -300,7 +385,15 @@
           "type": "registry:style",
           "target": "styles/components/date-picker.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/date-picker",
+          "useWhen": "A date must be entered precisely while a calendar also makes nearby dates easier to inspect.",
+          "avoidWhen": "The value is relative prose, a date range, or a full scheduling workflow with time zones and recurrence."
+        }
+      }
     },
     {
       "name": "checkbox",
@@ -324,7 +417,15 @@
           "type": "registry:style",
           "target": "styles/components/checkbox.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/checkbox",
+          "useWhen": "Several independent options may be selected together.",
+          "avoidWhen": "A setting takes effect immediately. Use Switch for that case."
+        }
+      }
     },
     {
       "name": "switch",
@@ -347,7 +448,15 @@
           "type": "registry:style",
           "target": "styles/components/switch.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/switch",
+          "useWhen": "Changing the setting should take effect immediately.",
+          "avoidWhen": "The change must be reviewed and submitted with a form."
+        }
+      }
     },
     {
       "name": "tooltip",
@@ -370,7 +479,15 @@
           "type": "registry:style",
           "target": "styles/components/tooltip.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/tooltip",
+          "useWhen": "A concise label clarifies an otherwise understandable control.",
+          "avoidWhen": "The content is required to complete the task or contains actions."
+        }
+      }
     },
     {
       "name": "popover",
@@ -393,7 +510,15 @@
           "type": "registry:style",
           "target": "styles/components/popover.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/popover",
+          "useWhen": "A small set of controls belongs next to its trigger.",
+          "avoidWhen": "The task requires full attention, long forms, or a destructive decision."
+        }
+      }
     },
     {
       "name": "menu",
@@ -417,7 +542,15 @@
           "type": "registry:style",
           "target": "styles/components/menu.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/menu",
+          "useWhen": "Related actions need a compact, temporary container.",
+          "avoidWhen": "Options must remain visible for comparison or frequent access."
+        }
+      }
     },
     {
       "name": "dialog",
@@ -441,7 +574,15 @@
           "type": "registry:style",
           "target": "styles/components/dialog.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/dialog",
+          "useWhen": "A short, reversible task needs focused attention and a clear completion point.",
+          "avoidWhen": "The work can be completed inline, requires a long workflow, or demands an explicit consequential response. Use Alert Dialog for the latter."
+        }
+      }
     },
     {
       "name": "context-menu",
@@ -466,7 +607,15 @@
           "type": "registry:style",
           "target": "styles/components/context-menu.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/context-menu",
+          "useWhen": "A familiar object has secondary actions that benefit from right click or long press and also have a keyboard path.",
+          "avoidWhen": "The action is required, frequent, undiscoverable without instruction, or the trigger has no stable object boundary."
+        }
+      }
     },
     {
       "name": "sheet",
@@ -492,7 +641,15 @@
           "type": "registry:style",
           "target": "styles/components/sheet.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/sheet",
+          "useWhen": "A focused task needs more room than a Popover but the originating page should remain spatially legible.",
+          "avoidWhen": "The task is a short anchored choice, a full destination, or a gesture-driven drawer with snap points."
+        }
+      }
     },
     {
       "name": "alert-dialog",
@@ -516,7 +673,15 @@
           "type": "registry:style",
           "target": "styles/components/alert-dialog.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/alert-dialog",
+          "useWhen": "A consequential action must interrupt the task and requires an explicit response.",
+          "avoidWhen": "The action is safely reversible with Undo or ordinary information is being displayed."
+        }
+      }
     },
     {
       "name": "tabs",
@@ -539,7 +704,15 @@
           "type": "registry:style",
           "target": "styles/components/tabs.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/tabs",
+          "useWhen": "Peer views of the same object can switch without navigation.",
+          "avoidWhen": "The sections form a sequence or users need to compare them simultaneously."
+        }
+      }
     },
     {
       "name": "toast",
@@ -562,7 +735,15 @@
           "type": "registry:style",
           "target": "styles/components/toast.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/toast",
+          "useWhen": "The result is useful but should not block the current task.",
+          "avoidWhen": "The user must act before continuing or the error belongs beside a field."
+        }
+      }
     },
     {
       "name": "inline-edit",
@@ -586,7 +767,15 @@
           "type": "registry:style",
           "target": "styles/components/inline-edit.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/inline-edit",
+          "useWhen": "A visible value is changed frequently and its location should remain stable.",
+          "avoidWhen": "Validation is complex or several fields must be edited together."
+        }
+      }
     },
     {
       "name": "reorderable-list",
@@ -611,7 +800,15 @@
           "type": "registry:style",
           "target": "styles/components/reorderable-list.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/reorderable-list",
+          "useWhen": "Users need to change a meaningful order and the new position can be previewed and reversed.",
+          "avoidWhen": "Order is calculated, changes are destructive, or move up and down controls would be clearer for a tiny list."
+        }
+      }
     },
     {
       "name": "action-list",
@@ -635,7 +832,15 @@
           "type": "registry:style",
           "target": "styles/components/action-list.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/action-list",
+          "useWhen": "Many actions must be searched and executed without leaving keyboard flow.",
+          "avoidWhen": "The list is ordinary navigation or needs persistent multi-selection."
+        }
+      }
     },
     {
       "name": "shared-detail",
@@ -666,7 +871,15 @@
           "type": "registry:style",
           "target": "styles/components/shared-detail.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/shared-detail",
+          "useWhen": "Users need to inspect several neighboring objects without losing list context.",
+          "avoidWhen": "The detail is a separate destination with deep navigation or a long workflow."
+        }
+      }
     },
     {
       "name": "undo-stack",
@@ -691,7 +904,15 @@
           "type": "registry:style",
           "target": "styles/components/undo-stack.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/undo-stack",
+          "useWhen": "A mutation can be reversed reliably without a confirmation dialog.",
+          "avoidWhen": "The inverse action is unsafe, lossy, or impossible after submission."
+        }
+      }
     },
     {
       "name": "badge",
@@ -715,7 +936,15 @@
           "type": "registry:style",
           "target": "styles/components/badge.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/badge",
+          "useWhen": "A short label adds secondary classification or compact status context.",
+          "avoidWhen": "The label triggers a primary action or contains a sentence."
+        }
+      }
     },
     {
       "name": "avatar",
@@ -736,7 +965,15 @@
           "type": "registry:style",
           "target": "styles/components/avatar.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/avatar",
+          "useWhen": "Visual identity helps people recognize a person or entity faster than text alone.",
+          "avoidWhen": "No identity exists or the image adds decoration without meaning."
+        }
+      }
     },
     {
       "name": "textarea",
@@ -757,7 +994,15 @@
           "type": "registry:style",
           "target": "styles/components/textarea.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/textarea",
+          "useWhen": "The user needs to enter more than one line of unstructured text.",
+          "avoidWhen": "The value is short or highly structured. Use Text Field or a purpose-built selector."
+        }
+      }
     },
     {
       "name": "radio-group",
@@ -781,7 +1026,15 @@
           "type": "registry:style",
           "target": "styles/components/radio-group.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/radio-group",
+          "useWhen": "A small set of mutually exclusive options should remain visible for comparison.",
+          "avoidWhen": "The list is long or space is constrained. Use Select instead."
+        }
+      }
     },
     {
       "name": "select",
@@ -806,7 +1059,15 @@
           "type": "registry:style",
           "target": "styles/components/select.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/select",
+          "useWhen": "A compact control should choose one value from a short predefined list.",
+          "avoidWhen": "The option set is large enough to require filtering. Use Combobox."
+        }
+      }
     },
     {
       "name": "context-switcher",
@@ -831,7 +1092,15 @@
           "type": "registry:style",
           "target": "styles/components/context-switcher.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/context-switcher",
+          "useWhen": "A short single-choice set changes the surrounding product context and each option needs an icon or one line of explanation.",
+          "avoidWhen": "The value is an ordinary form field or the option set needs filtering. Use Select or Combobox instead."
+        }
+      }
     },
     {
       "name": "combobox",
@@ -856,7 +1125,15 @@
           "type": "registry:style",
           "target": "styles/components/combobox.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/combobox",
+          "useWhen": "A predefined collection is large enough that filtering reduces selection effort.",
+          "avoidWhen": "Free-form text should be accepted. Use Search Input or Text Field."
+        }
+      }
     },
     {
       "name": "search-input",
@@ -880,7 +1157,15 @@
           "type": "registry:style",
           "target": "styles/components/search-input.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/search-input",
+          "useWhen": "The user enters a free-form query and results update or submit elsewhere.",
+          "avoidWhen": "The value must come from a predefined set. Use Combobox."
+        }
+      }
     },
     {
       "name": "breadcrumbs",
@@ -904,7 +1189,15 @@
           "type": "registry:style",
           "target": "styles/components/breadcrumbs.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/breadcrumbs",
+          "useWhen": "Users benefit from seeing and navigating the hierarchy above the current destination.",
+          "avoidWhen": "The product is flat or the path duplicates a nearby persistent navigation tree."
+        }
+      }
     },
     {
       "name": "pagination",
@@ -928,7 +1221,15 @@
           "type": "registry:style",
           "target": "styles/components/pagination.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/pagination",
+          "useWhen": "Users need stable page positions or direct access to a distant result page.",
+          "avoidWhen": "Continuous browsing is the goal and an infinite list preserves context better."
+        }
+      }
     },
     {
       "name": "collapsible",
@@ -953,7 +1254,15 @@
           "type": "registry:style",
           "target": "styles/components/collapsible.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/collapsible",
+          "useWhen": "Supporting content is useful on demand but should not compete with the primary task.",
+          "avoidWhen": "The content is required, represents a destination, or several sections need accordion coordination."
+        }
+      }
     },
     {
       "name": "skeleton",
@@ -974,7 +1283,15 @@
           "type": "registry:style",
           "target": "styles/components/skeleton.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/skeleton",
+          "useWhen": "The final layout is known and content is expected imminently.",
+          "avoidWhen": "The layout is unknown, the wait is long, or progress can be quantified."
+        }
+      }
     },
     {
       "name": "progress",
@@ -998,7 +1315,15 @@
           "type": "registry:style",
           "target": "styles/components/progress.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/progress",
+          "useWhen": "A task duration is long enough that explicit completion feedback reduces uncertainty.",
+          "avoidWhen": "The work is effectively immediate or progress cannot be meaningfully represented."
+        }
+      }
     },
     {
       "name": "spinner",
@@ -1019,7 +1344,15 @@
           "type": "registry:style",
           "target": "styles/components/spinner.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/spinner",
+          "useWhen": "Ongoing work needs a compact indicator and progress cannot be quantified.",
+          "avoidWhen": "The loading layout is large enough for a Skeleton or progress is measurable."
+        }
+      }
     },
     {
       "name": "alert",
@@ -1044,7 +1377,15 @@
           "type": "registry:style",
           "target": "styles/components/alert.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/alert",
+          "useWhen": "Feedback should remain visible beside the affected work until it is understood or resolved.",
+          "avoidWhen": "The message is transient, belongs to one field, or blocks progress until a response is chosen."
+        }
+      }
     },
     {
       "name": "empty-state",
@@ -1068,7 +1409,15 @@
           "type": "registry:style",
           "target": "styles/components/empty-state.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/empty-state",
+          "useWhen": "A collection has no content and the reason or next useful action is not otherwise obvious.",
+          "avoidWhen": "Content is still loading or the empty region is too small to justify explanatory UI."
+        }
+      }
     },
     {
       "name": "table",
@@ -1089,7 +1438,260 @@
           "type": "registry:style",
           "target": "styles/components/table.css"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/table",
+          "useWhen": "Rows share the same attributes and users need to scan or compare values across columns.",
+          "avoidWhen": "Items are better understood as cards, the data is hierarchical, or responsive reading order cannot be preserved."
+        }
+      }
+    },
+    {
+      "name": "data-table",
+      "type": "registry:component",
+      "title": "Data Table",
+      "description": "Headless sorting, selection, visibility, pagination, and collection states over semantic table markup.",
+      "dependencies": [
+        "@phosphor-icons/react@^2.1.10",
+        "@tanstack/react-table@9.1.2",
+        "@tanstack/react-virtual@3.14.9"
+      ],
+      "registryDependencies": [
+        "@teum/teum-base",
+        "@teum/button",
+        "@teum/checkbox",
+        "@teum/data-view-state",
+        "@teum/empty-state",
+        "@teum/pagination",
+        "@teum/skeleton",
+        "@teum/spinner",
+        "@teum/table"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/data-table.tsx",
+          "type": "registry:component",
+          "target": "components/ui/data-table.tsx"
+        },
+        {
+          "path": "registry/styles/components/data-table.css",
+          "type": "registry:style",
+          "target": "styles/components/data-table.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/data-table"
+        }
+      }
+    },
+    {
+      "name": "filter-builder",
+      "type": "registry:component",
+      "title": "Filter Builder",
+      "description": "Visible categorical query clauses with a compact add-and-remove workflow.",
+      "dependencies": [
+        "@phosphor-icons/react@^2.1.10"
+      ],
+      "registryDependencies": [
+        "@teum/teum-base",
+        "@teum/badge",
+        "@teum/button",
+        "@teum/data-view-state",
+        "@teum/popover",
+        "@teum/select",
+        "@teum/text-field"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/filter-builder.tsx",
+          "type": "registry:component",
+          "target": "components/ui/filter-builder.tsx"
+        },
+        {
+          "path": "registry/styles/components/filter-builder.css",
+          "type": "registry:style",
+          "target": "styles/components/filter-builder.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/filter-builder"
+        }
+      }
+    },
+    {
+      "name": "data-toolbar",
+      "type": "registry:component",
+      "title": "Data Toolbar",
+      "description": "Saved views, query controls, and display settings in one labelled collection boundary.",
+      "dependencies": [
+        "@phosphor-icons/react@^2.1.10"
+      ],
+      "registryDependencies": [
+        "@teum/teum-base",
+        "@teum/button",
+        "@teum/menu"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/data-toolbar.tsx",
+          "type": "registry:component",
+          "target": "components/ui/data-toolbar.tsx"
+        },
+        {
+          "path": "registry/styles/components/data-toolbar.css",
+          "type": "registry:style",
+          "target": "styles/components/data-toolbar.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/data-toolbar"
+        }
+      }
+    },
+    {
+      "name": "bulk-action-bar",
+      "type": "registry:component",
+      "title": "Bulk Action Bar",
+      "description": "Selection-scoped actions that appear without moving the collection.",
+      "dependencies": [
+        "@phosphor-icons/react@^2.1.10"
+      ],
+      "registryDependencies": [
+        "@teum/teum-base",
+        "@teum/icon-button"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/bulk-action-bar.tsx",
+          "type": "registry:component",
+          "target": "components/ui/bulk-action-bar.tsx"
+        },
+        {
+          "path": "registry/styles/components/bulk-action-bar.css",
+          "type": "registry:style",
+          "target": "styles/components/bulk-action-bar.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/bulk-action-bar"
+        }
+      }
+    },
+    {
+      "name": "data-view-state",
+      "type": "registry:lib",
+      "title": "Data View State",
+      "description": "Validated collection state, deterministic URL serialization, server request keys, and persistent personal views.",
+      "files": [
+        {
+          "path": "registry/lib/data-view-state.ts",
+          "type": "registry:lib",
+          "target": "lib/data-view-state.ts"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/data-view-state"
+        }
+      }
+    },
+    {
+      "name": "data-export",
+      "type": "registry:lib",
+      "title": "Data Export",
+      "description": "Declared-column CSV and JSON export with safe filenames and spreadsheet formula neutralization.",
+      "files": [
+        {
+          "path": "registry/lib/data-export.ts",
+          "type": "registry:lib",
+          "target": "lib/data-export.ts"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/data-export"
+        }
+      }
+    },
+    {
+      "name": "date-range-filter",
+      "type": "registry:component",
+      "title": "Date Range Filter",
+      "description": "Draft, preset, validate, and explicitly apply an open or bounded collection date range.",
+      "dependencies": [
+        "@internationalized/date@^3.12.3",
+        "@phosphor-icons/react@^2.1.10"
+      ],
+      "registryDependencies": [
+        "@teum/teum-base",
+        "@teum/button",
+        "@teum/data-view-state",
+        "@teum/date-picker",
+        "@teum/popover"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/date-range-filter.tsx",
+          "type": "registry:component",
+          "target": "components/ui/date-range-filter.tsx"
+        },
+        {
+          "path": "registry/styles/components/date-range-filter.css",
+          "type": "registry:style",
+          "target": "styles/components/date-range-filter.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/date-range-filter"
+        }
+      }
+    },
+    {
+      "name": "data-export-menu",
+      "type": "registry:component",
+      "title": "Data Export Menu",
+      "description": "Export visible or selected records as CSV or JSON through one explicit collection action.",
+      "dependencies": [
+        "@phosphor-icons/react@^2.1.10"
+      ],
+      "registryDependencies": [
+        "@teum/teum-base",
+        "@teum/button",
+        "@teum/data-export",
+        "@teum/menu"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/data-export-menu.tsx",
+          "type": "registry:component",
+          "target": "components/ui/data-export-menu.tsx"
+        },
+        {
+          "path": "registry/styles/components/data-export-menu.css",
+          "type": "registry:style",
+          "target": "styles/components/data-export-menu.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/data-export-menu"
+        }
+      }
     },
     {
       "name": "tree",
@@ -1114,18 +1716,550 @@
           "type": "registry:style",
           "target": "styles/components/tree.css"
         }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/tree",
+          "useWhen": "The hierarchy itself matters and users need to expand, collapse, navigate, or select nested items.",
+          "avoidWhen": "The content is flat, several branches must be compared at once, or ordinary disclosure sections are sufficient."
+        }
+      }
+    },
+    {
+      "name": "analytics",
+      "type": "registry:lib",
+      "title": "Analytics Geometry",
+      "description": "Dependency-free domain, tick, path, formatting, and text-summary utilities for Teum Analytics.",
+      "files": [
+        {
+          "path": "registry/lib/analytics.ts",
+          "type": "registry:lib",
+          "target": "lib/analytics.ts"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/analytics"
+        }
+      }
+    },
+    {
+      "name": "teum-analytics-contract",
+      "type": "registry:lib",
+      "title": "Teum Analytics Contract",
+      "description": "Agent-readable component choice, state ownership, accessibility, and recipe contracts for analytic product surfaces.",
+      "files": [
+        {
+          "path": "registry/lib/teum-analytics-contract.ts",
+          "type": "registry:lib",
+          "target": "lib/teum-analytics-contract.ts"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/teum-analytics-contract"
+        }
+      }
+    },
+    {
+      "name": "teum-product-patterns-contract",
+      "type": "registry:lib",
+      "title": "Teum Product Patterns Contract",
+      "description": "Agent-readable task, state ownership, failure, accessibility, and composition contracts for B2B product patterns.",
+      "files": [
+        {
+          "path": "registry/lib/teum-product-patterns-contract.ts",
+          "type": "registry:lib",
+          "target": "lib/teum-product-patterns-contract.ts"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/teum-product-patterns-contract"
+        }
+      }
+    },
+    {
+      "name": "sparkline",
+      "type": "registry:component",
+      "title": "Sparkline",
+      "description": "A compact, non-interactive directional trace for an already-labelled metric.",
+      "registryDependencies": [
+        "@teum/teum-base",
+        "@teum/analytics"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/sparkline.tsx",
+          "type": "registry:component",
+          "target": "components/ui/sparkline.tsx"
+        },
+        {
+          "path": "registry/styles/components/sparkline.css",
+          "type": "registry:style",
+          "target": "styles/components/sparkline.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/sparkline"
+        }
+      }
+    },
+    {
+      "name": "metric",
+      "type": "registry:component",
+      "title": "Metric",
+      "description": "One named value with restrained trend, comparison context, and stable loading geometry.",
+      "dependencies": [
+        "@phosphor-icons/react@^2.1.10"
+      ],
+      "registryDependencies": [
+        "@teum/teum-base"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/metric.tsx",
+          "type": "registry:component",
+          "target": "components/ui/metric.tsx"
+        },
+        {
+          "path": "registry/styles/components/metric.css",
+          "type": "registry:style",
+          "target": "styles/components/metric.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/metric"
+        }
+      }
+    },
+    {
+      "name": "chart",
+      "type": "registry:component",
+      "title": "Chart",
+      "description": "An interactive ordered-series chart with synchronized pointer and keyboard inspection plus a semantic data table.",
+      "registryDependencies": [
+        "@teum/teum-base",
+        "@teum/analytics"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/chart.tsx",
+          "type": "registry:component",
+          "target": "components/ui/chart.tsx"
+        },
+        {
+          "path": "registry/styles/components/chart.css",
+          "type": "registry:style",
+          "target": "styles/components/chart.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/chart"
+        }
+      }
+    },
+    {
+      "name": "comparison",
+      "type": "registry:component",
+      "title": "Comparison",
+      "description": "Current, previous, and relative change in one compact semantic definition list.",
+      "dependencies": [
+        "@phosphor-icons/react@^2.1.10"
+      ],
+      "registryDependencies": [
+        "@teum/teum-base",
+        "@teum/analytics"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/comparison.tsx",
+          "type": "registry:component",
+          "target": "components/ui/comparison.tsx"
+        },
+        {
+          "path": "registry/styles/components/comparison.css",
+          "type": "registry:style",
+          "target": "styles/components/comparison.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/comparison"
+        }
+      }
+    },
+    {
+      "name": "breakdown",
+      "type": "registry:component",
+      "title": "Breakdown",
+      "description": "A ranked part-to-whole list with visible values and optional product selection.",
+      "registryDependencies": [
+        "@teum/teum-base",
+        "@teum/analytics"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/breakdown.tsx",
+          "type": "registry:component",
+          "target": "components/ui/breakdown.tsx"
+        },
+        {
+          "path": "registry/styles/components/breakdown.css",
+          "type": "registry:style",
+          "target": "styles/components/breakdown.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/breakdown"
+        }
+      }
+    },
+    {
+      "name": "goal",
+      "type": "registry:component",
+      "title": "Goal",
+      "description": "Progress toward one explicit target with visible actual and target values.",
+      "registryDependencies": [
+        "@teum/teum-base",
+        "@teum/analytics"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/goal.tsx",
+          "type": "registry:component",
+          "target": "components/ui/goal.tsx"
+        },
+        {
+          "path": "registry/styles/components/goal.css",
+          "type": "registry:style",
+          "target": "styles/components/goal.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/goal"
+        }
+      }
+    },
+    {
+      "name": "funnel",
+      "type": "registry:component",
+      "title": "Funnel",
+      "description": "Ordered stage volume with explicit adjacent conversion and optional supporting-record selection.",
+      "registryDependencies": [
+        "@teum/teum-base",
+        "@teum/analytics"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/funnel.tsx",
+          "type": "registry:component",
+          "target": "components/ui/funnel.tsx"
+        },
+        {
+          "path": "registry/styles/components/funnel.css",
+          "type": "registry:style",
+          "target": "styles/components/funnel.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/funnel"
+        }
+      }
+    },
+    {
+      "name": "cohort",
+      "type": "registry:component",
+      "title": "Cohort",
+      "description": "A keyboard-reachable semantic retention matrix with text in every heat cell.",
+      "registryDependencies": [
+        "@teum/teum-base"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/cohort.tsx",
+          "type": "registry:component",
+          "target": "components/ui/cohort.tsx"
+        },
+        {
+          "path": "registry/styles/components/cohort.css",
+          "type": "registry:style",
+          "target": "styles/components/cohort.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/cohort"
+        }
+      }
+    },
+    {
+      "name": "timeline",
+      "type": "registry:component",
+      "title": "Timeline",
+      "description": "Dated product events that can control an analytic annotation without crowding the plot.",
+      "registryDependencies": [
+        "@teum/teum-base"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/timeline.tsx",
+          "type": "registry:component",
+          "target": "components/ui/timeline.tsx"
+        },
+        {
+          "path": "registry/styles/components/timeline.css",
+          "type": "registry:style",
+          "target": "styles/components/timeline.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/timeline"
+        }
+      }
+    },
+    {
+      "name": "teum-data",
+      "type": "registry:block",
+      "title": "Teum Data",
+      "description": "Three source-owned collection recipes for mutation, server data, and large immutable event streams.",
+      "dependencies": [
+        "@phosphor-icons/react@^2.1.10"
+      ],
+      "registryDependencies": [
+        "@teum/action-list",
+        "@teum/badge",
+        "@teum/bulk-action-bar",
+        "@teum/button",
+        "@teum/data-table",
+        "@teum/data-toolbar",
+        "@teum/date-range-filter",
+        "@teum/data-export-menu",
+        "@teum/data-export",
+        "@teum/data-view-state",
+        "@teum/dialog",
+        "@teum/filter-builder",
+        "@teum/icon-button",
+        "@teum/inline-edit",
+        "@teum/menu",
+        "@teum/search-input",
+        "@teum/select",
+        "@teum/shared-detail",
+        "@teum/tabs",
+        "@teum/text-field",
+        "@teum/toast",
+        "@teum/undo-stack"
+      ],
+      "files": [
+        {
+          "path": "registry/components/patterns/issues-workspace.tsx",
+          "type": "registry:block",
+          "target": "components/patterns/issues-workspace.tsx"
+        },
+        {
+          "path": "registry/components/patterns/data-recipes.tsx",
+          "type": "registry:block",
+          "target": "components/patterns/data-recipes.tsx"
+        },
+        {
+          "path": "registry/lib/data-view-state.ts",
+          "type": "registry:lib",
+          "target": "lib/data-view-state.ts"
+        },
+        {
+          "path": "registry/lib/data-export.ts",
+          "type": "registry:lib",
+          "target": "lib/data-export.ts"
+        },
+        {
+          "path": "registry/lib/teum-data-contract.ts",
+          "type": "registry:lib",
+          "target": "lib/teum-data-contract.ts"
+        },
+        {
+          "path": "registry/styles/patterns/issues-workspace.css",
+          "type": "registry:style",
+          "target": "styles/patterns/issues-workspace.css"
+        },
+        {
+          "path": "registry/styles/patterns/data-recipes.css",
+          "type": "registry:style",
+          "target": "styles/patterns/data-recipes.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/teum-data"
+        }
+      }
+    },
+    {
+      "name": "teum-analytics",
+      "type": "registry:block",
+      "title": "Teum Analytics",
+      "description": "Three source-owned product analytics recipes for revenue, usage, conversion, and retention decisions.",
+      "dependencies": [
+        "@phosphor-icons/react@^2.1.10"
+      ],
+      "registryDependencies": [
+        "@teum/analytics",
+        "@teum/badge",
+        "@teum/breakdown",
+        "@teum/chart",
+        "@teum/cohort",
+        "@teum/comparison",
+        "@teum/data-table",
+        "@teum/funnel",
+        "@teum/goal",
+        "@teum/metric",
+        "@teum/segmented-control",
+        "@teum/sparkline",
+        "@teum/teum-analytics-contract",
+        "@teum/timeline"
+      ],
+      "files": [
+        {
+          "path": "registry/components/patterns/analytics-recipes.tsx",
+          "type": "registry:block",
+          "target": "components/patterns/analytics-recipes.tsx"
+        },
+        {
+          "path": "registry/lib/analytics.ts",
+          "type": "registry:lib",
+          "target": "lib/analytics.ts"
+        },
+        {
+          "path": "registry/lib/teum-analytics-contract.ts",
+          "type": "registry:lib",
+          "target": "lib/teum-analytics-contract.ts"
+        },
+        {
+          "path": "registry/styles/patterns/analytics-recipes.css",
+          "type": "registry:style",
+          "target": "styles/patterns/analytics-recipes.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/teum-analytics"
+        }
+      }
+    },
+    {
+      "name": "teum-product-patterns",
+      "type": "registry:block",
+      "title": "Teum Product Patterns",
+      "description": "Three source-owned B2B product tasks for customer success, billing and usage, and member access.",
+      "dependencies": [
+        "@phosphor-icons/react@^2.1.10"
+      ],
+      "registryDependencies": [
+        "@teum/alert",
+        "@teum/analytics",
+        "@teum/avatar",
+        "@teum/badge",
+        "@teum/button",
+        "@teum/chart",
+        "@teum/checkbox",
+        "@teum/data-table",
+        "@teum/data-toolbar",
+        "@teum/dialog",
+        "@teum/filter-builder",
+        "@teum/goal",
+        "@teum/metric",
+        "@teum/progress",
+        "@teum/search-input",
+        "@teum/segmented-control",
+        "@teum/select",
+        "@teum/shared-detail",
+        "@teum/sparkline",
+        "@teum/tabs",
+        "@teum/teum-product-patterns-contract",
+        "@teum/text-field",
+        "@teum/timeline",
+        "@teum/toast"
+      ],
+      "files": [
+        {
+          "path": "registry/components/patterns/product-pattern-recipes.tsx",
+          "type": "registry:block",
+          "target": "components/patterns/product-pattern-recipes.tsx"
+        },
+        {
+          "path": "registry/lib/teum-product-patterns-contract.ts",
+          "type": "registry:lib",
+          "target": "lib/teum-product-patterns-contract.ts"
+        },
+        {
+          "path": "registry/styles/patterns/product-pattern-recipes.css",
+          "type": "registry:style",
+          "target": "styles/patterns/product-pattern-recipes.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/teum-product-patterns"
+        }
+      }
+    },
+    {
+      "name": "teum-agent",
+      "type": "registry:item",
+      "title": "Teum Agent Contract",
+      "description": "Machine-readable recipe selection, composition, rejection, and quality contracts for coding agents.",
+      "registryDependencies": [
+        "@teum/teum-data",
+        "@teum/teum-analytics",
+        "@teum/teum-product-patterns"
+      ],
+      "files": [
+        {
+          "path": "registry/lib/teum-agent-contract.ts",
+          "type": "registry:lib",
+          "target": "lib/teum-agent-contract.ts"
+        },
+        {
+          "path": "registry/agent/teum-agent.json",
+          "type": "registry:file",
+          "target": "lib/teum-agent.json"
+        }
       ]
     },
     {
       "name": "teum",
       "type": "registry:block",
       "title": "Teum",
-      "description": "The complete 45-component light-first system with reviewed dark mode.",
+      "description": "The 45-component Teum Core plus source-owned Data, Analytics, and B2B Product Patterns, with reviewed light and dark themes.",
       "dependencies": [
         "@base-ui/react@^1.7.0",
         "@fontsource-variable/inter@^5.3.0",
         "@internationalized/date@^3.12.3",
         "@phosphor-icons/react@^2.1.10",
+        "@tanstack/react-table@9.1.2",
+        "@tanstack/react-virtual@3.14.9",
         "class-variance-authority@^0.7.1",
         "clsx@^2.1.1",
         "motion@^13.1.0",
@@ -1143,6 +2277,11 @@
           "path": "registry/lib/behavior-contract.ts",
           "type": "registry:lib",
           "target": "lib/behavior-contract.ts"
+        },
+        {
+          "path": "registry/lib/motion-contract.ts",
+          "type": "registry:lib",
+          "target": "lib/motion-contract.ts"
         },
         {
           "path": "registry/styles/teum-base.css",
@@ -1610,11 +2749,207 @@
           "target": "styles/components/tree.css"
         },
         {
+          "path": "registry/components/ui/data-table.tsx",
+          "type": "registry:component",
+          "target": "components/ui/data-table.tsx"
+        },
+        {
+          "path": "registry/styles/components/data-table.css",
+          "type": "registry:style",
+          "target": "styles/components/data-table.css"
+        },
+        {
+          "path": "registry/components/ui/filter-builder.tsx",
+          "type": "registry:component",
+          "target": "components/ui/filter-builder.tsx"
+        },
+        {
+          "path": "registry/styles/components/filter-builder.css",
+          "type": "registry:style",
+          "target": "styles/components/filter-builder.css"
+        },
+        {
+          "path": "registry/components/ui/data-toolbar.tsx",
+          "type": "registry:component",
+          "target": "components/ui/data-toolbar.tsx"
+        },
+        {
+          "path": "registry/styles/components/data-toolbar.css",
+          "type": "registry:style",
+          "target": "styles/components/data-toolbar.css"
+        },
+        {
+          "path": "registry/components/ui/bulk-action-bar.tsx",
+          "type": "registry:component",
+          "target": "components/ui/bulk-action-bar.tsx"
+        },
+        {
+          "path": "registry/styles/components/bulk-action-bar.css",
+          "type": "registry:style",
+          "target": "styles/components/bulk-action-bar.css"
+        },
+        {
+          "path": "registry/components/ui/date-range-filter.tsx",
+          "type": "registry:component",
+          "target": "components/ui/date-range-filter.tsx"
+        },
+        {
+          "path": "registry/styles/components/date-range-filter.css",
+          "type": "registry:style",
+          "target": "styles/components/date-range-filter.css"
+        },
+        {
+          "path": "registry/components/ui/data-export-menu.tsx",
+          "type": "registry:component",
+          "target": "components/ui/data-export-menu.tsx"
+        },
+        {
+          "path": "registry/styles/components/data-export-menu.css",
+          "type": "registry:style",
+          "target": "styles/components/data-export-menu.css"
+        },
+        {
+          "path": "registry/components/ui/sparkline.tsx",
+          "type": "registry:component",
+          "target": "components/ui/sparkline.tsx"
+        },
+        {
+          "path": "registry/styles/components/sparkline.css",
+          "type": "registry:style",
+          "target": "styles/components/sparkline.css"
+        },
+        {
+          "path": "registry/components/ui/metric.tsx",
+          "type": "registry:component",
+          "target": "components/ui/metric.tsx"
+        },
+        {
+          "path": "registry/styles/components/metric.css",
+          "type": "registry:style",
+          "target": "styles/components/metric.css"
+        },
+        {
+          "path": "registry/components/ui/chart.tsx",
+          "type": "registry:component",
+          "target": "components/ui/chart.tsx"
+        },
+        {
+          "path": "registry/styles/components/chart.css",
+          "type": "registry:style",
+          "target": "styles/components/chart.css"
+        },
+        {
+          "path": "registry/components/ui/comparison.tsx",
+          "type": "registry:component",
+          "target": "components/ui/comparison.tsx"
+        },
+        {
+          "path": "registry/styles/components/comparison.css",
+          "type": "registry:style",
+          "target": "styles/components/comparison.css"
+        },
+        {
+          "path": "registry/components/ui/breakdown.tsx",
+          "type": "registry:component",
+          "target": "components/ui/breakdown.tsx"
+        },
+        {
+          "path": "registry/styles/components/breakdown.css",
+          "type": "registry:style",
+          "target": "styles/components/breakdown.css"
+        },
+        {
+          "path": "registry/components/ui/goal.tsx",
+          "type": "registry:component",
+          "target": "components/ui/goal.tsx"
+        },
+        {
+          "path": "registry/styles/components/goal.css",
+          "type": "registry:style",
+          "target": "styles/components/goal.css"
+        },
+        {
+          "path": "registry/components/ui/funnel.tsx",
+          "type": "registry:component",
+          "target": "components/ui/funnel.tsx"
+        },
+        {
+          "path": "registry/styles/components/funnel.css",
+          "type": "registry:style",
+          "target": "styles/components/funnel.css"
+        },
+        {
+          "path": "registry/components/ui/cohort.tsx",
+          "type": "registry:component",
+          "target": "components/ui/cohort.tsx"
+        },
+        {
+          "path": "registry/styles/components/cohort.css",
+          "type": "registry:style",
+          "target": "styles/components/cohort.css"
+        },
+        {
+          "path": "registry/components/ui/timeline.tsx",
+          "type": "registry:component",
+          "target": "components/ui/timeline.tsx"
+        },
+        {
+          "path": "registry/styles/components/timeline.css",
+          "type": "registry:style",
+          "target": "styles/components/timeline.css"
+        },
+        {
+          "path": "registry/lib/data-view-state.ts",
+          "type": "registry:lib",
+          "target": "lib/data-view-state.ts"
+        },
+        {
+          "path": "registry/lib/data-export.ts",
+          "type": "registry:lib",
+          "target": "lib/data-export.ts"
+        },
+        {
+          "path": "registry/lib/teum-data-contract.ts",
+          "type": "registry:lib",
+          "target": "lib/teum-data-contract.ts"
+        },
+        {
+          "path": "registry/lib/analytics.ts",
+          "type": "registry:lib",
+          "target": "lib/analytics.ts"
+        },
+        {
+          "path": "registry/lib/teum-analytics-contract.ts",
+          "type": "registry:lib",
+          "target": "lib/teum-analytics-contract.ts"
+        },
+        {
+          "path": "registry/lib/teum-product-patterns-contract.ts",
+          "type": "registry:lib",
+          "target": "lib/teum-product-patterns-contract.ts"
+        },
+        {
+          "path": "registry/lib/teum-agent-contract.ts",
+          "type": "registry:lib",
+          "target": "lib/teum-agent-contract.ts"
+        },
+        {
+          "path": "registry/agent/teum-agent.json",
+          "type": "registry:file",
+          "target": "lib/teum-agent.json"
+        },
+        {
           "path": "registry/components/ui/index.ts",
           "type": "registry:ui",
           "target": "components/ui/index.ts"
         }
-      ]
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/teum"
+        }
+      }
     }
   ]
 }

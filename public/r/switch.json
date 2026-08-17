@@ -11,7 +11,7 @@
   "files": [
     {
       "path": "registry/components/ui/switch.tsx",
-      "content": "import \"../../styles/teum-base.css\";\nimport \"../../styles/components/switch.css\";\nimport { Switch as SwitchPrimitive } from \"@base-ui/react/switch\";\nimport { useId } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type SwitchProps = SwitchPrimitive.Root.Props & {\n  label?: string;\n  description?: string;\n};\n\nexport function Switch({ className, label, description, id: providedId, \"aria-describedby\": ariaDescribedBy, \"aria-labelledby\": ariaLabelledBy, ...props }: SwitchProps) {\n  const generatedId = useId();\n  const id = providedId ?? generatedId;\n  const labelId = label ? `${id}-label` : undefined;\n  const descriptionId = description ? `${id}-description` : undefined;\n  const describedBy = [ariaDescribedBy, descriptionId].filter(Boolean).join(\" \") || undefined;\n  return (\n    <div className=\"teum-choice-row teum-choice-row--spread\">\n      {label && (\n        <label htmlFor={id} className=\"teum-choice-copy\">\n          <span id={labelId}>{label}</span>\n          {description && <small id={descriptionId}>{description}</small>}\n        </label>\n      )}\n      <SwitchPrimitive.Root id={id} className={cn(\"teum-switch\", className)} aria-labelledby={ariaLabelledBy ?? labelId} aria-describedby={describedBy} {...props}>\n        <SwitchPrimitive.Thumb className=\"teum-switch__thumb\" />\n      </SwitchPrimitive.Root>\n    </div>\n  );\n}\n",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/switch.css\";\nimport { Switch as SwitchPrimitive } from \"@base-ui/react/switch\";\nimport { useId } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type SwitchProps = SwitchPrimitive.Root.Props & {\n  label?: string;\n  description?: string;\n};\n\nexport function Switch({ className, label, description, id: providedId, \"aria-describedby\": ariaDescribedBy, \"aria-labelledby\": ariaLabelledBy, ...props }: SwitchProps) {\n  const generatedId = useId();\n  const id = providedId ?? generatedId;\n  const labelId = label ? `${id}-label` : undefined;\n  const descriptionId = description ? `${id}-description` : undefined;\n  const describedBy = [ariaDescribedBy, descriptionId].filter(Boolean).join(\" \") || undefined;\n  return (\n    <div className=\"teum-choice-row teum-choice-row--spread\">\n      {label && (\n        <label htmlFor={id} className=\"teum-choice-copy\">\n          <span id={labelId}>{label}</span>\n          {description && <small id={descriptionId}>{description}</small>}\n        </label>\n      )}\n      <SwitchPrimitive.Root id={id} className={cn(\"teum-switch\", className)} aria-labelledby={ariaLabelledBy ?? labelId} aria-describedby={describedBy} {...props}>\n        <SwitchPrimitive.Thumb className=\"teum-switch__thumb\" />\n      </SwitchPrimitive.Root>\n    </div>\n  );\n}\n",
       "type": "registry:ui",
       "target": "components/ui/switch.tsx"
     },
@@ -22,5 +22,13 @@
       "target": "styles/components/switch.css"
     }
   ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/switch",
+      "useWhen": "Changing the setting should take effect immediately.",
+      "avoidWhen": "The change must be reviewed and submitted with a form."
+    }
+  },
   "type": "registry:ui"
 }

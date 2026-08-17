@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "registry/components/ui/alert.tsx",
-      "content": "import \"../../styles/teum-base.css\";\nimport \"../../styles/components/alert.css\";\nimport { Info, WarningCircle, X } from \"@phosphor-icons/react\";\nimport type { ComponentPropsWithRef, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\nimport { IconButton } from \"./icon-button\";\n\nexport type AlertProps = Omit<ComponentPropsWithRef<\"div\">, \"title\"> & {\n  variant?: \"neutral\" | \"critical\";\n  title: ReactNode;\n  icon?: ReactNode;\n  action?: ReactNode;\n  live?: \"polite\" | \"assertive\";\n  dismissLabel?: string;\n  onDismiss?: () => void;\n};\n\nexport function Alert({\n  variant = \"neutral\",\n  title,\n  icon,\n  action,\n  live,\n  dismissLabel = \"Dismiss notification\",\n  onDismiss,\n  className,\n  children,\n  role,\n  ...props\n}: AlertProps) {\n  const fallbackIcon = variant === \"critical\" ? <WarningCircle weight=\"fill\" /> : <Info weight=\"fill\" />;\n\n  return (\n    <div\n      className={cn(\"teum-alert\", className)}\n      data-variant={variant}\n      role={role ?? (live === \"assertive\" ? \"alert\" : live === \"polite\" ? \"status\" : undefined)}\n      aria-live={live}\n      {...props}\n    >\n      <span className=\"teum-alert__icon\" aria-hidden=\"true\">{icon ?? fallbackIcon}</span>\n      <span className=\"teum-alert__content\">\n        <strong>{title}</strong>\n        {children && <span>{children}</span>}\n      </span>\n      {action && <span className=\"teum-alert__action\">{action}</span>}\n      {onDismiss && <IconButton className=\"teum-alert__dismiss\" variant=\"ghost\" size=\"small\" aria-label={dismissLabel} onClick={onDismiss}><X /></IconButton>}\n    </div>\n  );\n}\n",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/alert.css\";\nimport { Info, WarningCircle, X } from \"@phosphor-icons/react\";\nimport type { ComponentPropsWithRef, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\nimport { IconButton } from \"./icon-button\";\n\nexport type AlertProps = Omit<ComponentPropsWithRef<\"div\">, \"title\"> & {\n  variant?: \"neutral\" | \"critical\";\n  title: ReactNode;\n  icon?: ReactNode;\n  action?: ReactNode;\n  live?: \"polite\" | \"assertive\";\n  dismissLabel?: string;\n  onDismiss?: () => void;\n};\n\nexport function Alert({\n  variant = \"neutral\",\n  title,\n  icon,\n  action,\n  live,\n  dismissLabel = \"Dismiss notification\",\n  onDismiss,\n  className,\n  children,\n  role,\n  ...props\n}: AlertProps) {\n  const fallbackIcon = variant === \"critical\" ? <WarningCircle weight=\"fill\" /> : <Info weight=\"fill\" />;\n\n  return (\n    <div\n      className={cn(\"teum-alert\", className)}\n      data-variant={variant}\n      role={role ?? (live === \"assertive\" ? \"alert\" : live === \"polite\" ? \"status\" : undefined)}\n      aria-live={live}\n      {...props}\n    >\n      <span className=\"teum-alert__icon\" aria-hidden=\"true\">{icon ?? fallbackIcon}</span>\n      <span className=\"teum-alert__content\">\n        <strong>{title}</strong>\n        {children && <span>{children}</span>}\n      </span>\n      {action && <span className=\"teum-alert__action\">{action}</span>}\n      {onDismiss && <IconButton className=\"teum-alert__dismiss\" variant=\"ghost\" size=\"small\" aria-label={dismissLabel} onClick={onDismiss}><X /></IconButton>}\n    </div>\n  );\n}\n",
       "type": "registry:ui",
       "target": "components/ui/alert.tsx"
     },
@@ -24,5 +24,13 @@
       "target": "styles/components/alert.css"
     }
   ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/alert",
+      "useWhen": "Feedback should remain visible beside the affected work until it is understood or resolved.",
+      "avoidWhen": "The message is transient, belongs to one field, or blocks progress until a response is chosen."
+    }
+  },
   "type": "registry:ui"
 }

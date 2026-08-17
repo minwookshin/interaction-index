@@ -5,6 +5,11 @@ test.use({ viewport: { width: 1280, height: 720 }, colorScheme: "light", reduced
 test.skip(({ browserName, isMobile }) => browserName !== "chromium" || isMobile, "Desktop Chromium owns the frozen RC visual baseline.");
 
 const lazyPreviewRoutes = new Set(["date-picker", "tree", "reorderable-list"]);
+const lazyDocumentSelectors = new Map([
+  ["product-pilot", '.pilot-workspace[aria-label="Issues Workspace"]'],
+  ["analytics", '.teum-analytics-recipe[aria-label="SaaS Overview recipe"]'],
+  ["product-patterns", '.teum-product-pattern[aria-label="Customer Workspace recipe"]'],
+]);
 
 for (const [route, heading, group] of publicRoutes) {
   test(`${group}/${route} matches the frozen light and dark route baseline`, async ({ page }) => {
@@ -14,6 +19,11 @@ for (const [route, heading, group] of publicRoutes) {
 
     if (lazyPreviewRoutes.has(route)) {
       await expect(page.locator("[data-react-aria-preview-ready]").first()).toBeAttached();
+    }
+
+    const lazyDocumentSelector = lazyDocumentSelectors.get(route);
+    if (lazyDocumentSelector) {
+      await expect(page.locator(lazyDocumentSelector)).toBeVisible();
     }
 
     await page.addStyleTag({ content: "* { caret-color: transparent !important; }" });

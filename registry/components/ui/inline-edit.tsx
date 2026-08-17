@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/inline-edit.css";
 import { PencilSimple } from "@phosphor-icons/react";

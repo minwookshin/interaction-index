@@ -16,9 +16,34 @@ test("every public documentation route renders without viewport overflow", async
   expect(errors).toEqual([]);
 });
 
+test("installation opens with verified Vite, Next.js, and update paths", async ({ page, isMobile }) => {
+  await page.goto("/#installation");
+
+  const quickstart = page.locator("#quickstart");
+  await expect(quickstart.getByRole("heading", { level: 2, name: "Choose a path" })).toBeVisible();
+  await expect(quickstart.getByText("Vite — React 18 and 19", { exact: false })).toBeVisible();
+  await expect(quickstart.getByText("Next.js 16.3.1", { exact: false })).toBeVisible();
+  await expect(quickstart.getByText("Registry update — dry-run", { exact: false })).toBeVisible();
+
+  await expect(page.locator("#vite").getByText("npx shadcn@4.18.0 add @teum-pinned/button", { exact: true })).toBeVisible();
+  await expect(page.locator("#next").getByText("npx shadcn@4.18.0 add @teum-pinned/button", { exact: true })).toBeVisible();
+  await expect(page.locator("#update").getByText("--dry-run", { exact: false })).toBeVisible();
+
+  const overflowingCodeBlocks = await page.locator(".public-doc-code pre").evaluateAll((blocks) =>
+    blocks.filter((block) => block.scrollWidth - block.clientWidth > 1).length,
+  );
+  expect(overflowingCodeBlocks).toBe(0);
+
+  if (!isMobile) {
+    const outline = page.getByRole("complementary", { name: "Page outline" });
+    await expect(outline.getByRole("button", { name: "Choose a path" })).toHaveAttribute("aria-current", "location");
+    await expect(outline.getByText("01 / 08")).toBeVisible();
+  }
+});
+
 test("desktop navigation disclosures and theme persistence work", async ({ page, isMobile }) => {
   test.skip(isMobile, "Desktop disclosure behavior is covered separately from the mobile drawer.");
-  await page.goto("/#introduction");
+  await page.goto("/#installation");
 
   const navigation = page.getByRole("complementary", { name: "Design system navigation" });
   const components = navigation.getByRole("button", { name: /^Components \d+$/ });
@@ -37,15 +62,48 @@ test("desktop page outline keeps the requested section current", async ({ page, 
   test.skip(isMobile, "The persistent page outline is a desktop affordance.");
   await page.goto("/#product-pilot");
   const outline = page.getByRole("complementary", { name: "Page outline" });
-  const systemCoverage = outline.getByRole("button", { name: "System coverage" });
-  await systemCoverage.click();
-  await expect(systemCoverage).toHaveAttribute("aria-current", "location");
-  await expect(outline.getByText("03 / 04")).toBeVisible();
+  const auditLog = outline.getByRole("button", { name: "Audit Log" });
+  await auditLog.click();
+  await expect(auditLog).toHaveAttribute("aria-current", "location");
+  await expect(outline.getByText("03 / 06")).toBeVisible();
+  await expect(page).toHaveURL(/#product-pilot\/audit-log$/);
+});
+
+test("documentation section links open at the requested section", async ({ page, isMobile }) => {
+  test.skip(isMobile, "The persistent outline is replaced by the mobile reading flow.");
+  await page.goto("/#installation/troubleshooting");
+
+  const outline = page.getByRole("complementary", { name: "Page outline" });
+  const troubleshooting = outline.getByRole("button", { name: "Troubleshooting" });
+  await expect(page.getByRole("heading", { level: 2, name: "Common failures" })).toBeVisible();
+  await expect(troubleshooting).toHaveAttribute("aria-current", "location");
+  await expect.poll(() => page.locator(".system-detail__scroll").evaluate((element) => element.scrollTop)).toBeGreaterThan(0);
+});
+
+test("documentation search includes section labels", async ({ page, isMobile }) => {
+  test.skip(isMobile, "Mobile Command K drawer behavior is covered by the navigation task.");
+  await page.goto("/#button");
+  const search = page.getByRole("textbox", { name: "Search documentation" });
+  await search.fill("theme");
+  const results = page.getByRole("region", { name: "Documentation search results" });
+  await expect(results.getByRole("link", { name: "Installation" })).toBeVisible();
+  await expect(results.getByRole("link", { name: "Button", exact: true })).toHaveCount(0);
+});
+
+test("component reference exposes a real registry item and compiler-derived primary export", async ({ page }) => {
+  await page.goto("/#field/system-api");
+  await expect(page).toHaveTitle("Field & Fieldset — Teum");
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /Accessible form structure/);
+  await expect(page.getByText("npx shadcn@4.18.0 add @teum-pinned/field", { exact: true })).toBeVisible();
+  const summary = page.getByRole("region", { name: "Field & Fieldset reference summary" });
+  await expect(summary.getByText("Primary export")).toBeVisible();
+  await expect(summary.getByText("Field", { exact: true })).toBeVisible();
+  await expect(summary.getByText("@teum-pinned/field", { exact: true })).toBeVisible();
 });
 
 test("mobile navigation opens, routes, and closes", async ({ page, isMobile }) => {
   test.skip(!isMobile, "Mobile drawer behavior only applies to mobile projects.");
-  await page.goto("/#introduction");
+  await page.goto("/#installation");
 
   await page.getByRole("button", { name: "Open navigation" }).click();
   const navigation = page.getByRole("complementary", { name: "Design system navigation" });

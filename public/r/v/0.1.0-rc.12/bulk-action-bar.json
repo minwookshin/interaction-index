@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "bulk-action-bar",
+  "title": "Bulk Action Bar",
+  "description": "Selection-scoped actions that appear without moving the collection.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@teum-pinned/teum-base",
+    "@teum-pinned/icon-button"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/bulk-action-bar.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/bulk-action-bar.css\";\nimport { X } from \"@phosphor-icons/react\";\nimport type { HTMLAttributes, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\nimport { IconButton } from \"./icon-button\";\n\nexport type BulkActionBarProps = HTMLAttributes<HTMLDivElement> & {\n  count: number;\n  noun?: string;\n  actions: ReactNode;\n  onClear: () => void;\n  busy?: boolean;\n};\n\nexport function BulkActionBar({ count, noun = \"row\", actions, onClear, busy = false, className, ...props }: BulkActionBarProps) {\n  if (count <= 0) return null;\n  return (\n    <div className={cn(\"teum-bulk-action-bar\", className)} role=\"region\" aria-label=\"Bulk actions\" aria-busy={busy || undefined} {...props}>\n      <div className=\"teum-bulk-action-bar__selection\"><strong>{count}</strong><span>{noun}{count === 1 ? \"\" : \"s\"} selected</span></div>\n      <div className=\"teum-bulk-action-bar__actions\">{actions}</div>\n      <IconButton size=\"small\" variant=\"ghost\" aria-label=\"Clear selection\" onClick={onClear}><X aria-hidden=\"true\" /></IconButton>\n      <span className=\"teum-sr-only\" aria-live=\"polite\">{count} {noun}{count === 1 ? \"\" : \"s\"} selected</span>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/bulk-action-bar.tsx"
+    },
+    {
+      "path": "registry/styles/components/bulk-action-bar.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-sr-only,\n.teum-sr-only:not(:focus):not(:active) {\n  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;\n}\n\n.teum-bulk-action-bar {\n  display: flex;\n  min-height: 46px;\n  align-items: center;\n  gap: 10px;\n  padding: 6px 7px 6px 12px;\n  border-radius: 9px;\n  background: var(--teum-inverse);\n  color: var(--teum-on-inverse);\n  box-shadow: 0 12px 32px rgb(0 0 0 / .18);\n  opacity: 1;\n  transform: translateY(0);\n  transition: opacity 160ms var(--teum-ease-out), transform 180ms var(--teum-ease-out);\n}\n\n@starting-style {\n.teum-bulk-action-bar { opacity: 0; transform: translateY(8px); }\n}\n\n.teum-bulk-action-bar__selection {\n  display: inline-flex;\n  align-items: baseline;\n  gap: 5px;\n  white-space: nowrap;\n}\n\n.teum-bulk-action-bar__selection strong { font-size: var(--teum-type-ui); font-weight: 650; font-variant-numeric: tabular-nums; }\n\n.teum-bulk-action-bar__selection span { color: color-mix(in oklch, var(--teum-on-inverse) 72%, transparent); font-size: var(--teum-type-label); }\n\n.teum-bulk-action-bar__actions {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  margin-left: auto;\n}\n\n.teum-bulk-action-bar .teum-button,\n.teum-bulk-action-bar .teum-icon-button { color: var(--teum-on-inverse); }\n\n@media (prefers-reduced-motion: reduce) {\n.teum-bulk-action-bar { transform: none; transition: opacity 120ms var(--teum-ease-out); }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/bulk-action-bar.css"
+    }
+  ],
+  "type": "registry:component"
+}

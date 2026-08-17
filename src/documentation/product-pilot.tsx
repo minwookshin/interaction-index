@@ -14,7 +14,12 @@ import {
   ActionList,
   type ActionListItem,
   Badge,
+  BulkActionBar,
   Button,
+  ColumnManager,
+  DataTable,
+  type DataTableColumn,
+  DataToolbar,
   Dialog,
   DialogClose,
   DialogContent,
@@ -23,6 +28,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  FilterBuilder,
+  type DataFilter,
+  type FilterField,
   IconButton,
   InlineEdit,
   Menu,
@@ -32,14 +40,9 @@ import {
   MenuSeparator,
   MenuTrigger,
   SearchInput,
+  SavedViews,
   Select,
   SharedDetail,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
   Tabs,
   TabsContent,
   TabsList,
@@ -78,10 +81,27 @@ const proofSteps = [
   ["Recover", "Choose Undo"],
 ] as const;
 
+const filterFields: readonly FilterField[] = [
+  { id: "status", label: "Status", values: statusOptions },
+  { id: "priority", label: "Priority", values: priorityOptions },
+  { id: "assignee", label: "Assignee", values: ["Avery Stone", "Mina Park", "Noah Williams", "Unassigned"].map((value) => ({ label: value, value })) },
+];
+
+const savedViews = [
+  { id: "all", label: "All issues", description: "Every issue in the cycle" },
+  { id: "active", label: "Active", description: "Backlog and in-progress work" },
+  { id: "mine", label: "Assigned to me", description: "Issues owned by Avery Stone" },
+  { id: "done", label: "Completed", description: "Finished work" },
+] as const;
+
 function PilotWorkspaceInner({ onReset }: { onReset: () => void }) {
   const [issues, setIssues] = useState(initialIssues);
   const [selectedId, setSelectedId] = useState<string | null>(initialIssues[0].id);
   const [query, setQuery] = useState("");
+  const [filters, setFilters] = useState<readonly DataFilter[]>([]);
+  const [savedView, setSavedView] = useState("all");
+  const [selectedRowIds, setSelectedRowIds] = useState<readonly string[]>([]);
+  const [columnVisibility, setColumnVisibility] = useState<Record<string, boolean>>({});
   const [createOpen, setCreateOpen] = useState(false);
   const [actionsOpen, setActionsOpen] = useState(false);
   const [proofStep, setProofStep] = useState(0);
@@ -89,9 +109,54 @@ function PilotWorkspaceInner({ onReset }: { onReset: () => void }) {
   const [draftDescription, setDraftDescription] = useState("");
   const { pushUndo } = useUndoStack();
 
-  const filtered = useMemo(() => issues.filter((issue) => `${issue.code} ${issue.title} ${issue.status} ${issue.assignee}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase())), [issues, query]);
+  const filtered = useMemo(() => issues.filter((issue) => {
+    const queryMatches = `${issue.code} ${issue.title} ${issue.status} ${issue.priority} ${issue.assignee}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase());
+    const viewMatches = savedView === "all"
+      || (savedView === "active" && issue.status !== "Done")
+      || (savedView === "mine" && issue.assignee === "Avery Stone")
+      || (savedView === "done" && issue.status === "Done");
+    const filtersMatch = filters.every((filter) => {
+      const candidate = String(issue[filter.fieldId as keyof PilotIssue]);
+      return filter.operator === "is" ? candidate === filter.value : candidate !== filter.value;
+    });
+    return queryMatches && viewMatches && filtersMatch;
+  }), [filters, issues, query, savedView]);
   const selected = issues.find((issue) => issue.id === selectedId);
   const sharedItems = filtered.map((issue) => ({ id: issue.id, title: issue.title, meta: `${issue.code} · ${issue.updated}`, description: issue.description, status: issue.status }));
+
+  const dataColumns = useMemo<readonly DataTableColumn<PilotIssue>[]>(() => [
+    {
+      id: "issue",
+      header: "Issue",
+      accessor: (issue) => `${issue.code} ${issue.title}`,
+      sortable: true,
+      width: "38%",
+      hideable: false,
+      cell: (issue) => (
+        <button type="button" className="pilot-table-link" onClick={() => selectIssue(issue.id)}>
+          {issue.status === "Done" ? <CheckCircle aria-hidden="true" /> : <Circle aria-hidden="true" />}
+          <span><strong>{issue.title}</strong><small>{issue.code}</small></span>
+        </button>
+      ),
+    },
+    {
+      id: "status",
+      header: "Status",
+      accessor: "status",
+      sortable: true,
+      cell: (issue) => <Badge variant={issue.status === "Done" ? "strong" : "outline"}>{issue.status}</Badge>,
+    },
+    { id: "priority", header: "Priority", accessor: "priority", sortable: true },
+    { id: "assignee", header: "Assignee", accessor: "assignee", sortable: true },
+    { id: "updated", header: "Updated", accessor: "updated", align: "end", width: 72 },
+  ], []);
+
+  const viewCounts = useMemo(() => ({
+    all: issues.length,
+    active: issues.filter((issue) => issue.status !== "Done").length,
+    mine: issues.filter((issue) => issue.assignee === "Avery Stone").length,
+    done: issues.filter((issue) => issue.status === "Done").length,
+  }), [issues]);
 
   const selectIssue = (id: string | null) => {
     setSelectedId(id);
@@ -135,6 +200,32 @@ function PilotWorkspaceInner({ onReset }: { onReset: () => void }) {
     });
   };
 
+  const completeSelectedIssues = () => {
+    const ids = new Set(selectedRowIds);
+    if (!ids.size) return;
+    setIssues((current) => current.map((issue) => ids.has(issue.id) ? { ...issue, status: "Done", updated: "Now" } : issue));
+    setSelectedRowIds([]);
+    toast(`${ids.size} ${ids.size === 1 ? "issue" : "issues"} completed`, { id: "pilot-feedback" });
+  };
+
+  const archiveSelectedIssues = () => {
+    const ids = new Set(selectedRowIds);
+    const archived = issues.filter((issue) => ids.has(issue.id));
+    if (!archived.length) return;
+    const previousIssues = issues;
+    const remaining = issues.filter((issue) => !ids.has(issue.id));
+    setIssues(remaining);
+    setSelectedRowIds([]);
+    if (selectedId && ids.has(selectedId)) setSelectedId(remaining[0]?.id ?? null);
+    pushUndo({
+      label: `Archived ${archived.length} ${archived.length === 1 ? "issue" : "issues"}`,
+      undo: () => {
+        setIssues(previousIssues);
+        setSelectedId(archived[0]?.id ?? null);
+      },
+    });
+  };
+
   const runAction = (item: ActionListItem) => {
     if (!selected) return;
     setActionsOpen(false);
@@ -172,7 +263,7 @@ function PilotWorkspaceInner({ onReset }: { onReset: () => void }) {
   };
 
   return (
-    <section className="pilot-workspace" aria-label="Teum product pilot">
+    <section className="pilot-workspace" aria-label="Issues Workspace">
       <header className="pilot-workspace__header">
         <div className="pilot-workspace__identity"><span><Rows aria-hidden="true" /></span><div><strong>Interface quality</strong><small>Cycle 08 · {issues.length} issues</small></div></div>
         <div className="pilot-workspace__actions">
@@ -198,13 +289,36 @@ function PilotWorkspaceInner({ onReset }: { onReset: () => void }) {
         </div>
       </header>
 
-      <div className="pilot-proof" aria-label="Authored interaction proof task">
+      <div className="pilot-proof" aria-label="Interaction proof task">
         <div><strong>Proof task</strong><span>Find → inspect → act → recover</span><button type="button" onClick={onReset}>Reset</button></div>
         <ol>{proofSteps.map(([label, description], index) => {
           const step = index + 1;
           return <li key={label} data-complete={proofStep >= step || undefined} aria-current={proofStep === index ? "step" : undefined}><span>{step}</span><div><strong>{label}</strong><small>{description}</small></div></li>;
         })}</ol>
       </div>
+
+      <DataToolbar
+        className="pilot-data-toolbar"
+        label="Issue data controls"
+        start={<>
+          <SavedViews
+            label="Saved views"
+            views={savedViews.map((view) => ({ ...view, count: viewCounts[view.id] }))}
+            value={savedView}
+            onValueChange={setSavedView}
+          />
+          <FilterBuilder fields={filterFields} filters={filters} onFiltersChange={setFilters} />
+        </>}
+        end={<ColumnManager
+          columns={dataColumns.map((column) => ({
+            id: column.id,
+            label: String(column.header),
+            visible: columnVisibility[column.id] !== false,
+            required: column.hideable === false,
+          }))}
+          onVisibilityChange={(id, visible) => setColumnVisibility((current) => ({ ...current, [id]: visible }))}
+        />}
+      />
 
       <Tabs defaultValue="issues" className="pilot-tabs">
         <div className="pilot-tabs__bar"><TabsList aria-label="Pilot views"><TabsTrigger value="issues">Issues</TabsTrigger><TabsTrigger value="cycle">Cycle</TabsTrigger></TabsList><span>{filtered.length} visible</span></div>
@@ -232,10 +346,32 @@ function PilotWorkspaceInner({ onReset }: { onReset: () => void }) {
           /> : <div className="pilot-empty"><strong>No matching issues</strong><p>Try a different query or create a new issue.</p><Button size="small" onClick={() => setQuery("")}>Clear search</Button></div>}
         </TabsContent>
         <TabsContent value="cycle" className="pilot-tabs__panel pilot-cycle">
-          <Table aria-label="Active cycle issues">
-            <TableHeader><TableRow><TableHead>Issue</TableHead><TableHead>Status</TableHead><TableHead>Priority</TableHead><TableHead>Updated</TableHead></TableRow></TableHeader>
-            <TableBody>{filtered.map((issue) => <TableRow key={issue.id}><TableCell><button type="button" className="pilot-table-link" onClick={() => setSelectedId(issue.id)}>{issue.status === "Done" ? <CheckCircle aria-hidden="true" /> : <Circle aria-hidden="true" />}<span><strong>{issue.title}</strong><small>{issue.code}</small></span></button></TableCell><TableCell><Badge variant={issue.status === "Done" ? "strong" : "outline"}>{issue.status}</Badge></TableCell><TableCell>{issue.priority}</TableCell><TableCell>{issue.updated}</TableCell></TableRow>)}</TableBody>
-          </Table>
+          <DataTable
+            ariaLabel="Active cycle issues"
+            data={filtered}
+            columns={dataColumns}
+            getRowId={(issue) => issue.id}
+            getRowLabel={(issue) => `${issue.code} ${issue.title}`}
+            selectable
+            selectedRowIds={selectedRowIds}
+            onSelectedRowIdsChange={setSelectedRowIds}
+            columnVisibility={columnVisibility}
+            onColumnVisibilityChange={setColumnVisibility}
+            defaultSorting={[{ id: "issue", direction: "asc" }]}
+            pageSize={8}
+            onRowActivate={(issue) => selectIssue(issue.id)}
+            emptyTitle="No matching issues"
+            emptyDescription="Change the active view, search, or filter."
+          />
+          <BulkActionBar
+            count={selectedRowIds.length}
+            noun="issue"
+            onClear={() => setSelectedRowIds([])}
+            actions={<>
+              <Button size="small" variant="ghost" leadingIcon={<CheckCircle />} onClick={completeSelectedIssues}>Mark done</Button>
+              <Button size="small" variant="ghost" leadingIcon={<Archive />} onClick={archiveSelectedIssues}>Archive</Button>
+            </>}
+          />
         </TabsContent>
       </Tabs>
       <UndoBar />
@@ -244,7 +380,9 @@ function PilotWorkspaceInner({ onReset }: { onReset: () => void }) {
   );
 }
 
-export function ProductPilot() {
+export function IssuesWorkspace() {
   const [run, setRun] = useState(0);
   return <UndoStackProvider key={run}><PilotWorkspaceInner onReset={() => setRun((current) => current + 1)} /></UndoStackProvider>;
 }
+
+export const ProductPilot = IssuesWorkspace;

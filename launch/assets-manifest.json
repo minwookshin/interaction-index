@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "candidate": "0.1.0-rc.22",
+  "publicationStatus": "beta-candidate",
+  "assets": [
+    {
+      "path": "public/social-preview.jpg",
+      "role": "Open Graph and social link preview",
+      "width": 1200,
+      "height": 630,
+      "status": "generated-and-committed",
+      "finalReview": "Compare against the live landing page immediately before announcement."
+    },
+    {
+      "path": "public/favicon.svg",
+      "role": "Browser and repository identity",
+      "status": "generated-and-committed",
+      "finalReview": "Verify legibility at 16, 24, and 32 CSS pixels in light and dark browser chrome."
+    },
+    {
+      "path": "public/apple-touch-icon.png",
+      "role": "Saved-site identity",
+      "status": "generated-and-committed",
+      "finalReview": "Verify the production response, dimensions, and safe-area crop."
+    },
+    {
+      "path": "launch/demo-script.md",
+      "role": "Source for release-candidate walkthrough video",
+      "status": "script-ready-capture-not-created",
+      "finalReview": "Record only after the live candidate and every spoken claim match."
+    }
+  ]
+}

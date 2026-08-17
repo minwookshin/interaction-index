@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "registry/components/ui/empty-state.tsx",
-      "content": "import \"../../styles/teum-base.css\";\nimport \"../../styles/components/empty-state.css\";\nimport { Package } from \"@phosphor-icons/react\";\nimport { useId, type ComponentPropsWithRef, type ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type EmptyStateProps = Omit<ComponentPropsWithRef<\"div\">, \"title\"> & {\n  title: ReactNode;\n  description?: ReactNode;\n  icon?: ReactNode;\n  primaryAction?: ReactNode;\n  secondaryAction?: ReactNode;\n  size?: \"compact\" | \"default\";\n};\n\nexport function EmptyState({\n  title,\n  description,\n  icon = <Package />,\n  primaryAction,\n  secondaryAction,\n  size = \"default\",\n  className,\n  ...props\n}: EmptyStateProps) {\n  const generatedId = useId();\n  const titleId = props[\"aria-labelledby\"] ?? `${generatedId}-title`;\n  const descriptionId = description ? `${generatedId}-description` : undefined;\n\n  return (\n    <div className={cn(\"teum-empty-state\", className)} data-size={size} aria-labelledby={titleId} aria-describedby={descriptionId} {...props}>\n      <span className=\"teum-empty-state__icon\" aria-hidden=\"true\">{icon}</span>\n      <div className=\"teum-empty-state__copy\">\n        <strong id={titleId}>{title}</strong>\n        {description && <p id={descriptionId}>{description}</p>}\n      </div>\n      {(primaryAction || secondaryAction) && <div className=\"teum-empty-state__actions\">{primaryAction}{secondaryAction}</div>}\n    </div>\n  );\n}\n",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/empty-state.css\";\nimport { Package } from \"@phosphor-icons/react\";\nimport { useId, type ComponentPropsWithRef, type ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type EmptyStateProps = Omit<ComponentPropsWithRef<\"div\">, \"title\"> & {\n  title: ReactNode;\n  description?: ReactNode;\n  icon?: ReactNode;\n  primaryAction?: ReactNode;\n  secondaryAction?: ReactNode;\n  size?: \"compact\" | \"default\";\n};\n\nexport function EmptyState({\n  title,\n  description,\n  icon = <Package />,\n  primaryAction,\n  secondaryAction,\n  size = \"default\",\n  className,\n  ...props\n}: EmptyStateProps) {\n  const generatedId = useId();\n  const titleId = props[\"aria-labelledby\"] ?? `${generatedId}-title`;\n  const descriptionId = description ? `${generatedId}-description` : undefined;\n\n  return (\n    <div className={cn(\"teum-empty-state\", className)} data-size={size} aria-labelledby={titleId} aria-describedby={descriptionId} {...props}>\n      <span className=\"teum-empty-state__icon\" aria-hidden=\"true\">{icon}</span>\n      <div className=\"teum-empty-state__copy\">\n        <strong id={titleId}>{title}</strong>\n        {description && <p id={descriptionId}>{description}</p>}\n      </div>\n      {(primaryAction || secondaryAction) && <div className=\"teum-empty-state__actions\">{primaryAction}{secondaryAction}</div>}\n    </div>\n  );\n}\n",
       "type": "registry:ui",
       "target": "components/ui/empty-state.tsx"
     },
@@ -23,5 +23,13 @@
       "target": "styles/components/empty-state.css"
     }
   ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/empty-state",
+      "useWhen": "A collection has no content and the reason or next useful action is not otherwise obvious.",
+      "avoidWhen": "Content is still loading or the empty region is too small to justify explanatory UI."
+    }
+  },
   "type": "registry:ui"
 }

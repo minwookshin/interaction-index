@@ -1,3 +1,5 @@
+"use client";
+
 import "../../styles/teum-base.css";
 import "../../styles/components/segmented-control.css";
 import { Toggle } from "@base-ui/react/toggle";

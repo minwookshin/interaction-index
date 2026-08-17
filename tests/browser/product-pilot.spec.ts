@@ -5,6 +5,7 @@ async function measureBrowserCommit(
   triggerText: string,
   target: { kind: "heading"; text: string } | { kind: "dialog" },
 ) {
+  await page.getByRole("button", { name: new RegExp(triggerText) }).waitFor({ state: "visible" });
   return page.evaluate(({ triggerText, target }) => new Promise<number>((resolve, reject) => {
     const trigger = [...document.querySelectorAll<HTMLButtonElement>("button")]
       .find((button) => button.textContent?.includes(triggerText));
@@ -41,7 +42,7 @@ async function measureBrowserCommit(
 
 test("product pilot supports create, edit, archive, and recovery", async ({ page }) => {
   await page.goto("/#product-pilot");
-  await expect(page.getByRole("heading", { level: 1, name: "Product pilot" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Teum Data" })).toBeVisible({ timeout: 15_000 });
 
   await page.getByRole("button", { name: "New issue" }).click();
   await page.getByRole("textbox", { name: "Title" }).fill("Verify composed product flow");
@@ -93,4 +94,101 @@ test("authored task composes Action List, Shared Detail, and Undo Stack", async 
   await page.getByRole("button", { name: "Undo" }).click();
   await expect(page.getByRole("heading", { name: "Tune shared detail motion" })).toBeVisible();
   await expect(page.getByRole("listitem").filter({ hasText: "Choose Undo" })).toHaveAttribute("data-complete", "true");
+});
+
+test("Teum Data compares, selects, mutates, and recovers the same collection", async ({ page }) => {
+  await page.goto("/#product-pilot");
+  await page.getByRole("tab", { name: "Cycle" }).click();
+
+  const table = page.getByRole("table", { name: "Active cycle issues" });
+  await expect(table).toBeVisible();
+  const motionRow = table.getByRole("row").filter({ hasText: "Tune shared detail motion" });
+  await motionRow.getByRole("checkbox", { name: /Select INT-198/ }).click();
+  const bulkActions = page.getByRole("region", { name: "Bulk actions" });
+  await expect(bulkActions).toContainText("1 issue selected");
+
+  await bulkActions.getByRole("button", { name: "Archive" }).click();
+  await expect(motionRow).not.toBeVisible();
+  await page.getByRole("button", { name: "Undo" }).click();
+  await expect(table.getByRole("row").filter({ hasText: "Tune shared detail motion" })).toBeVisible();
+
+  await page.getByRole("button", { name: /Saved views: All issues/ }).click();
+  await page.getByRole("menuitemradio", { name: /Completed/ }).click();
+  await expect(page.getByText("1 visible")).toBeVisible();
+  await expect(table.getByRole("row").filter({ hasText: "Verify registry consumer" })).toBeVisible();
+});
+
+test("Teum Data keeps keyboard selection instant under reduced motion", async ({ page, isMobile }) => {
+  test.skip(Boolean(isMobile), "The input-modality contract requires a physical keyboard path.");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/#product-pilot");
+  await page.getByRole("tab", { name: "Cycle" }).click();
+
+  const checkbox = page.getByRole("checkbox", { name: /Select INT-198/ });
+  await checkbox.focus();
+  await page.keyboard.press("Space");
+
+  const bulkActions = page.getByRole("region", { name: "Bulk actions" });
+  await expect(bulkActions).toBeVisible();
+  await expect(page.locator("html")).toHaveAttribute("data-input-modality", "keyboard");
+  const motion = await bulkActions.evaluate((element) => {
+    const style = getComputedStyle(element);
+    return { transform: style.transform, transitionDuration: style.transitionDuration };
+  });
+  expect(motion.transform).toBe("none");
+  expect(motion.transitionDuration).toBe("0s");
+});
+
+test("Customer Directory keeps server state shareable and personal views persistent", async ({ page }) => {
+  test.setTimeout(90_000);
+  await page.goto("/#product-pilot/customer-directory");
+
+  const search = page.getByRole("searchbox", { name: "Search customers" });
+  await search.fill("Arc 12");
+  await expect(page).toHaveURL(/customers-q=Arc(?:\+|%20)12/);
+  await expect(page.getByRole("table", { name: "Customer Directory" }).getByRole("row")).not.toHaveCount(1);
+
+  await page.getByRole("button", { name: "Saved views: All customers" }).click();
+  await page.getByRole("menuitem", { name: "Save as new view" }).click();
+  await page.getByRole("textbox", { name: "View name" }).fill("Arc review");
+  await page.getByRole("button", { name: "Save view", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Saved views: Arc review" })).toBeVisible();
+
+  const persisted = await page.evaluate(() => window.localStorage.getItem("teum:data:customer-views:v1"));
+  expect(persisted).toContain("Arc review");
+  await page.reload({ waitUntil: "domcontentloaded" });
+  const restoredView = page.getByRole("button", { name: "Saved views: Arc review" });
+  await expect(restoredView).toBeVisible({ timeout: 45_000 });
+  await restoredView.click();
+  await expect(page.getByRole("menuitemradio", { name: /Arc review/ })).toBeVisible();
+});
+
+test("Audit Log virtualizes ten thousand rows and exposes export choices", async ({ page }) => {
+  await page.goto("/#product-pilot/audit-log");
+
+  const dateRange = page.getByRole("button", { name: /^Occurred:/ });
+  await dateRange.click();
+  await page.getByRole("button", { name: "Clear", exact: true }).click();
+  await page.getByRole("button", { name: "Apply", exact: true }).click();
+  await expect(page.getByText("10,000 events", { exact: true })).toBeVisible();
+
+  const table = page.getByRole("table", { name: "Audit Log" });
+  const rows = table.getByRole("row");
+  const renderedBefore = await rows.count();
+  expect(renderedBefore).toBeGreaterThan(8);
+  expect(renderedBefore).toBeLessThan(60);
+  const firstRowBefore = await rows.nth(1).innerText();
+
+  const viewport = page.locator(".teum-data-table__virtual-viewport");
+  await viewport.evaluate((element) => {
+    element.scrollTop = element.scrollHeight / 2;
+    element.dispatchEvent(new Event("scroll", { bubbles: true }));
+  });
+  await expect.poll(async () => rows.nth(1).innerText()).not.toBe(firstRowBefore);
+  expect(await rows.count()).toBeLessThan(60);
+
+  await page.getByRole("button", { name: "Export", exact: true }).last().click();
+  const menu = page.getByRole("menu");
+  await expect(menu.getByRole("menuitem", { name: "Export CSV" })).toBeVisible();
+  await expect(menu.getByRole("menuitem", { name: "Export JSON" })).toBeVisible();
 });

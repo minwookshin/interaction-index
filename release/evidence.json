@@ -1,0 +1,634 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/build-evidence.mjs",
+  "generatedAt": "2026-08-17T08:18:21.005Z",
+  "release": {
+    "name": "teum",
+    "version": "0.1.0-rc.22",
+    "status": "pre-release",
+    "npmPublished": false,
+    "publicationLocked": true
+  },
+  "catalog": {
+    "components": 45,
+    "productComponents": 15,
+    "registryItems": 72,
+    "publicExports": 345,
+    "semanticTokens": 145
+  },
+  "routes": {
+    "total": 69,
+    "landing": 1,
+    "documentation": 13,
+    "foundations": 5,
+    "components": 45,
+    "patterns": 5
+  },
+  "automation": {
+    "sourceTests": 203,
+    "storybookContractRuns": 102,
+    "browserProjects": [
+      "chromium",
+      "firefox",
+      "webkit",
+      "mobile-chromium",
+      "mobile-webkit"
+    ],
+    "browserMatrix": {
+      "generatedAt": "2026-08-17T05:56:56.007Z",
+      "status": "passed",
+      "passed": 295,
+      "skipped": 350,
+      "failed": 0,
+      "flaky": 0
+    },
+    "quickstart": {
+      "generatedAt": "2026-08-17T05:46:41.559Z",
+      "status": "passed",
+      "elapsedMs": 15468,
+      "fixture": "examples/quickstart-vite",
+      "optionalTailwindBridgeVerified": true
+    },
+    "adoptionDx": {
+      "generatedAt": "2026-08-17T06:14:41.730Z",
+      "status": "passed",
+      "targetMs": 600000,
+      "longestAutomatedJourneyMs": 17537,
+      "journeys": [
+        "viteReact18",
+        "viteReact19",
+        "nextAppRouter",
+        "reviewedUpdate"
+      ]
+    },
+    "packageContract": {
+      "generatedAt": "2026-08-17T05:59:56.927Z",
+      "status": "passed",
+      "fixture": "Fresh ESM consumer with TypeScript, Vite, Node SSR, and jsdom hydration",
+      "clientBoundary": "use client",
+      "declaredExports": 345,
+      "runtimeExports": 197,
+      "runtimeApiMatchesCompiler": true,
+      "ssrMarkupBytes": 3726,
+      "hydrationRecoverableErrors": 0
+    },
+    "analyticsInstall": {
+      "generatedAt": "2026-08-17T05:47:54.890Z",
+      "status": "passed",
+      "fixture": "Fresh React + TypeScript + Vite application using the source registry",
+      "recipes": [
+        "SaaS Overview",
+        "Product Usage",
+        "Conversion & Retention"
+      ],
+      "components": [
+        "Metric",
+        "Sparkline",
+        "Chart",
+        "Comparison",
+        "Breakdown",
+        "Goal",
+        "Funnel",
+        "Cohort",
+        "Timeline"
+      ],
+      "elapsedMs": 11430,
+      "externalChartRuntime": false,
+      "semanticDataTable": true
+    },
+    "productPatternsInstall": {
+      "generatedAt": "2026-08-17T05:48:10.265Z",
+      "status": "passed",
+      "fixture": "Fresh React + TypeScript + Vite application using the source registry",
+      "recipes": [
+        "Customer Workspace",
+        "Billing & Usage",
+        "Members & Permissions"
+      ],
+      "verifiedFiles": [
+        "src/components/patterns/product-pattern-recipes.tsx",
+        "src/lib/teum-product-patterns-contract.ts",
+        "src/styles/patterns/product-pattern-recipes.css",
+        "src/components/ui/shared-detail.tsx",
+        "src/components/ui/data-table.tsx",
+        "src/components/ui/chart.tsx",
+        "src/components/ui/dialog.tsx"
+      ],
+      "elapsedMs": 14559
+    },
+    "accessibility": {
+      "generatedAt": "2026-08-17T05:59:36.088Z",
+      "status": "passed",
+      "passed": 55,
+      "skipped": 30,
+      "failed": 0,
+      "flaky": 0,
+      "contracts": 10,
+      "publicRoutes": 69
+    },
+    "runtimePerformance": {
+      "generatedAt": "2026-08-17T08:16:19.676Z",
+      "status": "passed",
+      "mode": "local-production-preview",
+      "landingLcpMs": 228,
+      "documentationLcpMs": 488,
+      "maximumCls": 0.0132,
+      "documentationTransitionMs": 405,
+      "sharedDetailSelectionMs": 7,
+      "dialogOpenMs": 10
+    }
+  },
+  "visuals": {
+    "platforms": [
+      "darwin",
+      "linux"
+    ],
+    "incompletePlatformBaselines": [],
+    "publicRouteSnapshotsPerPlatform": 138,
+    "componentProductSnapshotsPerPlatform": 90,
+    "componentStateSnapshotsPerPlatform": 90,
+    "analyticsRecipeSnapshotsPerPlatform": 6,
+    "productPatternSnapshotsPerPlatform": 6,
+    "releaseBaselinesPerPlatform": 330
+  },
+  "performance": {
+    "bundle": {
+      "schemaVersion": 2,
+      "generatedBy": "scripts/measure-performance.mjs",
+      "generatedAt": "2026-08-17T06:12:31.909Z",
+      "budgets": {
+        "initialJsGzipBytes": 90000,
+        "initialCriticalGzipBytes": 140000,
+        "documentationShellJsGzipBytes": 360000,
+        "publicDocumentationJsGzipBytes": 370000,
+        "dataRecipesJsGzipBytes": 490000,
+        "analyticsRecipesJsGzipBytes": 500000,
+        "productPatternsJsGzipBytes": 500000,
+        "largestComponentRouteJsGzipBytes": 430000,
+        "largestJavaScriptRawBytes": 500000,
+        "largestJavaScriptGzipBytes": 115000,
+        "totalJsGzipBytes": 585000,
+        "initialCssGzipBytes": 9000,
+        "totalCssGzipBytes": 55000
+      },
+      "totals": {
+        "initialJsGzipBytes": 78793,
+        "initialCriticalGzipBytes": 134775,
+        "totalJsGzipBytes": 579699,
+        "initialCssGzipBytes": 7007,
+        "totalCssGzipBytes": 53635,
+        "latinFontBytes": 48256,
+        "indexHtmlGzipBytes": 719,
+        "largestComponentRouteJsGzipBytes": 420259,
+        "largestJavaScriptRawBytes": 480845,
+        "largestJavaScriptGzipBytes": 109904
+      },
+      "routes": {
+        "landing": {
+          "jsGzipBytes": 78793,
+          "cssGzipBytes": 7007,
+          "javascript": [
+            "assets/_commonjsHelpers-CqkleIqs.js",
+            "assets/index-T6XUeSZu.js",
+            "assets/react-CYjvl0oU.js"
+          ],
+          "stylesheets": [
+            "assets/index-XF9pn556.css"
+          ]
+        },
+        "documentationShell": {
+          "jsGzipBytes": 340532,
+          "cssGzipBytes": 53635,
+          "javascript": [
+            "assets/App-DiOmZBua.js",
+            "assets/HTMLProjectionNode-Z3sxfroM.js",
+            "assets/_commonjsHelpers-CqkleIqs.js",
+            "assets/base-ui-CuypfNDa.js",
+            "assets/feedback-D5bZHH62.js",
+            "assets/index-T6XUeSZu.js",
+            "assets/motion-BYJvC3Ml.js",
+            "assets/react-CYjvl0oU.js",
+            "assets/with-selector-BcJo0SNu.js"
+          ],
+          "stylesheets": [
+            "assets/App-TuzYR60h.css",
+            "assets/index-XF9pn556.css"
+          ]
+        },
+        "publicDocumentation": {
+          "jsGzipBytes": 362280,
+          "cssGzipBytes": 53635,
+          "javascript": [
+            "assets/App-DiOmZBua.js",
+            "assets/HTMLProjectionNode-Z3sxfroM.js",
+            "assets/_commonjsHelpers-CqkleIqs.js",
+            "assets/base-ui-CuypfNDa.js",
+            "assets/feedback-D5bZHH62.js",
+            "assets/index-T6XUeSZu.js",
+            "assets/motion-BYJvC3Ml.js",
+            "assets/public-docs-DINnHB4x.js",
+            "assets/react-CYjvl0oU.js",
+            "assets/with-selector-BcJo0SNu.js"
+          ],
+          "stylesheets": [
+            "assets/App-TuzYR60h.css",
+            "assets/index-XF9pn556.css"
+          ]
+        },
+        "productPilot": {
+          "jsGzipBytes": 403375,
+          "cssGzipBytes": 53635,
+          "javascript": [
+            "assets/App-DiOmZBua.js",
+            "assets/CalendarBlank.es-DSlXgyMR.js",
+            "assets/HTMLProjectionNode-Z3sxfroM.js",
+            "assets/_commonjsHelpers-CqkleIqs.js",
+            "assets/base-ui-CuypfNDa.js",
+            "assets/data-table-B7I8MxL9.js",
+            "assets/data-toolbar-BO28bzUP.js",
+            "assets/feedback-D5bZHH62.js",
+            "assets/index-T6XUeSZu.js",
+            "assets/motion-BYJvC3Ml.js",
+            "assets/product-pilot-CFjgpVTy.js",
+            "assets/public-docs-DINnHB4x.js",
+            "assets/react-CYjvl0oU.js",
+            "assets/with-selector-BcJo0SNu.js"
+          ],
+          "stylesheets": [
+            "assets/App-TuzYR60h.css",
+            "assets/index-XF9pn556.css"
+          ]
+        },
+        "dataRecipes": {
+          "jsGzipBytes": 488682,
+          "cssGzipBytes": 53635,
+          "javascript": [
+            "assets/App-DiOmZBua.js",
+            "assets/CalendarBlank.es-DSlXgyMR.js",
+            "assets/HTMLProjectionNode-Z3sxfroM.js",
+            "assets/_commonjsHelpers-CqkleIqs.js",
+            "assets/ariaHideOutside-D6K_ZSTR.js",
+            "assets/base-ui-CuypfNDa.js",
+            "assets/data-recipes-Db7O4xzw.js",
+            "assets/data-table-B7I8MxL9.js",
+            "assets/data-toolbar-BO28bzUP.js",
+            "assets/date-picker-DjpiDAu3.js",
+            "assets/feedback-D5bZHH62.js",
+            "assets/index-T6XUeSZu.js",
+            "assets/motion-BYJvC3Ml.js",
+            "assets/public-docs-DINnHB4x.js",
+            "assets/react-CYjvl0oU.js",
+            "assets/useCollator-CHd5eb6e.js",
+            "assets/useLabels-BcIpzZz_.js",
+            "assets/with-selector-BcJo0SNu.js"
+          ],
+          "stylesheets": [
+            "assets/App-TuzYR60h.css",
+            "assets/index-XF9pn556.css"
+          ]
+        },
+        "analyticsRecipes": {
+          "jsGzipBytes": 403237,
+          "cssGzipBytes": 53635,
+          "javascript": [
+            "assets/App-DiOmZBua.js",
+            "assets/HTMLProjectionNode-Z3sxfroM.js",
+            "assets/_commonjsHelpers-CqkleIqs.js",
+            "assets/analytics-recipes-qVsKEXM-.js",
+            "assets/base-ui-CuypfNDa.js",
+            "assets/data-table-B7I8MxL9.js",
+            "assets/feedback-D5bZHH62.js",
+            "assets/index-T6XUeSZu.js",
+            "assets/motion-BYJvC3Ml.js",
+            "assets/public-docs-DINnHB4x.js",
+            "assets/react-CYjvl0oU.js",
+            "assets/timeline-C2oLa_1q.js",
+            "assets/with-selector-BcJo0SNu.js"
+          ],
+          "stylesheets": [
+            "assets/App-TuzYR60h.css",
+            "assets/index-XF9pn556.css"
+          ]
+        },
+        "productPatterns": {
+          "jsGzipBytes": 410767,
+          "cssGzipBytes": 53635,
+          "javascript": [
+            "assets/App-DiOmZBua.js",
+            "assets/HTMLProjectionNode-Z3sxfroM.js",
+            "assets/_commonjsHelpers-CqkleIqs.js",
+            "assets/base-ui-CuypfNDa.js",
+            "assets/data-table-B7I8MxL9.js",
+            "assets/data-toolbar-BO28bzUP.js",
+            "assets/feedback-D5bZHH62.js",
+            "assets/index-T6XUeSZu.js",
+            "assets/motion-BYJvC3Ml.js",
+            "assets/product-pattern-recipes-CzoaKUE8.js",
+            "assets/public-docs-DINnHB4x.js",
+            "assets/react-CYjvl0oU.js",
+            "assets/timeline-C2oLa_1q.js",
+            "assets/with-selector-BcJo0SNu.js"
+          ],
+          "stylesheets": [
+            "assets/App-TuzYR60h.css",
+            "assets/index-XF9pn556.css"
+          ]
+        },
+        "datePicker": {
+          "jsGzipBytes": 420259,
+          "cssGzipBytes": 53635,
+          "javascript": [
+            "assets/App-DiOmZBua.js",
+            "assets/CalendarBlank.es-DSlXgyMR.js",
+            "assets/HTMLProjectionNode-Z3sxfroM.js",
+            "assets/_commonjsHelpers-CqkleIqs.js",
+            "assets/ariaHideOutside-D6K_ZSTR.js",
+            "assets/base-ui-CuypfNDa.js",
+            "assets/date-picker-DjpiDAu3.js",
+            "assets/date-picker-previews-D6BN4o9c.js",
+            "assets/feedback-D5bZHH62.js",
+            "assets/index-T6XUeSZu.js",
+            "assets/motion-BYJvC3Ml.js",
+            "assets/react-CYjvl0oU.js",
+            "assets/useCollator-CHd5eb6e.js",
+            "assets/useLabels-BcIpzZz_.js",
+            "assets/with-selector-BcJo0SNu.js"
+          ],
+          "stylesheets": [
+            "assets/App-TuzYR60h.css",
+            "assets/index-XF9pn556.css"
+          ]
+        },
+        "tree": {
+          "jsGzipBytes": 391895,
+          "cssGzipBytes": 53635,
+          "javascript": [
+            "assets/App-DiOmZBua.js",
+            "assets/HTMLProjectionNode-Z3sxfroM.js",
+            "assets/_commonjsHelpers-CqkleIqs.js",
+            "assets/base-ui-CuypfNDa.js",
+            "assets/feedback-D5bZHH62.js",
+            "assets/index-T6XUeSZu.js",
+            "assets/motion-BYJvC3Ml.js",
+            "assets/react-CYjvl0oU.js",
+            "assets/tree-previews-BewwwrHd.js",
+            "assets/useCollator-CHd5eb6e.js",
+            "assets/useGridListSelectionCheckbox-96T5mpF_.js",
+            "assets/useLabels-BcIpzZz_.js",
+            "assets/with-selector-BcJo0SNu.js"
+          ],
+          "stylesheets": [
+            "assets/App-TuzYR60h.css",
+            "assets/index-XF9pn556.css"
+          ]
+        },
+        "reorderableList": {
+          "jsGzipBytes": 418292,
+          "cssGzipBytes": 53635,
+          "javascript": [
+            "assets/App-DiOmZBua.js",
+            "assets/HTMLProjectionNode-Z3sxfroM.js",
+            "assets/_commonjsHelpers-CqkleIqs.js",
+            "assets/ariaHideOutside-D6K_ZSTR.js",
+            "assets/base-ui-CuypfNDa.js",
+            "assets/feedback-D5bZHH62.js",
+            "assets/index-T6XUeSZu.js",
+            "assets/motion-BYJvC3Ml.js",
+            "assets/react-CYjvl0oU.js",
+            "assets/reorderable-list-previews-y7dyNc9F.js",
+            "assets/useCollator-CHd5eb6e.js",
+            "assets/useGridListSelectionCheckbox-96T5mpF_.js",
+            "assets/with-selector-BcJo0SNu.js"
+          ],
+          "stylesheets": [
+            "assets/App-TuzYR60h.css",
+            "assets/index-XF9pn556.css"
+          ]
+        }
+      },
+      "initialJavaScript": [
+        "_commonjsHelpers-CqkleIqs.js",
+        "index-T6XUeSZu.js",
+        "react-CYjvl0oU.js"
+      ],
+      "initialStylesheets": [
+        "index-XF9pn556.css"
+      ],
+      "assets": [
+        {
+          "file": "App-DiOmZBua.js",
+          "bytes": 480845,
+          "gzipBytes": 109904
+        },
+        {
+          "file": "base-ui-CuypfNDa.js",
+          "bytes": 272166,
+          "gzipBytes": 89284
+        },
+        {
+          "file": "react-CYjvl0oU.js",
+          "bytes": 194239,
+          "gzipBytes": 60739
+        },
+        {
+          "file": "date-picker-DjpiDAu3.js",
+          "bytes": 173029,
+          "gzipBytes": 55919
+        },
+        {
+          "file": "App-TuzYR60h.css",
+          "bytes": 306200,
+          "gzipBytes": 46628
+        },
+        {
+          "file": "reorderable-list-previews-y7dyNc9F.js",
+          "bytes": 147051,
+          "gzipBytes": 33993
+        },
+        {
+          "file": "HTMLProjectionNode-Z3sxfroM.js",
+          "bytes": 97028,
+          "gzipBytes": 32090
+        },
+        {
+          "file": "data-table-B7I8MxL9.js",
+          "bytes": 106087,
+          "gzipBytes": 29998
+        },
+        {
+          "file": "useGridListSelectionCheckbox-96T5mpF_.js",
+          "bytes": 74793,
+          "gzipBytes": 21776
+        },
+        {
+          "file": "public-docs-DINnHB4x.js",
+          "bytes": 72792,
+          "gzipBytes": 21748
+        },
+        {
+          "file": "useCollator-CHd5eb6e.js",
+          "bytes": 63163,
+          "gzipBytes": 20673
+        },
+        {
+          "file": "index-T6XUeSZu.js",
+          "bytes": 67738,
+          "gzipBytes": 17928
+        },
+        {
+          "file": "data-recipes-Db7O4xzw.js",
+          "bytes": 39575,
+          "gzipBytes": 13213
+        },
+        {
+          "file": "motion-BYJvC3Ml.js",
+          "bytes": 33708,
+          "gzipBytes": 11643
+        },
+        {
+          "file": "feedback-D5bZHH62.js",
+          "bytes": 34801,
+          "gzipBytes": 9787
+        },
+        {
+          "file": "with-selector-BcJo0SNu.js",
+          "bytes": 23026,
+          "gzipBytes": 9031
+        },
+        {
+          "file": "tree-previews-BewwwrHd.js",
+          "bytes": 24825,
+          "gzipBytes": 8707
+        },
+        {
+          "file": "product-pattern-recipes-CzoaKUE8.js",
+          "bytes": 28903,
+          "gzipBytes": 8655
+        },
+        {
+          "file": "index-XF9pn556.css",
+          "bytes": 32223,
+          "gzipBytes": 7007
+        },
+        {
+          "file": "product-pilot-CFjgpVTy.js",
+          "bytes": 17555,
+          "gzipBytes": 6023
+        },
+        {
+          "file": "analytics-recipes-qVsKEXM-.js",
+          "bytes": 16436,
+          "gzipBytes": 5493
+        },
+        {
+          "file": "timeline-C2oLa_1q.js",
+          "bytes": 15525,
+          "gzipBytes": 5466
+        },
+        {
+          "file": "data-toolbar-BO28bzUP.js",
+          "bytes": 13790,
+          "gzipBytes": 4368
+        },
+        {
+          "file": "ariaHideOutside-D6K_ZSTR.js",
+          "bytes": 2990,
+          "gzipBytes": 1318
+        },
+        {
+          "file": "date-picker-previews-D6BN4o9c.js",
+          "bytes": 2039,
+          "gzipBytes": 904
+        },
+        {
+          "file": "CalendarBlank.es-DSlXgyMR.js",
+          "bytes": 2233,
+          "gzipBytes": 706
+        },
+        {
+          "file": "useLabels-BcIpzZz_.js",
+          "bytes": 297,
+          "gzipBytes": 207
+        },
+        {
+          "file": "_commonjsHelpers-CqkleIqs.js",
+          "bytes": 116,
+          "gzipBytes": 126
+        }
+      ]
+    },
+    "runtime": {
+      "schemaVersion": 1,
+      "generatedBy": "scripts/verify-runtime-performance.mjs",
+      "generatedAt": "2026-08-17T08:16:19.676Z",
+      "releaseVersion": "0.1.0-rc.22",
+      "status": "passed",
+      "mode": "local-production-preview",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "reducedMotion": true,
+      "budgets": {
+        "landingFcpMs": 1500,
+        "landingLcpMs": 2500,
+        "documentationFcpMs": 1800,
+        "documentationLcpMs": 2500,
+        "cls": 0.05,
+        "longestTaskMs": 250,
+        "documentationTransitionMs": 1500,
+        "sharedDetailSelectionMs": 750,
+        "dialogOpenMs": 750
+      },
+      "measurements": {
+        "landing": {
+          "fcpMs": 228,
+          "lcpMs": 228,
+          "cls": 0.0002,
+          "longestTaskMs": 0,
+          "longTaskCount": 0,
+          "domContentLoadedMs": 98,
+          "loadMs": 105,
+          "resourceRequests": 5,
+          "resourceTransferBytes": 135546
+        },
+        "documentation": {
+          "fcpMs": 204,
+          "lcpMs": 488,
+          "cls": 0.0132,
+          "longestTaskMs": 0,
+          "longTaskCount": 0,
+          "domContentLoadedMs": 100,
+          "loadMs": 108,
+          "resourceRequests": 13,
+          "resourceTransferBytes": 468061
+        },
+        "documentationTransitionMs": 405,
+        "interactions": {
+          "sharedDetailSelectionMs": 7,
+          "dialogOpenMs": 10,
+          "longestTaskMs": 67
+        }
+      },
+      "environment": {
+        "platform": "darwin",
+        "architecture": "arm64",
+        "node": "v22.14.0",
+        "browser": "bundled Chromium"
+      },
+      "externalGates": [
+        "production-field-core-web-vitals",
+        "real-network-and-device-latency",
+        "production-rum-inp"
+      ]
+    }
+  },
+  "externalGates": [
+    "windows-edge-and-high-contrast",
+    "physical-ios-and-android",
+    "macos-increase-contrast-and-reduce-transparency",
+    "human-rtl-and-verbose-translation-review",
+    "independent-adoption-and-accessibility-review",
+    "npm-publication-and-trusted-publisher-activation"
+  ]
+}

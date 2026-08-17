@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/components/ui/kbd.tsx",
-      "content": "import \"../../styles/teum-base.css\";\nimport \"../../styles/components/kbd.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type KbdProps = ComponentPropsWithRef<\"kbd\">;\n\nexport function Kbd({ className, ...props }: KbdProps) {\n  return <kbd className={cn(\"teum-kbd\", className)} {...props} />;\n}\n\nexport type KbdGroupProps = ComponentPropsWithRef<\"span\">;\n\nexport function KbdGroup({ className, ...props }: KbdGroupProps) {\n  return <span className={cn(\"teum-kbd-group\", className)} {...props} />;\n}\n",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/kbd.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type KbdProps = ComponentPropsWithRef<\"kbd\">;\n\nexport function Kbd({ className, ...props }: KbdProps) {\n  return <kbd className={cn(\"teum-kbd\", className)} {...props} />;\n}\n\nexport type KbdGroupProps = ComponentPropsWithRef<\"span\">;\n\nexport function KbdGroup({ className, ...props }: KbdGroupProps) {\n  return <span className={cn(\"teum-kbd-group\", className)} {...props} />;\n}\n",
       "type": "registry:ui",
       "target": "components/ui/kbd.tsx"
     },
@@ -20,5 +20,13 @@
       "target": "styles/components/kbd.css"
     }
   ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/kbd",
+      "useWhen": "A visible hint explains a real keyboard shortcut or key sequence.",
+      "avoidWhen": "The key is interactive on its own or no working shortcut exists."
+    }
+  },
   "type": "registry:ui"
 }

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/verify-package-consumer.mjs",
+  "generatedAt": "2026-08-17T05:59:56.927Z",
+  "version": "0.1.0-rc.22",
+  "status": "passed",
+  "fixture": "Fresh ESM consumer with TypeScript, Vite, Node SSR, and jsdom hydration",
+  "clientBoundary": "use client",
+  "declaredExports": 345,
+  "runtimeExports": 197,
+  "runtimeApiMatchesCompiler": true,
+  "ssrMarkupBytes": 3726,
+  "hydrationRecoverableErrors": 0,
+  "cssSelectorsVerified": [
+    ".teum-button",
+    ".teum-shared-detail"
+  ]
+}
