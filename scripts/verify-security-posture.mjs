@@ -77,8 +77,8 @@ requireContract(!/(?:NPM_TOKEN|NODE_AUTH_TOKEN)/.test(npmWorkflow), "npm workflo
 const betaHealthWorkflow = await read(".github/workflows/beta-health.yml");
 requireContract(/schedule:\s*\n\s*- cron:/.test(betaHealthWorkflow), "public beta health verification must run on a schedule");
 requireContract(/verify:public-beta -- --write-evidence/.test(betaHealthWorkflow), "public beta health verification must archive fresh live evidence");
-requireContract(/verify:beta:external -- --write-evidence/.test(betaHealthWorkflow), "public beta health verification must collect accepted external evidence");
-requireContract(/verify:beta:stability -- --write-evidence/.test(betaHealthWorkflow), "public beta health verification must measure consecutive stability coverage");
+requireContract(/verify-beta-external-evidence\.mjs --write-evidence/.test(betaHealthWorkflow), "public beta health verification must collect accepted external evidence");
+requireContract(/verify-beta-stability\.mjs --write-evidence/.test(betaHealthWorkflow), "public beta health verification must measure consecutive stability coverage");
 requireContract(/build:beta/.test(betaHealthWorkflow), "public beta health verification must rebuild live v1 readiness");
 requireContract(/retention-days:\s*35/.test(betaHealthWorkflow), "public beta health evidence must outlive the 28-day stability window");
 requireContract(!/(?:actions|attestations|contents|id-token|issues|pages):\s*write/.test(betaHealthWorkflow), "public beta health workflow must remain read-only");

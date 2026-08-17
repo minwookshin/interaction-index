@@ -34,11 +34,11 @@ jobs:
       - name: Verify live public beta
         run: npm run verify:public-beta -- --write-evidence
       - name: Collect maintainer-accepted external evidence
-        run: npm run verify:beta:external -- --write-evidence
+        run: node scripts/verify-beta-external-evidence.mjs --write-evidence
         env:
           GITHUB_TOKEN: ${{ github.token }}
       - name: Verify consecutive stability coverage
-        run: npm run verify:beta:stability -- --write-evidence
+        run: node scripts/verify-beta-stability.mjs --write-evidence
         env:
           GITHUB_TOKEN: ${{ github.token }}
       - name: Build live beta readiness
