@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "candidate": "0.1.0-rc.22",
-  "programStage": "public-beta-preparation",
+  "programStage": "public-beta",
   "independentInstallations": [],
   "feedbackRounds": [
     {
@@ -21,7 +21,7 @@
   ],
   "stableApiWindow": {
     "minimumDays": 28,
-    "startedAt": null,
+    "startedAt": "2026-08-17T08:42:11Z",
     "endedAt": null
   },
   "externalReviews": {
@@ -37,9 +37,9 @@
     "linuxVisualBaselines": { "status": "pending", "evidenceUrls": [] }
   },
   "publication": {
-    "githubRelease": null,
-    "site": null,
-    "registry": null,
+    "githubRelease": "https://github.com/minwookshin/teum/releases/tag/v0.1.0-rc.22",
+    "site": "https://teum.minwookshin.com",
+    "registry": "https://teum.minwookshin.com/r/v/0.1.0-rc.22/release.json",
     "npm": null
   },
   "claimBoundary": "Only dated evidence from an independently maintained consumer counts as external adoption. Empty gates remain unverified."
