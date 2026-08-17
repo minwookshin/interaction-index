@@ -60,6 +60,8 @@ jobs:
           set -euo pipefail
           find \
             tests/storybook/visual-regression.spec.ts-snapshots \
+            tests/storybook/analytics-visual.spec.ts-snapshots \
+            tests/storybook/product-patterns-visual.spec.ts-snapshots \
             tests/browser/full-catalog-visual.spec.ts-snapshots \
             tests/browser/visual-regression.spec.ts-snapshots \
             -type f -name '*-linux.png' -print0 \
