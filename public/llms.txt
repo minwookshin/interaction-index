@@ -25,7 +25,7 @@ Teum is a dense, monochrome React component and interaction system for product i
 ## Install
 
 ```bash
-npx shadcn@4.18.0 registry add @teum-pinned=https://teum.minwookshin.com/r/v/0.1.0-rc.22/{name}.json
+npx shadcn@4.18.0 registry add @teum-pinned=https://whatiuse.minwookshin.com/r/v/0.1.0-rc.25/{name}.json
 npx shadcn@4.18.0 add @teum-pinned/button
 ```
 
@@ -44,15 +44,22 @@ npx shadcn@4.18.0 add @teum-pinned/teum-data
 
 Teum Data exposes Data Table, Filter Builder, Data Toolbar, Bulk Action Bar, Date Range Filter, Data Export Menu, Motion Contract v1, a versioned view-state codec, and three agent-readable recipe contracts. Issues Workspace proves mutation and recovery; Customer Directory proves controlled server state, URL state, and saved views; Audit Log proves date filtering and 10,000-row virtualization. The 45-component Core catalog remains frozen.
 
+Install the Teum Analytics vertical slice:
+
+```bash
+npx shadcn@4.18.0 add @teum-pinned/teum-analytics
+```
+
+Teum Analytics adds 11 product-level visualization primitives, including line, area, bar, stacked bar, donut, and heatmap renderers, plus three composed analytics recipes. Every visual keeps exact values available through labels, summaries, or semantic tables.
+
 Install the complete B2B Product Patterns slice:
 
 ```bash
 npx shadcn@4.18.0 add @teum-pinned/teum-product-patterns
 npx shadcn@4.18.0 add @teum-pinned/teum-agent
-
-Agent contract:
-https://teum.minwookshin.com/agent/teum-agent.json
 ```
+
+Agent contract: https://whatiuse.minwookshin.com/agent/teum-agent.json
 
 Product Patterns composes the approved Core, Data, and Analytics layers into Customer Workspace, Billing & Usage, and Members & Permissions. Its machine-readable contract records task sequence, state ownership, invariants, failure handling, keyboard behavior, and reduced-motion behavior.
 

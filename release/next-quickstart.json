@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/verify-next-consumer.mjs",
-  "generatedAt": "2026-08-17T05:46:59.299Z",
-  "version": "0.1.0-rc.22",
+  "generatedAt": "2026-08-18T17:03:07.790Z",
+  "version": "0.1.0-rc.29",
   "status": "passed",
   "framework": "Next.js App Router",
   "frameworkVersion": "16.3.1",
   "react": "19.2.0",
   "fixture": "examples/quickstart-next",
   "targetMs": 600000,
-  "elapsedMs": 17537,
+  "elapsedMs": 12490,
   "automatedJourney": "configure pinned registry, install Button, customize one semantic role, switch theme behind a client boundary, type-check, and production-build",
   "humanNoviceTimingClaim": false,
   "serverComponentBoundary": "layout and page stay server-rendered; the interactive proof is an explicit client component",
@@ -17,7 +17,7 @@
   "themeToggle": true,
   "semanticOverride": "--teum-radius-control: 9px",
   "commands": [
-    "npx shadcn@4.18.0 registry add @teum-pinned=https://teum.minwookshin.com/r/v/0.1.0-rc.22/{name}.json",
+    "npx shadcn@4.18.0 registry add @teum-pinned=https://whatiuse.minwookshin.com/r/v/0.1.0-rc.29/{name}.json",
     "npx shadcn@4.18.0 add @teum-pinned/button",
     "npm run typecheck",
     "npm run build"

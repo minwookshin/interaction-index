@@ -14,8 +14,10 @@ import {
   createAnalyticsTicks,
   describeAnalyticsDatum,
   formatAnalyticsValue,
+  getAnalyticsBandPosition,
   getAnalyticsDomain,
   getAnalyticsPointPosition,
+  getStackedAnalyticsDomain,
   summarizeAnalyticsSeries,
   type AnalyticsDatum,
   type AnalyticsSeries,
@@ -29,6 +31,8 @@ export type ChartAnnotation = {
   tone?: "neutral" | "danger";
 };
 
+export type ChartType = "line" | "area" | "bar" | "stacked-bar";
+
 export type ChartProps = {
   title: string;
   description?: string;
@@ -38,6 +42,8 @@ export type ChartProps = {
   height?: number;
   includeZero?: boolean;
   domain?: readonly [number, number];
+  type?: ChartType;
+  /** @deprecated Use type="area". */
   area?: boolean;
   annotations?: readonly ChartAnnotation[];
   valueFormatter?: (value: number, series: AnalyticsSeries) => string;
@@ -50,8 +56,10 @@ export type ChartProps = {
   onDatumActivate?: (datum: AnalyticsDatum, index: number) => void;
   loading?: boolean;
   empty?: ReactNode;
+  error?: ReactNode;
   showLegend?: boolean;
   showDataByDefault?: boolean;
+  showGrid?: boolean;
 };
 
 const chartBox = { width: 640, height: 264, left: 58, right: 16, top: 18, bottom: 34 } as const;
@@ -81,6 +89,7 @@ export function Chart({
   height = 264,
   includeZero = false,
   domain,
+  type,
   area = false,
   annotations = [],
   valueFormatter = (value) => formatAnalyticsValue(value),
@@ -93,8 +102,10 @@ export function Chart({
   onDatumActivate,
   loading = false,
   empty = "No data for this range.",
+  error,
   showLegend = true,
   showDataByDefault = false,
+  showGrid = true,
 }: ChartProps) {
   const id = useId();
   const [currentIndex, setCurrentIndex] = useControllableValue<number | null>({
@@ -118,9 +129,13 @@ export function Chart({
   }, [currentVisibleSeries, seriesIdSet, seriesIds, visibleSeries]);
   const resolvedVisibleSeriesSet = useMemo(() => new Set(resolvedVisibleSeries), [resolvedVisibleSeries]);
   const visible = useMemo(() => series.filter((item) => resolvedVisibleSeriesSet.has(item.id)), [resolvedVisibleSeriesSet, series]);
+  const chartType = type ?? (area ? "area" : "line");
+  const usesBands = chartType === "bar" || chartType === "stacked-bar";
   const resolvedDomain = useMemo(
-    () => getAnalyticsDomain(data, visible.map((item) => item.id), { includeZero, domain }),
-    [data, domain, includeZero, visible],
+    () => chartType === "stacked-bar"
+      ? getStackedAnalyticsDomain(data, visible.map((item) => item.id), { includeZero: true, domain })
+      : getAnalyticsDomain(data, visible.map((item) => item.id), { includeZero: usesBands || includeZero, domain }),
+    [chartType, data, domain, includeZero, usesBands, visible],
   );
   const plotBox = chartBox;
   const ticks = createAnalyticsTicks(resolvedDomain, 5);
@@ -140,7 +155,7 @@ export function Chart({
     const right = rect.width * plotBox.right / plotBox.width;
     const plotWidth = Math.max(1, rect.width - left - right);
     const ratio = Math.min(1, Math.max(0, (event.clientX - rect.left - left) / plotWidth));
-    moveTo(Math.round(ratio * (data.length - 1)));
+    moveTo(usesBands ? Math.min(data.length - 1, Math.floor(ratio * data.length)) : Math.round(ratio * (data.length - 1)));
   };
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (!data.length) return;
@@ -171,7 +186,7 @@ export function Chart({
   };
 
   return (
-    <figure className={cn("teum-chart", className)} style={chartStyle} aria-labelledby={`${id}-title`} aria-describedby={summaryId}>
+    <figure className={cn("teum-chart", className)} data-chart-type={chartType} style={chartStyle} aria-labelledby={`${id}-title`} aria-describedby={summaryId}>
       <figcaption className="teum-chart__header">
         <div><h3 id={`${id}-title`}>{title}</h3>{description && <p>{description}</p>}</div>
         <button type="button" className="teum-chart__data-toggle" aria-expanded={showData} aria-controls={tableId} onClick={() => setShowData((current) => !current)}>{showData ? "Hide data" : "View data"}</button>
@@ -190,29 +205,31 @@ export function Chart({
         aria-roledescription="interactive chart"
         aria-label={`${title}. ${data.length} data points.`}
         aria-describedby={instructionsId}
-        tabIndex={data.length && !loading ? 0 : -1}
+        tabIndex={data.length && !loading && !error ? 0 : -1}
         onPointerMove={handlePointerMove}
         onPointerLeave={() => moveTo(null)}
         onKeyDown={handleKeyDown}
         onClick={() => { if (activeDatum && active !== null) onDatumActivate?.(activeDatum, active); }}
       >
-        {loading ? <div className="teum-chart__loading" role="status"><span aria-hidden="true" />Loading chart</div> : !data.length || !visible.length ? <div className="teum-chart__empty">{empty}</div> : <>
+        {loading ? <div className="teum-chart__loading" role="status"><span aria-hidden="true" />Loading chart</div> : error ? <div className="teum-chart__error" role="alert">{error}</div> : !data.length || !visible.length ? <div className="teum-chart__empty">{empty}</div> : <>
           <svg viewBox={`0 0 ${plotBox.width} ${plotBox.height}`} preserveAspectRatio="none" aria-hidden="true" focusable="false">
-            <g className="teum-chart__grid">
+            {showGrid && <g className="teum-chart__grid">
               {ticks.map((tick) => {
                 const ratio = (tick - resolvedDomain[0]) / Math.max(Number.EPSILON, resolvedDomain[1] - resolvedDomain[0]);
                 const y = plotBox.top + (1 - ratio) * (plotBox.height - plotBox.top - plotBox.bottom);
                 return <g key={tick}><line x1={plotBox.left} x2={plotBox.width - plotBox.right} y1={y} y2={y} /><text x={plotBox.left - 10} y={y}>{valueFormatter(tick, visible[0])}</text></g>;
               })}
-            </g>
+            </g>}
             <g className="teum-chart__x-axis">
               {xTicks.map((index) => {
-                const point = getAnalyticsPointPosition(data, index, visible[0].id, resolvedDomain, plotBox);
-                const x = point?.x ?? plotBox.left + (data.length <= 1 ? 0.5 : index / (data.length - 1)) * (plotBox.width - plotBox.left - plotBox.right);
-                return <text key={data[index]?.id ?? index} x={x} y={plotBox.height - 8} textAnchor={index === 0 ? "start" : index === data.length - 1 ? "end" : "middle"}>{data[index]?.label}</text>;
+                const point = usesBands ? null : getAnalyticsPointPosition(data, index, visible[0].id, resolvedDomain, plotBox);
+                const x = usesBands
+                  ? getAnalyticsBandPosition(data.length, index, plotBox).center
+                  : point?.x ?? plotBox.left + (data.length <= 1 ? 0.5 : index / (data.length - 1)) * (plotBox.width - plotBox.left - plotBox.right);
+                return <text key={data[index]?.id ?? index} x={x} y={plotBox.height - 8} textAnchor={usesBands ? "middle" : index === 0 ? "start" : index === data.length - 1 ? "end" : "middle"}>{data[index]?.label}</text>;
               })}
             </g>
-            {area && visible[0] && <path className="teum-chart__area" data-tone={visible[0].tone ?? "primary"} d={createAnalyticsAreaPath(data, visible[0].id, resolvedDomain, plotBox)} />}
+            {chartType === "area" && visible[0] && <path className="teum-chart__area" data-tone={visible[0].tone ?? "primary"} d={createAnalyticsAreaPath(data, visible[0].id, resolvedDomain, plotBox)} />}
             <g className="teum-chart__annotations">
               {annotations.map((annotation) => {
                 const point = getAnalyticsPointPosition(data, Math.min(data.length - 1, Math.max(0, annotation.index)), visible[0].id, resolvedDomain, plotBox);
@@ -220,25 +237,58 @@ export function Chart({
                 return <g key={annotation.id} data-tone={annotation.tone ?? "neutral"}><line x1={point.x} x2={point.x} y1={plotBox.top} y2={plotBox.height - plotBox.bottom} /><text x={point.x + 5} y={plotBox.top + 9}>{annotation.label}</text></g>;
               })}
             </g>
-            <g className="teum-chart__series">
+            {usesBands ? <g className="teum-chart__bars">
+              {data.flatMap((datum, datumIndex) => {
+                const band = getAnalyticsBandPosition(data.length, datumIndex, plotBox);
+                const groupWidth = Math.min(band.width * .72, 48);
+                let positive = 0;
+                let negative = 0;
+                return visible.flatMap((item, seriesIndex) => {
+                  const value = datum.values[item.id];
+                  if (typeof value !== "number" || !Number.isFinite(value)) return [];
+                  let startValue = 0;
+                  let endValue = value;
+                  let x = band.center - groupWidth / 2;
+                  let width = groupWidth;
+                  if (chartType === "stacked-bar") {
+                    startValue = value >= 0 ? positive : negative;
+                    endValue = startValue + value;
+                    if (value >= 0) positive = endValue;
+                    else negative = endValue;
+                  } else {
+                    width = Math.max(2, groupWidth / Math.max(1, visible.length) - 2);
+                    x = band.center - groupWidth / 2 + seriesIndex * (groupWidth / Math.max(1, visible.length)) + 1;
+                  }
+                  const plotHeight = plotBox.height - plotBox.top - plotBox.bottom;
+                  const scaleY = (next: number) => plotBox.top + (1 - (next - resolvedDomain[0]) / Math.max(Number.EPSILON, resolvedDomain[1] - resolvedDomain[0])) * plotHeight;
+                  const y1 = scaleY(startValue);
+                  const y2 = scaleY(endValue);
+                  return <rect key={`${datum.id}-${item.id}`} data-tone={item.tone ?? "primary"} x={x} y={Math.min(y1, y2)} width={width} height={Math.max(1, Math.abs(y2 - y1))} rx={Math.min(4, width / 2)} />;
+                });
+              })}
+            </g> : <g className="teum-chart__series">
               {visible.map((item) => <path key={item.id} data-tone={item.tone ?? "primary"} data-line-style={item.lineStyle ?? "solid"} d={createAnalyticsPath(data, item.id, resolvedDomain, plotBox)} pathLength={1} />)}
-            </g>
+            </g>}
             {activeDatum && active !== null && <g className="teum-chart__active">
               {(() => {
+                if (usesBands) {
+                  const band = getAnalyticsBandPosition(data.length, active, plotBox);
+                  return <rect className="teum-chart__active-band" x={band.start + 1} y={plotBox.top} width={Math.max(1, band.width - 2)} height={plotBox.height - plotBox.top - plotBox.bottom} rx={5} />;
+                }
                 const first = getAnalyticsPointPosition(data, active, visible[0].id, resolvedDomain, plotBox);
                 return first ? <line x1={first.x} x2={first.x} y1={plotBox.top} y2={plotBox.height - plotBox.bottom} /> : null;
               })()}
-              {visible.map((item) => {
+              {!usesBands && visible.map((item) => {
                 const point = getAnalyticsPointPosition(data, active, item.id, resolvedDomain, plotBox);
                 return point ? <circle key={item.id} data-tone={item.tone ?? "primary"} cx={point.x} cy={point.y} r={3.5} /> : null;
               })}
             </g>}
           </svg>
-          {activeDatum && active !== null && <div className="teum-chart__tooltip" aria-hidden="true" style={{ "--teum-chart-active-x": `${data.length <= 1 ? 50 : active / (data.length - 1) * 100}%` } as CSSProperties}>
+          {activeDatum && active !== null && <div className="teum-chart__tooltip" aria-hidden="true" style={{ "--teum-chart-active-x": `${(usesBands ? getAnalyticsBandPosition(data.length, active, plotBox).center : getAnalyticsPointPosition(data, active, visible[0].id, resolvedDomain, plotBox)?.x ?? plotBox.width / 2) / plotBox.width * 100}%` } as CSSProperties}>
             <strong>{activeDatum.label}</strong>
             {visible.map((item) => {
               const value = activeDatum.values[item.id];
-              return <span key={item.id}><i data-tone={item.tone ?? "primary"} aria-hidden="true" /><em>{item.label}</em><b>{typeof value === "number" ? valueFormatter(value, item) : "—"}</b></span>;
+              return <span key={item.id}><i data-tone={item.tone ?? "primary"} aria-hidden="true" /><em>{item.label}</em><b>{typeof value === "number" ? valueFormatter(value, item) : "No data"}</b></span>;
             })}
           </div>}
         </>}
@@ -248,7 +298,7 @@ export function Chart({
         <table>
           <caption>{title} data</caption>
           <thead><tr><th scope="col">Period</th>{visible.map((item) => <th scope="col" key={item.id}>{item.label}</th>)}</tr></thead>
-          <tbody>{data.map((datum) => <tr key={datum.id}><th scope="row">{datum.label}</th>{visible.map((item) => <td key={item.id}>{typeof datum.values[item.id] === "number" ? valueFormatter(datum.values[item.id] as number, item) : "—"}</td>)}</tr>)}</tbody>
+          <tbody>{data.map((datum) => <tr key={datum.id}><th scope="row">{datum.label}</th>{visible.map((item) => <td key={item.id}>{typeof datum.values[item.id] === "number" ? valueFormatter(datum.values[item.id] as number, item) : "No data"}</td>)}</tr>)}</tbody>
         </table>
       </div>
     </figure>

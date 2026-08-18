@@ -12,7 +12,7 @@ npm run configure:publication -- --repo minwookshin/teum
 
 The command writes canonical HTTPS repository, issue tracker, security-advisory, homepage, and GitHub-registry install metadata while preserving `private: true`.
 
-The public repository distributes the root shadcn registry and the canonical documentation deployment serves it at `https://teum.minwookshin.com/r/{name}.json`. `public/r/manifest.json` records deterministic artifact, file, API, and token hashes for reviewable updates. Versioned artifacts live at `/r/v/<version>/{name}.json`, are locked against same-version rewrites, and are served with an immutable cache header. Consumers can also install `minwookshin/teum/teum` directly through shadcn.
+The public repository distributes the root shadcn registry and the canonical documentation deployment serves it at `https://whatiuse.minwookshin.com/r/{name}.json`. `public/r/manifest.json` records deterministic artifact, file, API, and token hashes for reviewable updates. Versioned artifacts live at `/r/v/<version>/{name}.json`, are locked against same-version rewrites, and are served with an immutable cache header. Consumers can also install `minwookshin/teum/teum` directly through shadcn.
 
 The unversioned HTTPS registry is a mutable pre-release channel. The versioned HTTPS path is the reproducible JSON boundary; a GitHub `v<version>` tag remains a separate repository-release claim and must not be implied before the tag exists. See `REGISTRY_UPDATES.md`.
 

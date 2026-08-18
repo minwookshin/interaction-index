@@ -34,15 +34,37 @@ export declare const teumAnalyticsComponentContracts: readonly [{
     readonly accessibility: readonly ["Decorative traces are hidden from assistive technology.", "Standalone traces expose a concise image label."];
 }, {
     readonly id: "chart";
-    readonly intent: "Compare ordered series and inspect exact values through one keyboard, pointer, and table contract.";
-    readonly useWhen: readonly ["Change over an ordered dimension matters.", "Exact values and comparisons need a shared visual frame."];
-    readonly avoidWhen: readonly ["A ranked list communicates the task more directly.", "Categories have no meaningful order."];
+    readonly intent: "Compare ordered series or category magnitude through one keyboard, pointer, and table contract.";
+    readonly useWhen: readonly ["Change over an ordered dimension matters.", "Exact values and comparisons need a shared visual frame.", "Grouped or stacked bars clarify category magnitude or composition."];
+    readonly avoidWhen: readonly ["A ranked list communicates the task more directly.", "A part-to-whole task has fewer than seven stable categories."];
     readonly requires: readonly ["Stable datum ids", "Human labels", "Named series", "Value formatter", "Short description"];
-    readonly states: readonly ["default", "active point", "filtered series", "comparison", "annotated", "loading", "empty", "data table"];
-    readonly compatibleWith: readonly ["Metric", "Comparison", "Timeline", "SegmentedControl", "DateRangeFilter"];
+    readonly states: readonly ["line", "area", "grouped bar", "stacked bar", "active datum", "filtered series", "annotated", "loading", "empty", "error", "data table"];
+    readonly compatibleWith: readonly ["Metric", "Comparison", "Timeline", "SegmentedControl", "DateRangeFilter", "DonutChart", "Heatmap"];
     readonly dataSchema: "AnalyticsDatum[] + AnalyticsSeries[]";
     readonly interactionModel: readonly ["Pointer position and Left/Right keys share one active index.", "Home and End jump to bounds.", "Escape clears inspection.", "Enter may open the active datum.", "Visible series can be controlled to synchronize charts."];
     readonly accessibility: readonly ["The chart has a short text summary.", "A semantic HTML table is always present and can be made visible.", "A polite live region announces the active point.", "Series use labels and line patterns, not color alone."];
+}, {
+    readonly id: "donut-chart";
+    readonly intent: "Compare a small part-to-whole set with exact values, visible shares, and one inspectable center summary.";
+    readonly useWhen: readonly ["Two to six stable categories form one meaningful whole.", "Part-to-whole share is more important than small differences."];
+    readonly avoidWhen: readonly ["Categories do not form one whole.", "More than six segments or close values require precise comparison.", "Negative values are possible."];
+    readonly requires: readonly ["Stable segment ids", "Human labels", "Non-negative values", "Visible value formatter"];
+    readonly states: readonly ["default", "active segment", "loading", "empty", "error", "data table"];
+    readonly compatibleWith: readonly ["Metric", "Breakdown", "Chart"];
+    readonly dataSchema: "DonutChartDatum[]";
+    readonly interactionModel: readonly ["Pointer and Arrow keys share one active segment.", "Home and End jump to bounds.", "Escape clears inspection.", "Enter may open the active segment."];
+    readonly accessibility: readonly ["Every segment has a visible label, value, and share.", "A semantic table preserves the source values.", "A live region announces the active segment."];
+}, {
+    readonly id: "heatmap";
+    readonly intent: "Reveal repeated intensity patterns across two discrete dimensions without hiding the value in each cell.";
+    readonly useWhen: readonly ["Rows and columns use stable, repeated intervals.", "Pattern and outlier detection matter more than exact ranking."];
+    readonly avoidWhen: readonly ["The axes are continuous.", "Color strength would be the only readable value.", "A cohort-specific retention table is the actual task."];
+    readonly requires: readonly ["Row ids and labels", "Column labels", "Numeric domain", "Missing-value policy", "Text formatter"];
+    readonly states: readonly ["default", "active cell", "partial data", "loading", "empty", "error", "scrolling"];
+    readonly compatibleWith: readonly ["Metric", "Chart", "Cohort", "Timeline"];
+    readonly dataSchema: "HeatmapRow[] + column labels";
+    readonly interactionModel: readonly ["Arrow keys move through the two-dimensional grid.", "Home and End move to row bounds.", "Escape clears inspection.", "Enter may open the active cell."];
+    readonly accessibility: readonly ["Uses a real HTML table with row and column headers.", "Every cell exposes a text value or explicit no-data label.", "Focus and selection are not encoded by tone alone."];
 }, {
     readonly id: "comparison";
     readonly intent: "Keep current, previous, and relative change in one compact definition list.";
@@ -115,7 +137,7 @@ export declare const teumAnalyticsStateContract: {
     readonly controlled: readonly ["date range", "comparison period", "visible series", "active datum", "selected segment"];
     readonly derived: readonly ["domain", "ticks", "percent change", "conversion", "retention strength"];
     readonly transient: readonly ["pointer position", "visual tooltip", "table disclosure"];
-    readonly rules: readonly ["Charts that describe the same ordered data may share a controlled active index.", "Keyboard inspection updates the same state as pointer inspection without animation delay.", "Changing range or comparison clears stale active data.", "Every visual encoding has a textual value, label, or semantic table equivalent.", "Recipes own URL and server state; visual primitives remain transport-agnostic."];
+    readonly rules: readonly ["Transient pointer and keyboard inspection stays local to the chart being inspected.", "Adjacent charts synchronize only an explicit product selection, never raw hover state.", "Keyboard inspection updates the same state as pointer inspection without animation delay.", "Changing range or comparison clears stale active data.", "Every visual encoding has a textual value, label, or semantic table equivalent.", "Renderer choice follows the decision: line or area for change, bars for magnitude, donut for a small whole, and heatmap for repeated intensity.", "Recipes own URL and server state; visual primitives remain transport-agnostic."];
 };
 export declare const teumAnalyticsRecipeContracts: readonly [{
     readonly id: "saas-overview";
@@ -125,10 +147,10 @@ export declare const teumAnalyticsRecipeContracts: readonly [{
     readonly invariants: readonly ["All values share the same date range.", "Current and previous periods use the same metric definition.", "Chart inspection and summary table agree."];
 }, {
     readonly id: "product-usage";
-    readonly intent: "Compare active usage, feature adoption, and release events without losing the selected period.";
+    readonly intent: "Compare active usage, feature adoption, and release events without coupling transient chart inspection.";
     readonly taskSequence: readonly ["Choose range", "Filter series", "Inspect a day", "Select a release", "Review feature breakdown"];
     readonly components: readonly ["Metric", "Chart", "Breakdown", "Timeline"];
-    readonly invariants: readonly ["Two charts share one active index.", "Legend filtering never changes date order.", "Release selection maps to one stable annotation."];
+    readonly invariants: readonly ["Each chart owns its transient active point.", "Legend filtering never changes date order.", "Explicit release selection maps to one stable annotation."];
 }, {
     readonly id: "conversion-retention";
     readonly intent: "Trace acquisition through activation, then compare retained behavior by cohort.";

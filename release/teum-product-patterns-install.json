@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/verify-teum-product-patterns-consumer.mjs",
-  "generatedAt": "2026-08-17T05:48:10.265Z",
-  "version": "0.1.0-rc.22",
+  "generatedAt": "2026-08-18T17:04:24.633Z",
+  "version": "0.1.0-rc.29",
   "status": "passed",
   "fixture": "Fresh React + TypeScript + Vite application using the source registry",
   "item": "teum-product-patterns",
@@ -22,5 +22,5 @@
   ],
   "typecheck": "passed",
   "productionBuild": "passed",
-  "elapsedMs": 14559
+  "elapsedMs": 13408
 }

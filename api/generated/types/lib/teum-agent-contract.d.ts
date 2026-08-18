@@ -81,15 +81,15 @@ export declare const teumAgentRecipeContracts: readonly [{
     readonly id: "product-usage";
     readonly title: "Product Usage";
     readonly domain: "analytics";
-    readonly intent: "Connect active usage, feature adoption, and release events across synchronized views.";
+    readonly intent: "Connect active usage, feature adoption, and release events without coupling transient inspection.";
     readonly signals: readonly ["product usage", "feature adoption", "active usage", "release event", "usage trend", "feature breakdown"];
     readonly registryItem: "teum-analytics";
     readonly modulePath: "components/patterns/analytics-recipes";
     readonly exportName: "ProductUsageRecipe";
     readonly components: readonly ["Metric", "Chart", "Breakdown", "Timeline"];
-    readonly state: readonly ["shared active index", "visible series", "selected release"];
-    readonly rules: readonly ["Synchronize charts through one active index.", "Keep date order stable when series are filtered.", "Map each release to one stable annotation."];
-    readonly forbidden: readonly ["Do not give synchronized charts separate pointer state.", "Do not remove textual values when a series is hidden.", "Do not animate high-frequency inspection."];
+    readonly state: readonly ["local active index", "visible series", "selected release"];
+    readonly rules: readonly ["Keep transient pointer state local to each chart.", "Keep date order stable when series are filtered.", "Map each explicit release selection to one stable annotation."];
+    readonly forbidden: readonly ["Do not mirror hover tooltips across adjacent charts.", "Do not remove textual values when a series is hidden.", "Do not animate high-frequency inspection."];
 }, {
     readonly id: "conversion-retention";
     readonly title: "Conversion & Retention";

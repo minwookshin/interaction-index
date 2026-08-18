@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://teum.minwookshin.com/sitemap.xml
+Sitemap: https://whatiuse.minwookshin.com/sitemap.xml

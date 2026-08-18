@@ -51,10 +51,10 @@ describe("ProductPilot", () => {
     const dialog = screen.getByRole("dialog", { name: "Act on INT-198" });
     await user.click(within(dialog).getByRole("option", { name: /Archive issue/ }));
     await waitFor(() => expect(screen.getByText("Cycle 08 · 3 issues")).toBeInTheDocument());
-    expect(screen.getByText("Archive via ⌘K").closest("li")).toHaveAttribute("data-complete");
+    expect(screen.getByText(/Archive via ⌘K/).closest("li")).toHaveAttribute("data-complete");
 
     await user.click(screen.getByRole("button", { name: "Undo" }));
     expect(await screen.findByRole("heading", { name: "Tune shared detail motion" })).toBeInTheDocument();
-    expect(screen.getByText("Choose Undo").closest("li")).toHaveAttribute("data-complete");
+    expect(screen.getByText(/Choose Undo/).closest("li")).toHaveAttribute("data-complete");
   });
 });

@@ -1,4 +1,4 @@
-/* Generated from src/styles.css. Do not edit directly. */
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
 @layer teum.tokens, teum.base, teum.components;
 
@@ -15,7 +15,7 @@
 
 .teum-search input::placeholder { color: var(--teum-ink-tertiary); }
 
-.teum-search button { display: grid; width: 22px; height: 22px; place-items: center; border: 0; border-radius: 5px; background: transparent; color: var(--teum-ink-tertiary); cursor: pointer; }
+.teum-search button { display: grid; width: 24px; height: 24px; flex: 0 0 24px; place-items: center; border: 0; border-radius: 5px; background: transparent; color: var(--teum-ink-tertiary); cursor: pointer; }
 
 .teum-search button svg { width: 12px; height: 12px; }
 
@@ -28,11 +28,6 @@
 }
 
 .teum-search input:focus-visible { outline: 0; }
-
-.teum-sr-only,
-.teum-sr-only:not(:focus):not(:active) {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
-}
 
 .teum-spinner { width: 13px; height: 13px; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: teum-spin 0.75s linear infinite; }
 

@@ -1,11 +1,9 @@
-/* Generated from src/styles.css. Do not edit directly. */
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
 @layer teum.tokens, teum.base, teum.components;
 
 @layer teum.components {
 .teum-button { position: relative; display: inline-flex; flex: none; align-items: center; justify-content: center; min-width: 0; border: 1px solid transparent; border-radius: var(--teum-radius-control); white-space: nowrap; cursor: pointer; user-select: none; font-size: 13px; font-weight: 540; letter-spacing: -0.006em; box-shadow: none; transition: color var(--teum-hover-duration), background-color var(--teum-hover-duration), border-color var(--teum-hover-duration), box-shadow var(--teum-hover-duration), transform var(--teum-press-duration) var(--teum-ease-out); }
-
-.teum-button:active:not(:disabled):not([data-disabled]) { transform: scale(0.98); }
 
 .teum-button:focus-visible { outline: var(--teum-focus-width) solid var(--teum-focus); outline-offset: var(--teum-focus-offset); }
 
@@ -34,17 +32,29 @@
 
 .teum-button--quiet:hover:not(:disabled):not([data-disabled]) { color: var(--teum-ink); }
 
-.teum-button__content { display: inline-flex; align-items: center; justify-content: center; gap: inherit; opacity: 1; }
+@media (pointer: coarse) {
+.teum-button--quiet { min-height: var(--teum-control-height-sm); }
+}
+
+.teum-button__content { display: inline-flex; align-items: center; justify-content: center; gap: inherit; opacity: 1; transform: translateY(0); transition: opacity 100ms var(--teum-ease-out), transform 140ms var(--teum-ease-out); }
 
 .teum-button__icon { display: inline-flex; }
 
 .teum-button svg { width: var(--teum-icon-size); height: var(--teum-icon-size); flex: none; transform: translateY(var(--teum-icon-offset-y)); }
 
-.teum-button[data-loading] .teum-button__content { opacity: 0; }
+.teum-button[data-loading] { opacity: 1; cursor: wait; }
 
-.teum-button__loader { position: absolute; inset: 0; display: grid; place-items: center; }
+.teum-button[data-loading] .teum-button__content { opacity: 0; transform: translateY(-2px); }
+
+.teum-button__loader { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: inherit; opacity: 0; pointer-events: none; transform: translateY(2px); transition: opacity 100ms var(--teum-ease-out), transform 140ms var(--teum-ease-out); }
+
+.teum-button__loader[data-visible] { opacity: 1; transform: translateY(0); }
+
+.teum-button__loading-label { line-height: 1; }
 
 .teum-spinner { width: 13px; height: 13px; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: teum-spin 0.75s linear infinite; }
+
+.teum-button:not([data-loading]) .teum-spinner { animation-play-state: paused; }
 
 @media (forced-colors: active) {
 .teum-button { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }
@@ -67,7 +77,12 @@
 @media (prefers-reduced-motion: reduce) {
 .teum-button:active:not(:disabled) { transform: none; }
 
+.teum-button__content,
+.teum-button__loader,
 .teum-button__icon--trailing svg { transition-duration: 0.01ms; }
+
+.teum-button__content,
+.teum-button__loader { transform: none; }
 
 .teum-spinner { animation-duration: 2.4s; }
 }

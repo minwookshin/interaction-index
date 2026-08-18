@@ -2,15 +2,33 @@ import { expect, test } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("/#analytics");
-  await expect(page.getByRole("heading", { level: 1, name: "Teum Analytics" })).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByRole("heading", { level: 1, name: "Analytics" })).toBeVisible({ timeout: 15_000 });
 });
 
-test("Analytics exposes three complete product recipes", async ({ page }) => {
+test("Analytics exposes one renderer family and three complete product recipes", async ({ page }) => {
+  await expect(page.getByRole("region", { name: "Analytics renderer family" })).toBeVisible();
   await expect(page.getByRole("region", { name: "SaaS Overview recipe" })).toBeVisible();
   await expect(page.getByRole("region", { name: "Product Usage recipe" })).toBeVisible();
   await expect(page.getByRole("region", { name: "Conversion and Retention recipe" })).toBeVisible();
   await expect(page.getByRole("table", { name: "Teum Analytics product primitives" })).toBeVisible();
   await expect(page.getByText("@teum-pinned/teum-analytics", { exact: false })).toBeVisible();
+});
+
+test("Renderer family shares keyboard inspection, semantic data, and source-owned chart states", async ({ page, isMobile }) => {
+  test.skip(Boolean(isMobile), "The renderer keyboard proof requires a physical keyboard path.");
+  const gallery = page.getByRole("region", { name: "Analytics renderer family" });
+  await expect(gallery.locator('[data-chart-type="area"]')).toBeVisible();
+  await expect(gallery.locator('[data-chart-type="stacked-bar"]')).toBeVisible();
+
+  const donut = gallery.getByRole("group", { name: "Plan mix. 4 segments." });
+  await donut.focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(gallery.getByText(/Business\. 482\./)).toBeAttached();
+
+  const firstCell = gallery.getByRole("button", { name: "Create, Mon, 42" });
+  await firstCell.focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(gallery.getByRole("button", { name: "Create, Tue, 58" })).toHaveAttribute("aria-pressed", "true");
 });
 
 test("SaaS Overview changes range without changing the recipe geometry", async ({ page }) => {
@@ -28,17 +46,22 @@ test("SaaS Overview changes range without changing the recipe geometry", async (
   expect(Math.abs((initialBox?.height ?? 0) - (finalBox?.height ?? 0))).toBeLessThanOrEqual(1);
 });
 
-test("Product Usage synchronizes keyboard inspection across charts", async ({ page, isMobile }) => {
-  test.skip(Boolean(isMobile), "The synchronized keyboard proof requires a physical keyboard path.");
+test("Product Usage keeps transient chart inspection local", async ({ page, isMobile }) => {
+  test.skip(Boolean(isMobile), "The keyboard inspection proof requires a physical keyboard path.");
   const recipe = page.getByRole("region", { name: "Product Usage recipe" });
   const usage = recipe.getByRole("group", { name: "Active usage. 14 data points." });
+  await expect(recipe.locator(".teum-chart__tooltip")).toHaveCount(0);
   await usage.focus();
   await page.keyboard.press("Home");
 
-  await expect(recipe.locator(".teum-analytics-recipe__header small")).toHaveText("Aug 3");
-  await expect(recipe.locator(".teum-chart__tooltip")).toHaveCount(2);
+  await expect(recipe.locator(".teum-analytics-recipe__header small")).toHaveText("Aug 12");
+  await expect(recipe.locator(".teum-chart__tooltip")).toHaveCount(1);
   await expect(recipe.locator(".teum-chart__tooltip").first()).toContainText("Aug 3");
   await expect(page.locator("html")).toHaveAttribute("data-input-modality", "keyboard");
+
+  await recipe.getByRole("button", { name: /Search latency incident/ }).click();
+  await expect(recipe.locator(".teum-analytics-recipe__header small")).toHaveText("Aug 15");
+  await expect(recipe.getByRole("button", { name: /Search latency incident/ })).toHaveAttribute("aria-pressed", "true");
 });
 
 test("Chart legend filtering keeps one visible series and one exact data table", async ({ page }) => {
@@ -79,7 +102,7 @@ test("Conversion selection replaces the chart series and supporting records", as
 test("Analytics honors reduced motion and contains overflow inside its data surface", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.reload();
-  await expect(page.getByRole("heading", { level: 1, name: "Teum Analytics" })).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByRole("heading", { level: 1, name: "Analytics" })).toBeVisible({ timeout: 15_000 });
 
   const goalIndicator = page.locator(".teum-goal__indicator").first();
   await expect(goalIndicator).toBeVisible();

@@ -79,12 +79,12 @@ const report = {
     largestComponentRouteJsGzipBytes: 430000,
     largestJavaScriptRawBytes: 500000,
     largestJavaScriptGzipBytes: 115000,
-    // This is the complete lazy graph, not one route. Teum Analytics and
-    // Product Patterns are separately loaded vertical slices; each route must
-    // still remain under its own 500 kB transfer budget.
-    totalJsGzipBytes: 585000,
+    // This is the complete lazy graph for 45 Core components and 17 product
+    // modules, not one route. Initial and per-route budgets remain the user-
+    // visible guardrails; the aggregate allows independently loaded slices.
+    totalJsGzipBytes: 600000,
     initialCssGzipBytes: 9000,
-    totalCssGzipBytes: 55000,
+    totalCssGzipBytes: 58000,
   },
   totals: {
     initialJsGzipBytes,

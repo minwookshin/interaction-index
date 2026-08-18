@@ -12,12 +12,14 @@ import { Switch } from "./switch";
 
 describe("core controls", () => {
   it("keeps button geometry and semantics while loading", () => {
-    render(<Button loading>Save changes</Button>);
+    render(<Button loading loadingLabel="Saving">Save changes</Button>);
     const button = screen.getByRole("button", { name: "Save changes" });
     expect(button).toHaveAttribute("aria-disabled", "true");
     expect(button).toHaveAttribute("tabindex", "0");
     expect(button).toHaveAttribute("aria-busy", "true");
     expect(button).toHaveTextContent("Save changes");
+    expect(button).toHaveTextContent("Saving");
+    expect(button.querySelector(".teum-button__loader")).toHaveAttribute("data-visible", "true");
   });
 
   it("toggles checkbox and switch with the keyboard", async () => {

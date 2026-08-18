@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "teum",
-  "homepage": "https://teum.minwookshin.com",
+  "homepage": "https://whatiuse.minwookshin.com",
   "items": [
     {
       "name": "teum-base",
@@ -1870,6 +1870,62 @@
       }
     },
     {
+      "name": "donut-chart",
+      "type": "registry:component",
+      "title": "Donut Chart",
+      "description": "A small part-to-whole chart with shared pointer and keyboard inspection, visible shares, and a semantic table.",
+      "registryDependencies": [
+        "@teum/teum-base",
+        "@teum/analytics"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/donut-chart.tsx",
+          "type": "registry:component",
+          "target": "components/ui/donut-chart.tsx"
+        },
+        {
+          "path": "registry/styles/components/donut-chart.css",
+          "type": "registry:style",
+          "target": "styles/components/donut-chart.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/donut-chart"
+        }
+      }
+    },
+    {
+      "name": "heatmap",
+      "type": "registry:component",
+      "title": "Heatmap",
+      "description": "An interactive semantic matrix for repeated intensity patterns with explicit values and two-dimensional keyboard navigation.",
+      "registryDependencies": [
+        "@teum/teum-base",
+        "@teum/analytics"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/heatmap.tsx",
+          "type": "registry:component",
+          "target": "components/ui/heatmap.tsx"
+        },
+        {
+          "path": "registry/styles/components/heatmap.css",
+          "type": "registry:style",
+          "target": "styles/components/heatmap.css"
+        }
+      ],
+      "meta": {
+        "teum": {
+          "contract": "/agent/teum-agent.json",
+          "registryItem": "@teum/heatmap"
+        }
+      }
+    },
+    {
       "name": "comparison",
       "type": "registry:component",
       "title": "Comparison",
@@ -2130,8 +2186,10 @@
         "@teum/cohort",
         "@teum/comparison",
         "@teum/data-table",
+        "@teum/donut-chart",
         "@teum/funnel",
         "@teum/goal",
+        "@teum/heatmap",
         "@teum/metric",
         "@teum/segmented-control",
         "@teum/sparkline",
@@ -2837,6 +2895,26 @@
           "path": "registry/styles/components/chart.css",
           "type": "registry:style",
           "target": "styles/components/chart.css"
+        },
+        {
+          "path": "registry/components/ui/donut-chart.tsx",
+          "type": "registry:component",
+          "target": "components/ui/donut-chart.tsx"
+        },
+        {
+          "path": "registry/styles/components/donut-chart.css",
+          "type": "registry:style",
+          "target": "styles/components/donut-chart.css"
+        },
+        {
+          "path": "registry/components/ui/heatmap.tsx",
+          "type": "registry:component",
+          "target": "components/ui/heatmap.tsx"
+        },
+        {
+          "path": "registry/styles/components/heatmap.css",
+          "type": "registry:style",
+          "target": "styles/components/heatmap.css"
         },
         {
           "path": "registry/components/ui/comparison.tsx",

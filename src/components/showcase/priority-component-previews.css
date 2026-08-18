@@ -1,0 +1,89 @@
+.teum-icon-action-preview {
+  display: grid;
+  place-items: center;
+}
+
+.teum-icon-action-preview__button:disabled,
+.teum-icon-action-preview__button[data-disabled] {
+  opacity: 1;
+  cursor: default;
+}
+
+.teum-icon-action-preview[data-state="success"] .teum-icon-action-preview__button svg {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 120ms var(--teum-ease-out), transform 140ms var(--teum-ease-out);
+}
+
+@starting-style {
+  .teum-icon-action-preview[data-state="success"] .teum-icon-action-preview__button svg {
+    opacity: 0;
+    transform: scale(.9);
+  }
+}
+
+.teum-priority-select-preview {
+  width: min(220px, 100%);
+}
+
+.teum-priority-select-preview .teum-select-field {
+  width: 100%;
+  min-width: 0;
+}
+
+.teum-issue-menu-preview,
+.teum-metadata-dialog-preview {
+  width: min(520px, 100%);
+}
+
+.teum-product-context__status {
+  min-height: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.teum-menu-preview__item-copy {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 7px;
+}
+
+.teum-issue-actions-menu .teum-menu__item--check > span {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+}
+
+.teum-metadata-dialog__form {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.teum-metadata-dialog__form .teum-select-field {
+  min-width: 0;
+}
+
+.teum-metadata-dialog__form .teum-dialog__footer {
+  margin-top: 8px;
+}
+
+:root[data-input-modality="keyboard"] .teum-icon-action-preview__button svg,
+.teum-icon-action-preview[data-activation="keyboard"] .teum-icon-action-preview__button svg {
+  transform: none;
+  transition-duration: .01ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .teum-icon-action-preview__button svg {
+    transform: none;
+    transition-duration: .01ms;
+  }
+}
+
+@media (max-width: 540px) {
+  .teum-issue-menu-preview,
+  .teum-metadata-dialog-preview {
+    gap: 12px;
+  }
+}

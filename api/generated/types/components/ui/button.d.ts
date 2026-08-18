@@ -7,7 +7,8 @@ export declare const buttonVariants: (props?: ({
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 export type ButtonProps = ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & {
     loading?: boolean;
+    loadingLabel?: ReactNode;
     leadingIcon?: ReactNode;
     trailingIcon?: ReactNode;
 };
-export declare function Button({ className, variant, size, loading, leadingIcon, trailingIcon, disabled, focusableWhenDisabled, children, type, ...props }: ButtonProps): import("react").JSX.Element;
+export declare function Button({ className, variant, size, loading, loadingLabel, leadingIcon, trailingIcon, disabled, focusableWhenDisabled, children, type, ...props }: ButtonProps): import("react").JSX.Element;

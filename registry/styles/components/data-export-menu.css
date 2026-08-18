@@ -1,13 +1,8 @@
-/* Generated from src/styles.css. Do not edit directly. */
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
 @layer teum.tokens, teum.base, teum.components;
 
 @layer teum.components {
-.teum-sr-only,
-.teum-sr-only:not(:focus):not(:active) {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
-}
-
 .teum-data-export { min-width: 210px; }
 
 .teum-data-export .teum-menu__item svg { width: 14px; height: 14px; color: var(--teum-fg-subtle); }

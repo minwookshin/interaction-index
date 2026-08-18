@@ -36,6 +36,13 @@ export type AnalyticsPointPosition = {
   value: number;
 };
 
+export type AnalyticsBandPosition = {
+  start: number;
+  center: number;
+  end: number;
+  width: number;
+};
+
 function finiteValues(data: readonly AnalyticsDatum[], seriesIds: readonly string[]) {
   return data.flatMap((datum) => seriesIds.map((seriesId) => datum.values[seriesId]))
     .filter((value): value is number => typeof value === "number" && Number.isFinite(value));
@@ -64,6 +71,42 @@ export function getAnalyticsDomain(
     return [minimum - fallback, maximum + fallback];
   }
 
+  const padding = (maximum - minimum) * Math.max(0, paddingRatio);
+  return [minimum - padding, maximum + padding];
+}
+
+export function getStackedAnalyticsDomain(
+  data: readonly AnalyticsDatum[],
+  seriesIds: readonly string[],
+  { includeZero = true, paddingRatio = 0.08, domain }: AnalyticsDomainOptions = {},
+): readonly [number, number] {
+  if (domain && domain.length === 2 && Number.isFinite(domain[0]) && Number.isFinite(domain[1]) && domain[0] < domain[1]) {
+    return domain;
+  }
+
+  const totals = data.flatMap((datum) => {
+    let positive = 0;
+    let negative = 0;
+    for (const seriesId of seriesIds) {
+      const value = datum.values[seriesId];
+      if (typeof value !== "number" || !Number.isFinite(value)) continue;
+      if (value >= 0) positive += value;
+      else negative += value;
+    }
+    return [negative, positive];
+  });
+  if (!totals.length) return [0, 1];
+
+  let minimum = Math.min(...totals);
+  let maximum = Math.max(...totals);
+  if (includeZero) {
+    minimum = Math.min(0, minimum);
+    maximum = Math.max(0, maximum);
+  }
+  if (minimum === maximum) {
+    const fallback = Math.max(Math.abs(minimum) * 0.1, 1);
+    return [minimum - fallback, maximum + fallback];
+  }
   const padding = (maximum - minimum) * Math.max(0, paddingRatio);
   return [minimum - padding, maximum + padding];
 }
@@ -107,6 +150,13 @@ export function getAnalyticsPointPosition(
   return { x, y, value };
 }
 
+export function getAnalyticsBandPosition(length: number, index: number, box: AnalyticsPlotBox): AnalyticsBandPosition {
+  const plotWidth = Math.max(1, box.width - box.left - box.right);
+  const width = plotWidth / Math.max(1, length);
+  const start = box.left + Math.min(Math.max(0, index), Math.max(0, length - 1)) * width;
+  return { start, center: start + width / 2, end: start + width, width };
+}
+
 export function createAnalyticsPath(
   data: readonly AnalyticsDatum[],
   seriesId: string,
@@ -133,12 +183,23 @@ export function createAnalyticsAreaPath(
   domain: readonly [number, number],
   box: AnalyticsPlotBox,
 ) {
-  const points = data.map((_datum, index) => getAnalyticsPointPosition(data, index, seriesId, domain, box));
-  if (points.some((point) => !point)) return "";
-  const present = points.filter((point): point is AnalyticsPointPosition => Boolean(point));
-  if (!present.length) return "";
   const baseline = box.height - box.bottom;
-  return `M${present[0].x.toFixed(2)},${baseline.toFixed(2)} ${present.map((point) => `L${point.x.toFixed(2)},${point.y.toFixed(2)}`).join(" ")} L${present.at(-1)!.x.toFixed(2)},${baseline.toFixed(2)} Z`;
+  const segments: AnalyticsPointPosition[][] = [];
+  let segment: AnalyticsPointPosition[] = [];
+  data.forEach((_datum, index) => {
+    const point = getAnalyticsPointPosition(data, index, seriesId, domain, box);
+    if (!point) {
+      if (segment.length) segments.push(segment);
+      segment = [];
+      return;
+    }
+    segment.push(point);
+  });
+  if (segment.length) segments.push(segment);
+
+  return segments.map((points) => (
+    `M${points[0].x.toFixed(2)},${baseline.toFixed(2)} ${points.map((point) => `L${point.x.toFixed(2)},${point.y.toFixed(2)}`).join(" ")} L${points.at(-1)!.x.toFixed(2)},${baseline.toFixed(2)} Z`
+  )).join(" ");
 }
 
 export function clampAnalyticsIndex(index: number | null | undefined, length: number) {

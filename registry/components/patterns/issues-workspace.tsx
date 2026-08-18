@@ -4,6 +4,7 @@ import "../../styles/teum-base.css";
 import "../../styles/patterns/issues-workspace.css";
 import {
   Archive,
+  ArrowCounterClockwise,
   CalendarBlank,
   CheckCircle,
   Circle,
@@ -265,16 +266,14 @@ function PilotWorkspaceInner({ onReset }: { onReset: () => void }) {
               </form>
             </DialogContent>
           </Dialog>
+          <IconButton size="small" variant="ghost" aria-label="Reset workspace" onClick={onReset}><ArrowCounterClockwise aria-hidden="true" /></IconButton>
         </div>
       </header>
 
-      <div className="pilot-proof" aria-label="Interaction proof task">
-        <div><strong>Proof task</strong><span>Find → inspect → act → recover</span><button type="button" onClick={onReset}>Reset</button></div>
-        <ol>{proofSteps.map(([label, description], index) => {
+      <ol className="pilot-proof-status teum-sr-only" aria-label="Interaction proof task">{proofSteps.map(([label, description], index) => {
           const step = index + 1;
-          return <li key={label} data-complete={proofStep >= step || undefined} aria-current={proofStep === index ? "step" : undefined}><span>{step}</span><div><strong>{label}</strong><small>{description}</small></div></li>;
+          return <li key={label} data-complete={proofStep >= step || undefined} aria-current={proofStep === index ? "step" : undefined}>{label}: {description}</li>;
         })}</ol>
-      </div>
 
       <DataToolbar
         className="pilot-data-toolbar"

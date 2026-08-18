@@ -1,18 +1,19 @@
-/* Generated from src/styles.css. Do not edit directly. */
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
 @layer teum.tokens, teum.base, teum.components;
 
 @layer teum.components {
 .teum-data-recipe {
+  --teum-row-height-table: 40px;
   position: relative;
   display: grid;
   min-width: 0;
   margin-top: 20px;
   overflow: hidden;
-  border: 1px solid color-mix(in oklch, var(--teum-control-border) 82%, transparent);
   border-radius: 11px;
   background: var(--teum-bg-surface);
-  box-shadow: 0 18px 52px color-mix(in oklch, var(--teum-fg-default) 6%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--teum-fg-default) 7%, transparent), 0 18px 52px color-mix(in oklch, var(--teum-fg-default) 6%, transparent);
+  container-type: inline-size;
 }
 
 .teum-data-recipe--loading {
@@ -32,11 +33,11 @@
   background: color-mix(in oklch, var(--teum-bg-surface) 88%, transparent);
 }
 
-.teum-data-recipe__header > div { display: grid; gap: 1px; }
-
-.teum-data-recipe__header span { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+.teum-data-recipe__header > div { display: grid; gap: 2px; }
 
 .teum-data-recipe__header h3 { margin: 0; font-size: var(--teum-type-ui); font-weight: 620; letter-spacing: -.012em; }
+
+.teum-data-recipe__header p { margin: 0; color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
 
 .teum-data-recipe__header small { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; }
 
@@ -53,6 +54,28 @@
 
 .teum-data-recipe > .teum-data-table > .teum-table__container,
 .teum-data-recipe > .teum-data-table > .teum-data-table__virtual-viewport { border-radius: 8px; }
+
+.teum-data-recipe__bulk-slot {
+  position: absolute;
+  z-index: var(--teum-layer-float);
+  right: 12px;
+  bottom: 64px;
+  left: 12px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.teum-data-recipe__bulk-slot > * { max-width: calc(100% - 16px); pointer-events: auto; }
+
+@container (max-width: 720px) {
+.teum-data-recipe > .teum-data-toolbar { align-items: stretch; flex-direction: column; }
+
+.teum-data-recipe > .teum-data-toolbar .teum-data-toolbar__start,
+.teum-data-recipe > .teum-data-toolbar .teum-data-toolbar__end { width: 100%; justify-content: flex-start; margin-left: 0; }
+
+.teum-data-recipe > .teum-data-toolbar .teum-search-field { width: min(100%, 280px); flex: 1 1 220px; }
+}
 
 @media (max-width: 720px) {
 .teum-data-recipe__header { align-items: flex-start; }

@@ -18,11 +18,11 @@ The current release candidate includes:
 Try one component from a disposable React + TypeScript branch:
 
 ```bash
-npx shadcn@4.18.0 registry add @teum-pinned=https://teum.minwookshin.com/r/v/0.1.0-rc.22/{name}.json
+npx shadcn@4.18.0 registry add @teum-pinned=https://whatiuse.minwookshin.com/r/v/0.1.0-rc.22/{name}.json
 npx shadcn@4.18.0 add @teum-pinned/button
 ```
 
-Documentation: https://teum.minwookshin.com
+Documentation: https://whatiuse.minwookshin.com
 
 Source: https://github.com/minwookshin/teum
 

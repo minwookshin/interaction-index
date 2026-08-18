@@ -30,6 +30,7 @@ export const buttonVariants = cva("teum-button", {
 export type ButtonProps = ButtonPrimitive.Props &
   VariantProps<typeof buttonVariants> & {
     loading?: boolean;
+    loadingLabel?: ReactNode;
     leadingIcon?: ReactNode;
     trailingIcon?: ReactNode;
   };
@@ -39,6 +40,7 @@ export function Button({
   variant,
   size,
   loading = false,
+  loadingLabel,
   leadingIcon,
   trailingIcon,
   disabled,
@@ -63,11 +65,10 @@ export function Button({
         <span>{children}</span>
         {trailingIcon && <span className="teum-button__icon teum-button__icon--trailing">{trailingIcon}</span>}
       </span>
-      {loading && (
-        <span className="teum-button__loader" aria-hidden="true">
-          <span className="teum-spinner" />
-        </span>
-      )}
+      <span className="teum-button__loader" aria-hidden="true" data-visible={loading || undefined}>
+        <span className="teum-spinner" />
+        {loadingLabel && <span className="teum-button__loading-label">{loadingLabel}</span>}
+      </span>
     </ButtonPrimitive>
   );
 }

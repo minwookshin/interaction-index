@@ -42,7 +42,7 @@ async function measureBrowserCommit(
 
 test("product pilot supports create, edit, archive, and recovery", async ({ page }) => {
   await page.goto("/#product-pilot");
-  await expect(page.getByRole("heading", { level: 1, name: "Teum Data" })).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByRole("heading", { level: 1, name: "Data" })).toBeVisible({ timeout: 15_000 });
 
   await page.getByRole("button", { name: "New issue" }).click();
   await page.getByRole("textbox", { name: "Title" }).fill("Verify composed product flow");

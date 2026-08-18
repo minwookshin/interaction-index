@@ -15,8 +15,6 @@ const projectTreeItems: readonly TreeNode[] = [
         description: "Public primitives",
         children: [
           { id: "controls", label: "Controls" },
-          { id: "overlays", label: "Overlays" },
-          { id: "data-display", label: "Data display" },
         ],
       },
       { id: "patterns", label: "Patterns", description: "Interaction patterns" },

@@ -427,7 +427,7 @@
         "WEB": "var(--teum-ui-tracking)"
       },
       "values": {
-        "Value": -0.006
+        "Value": -0.012
       },
       "sourceType": "number"
     },
@@ -2908,7 +2908,7 @@
       "fontSize": 11.5,
       "lineHeight": 16,
       "letterSpacing": {
-        "value": -0.6,
+        "value": -1.2,
         "unit": "PERCENT"
       },
       "codeSyntax": {
@@ -2933,7 +2933,7 @@
       "fontSize": 12,
       "lineHeight": 16,
       "letterSpacing": {
-        "value": -0.6,
+        "value": -1.2,
         "unit": "PERCENT"
       },
       "codeSyntax": {
@@ -2957,7 +2957,7 @@
       "fontSize": 13.5,
       "lineHeight": 18,
       "letterSpacing": {
-        "value": -0.6,
+        "value": -1.2,
         "unit": "PERCENT"
       },
       "codeSyntax": {
@@ -2981,7 +2981,7 @@
       "fontSize": 14.5,
       "lineHeight": 23,
       "letterSpacing": {
-        "value": -0.6,
+        "value": -1.2,
         "unit": "PERCENT"
       },
       "codeSyntax": {
@@ -3005,7 +3005,7 @@
       "fontSize": 14.5,
       "lineHeight": 20,
       "letterSpacing": {
-        "value": -0.6,
+        "value": -1.2,
         "unit": "PERCENT"
       },
       "codeSyntax": {
@@ -3030,7 +3030,7 @@
       "fontSize": 20,
       "lineHeight": 26,
       "letterSpacing": {
-        "value": -0.6,
+        "value": -1.2,
         "unit": "PERCENT"
       },
       "codeSyntax": {
@@ -3055,7 +3055,7 @@
       "fontSize": 32,
       "lineHeight": 36,
       "letterSpacing": {
-        "value": -0.6,
+        "value": -1.2,
         "unit": "PERCENT"
       },
       "codeSyntax": {

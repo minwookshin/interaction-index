@@ -24,6 +24,20 @@ The previous pinned URL and pre-update commit are the rollback boundary. Teum do
 
 ## Current migrations
 
+### 0.1.0-rc.25: coarse-pointer target floor
+
+No component API changes. Quiet buttons retain their compact desktop geometry and use the existing 28px small-control token on coarse pointers so their interactive area does not fall below 24 CSS pixels after device-scale rounding.
+
+### 0.1.0-rc.24: target-size correction
+
+No component API changes. Search Input keeps the same props and layout contract; only its clear action grows from 22px to a non-shrinking 24px target. Storybook now loads the same shared foundation as the application and installed registry components.
+
+### 0.1.0-rc.23: additive Analytics renderers
+
+No existing component call site needs to change. `Chart` now accepts `type="line" | "area" | "bar" | "stacked-bar"`; the legacy `area` boolean remains available for this candidate and maps to the equivalent renderer. New work should use `type="area"` so the visual intent stays explicit.
+
+`DonutChart` and `Heatmap` are additive exports and registry items. Adopt them only when their semantic table or text summary remains available with the visual surface.
+
 ### 0.1.0-rc.3: Interaction Index becomes Teum
 
 The public name and distribution namespace now match one short product identity. Earlier versioned registry artifacts remain available at their original paths and are not rewritten.

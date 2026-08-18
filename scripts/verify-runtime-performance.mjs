@@ -128,7 +128,7 @@ async function interactionMetrics(browser, baseUrl) {
   await installObservers(context);
   const page = await context.newPage();
   await page.goto(`${baseUrl}/#product-pilot`, { waitUntil: "networkidle" });
-  await page.getByRole("heading", { level: 1, name: "Teum Data" }).waitFor({ state: "visible" });
+  await page.getByRole("heading", { level: 1, name: "Data" }).waitFor({ state: "visible" });
   await page.getByRole("button", { name: /Tune shared detail motion/ }).waitFor({ state: "visible" });
   const selectionMs = await page.evaluate(() => new Promise((resolveMetric, reject) => {
     const trigger = [...document.querySelectorAll("button")].find((button) => button.textContent?.includes("Tune shared detail motion"));
@@ -181,14 +181,14 @@ try {
   await waitForServer(baseUrl, preview, previewOutput);
   browser = await chromium.launch({ headless: true });
   const [landing, documentation] = await Promise.all([
-    pageMetrics(browser, `${baseUrl}/`, "Interfaces that stay clear through change."),
+    pageMetrics(browser, `${baseUrl}/`, "Components for product interfaces."),
     pageMetrics(browser, `${baseUrl}/#installation`, "Installation"),
   ]);
 
   const transitionContext = await browser.newContext({ viewport: { width: 1280, height: 720 }, reducedMotion: "reduce" });
   const transitionPage = await transitionContext.newPage();
   await transitionPage.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
-  await transitionPage.getByRole("heading", { level: 1, name: "Interfaces that stay clear through change." }).waitFor({ state: "visible" });
+  await transitionPage.getByRole("heading", { level: 1, name: "Components for product interfaces." }).waitFor({ state: "visible" });
   await transitionPage.evaluate(() => { window.__teumTransitionStartedAt = performance.now(); });
   await transitionPage.getByRole("link", { name: "Open documentation" }).click();
   await transitionPage.getByRole("heading", { level: 1, name: "Installation" }).waitFor({ state: "visible" });

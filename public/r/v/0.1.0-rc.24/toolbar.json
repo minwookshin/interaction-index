@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toolbar",
+  "title": "Toolbar",
+  "description": "Compact frequently used controls with roving keyboard navigation.",
+  "dependencies": [
+    "@base-ui/react@1.7.0"
+  ],
+  "registryDependencies": [
+    "@teum-pinned/teum-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/toolbar.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/toolbar.css\";\nimport { Toolbar as ToolbarPrimitive } from \"@base-ui/react/toolbar\";\nimport { cn } from \"../../lib/cn\";\n\nexport type ToolbarProps = ToolbarPrimitive.Root.Props;\nexport type ToolbarGroupProps = ToolbarPrimitive.Group.Props;\nexport type ToolbarButtonProps = ToolbarPrimitive.Button.Props;\nexport type ToolbarLinkProps = ToolbarPrimitive.Link.Props;\nexport type ToolbarInputProps = ToolbarPrimitive.Input.Props;\nexport type ToolbarSeparatorProps = ToolbarPrimitive.Separator.Props;\n\nexport function Toolbar({ className, ...props }: ToolbarProps) {\n  return <ToolbarPrimitive.Root className={cn(\"teum-toolbar\", className)} {...props} />;\n}\n\nexport function ToolbarGroup({ className, ...props }: ToolbarGroupProps) {\n  return <ToolbarPrimitive.Group className={cn(\"teum-toolbar__group\", className)} {...props} />;\n}\n\nexport function ToolbarButton({ className, ...props }: ToolbarButtonProps) {\n  return <ToolbarPrimitive.Button className={cn(\"teum-toolbar__button\", className)} {...props} />;\n}\n\nexport function ToolbarLink({ className, ...props }: ToolbarLinkProps) {\n  return <ToolbarPrimitive.Link className={cn(\"teum-toolbar__link\", className)} {...props} />;\n}\n\nexport function ToolbarInput({ className, ...props }: ToolbarInputProps) {\n  return <ToolbarPrimitive.Input className={cn(\"teum-toolbar__input\", className)} {...props} />;\n}\n\nexport function ToolbarSeparator({ className, ...props }: ToolbarSeparatorProps) {\n  return <ToolbarPrimitive.Separator className={cn(\"teum-toolbar__separator\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/toolbar.tsx"
+    },
+    {
+      "path": "registry/styles/components/toolbar.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-toolbar {\n  display: inline-flex;\n  min-width: 0;\n  min-height: 36px;\n  align-items: center;\n  gap: 3px;\n  padding: 3px;\n  border-radius: 8px;\n  background: var(--teum-bg-stage);\n  color: var(--teum-fg-default);\n}\n\n.teum-toolbar[data-orientation=\"vertical\"] { flex-direction: column; align-items: stretch; }\n\n.teum-toolbar__group { display: inline-flex; align-items: center; gap: 2px; }\n\n.teum-toolbar[data-orientation=\"vertical\"] .teum-toolbar__group { flex-direction: column; align-items: stretch; }\n\n.teum-toolbar__button,\n.teum-toolbar__link {\n  display: inline-flex;\n  width: 28px;\n  height: 28px;\n  align-items: center;\n  justify-content: center;\n  padding: 0;\n  border: 0;\n  border-radius: 6px;\n  outline: 0;\n  background: transparent;\n  color: var(--teum-fg-muted);\n  font: inherit;\n  font-size: var(--teum-type-label);\n  text-decoration: none;\n  cursor: pointer;\n  transition: background-color var(--teum-hover-duration), color var(--teum-hover-duration), transform var(--teum-press-duration) var(--teum-ease-out);\n}\n\n.teum-toolbar__button svg,\n.teum-toolbar__link svg { width: 14px; height: 14px; }\n\n.teum-toolbar__button:hover:not(:disabled),\n.teum-toolbar__link:hover { background: var(--teum-hover); color: var(--teum-fg-default); }\n\n.teum-toolbar__button:active:not(:disabled),\n.teum-toolbar__link:active { transform: scale(.97); }\n\n.teum-toolbar__button:focus-visible,\n.teum-toolbar__link:focus-visible { background: var(--teum-hover); box-shadow: 0 0 0 2px var(--teum-focus-halo); color: var(--teum-fg-default); }\n\n.teum-toolbar__button[data-popup-open] { background: var(--teum-active); color: var(--teum-fg-default); }\n\n.teum-toolbar__button:disabled { color: var(--teum-fg-disabled); cursor: not-allowed; }\n\n.teum-toolbar__input {\n  width: 116px;\n  height: 28px;\n  margin-left: 2px;\n  padding: 0 7px;\n  border: 1px solid var(--teum-control-border);\n  border-radius: 6px;\n  outline: 0;\n  background: var(--teum-bg-control);\n  box-shadow: var(--teum-shadow-control);\n  color: var(--teum-fg-default);\n  font: inherit;\n  font-size: var(--teum-type-label);\n}\n\n.teum-toolbar__input:focus-visible { border-color: var(--teum-control-border-hover); box-shadow: var(--teum-shadow-control), 0 0 0 2px var(--teum-focus-halo); }\n\n.teum-toolbar__separator { width: 1px; height: 20px; margin: 0 2px; background: var(--teum-separator); }\n\n.teum-toolbar[data-orientation=\"vertical\"] .teum-toolbar__separator { width: auto; height: 1px; margin: 2px 0; }\n\n@media (prefers-reduced-motion: reduce) {\n.teum-toolbar__button,\n.teum-toolbar__link { transition-duration: 0.01ms; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/toolbar.css"
+    }
+  ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/toolbar",
+      "useWhen": "A compact set of frequent peer controls benefits from one arrow-navigable region.",
+      "avoidWhen": "Actions are infrequent, form submission is the main task, or controls need explanatory copy."
+    }
+  },
+  "type": "registry:ui"
+}

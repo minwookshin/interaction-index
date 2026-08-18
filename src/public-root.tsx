@@ -1,13 +1,19 @@
 import { lazy, Suspense, useEffect, useLayoutEffect, useState } from "react";
-import { LandingPage } from "./landing";
 import type { Theme, ViewId } from "./App";
+import "./foundation.css";
 import "./landing.css";
 
 const LazyDocumentationApp = lazy(() => import("./App").then((module) => ({ default: module.DocumentationApp })));
+const LazyComponentIndexPage = lazy(() => import("./component-index").then((module) => ({ default: module.ComponentIndexPage })));
+
+function RouteFallback() {
+  return <div className="teum-route-loading" role="status"><span>Loading</span></div>;
+}
 
 function initialRoute() {
   const [hash = ""] = window.location.hash.slice(1).split("/");
-  if (!hash || hash === "introduction" || hash === "product" || hash === "home") return "home";
+  if (!hash || hash === "introduction" || hash === "product" || hash === "home") return "components";
+  if (hash === "interaction-button") return "button";
   return hash;
 }
 
@@ -40,6 +46,8 @@ export default function PublicRoot() {
     const [hash = ""] = window.location.hash.slice(1).split("/");
     if (hash === "introduction" || hash === "product" || hash === "home") {
       window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+    } else if (hash === "interaction-button") {
+      window.history.replaceState(null, "", "#button");
     }
   }, []);
 
@@ -49,15 +57,10 @@ export default function PublicRoot() {
     window.localStorage.setItem("teum-theme", theme);
   }, [theme]);
 
-  useLayoutEffect(() => {
-    if (view !== "home") return;
-    document.title = "Teum — Interfaces that stay clear through change";
-    document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute("content", "Accessible React and TypeScript components with interaction patterns.");
-  }, [view]);
-
   const select = (next: ViewId | string) => {
-    setView(next);
-    window.history.replaceState(null, "", next === "home" ? `${window.location.pathname}${window.location.search}` : `#${next}`);
+    const normalized = next === "home" ? "components" : next;
+    setView(normalized);
+    window.history.replaceState(null, "", normalized === "components" ? `${window.location.pathname}${window.location.search}` : `#${normalized}`);
   };
 
   useEffect(() => {
@@ -69,15 +72,15 @@ export default function PublicRoot() {
         input.focus();
         return;
       }
+      if (view === "components") return;
       setPendingSearchFocus(true);
-      if (view === "home") select("installation");
     };
     window.addEventListener("keydown", focusSearch);
     return () => window.removeEventListener("keydown", focusSearch);
   }, [view]);
 
   useEffect(() => {
-    if (!pendingSearchFocus || view === "home") return;
+    if (!pendingSearchFocus || view === "components") return;
     let frame = 0;
     const focusWhenReady = () => {
       const input = document.querySelector<HTMLInputElement>('input[aria-label="Search documentation"]');
@@ -93,17 +96,24 @@ export default function PublicRoot() {
   }, [pendingSearchFocus, view]);
 
   useEffect(() => {
-    const onHashChange = () => setView(initialRoute());
+    const onHashChange = () => {
+      const [hash = ""] = window.location.hash.slice(1).split("/");
+      const next = initialRoute();
+      if (hash === "interaction-button") window.history.replaceState(null, "", "#button");
+      setView(next);
+    };
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
-  if (view === "home") {
-    return <LandingPage theme={theme} onThemeChange={setTheme} onOpenDocumentation={() => select("installation")} onOpenComponents={() => select("button")} onOpenPatterns={() => select("patterns")} />;
+  if (view === "components") {
+    return <Suspense fallback={<RouteFallback />}>
+      <LazyComponentIndexPage theme={theme} onThemeChange={setTheme} onHome={() => select("home")} />
+    </Suspense>;
   }
 
   return (
-    <Suspense fallback={<div className="teum-route-loading" role="status"><span>Loading documentation</span></div>}>
+    <Suspense fallback={<RouteFallback />}>
       <LazyDocumentationApp view={view} onSelect={select} onHome={() => select("home")} theme={theme} onThemeChange={setTheme} />
     </Suspense>
   );

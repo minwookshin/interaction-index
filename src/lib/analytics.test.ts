@@ -5,8 +5,10 @@ import {
   createAnalyticsPath,
   createAnalyticsTicks,
   describeAnalyticsDatum,
+  getAnalyticsBandPosition,
   getAnalyticsDomain,
   getAnalyticsPointPosition,
+  getStackedAnalyticsDomain,
   getPercentChange,
   summarizeAnalyticsSeries,
   type AnalyticsDatum,
@@ -38,13 +40,25 @@ describe("analytics geometry", () => {
     expect(createAnalyticsTicks([0, 100], 5)).toEqual([0, 50, 100]);
     expect(getAnalyticsPointPosition(data, 0, "current", [0, 40], box)).toEqual({ x: 10, y: 40, value: 10 });
     expect(getAnalyticsPointPosition(data, 1, "previous", [0, 40], box)).toBeNull();
+    const band = getAnalyticsBandPosition(3, 1, box);
+    expect(band.start).toBeCloseTo(36.67, 2);
+    expect(band.center).toBeCloseTo(50, 5);
+    expect(band.width).toBeCloseTo(26.67, 2);
   });
 
-  it("keeps gaps explicit in line paths and declines misleading area fills", () => {
+  it("keeps gaps explicit in line paths and area segments", () => {
     expect(createAnalyticsPath(data, "current", [0, 40], box)).toBe("M10.00,40.00 L50.00,30.00 L90.00,20.00");
     expect(createAnalyticsPath(data, "previous", [0, 40], box)).toBe("M10.00,42.00 M90.00,32.00");
-    expect(createAnalyticsAreaPath(data, "previous", [0, 40], box)).toBe("");
+    expect(createAnalyticsAreaPath(data, "previous", [0, 40], box)).toBe("M10.00,50.00 L10.00,42.00 L10.00,50.00 Z M90.00,50.00 L90.00,32.00 L90.00,50.00 Z");
     expect(createAnalyticsAreaPath(data, "current", [0, 40], box)).toMatch(/^M10\.00,50\.00 .* Z$/);
+  });
+
+  it("derives a stacked domain from positive and negative totals", () => {
+    const stacked = [
+      { id: "one", label: "One", values: { a: 8, b: 4, c: -2 } },
+      { id: "two", label: "Two", values: { a: 5, b: 12, c: -6 } },
+    ];
+    expect(getStackedAnalyticsDomain(stacked, ["a", "b", "c"], { paddingRatio: 0 })).toEqual([-6, 17]);
   });
 });
 

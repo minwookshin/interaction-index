@@ -114,15 +114,15 @@
       "forbiddenComponents": ["Funnel"]
     },
     {
-      "id": "usage-synchronized-trends",
-      "prompt": "Create a usage trend view with two synchronized charts and a feature breakdown.",
+      "id": "usage-explicit-release-context",
+      "prompt": "Create a usage trend view with two independently inspectable charts, an explicit shared release selection, and a feature breakdown.",
       "expectedRecipe": "product-usage",
       "requiredComponents": ["Chart", "Breakdown"],
       "forbiddenComponents": ["Cohort"]
     },
     {
       "id": "usage-release-impact",
-      "prompt": "Show how each release event changed active usage without losing the selected day across charts.",
+      "prompt": "Show how each release event relates to active usage while each chart keeps its own inspection state.",
       "expectedRecipe": "product-usage",
       "requiredComponents": ["Chart", "Timeline"],
       "forbiddenComponents": ["Sparkline"]

@@ -1,4 +1,4 @@
-/* Generated from src/styles.css. Do not edit directly. */
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
 @layer teum.tokens, teum.base, teum.components;
 
@@ -34,6 +34,8 @@
 .teum-table__head { height: 35px; padding: 0 12px; border-bottom: 1px solid color-mix(in oklch, var(--teum-separator) 68%, transparent); background: color-mix(in oklch, var(--teum-bg-stage) 74%, var(--teum-bg-surface)); color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); font-weight: 560; text-align: left; white-space: nowrap; }
 
 .teum-table__cell { height: var(--teum-row-height-table); padding: 0 12px; border-bottom: 1px solid color-mix(in oklch, var(--teum-separator) 66%, transparent); color: var(--teum-fg-muted); vertical-align: middle; }
+
+.teum-table__row { transition: background-color var(--teum-hover-duration) var(--teum-ease-out); }
 
 .teum-table__row:last-child .teum-table__cell { border-bottom: 0; }
 

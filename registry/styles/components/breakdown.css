@@ -1,4 +1,4 @@
-/* Generated from src/styles.css. Do not edit directly. */
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
 @layer teum.tokens, teum.base, teum.components;
 
@@ -25,6 +25,10 @@
 .teum-breakdown small { grid-column: 1 / -1; color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
 
 .teum-breakdown li > button:focus { outline: 0; }
+
+.teum-breakdown li > button:focus-visible {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--teum-focus-control) 42%, transparent);
+}
 
 @media (hover: hover) and (pointer: fine) {
 .teum-breakdown li > button:hover { background: var(--teum-hover); color: var(--teum-fg-default); }

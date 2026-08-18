@@ -1,0 +1,57 @@
+.teum-tooltip-preview {
+  display: grid;
+  min-width: 32px;
+  place-items: center;
+}
+
+.teum-tooltip-preview[data-favorite] .teum-button {
+  color: var(--teum-fg-default);
+}
+
+.teum-view-options-preview,
+.teum-sheet-preview,
+.teum-alert-dialog-preview {
+  width: min(520px, 100%);
+}
+
+.teum-view-options-preview__popover {
+  display: grid;
+  gap: 8px;
+}
+
+.teum-view-options-preview__setting {
+  padding-top: 2px;
+}
+
+.teum-context-menu-preview > svg:last-of-type {
+  width: 13px;
+  height: 13px;
+  color: var(--teum-fg-muted);
+}
+
+.teum-overlay-preview__menu-copy {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 7px;
+}
+
+.teum-overlay-preview__danger-button {
+  background: var(--teum-fg-danger);
+  color: white;
+  box-shadow: 0 1px 2px color-mix(in oklch, var(--teum-fg-danger) 24%, transparent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .teum-overlay-preview__danger-button:hover {
+    background: color-mix(in oklch, var(--teum-fg-danger) 88%, black);
+  }
+}
+
+@media (max-width: 540px) {
+  .teum-view-options-preview,
+  .teum-sheet-preview,
+  .teum-alert-dialog-preview {
+    gap: 12px;
+  }
+}

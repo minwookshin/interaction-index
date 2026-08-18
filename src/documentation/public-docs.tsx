@@ -1,4 +1,4 @@
-import { Check, Copy, ShieldCheck } from "@phosphor-icons/react";
+import { CaretRight, Check, Copy, ShieldCheck } from "@phosphor-icons/react";
 import { lazy, Suspense, useState, type ReactNode } from "react";
 import packageManifest from "../../package.json";
 import packageContractEvidence from "../../release/package-contract.json";
@@ -35,6 +35,7 @@ const AuditLogRecipe = lazy(() => import("./data-recipes").then((module) => ({ d
 const SaaSOverviewRecipe = lazy(() => import("./analytics-recipes").then((module) => ({ default: module.SaaSOverviewRecipe })));
 const ProductUsageRecipe = lazy(() => import("./analytics-recipes").then((module) => ({ default: module.ProductUsageRecipe })));
 const ConversionRetentionRecipe = lazy(() => import("./analytics-recipes").then((module) => ({ default: module.ConversionRetentionRecipe })));
+const AnalyticsRendererGallery = lazy(() => import("./analytics-recipes").then((module) => ({ default: module.AnalyticsRendererGallery })));
 const CustomerWorkspaceRecipe = lazy(() => import("./product-pattern-recipes").then((module) => ({ default: module.CustomerWorkspaceRecipe })));
 const BillingUsageRecipe = lazy(() => import("./product-pattern-recipes").then((module) => ({ default: module.BillingUsageRecipe })));
 const MembersPermissionsRecipe = lazy(() => import("./product-pattern-recipes").then((module) => ({ default: module.MembersPermissionsRecipe })));
@@ -44,13 +45,14 @@ function DocSection({ id, title, children }: { id: string; title: string; childr
   return <section className="public-doc-section" id={id}><h2>{title}</h2>{children}</section>;
 }
 
-function CodeBlock({ label, children }: { label: string; children: string }) {
+function CodeBlock({ label, children, collapsed = false }: { label: string; children: string; collapsed?: boolean }) {
   const [copied, setCopied] = useState(false);
+  const [open, setOpen] = useState(!collapsed);
   const copy = () => void copyText(children).then((result) => {
     setCopied(result);
     window.setTimeout(() => setCopied(false), 1200);
   });
-  return <figure className="public-doc-code"><figcaption>{label}<button type="button" onClick={copy} aria-label={`Copy ${label}`}><Copy aria-hidden="true" />{copied ? "Copied" : "Copy"}</button></figcaption><pre tabIndex={0}><code>{children}</code></pre></figure>;
+  return <figure className="public-doc-code" data-collapsed={!open || undefined}><figcaption><button className="public-doc-code__toggle" type="button" aria-expanded={open} onClick={() => setOpen((current) => !current)}><CaretRight aria-hidden="true" />{label}</button><button type="button" onClick={copy} aria-label={`Copy ${label}`}><Copy aria-hidden="true" />{copied ? "Copied" : "Copy"}</button></figcaption>{open && <pre tabIndex={0}><code>{children}</code></pre>}</figure>;
 }
 
 function CheckList({ items }: { items: readonly string[] }) {
@@ -76,9 +78,9 @@ function DecisionTable({ label, rows }: { label: string; rows: readonly (readonl
 
 function ProductPilotPage() {
   return <>
-    <section className="public-doc-section public-doc-section--pilot" id="data-workspace" aria-labelledby="data-workspace-title"><h2 id="data-workspace-title">Issues Workspace</h2><p>Search, filter, compare, inspect, act, and undo from one collection.</p><Suspense fallback={<div className="pilot-workspace pilot-workspace--loading" role="status">Loading Issues Workspace…</div>}><ProductPilot /></Suspense></section>
-    <section className="public-doc-section public-doc-section--pilot" id="customer-directory" aria-labelledby="customer-directory-title"><h2 id="customer-directory-title">Customer Directory</h2><p>Server state, URL state, saved views, pinned columns, and export.</p><Suspense fallback={<div className="teum-data-recipe teum-data-recipe--loading" role="status">Loading Customer Directory…</div>}><CustomerDirectoryRecipe /></Suspense></section>
-    <section className="public-doc-section public-doc-section--pilot" id="audit-log" aria-labelledby="audit-log-title"><h2 id="audit-log-title">Audit Log</h2><p>Ten thousand immutable events with date filtering and virtual rows.</p><Suspense fallback={<div className="teum-data-recipe teum-data-recipe--loading" role="status">Loading Audit Log…</div>}><AuditLogRecipe /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="data-workspace" aria-labelledby="data-workspace-title"><h2 id="data-workspace-title">Issues Workspace</h2><p>Search, inspect, act, and undo.</p><Suspense fallback={<div className="pilot-workspace pilot-workspace--loading" role="status">Loading Issues Workspace…</div>}><ProductPilot /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="customer-directory" aria-labelledby="customer-directory-title"><h2 id="customer-directory-title">Customer Directory</h2><p>Saved views, filters, columns, and export.</p><Suspense fallback={<div className="teum-data-recipe teum-data-recipe--loading" role="status">Loading Customer Directory…</div>}><CustomerDirectoryRecipe /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="audit-log" aria-labelledby="audit-log-title"><h2 id="audit-log-title">Audit Log</h2><p>Virtualized events with search and date filters.</p><Suspense fallback={<div className="teum-data-recipe teum-data-recipe--loading" role="status">Loading Audit Log…</div>}><AuditLogRecipe /></Suspense></section>
     <DocSection id="data-layer" title="Product primitives">
       <StatusTable
         label="Teum Data product primitives"
@@ -87,34 +89,34 @@ function ProductPilotPage() {
       />
     </DocSection>
     <DocSection id="data-contract" title="Composition contract">
-      <p>One validated state model connects URL, server requests, saved views, and display choices.</p>
-      <CodeBlock label="data-view-state.contract.json">{JSON.stringify(teumDataViewStateContract, null, 2)}</CodeBlock>
-      <p>Each recipe then names its task sequence, component vocabulary, and invariants.</p>
-      <CodeBlock label="data-recipes.contract.json">{JSON.stringify(teumDataRecipeContracts, null, 2)}</CodeBlock>
+      <p>URL, server, saved-view, and display state share one model.</p>
+      <CodeBlock label="data-view-state.contract.json" collapsed>{JSON.stringify(teumDataViewStateContract, null, 2)}</CodeBlock>
+      <CodeBlock label="data-recipes.contract.json" collapsed>{JSON.stringify(teumDataRecipeContracts, null, 2)}</CodeBlock>
     </DocSection>
     <DocSection id="data-install" title="Install the vertical slice">
       <CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx ${shadcnCli} add @teum-pinned/teum-data`}</CodeBlock>
-      <p>The block installs source, scoped CSS, the data primitives, three recipes, and their authored contracts. It remains pre-release.</p>
+      <p>Installs the Data components, recipes, styles, and contracts. Pre-release.</p>
     </DocSection>
   </>;
 }
 
 function AnalyticsPage() {
   return <>
+    <section className="public-doc-section public-doc-section--pilot" id="renderer-family" aria-labelledby="renderer-family-title"><h2 id="renderer-family-title">Primitives</h2><p>Charts and metrics share one visual contract.</p><Suspense fallback={<div className="teum-analytics-gallery" role="status">Loading analytics primitives…</div>}><AnalyticsRendererGallery /></Suspense></section>
     <section className="public-doc-section public-doc-section--pilot" id="saas-overview" aria-labelledby="saas-overview-title"><h2 id="saas-overview-title">SaaS Overview</h2><p>Revenue, retention, targets, and expansion in one period.</p><Suspense fallback={<div className="teum-analytics-recipe" role="status">Loading SaaS Overview…</div>}><SaaSOverviewRecipe /></Suspense></section>
-    <section className="public-doc-section public-doc-section--pilot" id="product-usage" aria-labelledby="product-usage-title"><h2 id="product-usage-title">Product Usage</h2><p>Two synchronized charts connect usage, features, and release events.</p><Suspense fallback={<div className="teum-analytics-recipe" role="status">Loading Product Usage…</div>}><ProductUsageRecipe /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="product-usage" aria-labelledby="product-usage-title"><h2 id="product-usage-title">Product Usage</h2><p>Usage and releases with independent chart inspection.</p><Suspense fallback={<div className="teum-analytics-recipe" role="status">Loading Product Usage…</div>}><ProductUsageRecipe /></Suspense></section>
     <section className="public-doc-section public-doc-section--pilot" id="conversion-retention" aria-labelledby="conversion-retention-title"><h2 id="conversion-retention-title">Conversion &amp; Retention</h2><p>A selected funnel stage updates the trend, cohort context, and supporting records.</p><Suspense fallback={<div className="teum-analytics-recipe" role="status">Loading Conversion &amp; Retention…</div>}><ConversionRetentionRecipe /></Suspense></section>
     <DocSection id="analytics-layer" title="Product primitives">
       <StatusTable label="Teum Analytics product primitives" columns={["Primitive", "Job", "States"]} rows={teumAnalyticsComponentContracts.map((component) => [component.id, component.intent, component.states.join(", ")] as const)} />
     </DocSection>
     <DocSection id="analytics-contract" title="Composition contract">
-      <p>Controlled product state stays outside the visual layer. Point inspection and series visibility remain shareable across charts.</p>
-      <CodeBlock label="analytics-state.contract.json">{JSON.stringify(teumAnalyticsStateContract, null, 2)}</CodeBlock>
-      <CodeBlock label="analytics-recipes.contract.json">{JSON.stringify(teumAnalyticsRecipeContracts, null, 2)}</CodeBlock>
+      <p>Product state remains controlled by the recipe. Transient inspection stays local to each chart.</p>
+      <CodeBlock label="analytics-state.contract.json" collapsed>{JSON.stringify(teumAnalyticsStateContract, null, 2)}</CodeBlock>
+      <CodeBlock label="analytics-recipes.contract.json" collapsed>{JSON.stringify(teumAnalyticsRecipeContracts, null, 2)}</CodeBlock>
     </DocSection>
     <DocSection id="analytics-install" title="Install the vertical slice">
       <CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx ${shadcnCli} add @teum-pinned/teum-analytics`}</CodeBlock>
-      <p>The block installs source-owned analytics primitives, semantic tables, three recipes, and their contracts. It remains pre-release.</p>
+      <p>Installs the Analytics components, recipes, styles, and contracts. Pre-release.</p>
     </DocSection>
   </>;
 }

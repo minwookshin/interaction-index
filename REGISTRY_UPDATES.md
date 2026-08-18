@@ -4,8 +4,8 @@ Teum distributes product-owned source. An update is a review, not an automatic m
 
 ## Channels
 
-- `https://teum.minwookshin.com/r/{name}.json` follows current pre-release work.
-- `https://teum.minwookshin.com/r/v/<version>/{name}.json` is immutable and rewrites internal dependencies to the same pinned version.
+- `https://whatiuse.minwookshin.com/r/{name}.json` follows current pre-release work.
+- `https://whatiuse.minwookshin.com/r/v/<version>/{name}.json` is immutable and rewrites internal dependencies to the same pinned version.
 - `public/r/manifest.json` records artifact, file, API, and token hashes.
 
 Use the mutable channel for evaluation. Use an exact pinned channel for reproducible work.

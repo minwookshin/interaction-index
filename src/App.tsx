@@ -5,6 +5,7 @@ import {
   ArrowCounterClockwise,
   ArrowRight,
   Bell,
+  BookOpenText,
   Browsers,
   CaretDown,
   Check,
@@ -26,7 +27,6 @@ import {
   MagnifyingGlass,
   Moon,
   Monitor,
-  Package,
   Palette,
   PersonArmsSpread,
   Star,
@@ -45,8 +45,9 @@ import {
   WaveSine,
   X,
 } from "@phosphor-icons/react";
-import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import "./styles.css";
+import "./documentation-chrome.css";
 import packageManifest from "../package.json";
 import {
   ActionList,
@@ -170,16 +171,51 @@ import {
   sharedDetailContract,
   undoStackContract,
 } from "./components/ui";
+import {
+  AsyncIconButtonPreview,
+  ComponentMetadataDialogPreview,
+  IssueActionsMenuPreview,
+  PrioritySelectPreview,
+} from "./components/showcase/priority-component-previews";
+import {
+  ComponentToastPreview,
+  DiscardDraftAlertPreview,
+  FavoriteTooltipPreview,
+  IssueContextMenuPreview,
+  IssuePropertiesSheetPreview,
+  ViewOptionsPopoverPreview,
+} from "./components/showcase/overlay-component-previews";
+import {
+  ActionButtonGroupPreview,
+  AssigneeComboboxPreview,
+  ComponentSearchPreview,
+  CompactNumberFieldPreview,
+  DescriptionTextareaPreview,
+  InteractionNotesCheckboxPreview,
+  InteractionSwitchPreview,
+  IssueViewSegmentedPreview,
+  NotificationRadioPreview,
+  PlatformContextSwitcherPreview,
+  ProjectFieldPreview,
+  ProjectTextFieldPreview,
+} from "./components/showcase/control-component-previews";
+import {
+  BreadcrumbPathPreview,
+  DismissibleAlertPreview,
+  EmptyCollectionPreview,
+  ExportProgressPreview,
+  FilterCollapsiblePreview,
+  StableTabsPreview,
+} from "./components/showcase/navigation-feedback-previews";
 import type { BehaviorContract } from "./lib/behavior-contract";
 import { componentGuidance, type ComponentGuidance } from "./component-guidance";
-import { componentCode } from "./documentation/component-code";
+import { components, libraryComponentGroups, libraryComponents, type ComponentId } from "./component-catalog";
 import { componentApi } from "./documentation/component-api";
 import { generatedComponentExports } from "./documentation/generated-component-exports";
 import { FoundationDetail, FoundationOverview, foundationItems, type FoundationId } from "./documentation/foundations";
 import { LiveSpecimen } from "./documentation/live-specimen";
 import { ComponentStatePreview, getStateFlags } from "./documentation/state-preview";
 import { publicDocItems, publicDocOutlines, type PublicDocId, type PublicDocGroup } from "./documentation/public-doc-metadata";
-import { LandingPage } from "./landing";
 import { copyText } from "./lib/copy-text";
 
 const DatePickerExample = lazy(() => import("./documentation/date-picker-previews").then((module) => ({ default: module.DatePickerExample })));
@@ -194,55 +230,8 @@ function ReactAriaPreviewFallback() {
   return <div className="react-aria-preview-fallback" aria-hidden="true">Loading preview…</div>;
 }
 
-export const components = [
-  { id: "button", name: "Button", group: "Controls", description: "Compact actions with stable loading geometry and clear hierarchy." },
-  { id: "icon-button", name: "Icon Button", group: "Controls", description: "Square actions that require an accessible name and contextual tooltip." },
-  { id: "field", name: "Field & Fieldset", group: "Controls", description: "Accessible form structure that keeps labels, guidance, validation, and grouped choices connected." },
-  { id: "input-group", name: "Input Group", group: "Controls", description: "One text-entry boundary composed with contextual addons and compact actions." },
-  { id: "kbd", name: "Kbd", group: "Controls", description: "Quiet keyboard-hint notation for shortcuts, sequences, and modifier chords." },
-  { id: "button-group", name: "Button Group", group: "Controls", description: "Related actions composed with shared rhythm, hierarchy, and optional joined geometry." },
-  { id: "toolbar", name: "Toolbar", group: "Controls", description: "A compact set of frequently used controls with roving keyboard navigation." },
-  { id: "text-field", name: "Text Field", group: "Controls", description: "Dense text entry with labels, descriptions, validation, and adornments." },
-  { id: "textarea", name: "Textarea", group: "Controls", description: "Long-form input with persistent guidance, validation, and count feedback." },
-  { id: "checkbox", name: "Checkbox", group: "Controls", description: "Binary or mixed selection with a generous invisible hit target." },
-  { id: "radio-group", name: "Radio Group", group: "Controls", description: "A labelled, keyboard-navigable choice between mutually exclusive options." },
-  { id: "switch", name: "Switch", group: "Controls", description: "Immediate settings with clear on, off, focus, and disabled states." },
-  { id: "select", name: "Select", group: "Controls", description: "Compact selection from a short predefined list with native-feeling typeahead." },
-  { id: "context-switcher", name: "Context Switcher", group: "Controls", description: "Rich single selection with icon, supporting context, and quiet layered elevation." },
-  { id: "combobox", name: "Combobox", group: "Controls", description: "Filter and select from a larger predefined collection without free-form ambiguity." },
-  { id: "search-input", name: "Search Input", group: "Controls", description: "Free-form query input with clear, loading, and keyboard-shortcut affordances." },
-  { id: "number-field", name: "Number Field", group: "Controls", description: "Locale-aware numeric entry with keyboard stepping, bounds, and stable controls." },
-  { id: "date-picker", name: "Calendar & Date Picker", group: "Controls", description: "Locale-aware date entry and calendar selection with one shared validation contract." },
-  { id: "segmented-control", name: "Segmented Control", group: "Controls", description: "Compact single selection between peer views or presentation modes." },
-  { id: "tooltip", name: "Tooltip", group: "Overlays", description: "A concise label or shortcut hint for otherwise ambiguous controls." },
-  { id: "popover", name: "Popover", group: "Overlays", description: "A lightweight, non-modal surface anchored to its trigger." },
-  { id: "menu", name: "Menu", group: "Overlays", description: "A keyboard-navigable set of contextual actions and toggles." },
-  { id: "context-menu", name: "Context Menu", group: "Overlays", description: "Pointer and keyboard access to object-specific actions without adding permanent chrome." },
-  { id: "dialog", name: "Dialog", group: "Overlays", description: "A focused modal task with trapped focus and reversible dismissal." },
-  { id: "sheet", name: "Sheet", group: "Overlays", description: "An edge-aligned focused panel for compact workflows that benefit from visible page context." },
-  { id: "alert-dialog", name: "Alert Dialog", group: "Overlays", description: "A blocking decision that requires a user response." },
-  { id: "tabs", name: "Tabs", group: "Navigation", description: "A dense view switcher with automatic keyboard navigation." },
-  { id: "breadcrumbs", name: "Breadcrumbs", group: "Navigation", description: "Compact location context with semantic current-page and collapsed-depth handling." },
-  { id: "pagination", name: "Pagination", group: "Navigation", description: "Bounded page navigation for data sets where stable positions matter." },
-  { id: "collapsible", name: "Collapsible", group: "Disclosure", description: "Progressively reveals supporting content without changing destinations." },
-  { id: "toast", name: "Toast", group: "Feedback", description: "Brief confirmation that stays secondary to the current task." },
-  { id: "progress", name: "Progress", group: "Feedback", description: "Determinate or indeterminate task completion with a screen-reader status contract." },
-  { id: "spinner", name: "Spinner", group: "Feedback", description: "Compact ongoing-work feedback for controls and tightly bounded surfaces." },
-  { id: "skeleton", name: "Skeleton", group: "Feedback", description: "Layout-preserving placeholder geometry for content that is expected imminently." },
-  { id: "alert", name: "Alert", group: "Feedback", description: "Persistent inline feedback with an optional action and deliberate announcement policy." },
-  { id: "empty-state", name: "Empty State", group: "Feedback", description: "Explains an empty collection and offers the smallest useful next step." },
-  { id: "badge", name: "Badge", group: "Data display", description: "Compact metadata, category, status, and removable-filter labeling." },
-  { id: "avatar", name: "Avatar", group: "Data display", description: "Person or entity identity with deterministic fallback, size, status, and grouping." },
-  { id: "table", name: "Table", group: "Data display", description: "Semantic tabular structure composed into product-specific sorting, filtering, and selection." },
-  { id: "tree", name: "Tree", group: "Data display", description: "Hierarchical navigation and selection with expansion, typeahead, and roving focus." },
-  { id: "reorderable-list", name: "Reorderable List", group: "Interaction", description: "Pointer, touch, keyboard, and screen-reader reordering with visible drop intent." },
-  { id: "inline-edit", name: "Inline Edit", group: "Interaction", description: "Edit in place while preserving line geometry and focus origin.", contract: inlineEditContract },
-  { id: "action-list", name: "Action List", group: "Interaction", description: "A filterable, keyboard-first action surface for dense workflows.", contract: actionListContract },
-  { id: "shared-detail", name: "Shared Detail", group: "Interaction", description: "Move from a list object to its detail without losing identity.", contract: sharedDetailContract },
-  { id: "undo-stack", name: "Undo Stack", group: "Interaction", description: "Make consequential actions recoverable through a real LIFO history.", contract: undoStackContract },
-] as const;
-
-export type ComponentId = (typeof components)[number]["id"];
+export { components } from "./component-catalog";
+export type { ComponentId } from "./component-catalog";
 
 const patterns = [
   {
@@ -297,14 +286,13 @@ const patterns = [
 
 type PatternId = (typeof patterns)[number]["id"];
 type FoundationRoute = `foundation-${FoundationId}`;
-export type ViewId = ComponentId | PatternId | FoundationRoute | PublicDocId | "foundations" | "patterns" | "home";
+export type ViewId = ComponentId | PatternId | FoundationRoute | PublicDocId | "foundations" | "patterns" | "components" | "home";
 export type Theme = "light" | "dark";
 
-type NavSectionId = "getting-started" | "foundations" | "components" | "patterns" | "quality" | "project";
+type NavSectionId = "getting-started" | "foundations" | "components" | "patterns" | "project";
 
 const publicDocGroups: readonly { id: NavSectionId; label: PublicDocGroup }[] = [
   { id: "getting-started", label: "Getting started" },
-  { id: "quality", label: "Quality" },
   { id: "project", label: "Project" },
 ];
 
@@ -829,19 +817,28 @@ function TabsDemo() {
   );
 }
 
-const COMPONENT_FEEDBACK_TOAST_ID = "component-feedback";
-
 function ToastDemo() {
+  const nextToast = useRef(0);
+
+  const nextToastId = () => {
+    const toastId = `component-feedback-detail-${nextToast.current}`;
+    nextToast.current += 1;
+    return toastId;
+  };
+
   return (
     <>
       <Specimen label="Product recipe" note="Mutation feedback">
         <div className="demo-row">
-          <Button variant="secondary" onClick={() => toast("Component duplicated", { id: COMPONENT_FEEDBACK_TOAST_ID, description: "Button / Draft was added to the index.", action: undefined })}>Confirm action</Button>
-          <Button variant="secondary" onClick={() => toast("Component archived", { id: COMPONENT_FEEDBACK_TOAST_ID, description: undefined, action: { label: "Undo", onClick: () => toast("Component restored", { id: COMPONENT_FEEDBACK_TOAST_ID, description: "Archive was reversed.", action: undefined }) } })}>Show undo</Button>
-          <Button variant="secondary" onClick={() => toast.error("Couldn’t publish", { id: COMPONENT_FEEDBACK_TOAST_ID, description: "Check the registry configuration and try again.", action: undefined })}>Show error</Button>
+          <Button variant="secondary" onClick={() => toast("Component duplicated", { id: nextToastId(), description: "Button / Draft was added to the index.", action: undefined })}>Confirm action</Button>
+          <Button variant="secondary" onClick={() => {
+            const toastId = nextToastId();
+            toast("Component archived", { id: toastId, description: undefined, action: { label: "Undo", onClick: () => toast("Component restored", { id: toastId, description: "Archive was reversed.", action: undefined }) } });
+          }}>Show undo</Button>
+          <Button variant="secondary" onClick={() => toast.error("Couldn’t publish", { id: nextToastId(), description: "Check the registry configuration and try again.", action: undefined })}>Show error</Button>
         </div>
       </Specimen>
-      <ApiStrip values={["polite live region", "one foreground message", "upsert by id", "action", "4s default", "bottom-center"]} />
+      <ApiStrip values={["polite live region", "3 visible", "collapsed stack", "hover to expand", "scoped action", "4s default"]} />
     </>
   );
 }
@@ -976,7 +973,7 @@ function AlertDemo() {
   return <>
     <Specimen label="Product recipe" note="Persistent feedback belongs beside the affected work">
       <div className="demo-stack demo-stack--wide">
-        <Alert title="Import complete">{components.length} components were added to the local registry.</Alert>
+        <Alert title="Import complete">{libraryComponents.length} components were added to the local registry.</Alert>
         <Alert variant="critical" title="Registry could not be verified" action={<Button size="small" variant="secondary">Review</Button>}>One source path no longer resolves.</Alert>
         {visible ? <Alert title="Keyboard review ready" onDismiss={() => setVisible(false)}>Run the documented tab order before release.</Alert> : <Button size="small" variant="quiet" onClick={() => setVisible(true)}>Restore dismissed alert</Button>}
       </div>
@@ -1299,46 +1296,6 @@ function TextFieldProductContext() {
   );
 }
 
-function MenuProductContext() {
-  return (
-    <section className="product-context product-context--toolbar" aria-label="Issue toolbar menu example">
-      <div className="product-context__identity">
-        <span className="product-context__icon"><Rows aria-hidden="true" /></span>
-        <div><strong>Motion contract</strong><span>INT-184 · In review</span></div>
-      </div>
-      <Menu>
-        <MenuTrigger render={<Button variant="secondary" size="small" trailingIcon={<CaretDown />}>Actions</Button>} />
-        <MenuContent>
-          <MenuLabel>Issue</MenuLabel>
-          <MenuItem><Copy />Duplicate <kbd>⌘D</kbd></MenuItem>
-          <MenuItem><Archive />Archive</MenuItem>
-          <MenuSeparator />
-          <MenuItem className="teum-menu__item--danger"><Trash />Delete</MenuItem>
-        </MenuContent>
-      </Menu>
-    </section>
-  );
-}
-
-function DialogProductContext() {
-  return (
-    <section className="product-context product-context--toolbar" aria-label="Component metadata example">
-      <div className="product-context__identity">
-        <span className="product-context__icon"><Package aria-hidden="true" /></span>
-        <div><strong>Draft primitive</strong><span>Local component · Not published</span></div>
-      </div>
-      <Dialog>
-        <DialogTrigger render={<Button variant="secondary" size="small">Edit details</Button>} />
-        <DialogContent>
-          <DialogHeader><DialogTitle>Edit component metadata</DialogTitle><DialogDescription>Update the public name and summary without leaving the current catalog position.</DialogDescription></DialogHeader>
-          <div className="dialog-form"><TextField label="Display name" defaultValue="Draft primitive" /><Select label="Maturity" defaultValue="alpha" options={[{ label: "Alpha", value: "alpha" }, { label: "Beta", value: "beta" }, { label: "Stable", value: "stable" }]} /><TextField label="Summary" defaultValue="A compact interaction." /></div>
-          <DialogFooter><DialogClose render={<Button variant="ghost" />}>Cancel</DialogClose><DialogClose render={<Button variant="primary" />}>Save changes</DialogClose></DialogFooter>
-        </DialogContent>
-      </Dialog>
-    </section>
-  );
-}
-
 function SheetProductContext() {
   return (
     <section className="product-context product-context--toolbar" aria-label="Issue property panel example">
@@ -1360,43 +1317,43 @@ function SheetProductContext() {
 
 export function PrimaryPreviewFor({ id }: { id: ComponentId }) {
   if (id === "button") return <ButtonProductContext />;
-  if (id === "icon-button") return <IconButton variant="secondary" aria-label="Create item" tooltip="Create item"><Plus /></IconButton>;
-  if (id === "field") return <div className="primary-field-preview"><Field><FieldLabel>Project name</FieldLabel><FieldControl defaultValue="Teum" /><FieldDescription>Visible to everyone in the workspace.</FieldDescription></Field></div>;
-  if (id === "input-group") return <div className="primary-field-preview"><InputGroup><InputGroupAddon>github.com/</InputGroupAddon><InputGroupInput aria-label="Repository path" defaultValue="minwook/teum" /><InputGroupButton aria-label="Copy repository path"><Copy /></InputGroupButton></InputGroup></div>;
+  if (id === "icon-button") return <AsyncIconButtonPreview />;
+  if (id === "field") return <ProjectFieldPreview />;
+  if (id === "input-group") return <PrimaryInputGroupPreview />;
   if (id === "kbd") return <KbdGroup><Kbd>⌘</Kbd><Kbd>K</Kbd></KbdGroup>;
-  if (id === "button-group") return <ButtonGroup aria-label="Issue actions" attached><Button size="small" variant="secondary">Preview</Button><Button size="small" variant="secondary">Open</Button><Button size="small" variant="secondary" aria-label="More actions"><DotsThree /></Button></ButtonGroup>;
-  if (id === "toolbar") return <Toolbar aria-label="Formatting"><ToolbarButton aria-label="Bold"><strong>B</strong></ToolbarButton><ToolbarButton aria-label="Italic"><em>I</em></ToolbarButton><ToolbarSeparator /><ToolbarButton aria-label="Add link"><LinkSimple /></ToolbarButton><ToolbarInput aria-label="Find" placeholder="Find…" /></Toolbar>;
-  if (id === "text-field") return <TextFieldProductContext />;
-  if (id === "textarea") return <div className="primary-field-preview"><Textarea label="Description" defaultValue="Document the interaction contract." description="Markdown is supported." /></div>;
-  if (id === "checkbox") return <Checkbox label="Include interaction notes" description="Adds behavior contracts to the export." defaultChecked />;
-  if (id === "radio-group") return <RadioGroup label="Send updates" defaultValue="daily" options={[{ value: "instant", label: "Immediately" }, { value: "daily", label: "Daily digest" }, { value: "off", label: "Never" }]} />;
-  if (id === "switch") return <div className="primary-setting-preview"><Switch label="Interaction previews" description="Play component motion in specimen canvases." defaultChecked /></div>;
-  if (id === "select") return <div className="primary-field-preview"><Select label="Priority" options={priorityOptions} defaultValue="medium" /></div>;
-  if (id === "context-switcher") return <ContextSwitcher aria-label="Preview platform" options={contextSwitcherOptions} defaultValue="web" />;
-  if (id === "combobox") return <div className="primary-field-preview"><Combobox label="Assignee" options={peopleOptions} defaultValue={peopleOptions[1]} /></div>;
-  if (id === "search-input") return <SearchInput placeholder="Search components…" shortcut="⌘K" />;
-  if (id === "number-field") return <div className="primary-field-preview primary-number-field-preview"><NumberField label="Cycle capacity" defaultValue={24} min={1} max={99} /></div>;
+  if (id === "button-group") return <ActionButtonGroupPreview />;
+  if (id === "toolbar") return <PrimaryToolbarPreview />;
+  if (id === "text-field") return <ProjectTextFieldPreview />;
+  if (id === "textarea") return <DescriptionTextareaPreview />;
+  if (id === "checkbox") return <InteractionNotesCheckboxPreview />;
+  if (id === "radio-group") return <NotificationRadioPreview />;
+  if (id === "switch") return <InteractionSwitchPreview />;
+  if (id === "select") return <PrioritySelectPreview />;
+  if (id === "context-switcher") return <PlatformContextSwitcherPreview />;
+  if (id === "combobox") return <AssigneeComboboxPreview />;
+  if (id === "search-input") return <ComponentSearchPreview />;
+  if (id === "number-field") return <CompactNumberFieldPreview />;
   if (id === "date-picker") return <Suspense fallback={<ReactAriaPreviewFallback />}><DatePickerPrimaryPreview /></Suspense>;
-  if (id === "segmented-control") return <SegmentedControl label="Issue view" defaultValue="list" options={[{ value: "list", label: "List" }, { value: "board", label: "Board" }, { value: "timeline", label: "Timeline" }]} />;
-  if (id === "tooltip") return <Tooltip><TooltipTrigger render={<Button variant="secondary">Favorite</Button>} /><TooltipContent>Add to favorites <kbd>F</kbd></TooltipContent></Tooltip>;
-  if (id === "popover") return <Popover><PopoverTrigger render={<Button variant="secondary" trailingIcon={<CaretDown />}>View options</Button>} /><PopoverContent className="teum-popover--compact" side="top" align="center"><div className="popover-copy"><PopoverTitle>View options</PopoverTitle></div><div className="primary-popover-row"><Switch label="Show contracts" defaultChecked /></div></PopoverContent></Popover>;
-  if (id === "menu") return <MenuProductContext />;
-  if (id === "context-menu") return <ContextMenu><ContextMenuTrigger className="context-menu-demo-card context-menu-demo-card--primary"><span className="product-context__icon"><Rows aria-hidden="true" /></span><span><strong>Motion contract</strong><small>Right click or press Shift + F10</small></span></ContextMenuTrigger><ContextMenuContent><ContextMenuLabel>Issue</ContextMenuLabel><ContextMenuItem><Copy />Duplicate</ContextMenuItem><ContextMenuItem><Archive />Archive</ContextMenuItem><ContextMenuSeparator /><ContextMenuItem className="teum-menu__item--danger"><Trash />Delete</ContextMenuItem></ContextMenuContent></ContextMenu>;
-  if (id === "dialog") return <DialogProductContext />;
-  if (id === "sheet") return <SheetProductContext />;
-  if (id === "alert-dialog") return <AlertDialog><AlertDialogTrigger render={<Button variant="secondary" />}>Discard draft</AlertDialogTrigger><AlertDialogContent><AlertDialogHeader><AlertDialogTitle>Discard this component draft?</AlertDialogTitle><AlertDialogDescription>The draft and its unpublished interaction notes will be permanently removed.</AlertDialogDescription></AlertDialogHeader><AlertDialogFooter><AlertDialogClose render={<Button variant="ghost" />}>Keep draft</AlertDialogClose><AlertDialogClose render={<Button variant="primary" />}>Discard draft</AlertDialogClose></AlertDialogFooter></AlertDialogContent></AlertDialog>;
-  if (id === "tabs") return <Tabs className="tabs-demo tabs-demo--primary" defaultValue="overview"><TabsList><TabsTrigger value="overview">Overview</TabsTrigger><TabsTrigger value="activity">Activity</TabsTrigger><TabsTrigger value="relations">Relations</TabsTrigger></TabsList><div className="tabs-panel-viewport"><TabsContent value="overview"><div className="tab-card"><strong>Live component</strong><p>Inspect the component at product density.</p></div></TabsContent><TabsContent value="activity"><div className="tab-card"><strong>Recent activity</strong><p>Review the latest component changes.</p></div></TabsContent><TabsContent value="relations"><div className="tab-card"><strong>Related work</strong><p>Trace connected patterns and dependencies.</p></div></TabsContent></div></Tabs>;
-  if (id === "breadcrumbs") return <Breadcrumbs label="Component preview breadcrumb" items={[{ label: "Workspace", href: "#" }, { label: "Projects", href: "#" }, { label: "UI Refresh" }]} />;
+  if (id === "segmented-control") return <IssueViewSegmentedPreview />;
+  if (id === "tooltip") return <FavoriteTooltipPreview />;
+  if (id === "popover") return <ViewOptionsPopoverPreview />;
+  if (id === "menu") return <IssueActionsMenuPreview />;
+  if (id === "context-menu") return <IssueContextMenuPreview />;
+  if (id === "dialog") return <ComponentMetadataDialogPreview />;
+  if (id === "sheet") return <IssuePropertiesSheetPreview />;
+  if (id === "alert-dialog") return <DiscardDraftAlertPreview />;
+  if (id === "tabs") return <StableTabsPreview />;
+  if (id === "breadcrumbs") return <BreadcrumbPathPreview />;
   if (id === "pagination") return <PrimaryPagination />;
-  if (id === "collapsible") return <Collapsible className="teum-collapsible"><CollapsibleTrigger>Advanced filter rules</CollapsibleTrigger><CollapsibleContent>Match state contracts that restore focus and define reduced motion.</CollapsibleContent></Collapsible>;
-  if (id === "toast") return <Button variant="primary" onClick={() => toast.success("Component saved", { id: COMPONENT_FEEDBACK_TOAST_ID, description: "Button is ready for review.", action: undefined })}>Show toast</Button>;
-  if (id === "progress") return <Progress label="Exporting data" value={68} />;
+  if (id === "collapsible") return <FilterCollapsiblePreview />;
+  if (id === "toast") return <ComponentToastPreview />;
+  if (id === "progress") return <ExportProgressPreview />;
   if (id === "spinner") return <div className="demo-row demo-row--centered"><Spinner label="Loading content" /><span>Loading content</span></div>;
   if (id === "skeleton") return <div className="skeleton-recipe"><Skeleton radius="round" width={32} height={32} /><SkeletonText lines={3} /></div>;
-  if (id === "alert") return <Alert title="Import complete">{components.length} components were added to the local registry.</Alert>;
-  if (id === "empty-state") return <EmptyState title="No matching components" description="Clear the active filters or add a component from the registry." primaryAction={<Button size="small" variant="primary">Add component</Button>} />;
-  if (id === "badge") return <div className="demo-row demo-row--centered"><Badge>Draft</Badge><Badge variant="strong">In review</Badge><Badge variant="outline">Design</Badge></div>;
-  if (id === "avatar") return <AvatarGroup aria-label="Project members"><Avatar fallback="AS" /><Avatar fallback="MP" status="online" /><Avatar fallback="NW" /></AvatarGroup>;
+  if (id === "alert") return <DismissibleAlertPreview />;
+  if (id === "empty-state") return <EmptyCollectionPreview />;
+  if (id === "badge") return <PrimaryBadgePreview />;
+  if (id === "avatar") return <AvatarGroup aria-label="Project members"><Avatar fallback="AS" alt="Avery Stone" size="large" /><Avatar fallback="MP" alt="Mina Park" size="large" status="online" /><Avatar fallback="NW" alt="Noah Williams" size="large" /></AvatarGroup>;
   if (id === "table") return <DataTableRecipe compact />;
   if (id === "tree") return <Suspense fallback={<ReactAriaPreviewFallback />}><TreePrimaryPreview /></Suspense>;
   if (id === "reorderable-list") return <Suspense fallback={<ReactAriaPreviewFallback />}><ReorderableListPrimaryPreview /></Suspense>;
@@ -1404,6 +1361,35 @@ export function PrimaryPreviewFor({ id }: { id: ComponentId }) {
   if (id === "action-list") return <PrimaryActionList />;
   if (id === "shared-detail") return <div className="primary-shared-detail"><SharedDetail items={sharedItems} defaultSelectedId="motion" focusOnOpen={false} regionLabel="Shared Detail product context" /></div>;
   return <UndoStackProvider><PrimaryUndo /></UndoStackProvider>;
+}
+
+function PrimaryInputGroupPreview() {
+  const [copied, setCopied] = useState(false);
+  const resetTimer = useRef<number | undefined>(undefined);
+
+  useEffect(() => () => window.clearTimeout(resetTimer.current), []);
+
+  const copyRepository = async () => {
+    if (!await copyText("minwook/teum")) return;
+    setCopied(true);
+    window.clearTimeout(resetTimer.current);
+    resetTimer.current = window.setTimeout(() => setCopied(false), 1200);
+  };
+
+  return <div className="primary-field-preview"><InputGroup><InputGroupAddon>github.com/</InputGroupAddon><InputGroupInput aria-label="Repository path" defaultValue="minwook/teum" /><InputGroupButton aria-label={copied ? "Repository path copied" : "Copy repository path"} onClick={() => void copyRepository()}>{copied ? <Check weight="bold" /> : <Copy />}</InputGroupButton></InputGroup><span className="teum-sr-only" role="status" aria-live="polite">{copied ? "Repository path copied" : ""}</span></div>;
+}
+
+function PrimaryToolbarPreview() {
+  const [bold, setBold] = useState(false);
+  const [italic, setItalic] = useState(false);
+
+  return <Toolbar aria-label="Formatting"><ToolbarButton aria-label="Bold" aria-pressed={bold} onClick={() => setBold((value) => !value)}><strong>B</strong></ToolbarButton><ToolbarButton aria-label="Italic" aria-pressed={italic} onClick={() => setItalic((value) => !value)}><em>I</em></ToolbarButton><ToolbarSeparator /><ToolbarButton aria-label="Add link"><LinkSimple /></ToolbarButton><ToolbarInput aria-label="Find" placeholder="Find…" /></Toolbar>;
+}
+
+function PrimaryBadgePreview() {
+  const [showDesign, setShowDesign] = useState(true);
+
+  return <div className="demo-row demo-row--centered"><Badge>Draft</Badge><Badge variant="strong">In review</Badge>{showDesign ? <Badge variant="outline" removable removeLabel="Remove Design filter" onRemove={() => setShowDesign(false)}>Design</Badge> : <Button variant="quiet" size="small" onClick={() => setShowDesign(true)}>Restore filter</Button>}</div>;
 }
 
 function PrimaryPagination() {
@@ -1470,7 +1456,7 @@ function ComponentLiveExample({ id }: { id: ComponentId }) {
   );
   const stateSlug = selectedState.toLocaleLowerCase().replaceAll(" ", "-");
   return (
-    <LiveSpecimen id={id} code={componentCode[id]} controls={controls} specimen={specimen} note={mode === "product" ? "Interactive" : selectedState} onReset={reset}>
+    <LiveSpecimen id={id} controls={controls} specimen={specimen} note={mode === "product" ? "Interactive" : selectedState} onReset={reset}>
       {mode === "product" ? <div key={`${id}-product-${resetKey}`} className="primary-preview"><PrimaryPreviewFor id={id} /></div> : <article key={`${id}-${stateSlug}-${resetKey}`} className="state-tile state-tile--live" data-state={stateSlug} data-state-flags={getStateFlags(selectedState)} aria-label={`${selectedState} state preview`}><div className="state-tile__preview" inert><StatePreview id={id} state={selectedState} index={stateIndex} /></div></article>}
     </LiveSpecimen>
   );
@@ -1497,9 +1483,10 @@ function ComponentStateCoverage({ id, states }: { id: ComponentId; states: reado
 }
 
 function NavigationSection({ label, count, expanded, active, onToggle, children }: { label: string; count?: number; expanded: boolean; active?: boolean; onToggle: () => void; children: ReactNode }) {
+  const contentId = useId();
   return <section className="system-nav-group" data-expanded={expanded || undefined} data-active={active || undefined}>
-    <button type="button" className="system-nav-group__trigger" aria-expanded={expanded} onClick={onToggle}><span>{label}</span>{typeof count === "number" && <small>{count}</small>}<CaretDown className="system-nav-group__chevron" aria-hidden="true" /></button>
-    <div className="system-nav-group__content" hidden={!expanded}>{children}</div>
+    <button type="button" className="system-nav-group__trigger" aria-controls={contentId} aria-expanded={expanded} onClick={onToggle}><span>{label}</span>{typeof count === "number" && <small>{count}</small>}<CaretDown className="system-nav-group__chevron" aria-hidden="true" /></button>
+    <div id={contentId} className="system-nav-group__content" aria-hidden={!expanded} inert={!expanded ? true : undefined}><div className="system-nav-group__content-inner">{children}</div></div>
   </section>;
 }
 
@@ -1652,21 +1639,23 @@ function ConsolidatedDesignSystemMode({ view, onSelect, onHome, theme, onThemeCh
   const activeId: ComponentId = components.some((component) => component.id === view) ? view as ComponentId : "button";
   const [filter, setFilter] = useState("");
   const [navigationOpen, setNavigationOpen] = useState(false);
-  const activeSection: NavSectionId = publicDoc ? publicDoc.group === "Getting started" ? "getting-started" : publicDoc.group === "Quality" ? "quality" : "project" : foundations ? "foundations" : patternsMode ? "patterns" : "components";
-  const [expandedSections, setExpandedSections] = useState<Record<NavSectionId, boolean>>({ "getting-started": false, foundations: false, components: false, patterns: false, quality: false, project: false });
+  const activeSection: NavSectionId = publicDoc
+    ? publicDoc.group === "Getting started" ? "getting-started" : publicDoc.group === "Components" ? "components" : publicDoc.group === "Patterns" ? "patterns" : "project"
+    : foundations ? "foundations" : patternsMode ? "patterns" : "components";
+  const [expandedSections, setExpandedSections] = useState<Record<NavSectionId, boolean>>({ "getting-started": false, foundations: false, components: false, patterns: false, project: false });
   const activeComponent = components.find((item) => item.id === activeId)!;
   const guidance = componentGuidance[activeId];
-  const filtered = components.filter((component) => `${component.name} ${component.group} ${component.description}`.toLocaleLowerCase().includes(filter.trim().toLocaleLowerCase()));
+  const filtered = libraryComponents.filter((component) => `${component.name} ${component.group} ${component.description}`.toLocaleLowerCase().includes(filter.trim().toLocaleLowerCase()));
   const filteredPatterns = patterns.filter((pattern) => `${pattern.name} ${pattern.intent} ${pattern.description}`.toLocaleLowerCase().includes(filter.trim().toLocaleLowerCase()));
   const filteredDocs = publicDocItems.filter((doc) => `${doc.label} ${doc.group} ${doc.description} ${publicDocOutlines[doc.id].map((item) => item.label).join(" ")}`.toLocaleLowerCase().includes(filter.trim().toLocaleLowerCase()));
   const filteredFoundations = foundationItems.filter((foundation) => `${foundation.label} ${foundation.description}`.toLocaleLowerCase().includes(filter.trim().toLocaleLowerCase()));
   const groups = [...new Set(filtered.map((component) => component.group))];
   const foundation = foundationItems.find((item) => item.id === foundationId);
-  const pageTitle = publicDoc?.label ?? foundation?.label ?? activePattern?.name ?? (view === "foundations" ? "Foundations" : view === "patterns" ? "Interaction patterns" : activeComponent.name);
+  const pageTitle = publicDoc?.label ?? foundation?.label ?? activePattern?.name ?? (view === "foundations" ? "Foundations" : view === "patterns" ? "Patterns" : activeComponent.name);
   const pageDescription = publicDoc?.description ?? foundation?.description ?? activePattern?.description ?? (view === "foundations" ? "Color, type, spacing, and motion tokens." : view === "patterns" ? "Patterns for editing, acting, inspecting, and recovery." : activeComponent.description);
 
   useLayoutEffect(() => {
-    document.title = `${pageTitle} — Teum`;
+    document.title = "whatiuse";
     document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute("content", pageDescription);
   }, [pageDescription, pageTitle]);
 
@@ -1683,26 +1672,29 @@ function ConsolidatedDesignSystemMode({ view, onSelect, onHome, theme, onThemeCh
   };
   const openComponent = (id: ComponentId = activeId) => {
     setNavigationOpen(false);
-    setExpandedSections({ "getting-started": false, foundations: false, components: true, patterns: false, quality: false, project: false });
+    setExpandedSections({ "getting-started": false, foundations: false, components: true, patterns: false, project: false });
     onSelect(id);
     focusDocumentOnCompactNavigation();
   };
   const navigate = (id: ViewId) => {
     setNavigationOpen(false);
-    const nextSection: NavSectionId = isPublicDocId(id) ? publicDocItems.find((item) => item.id === id)?.group === "Getting started" ? "getting-started" : publicDocItems.find((item) => item.id === id)?.group === "Quality" ? "quality" : "project" : id === "foundations" || id.startsWith("foundation-") ? "foundations" : id === "patterns" || patterns.some((pattern) => pattern.id === id) ? "patterns" : "components";
-    setExpandedSections({ "getting-started": false, foundations: false, components: false, patterns: false, quality: false, project: false, [nextSection]: true });
+    const publicGroup = isPublicDocId(id) ? publicDocItems.find((item) => item.id === id)?.group : undefined;
+    const nextSection: NavSectionId = publicGroup
+      ? publicGroup === "Getting started" ? "getting-started" : publicGroup === "Components" ? "components" : publicGroup === "Patterns" ? "patterns" : "project"
+      : id === "foundations" || id.startsWith("foundation-") ? "foundations" : id === "patterns" || patterns.some((pattern) => pattern.id === id) ? "patterns" : "components";
+    setExpandedSections({ "getting-started": false, foundations: false, components: false, patterns: false, project: false, [nextSection]: true });
     onSelect(id);
     focusDocumentOnCompactNavigation();
   };
   const openPattern = (id: PatternId) => navigate(id);
   const openFoundation = (id: FoundationId) => navigate(`foundation-${id}`);
-  const toggleSection = (id: NavSectionId) => setExpandedSections((current) => ({ "getting-started": false, foundations: false, components: false, patterns: false, quality: false, project: false, [id]: !current[id] }));
+  const toggleSection = (id: NavSectionId) => setExpandedSections((current) => ({ "getting-started": false, foundations: false, components: false, patterns: false, project: false, [id]: !current[id] }));
   useEffect(() => {
     setFilter("");
   }, [view]);
 
   useEffect(() => {
-    setExpandedSections({ "getting-started": false, foundations: false, components: false, patterns: false, quality: false, project: false, [activeSection]: true });
+    setExpandedSections({ "getting-started": false, foundations: false, components: false, patterns: false, project: false, [activeSection]: true });
   }, [activeSection]);
 
   useEffect(() => {
@@ -1747,27 +1739,30 @@ function ConsolidatedDesignSystemMode({ view, onSelect, onHome, theme, onThemeCh
                   <div className="system-component-list" role="region" aria-label="Foundation catalog"><div className="system-component-group"><NavigationLeaf id="foundations" label="Overview" selected={view === "foundations"} onSelect={() => navigate("foundations")} />{foundationItems.map((foundation) => <NavigationLeaf key={foundation.id} id={`foundation-${foundation.id}`} label={foundation.label} selected={foundation.id === foundationId} onSelect={() => openFoundation(foundation.id)} />)}</div></div>
                 </NavigationSection>
 
-                <NavigationSection label="Components" count={components.length} expanded={expandedSections.components} active={activeSection === "components"} onToggle={() => toggleSection("components")}>
-                  <div className="system-component-list system-component-list--catalog" role="region" aria-label="Component catalog">{[...new Set(components.map((component) => component.group))].map((group) => <div className="system-component-group" key={group}><span>{group}</span>{components.filter((component) => component.group === group).map((component) => <a href={`#${component.id}`} key={component.id} data-selected={component.id === activeId && componentsMode || undefined} aria-current={component.id === activeId && componentsMode ? "page" : undefined} onClick={(event) => { event.preventDefault(); openComponent(component.id); }}><strong>{component.name}</strong></a>)}</div>)}</div>
+                <NavigationSection label="Components" count={libraryComponents.length} expanded={expandedSections.components} active={activeSection === "components"} onToggle={() => toggleSection("components")}>
+                  <div className="system-component-list system-component-list--catalog" role="region" aria-label="Component catalog">
+                    <div className="system-component-group system-component-group--collections"><span>Collections</span>{publicDocItems.filter((doc) => doc.group === "Components").map((doc) => <NavigationLeaf key={doc.id} id={doc.id} label={doc.label} selected={doc.id === publicDoc?.id} onSelect={() => navigate(doc.id)} />)}</div>
+                    {libraryComponentGroups.map((group) => <div className="system-component-group" key={group}><span>{group}</span>{libraryComponents.filter((component) => component.group === group).map((component) => <a href={`#${component.id}`} key={component.id} data-selected={component.id === activeId && componentsMode || undefined} aria-current={component.id === activeId && componentsMode ? "page" : undefined} onClick={(event) => { event.preventDefault(); openComponent(component.id); }}><strong>{component.name}</strong></a>)}</div>)}
+                  </div>
                 </NavigationSection>
 
                 <NavigationSection label="Patterns" count={patterns.length} expanded={expandedSections.patterns} active={activeSection === "patterns"} onToggle={() => toggleSection("patterns")}>
-                  <div className="system-component-list" role="region" aria-label="Pattern catalog"><div className="system-component-group"><NavigationLeaf id="patterns" label="Overview" selected={view === "patterns"} onSelect={() => navigate("patterns")} />{patterns.map((pattern) => <NavigationLeaf key={pattern.id} id={pattern.id} label={pattern.name} selected={pattern.id === activePattern?.id} onSelect={() => openPattern(pattern.id)} />)}</div></div>
+                  <div className="system-component-list" role="region" aria-label="Pattern catalog"><div className="system-component-group"><NavigationLeaf id="patterns" label="Overview" selected={view === "patterns"} onSelect={() => navigate("patterns")} />{patterns.map((pattern) => <NavigationLeaf key={pattern.id} id={pattern.id} label={pattern.name} selected={pattern.id === activePattern?.id} onSelect={() => openPattern(pattern.id)} />)}{publicDocItems.filter((doc) => doc.group === "Patterns").map((doc) => <NavigationLeaf key={doc.id} id={doc.id} label={doc.label} selected={doc.id === publicDoc?.id} onSelect={() => navigate(doc.id)} />)}</div></div>
                 </NavigationSection>
 
-                {publicDocGroups.filter((group) => group.id === "quality" || group.id === "project").map((group) => <NavigationSection key={group.id} label={group.label} expanded={expandedSections[group.id]} active={activeSection === group.id} onToggle={() => toggleSection(group.id)}><div className="system-component-list" role="region" aria-label={`${group.label} documentation`}><div className="system-component-group">{publicDocItems.filter((doc) => doc.group === group.label).map((doc) => <NavigationLeaf key={doc.id} id={doc.id} label={doc.label} selected={doc.id === publicDoc?.id} onSelect={() => navigate(doc.id)} />)}</div></div></NavigationSection>)}
+                {publicDocGroups.filter((group) => group.id === "project").map((group) => <NavigationSection key={group.id} label={group.label} expanded={expandedSections[group.id]} active={activeSection === group.id} onToggle={() => toggleSection(group.id)}><div className="system-component-list" role="region" aria-label={`${group.label} documentation`}><div className="system-component-group">{publicDocItems.filter((doc) => doc.group === group.label).map((doc) => <NavigationLeaf key={doc.id} id={doc.id} label={doc.label} selected={doc.id === publicDoc?.id} onSelect={() => navigate(doc.id)} />)}</div></div></NavigationSection>)}
               </>}
             </nav>
           </div>
           <div className="system-nav__footer"><a href="https://www.minwookshin.com/" target="_blank" rel="noreferrer">made by minwook</a><button type="button" onClick={() => navigate("licensing")}>MIT licensed</button></div>
         </aside>
-        {navigationOpen && <button type="button" className="system-nav-scrim" aria-label="Close navigation" onClick={() => setNavigationOpen(false)} />}
+        <button type="button" className="system-nav-scrim" data-open={navigationOpen || undefined} aria-label="Close navigation" aria-hidden={!navigationOpen} tabIndex={navigationOpen ? 0 : -1} onClick={() => setNavigationOpen(false)} />
 
         <header className="system-topbar system-topbar--consolidated" aria-label="Workspace actions">
           <div className="system-topbar__location"><button type="button" className="system-nav__open" aria-label="Open navigation" onClick={() => setNavigationOpen(true)}><List aria-hidden="true" /></button></div>
-          <a className="system-topbar__title" href="#installation" onClick={(event) => { event.preventDefault(); navigate("installation"); }}>Documentation</a>
           <div className="system-topbar__actions">
             <Tooltip><TooltipTrigger render={<a className="system-icon-action" href="https://github.com/minwookshin/teum" target="_blank" rel="noreferrer" aria-label="View Teum on GitHub"><GithubLogo weight="fill" aria-hidden="true" /></a>} /><TooltipContent>GitHub</TooltipContent></Tooltip>
+            <Tooltip><TooltipTrigger render={<a className="system-icon-action" href="#installation" aria-label="Open documentation" onClick={(event) => { event.preventDefault(); navigate("installation"); }}><BookOpenText aria-hidden="true" /></a>} /><TooltipContent>Documentation</TooltipContent></Tooltip>
             <Tooltip><TooltipTrigger render={<button type="button" className="theme-toggle" data-theme={theme} aria-label={"Current theme: " + theme + ". Switch to " + (theme === "light" ? "dark" : "light") + " theme"} onClick={() => onThemeChange(theme === "light" ? "dark" : "light")}>{theme === "light" ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}</button>} /><TooltipContent>{theme === "light" ? "Dark mode" : "Light mode"}</TooltipContent></Tooltip>
           </div>
         </header>
@@ -1807,7 +1802,7 @@ function PatternsOverview({ onSelect }: { onSelect: (id: PatternId) => void }) {
   return (
     <div className="system-detail__content system-patterns system-editorial-page">
       <section className="system-overview">
-        <h1>Interaction patterns</h1>
+        <h1>Patterns</h1>
         <p>Reusable product behaviors that connect components, state, motion, and recovery around a recurring user goal.</p>
       </section>
 
@@ -1885,85 +1880,6 @@ function PatternDetail({ pattern }: { pattern: (typeof patterns)[number] }) {
   );
 }
 
-function App() {
-  const getInitial = (): ViewId => {
-    const hash = readHashRoute().view;
-    if (!hash || hash === "introduction" || hash === "product" || hash === "home") return "home";
-    if (isPublicDocId(hash) || hash === "foundations" || hash === "patterns" || foundationItems.some((item) => `foundation-${item.id}` === hash)) return hash as ViewId;
-    if (patterns.some((pattern) => pattern.id === hash)) return hash as PatternId;
-    return components.some((component) => component.id === hash) ? hash as ComponentId : "home";
-  };
-  const [view, setView] = useState<ViewId>(getInitial);
-  const [theme, setTheme] = useState<Theme>(() => {
-    const storedTheme = window.localStorage.getItem("teum-theme") ?? window.localStorage.getItem("index-ui-theme");
-    return storedTheme === "dark" ? "dark" : "light";
-  });
-
-  useEffect(() => {
-    const root = document.documentElement;
-    const keyboardNavigationKeys = new Set(["Tab", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Home", "End", "PageUp", "PageDown", "Enter", " ", "Escape"]);
-    const usePointerModality = () => { root.dataset.inputModality = "pointer"; };
-    const useKeyboardModality = (event: KeyboardEvent) => {
-      if (keyboardNavigationKeys.has(event.key)) root.dataset.inputModality = "keyboard";
-    };
-    root.dataset.inputModality = "pointer";
-    window.addEventListener("pointerdown", usePointerModality, true);
-    window.addEventListener("keydown", useKeyboardModality, true);
-    return () => {
-      window.removeEventListener("pointerdown", usePointerModality, true);
-      window.removeEventListener("keydown", useKeyboardModality, true);
-      delete root.dataset.inputModality;
-    };
-  }, []);
-
-  useLayoutEffect(() => {
-    const hash = readHashRoute().view;
-    if (hash === "introduction" || hash === "product" || hash === "home") window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
-  }, []);
-
-  useLayoutEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    document.documentElement.style.colorScheme = theme;
-    window.localStorage.setItem("teum-theme", theme);
-  }, [theme]);
-
-  useLayoutEffect(() => {
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    document.querySelector<HTMLElement>(".system-detail__scroll")?.scrollTo?.({ top: 0, behavior: "auto" });
-  }, [view]);
-
-  const select = (id: ViewId) => {
-    setView(id);
-    window.history.replaceState(null, "", id === "home" ? `${window.location.pathname}${window.location.search}` : `#${id}`);
-  };
-
-  useEffect(() => {
-    const onHashChange = () => {
-      const next = readHashRoute().view;
-      if (!next || next === "introduction" || next === "product" || next === "home") {
-        setView("home");
-        if (next) window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
-        return;
-      }
-      if (isPublicDocId(next) || next === "foundations" || next === "patterns" || foundationItems.some((item) => `foundation-${item.id}` === next) || components.some((item) => item.id === next) || patterns.some((pattern) => pattern.id === next)) {
-        setView(next as ViewId);
-      }
-    };
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
-  }, []);
-
-  return (
-    <TooltipProvider>
-      <UndoStackProvider>
-        {view === "home" ? <LandingPage theme={theme} onThemeChange={setTheme} onOpenDocumentation={() => select("installation")} onOpenComponents={() => select("button")} onOpenPatterns={() => select("patterns")} /> : <ConsolidatedDesignSystemMode view={view} onSelect={select} onHome={() => select("home")} theme={theme} onThemeChange={setTheme} />}
-        <Toaster />
-      </UndoStackProvider>
-    </TooltipProvider>
-  );
-}
-
 export function DocumentationApp({ view, onSelect, onHome, theme, onThemeChange }: {
   view: string;
   onSelect: (id: ViewId) => void;
@@ -1989,5 +1905,3 @@ export function DocumentationApp({ view, onSelect, onHome, theme, onThemeChange 
     </TooltipProvider>
   );
 }
-
-export default App;

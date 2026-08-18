@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "comparison",
+  "title": "Comparison",
+  "description": "Current, previous, and relative change in one compact semantic definition list.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@teum-pinned/teum-base",
+    "@teum-pinned/analytics"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/comparison.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/comparison.css\";\nimport { ArrowDown, ArrowUp, Minus } from \"@phosphor-icons/react\";\nimport type { HTMLAttributes } from \"react\";\nimport { formatAnalyticsValue, getPercentChange } from \"../../lib/analytics\";\nimport { cn } from \"../../lib/cn\";\n\nexport type ComparisonProps = HTMLAttributes<HTMLDListElement> & {\n  label: string;\n  current: number;\n  previous: number;\n  currentLabel?: string;\n  previousLabel?: string;\n  formatter?: (value: number) => string;\n  positiveDirection?: \"up\" | \"down\" | \"neutral\";\n};\n\nexport function Comparison({\n  label,\n  current,\n  previous,\n  currentLabel = \"Current\",\n  previousLabel = \"Previous\",\n  formatter = formatAnalyticsValue,\n  positiveDirection = \"neutral\",\n  className,\n  ...props\n}: ComparisonProps) {\n  const change = getPercentChange(current, previous);\n  const direction = current === previous ? \"flat\" : current > previous ? \"up\" : \"down\";\n  const sentiment = positiveDirection === \"neutral\" || direction === \"flat\" ? \"neutral\" : direction === positiveDirection ? \"positive\" : \"negative\";\n  const DirectionIcon = direction === \"up\" ? ArrowUp : direction === \"down\" ? ArrowDown : Minus;\n  const changeLabel = change === null ? \"No comparable change\" : `${Math.abs(change).toFixed(1)}% ${direction === \"up\" ? \"increase\" : direction === \"down\" ? \"decrease\" : \"change\"}`;\n  return (\n    <dl className={cn(\"teum-comparison\", className)} aria-label={label} {...props}>\n      <div className=\"teum-comparison__primary\"><dt>{currentLabel}</dt><dd>{formatter(current)}</dd></div>\n      <div className=\"teum-comparison__secondary\"><dt>{previousLabel}</dt><dd>{formatter(previous)}</dd></div>\n      <div className=\"teum-comparison__change\" data-direction={direction} data-sentiment={sentiment}>\n        <dt>Change</dt>\n        <dd><DirectionIcon aria-hidden=\"true\" />{change === null ? \"—\" : `${Math.abs(change).toFixed(1)}%`}<span className=\"teum-sr-only\">{changeLabel}</span></dd>\n      </div>\n    </dl>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/comparison.tsx"
+    },
+    {
+      "path": "registry/styles/components/comparison.css",
+      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-sr-only,\n.teum-sr-only:not(:focus):not(:active) {\n  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;\n}\n\n.teum-comparison {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  align-items: end;\n  gap: 12px 16px;\n  margin: 0;\n}\n\n.teum-comparison > div { display: grid; min-width: 0; gap: 3px; }\n\n.teum-comparison dt { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }\n\n.teum-comparison dd { margin: 0; color: var(--teum-fg-default); font-size: var(--teum-type-ui); font-variant-numeric: tabular-nums; font-weight: 570; }\n\n.teum-comparison__primary dd { font-size: 20px; letter-spacing: -.025em; }\n\n.teum-comparison__change dd { display: inline-flex; align-items: center; gap: 3px; }\n\n.teum-comparison__change { grid-column: 1 / -1; }\n\n.teum-comparison__change svg { width: 12px; height: 12px; }\n\n.teum-comparison__change[data-sentiment=\"negative\"] dd { color: var(--teum-fg-danger); }\n\n@media (max-width: 640px) {\n.teum-comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }\n\n.teum-comparison__change { grid-column: 1 / -1; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/comparison.css"
+    }
+  ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/comparison"
+    }
+  },
+  "type": "registry:component"
+}

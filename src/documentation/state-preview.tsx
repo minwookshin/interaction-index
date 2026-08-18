@@ -344,7 +344,7 @@ export function ComponentStatePreview({ id, state, index }: { id: string; state:
   const loading = has(normalized, "loading", "submitting", "saving");
   const error = has(normalized, "error", "invalid");
 
-  if (id === "button") return <Button disabled={disabled} loading={loading} leadingIcon={has(normalized, "leading") ? <Plus /> : undefined} trailingIcon={has(normalized, "trailing") ? <ArrowRight /> : undefined}>{has(normalized, "long") ? "Create and assign issue" : "Create issue"}</Button>;
+  if (id === "button") return <Button disabled={disabled} loading={loading} loadingLabel={loading ? "Creating" : undefined} leadingIcon={has(normalized, "leading") ? <Plus /> : undefined} trailingIcon={has(normalized, "trailing") ? <ArrowRight /> : undefined}>{has(normalized, "long") ? "Create and assign issue" : "Create issue"}</Button>;
   if (id === "icon-button") {
     if (has(normalized, "tooltip")) return <TooltipState state="keyboard open" />;
     if (has(normalized, "count")) return <span className="state-icon-count"><IconButton aria-label="Notifications"><Bell /></IconButton><small>3</small></span>;

@@ -60,11 +60,13 @@ describe("Teum Data contracts", () => {
 });
 
 describe("Teum Analytics contracts", () => {
-  it("defines nine bounded product primitives without pretending a chart engine is a product API", () => {
+  it("defines eleven bounded product primitives without pretending a chart engine is a product API", () => {
     expect(teumAnalyticsComponentContracts.map(({ id }) => id)).toEqual([
       "metric",
       "sparkline",
       "chart",
+      "donut-chart",
+      "heatmap",
       "comparison",
       "breakdown",
       "goal",
@@ -92,7 +94,7 @@ describe("Teum Analytics contracts", () => {
       "conversion-retention",
     ]);
     expect(teumAnalyticsRecipeContracts.find(({ id }) => id === "product-usage")?.invariants).toContain(
-      "Two charts share one active index.",
+      "Each chart owns its transient active point.",
     );
   });
 });

@@ -1,13 +1,8 @@
-/* Generated from src/styles.css. Do not edit directly. */
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
 @layer teum.tokens, teum.base, teum.components;
 
 @layer teum.components {
-.teum-sr-only,
-.teum-sr-only:not(:focus):not(:active) {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
-}
-
 .teum-undo-bar { display: flex; min-height: 48px; align-items: center; justify-content: space-between; gap: 12px; padding: 7px 8px 7px 11px; border: 1px solid var(--teum-inverse); border-radius: 8px; background: var(--teum-inverse); color: var(--teum-on-inverse); box-shadow: 0 12px 30px rgb(0 0 0 / 0.16); opacity: 1; transform: translateY(0); transition: opacity var(--teum-enter-duration) var(--teum-ease-out), transform var(--teum-enter-duration) var(--teum-ease-out); }
 
 @starting-style {

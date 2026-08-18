@@ -4,28 +4,28 @@
 
 | Contract | Verified source count |
 | --- | ---: |
-| Version | `0.1.0-rc.22` |
+| Version | `0.1.0-rc.29` |
 | Public components | 45 |
-| Product primitives | 15 |
-| Registry items | 72 |
-| Public exports | 345 |
+| Product primitives | 17 |
+| Registry items | 74 |
+| Public exports | 356 |
 | Semantic tokens | 145 |
 | Public routes | 69 |
-| Source tests | 203 |
-| Storybook contract runs | 102 |
-| Release visual baselines per platform | 330 |
+| Source tests | 237 |
+| Storybook contract runs | 104 |
+| Release visual baselines per platform | 332 |
 | Browser projects | 5 |
-| Browser matrix | 295 passed, 350 skipped |
-| Fresh quickstart consumer | passed in 15.5 seconds |
-| Adoption DX | 4 automated journeys, longest 17.5 seconds |
-| Package SSR and hydration | passed, 197 runtime exports, 0 recoverable errors |
-| Fresh Teum Analytics consumer | passed in 11.4 seconds |
-| Fresh Product Patterns consumer | passed in 14.6 seconds |
+| Browser matrix | 353 passed, 352 skipped |
+| Fresh quickstart consumer | passed in 8.7 seconds |
+| Adoption DX | 4 automated journeys, longest 15.9 seconds |
+| Package SSR and hydration | passed, 201 runtime exports, 0 recoverable errors |
+| Fresh Teum Analytics consumer | passed in 10.5 seconds |
+| Fresh Product Patterns consumer | passed in 13.4 seconds |
 | Accessibility matrix | 55 passed, 30 intentional skips, 10 required contracts |
-| Landing initial JavaScript | 78.8 kB gzip |
-| Heaviest component route | 420.3 kB JavaScript gzip |
-| Local production-preview LCP | 228 ms landing, 488 ms documentation |
-| Local interaction timing | 7 ms Shared Detail, 10 ms Dialog |
+| Landing initial JavaScript | 63.1 kB gzip |
+| Heaviest component route | 417.4 kB JavaScript gzip |
+| Local production-preview LCP | 412 ms landing, 424 ms documentation |
+| Local interaction timing | 5 ms Shared Detail, 8 ms Dialog |
 
 ## Route ownership
 
@@ -40,7 +40,7 @@
 - Public routes: 138 light/dark snapshots per platform.
 - Component Product specimens: 90 snapshots per platform.
 - Component State contracts: 90 snapshots per platform.
-- Analytics recipes: 6 snapshots per platform.
+- Analytics recipes: 8 snapshots per platform.
 - Product Patterns: 6 snapshots per platform.
 - Snapshot platforms: darwin, linux.
 

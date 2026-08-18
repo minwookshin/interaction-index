@@ -4,12 +4,12 @@ type PublicRoute = readonly [route: string, heading: string, group: "docs" | "fo
 
 const documentationRoutes: readonly PublicRoute[] = [
   ["installation", "Installation", "docs"],
-  ["choosing-components", "Choosing components", "docs"],
-  ["product-pilot", "Teum Data", "docs"],
-  ["analytics", "Teum Analytics", "docs"],
-  ["product-patterns", "Product Patterns", "docs"],
-  ["agent-native", "Agent integration", "docs"],
-  ["component-status", "Component status", "docs"],
+  ["choosing-components", "Core", "docs"],
+  ["product-pilot", "Data", "docs"],
+  ["analytics", "Analytics", "docs"],
+  ["product-patterns", "Recipes", "docs"],
+  ["agent-native", "For coding agents", "docs"],
+  ["component-status", "Status", "docs"],
   ["accessibility", "Accessibility", "docs"],
   ["browser-support", "Browser support", "docs"],
   ["security", "Security", "docs"],
@@ -27,7 +27,7 @@ const foundationRoutes: readonly PublicRoute[] = [
 ];
 
 const patternRoutes: readonly PublicRoute[] = [
-  ["patterns", "Interaction patterns", "patterns"],
+  ["patterns", "Patterns", "patterns"],
   ["edit-in-place", "Edit in place", "patterns"],
   ["find-and-act", "Find and act", "patterns"],
   ["preserve-context", "Preserve context", "patterns"],

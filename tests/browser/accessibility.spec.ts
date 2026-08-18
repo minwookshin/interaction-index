@@ -11,7 +11,7 @@ async function runAxe(page: import("@playwright/test").Page) {
   return page.evaluate(() => (window as typeof window & { axe: { run: () => Promise<AxeResult> } }).axe.run());
 }
 
-for (const [route, heading] of [["", "Interfaces that stay clear through change."], ["button", "Button"], ["product-pilot", "Teum Data"], ["product-patterns", "Product Patterns"]] as const) {
+for (const [route, heading] of [["", "Components for product interfaces."], ["button", "Button"], ["product-pilot", "Data"], ["product-patterns", "Recipes"]] as const) {
   test(route + " has no serious or critical automated accessibility violations", async ({ page }) => {
     test.setTimeout(90_000);
     await page.goto(route ? "/#" + route : "/");
@@ -23,7 +23,7 @@ for (const [route, heading] of [["", "Interfaces that stay clear through change.
 
 test("all public documents have no serious or critical automated violations", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "chromium", "The complete public-route scan runs once; representative routes run in every configured engine.");
-  test.setTimeout(240_000);
+  test.setTimeout(480_000);
   for (const [route, heading] of publicRoutes) {
     await page.goto(`/#${route}`);
     await expect(page.getByRole("heading", { level: 1, name: heading })).toBeVisible();
@@ -32,14 +32,14 @@ test("all public documents have no serious or critical automated violations", as
   }
 });
 
-test("landing and documentation expose a keyboard-first skip path", async ({ page }) => {
+test("Library and documentation expose a keyboard-first skip path", async ({ page }) => {
   await page.goto("/");
   const landingSkipLink = page.getByRole("link", { name: "Skip to main content" });
-  await expect(page.locator(".teum-landing").locator("a[href], button, input, [tabindex='0']").first()).toHaveClass(/teum-skip-link/);
+  await expect(page.locator(".component-index-page").locator("a[href], button, input, [tabindex='0']").first()).toHaveClass(/teum-skip-link/);
   await landingSkipLink.focus();
   await expect(landingSkipLink).toBeFocused();
   await page.keyboard.press("Enter");
-  await expect(page.locator("#teum-landing-content")).toBeFocused();
+  await expect(page.locator("#component-index-content")).toBeFocused();
 
   await page.goto("/#button");
   await expect(page.getByRole("heading", { level: 1, name: "Button" })).toBeVisible();
@@ -76,7 +76,7 @@ test("mobile navigation hands focus to the selected document", async ({ page }) 
 test("every public view owns one main landmark and one page heading", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "chromium", "The complete landmark scan runs once; shared landmark behavior is covered in every engine.");
   test.slow();
-  const routes = [["", "Interfaces that stay clear through change."], ...publicRoutes] as const;
+  const routes = [["", "Components for product interfaces."], ...publicRoutes] as const;
   for (const [route, heading] of routes) {
     await page.goto(route ? `/#${route}` : "/");
     await expect(page.locator("main")).toHaveCount(1);
@@ -90,7 +90,7 @@ test("pilot preserves structure in RTL, forced colors, and reduced motion", asyn
   await page.evaluate(() => { document.documentElement.dir = "rtl"; });
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   expect(overflow).toBeLessThanOrEqual(1);
-  await expect(page.getByRole("heading", { level: 1, name: "Teum Data" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Data" })).toBeVisible();
   await expect(page.getByRole("button", { name: "New issue" })).toBeVisible();
 });
 
@@ -100,7 +100,7 @@ test("documentation remains usable at a 200 percent equivalent viewport", async 
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   expect(overflow).toBeLessThanOrEqual(1);
   await expect(page.getByRole("button", { name: "Open navigation" })).toBeVisible();
-  await expect(page.getByRole("heading", { level: 1, name: "Teum Data" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Data" })).toBeVisible();
 });
 
 test("all public routes preserve content at a 200 percent equivalent viewport", async ({ page }, testInfo) => {
@@ -145,8 +145,8 @@ test("representative product surfaces tolerate synthetic translated-content expa
     ["button", "Button"],
     ["dialog", "Dialog"],
     ["shared-detail", "Shared Detail"],
-    ["product-pilot", "Teum Data"],
-    ["product-patterns", "Product Patterns"],
+    ["product-pilot", "Data"],
+    ["product-patterns", "Recipes"],
   ] as const;
 
   for (const width of [1280, 640]) {

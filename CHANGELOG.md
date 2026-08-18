@@ -2,6 +2,96 @@
 
 This project follows Semantic Versioning once a public API is released. During `0.x`, documented APIs may still change; every breaking pre-release change must be called out here.
 
+## 0.1.0-rc.29 — 2026-08-18
+
+### Refined
+
+- Expanded the removable Badge hit area to the 24px mobile target floor without changing its compact visual silhouette.
+
+### Quality
+
+- Updated browser and accessibility contracts to the current Library and component-dialog labels.
+- Preserved `0.1.0-rc.28` byte-for-byte and opened a new candidate so the registry source contains the mobile touch fix.
+
+## 0.1.0-rc.28 — 2026-08-18
+
+### Refined
+
+- Aligned pointer press feedback with the shared motion contract and kept keyboard-opened surfaces free of decorative travel.
+- Synchronized the public `whatiuse` identity, homepage metadata, and social preview with the current product surface.
+
+### Quality
+
+- Preserved `0.1.0-rc.27` byte-for-byte after the immutable registry gate detected source drift and opened a new candidate instead of overwriting it.
+- Rebuilt release evidence from the current source while keeping publication and external-adoption claims locked.
+
+## 0.1.0-rc.27 — 2026-08-18
+
+### Refined
+
+- Centered the Calendar & Date Picker field and its trigger-aligned calendar surface in the public catalog.
+- Replaced the single upserted Toast preview with a bounded three-item stack that collapses by default and expands on hover or focus.
+- Tightened Toast motion to short interruptible transform and opacity transitions with an opacity-only reduced-motion path.
+
+### Quality
+
+- Added focused assertions for unique event identities while keeping Undo scoped to its originating Toast.
+- Preserved every earlier versioned registry candidate byte-for-byte and opened a new local candidate for this interaction polish.
+- Kept deployment, tagging, GitHub Release creation, domain changes, and npm publication outside this pass.
+
+## 0.1.0-rc.26 — 2026-08-18
+
+### Refined
+
+- Reworked all 40 public catalog previews around truthful component-owned interactions, stable specimen geometry, and direct repeat paths.
+- Tightened control, overlay, navigation, feedback, and data-display composition across light, dark, and compact layouts.
+- Kept the Toast preview to one upserted feedback channel and removed stale action content between variants.
+
+### Quality
+
+- Added focused interaction tests for controls, overlays, navigation, disclosure, and feedback previews.
+- Preserved every earlier versioned registry candidate byte-for-byte and opened a new local candidate for this catalog pass.
+- Kept deployment, tagging, GitHub Release creation, domain changes, and npm publication outside this pass.
+
+## 0.1.0-rc.25 — 2026-08-17
+
+### Fixed
+
+- Raised quiet-button hit geometry to the 28px compact-control token on coarse pointers, eliminating a sub-pixel Chromium target-floor failure without changing desktop density.
+
+### Quality
+
+- Preserved the rejected `0.1.0-rc.24` preview byte-for-byte and opened a new immutable local candidate for the touch correction.
+- Kept deployment, tagging, GitHub Release creation, domain changes, and npm publication outside this pass.
+
+## 0.1.0-rc.24 — 2026-08-17
+
+### Fixed
+
+- Restored the shared token and accessibility foundation in Storybook so component contracts use the same 28/32/36px control geometry as adopters.
+- Increased the Search Input clear action to a non-shrinking 24px target after the WCAG 2.2 target-size gate caught the previous 22px control.
+- Replaced the remaining mutable component-index and interaction-demo install commands with exact CLI and immutable registry URLs.
+
+### Quality
+
+- Preserved `0.1.0-rc.23` byte-for-byte and opened a new local candidate for the accessibility correction.
+- Rejected this preview after mobile Chromium exposed a sub-pixel 24px target-floor failure on a quiet button; `0.1.0-rc.25` supersedes it.
+- Kept deployment, tagging, GitHub Release creation, domain changes, and npm publication outside this pass.
+
+## 0.1.0-rc.23 — 2026-08-17
+
+### Added
+
+- Added Donut Chart and Heatmap as source-owned Analytics components with semantic text fallbacks, keyboard inspection, reduced-motion behavior, registry artifacts, and clean-consumer coverage.
+- Expanded Chart with line, area, bar, and stacked-bar renderers plus explicit loading, empty, and error contracts.
+- Rebuilt the public component index as a responsive 4/3/2/1-column catalog of 45 square, live component previews.
+
+### Refined
+
+- Simplified the documentation shell and collection navigation while preserving the persistent workspace structure.
+- Tightened component preview geometry, overlay focus treatment, dark-theme ownership, and Analytics/Product Pattern visual contracts.
+- Kept the npm package private and this candidate local; no deployment or publication is part of this release-candidate pass.
+
 ## 0.1.0-rc.22 — 2026-08-17
 
 ### Public beta

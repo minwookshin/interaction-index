@@ -1,0 +1,57 @@
+.teum-breadcrumb-preview {
+  display: grid;
+  min-height: 60px;
+  place-items: center;
+  align-content: center;
+  gap: 8px;
+}
+
+.teum-breadcrumb-preview .teum-button {
+  min-height: 24px;
+}
+
+.teum-filter-collapsible-preview .teum-collapsible__content {
+  display: grid;
+  gap: 5px;
+}
+
+.teum-filter-collapsible-preview .teum-collapsible__content span {
+  color: var(--teum-fg-muted);
+  font-size: var(--teum-type-metadata);
+}
+
+.teum-export-progress-preview {
+  display: grid;
+  width: min(300px, 100%);
+  justify-items: end;
+  gap: 10px;
+}
+
+.teum-export-progress-preview .teum-progress {
+  width: 100%;
+}
+
+.teum-export-progress-preview .teum-button {
+  min-width: 78px;
+}
+
+.teum-alert-preview {
+  display: grid;
+  width: min(460px, 100%);
+  min-height: 54px;
+  place-items: center;
+}
+
+.teum-alert-preview .teum-alert {
+  width: 100%;
+}
+
+.teum-empty-state-result {
+  width: min(420px, 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .teum-export-progress-preview .teum-progress__indicator {
+    transition-duration: .01ms;
+  }
+}

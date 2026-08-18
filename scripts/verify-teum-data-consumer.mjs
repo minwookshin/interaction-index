@@ -101,6 +101,14 @@ try {
     maxBuffer: 32 * 1024 * 1024,
     timeout: 120_000,
   });
+  if (process.env.TEUM_REGISTRY_TEMPLATE) {
+    await exec(executable, ["registry", "add", `@teum=${template}`, "-c", fixture], {
+      cwd: root,
+      env: { ...process.env, CI: "1" },
+      maxBuffer: 32 * 1024 * 1024,
+      timeout: 120_000,
+    });
+  }
   const install = await exec(executable, ["add", "@teum-pinned/teum-data", "-y", "-c", fixture], {
     cwd: root,
     env: { ...process.env, CI: "1" },

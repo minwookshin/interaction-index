@@ -54,7 +54,7 @@ const components = registry.items.filter((item) => installableTypes.has(item.typ
 });
 
 const contract = {
-  $schema: "https://teum.minwookshin.com/agent/teum-agent.schema.json",
+  $schema: "https://whatiuse.minwookshin.com/agent/teum-agent.schema.json",
   schemaVersion: 1,
   version: packageJson.version,
   generatedBy: "scripts/build-agent-contract.mjs",

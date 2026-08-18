@@ -1,4 +1,4 @@
-/* Generated from src/styles.css. Do not edit directly. */
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
 @layer teum.tokens, teum.base, teum.components;
 
@@ -11,6 +11,53 @@
   border-radius: 12px;
   background: var(--teum-bg-surface);
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--teum-fg-default) 7%, transparent), var(--teum-shadow-float);
+  container-type: inline-size;
+}
+
+.teum-analytics-gallery {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--teum-bg-surface);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--teum-fg-default) 7%, transparent), var(--teum-shadow-float);
+  container-type: inline-size;
+}
+
+.teum-analytics-gallery__header { display: flex; min-width: 0; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 20px; }
+
+.teum-analytics-gallery__header > div { display: grid; min-width: 0; gap: 2px; }
+
+.teum-analytics-gallery__header h3 { margin: 0; color: var(--teum-fg-default); font-size: 17px; font-weight: 620; letter-spacing: -.026em; }
+
+.teum-analytics-gallery__header p { margin: 2px 0 0; color: var(--teum-fg-muted); font-size: var(--teum-type-metadata); line-height: 1.45; }
+
+.teum-analytics-gallery__metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 0 20px; }
+
+.teum-analytics-gallery__charts,
+.teum-analytics-gallery__details { display: grid; min-width: 0; gap: 20px; padding: 20px; }
+
+.teum-analytics-gallery__charts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.teum-analytics-gallery__details { grid-template-columns: 1fr; }
+
+.teum-analytics-gallery__charts { padding-bottom: 4px; }
+
+.teum-analytics-gallery__details { align-items: start; }
+
+@container (max-width: 900px) {
+.teum-analytics-gallery__charts,
+.teum-analytics-gallery__details { grid-template-columns: 1fr; }
+}
+
+@container (max-width: 640px) {
+.teum-analytics-gallery__header { padding: 16px; }
+
+.teum-analytics-gallery__metrics { grid-template-columns: 1fr; padding-inline: 16px; }
+
+.teum-analytics-gallery__charts,
+.teum-analytics-gallery__details { padding: 16px; }
 }
 
 .teum-analytics-recipe__header {
@@ -24,25 +71,15 @@
 
 .teum-analytics-recipe__header > div:first-child { display: grid; min-width: 0; gap: 2px; }
 
-.teum-analytics-recipe__header > div:first-child > span { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
-
 .teum-analytics-recipe__header h3 { margin: 0; color: var(--teum-fg-default); font-size: 17px; font-weight: 620; letter-spacing: -.026em; }
 
 .teum-analytics-recipe__header p { margin: 2px 0 0; color: var(--teum-fg-muted); font-size: var(--teum-type-metadata); line-height: 1.45; }
 
 .teum-analytics-recipe__header > small { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; }
 
-.teum-analytics-recipe__metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 0 20px; background: color-mix(in srgb, var(--teum-bg-stage) 42%, transparent); }
+.teum-analytics-recipe__metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 0 20px; }
 
 .teum-analytics-recipe__metrics--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
-.teum-analytics-recipe__metrics > .teum-metric { padding-inline: 16px; }
-
-.teum-analytics-recipe__metrics > .teum-metric:first-child { padding-left: 0; }
-
-.teum-analytics-recipe__metrics > .teum-metric:last-child { padding-right: 0; }
-
-.teum-analytics-recipe__metrics > .teum-metric + .teum-metric { border-left: 1px solid var(--teum-separator); }
 
 .teum-analytics-recipe__primary,
 .teum-analytics-recipe__charts,
@@ -85,22 +122,19 @@
 
 .teum-analytics-recipe__records .teum-data-table__footer { display: none; }
 
-@media (max-width: 920px) {
+@container (max-width: 900px) {
 .teum-analytics-recipe__primary,
+.teum-analytics-recipe__charts,
 .teum-analytics-recipe__conversion { grid-template-columns: 1fr; }
 
 .teum-analytics-recipe__aside { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
-@media (max-width: 700px) {
+@container (max-width: 700px) {
 .teum-analytics-recipe__header { padding-inline: 16px; }
 
 .teum-analytics-recipe__metrics,
 .teum-analytics-recipe__metrics--two { grid-template-columns: 1fr; padding-inline: 16px; }
-
-.teum-analytics-recipe__metrics > .teum-metric { padding-inline: 0; }
-
-.teum-analytics-recipe__metrics > .teum-metric + .teum-metric { border-top: 1px solid var(--teum-separator); border-left: 0; }
 
 .teum-analytics-recipe__primary,
 .teum-analytics-recipe__charts,

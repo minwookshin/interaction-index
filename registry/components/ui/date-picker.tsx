@@ -89,7 +89,7 @@ export function DatePicker<T extends DateValue>({
       </Group>
       {description && <Text slot="description" className="teum-field__description">{description}</Text>}
       {errorMessage && <Text slot="errorMessage" className="teum-field__error">{errorMessage}</Text>}
-      <Popover className="teum-date-picker__popover" placement="bottom start" data-layer="flyout">
+      <Popover className="teum-date-picker__popover" placement="bottom" data-layer="flyout">
         <AriaDialog className="teum-date-picker__dialog">
           <Calendar />
         </AriaDialog>

@@ -1,7 +1,7 @@
 {
-  "$schema": "https://teum.minwookshin.com/agent/teum-agent.schema.json",
+  "$schema": "https://whatiuse.minwookshin.com/agent/teum-agent.schema.json",
   "schemaVersion": 1,
-  "version": "0.1.0-rc.22",
+  "version": "0.1.0-rc.29",
   "generatedBy": "scripts/build-agent-contract.mjs",
   "system": {
     "schemaVersion": 1,
@@ -1767,6 +1767,30 @@
       "packageDependencies": []
     },
     {
+      "id": "donut-chart",
+      "title": "Donut Chart",
+      "type": "registry:component",
+      "description": "A small part-to-whole chart with shared pointer and keyboard inspection, visible shares, and a semantic table.",
+      "registryItem": "@teum/donut-chart",
+      "registryDependencies": [
+        "@teum/teum-base",
+        "@teum/analytics"
+      ],
+      "packageDependencies": []
+    },
+    {
+      "id": "heatmap",
+      "title": "Heatmap",
+      "type": "registry:component",
+      "description": "An interactive semantic matrix for repeated intensity patterns with explicit values and two-dimensional keyboard navigation.",
+      "registryItem": "@teum/heatmap",
+      "registryDependencies": [
+        "@teum/teum-base",
+        "@teum/analytics"
+      ],
+      "packageDependencies": []
+    },
+    {
       "id": "comparison",
       "title": "Comparison",
       "type": "registry:component",
@@ -1886,8 +1910,10 @@
         "@teum/cohort",
         "@teum/comparison",
         "@teum/data-table",
+        "@teum/donut-chart",
         "@teum/funnel",
         "@teum/goal",
+        "@teum/heatmap",
         "@teum/metric",
         "@teum/segmented-control",
         "@teum/sparkline",
@@ -2128,7 +2154,7 @@
       "id": "product-usage",
       "title": "Product Usage",
       "domain": "analytics",
-      "intent": "Connect active usage, feature adoption, and release events across synchronized views.",
+      "intent": "Connect active usage, feature adoption, and release events without coupling transient inspection.",
       "signals": [
         "product usage",
         "feature adoption",
@@ -2147,17 +2173,17 @@
         "Timeline"
       ],
       "state": [
-        "shared active index",
+        "local active index",
         "visible series",
         "selected release"
       ],
       "rules": [
-        "Synchronize charts through one active index.",
+        "Keep transient pointer state local to each chart.",
         "Keep date order stable when series are filtered.",
-        "Map each release to one stable annotation."
+        "Map each explicit release selection to one stable annotation."
       ],
       "forbidden": [
-        "Do not give synchronized charts separate pointer state.",
+        "Do not mirror hover tooltips across adjacent charts.",
         "Do not remove textual values when a series is hidden.",
         "Do not animate high-frequency inspection."
       ]

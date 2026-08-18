@@ -13,6 +13,7 @@ export const componentApi: Record<ComponentDocId, readonly ApiRow[]> = {
     { name: "variant", type: '"primary" | "secondary" | "ghost" | "quiet"', defaultValue: '"secondary"', description: "Sets the action hierarchy and visual emphasis." },
     { name: "size", type: '"small" | "medium" | "large"', defaultValue: '"medium"', description: "Maps to 28, 32, or 36 pixel control geometry." },
     { name: "loading", type: "boolean", defaultValue: "false", description: "Preserves label geometry, exposes aria-busy, and keeps focus." },
+    { name: "loadingLabel", type: "ReactNode", defaultValue: "—", description: "Pairs progress with a short status label without changing geometry." },
     { name: "leadingIcon", type: "ReactNode", defaultValue: "—", description: "Places a decorative or semantic icon before the label." },
     { name: "trailingIcon", type: "ReactNode", defaultValue: "—", description: "Places an icon after the label without changing alignment." },
     { name: "disabled", type: "boolean", defaultValue: "false", description: "Prevents activation and exposes the disabled state." },
