@@ -16,7 +16,7 @@ The machine-readable source for current counts is [`release/evidence.json`](./re
 | Component breadth | 45 documented components across controls, overlays, navigation, feedback, data, and interaction | Enough for alpha |
 | Documentation | Preview, code, recipes, states, usage, accessibility, API, public project guidance | Strong alpha candidate |
 | Distribution | Public GitHub source, granular shadcn artifacts, an adopter-side quickstart, and a private package candidate with client-boundary, Node SSR, and clean hydration evidence | Public path configured; npm remains private and unpublished |
-| Automated behavior | 237 Vitest checks plus a five-project desktop and mobile Playwright matrix and a nested modal/flyout stack assertion | Strong baseline |
+| Automated behavior | 238 Vitest checks plus a five-project desktop and mobile Playwright matrix and a nested modal/flyout stack assertion | Strong baseline |
 | Accessibility | Versioned five-project evidence for 69 routes, skip paths, route announcements, focus handoff, axe, RTL, forced colors, reduced motion, reflow, and content expansion; Chrome/Safari and VoiceOver anchors | Edge, physical touch, manual OS contrast/transparency modes, human translation/RTL, independent review, and full-catalog manual coverage remain |
 | Visual stability | 332 release-level visual baselines per platform across all public routes, every Core Product/State contract, four Analytics surfaces, and three Product Patterns | macOS and Linux complete |
 | Adoption | Internal Product pilot composes the public API; no shipped external consumer | Composition proven, adoption unproven |

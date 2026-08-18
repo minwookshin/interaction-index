@@ -50,7 +50,7 @@ The generated baselines live beside their Playwright specifications in `tests/br
 
 ## Local candidate evidence
 
-- The `0.1.0-rc.29` local gates cover frozen contracts, 237 unit tests, 104 Storybook interaction tests, all 332 visual baselines, registry install and upgrade checks, private package consumers, the public-API-only dogfood app, the Sites build contract, and performance budgets.
+- The `0.1.0-rc.29` local gates cover frozen contracts, 238 unit tests, 104 Storybook interaction tests, all 332 visual baselines, registry install and upgrade checks, private package consumers, the public-API-only dogfood app, the Sites build contract, and performance budgets.
 - `npm run test:browsers:evidence` passed all 353 applicable checks across desktop Chromium, Firefox, WebKit, mobile Chromium, and mobile WebKit; 352 project-inapplicable combinations were explicitly skipped.
 - `npm run test:clean-room` reproduced the current candidate snapshot after a fresh `npm ci`, then repeated build, registry, package, consumer, upgrade, dogfood, Sites, and performance gates without workspace caches. A clean commit is still required before assembling a distributable RC artifact.
 - `npm audit` reported zero known vulnerabilities for the verified lockfile on 2026-08-17.

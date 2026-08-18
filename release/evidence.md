@@ -11,7 +11,7 @@
 | Public exports | 356 |
 | Semantic tokens | 145 |
 | Public routes | 69 |
-| Source tests | 237 |
+| Source tests | 238 |
 | Storybook contract runs | 104 |
 | Release visual baselines per platform | 332 |
 | Browser projects | 5 |

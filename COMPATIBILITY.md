@@ -25,7 +25,7 @@ The lockfile is the reproducible source for every direct and transitive version 
 ## Verified public contract
 
 - 45 frozen public components, 356 compiler-extracted exports, and 145 semantic tokens, plus 17 additive product components across Teum Data and Teum Analytics.
-- 237 source tests across component, documentation, keyboard, state, accessibility, data, analytics, Product Pattern, and agent-contract behavior.
+- 238 source tests across component, documentation, keyboard, state, accessibility, data, analytics, Product Pattern, and agent-contract behavior.
 - 104 light/dark Storybook contract runs: 90 Core Product/State checks, eight Analytics surface checks, and six Product Pattern checks.
 - 332 visual baselines: 138 full-viewport public-route screenshots, 180 isolated Core Product/State screenshots, eight Analytics surface screenshots, and six Product Pattern screenshots.
 - 69 public routes: 1 landing page, 13 documentation pages, 5 foundation routes, 45 component routes, and 5 pattern routes.

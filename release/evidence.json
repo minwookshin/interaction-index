@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/build-evidence.mjs",
-  "generatedAt": "2026-08-18T18:40:08.253Z",
+  "generatedAt": "2026-08-18T23:26:43.107Z",
   "release": {
     "name": "teum",
     "version": "0.1.0-rc.29",
@@ -25,7 +25,7 @@
     "patterns": 5
   },
   "automation": {
-    "sourceTests": 237,
+    "sourceTests": 238,
     "storybookContractRuns": 104,
     "browserProjects": [
       "chromium",
