@@ -10,7 +10,7 @@ test("Analytics exposes one renderer family and three complete product recipes",
   await expect(page.getByRole("region", { name: "SaaS Overview recipe" })).toBeVisible();
   await expect(page.getByRole("region", { name: "Product Usage recipe" })).toBeVisible();
   await expect(page.getByRole("region", { name: "Conversion and Retention recipe" })).toBeVisible();
-  await expect(page.getByRole("table", { name: "Teum Analytics product primitives" })).toBeVisible();
+  await expect(page.getByRole("table", { name: "whatiuse Analytics product primitives" })).toBeVisible();
   await expect(page.getByText("@teum-pinned/teum-analytics", { exact: false })).toBeVisible();
 });
 
