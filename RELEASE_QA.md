@@ -16,7 +16,7 @@ This document records the reviewed visual, interaction, and distribution evidenc
 
 The canonical viewport is 1280 x 720 CSS pixels in Chromium with Inter loaded, animation disabled for capture, and reduced motion enabled for deterministic screenshots.
 
-The complete `rc.29` candidate matches the reviewed macOS visual set. Existing Linux Core baselines remain committed, but the newer documentation, Analytics, and Product Patterns pairs still require Linux CI capture and review; macOS images are not reused as Linux evidence.
+The complete `rc.29` candidate has platform-specific macOS and Linux visual sets. Each platform owns 332 release-level baselines, plus eight focused browser captures outside the release-level count. The Linux images were generated in the reviewed Linux CI image and inspected as Linux output; macOS raster files were not reused as Linux evidence.
 
 | Surface | Coverage | Evidence |
 | --- | ---: | --- |

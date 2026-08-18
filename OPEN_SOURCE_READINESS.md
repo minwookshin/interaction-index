@@ -18,7 +18,7 @@ The machine-readable source for current counts is [`release/evidence.json`](./re
 | Distribution | Public GitHub source, granular shadcn artifacts, an adopter-side quickstart, and a private package candidate with client-boundary, Node SSR, and clean hydration evidence | Public path configured; npm remains private and unpublished |
 | Automated behavior | 237 Vitest checks plus a five-project desktop and mobile Playwright matrix and a nested modal/flyout stack assertion | Strong baseline |
 | Accessibility | Versioned five-project evidence for 69 routes, skip paths, route announcements, focus handoff, axe, RTL, forced colors, reduced motion, reflow, and content expansion; Chrome/Safari and VoiceOver anchors | Edge, physical touch, manual OS contrast/transparency modes, human translation/RTL, independent review, and full-catalog manual coverage remain |
-| Visual stability | 332 release-level visual baselines per platform across all public routes, every Core Product/State contract, four Analytics surfaces, and three Product Patterns | macOS complete; Linux additions pending review |
+| Visual stability | 332 release-level visual baselines per platform across all public routes, every Core Product/State contract, four Analytics surfaces, and three Product Patterns | macOS and Linux complete |
 | Adoption | Internal Product pilot composes the public API; no shipped external consumer | Composition proven, adoption unproven |
 | Governance | MIT, templates, ownership, conduct, security, support, migration and release policies, release-candidate workflow | Public repository, Issues, and private vulnerability reporting configured |
 

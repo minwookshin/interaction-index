@@ -1,6 +1,6 @@
 # RC external gates
 
-The local `0.1.0-rc.22` artifact may be assembled from a clean commit when automated verification passes. A stable compatibility promise or npm publication remains blocked until the applicable external gates below have dated evidence.
+The local `0.1.0-rc.29` artifact may be assembled from a clean commit when automated verification passes. A stable compatibility promise or npm publication remains blocked until the applicable external gates below have dated evidence.
 
 These are environment gates, not hidden implementation TODOs. Each gate names what local automation already proves and what still requires the real platform.
 
@@ -57,13 +57,13 @@ These are environment gates, not hidden implementation TODOs. Each gate names wh
 
 **Pass condition:** content remains understandable and operable with no semantic direction error or concealed required action.
 
-## 5. Linux Analytics and Product Patterns visual baselines
+## 5. Linux visual baselines — satisfied
 
-**Current evidence:** the complete `rc.21` route, Core specimen, Analytics recipe, and Product Patterns set is reviewed on macOS. Linux retains the earlier Core baselines but is missing the newest documentation pairs plus the Analytics and Product Patterns documentation and recipe pairs.
+**Current evidence:** GitHub Actions run `32170428449` generated the complete Linux set in the project CI image on 2026-08-18. The artifact contains 340 Linux PNGs: 332 release-level baselines and eight focused browser captures. Its paths, file types, uniqueness, and counts were validated; representative landing, documentation, Core, Analytics light/dark, and Product Pattern captures were visually inspected. macOS raster output was not reused.
 
-**Required external run:** run the catalog, Analytics, and Product Patterns Storybook visual suites in the reviewed Linux CI image, inspect the new captures, and commit the platform-specific files only after approval.
+**Ongoing release check:** protected-branch CI reruns the catalog, Analytics, and Product Patterns visual suites against these committed Linux baselines.
 
-**Pass condition:** 138 public-route and 192 isolated Storybook snapshots exist and pass for Linux without copying macOS raster output.
+**Pass condition:** 138 public-route and 194 isolated Storybook snapshots exist and pass for Linux without copying macOS raster output.
 
 ## Evidence record
 
@@ -71,7 +71,7 @@ Copy this block for every external run:
 
 ```text
 Gate:
-Candidate version: 0.1.0-rc.22
+Candidate version: 0.1.0-rc.29
 Candidate SHA-256:
 Date:
 Tester:
