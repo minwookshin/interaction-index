@@ -123,7 +123,7 @@ function AnalyticsPreview() {
 export function LandingCollectionPreview() {
   const [active, setActive] = useState<CollectionId>("core");
 
-  return <Tabs render={<section />} className="landing-collection-preview" aria-label="Teum component collections" value={active} onValueChange={(value) => setActive(value as CollectionId)}>
+  return <Tabs render={<section />} className="landing-collection-preview" aria-label="whatiuse component collections" value={active} onValueChange={(value) => setActive(value as CollectionId)}>
     <header className="landing-collection-preview__header">
       <TabsList aria-label="Component collections">{collections.map((collection) => <TabsTrigger value={collection.id} key={collection.id}>{collection.label}</TabsTrigger>)}</TabsList>
     </header>

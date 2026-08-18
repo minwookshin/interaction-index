@@ -37,22 +37,18 @@ describe("design system workspace", () => {
     expect(screen.queryByRole("complementary", { name: "Design system navigation" })).not.toBeInTheDocument();
   });
 
-  it("keeps ownership visible in the Library and returns home from the text wordmark", async () => {
-    const user = userEvent.setup();
+  it("keeps ownership visible while the text wordmark remains inert", () => {
     window.history.replaceState(null, "", "#components");
     const { container } = render(<App />);
 
     expect(screen.getByRole("link", { name: "made by minwook" })).toHaveAttribute("href", "https://www.minwookshin.com/");
     expect(screen.getByRole("link", { name: "MIT license" })).toHaveAttribute("href", "#licensing");
-    const wordmark = screen.getByRole("link", { name: "whatiuse home" });
+    const wordmark = container.querySelector<HTMLElement>(".whatiuse-wordmark");
+    expect(wordmark).not.toBeNull();
     expect(wordmark).toHaveTextContent(/^whatiuse$/);
-    expect(wordmark.querySelector("svg")).toBeNull();
-
-    await user.click(wordmark);
-
-    expect(window.location.hash).toBe("");
-    expect(screen.getByRole("heading", { level: 1, name: "Components for product interfaces." })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "made by minwook" })).toHaveAttribute("href", "https://www.minwookshin.com/");
+    expect(wordmark?.tagName).toBe("DIV");
+    expect(wordmark).not.toHaveAttribute("href");
+    expect(screen.queryByRole("link", { name: "whatiuse home" })).not.toBeInTheDocument();
     expect(container.querySelector(".whatiuse-wordmark svg")).toBeNull();
   });
 
@@ -234,7 +230,7 @@ describe("design system workspace", () => {
 
     const actions = screen.getByRole("banner", { name: "Workspace actions" });
     const catalog = screen.getByRole("region", { name: "Component catalog" });
-    expect(actions).not.toHaveTextContent("Teum");
+    expect(actions).toHaveTextContent("whatiuse");
     expect(actions).not.toHaveTextContent("Components");
     expect(screen.queryByText("Alpha")).not.toBeInTheDocument();
     expect(within(catalog).getByRole("link", { name: "Button" })).toHaveAttribute("aria-current", "page");
@@ -243,13 +239,17 @@ describe("design system workspace", () => {
     expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("teum");
   });
 
-  it("keeps GitHub, documentation, and theme icon actions in the documentation top bar", () => {
-    render(<App />);
+  it("keeps a Library return, centered identity, GitHub, and theme in the documentation header", () => {
+    const { container } = render(<App />);
 
     const outline = screen.getByRole("complementary", { name: "Page outline" });
+    const headerActions = container.querySelector(".system-topbar__actions");
     expect(screen.queryByRole("button", { name: "Copy page link" })).not.toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "View Teum on GitHub" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Open documentation" })).toHaveAttribute("href", "#installation");
+    expect(screen.getByRole("link", { name: "Back to component library" })).toHaveAttribute("href", "/");
+    expect(headerActions).toContainElement(screen.getByRole("link", { name: "Back to component library" }));
+    expect(container.querySelector(".system-brand")).not.toContainElement(screen.getByRole("link", { name: "Back to component library" }));
+    expect(screen.getByRole("link", { name: "View whatiuse on GitHub" })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Open documentation" })).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "made by minwook" })).toHaveAttribute("href", "https://www.minwookshin.com/");
     expect(within(outline).getByRole("button", { name: "MIT license" })).toBeInTheDocument();
   });
@@ -299,6 +299,14 @@ describe("design system workspace", () => {
     expect(disclosure).toHaveAttribute("open");
     expect(screen.getByText(/import \{ Button \} from "teum"/)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Copy code" })).toBeInTheDocument();
+  });
+
+  it("keeps documentation copy controls visually icon-only", () => {
+    render(<App />);
+
+    const installCopy = screen.getByRole("button", { name: "Copy Button install command" });
+    expect(installCopy).toHaveTextContent("");
+    expect(installCopy.querySelector("svg")).toBeInTheDocument();
   });
 
   it("supports keyboard disclosure for implementation code", async () => {

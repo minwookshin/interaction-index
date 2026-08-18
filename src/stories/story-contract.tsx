@@ -259,14 +259,14 @@ async function exerciseRiskyInteraction(id: ComponentId, canvasElement: HTMLElem
   } else if (id === "tree") {
     const tree = product.getByRole("treegrid", { name: "Project structure" });
     await expect(tree).toBeVisible();
-    await userEvent.click(await within(tree).findByText("Teum"));
+    await userEvent.click(await within(tree).findByText("whatiuse"));
     await expect(await within(tree).findByText("Foundations")).toBeVisible();
   } else if (id === "reorderable-list") {
     const handle = await product.findByRole("button", { name: "Move Capture intent" });
     handle.focus();
     await expect(handle).toHaveFocus();
   } else if (id === "inline-edit") {
-    await userEvent.click(product.getByRole("button", { name: /Edit value: Teum/ }));
+    await userEvent.click(product.getByRole("button", { name: /Edit value: whatiuse/ }));
     const input = product.getByRole("textbox", { name: "Edit value" });
     await userEvent.clear(input);
     await userEvent.type(input, "Interaction System{Enter}");

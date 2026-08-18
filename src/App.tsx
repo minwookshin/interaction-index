@@ -5,7 +5,6 @@ import {
   ArrowCounterClockwise,
   ArrowRight,
   Bell,
-  BookOpenText,
   Browsers,
   CaretDown,
   Check,
@@ -401,7 +400,7 @@ function ComponentApiPanel({ id }: { id: ComponentId }) {
   return (
     <section className="component-api" id="system-api" aria-labelledby="component-api-title">
       <div className="component-guidance__heading"><h2 id="component-api-title">API</h2></div>
-      <div className="component-api__install"><code>{installCommand}</code><button type="button" onClick={copyInstall} aria-label={`Copy ${component.name} install command`}><Copy aria-hidden="true" />{installCopied ? "Copied" : "Copy"}</button></div>
+      <div className="component-api__install"><code>{installCommand}</code><button type="button" title={installCopied ? "Copied" : "Copy install command"} onClick={copyInstall} aria-label={installCopied ? `${component.name} install command copied` : `Copy ${component.name} install command`}>{installCopied ? <Check weight="bold" aria-hidden="true" /> : <Copy aria-hidden="true" />}</button></div>
       <div className="component-api__facts" role="region" aria-label={`${component.name} reference summary`}>
         <article><span>Primary export</span><code>{primaryExport}</code></article>
         <article><span>Registry item</span><code>{registryItem}</code></article>
@@ -508,7 +507,7 @@ function FieldDemo() {
         <form className="field-family-demo" aria-label="Project metadata" onSubmit={(event) => event.preventDefault()}>
           <Field>
             <FieldLabel>Project name</FieldLabel>
-            <FieldControl placeholder="Teum" />
+            <FieldControl placeholder="whatiuse" />
             <FieldDescription>Shown to everyone in this workspace.</FieldDescription>
           </Field>
           <Field invalid>
@@ -620,7 +619,7 @@ function TextFieldDemo() {
     <>
       <Specimen label="Product recipe" note="Project settings form">
         <form className="field-demo-form" aria-label="Project settings form" onSubmit={(event) => event.preventDefault()}>
-          <TextField fieldClassName="field-demo-form__name" label="Project name" defaultValue="Teum" description="Shown to everyone in the workspace." />
+          <TextField fieldClassName="field-demo-form__name" label="Project name" defaultValue="whatiuse" description="Shown to everyone in the workspace." />
           <TextField label="Identifier" defaultValue="INT-" error="Use a unique identifier." />
           <TextField label="Workspace key" value="INT" description="Managed by your organization." disabled />
           <TextField label="Search" placeholder="Search components…" leading={<MagnifyingGlass />} trailing={<kbd>⌘K</kbd>} />
@@ -1122,7 +1121,7 @@ function ReorderableListDemo() {
 }
 
 function InlineEditDemo({ includeContract = true }: { includeContract?: boolean } = {}) {
-  const [title, setTitle] = useState("Teum");
+  const [title, setTitle] = useState("whatiuse");
   const saveTitle = async (value: string) => {
     await new Promise((resolve) => window.setTimeout(resolve, 420));
     setTitle(value);
@@ -1290,7 +1289,7 @@ function TextFieldProductContext() {
         <span>Used in navigation, search, and shared links.</span>
       </div>
       <div className="product-context__field">
-        <TextField label="Project name" defaultValue="Teum" description="Visible to everyone in the workspace." />
+        <TextField label="Project name" defaultValue="whatiuse" description="Visible to everyone in the workspace." />
       </div>
     </section>
   );
@@ -1398,7 +1397,7 @@ function PrimaryPagination() {
 }
 
 function PrimaryInlineEdit() {
-  const [value, setValue] = useState("Teum");
+  const [value, setValue] = useState("whatiuse");
   return <div className="primary-inline-edit"><span>Project title</span><InlineEdit value={value} onSave={setValue} /></div>;
 }
 
@@ -1719,7 +1718,7 @@ function ConsolidatedDesignSystemMode({ view, onSelect, onHome, theme, onThemeCh
         <a className="teum-skip-link" href="#teum-documentation-content" onClick={(event) => { event.preventDefault(); document.getElementById("teum-documentation-content")?.focus({ preventScroll: true }); }}>Skip to documentation</a>
         <span className="teum-sr-only" role="status" aria-live="polite" aria-atomic="true">{pageTitle} page loaded</span>
         <aside className="system-nav system-nav--consolidated" aria-label="Design system navigation" data-open={navigationOpen || undefined}>
-          <div className="system-brand"><a className="system-brand__home" href="/" aria-label="Teum home" onClick={(event) => { event.preventDefault(); onHome(); }}><span className="system-brand__mark"><Command weight="bold" /></span><strong>Teum</strong></a><button type="button" className="system-nav__close" aria-label="Close navigation" onClick={() => setNavigationOpen(false)}><X aria-hidden="true" /></button></div>
+          <div className="system-brand"><button type="button" className="system-nav__close" aria-label="Close navigation" onClick={() => setNavigationOpen(false)}><X aria-hidden="true" /></button></div>
           <label className="system-component-search system-component-search--global"><MagnifyingGlass aria-hidden="true" /><input value={filter} onChange={(event) => setFilter(event.target.value)} placeholder="Search docs…" aria-label="Search documentation" /><kbd>⌘K</kbd></label>
           <div className="system-nav__scroll">
             <nav className="system-nav__items" aria-label="System sections">
@@ -1760,9 +1759,10 @@ function ConsolidatedDesignSystemMode({ view, onSelect, onHome, theme, onThemeCh
 
         <header className="system-topbar system-topbar--consolidated" aria-label="Workspace actions">
           <div className="system-topbar__location"><button type="button" className="system-nav__open" aria-label="Open navigation" onClick={() => setNavigationOpen(true)}><List aria-hidden="true" /></button></div>
+          <strong className="system-topbar__title">whatiuse</strong>
           <div className="system-topbar__actions">
-            <Tooltip><TooltipTrigger render={<a className="system-icon-action" href="https://github.com/minwookshin/teum" target="_blank" rel="noreferrer" aria-label="View Teum on GitHub"><GithubLogo weight="fill" aria-hidden="true" /></a>} /><TooltipContent>GitHub</TooltipContent></Tooltip>
-            <Tooltip><TooltipTrigger render={<a className="system-icon-action" href="#installation" aria-label="Open documentation" onClick={(event) => { event.preventDefault(); navigate("installation"); }}><BookOpenText aria-hidden="true" /></a>} /><TooltipContent>Documentation</TooltipContent></Tooltip>
+            <Tooltip><TooltipTrigger render={<a className="system-icon-action" href="https://github.com/minwookshin/whatiuse" target="_blank" rel="noreferrer" aria-label="View whatiuse on GitHub"><GithubLogo weight="fill" aria-hidden="true" /></a>} /><TooltipContent>GitHub</TooltipContent></Tooltip>
+            <Tooltip><TooltipTrigger render={<a className="system-icon-action" href="/" aria-label="Back to component library" onClick={(event) => { event.preventDefault(); onHome(); }}><Stack aria-hidden="true" /></a>} /><TooltipContent>Components</TooltipContent></Tooltip>
             <Tooltip><TooltipTrigger render={<button type="button" className="theme-toggle" data-theme={theme} aria-label={"Current theme: " + theme + ". Switch to " + (theme === "light" ? "dark" : "light") + " theme"} onClick={() => onThemeChange(theme === "light" ? "dark" : "light")}>{theme === "light" ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}</button>} /><TooltipContent>{theme === "light" ? "Dark mode" : "Light mode"}</TooltipContent></Tooltip>
           </div>
         </header>
@@ -1788,7 +1788,7 @@ function ConsolidatedDesignSystemMode({ view, onSelect, onHome, theme, onThemeCh
                 <ComponentGuidancePanel guidance={guidance} mode="accessibility" />
                 <ComponentApiPanel id={activeId} />
               </div>
-              <footer className="system-footer"><span>Teum</span><span>Inter / 4px base</span></footer>
+              <footer className="system-footer"><span>whatiuse</span><span>Inter / 4px base</span></footer>
             </div>}
           </div>
         </main>
@@ -1814,7 +1814,7 @@ function PatternsOverview({ onSelect }: { onSelect: (id: PatternId) => void }) {
           <div className="pattern-index__meta"><small>Built from</small><strong>{pattern.components.join(", ")}</strong><ArrowRight aria-hidden="true" /></div>
         </a>)}
       </div>
-      <footer className="system-footer"><span>Teum</span><span>4 patterns</span></footer>
+      <footer className="system-footer"><span>whatiuse</span><span>4 patterns</span></footer>
     </div>
   );
 }
@@ -1875,7 +1875,7 @@ function PatternDetail({ pattern }: { pattern: (typeof patterns)[number] }) {
         <div><span>Built from</span><h2>Components stay visible behind the behavior</h2></div>
         <div>{pattern.components.map((component) => <span key={component}>{component}</span>)}</div>
       </section>
-      <footer className="system-footer"><span>Teum</span><span>Interaction pattern</span></footer>
+      <footer className="system-footer"><span>whatiuse</span><span>Interaction pattern</span></footer>
     </div>
   );
 }

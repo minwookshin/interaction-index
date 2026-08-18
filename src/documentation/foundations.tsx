@@ -61,7 +61,7 @@ export function FoundationOverview({ onSelect }: { onSelect: (id: FoundationRout
           </a>
         ))}
       </div>
-      <footer className="system-footer"><span>Teum</span><span>Inter / Divai rhythm</span></footer>
+      <footer className="system-footer"><span>whatiuse</span><span>Inter / Divai rhythm</span></footer>
     </div>
   );
 }
@@ -86,7 +86,7 @@ export function FoundationDetail({ id, onBack }: { id: FoundationId; onBack: () 
       {id === "typography" && <TypographyFoundation />}
       {id === "spacing" && <SpacingFoundation />}
       {id === "motion" && <MotionFoundation />}
-      <footer className="system-footer"><span>Teum</span><span>{item.label} foundation</span></footer>
+      <footer className="system-footer"><span>whatiuse</span><span>{item.label} foundation</span></footer>
     </div>
   );
 }

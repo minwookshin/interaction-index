@@ -210,10 +210,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/minwookshin/teum.git"
+    "url": "git+https://github.com/minwookshin/whatiuse.git"
   },
   "bugs": {
-    "url": "https://github.com/minwookshin/teum/issues"
+    "url": "https://github.com/minwookshin/whatiuse/issues"
   },
   "homepage": "https://whatiuse.minwookshin.com",
   "engines": {

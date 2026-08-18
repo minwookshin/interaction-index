@@ -14,6 +14,19 @@
   width: min(520px, 100%);
 }
 
+.teum-sheet-preview .product-context__icon,
+.teum-alert-dialog-preview .product-context__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+}
+
+.teum-sheet-preview .product-context__icon svg,
+.teum-alert-dialog-preview .product-context__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
 .teum-view-options-preview__popover {
   display: grid;
   gap: 8px;

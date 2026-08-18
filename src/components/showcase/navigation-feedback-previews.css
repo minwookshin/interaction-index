@@ -31,6 +31,11 @@
   width: 100%;
 }
 
+.teum-export-progress-preview .teum-progress__indicator {
+  transition-duration: 64ms;
+  transition-timing-function: linear;
+}
+
 .teum-export-progress-preview .teum-button {
   min-width: 78px;
 }

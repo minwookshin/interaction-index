@@ -14,6 +14,8 @@ artifacts/
 # Local design direction and raw review evidence are not public package assets.
 AGENTS.md
 audit/
+audits/
 design-qa.md
 design-qa-*.png
+launch/
 .vercel

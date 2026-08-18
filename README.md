@@ -1,8 +1,8 @@
-# Teum
+# whatiuse
 
-React and TypeScript components for product interfaces.
+Components for product interfaces.
 
-> Teum is currently in pre-release. APIs may change.
+[Documentation](https://whatiuse.minwookshin.com) · [MIT License](./LICENSE)
 
 ## Install
 
@@ -13,16 +13,4 @@ npx shadcn@4.18.0 registry add \
 npx shadcn@4.18.0 add @teum-pinned/button
 ```
 
-Read the [documentation](https://whatiuse.minwookshin.com) for components, accessibility, and API details.
-
-## Development
-
-```bash
-npm install
-npm run dev
-npm test
-```
-
-## License
-
-MIT
+Pre-release. APIs may change.

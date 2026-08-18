@@ -1,4 +1,5 @@
 import { CheckCircle, Package } from "@phosphor-icons/react";
+import { useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import {
   Alert,
@@ -80,30 +81,42 @@ type ExportState = "idle" | "running" | "complete";
 
 export function ExportProgressPreview() {
   const [value, setValue] = useState(0);
+  const [runKey, setRunKey] = useState(0);
   const [state, setState] = useState<ExportState>("idle");
-  const interval = useRef<number | undefined>(undefined);
+  const frame = useRef<number | undefined>(undefined);
+  const reduceMotion = useReducedMotion();
 
-  useEffect(() => () => window.clearInterval(interval.current), []);
+  useEffect(() => () => window.cancelAnimationFrame(frame.current ?? 0), []);
 
   const run = () => {
-    window.clearInterval(interval.current);
+    window.cancelAnimationFrame(frame.current ?? 0);
+    setRunKey((current) => current + 1);
     setValue(0);
     setState("running");
-    interval.current = window.setInterval(() => {
-      setValue((current) => {
-        const next = Math.min(100, current + 20);
-        if (next === 100) {
-          window.clearInterval(interval.current);
-          setState("complete");
-        }
-        return next;
-      });
-    }, 180);
+    if (reduceMotion) {
+      setValue(100);
+      setState("complete");
+      return;
+    }
+
+    const duration = 960;
+    let startedAt: number | undefined;
+    const advance = (timestamp: number) => {
+      startedAt ??= timestamp;
+      const progress = Math.min(1, (timestamp - startedAt) / duration);
+      setValue(Math.round(progress * 100));
+      if (progress < 1) {
+        frame.current = window.requestAnimationFrame(advance);
+        return;
+      }
+      setState("complete");
+    };
+    frame.current = window.requestAnimationFrame(advance);
   };
 
   return (
     <div className="teum-export-progress-preview" data-state={state}>
-      <Progress label={state === "complete" ? "Export complete" : "Export components"} value={value} />
+      <Progress key={runKey} label={state === "complete" ? "Export complete" : "Export components"} value={value} />
       <Button variant="secondary" size="small" disabled={state === "running"} onClick={run}>
         {state === "complete" ? "Run again" : state === "running" ? "Exporting" : "Run export"}
       </Button>

@@ -32,7 +32,7 @@ The repository and documentation may be shown as an unfinished system if the sta
 
 Required before asking strangers to install it:
 
-1. **Complete** — canonical GitHub repository, issue tracker, Pages homepage/HTTPS registry workflow, and private vulnerability-reporting path are configured for `minwookshin/teum`.
+1. **Complete** — canonical GitHub repository, issue tracker, Pages homepage/HTTPS registry workflow, and private vulnerability-reporting path are configured for `minwookshin/whatiuse`.
 2. **Complete** — generated complete-system and individual registry artifacts plus Button-only and complete-system clean-consumer TypeScript/production builds.
    The documented pinned-registry quickstart is executed against a fresh React + TypeScript + Vite fixture and preserved in `release/quickstart.json`; elapsed time is reported as local observation rather than a universal promise.
    The private package candidate also preserves its React client boundary, server-renders a representative tree, and hydrates with zero recoverable mismatches in the recorded ESM consumer. This is package-contract evidence, not proof of every framework runtime.

@@ -52,7 +52,7 @@ Passed`;
 
 const validIssue = (overrides = {}) => ({
   number: 42,
-  html_url: "https://github.com/minwookshin/teum/issues/42",
+  html_url: "https://github.com/minwookshin/whatiuse/issues/42",
   state: "closed",
   created_at: "2026-08-18T15:00:00Z",
   author_association: "NONE",

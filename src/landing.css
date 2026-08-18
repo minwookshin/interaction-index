@@ -41,9 +41,9 @@
   justify-self: center;
   color: var(--teum-fg-default);
   line-height: 1;
-  text-decoration: none;
+  pointer-events: none;
+  user-select: none;
   text-rendering: geometricPrecision;
-  transition: color 120ms ease, opacity 120ms ease;
 }
 
 .whatiuse-wordmark strong {
@@ -466,7 +466,6 @@
 .landing-footer nav { display: flex; align-items: center; gap: 22px; }
 
 @media (hover: hover) and (pointer: fine) {
-  .whatiuse-wordmark:hover { opacity: .66; }
   .landing-header__navigation a:hover,
   .landing-footer a:hover { color: var(--teum-fg-default); }
   .landing-icon-action:hover,

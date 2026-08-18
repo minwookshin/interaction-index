@@ -3,7 +3,7 @@
   "generatedBy": "scripts/verify-beta-stability.mjs",
   "generatedAt": "2026-08-18T17:27:07.969Z",
   "candidate": "0.1.0-rc.29",
-  "repository": "minwookshin/teum",
+  "repository": "minwookshin/whatiuse",
   "workflow": "beta-health.yml",
   "startedAt": "2026-08-18T17:01:06Z",
   "minimumDays": 28,

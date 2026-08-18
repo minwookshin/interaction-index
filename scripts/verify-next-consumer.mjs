@@ -45,7 +45,7 @@ try {
   if (!builtCss.includes(':root[data-theme="dark"]') && !builtCss.includes(":root[data-theme=dark]")) {
     throw new Error("[next-adoption] production build omitted the dark theme contract");
   }
-  if (!builtOutput.includes("Create issue") || !builtOutput.includes("Teum + Next.js")) {
+  if (!builtOutput.includes("Create issue") || !builtOutput.includes("whatiuse + Next.js")) {
     throw new Error("[next-adoption] prerendered output omitted the quickstart content");
   }
 

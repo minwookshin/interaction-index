@@ -37,6 +37,7 @@ describe("control component previews", () => {
     expect(screen.getByRole("status")).toHaveTextContent("Preview opened");
 
     const approve = screen.getByRole("button", { name: "Approve issue" });
+    expect(approve).toHaveClass("teum-icon-button");
     await user.click(approve);
     expect(screen.getByRole("status")).toHaveTextContent("Issue approved");
     expect(screen.getByRole("button", { name: "Remove approval" })).toHaveAttribute("aria-pressed", "true");

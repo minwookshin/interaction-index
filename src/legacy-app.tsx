@@ -56,7 +56,7 @@ export default function LegacyApp() {
   };
 
   if (view === "components") {
-    return <ComponentIndexPage theme={theme} onThemeChange={setTheme} onHome={() => select("home")} />;
+    return <ComponentIndexPage theme={theme} onThemeChange={setTheme} />;
   }
 
   return <DocumentationApp view={view} onSelect={select} onHome={() => select("home")} theme={theme} onThemeChange={setTheme} />;

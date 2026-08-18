@@ -4,7 +4,7 @@ export const publicDocItems = [
   { id: "choosing-components", label: "Core", group: "Components", description: "Choose interface primitives by task, focus, and recovery." },
   { id: "product-pilot", label: "Data", group: "Components", description: "Tables, filters, bulk actions, and product data workflows." },
   { id: "analytics", label: "Analytics", group: "Components", description: "Metrics, charts, comparison views, and analytic workflows." },
-  { id: "product-patterns", label: "Recipes", group: "Patterns", description: "Working product compositions built from public Teum components." },
+  { id: "product-patterns", label: "Recipes", group: "Patterns", description: "Working product compositions built from public whatiuse components." },
   { id: "component-status", label: "Status", group: "Project", description: "Maturity and release status for every component." },
   { id: "accessibility", label: "Accessibility", group: "Project", description: "Keyboard, focus, motion, contrast, and assistive technology." },
   { id: "browser-support", label: "Browser support", group: "Project", description: "Tested browsers, viewports, and release requirements." },

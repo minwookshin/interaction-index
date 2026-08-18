@@ -47,4 +47,4 @@ Visual baselines are platform-specific and retain the same 1% diff budget on mac
 
 Include the product case, affected public API, keyboard path, reduced-motion decision, tests added, and matched light/dark screenshots. Call out compatibility or registry changes explicitly. By submitting a contribution, you agree to license it under the repository's MIT license.
 
-Open a focused issue or pull request at [minwookshin/teum](https://github.com/minwookshin/teum). Contributors must also follow `CODE_OF_CONDUCT.md`; vulnerabilities use the private process in `SECURITY.md`, never a public issue.
+Open a focused issue or pull request at [minwookshin/whatiuse](https://github.com/minwookshin/whatiuse). Contributors must also follow `CODE_OF_CONDUCT.md`; vulnerabilities use the private process in `SECURITY.md`, never a public issue.

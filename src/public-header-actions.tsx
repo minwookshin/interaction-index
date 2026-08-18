@@ -12,7 +12,7 @@ export function PublicHeaderActions({ theme, onThemeChange }: PublicHeaderAction
     <TooltipProvider delay={320}>
       <div className="landing-header__actions">
         <Tooltip>
-          <TooltipTrigger render={<a className="landing-icon-action" href="https://github.com/minwookshin/teum" target="_blank" rel="noreferrer" aria-label="View Teum on GitHub"><GithubLogo weight="fill" aria-hidden="true" /></a>} />
+          <TooltipTrigger render={<a className="landing-icon-action" href="https://github.com/minwookshin/whatiuse" target="_blank" rel="noreferrer" aria-label="View whatiuse on GitHub"><GithubLogo weight="fill" aria-hidden="true" /></a>} />
           <TooltipContent side="bottom" sideOffset={8}>GitHub</TooltipContent>
         </Tooltip>
         <Tooltip>

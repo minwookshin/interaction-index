@@ -1,6 +1,6 @@
 # Teum public beta
 
-Teum `0.1.0-rc.22` is in public beta. The [site](https://whatiuse.minwookshin.com), [GitHub prerelease](https://github.com/minwookshin/teum/releases/tag/v0.1.0-rc.22), and pinned registry are live. The npm package is not published. This is for real product evaluation, not a production-readiness claim.
+Teum `0.1.0-rc.22` is in public beta. The [site](https://whatiuse.minwookshin.com), [GitHub prerelease](https://github.com/minwookshin/whatiuse/releases/tag/v0.1.0-rc.22), and pinned registry are live. The npm package is not published. This is for real product evaluation, not a production-readiness claim.
 
 ## Try one task
 
@@ -16,7 +16,7 @@ Build one real action, form value, data surface, or recovery flow. Change one se
 
 ## Report what happened
 
-Use the repository's [Adopter feedback form](https://github.com/minwookshin/teum/issues/new?template=adopter-feedback.yml). Include the exact version, integration path, product task, environment, typecheck and production-build result, and whether the component stayed in the project. Do not include confidential product data or vulnerability details.
+Use the repository's [Adopter feedback form](https://github.com/minwookshin/whatiuse/issues/new?template=adopter-feedback.yml). Include the exact version, integration path, product task, environment, typecheck and production-build result, and whether the component stayed in the project. Do not include confidential product data or vulnerability details.
 
 Teum records no usage telemetry. An evaluation counts toward v1 only when it comes from an independently maintained consumer and has dated, permissioned evidence. Private evaluations may be recorded without publishing product details.
 

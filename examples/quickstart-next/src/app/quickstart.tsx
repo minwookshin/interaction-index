@@ -16,7 +16,7 @@ export function Quickstart() {
 
   return (
     <main className="quickstart-shell">
-      <p>Teum + Next.js</p>
+      <p>whatiuse + Next.js</p>
       <h1>Source-owned from the start.</h1>
       <div className="quickstart-actions">
         <Button variant="primary">Create issue</Button>

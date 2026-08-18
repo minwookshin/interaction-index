@@ -14,7 +14,7 @@ const meta = {
     layout: "fullscreen",
     docs: {
       description: {
-        component: "A source-owned renderer family and three product recipes prove Teum Analytics against real decision tasks, explicit shared state, local keyboard inspection, and semantic data equivalents.",
+        component: "A source-owned renderer family and three product recipes prove whatiuse Analytics against real decision tasks, explicit shared state, local keyboard inspection, and semantic data equivalents.",
       },
     },
   },

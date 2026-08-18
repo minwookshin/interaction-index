@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { expect, userEvent, within } from "storybook/test";
+import { expect, userEvent, waitFor, within } from "storybook/test";
 import { BillingUsageRecipe, CustomerWorkspaceRecipe, MembersPermissionsRecipe } from "../documentation/product-pattern-recipes";
 
 const meta = {
@@ -7,7 +7,7 @@ const meta = {
   tags: ["test"],
   parameters: {
     layout: "fullscreen",
-    docs: { description: { component: "Three B2B product tasks composed from Teum Core, Data, Analytics, and one shared pattern contract." } },
+    docs: { description: { component: "Three B2B product tasks composed from whatiuse Core, Data, Analytics, and one shared pattern contract." } },
   },
 } satisfies Meta;
 
@@ -26,7 +26,12 @@ export const CustomerWorkspace: Story = {
     await userEvent.clear(canvas.getByRole("searchbox", { name: "Search customers" }));
     await userEvent.type(canvas.getByRole("searchbox", { name: "Search customers" }), "Relay");
     await userEvent.click(canvas.getByRole("button", { name: /Relay Systems/ }));
-    await expect(canvas.getByRole("region", { name: "Selected customer" })).toHaveTextContent("At risk");
+    const detail = canvas.getByRole("region", { name: "Selected customer" });
+    await expect(detail).toHaveTextContent("At risk");
+    await waitFor(() => {
+      expect(detail).toHaveStyle({ opacity: "1" });
+      expect(detail.querySelector(".teum-shared-detail__content")).toHaveStyle({ opacity: "1" });
+    });
     canvasElement.dataset.storyReady = "true";
   },
 };

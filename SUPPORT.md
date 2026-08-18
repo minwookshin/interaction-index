@@ -29,4 +29,4 @@ Automated accessibility and modality evidence includes axe anchor routes, forced
 
 ## Getting help
 
-Use [public issues](https://github.com/minwookshin/teum/issues) for reproducible bugs, documentation gaps, and feature proposals. Use the private process in `SECURITY.md` for vulnerabilities. General product implementation consulting is outside the open-source support contract.
+Use [public issues](https://github.com/minwookshin/whatiuse/issues) for reproducible bugs, documentation gaps, and feature proposals. Use the private process in `SECURITY.md` for vulnerabilities. General product implementation consulting is outside the open-source support contract.

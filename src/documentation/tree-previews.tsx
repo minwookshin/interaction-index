@@ -4,7 +4,7 @@ import { Tree, type TreeNode } from "../components/ui/tree";
 const projectTreeItems: readonly TreeNode[] = [
   {
     id: "workspace",
-    label: "Teum",
+    label: "whatiuse",
     description: "Design system workspace",
     icon: <Folder />,
     children: [

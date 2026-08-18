@@ -52,7 +52,7 @@ function CodeBlock({ label, children, collapsed = false }: { label: string; chil
     setCopied(result);
     window.setTimeout(() => setCopied(false), 1200);
   });
-  return <figure className="public-doc-code" data-collapsed={!open || undefined}><figcaption><button className="public-doc-code__toggle" type="button" aria-expanded={open} onClick={() => setOpen((current) => !current)}><CaretRight aria-hidden="true" />{label}</button><button type="button" onClick={copy} aria-label={`Copy ${label}`}><Copy aria-hidden="true" />{copied ? "Copied" : "Copy"}</button></figcaption>{open && <pre tabIndex={0}><code>{children}</code></pre>}</figure>;
+  return <figure className="public-doc-code" data-collapsed={!open || undefined}><figcaption><button className="public-doc-code__toggle" type="button" aria-expanded={open} onClick={() => setOpen((current) => !current)}><CaretRight aria-hidden="true" />{label}</button><button className="public-doc-code__copy" type="button" title={copied ? "Copied" : "Copy code"} onClick={copy} aria-label={copied ? `${label} copied` : `Copy ${label}`}>{copied ? <Check weight="bold" aria-hidden="true" /> : <Copy aria-hidden="true" />}</button></figcaption>{open && <pre tabIndex={0}><code>{children}</code></pre>}</figure>;
 }
 
 function CheckList({ items }: { items: readonly string[] }) {
@@ -83,7 +83,7 @@ function ProductPilotPage() {
     <section className="public-doc-section public-doc-section--pilot" id="audit-log" aria-labelledby="audit-log-title"><h2 id="audit-log-title">Audit Log</h2><p>Virtualized events with search and date filters.</p><Suspense fallback={<div className="teum-data-recipe teum-data-recipe--loading" role="status">Loading Audit Log…</div>}><AuditLogRecipe /></Suspense></section>
     <DocSection id="data-layer" title="Product primitives">
       <StatusTable
-        label="Teum Data product primitives"
+        label="whatiuse Data product primitives"
         columns={["Primitive", "Job", "States"]}
         rows={teumDataComponentContracts.map((component) => [component.id, component.intent, component.states.join(", ")] as const)}
       />
@@ -107,7 +107,7 @@ function AnalyticsPage() {
     <section className="public-doc-section public-doc-section--pilot" id="product-usage" aria-labelledby="product-usage-title"><h2 id="product-usage-title">Product Usage</h2><p>Usage and releases with independent chart inspection.</p><Suspense fallback={<div className="teum-analytics-recipe" role="status">Loading Product Usage…</div>}><ProductUsageRecipe /></Suspense></section>
     <section className="public-doc-section public-doc-section--pilot" id="conversion-retention" aria-labelledby="conversion-retention-title"><h2 id="conversion-retention-title">Conversion &amp; Retention</h2><p>A selected funnel stage updates the trend, cohort context, and supporting records.</p><Suspense fallback={<div className="teum-analytics-recipe" role="status">Loading Conversion &amp; Retention…</div>}><ConversionRetentionRecipe /></Suspense></section>
     <DocSection id="analytics-layer" title="Product primitives">
-      <StatusTable label="Teum Analytics product primitives" columns={["Primitive", "Job", "States"]} rows={teumAnalyticsComponentContracts.map((component) => [component.id, component.intent, component.states.join(", ")] as const)} />
+      <StatusTable label="whatiuse Analytics product primitives" columns={["Primitive", "Job", "States"]} rows={teumAnalyticsComponentContracts.map((component) => [component.id, component.intent, component.states.join(", ")] as const)} />
     </DocSection>
     <DocSection id="analytics-contract" title="Composition contract">
       <p>Product state remains controlled by the recipe. Transient inspection stays local to each chart.</p>
@@ -141,7 +141,7 @@ function ProductPatternsPage() {
 function AgentNativePage() {
   return <>
     <DocSection id="agent-contract" title="One contract for people and agents">
-      <p>The generated catalog records every installable item, product recipe, selection boundary, and forbidden rule. Registry metadata, the Teum skill, and this page use the same source.</p>
+      <p>The generated catalog records every installable item, product recipe, selection boundary, and forbidden rule. Registry metadata, the agent skill, and this page use the same source.</p>
       <CodeBlock label="teum-agent.json">{`${packageManifest.homepage}/agent/teum-agent.json`}</CodeBlock>
       <CodeBlock label="system.contract.json">{JSON.stringify(teumAgentSystemContract, null, 2)}</CodeBlock>
     </DocSection>
@@ -155,8 +155,8 @@ function AgentNativePage() {
     <DocSection id="forbidden-rules" title="Reject invalid shortcuts">
       <CheckList items={teumAgentForbiddenRules} />
     </DocSection>
-    <DocSection id="skill-install" title="Install the Teum skill">
-      <CodeBlock label="Project skill">{`npx skills add minwookshin/teum --skill teum --copy --yes`}</CodeBlock>
+    <DocSection id="skill-install" title="Install the agent skill">
+      <CodeBlock label="Project skill">{`npx skills add minwookshin/whatiuse --skill teum --copy --yes`}</CodeBlock>
       <p>The skill inspects the project, selects a documented recipe, installs source through the pinned registry, and runs the product's own quality gates. Review installed skills before use.</p>
     </DocSection>
     <DocSection id="agent-evaluation" title="Deterministic product-task evaluation">
@@ -169,7 +169,7 @@ function AgentNativePage() {
 function ComponentStatus() {
   return <>
     <DocSection id="status-model" title="Maturity is a support promise">
-      <p>Status describes whether a component is safe to depend on, not how polished its screenshot looks. Teum follows the public Experimental, Ready, and Deprecated model while keeping every current component honest at Experimental during private alpha.</p>
+      <p>Status describes whether a component is safe to depend on, not how polished its screenshot looks. whatiuse follows the public Experimental, Ready, and Deprecated model while keeping every current component honest at Experimental during private alpha.</p>
       <StatusTable label="Maturity definitions" rows={maturityDefinitions.map((item) => [item.status, item.meaning, item.releaseContract] as const)} />
     </DocSection>
     <DocSection id="promotion-gate" title="Ready requires the whole evidence chain">
@@ -217,14 +217,14 @@ function Installation() {
       ]} />
     </DocSection>
     <DocSection id="vite" title="Vite">
-      <CodeBlock label="1 · Create or open a React + TypeScript app">npm create vite@latest teum-app -- --template react-ts</CodeBlock>
+      <CodeBlock label="1 · Create or open a React + TypeScript app">npm create vite@latest whatiuse-app -- --template react-ts</CodeBlock>
       <CodeBlock label="2 · Add components.json">{viteConfig}</CodeBlock>
       <CodeBlock label="3 · Install Button">{`npx ${shadcnCli} add @teum-pinned/button`}</CodeBlock>
       <CodeBlock label="4 · Render it">{'import { Button } from "./components/ui/button";\n\nexport function App() {\n  return <Button variant="primary">Create issue</Button>;\n}'}</CodeBlock>
       <p>The verified fixture lives in <code>examples/quickstart-vite</code>. It builds against React 18 and React 19 without a Tailwind runtime.</p>
     </DocSection>
     <DocSection id="next" title="Next.js App Router">
-      <CodeBlock label="1 · Create or open an App Router project">{`npx create-next-app@${nextQuickstartManifest.dependencies.next} teum-app --ts --app --src-dir --use-npm --empty --no-tailwind --yes`}</CodeBlock>
+      <CodeBlock label="1 · Create or open an App Router project">{`npx create-next-app@${nextQuickstartManifest.dependencies.next} whatiuse-app --ts --app --src-dir --use-npm --empty --no-tailwind --yes`}</CodeBlock>
       <CodeBlock label="2 · Add components.json">{nextConfig}</CodeBlock>
       <CodeBlock label="3 · Install Button">{`npx ${shadcnCli} add @teum-pinned/button`}</CodeBlock>
       <CodeBlock label="4 · Keep interaction behind a client boundary">{'"use client";\n\nimport { Button } from "@/components/ui/button";\n\nexport function CreateIssue() {\n  return <Button variant="primary">Create issue</Button>;\n}'}</CodeBlock>
@@ -233,7 +233,7 @@ function Installation() {
     <DocSection id="theme" title="Theme and customize">
       <CodeBlock label="Switch the public theme contract">document.documentElement.dataset.theme = "dark";</CodeBlock>
       <CodeBlock label="Override one semantic role in product CSS">{':root {\n  --teum-radius-control: 9px;\n}'}</CodeBlock>
-      <p>Light is the default. Product CSS is unlayered and therefore overrides Teum's <code>teum.tokens → teum.base → teum.components</code> cascade without selector escalation. Use <code>--teum-*</code> roles instead of copying raw graphite values.</p>
+      <p>Light is the default. Product CSS is unlayered and therefore overrides whatiuse's <code>teum.tokens → teum.base → teum.components</code> cascade without selector escalation. Use <code>--teum-*</code> roles instead of copying raw graphite values.</p>
     </DocSection>
     <DocSection id="registry" title="Pin what enters the product">
       <CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx ${shadcnCli} registry add @teum-pinned=${pinnedRegistry}\nnpx ${shadcnCli} view @teum-pinned/button\nnpx ${shadcnCli} add @teum-pinned/button`}</CodeBlock>
@@ -250,7 +250,7 @@ function Installation() {
     <DocSection id="troubleshooting" title="Common failures">
       <StatusTable label="Installation troubleshooting" columns={["Symptom", "Cause", "Fix"]} rows={[
         ["@teum-pinned cannot resolve", "The registry entry is absent or points to a different candidate", "Copy the pinned registries block into components.json and run view before add"],
-        ["Button has no Teum styles", "A generated CSS import was removed or moved", "Restore teum-base.css and the component stylesheet beside the copied source"],
+        ["Button has no whatiuse styles", "A generated CSS import was removed or moved", "Restore teum-base.css and the component stylesheet beside the copied source"],
         ["Next.js reports a client boundary error", "An interactive component was rendered through an invalid Server Component boundary", "Move the interactive composition into a small file with an explicit use client directive"],
         ["Update would replace local edits", "Copied source differs from the candidate", "Commit, dry-run, inspect the exact file diff, then overwrite only after acceptance"],
       ]} />
@@ -298,7 +298,7 @@ function Accessibility() {
     <DocSection id="baseline-contract" title="Baseline contract"><CheckList items={["Semantic HTML, Base UI, and React Aria primitives provide the starting behavior.", "Every public view owns one main landmark and one page heading.", "Every icon-only control requires an accessible name.", "Disabled, validation, loading, empty, and recovery states remain perceivable.", "Automated checks support manual review. They never replace it."]} /></DocSection>
     <DocSection id="keyboard-focus" title="Keyboard and focus"><p>Keyboard input must complete the same task as pointer input. Skip links bypass repeated product chrome, in-app route changes announce the selected document without stealing desktop focus, and compact navigation hands focus to the document after its drawer closes. Focus returns to the initiating control after dismissal and never gets trapped outside a modal contract.</p></DocSection>
     <DocSection id="motion-contrast" title="Motion and contrast"><p>Reduced motion removes spatial travel while preserving state feedback. Light, dark, increased-contrast, and forced-color modes keep structure and meaning without depending on a brand accent.</p></DocSection>
-    <DocSection id="manual-review" title="Evidence matrix"><StatusTable label="Accessibility release review" rows={[[`${accessibilityEvidence.routes.public} public routes`, "Automated gate", `${accessibilityEvidence.passed} applicable checks passed, ${accessibilityEvidence.skipped} intentional project skips, zero failures`], [`${componentMaturity.length} component routes`, "Automated gate", "Serious and critical axe findings, overflow, atomic shortcut geometry, and one-page-heading ownership"], ["200% equivalent", "Automated + browser review", "All component routes at a 640px CSS viewport with no lost content or horizontal page overflow"], ["Forced colors / reduced motion", "Automated gate", "System colors preserve structure; non-essential spatial motion is removed or reduced"], ["Keyboard", "Five-project task paths", "Skip paths, route announcements, compact focus handoff, Menu and Dialog focus return, and Teum Data recovery"], ["Screen reader / physical devices", "External gate", "Manual assistive-technology and touch-device sign-off remains required before any component becomes Ready"]]} /></DocSection>
+    <DocSection id="manual-review" title="Evidence matrix"><StatusTable label="Accessibility release review" rows={[[`${accessibilityEvidence.routes.public} public routes`, "Automated gate", `${accessibilityEvidence.passed} applicable checks passed, ${accessibilityEvidence.skipped} intentional project skips, zero failures`], [`${componentMaturity.length} component routes`, "Automated gate", "Serious and critical axe findings, overflow, atomic shortcut geometry, and one-page-heading ownership"], ["200% equivalent", "Automated + browser review", "All component routes at a 640px CSS viewport with no lost content or horizontal page overflow"], ["Forced colors / reduced motion", "Automated gate", "System colors preserve structure; non-essential spatial motion is removed or reduced"], ["Keyboard", "Five-project task paths", "Skip paths, route announcements, compact focus handoff, Menu and Dialog focus return, and whatiuse Data recovery"], ["Screen reader / physical devices", "External gate", "Manual assistive-technology and touch-device sign-off remains required before any component becomes Ready"]]} /></DocSection>
   </>;
 }
 
@@ -344,7 +344,7 @@ function Licensing() {
     <DocSection id="license" title="MIT license"><div className="public-doc-callout"><ShieldCheck aria-hidden="true" /><div><strong>Permissive by design</strong><p>The repository includes the MIT license. The full LICENSE file is the legal source of truth.</p></div></div></DocSection>
     <DocSection id="permissions" title="Permissions"><CheckList items={["Use the system in personal and commercial products.", "Copy, modify, merge, publish, distribute, sublicense, and sell copies.", "Keep the copyright and permission notice with substantial copies."]} /></DocSection>
     <DocSection id="attribution" title="Attribution"><p>Attribution does not need to appear inside the product interface. Preserve the license notice in the distributed source or legal notices.</p></DocSection>
-    <DocSection id="third-party" title="Third-party work"><p>The MIT license covers Teum source. Dependencies, fonts, icons, and copied registry code retain their own licenses and notices.</p></DocSection>
+    <DocSection id="third-party" title="Third-party work"><p>The MIT license covers whatiuse source. Dependencies, fonts, icons, and copied registry code retain their own licenses and notices.</p></DocSection>
   </>;
 }
 
@@ -369,6 +369,6 @@ export function PublicDocPage({ id, onNavigate }: { id: PublicDocId; onNavigate:
   const Content = contentById[id];
   return <div className={"system-detail__content public-doc-page system-reference-page" + (["product-pilot", "analytics", "product-patterns"].includes(id) ? " public-doc-page--pilot" : "")}>
     <section className="system-overview" id="system-overview"><span className="public-doc-kicker">{doc.group}</span><h1>{doc.label}</h1><p>{doc.description}</p></section><div className="public-doc-body"><Content onNavigate={onNavigate} /></div>
-    <footer className="system-footer"><span>Teum</span><span>Public system documentation</span></footer>
+    <footer className="system-footer"><span>whatiuse</span><span>Public system documentation</span></footer>
   </div>;
 }

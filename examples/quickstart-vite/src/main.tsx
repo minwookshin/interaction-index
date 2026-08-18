@@ -16,7 +16,7 @@ function Quickstart() {
 
   return (
     <main className="quickstart-shell">
-      <p>Teum + Vite</p>
+      <p>whatiuse + Vite</p>
       <h1>One installed component.</h1>
       <div className="quickstart-actions">
         <Button variant="primary">Create issue</Button>

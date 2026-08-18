@@ -11,6 +11,7 @@ import {
   FieldDescription,
   FieldError,
   FieldLabel,
+  IconButton,
   NumberField,
   RadioGroup,
   SearchInput,
@@ -38,7 +39,7 @@ const contextSwitcherOptions = [
 const handlePattern = /^[a-z0-9][a-z0-9-]{2,}$/;
 
 export function ProjectFieldPreview() {
-  const [name, setName] = useState("Teum");
+  const [name, setName] = useState("whatiuse");
   const [touched, setTouched] = useState(false);
   const invalid = touched && name.trim().length === 0;
 
@@ -69,7 +70,7 @@ export function ActionButtonGroupPreview() {
       <ButtonGroup aria-label="Issue actions" attached>
         <Button size="small" variant="secondary" onClick={() => setMessage("Preview opened")}>Preview</Button>
         <Button size="small" variant="secondary" onClick={() => setMessage("Issue opened")}>Open</Button>
-        <Button
+        <IconButton
           size="small"
           variant="secondary"
           aria-label={approved ? "Remove approval" : "Approve issue"}
@@ -80,7 +81,7 @@ export function ActionButtonGroupPreview() {
           }}
         >
           <Check weight={approved ? "bold" : "regular"} />
-        </Button>
+        </IconButton>
       </ButtonGroup>
     </div>
   );
