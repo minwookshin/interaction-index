@@ -62,6 +62,8 @@ const [
   runtimePerformance,
   routeSource,
   storySource,
+  analyticsStorySource,
+  productPatternStorySource,
   playwrightSource,
 ] = await Promise.all([
   readJson("package.json"),
@@ -79,6 +81,8 @@ const [
   readJson("release/runtime-performance.json"),
   read("tests/browser/public-routes.ts"),
   read("tests/storybook/visual-regression.spec.ts"),
+  read("tests/storybook/analytics-visual.spec.ts"),
+  read("tests/storybook/product-patterns-visual.spec.ts"),
   read("playwright.config.ts"),
 ]);
 
@@ -92,6 +96,8 @@ const documentationShellRouteCount = documentationRouteCount + foundationRouteCo
 const landingRouteCount = 1;
 const publicRouteCount = documentationShellRouteCount + landingRouteCount;
 const storyComponentCount = count(storySource, /^\s*\["components-[^"]+",\s*"[^"]+"\],?$/gm);
+const analyticsStoryCount = count(analyticsStorySource, /^\s*\["product-analytics--[^"]+",\s*"[^"]+"\],?$/gm);
+const productPatternStoryCount = count(productPatternStorySource, /^\s*\["product-patterns--[^"]+",\s*"[^"]+"\],?$/gm);
 const browserProjectNames = [...playwrightSource.matchAll(/\{\s*name:\s*"([^"]+)"/g)].map((match) => match[1]);
 
 if (componentCount !== publicApi.componentCount) fail(`registry/API component drift: ${componentCount} versus ${publicApi.componentCount}`);
@@ -190,8 +196,8 @@ const snapshotPlatforms = [...new Set([...routeSnapshots, ...storySnapshots, ...
 const expectedShellSnapshots = documentationShellRouteCount * 2;
 const expectedLandingSnapshots = landingRouteCount * 2;
 const expectedStorySnapshots = componentCount * 4;
-const expectedAnalyticsSnapshots = 3 * 2;
-const expectedProductPatternSnapshots = 3 * 2;
+const expectedAnalyticsSnapshots = analyticsStoryCount * 2;
+const expectedProductPatternSnapshots = productPatternStoryCount * 2;
 const expectedReleaseBaselines = publicRouteCount * 2 + expectedStorySnapshots + expectedAnalyticsSnapshots + expectedProductPatternSnapshots;
 
 const platforms = [];
@@ -242,7 +248,7 @@ const evidence = {
   },
   automation: {
     sourceTests: sourceTests.length,
-    storybookContractRuns: componentCount * 2 + 3 * 2 + 3 * 2,
+    storybookContractRuns: componentCount * 2 + analyticsStoryCount * 2 + productPatternStoryCount * 2,
     browserProjects: browserProjectNames,
     browserMatrix: {
       generatedAt: browserMatrix.generatedAt,
@@ -395,10 +401,7 @@ const expectedMarkdown = markdown.trimEnd() + "\n";
 
 const docClaims = {
   "README.md": [
-    `| Version | \`${evidence.release.version}\` |`,
-    `| Catalog | ${evidence.catalog.components} documented components |`,
-    `all ${evidence.catalog.components} public components`,
-    `${evidence.catalog.components} light + ${evidence.catalog.components} dark interaction and axe checks`,
+    `https://whatiuse.minwookshin.com/r/v/${evidence.release.version}/{name}.json`,
   ],
   "COMPATIBILITY.md": [
     `Teum \`${evidence.release.version}\``,

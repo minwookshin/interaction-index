@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/verify-teum-analytics-consumer.mjs",
-  "generatedAt": "2026-08-17T05:47:54.890Z",
-  "version": "0.1.0-rc.22",
+  "generatedAt": "2026-08-18T17:04:04.820Z",
+  "version": "0.1.0-rc.29",
   "status": "passed",
   "fixture": "Fresh React + TypeScript + Vite application using the source registry",
   "item": "teum-analytics",
@@ -15,6 +15,8 @@
     "Metric",
     "Sparkline",
     "Chart",
+    "DonutChart",
+    "Heatmap",
     "Comparison",
     "Breakdown",
     "Goal",
@@ -27,6 +29,8 @@
     "src/components/ui/metric.tsx",
     "src/components/ui/sparkline.tsx",
     "src/components/ui/chart.tsx",
+    "src/components/ui/donut-chart.tsx",
+    "src/components/ui/heatmap.tsx",
     "src/components/ui/comparison.tsx",
     "src/components/ui/breakdown.tsx",
     "src/components/ui/goal.tsx",
@@ -41,5 +45,5 @@
   "semanticDataTable": true,
   "typecheck": "passed",
   "productionBuild": "passed",
-  "elapsedMs": 11430
+  "elapsedMs": 10526
 }

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "candidate": "0.1.0-rc.22",
-  "programStage": "public-beta",
+  "candidate": "0.1.0-rc.29",
+  "programStage": "local-candidate",
   "independentInstallations": [],
   "feedbackRounds": [
     {
       "round": 1,
-      "status": "open",
-      "openedAt": "2026-08-17T08:42:11Z",
+      "status": "pending",
+      "openedAt": null,
       "completedAt": null,
       "evidenceUrls": [],
       "changes": [],
@@ -27,7 +27,7 @@
   ],
   "stableApiWindow": {
     "minimumDays": 28,
-    "startedAt": "2026-08-17T08:42:11Z",
+    "startedAt": "2026-08-18T17:01:06Z",
     "endedAt": null
   },
   "externalReviews": {
@@ -43,9 +43,9 @@
     "linuxVisualBaselines": { "status": "pending", "evidenceUrls": [] }
   },
   "publication": {
-    "githubRelease": "https://github.com/minwookshin/teum/releases/tag/v0.1.0-rc.22",
-    "site": "https://teum.minwookshin.com",
-    "registry": "https://teum.minwookshin.com/r/v/0.1.0-rc.22/release.json",
+    "githubRelease": null,
+    "site": null,
+    "registry": null,
     "npm": null
   },
   "claimBoundary": "Only dated, maintainer-accepted evidence from an independently maintained consumer counts as external adoption. Feedback evidence cannot be reused across rounds, and interrupted stability coverage remains unverified."

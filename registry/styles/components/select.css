@@ -1,4 +1,4 @@
-/* Generated from src/styles.css. Do not edit directly. */
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
 @layer teum.tokens, teum.base, teum.components;
 
@@ -47,8 +47,9 @@
   transition: opacity var(--teum-enter-duration) var(--teum-ease-out, ease-out), transform var(--teum-enter-duration) var(--teum-ease-out, ease-out);
 }
 
-.teum-select-popup[data-starting-style],
-.teum-select-popup[data-ending-style] { opacity: 0; transform: scale(0.98); }
+.teum-select-popup[data-starting-style] { opacity: 0; transform: translateY(-2px) scale(0.99); }
+
+.teum-select-popup[data-ending-style] { opacity: 0; transform: translateY(-1px) scale(0.995); }
 
 .teum-select-popup[data-ending-style] { transition-duration: var(--teum-exit-duration); }
 
@@ -82,8 +83,6 @@
 @media (hover: hover) and (pointer: fine) {
 .teum-select:not([data-disabled]):hover { border-color: var(--teum-border-strong); }
 }
-
-.teum-select:active { transform: scale(0.97); }
 
 .teum-positioner { z-index: var(--teum-layer-flyout); }
 
@@ -127,7 +126,7 @@
 @starting-style {
 .teum-select-item__indicator {
     opacity: 0;
-    transform: scale(.72);
+    transform: scale(.9);
   }
 }
 

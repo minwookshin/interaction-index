@@ -12,7 +12,7 @@ Teum is an MIT-licensed pre-release. Use the source registry for evaluation; the
 6. Run the product build.
 
 ```bash
-npx shadcn@4.18.0 registry add @teum-pinned=https://teum.minwookshin.com/r/v/0.1.0-rc.22/{name}.json
+npx shadcn@4.18.0 registry add @teum-pinned=https://whatiuse.minwookshin.com/r/v/0.1.0-rc.22/{name}.json
 npx shadcn@4.18.0 view @teum-pinned/button
 npx shadcn@4.18.0 add @teum-pinned/button
 npm run build

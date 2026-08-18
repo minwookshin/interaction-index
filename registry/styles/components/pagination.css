@@ -1,4 +1,4 @@
-/* Generated from src/styles.css. Do not edit directly. */
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
 @layer teum.tokens, teum.base, teum.components;
 
@@ -21,8 +21,6 @@
 @media (hover: hover) and (pointer: fine) {
 .teum-pagination button:not(:disabled):hover { background: var(--teum-hover); color: var(--teum-ink); }
 }
-
-.teum-pagination button:not(:disabled):active { transform: scale(0.97); }
 
 @media (prefers-reduced-motion: reduce) {
 .teum-pagination button:not(:disabled):active { transform: none; }

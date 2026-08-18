@@ -54,6 +54,8 @@ export * from "./data-export-menu";
 export * from "./sparkline";
 export * from "./metric";
 export * from "./chart";
+export * from "./donut-chart";
+export * from "./heatmap";
 export * from "./comparison";
 export * from "./breakdown";
 export * from "./goal";

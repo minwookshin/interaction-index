@@ -9,10 +9,32 @@
       "has": [
         {
           "type": "host",
+          "value": "teum.minwookshin.com"
+        }
+      ],
+      "destination": "https://whatiuse.minwookshin.com",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "teum.minwookshin.com"
+        }
+      ],
+      "destination": "https://whatiuse.minwookshin.com",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
           "value": "interactions.minwookshin.com"
         }
       ],
-      "destination": "https://teum.minwookshin.com",
+      "destination": "https://whatiuse.minwookshin.com",
       "permanent": true
     },
     {
@@ -23,7 +45,7 @@
           "value": "interactions.minwookshin.com"
         }
       ],
-      "destination": "https://teum.minwookshin.com/:path*",
+      "destination": "https://whatiuse.minwookshin.com",
       "permanent": true
     }
   ],

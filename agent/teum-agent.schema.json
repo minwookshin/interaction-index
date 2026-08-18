@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://teum.minwookshin.com/agent/teum-agent.schema.json",
+  "$id": "https://whatiuse.minwookshin.com/agent/teum-agent.schema.json",
   "title": "Teum agent contract",
   "type": "object",
   "required": ["schemaVersion", "version", "system", "components", "recipes", "selectionRules", "forbiddenRules"],

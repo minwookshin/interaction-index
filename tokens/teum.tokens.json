@@ -127,7 +127,7 @@
       "ui-tracking": {
         "$type": "number",
         "$description": "Compact UI letter spacing expressed as an em ratio.",
-        "$value": -0.006,
+        "$value": -0.012,
         "$extensions": {
           "dev.teum": {
             "cssUnit": "em"

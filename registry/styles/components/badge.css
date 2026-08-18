@@ -1,4 +1,4 @@
-/* Generated from src/styles.css. Do not edit directly. */
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
 @layer teum.tokens, teum.base, teum.components;
 
@@ -27,6 +27,7 @@
 .teum-badge__label { overflow: hidden; text-overflow: ellipsis; }
 
 .teum-badge__remove {
+  position: relative;
   display: grid;
   width: 17px;
   height: 17px;
@@ -37,6 +38,12 @@
   background: transparent;
   color: currentColor;
   cursor: pointer;
+}
+
+.teum-badge__remove::after {
+  position: absolute;
+  inset: -4px;
+  content: "";
 }
 
 .teum-badge__remove svg { width: 11px; height: 11px; }

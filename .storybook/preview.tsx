@@ -2,6 +2,7 @@ import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import type { Preview } from "@storybook/react-vite";
 import type { Decorator } from "@storybook/react-vite";
 import { Toaster, TooltipProvider } from "../src/components/ui";
+import "../src/foundation.css";
 import "../src/styles.css";
 import "../src/stories/storybook.css";
 
@@ -21,9 +22,6 @@ const preview: Preview = {
     }),
     withSystemProviders,
   ],
-  initialGlobals: {
-    theme: "light",
-  },
   parameters: {
     layout: "fullscreen",
     controls: {

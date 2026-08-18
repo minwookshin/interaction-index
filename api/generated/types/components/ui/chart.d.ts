@@ -6,6 +6,7 @@ export type ChartAnnotation = {
     label: string;
     tone?: "neutral" | "danger";
 };
+export type ChartType = "line" | "area" | "bar" | "stacked-bar";
 export type ChartProps = {
     title: string;
     description?: string;
@@ -15,6 +16,8 @@ export type ChartProps = {
     height?: number;
     includeZero?: boolean;
     domain?: readonly [number, number];
+    type?: ChartType;
+    /** @deprecated Use type="area". */
     area?: boolean;
     annotations?: readonly ChartAnnotation[];
     valueFormatter?: (value: number, series: AnalyticsSeries) => string;
@@ -27,7 +30,9 @@ export type ChartProps = {
     onDatumActivate?: (datum: AnalyticsDatum, index: number) => void;
     loading?: boolean;
     empty?: ReactNode;
+    error?: ReactNode;
     showLegend?: boolean;
     showDataByDefault?: boolean;
+    showGrid?: boolean;
 };
-export declare function Chart({ title, description, data, series, className, height, includeZero, domain, area, annotations, valueFormatter, activeIndex, defaultActiveIndex, onActiveIndexChange, visibleSeries, defaultVisibleSeries, onVisibleSeriesChange, onDatumActivate, loading, empty, showLegend, showDataByDefault, }: ChartProps): import("react").JSX.Element;
+export declare function Chart({ title, description, data, series, className, height, includeZero, domain, type, area, annotations, valueFormatter, activeIndex, defaultActiveIndex, onActiveIndexChange, visibleSeries, defaultVisibleSeries, onVisibleSeriesChange, onDatumActivate, loading, empty, error, showLegend, showDataByDefault, showGrid, }: ChartProps): import("react").JSX.Element;

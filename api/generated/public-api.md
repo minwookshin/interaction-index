@@ -5,16 +5,16 @@
 - Entry point: `src/components/ui/index.ts`
 - TypeScript: `6.0.3`
 - Core components: `45`
-- Product components: `15`
-- Public exports: `345`
-- Runtime exports: `197`
+- Product components: `17`
+- Public exports: `356`
+- Runtime exports: `201`
 
 ## button
 
 Declaration: [`button.d.ts`](./types/components/ui/button.d.ts)
 
-- **Button** · function · `Button({ className, variant, size, loading, leadingIcon, trailingIcon, disabled, focusableWhenDisabled, children, type, ...props }: ButtonProps): import("react").JSX.Element`
-- **ButtonProps** · type · `ButtonProps = ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & { loading?: boolean; leadingIcon?: ReactNode; trailingIcon?: ReactNode; }`
+- **Button** · function · `Button({ className, variant, size, loading, loadingLabel, leadingIcon, trailingIcon, disabled, focusableWhenDisabled, children, type, ...props }: ButtonProps): import("react").JSX.Element`
+- **ButtonProps** · type · `ButtonProps = ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & { loading?: boolean; loadingLabel?: ReactNode; leadingIcon?: ReactNode; trailingIcon?: ReactNode; }`
 - **buttonVariants** · const · `buttonVariants: (props?: ({ variant?: "primary" | "secondary" | "ghost" | "quiet" | null | undefined; size?: "small" | "medium" | "large" | null | undefined; } & import("class-variance-authority/types").ClassProp) | undefined) => string`
 
 ## icon-button
@@ -312,7 +312,7 @@ Declaration: [`badge.d.ts`](./types/components/ui/badge.d.ts)
 
 Declaration: [`avatar.d.ts`](./types/components/ui/avatar.d.ts)
 
-- **Avatar** · function · `Avatar({ className, src, alt, fallback, size, status, ...props }: AvatarProps): import("react").JSX.Element`
+- **Avatar** · function · `Avatar({ className, src, alt, fallback, size, status, role, "aria-label": ariaLabel, ...props }: AvatarProps): import("react").JSX.Element`
 - **AvatarGroup** · function · `AvatarGroup({ className, children, ...props }: ComponentPropsWithRef<"div">): import("react").JSX.Element`
 - **AvatarProps** · type · `AvatarProps = ComponentPropsWithRef<"span"> & { src?: string; alt?: string; fallback: string; size?: "small" | "medium" | "large"; status?: "online" | "away" | "busy" | "offline"; }`
 
@@ -522,9 +522,27 @@ Declaration: [`metric.d.ts`](./types/components/ui/metric.d.ts)
 
 Declaration: [`chart.d.ts`](./types/components/ui/chart.d.ts)
 
-- **Chart** · function · `Chart({ title, description, data, series, className, height, includeZero, domain, area, annotations, valueFormatter, activeIndex, defaultActiveIndex, onActiveIndexChange, visibleSeries, defaultVisibleSeries, onVisibleSeriesChange, onDatumA…`
+- **Chart** · function · `Chart({ title, description, data, series, className, height, includeZero, domain, type, area, annotations, valueFormatter, activeIndex, defaultActiveIndex, onActiveIndexChange, visibleSeries, defaultVisibleSeries, onVisibleSeriesChange, on…`
 - **ChartAnnotation** · type · `ChartAnnotation = { id: string; index: number; label: string; tone?: "neutral" | "danger"; }`
-- **ChartProps** · type · `ChartProps = { title: string; description?: string; data: readonly AnalyticsDatum[]; series: readonly AnalyticsSeries[]; className?: string; height?: number; includeZero?: boolean; domain?: readonly [number, number]; area?: boolean; annota…`
+- **ChartProps** · type · `ChartProps = { title: string; description?: string; data: readonly AnalyticsDatum[]; series: readonly AnalyticsSeries[]; className?: string; height?: number; includeZero?: boolean; domain?: readonly [number, number]; type?: ChartType; /** …`
+- **ChartType** · type · `ChartType = "line" | "area" | "bar" | "stacked-bar"`
+
+## donut-chart
+
+Declaration: [`donut-chart.d.ts`](./types/components/ui/donut-chart.d.ts)
+
+- **DonutChart** · function · `DonutChart({ title, description, data, className, valueFormatter, centerLabel, centerValue, activeId, defaultActiveId, onActiveIdChange, onDatumActivate, loading, empty, error, showDataByDefault, }: DonutChartProps): import("react").JSX.El…`
+- **DonutChartDatum** · type · `DonutChartDatum = { id: string; label: string; value: number; tone?: AnalyticsSeriesTone; }`
+- **DonutChartProps** · type · `DonutChartProps = { title: string; description?: string; data: readonly DonutChartDatum[]; className?: string; valueFormatter?: (value: number, datum: DonutChartDatum) => string; centerLabel?: string; centerValue?: ReactNode; activeId?: st…`
+
+## heatmap
+
+Declaration: [`heatmap.d.ts`](./types/components/ui/heatmap.d.ts)
+
+- **Heatmap** · function · `Heatmap({ title, description, columns, rows, domain, valueFormatter, activeCell, defaultActiveCell, onActiveCellChange, onCellActivate, loading, empty, error, className, ...props }: HeatmapProps): import("react").JSX.Element`
+- **HeatmapCell** · type · `HeatmapCell = { rowId: string; columnIndex: number; }`
+- **HeatmapProps** · type · `HeatmapProps = Omit<HTMLAttributes<HTMLDivElement>, "onChange"> & { title: string; description?: string; columns: readonly string[]; rows: readonly HeatmapRow[]; domain?: readonly [number, number]; valueFormatter?: (value: number) => strin…`
+- **HeatmapRow** · type · `HeatmapRow = { id: string; label: string; values: readonly (number | null)[]; }`
 
 ## comparison
 
@@ -646,6 +664,7 @@ Declaration: [`teum-data-contract.d.ts`](./types/lib/teum-data-contract.d.ts)
 
 Declaration: [`analytics.d.ts`](./types/lib/analytics.d.ts)
 
+- **AnalyticsBandPosition** · type · `AnalyticsBandPosition = { start: number; center: number; end: number; width: number; }`
 - **AnalyticsDatum** · type · `AnalyticsDatum = { id: string; label: string; values: Readonly<Record<string, AnalyticsValue>>; }`
 - **AnalyticsDomainOptions** · type · `AnalyticsDomainOptions = { includeZero?: boolean; paddingRatio?: number; domain?: readonly [number, number]; }`
 - **AnalyticsPlotBox** · type · `AnalyticsPlotBox = { width: number; height: number; left: number; right: number; top: number; bottom: number; }`
@@ -659,9 +678,11 @@ Declaration: [`analytics.d.ts`](./types/lib/analytics.d.ts)
 - **createAnalyticsTicks** · function · `createAnalyticsTicks(domain: readonly [number, number], tickCount?: number): readonly number[]`
 - **describeAnalyticsDatum** · function · `describeAnalyticsDatum(datum: AnalyticsDatum, series: readonly AnalyticsSeries[], valueFormatter?: (value: number, series: AnalyticsSeries) => string): string`
 - **formatAnalyticsValue** · function · `formatAnalyticsValue(value: number, options?: Intl.NumberFormatOptions): string`
+- **getAnalyticsBandPosition** · function · `getAnalyticsBandPosition(length: number, index: number, box: AnalyticsPlotBox): AnalyticsBandPosition`
 - **getAnalyticsDomain** · function · `getAnalyticsDomain(data: readonly AnalyticsDatum[], seriesIds: readonly string[], { includeZero, paddingRatio, domain }?: AnalyticsDomainOptions): readonly [number, number]`
 - **getAnalyticsPointPosition** · function · `getAnalyticsPointPosition(data: readonly AnalyticsDatum[], index: number, seriesId: string, domain: readonly [number, number], box: AnalyticsPlotBox): AnalyticsPointPosition | null`
 - **getPercentChange** · function · `getPercentChange(current: number, previous: number): number | null`
+- **getStackedAnalyticsDomain** · function · `getStackedAnalyticsDomain(data: readonly AnalyticsDatum[], seriesIds: readonly string[], { includeZero, paddingRatio, domain }?: AnalyticsDomainOptions): readonly [number, number]`
 - **summarizeAnalyticsSeries** · function · `summarizeAnalyticsSeries(data: readonly AnalyticsDatum[], series: AnalyticsSeries, valueFormatter?: (value: number, series: AnalyticsSeries) => string): string`
 
 ## teum-analytics-contract

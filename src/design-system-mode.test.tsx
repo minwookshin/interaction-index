@@ -1,7 +1,9 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
-import App, { components } from "./App";
+import { components } from "./App";
+import { libraryComponents } from "./component-catalog";
+import App from "./legacy-app";
 import { componentGuidance } from "./component-guidance";
 
 describe("design system workspace", () => {
@@ -23,16 +25,73 @@ describe("design system workspace", () => {
     expect(screen.queryByRole("region", { name: "Inbox" })).not.toBeInTheDocument();
   });
 
-  it("opens the public landing page as the default route", () => {
+  it("opens the live component Library as the default route", async () => {
     window.history.replaceState(null, "", window.location.pathname);
     render(<App />);
 
     expect(window.location.hash).toBe("");
-    expect(screen.getByRole("heading", { level: 1, name: "Interfaces that stay clear through change." })).toBeInTheDocument();
-    expect(screen.getByRole("region", { name: "Teum interaction system preview" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Documentation" })).toHaveAttribute("href", "#installation");
+    expect(screen.getByRole("heading", { level: 1, name: "Components for product interfaces." })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2, name: "Library" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Open documentation" })).toHaveAttribute("href", "#installation");
     expect(screen.getByRole("link", { name: "made by minwook" })).toHaveAttribute("href", "https://www.minwookshin.com/");
     expect(screen.queryByRole("complementary", { name: "Design system navigation" })).not.toBeInTheDocument();
+  });
+
+  it("keeps ownership visible in the Library and returns home from the text wordmark", async () => {
+    const user = userEvent.setup();
+    window.history.replaceState(null, "", "#components");
+    const { container } = render(<App />);
+
+    expect(screen.getByRole("link", { name: "made by minwook" })).toHaveAttribute("href", "https://www.minwookshin.com/");
+    expect(screen.getByRole("link", { name: "MIT license" })).toHaveAttribute("href", "#licensing");
+    const wordmark = screen.getByRole("link", { name: "whatiuse home" });
+    expect(wordmark).toHaveTextContent(/^whatiuse$/);
+    expect(wordmark.querySelector("svg")).toBeNull();
+
+    await user.click(wordmark);
+
+    expect(window.location.hash).toBe("");
+    expect(screen.getByRole("heading", { level: 1, name: "Components for product interfaces." })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "made by minwook" })).toHaveAttribute("href", "https://www.minwookshin.com/");
+    expect(container.querySelector(".whatiuse-wordmark svg")).toBeNull();
+  });
+
+  it("lists every component with an interactive preview and opens a URL-backed code inspector", async () => {
+    const user = userEvent.setup();
+    window.history.replaceState(null, "", "#components");
+    const { container } = render(<App />);
+
+    expect(screen.getByRole("heading", { level: 2, name: "Library" })).toBeInTheDocument();
+    expect(container.querySelectorAll(".component-index-row")).toHaveLength(libraryComponents.length);
+    expect(container.querySelector('.component-index-row[data-component="kbd"]')).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /^Interaction$/ })).not.toBeInTheDocument();
+    expect(container.querySelector('.component-index-row[data-component="shared-detail"]')).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Copy Button install command" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Open Button code" })).toHaveAttribute("href", "#components/button");
+    expect(within(container.querySelector<HTMLElement>('.component-index-row[data-component="button"]')!).queryByText("Controls")).not.toBeInTheDocument();
+    expect(container.querySelector("a button")).not.toBeInTheDocument();
+
+    const search = screen.getByRole("textbox", { name: "Search components" });
+    await user.type(search, "toast");
+    expect(container.querySelectorAll(".component-index-row")).toHaveLength(1);
+    expect(screen.getByRole("link", { name: "Open Toast code" })).toBeInTheDocument();
+
+    await user.clear(search);
+    await user.type(search, "table");
+    expect(container.querySelectorAll(".component-index-row")).toHaveLength(1);
+    expect(screen.getByRole("link", { name: "Open Table code" })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Open Button code" })).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole("link", { name: "Open Table code" }));
+    expect(window.location.hash).toBe("#components/table");
+    const inspector = screen.getByRole("dialog", { name: "Table" });
+    expect(within(inspector).getByRole("tab", { name: "Source" })).toHaveAttribute("aria-selected", "true");
+    expect(within(inspector).getByRole("button", { name: "Copy Table source" })).toBeInTheDocument();
+    expect(within(inspector).getByRole("link", { name: "Accessibility & API" })).toHaveAttribute("href", "#table");
+
+    await user.keyboard("{Escape}");
+    expect(screen.queryByRole("dialog", { name: "Table" })).not.toBeInTheDocument();
+    expect(window.location.hash).toBe("#components");
   });
 
   it("switches the live documentation when a component is selected", async () => {
@@ -40,13 +99,13 @@ describe("design system workspace", () => {
     render(<App />);
     const catalog = screen.getByRole("region", { name: "Component catalog" });
 
-    await user.click(within(catalog).getByRole("link", { name: /Action List/ }));
+    await user.click(within(catalog).getByRole("link", { name: /^Menu$/ }));
 
-    expect(screen.getByRole("heading", { level: 1, name: "Action List" })).toBeInTheDocument();
-    expect(window.location.hash).toBe("#action-list");
+    expect(screen.getByRole("heading", { level: 1, name: "Menu" })).toBeInTheDocument();
+    expect(window.location.hash).toBe("#menu");
     expect(screen.queryByText("Authored behavior")).not.toBeInTheDocument();
-    expect(screen.getByLabelText("Action List reference summary")).toHaveTextContent("Authored");
-    expect(screen.getAllByText("Filtering").length).toBeGreaterThan(0);
+    expect(screen.getByLabelText("Menu reference summary")).toHaveTextContent("Base UI");
+    expect(screen.getAllByText("Typeahead").length).toBeGreaterThan(0);
     expect(screen.getByRole("heading", { name: "Accessibility" })).toBeInTheDocument();
   });
 
@@ -73,6 +132,24 @@ describe("design system workspace", () => {
     expect(screen.getByRole("heading", { level: 1, name: "Foundations" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2, name: "Typography" })).toBeInTheDocument();
     expect(screen.queryByText("Perception Lab")).not.toBeInTheDocument();
+  });
+
+  it("keeps navigation disclosures mounted while exposing only the open section", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    const componentsTrigger = screen.getByRole("button", { name: /^Components/ });
+    const componentCatalog = screen.getByRole("region", { name: "Component catalog" });
+    expect(componentsTrigger).toHaveAttribute("aria-expanded", "true");
+    expect(componentsTrigger).toHaveAttribute("aria-controls", componentCatalog.parentElement?.parentElement?.id);
+    expect(componentCatalog.parentElement?.parentElement).not.toHaveAttribute("aria-hidden", "true");
+
+    await user.click(screen.getByRole("button", { name: /^Foundations/ }));
+
+    expect(componentsTrigger).toHaveAttribute("aria-expanded", "false");
+    expect(componentCatalog.parentElement?.parentElement).toHaveAttribute("aria-hidden", "true");
+    expect(componentCatalog.parentElement?.parentElement).toHaveAttribute("inert");
+    expect(screen.getByRole("region", { name: "Foundation catalog" })).toBeInTheDocument();
   });
 
   it("opens each foundation as a dedicated document route", async () => {
@@ -111,7 +188,7 @@ describe("design system workspace", () => {
     await user.click(within(patternCatalog).getByRole("link", { name: "Overview" }));
 
     expect(window.location.hash).toBe("#patterns");
-    expect(screen.getByRole("heading", { level: 1, name: "Interaction patterns" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: "Patterns" })).toBeInTheDocument();
     const patternIndex = screen.getByLabelText("Interaction pattern index");
     await user.click(within(patternIndex).getByRole("link", { name: /Shared Detail/ }));
 
@@ -166,13 +243,13 @@ describe("design system workspace", () => {
     expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("teum");
   });
 
-  it("keeps only GitHub and theme actions in the documentation top bar", () => {
+  it("keeps GitHub, documentation, and theme icon actions in the documentation top bar", () => {
     render(<App />);
 
     const outline = screen.getByRole("complementary", { name: "Page outline" });
     expect(screen.queryByRole("button", { name: "Copy page link" })).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "View Teum on GitHub" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Documentation" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Open documentation" })).toHaveAttribute("href", "#installation");
     expect(screen.getByRole("link", { name: "made by minwook" })).toHaveAttribute("href", "https://www.minwookshin.com/");
     expect(within(outline).getByRole("button", { name: "MIT license" })).toBeInTheDocument();
   });
@@ -240,9 +317,9 @@ describe("design system workspace", () => {
 
     await user.click(screen.getByText("Show code"));
     expect(screen.getByText("Show code").closest("details")).toHaveAttribute("open");
-    await user.click(within(catalog).getByRole("link", { name: /Shared Detail/ }));
+    await user.click(within(catalog).getByRole("link", { name: /^Dialog$/ }));
 
-    expect(screen.getByRole("heading", { level: 1, name: "Shared Detail" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: "Dialog" })).toBeInTheDocument();
     expect(screen.getByText("Show code").closest("details")).not.toHaveAttribute("open");
   });
 
@@ -257,7 +334,8 @@ describe("design system workspace", () => {
   it("publishes every component route with a component-specific state contract", () => {
     const { container } = render(<App />);
     const catalog = screen.getByRole("region", { name: "Component catalog" });
-    expect(within(catalog).getAllByRole("link")).toHaveLength(components.length);
+    const componentIds = new Set(components.map((component) => `#${component.id}`));
+    expect(within(catalog).getAllByRole("link").filter((link) => componentIds.has(link.getAttribute("href") ?? ""))).toHaveLength(libraryComponents.length);
     expect(container.querySelectorAll(".state-tile")).toHaveLength(componentGuidance.button.states.length);
     expect(Object.keys(componentGuidance)).toHaveLength(components.length);
     for (const guidance of Object.values(componentGuidance)) {

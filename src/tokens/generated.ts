@@ -543,12 +543,12 @@ export const tokenManifest = [
     "cssVariable": "--teum-ui-tracking",
     "scope": "foundation",
     "values": {
-      "light": "-0.006em",
-      "dark": "-0.006em"
+      "light": "-0.012em",
+      "dark": "-0.012em"
     },
     "resolvedValues": {
-      "light": "-0.006em",
-      "dark": "-0.006em"
+      "light": "-0.012em",
+      "dark": "-0.012em"
     }
   },
   {

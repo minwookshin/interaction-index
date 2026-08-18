@@ -1,4 +1,4 @@
-/* Generated from src/styles.css. Do not edit directly. */
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
 @layer teum.tokens, teum.base, teum.components;
 
@@ -48,17 +48,17 @@
   max-width: min(320px, calc(100vw - 20px));
   max-height: min(360px, var(--available-height));
   overflow: hidden;
-  border-radius: var(--teum-radius-overlay);
-  background: color-mix(in oklab, var(--teum-bg-flyout) 94%, transparent);
+  border: 1px solid var(--teum-border);
+  border-radius: var(--teum-radius-md);
+  background: var(--teum-bg-flyout);
   box-shadow: var(--teum-shadow-flyout);
   color: var(--teum-fg-default);
-  backdrop-filter: blur(14px);
   transform-origin: var(--transform-origin);
-  transition: opacity 150ms var(--teum-ease-out), transform 150ms var(--teum-ease-out);
+  transition: opacity var(--teum-enter-duration) var(--teum-ease-out), transform var(--teum-enter-duration) var(--teum-ease-out);
 }
 
 .teum-context-switcher__popup[data-starting-style],
-.teum-context-switcher__popup[data-ending-style] { opacity: 0; transform: translateY(-2px) scale(.985); }
+.teum-context-switcher__popup[data-ending-style] { opacity: 0; transform: translateY(-2px) scale(.99); }
 
 .teum-context-switcher__popup[data-ending-style] { transition-duration: var(--teum-exit-duration); }
 
@@ -66,16 +66,16 @@
 
 .teum-context-switcher__item {
   display: grid;
-  min-height: 48px;
+  min-height: 44px;
   grid-template-columns: 17px minmax(0, 1fr) 14px;
   align-items: center;
   gap: 9px;
   padding: 6px 8px;
   border: 0;
-  border-radius: 7px;
+  border-radius: 5px;
   background: transparent;
   outline: 0;
-  color: var(--teum-fg-default);
+  color: var(--teum-fg-muted);
   font: inherit;
   text-align: left;
   cursor: default;
@@ -93,9 +93,8 @@
 
 .teum-context-switcher__indicator svg { width: 12px; height: 12px; }
 
-.teum-context-switcher__item:hover { background: var(--teum-hover); }
-
-.teum-context-switcher__item[data-highlighted] { background: var(--teum-bg-control); box-shadow: inset 0 0 0 1px var(--teum-focus-control); }
+.teum-context-switcher__item:hover,
+.teum-context-switcher__item[data-highlighted] { background: var(--teum-hover); color: var(--teum-fg-default); }
 
 .teum-context-switcher__item[data-disabled] { color: var(--teum-fg-disabled); cursor: not-allowed; }
 

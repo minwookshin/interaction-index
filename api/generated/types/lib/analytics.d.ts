@@ -29,9 +29,17 @@ export type AnalyticsPointPosition = {
     y: number;
     value: number;
 };
+export type AnalyticsBandPosition = {
+    start: number;
+    center: number;
+    end: number;
+    width: number;
+};
 export declare function getAnalyticsDomain(data: readonly AnalyticsDatum[], seriesIds: readonly string[], { includeZero, paddingRatio, domain }?: AnalyticsDomainOptions): readonly [number, number];
+export declare function getStackedAnalyticsDomain(data: readonly AnalyticsDatum[], seriesIds: readonly string[], { includeZero, paddingRatio, domain }?: AnalyticsDomainOptions): readonly [number, number];
 export declare function createAnalyticsTicks(domain: readonly [number, number], tickCount?: number): readonly number[];
 export declare function getAnalyticsPointPosition(data: readonly AnalyticsDatum[], index: number, seriesId: string, domain: readonly [number, number], box: AnalyticsPlotBox): AnalyticsPointPosition | null;
+export declare function getAnalyticsBandPosition(length: number, index: number, box: AnalyticsPlotBox): AnalyticsBandPosition;
 export declare function createAnalyticsPath(data: readonly AnalyticsDatum[], seriesId: string, domain: readonly [number, number], box: AnalyticsPlotBox): string;
 export declare function createAnalyticsAreaPath(data: readonly AnalyticsDatum[], seriesId: string, domain: readonly [number, number], box: AnalyticsPlotBox): string;
 export declare function clampAnalyticsIndex(index: number | null | undefined, length: number): number | null;

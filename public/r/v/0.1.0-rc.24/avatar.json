@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "title": "Avatar",
+  "description": "Identity image, deterministic fallback, status, and grouping.",
+  "registryDependencies": [
+    "@teum-pinned/teum-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/avatar.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/avatar.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type AvatarProps = ComponentPropsWithRef<\"span\"> & {\n  src?: string;\n  alt?: string;\n  fallback: string;\n  size?: \"small\" | \"medium\" | \"large\";\n  status?: \"online\" | \"away\" | \"busy\" | \"offline\";\n};\n\nfunction fallbackTone(value: string) {\n  return [...value].reduce((total, character) => total + (character.codePointAt(0) ?? 0), 0) % 4;\n}\n\nexport function Avatar({ className, src, alt = \"\", fallback, size = \"medium\", status, ...props }: AvatarProps) {\n  return (\n    <span className={cn(\"teum-avatar\", `teum-avatar--${size}`, className)} data-status={status || undefined} data-tone={src ? undefined : fallbackTone(fallback)} {...props}>\n      {src ? <img src={src} alt={alt} /> : <span className=\"teum-avatar__fallback\" aria-hidden={alt ? undefined : \"true\"}>{fallback.slice(0, 2).toLocaleUpperCase()}</span>}\n      {status && <span className=\"teum-avatar__status\" data-status={status} role=\"img\" aria-label={`${status} presence`} />}\n    </span>\n  );\n}\n\nexport function AvatarGroup({ className, children, ...props }: ComponentPropsWithRef<\"div\">) {\n  return <div role=\"group\" className={cn(\"teum-avatar-group\", className)} {...props}>{children}</div>;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/avatar.tsx"
+    },
+    {
+      "path": "registry/styles/components/avatar.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-avatar {\n  position: relative;\n  display: inline-grid;\n  flex: 0 0 auto;\n  isolation: isolate;\n  place-items: center;\n  overflow: visible;\n  border: 1px solid color-mix(in oklch, var(--teum-control-border) 76%, transparent);\n  border-radius: 50%;\n  background: var(--teum-gray-100);\n  color: var(--teum-fg-muted);\n  box-shadow: inset 0 1px 0 color-mix(in oklch, var(--teum-bg-surface) 72%, transparent);\n  font-weight: 570;\n  letter-spacing: -0.025em;\n}\n\n.teum-avatar[data-tone=\"0\"] { background: var(--teum-gray-50); }\n\n.teum-avatar[data-tone=\"1\"] { background: color-mix(in oklch, var(--teum-gray-100) 78%, var(--teum-gray-200)); }\n\n.teum-avatar[data-tone=\"2\"] { background: color-mix(in oklch, var(--teum-gray-100) 58%, var(--teum-gray-200)); }\n\n.teum-avatar[data-tone=\"3\"] { background: color-mix(in oklch, var(--teum-gray-100) 38%, var(--teum-gray-200)); }\n\n.teum-avatar img,\n.teum-avatar__fallback { width: 100%; height: 100%; border-radius: inherit; object-fit: cover; display: grid; place-items: center; }\n\n.teum-avatar__fallback { line-height: 1; text-align: center; }\n\n.teum-avatar__status { position: absolute; z-index: 2; right: -1px; bottom: -1px; width: 11px; height: 11px; border: 2px solid var(--teum-bg-surface); border-radius: 50%; background: var(--teum-gray-700); }\n\n.teum-avatar__status[data-status=\"away\"] { background: var(--teum-gray-400); }\n\n.teum-avatar__status[data-status=\"busy\"] { background: var(--teum-gray-900); }\n\n.teum-avatar__status[data-status=\"offline\"] { background: var(--teum-bg-control); box-shadow: inset 0 0 0 1px var(--teum-gray-400); }\n\n.teum-avatar-group { display: flex; align-items: center; isolation: isolate; }\n\n.teum-avatar-group .teum-avatar { box-shadow: 0 0 0 2px var(--teum-bg-surface), inset 0 1px 0 color-mix(in oklch, var(--teum-bg-surface) 72%, transparent); }\n\n.teum-avatar-group .teum-avatar + .teum-avatar { margin-left: -7px; }\n\n.teum-avatar-group .teum-avatar[data-status] { z-index: 1; }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/avatar.css"
+    }
+  ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/avatar",
+      "useWhen": "Visual identity helps people recognize a person or entity faster than text alone.",
+      "avoidWhen": "No identity exists or the image adds decoration without meaning."
+    }
+  },
+  "type": "registry:ui"
+}

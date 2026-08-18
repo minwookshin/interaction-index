@@ -15,7 +15,7 @@
     },
     {
       "path": "registry/styles/components/skeleton.css",
-      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-skeleton { position: relative; overflow: hidden; border-radius: var(--teum-radius-xs); background: var(--teum-gray-100); }\n\n.teum-skeleton::after { position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.65), transparent); content: \"\"; transform: translateX(-100%); animation: teum-skeleton-shimmer 1.6s linear infinite; }\n\n.teum-skeleton-text { display: grid; width: min(320px, 100%); gap: 8px; }\n\n@media (prefers-reduced-motion: reduce) {\n.teum-skeleton::after { animation-duration: 2.4s; }\n}\n\n@keyframes teum-skeleton-shimmer { to { transform: translateX(100%); } }\n}\n",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-skeleton { position: relative; overflow: hidden; border-radius: var(--teum-radius-xs); background: var(--teum-gray-100); }\n\n.teum-skeleton::after { position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.65), transparent); content: \"\"; transform: translateX(-100%); animation: teum-skeleton-shimmer 1.6s linear infinite; }\n\n.teum-skeleton-text { display: grid; width: min(320px, 100%); gap: 8px; }\n\n@media (prefers-reduced-motion: reduce) {\n.teum-skeleton::after { animation-duration: 2.4s; }\n}\n\n@keyframes teum-skeleton-shimmer { to { transform: translateX(100%); } }\n}\n",
       "type": "registry:style",
       "target": "styles/components/skeleton.css"
     }

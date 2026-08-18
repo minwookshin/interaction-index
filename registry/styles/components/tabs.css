@@ -1,4 +1,4 @@
-/* Generated from src/styles.css. Do not edit directly. */
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
 @layer teum.tokens, teum.base, teum.components;
 
@@ -29,5 +29,5 @@
 
 :root[data-theme="dark"] .teum-tabs__trigger:hover { color: var(--teum-ink); }
 
-.teum-tabs__trigger { transition: color var(--teum-hover-duration), background-color var(--teum-hover-duration), box-shadow var(--teum-hover-duration); }
+.teum-tabs__trigger { transition: color var(--teum-hover-duration), background-color var(--teum-hover-duration), box-shadow var(--teum-hover-duration), transform var(--teum-press-duration) var(--teum-ease-out); }
 }

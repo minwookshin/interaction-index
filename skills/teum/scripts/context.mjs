@@ -38,7 +38,7 @@ for (const item of catalog.components) {
     : `${libAlias.replace(/^@\//, "src/")}/${item.id}.ts`;
   if (await exists(resolve(project, relative))) installed.push(item.id);
 }
-const registryTemplate = `https://teum.minwookshin.com/r/v/${catalog.version}/{name}.json`;
+const registryTemplate = `https://whatiuse.minwookshin.com/r/v/${catalog.version}/{name}.json`;
 
 console.log(JSON.stringify({
   schemaVersion: 1,

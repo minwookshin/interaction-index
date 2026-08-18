@@ -9,7 +9,7 @@ const requiredContracts = {
   contentExpansion: "representative product surfaces tolerate synthetic translated-content expansion",
   forcedColorsAndReducedMotion: "all public routes retain structure in forced colors and reduced motion",
   overlayFocusReturn: "keyboard focus returns after a representative menu and dialog path",
-  keyboardSkipPath: "landing and documentation expose a keyboard-first skip path",
+  keyboardSkipPath: "Library and documentation expose a keyboard-first skip path",
   routeAnnouncement: "documentation announces in-app route changes without moving desktop focus",
   mobileFocusHandoff: "mobile navigation hands focus to the selected document",
   landmarkOwnership: "every public view owns one main landmark and one page heading",

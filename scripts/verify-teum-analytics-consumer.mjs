@@ -92,7 +92,7 @@ try {
     include: ["src/**/*.ts", "src/**/*.tsx"],
   }, null, 2)}\n`);
   await writeFile(resolve(fixture, "index.html"), '<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Teum Analytics consumer</title></head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>\n');
-  await writeFile(resolve(fixture, "src/main.tsx"), 'import { createRoot } from "react-dom/client";\nimport { ConversionRetentionRecipe, ProductUsageRecipe, SaaSOverviewRecipe } from "./components/patterns/analytics-recipes";\n\nconst root = document.getElementById("root");\nif (!root) throw new Error("Missing app root");\ncreateRoot(root).render(<main><SaaSOverviewRecipe /><ProductUsageRecipe /><ConversionRetentionRecipe /></main>);\n');
+  await writeFile(resolve(fixture, "src/main.tsx"), 'import { createRoot } from "react-dom/client";\nimport { AnalyticsRendererGallery, ConversionRetentionRecipe, ProductUsageRecipe, SaaSOverviewRecipe } from "./components/patterns/analytics-recipes";\n\nconst root = document.getElementById("root");\nif (!root) throw new Error("Missing app root");\ncreateRoot(root).render(<main><AnalyticsRendererGallery /><SaaSOverviewRecipe /><ProductUsageRecipe /><ConversionRetentionRecipe /></main>);\n');
 
   const startedAt = performance.now();
   await exec(executable, ["registry", "add", `@teum-pinned=${template}`, "-c", fixture], {
@@ -101,6 +101,14 @@ try {
     maxBuffer: 32 * 1024 * 1024,
     timeout: 120_000,
   });
+  if (process.env.TEUM_REGISTRY_TEMPLATE) {
+    await exec(executable, ["registry", "add", `@teum=${template}`, "-c", fixture], {
+      cwd: root,
+      env: { ...process.env, CI: "1" },
+      maxBuffer: 32 * 1024 * 1024,
+      timeout: 120_000,
+    });
+  }
   const install = await exec(executable, ["add", "@teum-pinned/teum-analytics", "-y", "-c", fixture], {
     cwd: root,
     env: { ...process.env, CI: "1" },
@@ -115,6 +123,8 @@ try {
     "src/components/ui/metric.tsx",
     "src/components/ui/sparkline.tsx",
     "src/components/ui/chart.tsx",
+    "src/components/ui/donut-chart.tsx",
+    "src/components/ui/heatmap.tsx",
     "src/components/ui/comparison.tsx",
     "src/components/ui/breakdown.tsx",
     "src/components/ui/goal.tsx",
@@ -145,7 +155,7 @@ try {
   const builtJavaScript = (await Promise.all(builtAssets
     .filter((name) => name.endsWith(".js"))
     .map((name) => readFile(resolve(fixture, "dist/assets", name), "utf8")))).join("\n");
-  for (const proof of ["SaaS Overview", "Product Usage", "Conversion & Retention"]) {
+  for (const proof of ["Analytics primitives", "SaaS Overview", "Product Usage", "Conversion & Retention"]) {
     if (!builtJavaScript.includes(proof)) throw new Error(`[teum-analytics-consumer] production bundle omitted ${proof}`);
   }
 
@@ -160,7 +170,7 @@ try {
       fixture: "Fresh React + TypeScript + Vite application using the source registry",
       item: "teum-analytics",
       recipes: ["SaaS Overview", "Product Usage", "Conversion & Retention"],
-      components: ["Metric", "Sparkline", "Chart", "Comparison", "Breakdown", "Goal", "Funnel", "Cohort", "Timeline"],
+      components: ["Metric", "Sparkline", "Chart", "DonutChart", "Heatmap", "Comparison", "Breakdown", "Goal", "Funnel", "Cohort", "Timeline"],
       verifiedFiles,
       externalChartRuntime: false,
       semanticDataTable: true,

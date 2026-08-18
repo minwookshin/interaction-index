@@ -2,10 +2,10 @@ import { expect, test } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("/#product-patterns");
-  await expect(page.getByRole("heading", { level: 1, name: "Product Patterns" })).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByRole("heading", { level: 1, name: "Recipes" })).toBeVisible({ timeout: 15_000 });
 });
 
-test("Product Patterns exposes three complete B2B tasks", async ({ page }) => {
+test("Recipes expose three complete B2B tasks", async ({ page }) => {
   await expect(page.getByRole("region", { name: "Customer Workspace recipe" })).toBeVisible();
   await expect(page.getByRole("region", { name: "Billing and Usage recipe" })).toBeVisible();
   await expect(page.getByRole("region", { name: "Members and Permissions recipe" })).toBeVisible();
@@ -53,7 +53,7 @@ test("Members and Permissions keeps policy and invitation in one task", async ({
 test("Product Patterns contain overflow and remove movement for reduced motion", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.reload();
-  await expect(page.getByRole("heading", { level: 1, name: "Product Patterns" })).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByRole("heading", { level: 1, name: "Recipes" })).toBeVisible({ timeout: 15_000 });
   for (const recipe of await page.locator(".teum-product-pattern").all()) {
     const dimensions = await recipe.evaluate((element) => ({ clientWidth: element.clientWidth, scrollWidth: element.scrollWidth }));
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1);

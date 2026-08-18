@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "currentCandidate": "0.1.0-rc.22",
+  "currentCandidate": "0.1.0-rc.29",
   "policy": "Versioned registry directories are append-only. Anchored releases must match their source commit byte-for-byte; legacy previews and the current candidate are locked by this reviewed content ledger until a release commit exists.",
   "versions": [
     {
@@ -163,9 +163,51 @@
     },
     {
       "version": "0.1.0-rc.22",
-      "status": "candidate",
+      "status": "legacy-preview",
       "fileCount": 75,
       "treeSha256": "97f96f35664f81e740412c853d8ec6640b5cb9ead3f6e07f099c9dd6b7736730"
+    },
+    {
+      "version": "0.1.0-rc.23",
+      "status": "legacy-preview",
+      "fileCount": 77,
+      "treeSha256": "e722502325f59967380b865ed945678d10bade9409f2408a4215cdcf19d18639"
+    },
+    {
+      "version": "0.1.0-rc.24",
+      "status": "legacy-preview",
+      "fileCount": 77,
+      "treeSha256": "1d14785520ac4facaae264079ec623726d38857ac47a766d7ad4db4d189115a6"
+    },
+    {
+      "version": "0.1.0-rc.25",
+      "status": "legacy-preview",
+      "fileCount": 77,
+      "treeSha256": "42484aa1c61383b22ff19bd34ff7d23d2258e5eaafa8664b3bc8bc5f1143da07"
+    },
+    {
+      "version": "0.1.0-rc.26",
+      "status": "legacy-preview",
+      "fileCount": 77,
+      "treeSha256": "78b711083a16c0a11a6b276447a7d22b7e57803d8f28962eccc88c661cf40986"
+    },
+    {
+      "version": "0.1.0-rc.27",
+      "status": "legacy-preview",
+      "fileCount": 77,
+      "treeSha256": "d4719273e138ca552d7259e82fc90aafaa6c6a787463e67f36f2a14a47c4e905"
+    },
+    {
+      "version": "0.1.0-rc.28",
+      "status": "legacy-preview",
+      "fileCount": 77,
+      "treeSha256": "482fd56e5ddb30a012b60e02bedc0269858a3435419b2df4382273cec05eb155"
+    },
+    {
+      "version": "0.1.0-rc.29",
+      "status": "candidate",
+      "fileCount": 77,
+      "treeSha256": "13a3cf9c66e2f0905939a4cbdb879a5ea26212fc4de72c6ce2bcbb9d9ea918df"
     }
   ]
 }

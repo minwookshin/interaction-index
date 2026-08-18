@@ -3,11 +3,13 @@ import { resolve } from "node:path";
 
 const root = process.cwd();
 const sourcePath = resolve(root, "src/styles.css");
+const foundationSourcePath = resolve(root, "src/foundation.css");
 const tokenSourcePath = resolve(root, "src/tokens/generated.css");
 const tailwindBridgeSourcePath = resolve(root, "src/teum-tailwind.css");
 const registryPath = resolve(root, "registry.json");
 const generatedRoot = resolve(root, "registry");
 const source = await readFile(sourcePath, "utf8");
+const foundationSource = await readFile(foundationSourcePath, "utf8");
 const tokenSource = await readFile(tokenSourcePath, "utf8");
 const tailwindBridgeSource = await readFile(tailwindBridgeSourcePath, "utf8");
 const registry = JSON.parse(await readFile(registryPath, "utf8"));
@@ -16,9 +18,9 @@ const coreComponentItems = registry.items.filter((item) => item.type === "regist
 const productComponentItems = registry.items.filter((item) => item.type === "registry:component");
 const componentItems = [...coreComponentItems, ...productComponentItems];
 
-const generatedHeader = "/* Generated from src/styles.css. Do not edit directly. */";
+const generatedHeader = "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */";
 const layerOrder = "@layer teum.tokens, teum.base, teum.components;";
-const fontImport = source.match(/^@import\s+[^;]+;/m)?.[0] ?? "";
+const fontImport = foundationSource.match(/^@import\s+[^;]+;/m)?.[0] ?? "";
 
 function packageName(specifier) {
   if (specifier.startsWith("@")) {
@@ -203,7 +205,7 @@ const baseSelector = (selector) => {
 };
 
 const tokenRules = filterCss(tokenSource, rootSelector);
-const baseRules = filterCss(source, baseSelector);
+const baseRules = filterCss(foundationSource, baseSelector);
 if (!tokenRules.includes("--teum-bg-canvas") || !baseRules.includes("box-sizing")) {
   throw new Error("Registry base extraction omitted required tokens or reset rules.");
 }
@@ -353,6 +355,7 @@ await writeFile(resolve(generatedRoot, "styles/patterns/issues-workspace.css"), 
 
 const dataRecipesSource = await readFile(resolve(root, "src/documentation/data-recipes.tsx"), "utf8");
 const dataRecipesImports = `import { Badge } from "../ui/badge";
+import { BulkActionBar } from "../ui/bulk-action-bar";
 import { Button } from "../ui/button";
 import { ColumnManager, DataToolbar, SavedViews } from "../ui/data-toolbar";
 import { DataExportMenu } from "../ui/data-export-menu";
@@ -399,8 +402,10 @@ import { Chart } from "../ui/chart";
 import { Cohort } from "../ui/cohort";
 import { Comparison } from "../ui/comparison";
 import { DataTable, type DataTableColumn } from "../ui/data-table";
+import { DonutChart } from "../ui/donut-chart";
 import { Funnel, type FunnelStage } from "../ui/funnel";
 import { Goal } from "../ui/goal";
+import { Heatmap } from "../ui/heatmap";
 import { Metric } from "../ui/metric";
 import { SegmentedControl } from "../ui/segmented-control";
 import { Sparkline } from "../ui/sparkline";
@@ -413,7 +418,7 @@ const generatedAnalyticsRecipesSource = analyticsRecipesSource.replace(
 if (generatedAnalyticsRecipesSource === analyticsRecipesSource) {
   throw new Error("Teum Analytics recipe imports could not be rewritten for the public registry target.");
 }
-const analyticsRecipesRules = filterCss(source, (selector) => /\.teum-analytics-recipe/.test(normalizeSelector(selector)));
+const analyticsRecipesRules = filterCss(source, (selector) => /\.teum-analytics-(?:recipe|gallery)/.test(normalizeSelector(selector)));
 if (!analyticsRecipesRules.trim()) throw new Error("Teum Analytics recipe CSS extraction produced no rules.");
 const analyticsRecipesCss = `${generatedHeader}\n\n${layerOrder}\n\n@layer teum.components {\n${analyticsRecipesRules}\n}\n`;
 await writeFile(

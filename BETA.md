@@ -1,13 +1,13 @@
 # Teum public beta
 
-Teum `0.1.0-rc.22` is in public beta. The [site](https://teum.minwookshin.com), [GitHub prerelease](https://github.com/minwookshin/teum/releases/tag/v0.1.0-rc.22), and pinned registry are live. The npm package is not published. This is for real product evaluation, not a production-readiness claim.
+Teum `0.1.0-rc.22` is in public beta. The [site](https://whatiuse.minwookshin.com), [GitHub prerelease](https://github.com/minwookshin/teum/releases/tag/v0.1.0-rc.22), and pinned registry are live. The npm package is not published. This is for real product evaluation, not a production-readiness claim.
 
 ## Try one task
 
 Use a disposable React + TypeScript branch and install the exact candidate:
 
 ```bash
-npx shadcn@4.18.0 registry add @teum-pinned=https://teum.minwookshin.com/r/v/0.1.0-rc.22/{name}.json
+npx shadcn@4.18.0 registry add @teum-pinned=https://whatiuse.minwookshin.com/r/v/0.1.0-rc.22/{name}.json
 npx shadcn@4.18.0 view @teum-pinned/button
 npx shadcn@4.18.0 add @teum-pinned/button
 ```

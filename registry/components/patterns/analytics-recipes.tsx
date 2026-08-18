@@ -9,8 +9,10 @@ import { Chart } from "../ui/chart";
 import { Cohort } from "../ui/cohort";
 import { Comparison } from "../ui/comparison";
 import { DataTable, type DataTableColumn } from "../ui/data-table";
+import { DonutChart } from "../ui/donut-chart";
 import { Funnel, type FunnelStage } from "../ui/funnel";
 import { Goal } from "../ui/goal";
+import { Heatmap } from "../ui/heatmap";
 import { Metric } from "../ui/metric";
 import { SegmentedControl } from "../ui/segmented-control";
 import { Sparkline } from "../ui/sparkline";
@@ -21,6 +23,50 @@ const compactCurrencyFormatter = new Intl.NumberFormat("en-US", { style: "curren
 const standardCurrencyFormatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", notation: "standard", maximumFractionDigits: 0 });
 const currency = (value: number) => (value >= 10_000 ? compactCurrencyFormatter : standardCurrencyFormatter).format(value);
 const percent = (value: number) => `${value.toFixed(1)}%`;
+
+const channelData: readonly AnalyticsDatum[] = [
+  ["Mar", 312, 168, 82], ["Apr", 338, 176, 91], ["May", 362, 194, 104],
+  ["Jun", 391, 216, 116], ["Jul", 418, 238, 132], ["Aug", 446, 267, 148],
+].map(([label, product, partner, outbound], index) => ({ id: `channel-${index}`, label: String(label), values: { product: Number(product), partner: Number(partner), outbound: Number(outbound) } }));
+
+const channelSeries: readonly AnalyticsSeries[] = [
+  { id: "product", label: "Product led", tone: "primary" },
+  { id: "partner", label: "Partners", tone: "secondary" },
+  { id: "outbound", label: "Outbound", tone: "tertiary" },
+];
+
+const activityRows = [
+  { id: "create", label: "Create", values: [42, 58, 61, 54, 72, 31, 24] },
+  { id: "search", label: "Search", values: [68, 74, 79, 76, 83, 45, 39] },
+  { id: "automate", label: "Automate", values: [18, 24, 32, 37, 46, 22, 15] },
+  { id: "share", label: "Share", values: [29, 35, 41, 44, 52, 26, 19] },
+] as const;
+
+export function AnalyticsRendererGallery() {
+  return (
+    <section className="teum-analytics-gallery" aria-label="Analytics renderer family">
+      <header className="teum-analytics-gallery__header"><div><h3>Analytics primitives</h3><p>Metrics, trends, composition, and activity.</p></div></header>
+      <div className="teum-analytics-gallery__metrics">
+        <Metric label="MRR" value="$119.6k" trend={{ value: "+4.8%", label: "vs last month", direction: "up" }} visual={<Sparkline values={[82, 86, 91, 96, 105, 110, 114, 120]} decorative fill />} />
+        <Metric label="Active workspaces" value="4,862" trend={{ value: "+318", label: "this month", direction: "up" }} visual={<Sparkline values={[3_910, 4_020, 4_188, 4_304, 4_472, 4_611, 4_742, 4_862]} decorative />} />
+        <Metric label="Activation" value="56.9%" context="Trial workspaces" trend={{ value: "+2.1 pts", label: "vs prior period", direction: "up" }} />
+      </div>
+      <div className="teum-analytics-gallery__charts">
+        <Chart title="Recurring revenue" description="Area is reserved for one primary ordered measure." data={revenueData.slice(-8)} series={revenueSeries} type="area" valueFormatter={(value) => currency(value)} />
+        <Chart title="Acquisition mix" description="Stacked bars compare total volume and composition." data={channelData} series={channelSeries} type="stacked-bar" valueFormatter={(value) => Math.round(value).toLocaleString()} />
+      </div>
+      <div className="teum-analytics-gallery__details">
+        <DonutChart title="Plan mix" description="Four categories form one account total." data={[
+          { id: "team", label: "Team", value: 1_086, tone: "primary" },
+          { id: "business", label: "Business", value: 482, tone: "secondary" },
+          { id: "enterprise", label: "Enterprise", value: 196, tone: "tertiary" },
+          { id: "starter", label: "Starter", value: 78, tone: "tertiary" },
+        ]} valueFormatter={(value) => value.toLocaleString()} centerLabel="Accounts" />
+        <Heatmap title="Feature activity" description="Median actions per active workspace." columns={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]} rows={activityRows} valueFormatter={(value) => Math.round(value).toString()} />
+      </div>
+    </section>
+  );
+}
 
 const revenueData: readonly AnalyticsDatum[] = [
   ["Sep", 78.2, 70.4], ["Oct", 81.1, 72.8], ["Nov", 83.8, 74.2], ["Dec", 86.5, 75.6],
@@ -42,14 +88,14 @@ export function SaaSOverviewRecipe() {
 
   return (
     <section className="teum-analytics-recipe" aria-label="SaaS Overview recipe">
-      <header className="teum-analytics-recipe__header"><div><span>Revenue</span><h3>SaaS Overview</h3><p>Recurring revenue, retention, and expansion in one period.</p></div><SegmentedControl size="small" label="Revenue range" value={range} onValueChange={(value) => value && setRange(value)} options={[{ value: "6m", label: "6M" }, { value: "12m", label: "12M" }]} /></header>
+      <header className="teum-analytics-recipe__header"><div><h3>SaaS Overview</h3><p>Revenue, retention, and expansion.</p></div><SegmentedControl size="small" label="Revenue range" value={range} onValueChange={(value) => value && setRange(value)} options={[{ value: "6m", label: "6M" }, { value: "12m", label: "12M" }]} /></header>
       <div className="teum-analytics-recipe__metrics">
-        <Metric label="Monthly recurring revenue" value={currency(current)} trend={{ value: "+4.8%", label: "vs last month", direction: "up", sentiment: "positive" }} visual={<Sparkline values={visibleData.map((datum) => datum.values.current)} decorative fill />} />
+        <Metric label="MRR" value={currency(current)} trend={{ value: "+4.8%", label: "vs last month", direction: "up", sentiment: "positive" }} visual={<Sparkline values={visibleData.map((datum) => datum.values.current)} decorative fill />} />
         <Metric label="Net revenue retention" value="112.4%" trend={{ value: "+1.6 pts", label: "vs last quarter", direction: "up" }} context="Expansion exceeds churn" />
         <Metric label="Paying accounts" value="1,842" trend={{ value: "+74", label: "this month", direction: "up" }} context="38 enterprise" />
       </div>
       <div className="teum-analytics-recipe__primary">
-        <Chart title="Recurring revenue" description={`${range === "6m" ? "Six" : "Twelve"}-month MRR with prior-period comparison.`} data={visibleData} series={revenueSeries} area annotations={[{ id: "pricing", index: Math.max(0, visibleData.length - 4), label: "Pricing update" }]} valueFormatter={(value) => currency(value)} onDatumActivate={(datum) => setOpenedPeriod(datum.label)} />
+        <Chart title="Recurring revenue" description={`${range === "6m" ? "Six" : "Twelve"}-month MRR with prior-period comparison.`} data={visibleData} series={revenueSeries} type="area" annotations={[{ id: "pricing", index: Math.max(0, visibleData.length - 4), label: "Pricing update" }]} valueFormatter={(value) => currency(value)} onDatumActivate={(datum) => setOpenedPeriod(datum.label)} />
         <aside className="teum-analytics-recipe__aside" aria-label="Revenue summary">
           <Comparison label="MRR comparison" current={current} previous={previous} formatter={currency} currentLabel="Current MRR" previousLabel="Prior-period MRR" positiveDirection="up" />
           <Goal label="Annual recurring revenue target" value={1_435_200} target={1_600_000} formatter={currency} description="On pace if current monthly growth holds." />
@@ -91,22 +137,22 @@ const releaseEvents: readonly TimelineItem[] = [
 const releaseIndexes: Record<string, number> = { command: 4, automation: 9, incident: 12 };
 
 export function ProductUsageRecipe() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(usageData.length - 1);
   const [releaseId, setReleaseId] = useState("automation");
-  const activeDatum = activeIndex === null ? usageData.at(-1)! : usageData[activeIndex];
+  const latestDatum = usageData.at(-1)!;
+  const activeRelease = releaseEvents.find((item) => item.id === releaseId)!;
   const annotationIndex = releaseIndexes[releaseId];
-  const selectRelease = (item: TimelineItem) => { setReleaseId(item.id); setActiveIndex(releaseIndexes[item.id]); };
+  const selectRelease = (item: TimelineItem) => setReleaseId(item.id);
 
   return (
     <section className="teum-analytics-recipe" aria-label="Product Usage recipe">
-      <header className="teum-analytics-recipe__header"><div><span>Adoption</span><h3>Product Usage</h3><p>Usage and feature adoption share one inspected day.</p></div><small>{activeDatum.label}</small></header>
+      <header className="teum-analytics-recipe__header"><div><h3>Product Usage</h3><p>Usage, features, and releases.</p></div><small>{activeRelease.timestamp}</small></header>
       <div className="teum-analytics-recipe__metrics teum-analytics-recipe__metrics--two">
-        <Metric label="Daily active users" value={(activeDatum.values.active as number).toLocaleString()} trend={{ value: "+9.2%", label: "14-day change", direction: "up" }} visual={<Sparkline values={usageData.map((datum) => datum.values.active)} decorative />} />
-        <Metric label="Automation adoption" value={`${((activeDatum.values.automation as number) / (activeDatum.values.active as number) * 100).toFixed(1)}%`} trend={{ value: "+3.4 pts", label: "since launch", direction: "up" }} context="Active workspaces" />
+        <Metric label="Daily active users" value={(latestDatum.values.active as number).toLocaleString()} trend={{ value: "+9.2%", label: "14-day change", direction: "up" }} visual={<Sparkline values={usageData.map((datum) => datum.values.active)} decorative />} />
+        <Metric label="Automation adoption" value={`${((latestDatum.values.automation as number) / (latestDatum.values.active as number) * 100).toFixed(1)}%`} trend={{ value: "+3.4 pts", label: "since launch", direction: "up" }} context="Active workspaces" />
       </div>
       <div className="teum-analytics-recipe__charts">
-        <Chart title="Active usage" description="Arrow-key inspection controls both charts." data={usageData} series={usageSeries} activeIndex={activeIndex} onActiveIndexChange={setActiveIndex} valueFormatter={(value) => value.toLocaleString()} annotations={[{ id: releaseId, index: annotationIndex, label: releaseEvents.find((item) => item.id === releaseId)!.label, tone: releaseId === "incident" ? "danger" : "neutral" }]} />
-        <Chart title="Feature events" description="The selected date stays aligned with active usage." data={usageData} series={featureSeries} activeIndex={activeIndex} onActiveIndexChange={setActiveIndex} valueFormatter={(value) => value.toLocaleString()} />
+        <Chart title="Active usage" description="Daily users and sessions." data={usageData} series={usageSeries} valueFormatter={(value) => value.toLocaleString()} annotations={[{ id: releaseId, index: annotationIndex, label: activeRelease.label, tone: releaseId === "incident" ? "danger" : "neutral" }]} />
+        <Chart title="Feature events" description="Automation and search activity." data={usageData} series={featureSeries} type="bar" valueFormatter={(value) => value.toLocaleString()} />
       </div>
       <div className="teum-analytics-recipe__secondary">
         <Timeline label="Release timeline" items={releaseEvents} activeId={releaseId} onSelect={selectRelease} />
@@ -163,14 +209,14 @@ export function ConversionRetentionRecipe() {
 
   return (
     <section className="teum-analytics-recipe" aria-label="Conversion and Retention recipe">
-      <header className="teum-analytics-recipe__header"><div><span>Growth</span><h3>Conversion &amp; Retention</h3><p>Select a stage to update its trend and supporting records.</p></div><small>Last 12 weeks</small></header>
+      <header className="teum-analytics-recipe__header"><div><h3>Conversion &amp; Retention</h3><p>Select a stage to update the trend and records.</p></div><small>12 weeks</small></header>
       <div className="teum-analytics-recipe__metrics teum-analytics-recipe__metrics--two">
         <Metric label="Trial to paid" value={percent(conversionStages.at(-1)!.value / conversionStages[1].value * 100)} trend={{ value: "+2.1 pts", label: "vs prior period", direction: "up" }} />
         <Metric label={`${stage.label} conversion`} value={stageIndex === 0 ? "Entry" : percent(stage.value / prior.value * 100)} context={`${stage.value.toLocaleString()} accounts`} visual={<Sparkline values={conversionTrend.map((datum) => datum.values[stageId])} decorative fill />} />
       </div>
       <div className="teum-analytics-recipe__conversion">
         <Funnel label="Signup funnel" stages={conversionStages} selectedId={stageId} onSelect={(next) => setStageId(next.id)} />
-        <Chart title={`${stage.label} trend`} description="Weekly count for the selected funnel stage." data={conversionTrend} series={selectedSeries} includeZero valueFormatter={(value) => Math.round(value).toLocaleString()} />
+        <Chart title={`${stage.label} trend`} description="Weekly count for the selected funnel stage." data={conversionTrend} series={selectedSeries} type="bar" includeZero valueFormatter={(value) => Math.round(value).toLocaleString()} />
       </div>
       <Cohort label="Weekly workspace retention" periods={["W0", "W1", "W2", "W3", "W4", "W5"]} rows={cohortRows} />
       <div className="teum-analytics-recipe__records"><div><strong>{stage.label}</strong><span>{selectedRecords.length} sample accounts</span></div><DataTable ariaLabel={`${stage.label} accounts`} data={selectedRecords} columns={conversionColumns} getRowId={(record) => record.id} emptyTitle="No accounts" emptyDescription="No records reached this stage." /></div>

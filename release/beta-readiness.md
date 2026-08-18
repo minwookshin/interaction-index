@@ -1,10 +1,10 @@
 # Teum beta readiness
 
-Candidate: `0.1.0-rc.22`
+Candidate: `0.1.0-rc.29`
 
 Local candidate: passed
 
-Public beta: complete
+Public beta: open
 
 v1: open
 
@@ -12,9 +12,9 @@ v1: open
 
 | Gate | Status |
 | --- | --- |
-| GitHub prerelease | complete |
-| Live site | complete |
-| Immutable registry | complete |
+| GitHub prerelease | open |
+| Live site | open |
+| Immutable registry | open |
 | npm beta | open |
 | Independent install | 0/1 |
 | Feedback rounds | 0/2 |
@@ -23,6 +23,9 @@ v1: open
 
 ## Open gates
 
+- Publish the verified GitHub prerelease
+- Promote and verify the candidate site
+- Verify the live immutable registry bytes
 - Publish and verify the npm beta package
 - Record one independent install, typecheck, and production build
 - Complete two feedback rounds (0/2)

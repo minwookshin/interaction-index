@@ -5,12 +5,12 @@ export const generatedComponentExports = {
     {
       "name": "Button",
       "kind": "function",
-      "signature": "Button({ className, variant, size, loading, leadingIcon, trailingIcon, disabled, focusableWhenDisabled, children, type, ...props }: ButtonProps): import(\"react\").JSX.Element"
+      "signature": "Button({ className, variant, size, loading, loadingLabel, leadingIcon, trailingIcon, disabled, focusableWhenDisabled, children, type, ...props }: ButtonProps): import(\"react\").JSX.Element"
     },
     {
       "name": "ButtonProps",
       "kind": "type",
-      "signature": "ButtonProps = ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & { loading?: boolean; leadingIcon?: ReactNode; trailingIcon?: ReactNode; }"
+      "signature": "ButtonProps = ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & { loading?: boolean; loadingLabel?: ReactNode; leadingIcon?: ReactNode; trailingIcon?: ReactNode; }"
     },
     {
       "name": "buttonVariants",
@@ -856,7 +856,7 @@ export const generatedComponentExports = {
     {
       "name": "Avatar",
       "kind": "function",
-      "signature": "Avatar({ className, src, alt, fallback, size, status, ...props }: AvatarProps): import(\"react\").JSX.Element"
+      "signature": "Avatar({ className, src, alt, fallback, size, status, role, \"aria-label\": ariaLabel, ...props }: AvatarProps): import(\"react\").JSX.Element"
     },
     {
       "name": "AvatarGroup",

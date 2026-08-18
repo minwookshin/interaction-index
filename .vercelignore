@@ -1,5 +1,6 @@
 audit/
 artifacts/
+.codex/
 dist/
 node_modules/
 playwright-report/

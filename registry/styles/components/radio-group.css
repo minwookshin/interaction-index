@@ -1,4 +1,4 @@
-/* Generated from src/styles.css. Do not edit directly. */
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
 @layer teum.tokens, teum.base, teum.components;
 
@@ -45,8 +45,6 @@
 .teum-radio-option:hover .teum-radio:not([data-disabled]) { border-color: var(--teum-gray-700); }
 }
 
-.teum-radio:active { transform: scale(0.97); }
-
 .teum-field__description,
 .teum-field__error { color: var(--teum-ink-tertiary); font-size: 11.5px; line-height: 1.45; }
 
@@ -65,7 +63,7 @@
 @starting-style {
 .teum-radio__indicator {
     opacity: 0;
-    transform: scale(.72);
+    transform: scale(.9);
   }
 }
 

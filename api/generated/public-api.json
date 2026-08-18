@@ -4,10 +4,10 @@
   "entryPoint": "src/components/ui/index.ts",
   "typescriptVersion": "6.0.3",
   "componentCount": 45,
-  "productComponentCount": 15,
-  "publicComponentCount": 60,
-  "exportCount": 345,
-  "runtimeExportCount": 197,
+  "productComponentCount": 17,
+  "publicComponentCount": 62,
+  "exportCount": 356,
+  "runtimeExportCount": 201,
   "indexExports": [
     "ActionList",
     "ActionListItem",
@@ -22,6 +22,7 @@
     "AlertDialogTitle",
     "AlertDialogTrigger",
     "AlertProps",
+    "AnalyticsBandPosition",
     "AnalyticsDatum",
     "AnalyticsDomainOptions",
     "AnalyticsPlotBox",
@@ -53,6 +54,7 @@
     "Chart",
     "ChartAnnotation",
     "ChartProps",
+    "ChartType",
     "Checkbox",
     "CheckboxProps",
     "Cohort",
@@ -127,6 +129,9 @@
     "DialogHeader",
     "DialogTitle",
     "DialogTrigger",
+    "DonutChart",
+    "DonutChartDatum",
+    "DonutChartProps",
     "EmptyState",
     "EmptyStateProps",
     "Field",
@@ -153,6 +158,10 @@
     "FunnelStage",
     "Goal",
     "GoalProps",
+    "Heatmap",
+    "HeatmapCell",
+    "HeatmapProps",
+    "HeatmapRow",
     "IconButton",
     "IconButtonProps",
     "InlineEdit",
@@ -315,11 +324,13 @@
     "describeAnalyticsDatum",
     "downloadDataExport",
     "formatAnalyticsValue",
+    "getAnalyticsBandPosition",
     "getAnalyticsDomain",
     "getAnalyticsPointPosition",
     "getDataRequestKey",
     "getPercentChange",
     "getSharedDetailMotionPreset",
+    "getStackedAnalyticsDomain",
     "inlineEditContract",
     "issuesWorkspaceContract",
     "membersPermissionsContract",
@@ -409,6 +420,7 @@
     "DialogHeader",
     "DialogTitle",
     "DialogTrigger",
+    "DonutChart",
     "EmptyState",
     "Field",
     "FieldControl",
@@ -421,6 +433,7 @@
     "FilterBuilder",
     "Funnel",
     "Goal",
+    "Heatmap",
     "IconButton",
     "InlineEdit",
     "InputGroup",
@@ -514,11 +527,13 @@
     "describeAnalyticsDatum",
     "downloadDataExport",
     "formatAnalyticsValue",
+    "getAnalyticsBandPosition",
     "getAnalyticsDomain",
     "getAnalyticsPointPosition",
     "getDataRequestKey",
     "getPercentChange",
     "getSharedDetailMotionPreset",
+    "getStackedAnalyticsDomain",
     "inlineEditContract",
     "issuesWorkspaceContract",
     "membersPermissionsContract",
@@ -557,21 +572,21 @@
   "components": {
     "button": {
       "source": "src/components/ui/button.tsx",
-      "sourceHash": "10475179bc060db186497b24cd310dc70f50ededbfb21fb11a5b91f53cd2e49f",
+      "sourceHash": "3819370dd8b4eb9ab119fb095cebf01fbb4f07b5b5cff155abb8b1af47e54009",
       "declaration": "api/generated/types/components/ui/button.d.ts",
       "exports": [
         {
           "name": "Button",
           "kind": "function",
-          "signature": "Button({ className, variant, size, loading, leadingIcon, trailingIcon, disabled, focusableWhenDisabled, children, type, ...props }: ButtonProps): import(\"react\").JSX.Element",
-          "typeHash": "4cf01e95b53b14ee2a6e9553d2bd75dadc0adf7baab9d874642149f5f49c881a",
+          "signature": "Button({ className, variant, size, loading, loadingLabel, leadingIcon, trailingIcon, disabled, focusableWhenDisabled, children, type, ...props }: ButtonProps): import(\"react\").JSX.Element",
+          "typeHash": "11252b36844574cc0bbd3f26e0689ddadd02d0f92369c217c83b98b844ba4e8d",
           "description": ""
         },
         {
           "name": "ButtonProps",
           "kind": "type",
-          "signature": "ButtonProps = ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & { loading?: boolean; leadingIcon?: ReactNode; trailingIcon?: ReactNode; }",
-          "typeHash": "ca8046eddd33b23cbe09ca2e7736956c35dc2e04344890a0b1b08e93b4b04810",
+          "signature": "ButtonProps = ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & { loading?: boolean; loadingLabel?: ReactNode; leadingIcon?: ReactNode; trailingIcon?: ReactNode; }",
+          "typeHash": "bbd34bbab7c515c2cf9a41d74c518e61f68418510d4da866a786d280c66991ae",
           "description": ""
         },
         {
@@ -1012,7 +1027,7 @@
     },
     "date-picker": {
       "source": "src/components/ui/date-picker.tsx",
-      "sourceHash": "8dc2b6821c1a35e95542caf83b9abc42f409a00d42f704ecc3cb925235fee8c8",
+      "sourceHash": "7be209d9159a5e678395e495ce45b8e1069cb8d48d0bc578e39b9d4db30341dc",
       "declaration": "api/generated/types/components/ui/date-picker.d.ts",
       "exports": [
         {
@@ -1586,7 +1601,7 @@
     },
     "toast": {
       "source": "src/components/ui/toast.tsx",
-      "sourceHash": "b0d7ffb17afc68fced4be1e98d67ac5eb3e0f9898e18bedb7f51ffc6ba41adbc",
+      "sourceHash": "640ae76406aa51dbbc584457dfb46ffc205e4c4cf37a3489397b0b83856573bb",
       "declaration": "api/generated/types/components/ui/toast.d.ts",
       "exports": [
         {
@@ -1866,14 +1881,14 @@
     },
     "avatar": {
       "source": "src/components/ui/avatar.tsx",
-      "sourceHash": "30aae1abd3aec3ba0000df1e8dba3680dce426e25c4918c7008013e31722ca38",
+      "sourceHash": "450ef069cb8ff327b0ba828b14d90cc09c9e0bac3dfcb7d9bcbee87e294c9109",
       "declaration": "api/generated/types/components/ui/avatar.d.ts",
       "exports": [
         {
           "name": "Avatar",
           "kind": "function",
-          "signature": "Avatar({ className, src, alt, fallback, size, status, ...props }: AvatarProps): import(\"react\").JSX.Element",
-          "typeHash": "e3cb907d5c2c6e5645fc29fb247eedb308691a730030a095f5bb9b8806bc6afc",
+          "signature": "Avatar({ className, src, alt, fallback, size, status, role, \"aria-label\": ariaLabel, ...props }: AvatarProps): import(\"react\").JSX.Element",
+          "typeHash": "ec71bcfdbfa95b7fd8df358292ea72a39bc4dbee3b7a0994e0748539b1b6a00a",
           "description": ""
         },
         {
@@ -2624,14 +2639,14 @@
     },
     "chart": {
       "source": "src/components/ui/chart.tsx",
-      "sourceHash": "ddafdef4cb3e81ccabca34518b0d924af3afbdec40c5244c5b49ea8cb1bb5b79",
+      "sourceHash": "2c5ba221018dd61bfe8629cb0389c0bee3d26e190d7a14303fa8384f470e2332",
       "declaration": "api/generated/types/components/ui/chart.d.ts",
       "exports": [
         {
           "name": "Chart",
           "kind": "function",
-          "signature": "Chart({ title, description, data, series, className, height, includeZero, domain, area, annotations, valueFormatter, activeIndex, defaultActiveIndex, onActiveIndexChange, visibleSeries, defaultVisibleSeries, onVisibleSeriesChange, onDatumA…",
-          "typeHash": "b96f2c025380dbf08ce85cfdda6c57b5b1697b91ab5c4b6f4d11de96a5e3a945",
+          "signature": "Chart({ title, description, data, series, className, height, includeZero, domain, type, area, annotations, valueFormatter, activeIndex, defaultActiveIndex, onActiveIndexChange, visibleSeries, defaultVisibleSeries, onVisibleSeriesChange, on…",
+          "typeHash": "70e963ba8d6a2bf74e5100f2dbbcc60b10cd043e20c67ed18fdf6e00155c9d48",
           "description": ""
         },
         {
@@ -2644,8 +2659,78 @@
         {
           "name": "ChartProps",
           "kind": "type",
-          "signature": "ChartProps = { title: string; description?: string; data: readonly AnalyticsDatum[]; series: readonly AnalyticsSeries[]; className?: string; height?: number; includeZero?: boolean; domain?: readonly [number, number]; area?: boolean; annota…",
-          "typeHash": "7b24a7b09de09b3b3778726970da2515eb9e4ed61b28e2cac3cc7035234ba521",
+          "signature": "ChartProps = { title: string; description?: string; data: readonly AnalyticsDatum[]; series: readonly AnalyticsSeries[]; className?: string; height?: number; includeZero?: boolean; domain?: readonly [number, number]; type?: ChartType; /** …",
+          "typeHash": "367af2e98290fae78316c326a9fe5530ba0ebaa77de8b82749ea25480551c673",
+          "description": ""
+        },
+        {
+          "name": "ChartType",
+          "kind": "type",
+          "signature": "ChartType = \"line\" | \"area\" | \"bar\" | \"stacked-bar\"",
+          "typeHash": "418660da353f510230b60456fbaa2b4dba0629a8c5889ca88d65fd1d13a2b612",
+          "description": ""
+        }
+      ]
+    },
+    "donut-chart": {
+      "source": "src/components/ui/donut-chart.tsx",
+      "sourceHash": "fe5415df30abb7b53b5122f77c9df712490bb98a5a423baf2678aec89f54c9c5",
+      "declaration": "api/generated/types/components/ui/donut-chart.d.ts",
+      "exports": [
+        {
+          "name": "DonutChart",
+          "kind": "function",
+          "signature": "DonutChart({ title, description, data, className, valueFormatter, centerLabel, centerValue, activeId, defaultActiveId, onActiveIdChange, onDatumActivate, loading, empty, error, showDataByDefault, }: DonutChartProps): import(\"react\").JSX.El…",
+          "typeHash": "bf9506a008299069dcd5b644f199b198deffe5cf1a3f1cfe8867c6ea333a8b82",
+          "description": ""
+        },
+        {
+          "name": "DonutChartDatum",
+          "kind": "type",
+          "signature": "DonutChartDatum = { id: string; label: string; value: number; tone?: AnalyticsSeriesTone; }",
+          "typeHash": "0d4033af07f167c1365ea8f9776256248f94e3d87d52b24194c01466946e9915",
+          "description": ""
+        },
+        {
+          "name": "DonutChartProps",
+          "kind": "type",
+          "signature": "DonutChartProps = { title: string; description?: string; data: readonly DonutChartDatum[]; className?: string; valueFormatter?: (value: number, datum: DonutChartDatum) => string; centerLabel?: string; centerValue?: ReactNode; activeId?: st…",
+          "typeHash": "6aa251c2e315e6e3d17001d03b2404a5929133bcaf8b663e16833274412db659",
+          "description": ""
+        }
+      ]
+    },
+    "heatmap": {
+      "source": "src/components/ui/heatmap.tsx",
+      "sourceHash": "d6a1e10376575d9ce380085d41619831ac38781f841f7907cab0f07197e66304",
+      "declaration": "api/generated/types/components/ui/heatmap.d.ts",
+      "exports": [
+        {
+          "name": "Heatmap",
+          "kind": "function",
+          "signature": "Heatmap({ title, description, columns, rows, domain, valueFormatter, activeCell, defaultActiveCell, onActiveCellChange, onCellActivate, loading, empty, error, className, ...props }: HeatmapProps): import(\"react\").JSX.Element",
+          "typeHash": "a842adf4f0d57f5e33eb43144e767ef0e3327f27e85dae35226cf43dd8d58906",
+          "description": ""
+        },
+        {
+          "name": "HeatmapCell",
+          "kind": "type",
+          "signature": "HeatmapCell = { rowId: string; columnIndex: number; }",
+          "typeHash": "01b501cd85f7227ecdee3be23f7b51e008cdfc4592c93f7d6bf66481ef90ae23",
+          "description": ""
+        },
+        {
+          "name": "HeatmapProps",
+          "kind": "type",
+          "signature": "HeatmapProps = Omit<HTMLAttributes<HTMLDivElement>, \"onChange\"> & { title: string; description?: string; columns: readonly string[]; rows: readonly HeatmapRow[]; domain?: readonly [number, number]; valueFormatter?: (value: number) => strin…",
+          "typeHash": "4be597052c2d564c50c9a3088453febf9cbe62cf7079e54dd001ffa92e5e4dbd",
+          "description": ""
+        },
+        {
+          "name": "HeatmapRow",
+          "kind": "type",
+          "signature": "HeatmapRow = { id: string; label: string; values: readonly (number | null)[]; }",
+          "typeHash": "0fea9328d155ad52af1168a34a5ecb9e6af21f14a51c776ed341b04aabc93280",
           "description": ""
         }
       ]
@@ -3172,9 +3257,16 @@
     },
     "analytics": {
       "source": "lib/analytics.ts",
-      "sourceHash": "15426f3e86f211349287d236ab2dda512d1888c6ec4d44c9402bdc0ed89e8f4c",
+      "sourceHash": "f47ffd7042e4e9a0fbae740161a868f6c831cb91963bd2e99568617246ff17f2",
       "declaration": "api/generated/types/lib/analytics.d.ts",
       "exports": [
+        {
+          "name": "AnalyticsBandPosition",
+          "kind": "type",
+          "signature": "AnalyticsBandPosition = { start: number; center: number; end: number; width: number; }",
+          "typeHash": "ace9187e29788e76a7ec67676922b1e13037f23f5a64135a785453602e7ca157",
+          "description": ""
+        },
         {
           "name": "AnalyticsDatum",
           "kind": "type",
@@ -3267,6 +3359,13 @@
           "description": ""
         },
         {
+          "name": "getAnalyticsBandPosition",
+          "kind": "function",
+          "signature": "getAnalyticsBandPosition(length: number, index: number, box: AnalyticsPlotBox): AnalyticsBandPosition",
+          "typeHash": "1664ee8677137486b1feb40f5a7deac77ac90531ee6cd5eaa78d50a391398586",
+          "description": ""
+        },
+        {
           "name": "getAnalyticsDomain",
           "kind": "function",
           "signature": "getAnalyticsDomain(data: readonly AnalyticsDatum[], seriesIds: readonly string[], { includeZero, paddingRatio, domain }?: AnalyticsDomainOptions): readonly [number, number]",
@@ -3288,6 +3387,13 @@
           "description": ""
         },
         {
+          "name": "getStackedAnalyticsDomain",
+          "kind": "function",
+          "signature": "getStackedAnalyticsDomain(data: readonly AnalyticsDatum[], seriesIds: readonly string[], { includeZero, paddingRatio, domain }?: AnalyticsDomainOptions): readonly [number, number]",
+          "typeHash": "c7bd25dcc14fffea51b3eb8fb2d5ccdf9805c73b97fb882f5e4a516aee75e669",
+          "description": ""
+        },
+        {
           "name": "summarizeAnalyticsSeries",
           "kind": "function",
           "signature": "summarizeAnalyticsSeries(data: readonly AnalyticsDatum[], series: AnalyticsSeries, valueFormatter?: (value: number, series: AnalyticsSeries) => string): string",
@@ -3298,7 +3404,7 @@
     },
     "teum-analytics-contract": {
       "source": "lib/teum-analytics-contract.ts",
-      "sourceHash": "7fd10014084fb3163a1f34bb3555020edc69d1975c9538cae0abf20e57627308",
+      "sourceHash": "45f019e3cb21f937614f2a94ef5b96cad169d15f90085b16d291d979c20f7f0a",
       "declaration": "api/generated/types/lib/teum-analytics-contract.d.ts",
       "exports": [
         {
@@ -3312,21 +3418,21 @@
           "name": "teumAnalyticsComponentContracts",
           "kind": "const",
           "signature": "teumAnalyticsComponentContracts: readonly [{ readonly id: \"metric\"; readonly intent: \"State one important value, its direction, and comparison context without turning a dashboard into a card grid.\"; readonly useWhen: readonly [\"One value c…",
-          "typeHash": "a23458122e2b40785bea82e3fccc4266a1448b8784f8e6256ec77b41fcd9dbda",
+          "typeHash": "c6eed076ea130dbd2eb2e905b6048e05e0bb82f8ea5794d1abcba36ed93384f2",
           "description": ""
         },
         {
           "name": "teumAnalyticsRecipeContracts",
           "kind": "const",
           "signature": "teumAnalyticsRecipeContracts: readonly [{ readonly id: \"saas-overview\"; readonly intent: \"Review recurring revenue, growth, target progress, and expansion drivers from one calm overview.\"; readonly taskSequence: readonly [\"Choose range\", \"…",
-          "typeHash": "bf9f8105848154b3965becf2bdcd35e6a22f5f113867004e1b2cbc1d68b53467",
+          "typeHash": "47bb4d4df58e2dd3f2e0ff9b29ddda0f27ba0f4f1436c2b758cb7dc94027075e",
           "description": ""
         },
         {
           "name": "teumAnalyticsStateContract",
           "kind": "const",
           "signature": "teumAnalyticsStateContract: { readonly version: 1; readonly controlled: readonly [\"date range\", \"comparison period\", \"visible series\", \"active datum\", \"selected segment\"]; readonly derived: readonly [\"domain\", \"ticks\", \"percent change\", \"c…",
-          "typeHash": "76bca1695eb706a524268efec959f43220b897c3bf1de07d11843367dac1c118",
+          "typeHash": "eaaf87d05dddb1d8f53488c09d659e34054b5f20dadea6830cb19d18d25c0780",
           "description": ""
         }
       ]
@@ -3382,7 +3488,7 @@
     },
     "teum-agent-contract": {
       "source": "lib/teum-agent-contract.ts",
-      "sourceHash": "6dbbe971cee0d2284bc63aaeef5150e6cab8269a5b7e313f96ebb11dc59b099a",
+      "sourceHash": "8b4758a440eb53e31614fcfafe6fb5be6c57aa3a1285392752485d8335d83ba1",
       "declaration": "api/generated/types/lib/teum-agent-contract.d.ts",
       "exports": [
         {
@@ -3417,7 +3523,7 @@
           "name": "teumAgentRecipeContracts",
           "kind": "const",
           "signature": "teumAgentRecipeContracts: readonly [{ readonly id: \"issues-workspace\"; readonly title: \"Issues Workspace\"; readonly domain: \"data\"; readonly intent: \"Triage, inspect, mutate, and recover issue work from one shared collection.\"; readonly si…",
-          "typeHash": "5bc1ecf125d8c80e3dfa00f241be7d7d9f37aef97dbacfb5fedeee4b45b6058d",
+          "typeHash": "f6704967c1d28d834790b9482360b705b0c2a0d19bbb5689a1620c56de36464b",
           "description": ""
         },
         {

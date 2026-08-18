@@ -113,10 +113,10 @@ async function exerciseRiskyInteraction(id: ComponentId, canvasElement: HTMLElem
     await userEvent.keyboard("{ArrowRight}");
     await expect(italic).toHaveFocus();
   } else if (id === "text-field") {
-    const input = product.getByRole("textbox", { name: "Project name" });
+    const input = product.getByRole("textbox", { name: "Handle" });
     await userEvent.clear(input);
-    await userEvent.type(input, "Teum");
-    await expect(input).toHaveValue("Teum");
+    await userEvent.type(input, "teum");
+    await expect(input).toHaveValue("teum");
   } else if (id === "textarea") {
     const input = product.getByRole("textbox", { name: "Description" });
     await userEvent.clear(input);
@@ -163,7 +163,7 @@ async function exerciseRiskyInteraction(id: ComponentId, canvasElement: HTMLElem
     await expect(input).toHaveValue("button");
     await userEvent.clear(input);
   } else if (id === "number-field") {
-    const input = product.getByRole("textbox", { name: "Cycle capacity" });
+    const input = product.getByRole("textbox", { name: "Quantity" });
     await userEvent.click(input);
     await userEvent.keyboard("{ArrowUp}");
     await expect(input).toHaveValue("25");
@@ -190,13 +190,13 @@ async function exerciseRiskyInteraction(id: ComponentId, canvasElement: HTMLElem
     await userEvent.click(board);
     await expect(board).toHaveAttribute("aria-pressed", "true");
   } else if (id === "tooltip") {
-    const trigger = product.getByRole("button", { name: "Favorite" });
+    const trigger = product.getByRole("button", { name: "Add to favorites" });
     await userEvent.hover(trigger);
-    await waitFor(() => expect(page.getByText("Add to favorites")).toBeVisible(), { timeout: 2_000 });
+    await waitFor(() => expect(document.querySelector(".teum-tooltip")).toHaveTextContent("Add to favorites"), { timeout: 2_000 });
     await userEvent.unhover(trigger);
     await waitFor(() => expect(document.querySelector(".teum-tooltip")).toBeNull());
   } else if (id === "popover") {
-    await userEvent.click(product.getByRole("button", { name: "View options" }));
+    await userEvent.click(product.getByRole("button", { name: "View" }));
     await waitFor(() => {
       const popup = document.querySelector<HTMLElement>(".teum-popover[data-open]");
       expect(popup).not.toBeNull();
@@ -218,10 +218,10 @@ async function exerciseRiskyInteraction(id: ComponentId, canvasElement: HTMLElem
     await waitFor(() => expect(document.querySelector(".teum-menu")).toBeNull());
   } else if (id === "dialog") {
     await userEvent.click(product.getByRole("button", { name: "Edit details" }));
-    const dialog = await page.findByRole("dialog", { name: "Edit component metadata" });
+    const dialog = await page.findByRole("dialog", { name: "Edit component details" });
     await waitFor(() => { expect(dialog).not.toHaveAttribute("data-starting-style"); expect(dialog).toBeVisible(); });
     await userEvent.click(within(dialog).getByRole("button", { name: "Cancel" }));
-    await waitFor(() => expect(page.queryByRole("dialog", { name: "Edit component metadata" })).toBeNull());
+    await waitFor(() => expect(page.queryByRole("dialog", { name: "Edit component details" })).toBeNull());
   } else if (id === "sheet") {
     await userEvent.click(product.getByRole("button", { name: "Properties" }));
     const dialog = await page.findByRole("dialog", { name: "Issue properties" });
@@ -229,11 +229,11 @@ async function exerciseRiskyInteraction(id: ComponentId, canvasElement: HTMLElem
     await userEvent.click(within(dialog).getByRole("button", { name: "Cancel" }));
     await waitFor(() => expect(page.queryByRole("dialog", { name: "Issue properties" })).toBeNull());
   } else if (id === "alert-dialog") {
-    await userEvent.click(product.getByRole("button", { name: "Discard draft" }));
-    const dialog = await page.findByRole("alertdialog", { name: "Discard this component draft?" });
+    await userEvent.click(product.getByRole("button", { name: "Discard" }));
+    const dialog = await page.findByRole("alertdialog", { name: "Discard this draft?" });
     await waitFor(() => { expect(dialog).not.toHaveAttribute("data-starting-style"); expect(dialog).toBeVisible(); });
     await userEvent.click(within(dialog).getByRole("button", { name: "Keep draft" }));
-    await waitFor(() => expect(page.queryByRole("alertdialog", { name: "Discard this component draft?" })).toBeNull());
+    await waitFor(() => expect(page.queryByRole("alertdialog", { name: "Discard this draft?" })).toBeNull());
   } else if (id === "tabs") {
     await userEvent.click(product.getByRole("tab", { name: "Activity" }));
     await expect(product.getByText("Recent activity")).toBeVisible();
@@ -244,7 +244,8 @@ async function exerciseRiskyInteraction(id: ComponentId, canvasElement: HTMLElem
   } else if (id === "collapsible") {
     const trigger = product.getByRole("button", { name: "Advanced filter rules" });
     await userEvent.click(trigger);
-    await expect(product.getByText(/Match state contracts/)).toBeVisible();
+    await expect(product.getByText("State is ready")).toBeVisible();
+    await expect(product.getByText("Owner is assigned")).toBeVisible();
     await userEvent.click(trigger);
   } else if (id === "toast") {
     await userEvent.click(product.getByRole("button", { name: "Show toast" }));

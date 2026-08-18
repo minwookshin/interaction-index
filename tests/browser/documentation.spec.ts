@@ -92,7 +92,7 @@ test("documentation search includes section labels", async ({ page, isMobile }) 
 
 test("component reference exposes a real registry item and compiler-derived primary export", async ({ page }) => {
   await page.goto("/#field/system-api");
-  await expect(page).toHaveTitle("Field & Fieldset — Teum");
+  await expect(page).toHaveTitle("whatiuse");
   await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /Accessible form structure/);
   await expect(page.getByText("npx shadcn@4.18.0 add @teum-pinned/field", { exact: true })).toBeVisible();
   const summary = page.getByRole("region", { name: "Field & Fieldset reference summary" });

@@ -1,9 +1,18 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
-import { ConversionRetentionRecipe, ProductUsageRecipe, SaaSOverviewRecipe } from "./analytics-recipes";
+import { AnalyticsRendererGallery, ConversionRetentionRecipe, ProductUsageRecipe, SaaSOverviewRecipe } from "./analytics-recipes";
 
 describe("Teum Analytics recipes", () => {
+  it("keeps every renderer in one shared visual and semantic contract", () => {
+    const { container } = render(<AnalyticsRendererGallery />);
+    expect(screen.getByRole("region", { name: "Analytics renderer family" })).toBeInTheDocument();
+    expect(container.querySelector('[data-chart-type="area"]')).toBeInTheDocument();
+    expect(container.querySelector('[data-chart-type="stacked-bar"]')).toBeInTheDocument();
+    expect(screen.getByRole("group", { name: "Plan mix. 4 segments." })).toBeInTheDocument();
+    expect(screen.getByRole("table", { name: "Feature activity data" })).toBeInTheDocument();
+  });
+
   it("keeps the SaaS range, metric, chart, and detail action on one period", async () => {
     const user = userEvent.setup();
     render(<SaaSOverviewRecipe />);
@@ -18,20 +27,22 @@ describe("Teum Analytics recipes", () => {
     expect(screen.getByRole("status")).toHaveTextContent("Aug revenue opened.");
   });
 
-  it("synchronizes two usage charts from either keyboard inspection or a release", async () => {
+  it("keeps transient inspection local and synchronizes only release context", async () => {
     const user = userEvent.setup();
     render(<ProductUsageRecipe />);
     const plots = [
       screen.getByRole("group", { name: "Active usage. 14 data points." }),
       screen.getByRole("group", { name: "Feature events. 14 data points." }),
     ];
-    plots[0].focus();
-    await user.keyboard("{Home}");
-    expect(screen.getByText("Aug 3", { selector: ".teum-analytics-recipe__header small" })).toBeInTheDocument();
     const liveRegions = document.querySelectorAll(".teum-chart > .teum-sr-only[aria-live='polite']");
     expect(liveRegions).toHaveLength(2);
+    expect(liveRegions[0]).toHaveTextContent("");
+    expect(liveRegions[1]).toHaveTextContent("");
+
+    plots[0].focus();
+    await user.keyboard("{Home}");
     expect(liveRegions[0]).toHaveTextContent("Aug 3. Daily active users");
-    expect(liveRegions[1]).toHaveTextContent("Aug 3. Automations");
+    expect(liveRegions[1]).toHaveTextContent("");
 
     await user.click(screen.getByRole("button", { name: /Search latency incident/ }));
     expect(screen.getByText("Aug 15", { selector: ".teum-analytics-recipe__header small" })).toBeInTheDocument();

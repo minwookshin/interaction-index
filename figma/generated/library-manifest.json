@@ -15,9 +15,9 @@
     "registry": "registry.json",
     "guidance": "src/component-guidance.ts",
     "hashes": {
-      "registry": "70abf7b09a61470d7b87bf9cbc1372c0119cce72de13930b2d95642e581c7152",
-      "api": "89b82ab49a4357a568133d9787065f6f30dbe40409ed45dbc4190d493b50849c",
-      "figmaTokens": "726ee76e906394f2217622b507e903861e0c4a175bf1e9baf38f048d52f305b3",
+      "registry": "0e5683af6a25083fc0ed6601a9cd183f34634031680379edeabe7786f120a07c",
+      "api": "220a8fe1fcf6e689306685942a5b9cbb48a5360b076094f392d50149fc5c1e83",
+      "figmaTokens": "b4c6e6593392b3b61c9ff0adf0eab3e4d8dec342fb8412eaea780134d3567e9b",
       "guidance": "75e3c6a6f586e58123e7c4f1eb9219cbbd2148a93870571eb02493fa9ede5be1"
     }
   },
@@ -451,18 +451,18 @@
       },
       "code": {
         "source": "src/components/ui/button.tsx",
-        "sourceHash": "10475179bc060db186497b24cd310dc70f50ededbfb21fb11a5b91f53cd2e49f",
+        "sourceHash": "3819370dd8b4eb9ab119fb095cebf01fbb4f07b5b5cff155abb8b1af47e54009",
         "declaration": "api/generated/types/components/ui/button.d.ts",
         "publicExports": [
           {
             "name": "Button",
             "kind": "function",
-            "signature": "Button({ className, variant, size, loading, leadingIcon, trailingIcon, disabled, focusableWhenDisabled, children, type, ...props }: ButtonProps): import(\"react\").JSX.Element"
+            "signature": "Button({ className, variant, size, loading, loadingLabel, leadingIcon, trailingIcon, disabled, focusableWhenDisabled, children, type, ...props }: ButtonProps): import(\"react\").JSX.Element"
           },
           {
             "name": "ButtonProps",
             "kind": "type",
-            "signature": "ButtonProps = ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & { loading?: boolean; leadingIcon?: ReactNode; trailingIcon?: ReactNode; }"
+            "signature": "ButtonProps = ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & { loading?: boolean; loadingLabel?: ReactNode; leadingIcon?: ReactNode; trailingIcon?: ReactNode; }"
           },
           {
             "name": "buttonVariants",
@@ -2711,7 +2711,7 @@
       },
       "code": {
         "source": "src/components/ui/date-picker.tsx",
-        "sourceHash": "8dc2b6821c1a35e95542caf83b9abc42f409a00d42f704ecc3cb925235fee8c8",
+        "sourceHash": "7be209d9159a5e678395e495ce45b8e1069cb8d48d0bc578e39b9d4db30341dc",
         "declaration": "api/generated/types/components/ui/date-picker.d.ts",
         "publicExports": [
           {
@@ -4720,7 +4720,7 @@
       },
       "code": {
         "source": "src/components/ui/toast.tsx",
-        "sourceHash": "b0d7ffb17afc68fced4be1e98d67ac5eb3e0f9898e18bedb7f51ffc6ba41adbc",
+        "sourceHash": "640ae76406aa51dbbc584457dfb46ffc205e4c4cf37a3489397b0b83856573bb",
         "declaration": "api/generated/types/components/ui/toast.d.ts",
         "publicExports": [
           {
@@ -5666,13 +5666,13 @@
       },
       "code": {
         "source": "src/components/ui/avatar.tsx",
-        "sourceHash": "30aae1abd3aec3ba0000df1e8dba3680dce426e25c4918c7008013e31722ca38",
+        "sourceHash": "450ef069cb8ff327b0ba828b14d90cc09c9e0bac3dfcb7d9bcbee87e294c9109",
         "declaration": "api/generated/types/components/ui/avatar.d.ts",
         "publicExports": [
           {
             "name": "Avatar",
             "kind": "function",
-            "signature": "Avatar({ className, src, alt, fallback, size, status, ...props }: AvatarProps): import(\"react\").JSX.Element"
+            "signature": "Avatar({ className, src, alt, fallback, size, status, role, \"aria-label\": ariaLabel, ...props }: AvatarProps): import(\"react\").JSX.Element"
           },
           {
             "name": "AvatarGroup",

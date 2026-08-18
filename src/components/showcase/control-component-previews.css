@@ -1,0 +1,42 @@
+.teum-project-field-preview,
+.teum-textarea-preview,
+.teum-assignee-preview {
+  width: min(320px, 100%);
+}
+
+.teum-button-group-preview {
+  display: flex;
+  justify-content: center;
+}
+
+.teum-button-group-preview .teum-button:last-child {
+  width: 30px;
+  padding-inline: 0;
+}
+
+.teum-text-field-preview {
+  width: min(280px, 100%);
+}
+
+.teum-text-field-preview__prefix {
+  color: var(--teum-fg-subtle);
+  font-variant-numeric: tabular-nums;
+}
+
+.teum-text-field-preview__valid {
+  width: 13px;
+  height: 13px;
+  color: var(--teum-fg-muted);
+}
+
+.teum-textarea-preview .teum-textarea-field__meta { justify-content: flex-end; }
+
+.teum-component-search-preview {
+  width: min(280px, 100%);
+}
+
+@media (max-width: 540px) {
+  .teum-text-field-preview {
+    gap: 10px;
+  }
+}

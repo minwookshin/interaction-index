@@ -15,7 +15,7 @@
     },
     {
       "path": "registry/styles/components/spinner.css",
-      "content": "/* Generated from src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-loading-spinner { display: inline-grid; place-items: center; color: currentColor; }\n\n.teum-loading-spinner > span { width: 100%; height: 100%; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: teum-spin 620ms linear infinite; }\n\n@media (prefers-reduced-motion: reduce) {\n.teum-loading-spinner > span { animation-duration: 2.4s; }\n}\n\n@keyframes teum-spin { to { transform: rotate(360deg); } }\n}\n",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-loading-spinner { display: inline-grid; place-items: center; color: currentColor; }\n\n.teum-loading-spinner > span { width: 100%; height: 100%; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: teum-spin 620ms linear infinite; }\n\n@media (prefers-reduced-motion: reduce) {\n.teum-loading-spinner > span { animation-duration: 2.4s; }\n}\n\n@keyframes teum-spin { to { transform: rotate(360deg); } }\n}\n",
       "type": "registry:style",
       "target": "styles/components/spinner.css"
     }

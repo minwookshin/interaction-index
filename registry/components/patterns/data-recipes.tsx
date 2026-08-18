@@ -5,6 +5,7 @@ import "../../styles/patterns/data-recipes.css";
 import { ArrowsClockwise } from "@phosphor-icons/react";
 import { useEffect, useMemo, useState } from "react";
 import { Badge } from "../ui/badge";
+import { BulkActionBar } from "../ui/bulk-action-bar";
 import { Button } from "../ui/button";
 import { ColumnManager, DataToolbar, SavedViews } from "../ui/data-toolbar";
 import { DataExportMenu } from "../ui/data-export-menu";
@@ -52,6 +53,8 @@ const owners = ["Avery Stone", "Mina Park", "Noah Williams", "Sofia Chen"] as co
 const companyWords = ["Northstar", "Kindred", "Relay", "Juniper", "Arc", "Fieldwork", "Cinder", "Kite", "Cobalt", "Plain"] as const;
 const plans = ["Starter", "Growth", "Enterprise"] as const;
 const customerStatuses = ["Active", "Active", "Active", "At risk", "Trial"] as const;
+const shortDateFormatter = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+const shortDateTimeFormatter = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: "UTC" });
 
 const customerRecords: readonly CustomerRecord[] = Array.from({ length: 5_000 }, (_, index) => {
   const company = `${companyWords[index % companyWords.length]} ${String(Math.floor(index / companyWords.length) + 1).padStart(3, "0")}`;
@@ -86,10 +89,11 @@ function systemView(id: string, label: string, state: DataViewState, description
 
 const customerBaseState = createDataViewState({
   viewId: "all-customers",
-  pagination: { page: 1, pageSize: 25 },
+  pagination: { page: 1, pageSize: 8 },
   sorting: [{ id: "customer", direction: "asc" }],
-  columnSizing: { customer: 240, domain: 220, plan: 112, status: 112, owner: 150, arr: 104, renewal: 120 },
-  columnPinning: { start: ["customer"], end: [] },
+  columnVisibility: { domain: false, owner: false },
+  columnSizing: { customer: 148, domain: 188, plan: 86, status: 90, owner: 132, arr: 78, renewal: 108 },
+  columnPinning: { start: [], end: [] },
 });
 
 const customerSystemViews = [
@@ -117,13 +121,13 @@ const customerFilterFields: readonly FilterField[] = [
 ];
 
 const customerColumns: readonly DataTableColumn<CustomerRecord>[] = [
-  { id: "customer", header: "Customer", accessor: "customer", sortable: true, hideable: false, resizable: true, width: 240, minWidth: 180, maxWidth: 420 },
-  { id: "domain", header: "Domain", accessor: "domain", resizable: true, width: 220, minWidth: 160 },
-  { id: "plan", header: "Plan", accessor: "plan", sortable: true, resizable: true, width: 112 },
-  { id: "status", header: "Status", accessor: "status", sortable: true, resizable: true, width: 112, cell: (row) => <Badge variant={row.status === "At risk" ? "warning" : row.status === "Active" ? "success" : "outline"}>{row.status}</Badge> },
-  { id: "owner", header: "Owner", accessor: "owner", sortable: true, resizable: true, width: 150 },
-  { id: "arr", header: "ARR", accessor: "arr", sortable: true, sortType: "basic", align: "end", resizable: true, width: 104, cell: (row) => `$${row.arr.toLocaleString()}` },
-  { id: "renewal", header: "Renewal", accessor: "renewal", sortable: true, sortType: "datetime", align: "end", resizable: true, width: 120 },
+  { id: "customer", header: "Customer", accessor: "customer", sortable: true, hideable: false, resizable: true, width: 148, minWidth: 148, maxWidth: 360 },
+  { id: "domain", header: "Domain", accessor: "domain", resizable: true, width: 188, minWidth: 148 },
+  { id: "plan", header: "Plan", accessor: "plan", sortable: true, resizable: true, width: 86 },
+  { id: "status", header: "Status", accessor: "status", sortable: true, resizable: true, width: 90, cell: (row) => <Badge variant={row.status === "At risk" ? "warning" : row.status === "Active" ? "success" : "outline"}>{row.status}</Badge> },
+  { id: "owner", header: "Owner", accessor: "owner", sortable: true, resizable: true, width: 132 },
+  { id: "arr", header: "ARR", accessor: "arr", sortable: true, sortType: "basic", align: "end", resizable: true, width: 78, cell: (row) => `$${row.arr.toLocaleString()}` },
+  { id: "renewal", header: "Renewal", accessor: "renewal", sortable: true, sortType: "datetime", align: "end", resizable: true, width: 108, cell: (row) => shortDateFormatter.format(new Date(`${row.renewal}T00:00:00.000Z`)) },
 ];
 
 const customerExportColumns: readonly DataExportColumn<CustomerRecord>[] = customerColumns.map((column) => ({
@@ -215,6 +219,8 @@ export function CustomerDirectoryRecipe() {
     return () => window.clearTimeout(timer);
   }, [isHydrated, requestKey, state]);
 
+  useEffect(() => setSelectedRowIds([]), [requestKey]);
+
   const selectedRows = result.rows.filter((row) => selectedRowIds.includes(row.id));
   const activeView = views.find((view) => view.id === state.viewId);
   const applyView = (id: string) => {
@@ -224,7 +230,7 @@ export function CustomerDirectoryRecipe() {
 
   return (
     <section className="teum-data-recipe" aria-label="Customer Directory recipe">
-      <header className="teum-data-recipe__header"><div><span>Server data</span><h3>Customer Directory</h3></div><small>{result.rowCount.toLocaleString()} matches</small></header>
+      <header className="teum-data-recipe__header"><div><h3>Customer Directory</h3><p>Accounts and renewals</p></div><small>{result.rowCount.toLocaleString()} matches</small></header>
       <DataToolbar
         label="Customer data controls"
         start={<>
@@ -279,6 +285,14 @@ export function CustomerDirectoryRecipe() {
         emptyTitle="No customers match"
         emptyDescription="Change the query, filters, or renewal range."
       />
+      <div className="teum-data-recipe__bulk-slot">
+        <BulkActionBar
+          count={selectedRowIds.length}
+          noun="customer"
+          onClear={() => setSelectedRowIds([])}
+          actions={<Button size="small" variant="ghost" onClick={() => { toast(`${selectedRows.length} customers ready to export`, { id: "customer-bulk-export" }); setSelectedRowIds([]); }}>Export</Button>}
+        />
+      </div>
       <SaveViewDialog open={saveOpen} onOpenChange={setSaveOpen} onSave={(label) => {
         const view = saveView(label, state);
         setState(view.state);
@@ -297,11 +311,11 @@ const auditFilterFields: readonly FilterField[] = [
 ];
 
 const auditColumns: readonly DataTableColumn<AuditRecord>[] = [
-  { id: "event", header: "Event", accessor: "event", sortable: true, hideable: false, resizable: true, width: 160, minWidth: 140 },
-  { id: "actor", header: "Actor", accessor: "actor", sortable: true, resizable: true, width: 130 },
-  { id: "target", header: "Target", accessor: "target", resizable: true, width: 150 },
-  { id: "outcome", header: "Outcome", accessor: "outcome", sortable: true, resizable: true, width: 100, cell: (row) => <Badge variant={row.outcome === "Blocked" ? "danger" : "neutral"}>{row.outcome}</Badge> },
-  { id: "occurredAt", header: "Occurred", accessor: "occurredAt", sortable: true, sortType: "datetime", align: "end", resizable: true, width: 160, cell: (row) => new Date(row.occurredAt).toLocaleString() },
+  { id: "event", header: "Event", accessor: "event", sortable: true, hideable: false, resizable: true, width: 154, minWidth: 136 },
+  { id: "actor", header: "Actor", accessor: "actor", sortable: true, resizable: true, width: 120 },
+  { id: "target", header: "Target", accessor: "target", resizable: true, width: 146 },
+  { id: "outcome", header: "Outcome", accessor: "outcome", sortable: true, resizable: true, width: 96, cell: (row) => <Badge variant={row.outcome === "Blocked" ? "danger" : "neutral"}>{row.outcome}</Badge> },
+  { id: "occurredAt", header: "Occurred", accessor: "occurredAt", sortable: true, sortType: "datetime", align: "end", resizable: true, width: 136, cell: (row) => shortDateTimeFormatter.format(new Date(row.occurredAt)) },
 ];
 
 const auditExportColumns: readonly DataExportColumn<AuditRecord>[] = auditColumns.map((column) => ({
@@ -314,8 +328,8 @@ export function AuditLogRecipe() {
   const { state, patchState } = useDataViewState({
     initialState: {
       sorting: [{ id: "occurredAt", direction: "desc" }],
-      columnSizing: { event: 160, actor: 130, target: 150, outcome: 100, occurredAt: 160 },
-      columnPinning: { start: ["event"], end: ["occurredAt"] },
+      columnSizing: { event: 154, actor: 120, target: 146, outcome: 96, occurredAt: 136 },
+      columnPinning: { start: [], end: [] },
       dateRange: { from: "2026-07-18", to: "2026-08-16" },
     },
     syncToUrl: true,
@@ -341,7 +355,7 @@ export function AuditLogRecipe() {
 
   return (
     <section className="teum-data-recipe" aria-label="Audit Log recipe">
-      <header className="teum-data-recipe__header"><div><span>Large collection</span><h3>Audit Log</h3></div><small>{filtered.length.toLocaleString()} events</small></header>
+      <header className="teum-data-recipe__header"><div><h3>Audit Log</h3><p>Workspace activity</p></div><small>{filtered.length.toLocaleString()} events</small></header>
       <DataToolbar
         label="Audit log controls"
         start={<>
@@ -373,7 +387,7 @@ export function AuditLogRecipe() {
         onColumnPinningChange={(columnPinning) => patchState({ columnPinning }, { resetPage: false })}
         resizable
         paginate={false}
-        virtualize={{ height: 430, estimateRowHeight: 39, overscan: 10 }}
+        virtualize={{ height: 390, estimateRowHeight: 39, overscan: 10 }}
         isFetching={isFetching}
         emptyTitle="No audit events"
         emptyDescription="Change the query, event filters, or date range."

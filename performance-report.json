@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "generatedBy": "scripts/measure-performance.mjs",
-  "generatedAt": "2026-08-17T06:12:31.909Z",
+  "generatedAt": "2026-08-18T17:52:28.644Z",
   "budgets": {
     "initialJsGzipBytes": 90000,
     "initialCriticalGzipBytes": 140000,
@@ -13,263 +13,283 @@
     "largestComponentRouteJsGzipBytes": 430000,
     "largestJavaScriptRawBytes": 500000,
     "largestJavaScriptGzipBytes": 115000,
-    "totalJsGzipBytes": 585000,
+    "totalJsGzipBytes": 600000,
     "initialCssGzipBytes": 9000,
-    "totalCssGzipBytes": 55000
+    "totalCssGzipBytes": 58000
   },
   "totals": {
-    "initialJsGzipBytes": 78793,
-    "initialCriticalGzipBytes": 134775,
-    "totalJsGzipBytes": 579699,
-    "initialCssGzipBytes": 7007,
-    "totalCssGzipBytes": 53635,
+    "initialJsGzipBytes": 63141,
+    "initialCriticalGzipBytes": 118108,
+    "totalJsGzipBytes": 591269,
+    "initialCssGzipBytes": 6040,
+    "totalCssGzipBytes": 56681,
     "latinFontBytes": 48256,
-    "indexHtmlGzipBytes": 719,
-    "largestComponentRouteJsGzipBytes": 420259,
-    "largestJavaScriptRawBytes": 480845,
-    "largestJavaScriptGzipBytes": 109904
+    "indexHtmlGzipBytes": 671,
+    "largestComponentRouteJsGzipBytes": 417419,
+    "largestJavaScriptRawBytes": 445421,
+    "largestJavaScriptGzipBytes": 98476
   },
   "routes": {
     "landing": {
-      "jsGzipBytes": 78793,
-      "cssGzipBytes": 7007,
+      "jsGzipBytes": 63141,
+      "cssGzipBytes": 6040,
       "javascript": [
         "assets/_commonjsHelpers-CqkleIqs.js",
-        "assets/index-T6XUeSZu.js",
+        "assets/index-DmzmxTmI.js",
         "assets/react-CYjvl0oU.js"
       ],
       "stylesheets": [
-        "assets/index-XF9pn556.css"
+        "assets/index-CekFEhwx.css"
       ]
     },
     "documentationShell": {
-      "jsGzipBytes": 340532,
-      "cssGzipBytes": 53635,
+      "jsGzipBytes": 337647,
+      "cssGzipBytes": 52961,
       "javascript": [
-        "assets/App-DiOmZBua.js",
-        "assets/HTMLProjectionNode-Z3sxfroM.js",
+        "assets/App-B6dhxw_8.js",
+        "assets/HTMLProjectionNode-CkdLrFzN.js",
         "assets/_commonjsHelpers-CqkleIqs.js",
-        "assets/base-ui-CuypfNDa.js",
+        "assets/base-ui-DML-VZLF.js",
+        "assets/copy-text-DCA1tRMh.js",
         "assets/feedback-D5bZHH62.js",
-        "assets/index-T6XUeSZu.js",
-        "assets/motion-BYJvC3Ml.js",
+        "assets/index-DmzmxTmI.js",
+        "assets/motion-Bn9EUmk7.js",
         "assets/react-CYjvl0oU.js",
         "assets/with-selector-BcJo0SNu.js"
       ],
       "stylesheets": [
-        "assets/App-TuzYR60h.css",
-        "assets/index-XF9pn556.css"
+        "assets/App-2TKV1HHY.css",
+        "assets/copy-text-CLvkxg1m.css",
+        "assets/index-CekFEhwx.css"
       ]
     },
     "publicDocumentation": {
-      "jsGzipBytes": 362280,
-      "cssGzipBytes": 53635,
+      "jsGzipBytes": 360203,
+      "cssGzipBytes": 52961,
       "javascript": [
-        "assets/App-DiOmZBua.js",
-        "assets/HTMLProjectionNode-Z3sxfroM.js",
+        "assets/App-B6dhxw_8.js",
+        "assets/HTMLProjectionNode-CkdLrFzN.js",
         "assets/_commonjsHelpers-CqkleIqs.js",
-        "assets/base-ui-CuypfNDa.js",
+        "assets/base-ui-DML-VZLF.js",
+        "assets/copy-text-DCA1tRMh.js",
         "assets/feedback-D5bZHH62.js",
-        "assets/index-T6XUeSZu.js",
-        "assets/motion-BYJvC3Ml.js",
-        "assets/public-docs-DINnHB4x.js",
+        "assets/index-DmzmxTmI.js",
+        "assets/motion-Bn9EUmk7.js",
+        "assets/public-docs-sC-bPhSl.js",
         "assets/react-CYjvl0oU.js",
         "assets/with-selector-BcJo0SNu.js"
       ],
       "stylesheets": [
-        "assets/App-TuzYR60h.css",
-        "assets/index-XF9pn556.css"
+        "assets/App-2TKV1HHY.css",
+        "assets/copy-text-CLvkxg1m.css",
+        "assets/index-CekFEhwx.css"
       ]
     },
     "productPilot": {
-      "jsGzipBytes": 403375,
-      "cssGzipBytes": 53635,
+      "jsGzipBytes": 401543,
+      "cssGzipBytes": 52961,
       "javascript": [
-        "assets/App-DiOmZBua.js",
-        "assets/CalendarBlank.es-DSlXgyMR.js",
-        "assets/HTMLProjectionNode-Z3sxfroM.js",
+        "assets/App-B6dhxw_8.js",
+        "assets/CalendarBlank.es-DsZjycx5.js",
+        "assets/HTMLProjectionNode-CkdLrFzN.js",
         "assets/_commonjsHelpers-CqkleIqs.js",
-        "assets/base-ui-CuypfNDa.js",
-        "assets/data-table-B7I8MxL9.js",
-        "assets/data-toolbar-BO28bzUP.js",
+        "assets/base-ui-DML-VZLF.js",
+        "assets/bulk-action-bar-AtKB7uJF.js",
+        "assets/copy-text-DCA1tRMh.js",
+        "assets/data-table-BKNOI4n1.js",
+        "assets/data-toolbar-0wuvGEGC.js",
         "assets/feedback-D5bZHH62.js",
-        "assets/index-T6XUeSZu.js",
-        "assets/motion-BYJvC3Ml.js",
-        "assets/product-pilot-CFjgpVTy.js",
-        "assets/public-docs-DINnHB4x.js",
+        "assets/index-DmzmxTmI.js",
+        "assets/motion-Bn9EUmk7.js",
+        "assets/product-pilot-C4UUZ6xR.js",
+        "assets/public-docs-sC-bPhSl.js",
         "assets/react-CYjvl0oU.js",
         "assets/with-selector-BcJo0SNu.js"
       ],
       "stylesheets": [
-        "assets/App-TuzYR60h.css",
-        "assets/index-XF9pn556.css"
+        "assets/App-2TKV1HHY.css",
+        "assets/copy-text-CLvkxg1m.css",
+        "assets/index-CekFEhwx.css"
       ]
     },
     "dataRecipes": {
-      "jsGzipBytes": 488682,
-      "cssGzipBytes": 53635,
+      "jsGzipBytes": 487235,
+      "cssGzipBytes": 52961,
       "javascript": [
-        "assets/App-DiOmZBua.js",
-        "assets/CalendarBlank.es-DSlXgyMR.js",
-        "assets/HTMLProjectionNode-Z3sxfroM.js",
+        "assets/App-B6dhxw_8.js",
+        "assets/CalendarBlank.es-DsZjycx5.js",
+        "assets/HTMLProjectionNode-CkdLrFzN.js",
         "assets/_commonjsHelpers-CqkleIqs.js",
-        "assets/ariaHideOutside-D6K_ZSTR.js",
-        "assets/base-ui-CuypfNDa.js",
-        "assets/data-recipes-Db7O4xzw.js",
-        "assets/data-table-B7I8MxL9.js",
-        "assets/data-toolbar-BO28bzUP.js",
-        "assets/date-picker-DjpiDAu3.js",
+        "assets/ariaHideOutside-B2ciUhJ-.js",
+        "assets/base-ui-DML-VZLF.js",
+        "assets/bulk-action-bar-AtKB7uJF.js",
+        "assets/copy-text-DCA1tRMh.js",
+        "assets/data-recipes-D0eIAjAe.js",
+        "assets/data-table-BKNOI4n1.js",
+        "assets/data-toolbar-0wuvGEGC.js",
+        "assets/date-picker-B_CAgZXx.js",
         "assets/feedback-D5bZHH62.js",
-        "assets/index-T6XUeSZu.js",
-        "assets/motion-BYJvC3Ml.js",
-        "assets/public-docs-DINnHB4x.js",
+        "assets/index-DmzmxTmI.js",
+        "assets/motion-Bn9EUmk7.js",
+        "assets/public-docs-sC-bPhSl.js",
         "assets/react-CYjvl0oU.js",
-        "assets/useCollator-CHd5eb6e.js",
-        "assets/useLabels-BcIpzZz_.js",
+        "assets/useCollator-z11CJWuD.js",
+        "assets/useLabels-Dt7zwNoC.js",
         "assets/with-selector-BcJo0SNu.js"
       ],
       "stylesheets": [
-        "assets/App-TuzYR60h.css",
-        "assets/index-XF9pn556.css"
+        "assets/App-2TKV1HHY.css",
+        "assets/copy-text-CLvkxg1m.css",
+        "assets/index-CekFEhwx.css"
       ]
     },
     "analyticsRecipes": {
-      "jsGzipBytes": 403237,
-      "cssGzipBytes": 53635,
+      "jsGzipBytes": 404932,
+      "cssGzipBytes": 52961,
       "javascript": [
-        "assets/App-DiOmZBua.js",
-        "assets/HTMLProjectionNode-Z3sxfroM.js",
+        "assets/App-B6dhxw_8.js",
+        "assets/HTMLProjectionNode-CkdLrFzN.js",
         "assets/_commonjsHelpers-CqkleIqs.js",
-        "assets/analytics-recipes-qVsKEXM-.js",
-        "assets/base-ui-CuypfNDa.js",
-        "assets/data-table-B7I8MxL9.js",
+        "assets/analytics-recipes-DnBLBDcj.js",
+        "assets/base-ui-DML-VZLF.js",
+        "assets/copy-text-DCA1tRMh.js",
+        "assets/data-table-BKNOI4n1.js",
         "assets/feedback-D5bZHH62.js",
-        "assets/index-T6XUeSZu.js",
-        "assets/motion-BYJvC3Ml.js",
-        "assets/public-docs-DINnHB4x.js",
+        "assets/index-DmzmxTmI.js",
+        "assets/motion-Bn9EUmk7.js",
+        "assets/public-docs-sC-bPhSl.js",
         "assets/react-CYjvl0oU.js",
-        "assets/timeline-C2oLa_1q.js",
+        "assets/timeline-CJZ-rAJg.js",
         "assets/with-selector-BcJo0SNu.js"
       ],
       "stylesheets": [
-        "assets/App-TuzYR60h.css",
-        "assets/index-XF9pn556.css"
+        "assets/App-2TKV1HHY.css",
+        "assets/copy-text-CLvkxg1m.css",
+        "assets/index-CekFEhwx.css"
       ]
     },
     "productPatterns": {
-      "jsGzipBytes": 410767,
-      "cssGzipBytes": 53635,
+      "jsGzipBytes": 409308,
+      "cssGzipBytes": 52961,
       "javascript": [
-        "assets/App-DiOmZBua.js",
-        "assets/HTMLProjectionNode-Z3sxfroM.js",
+        "assets/App-B6dhxw_8.js",
+        "assets/HTMLProjectionNode-CkdLrFzN.js",
         "assets/_commonjsHelpers-CqkleIqs.js",
-        "assets/base-ui-CuypfNDa.js",
-        "assets/data-table-B7I8MxL9.js",
-        "assets/data-toolbar-BO28bzUP.js",
+        "assets/base-ui-DML-VZLF.js",
+        "assets/copy-text-DCA1tRMh.js",
+        "assets/data-table-BKNOI4n1.js",
+        "assets/data-toolbar-0wuvGEGC.js",
         "assets/feedback-D5bZHH62.js",
-        "assets/index-T6XUeSZu.js",
-        "assets/motion-BYJvC3Ml.js",
-        "assets/product-pattern-recipes-CzoaKUE8.js",
-        "assets/public-docs-DINnHB4x.js",
+        "assets/index-DmzmxTmI.js",
+        "assets/motion-Bn9EUmk7.js",
+        "assets/product-pattern-recipes-DjBToytT.js",
+        "assets/public-docs-sC-bPhSl.js",
         "assets/react-CYjvl0oU.js",
-        "assets/timeline-C2oLa_1q.js",
+        "assets/timeline-CJZ-rAJg.js",
         "assets/with-selector-BcJo0SNu.js"
       ],
       "stylesheets": [
-        "assets/App-TuzYR60h.css",
-        "assets/index-XF9pn556.css"
+        "assets/App-2TKV1HHY.css",
+        "assets/copy-text-CLvkxg1m.css",
+        "assets/index-CekFEhwx.css"
       ]
     },
     "datePicker": {
-      "jsGzipBytes": 420259,
-      "cssGzipBytes": 53635,
+      "jsGzipBytes": 417419,
+      "cssGzipBytes": 52961,
       "javascript": [
-        "assets/App-DiOmZBua.js",
-        "assets/CalendarBlank.es-DSlXgyMR.js",
-        "assets/HTMLProjectionNode-Z3sxfroM.js",
+        "assets/App-B6dhxw_8.js",
+        "assets/CalendarBlank.es-DsZjycx5.js",
+        "assets/HTMLProjectionNode-CkdLrFzN.js",
         "assets/_commonjsHelpers-CqkleIqs.js",
-        "assets/ariaHideOutside-D6K_ZSTR.js",
-        "assets/base-ui-CuypfNDa.js",
-        "assets/date-picker-DjpiDAu3.js",
-        "assets/date-picker-previews-D6BN4o9c.js",
+        "assets/ariaHideOutside-B2ciUhJ-.js",
+        "assets/base-ui-DML-VZLF.js",
+        "assets/copy-text-DCA1tRMh.js",
+        "assets/date-picker-B_CAgZXx.js",
+        "assets/date-picker-previews-Bnb4q_Km.js",
         "assets/feedback-D5bZHH62.js",
-        "assets/index-T6XUeSZu.js",
-        "assets/motion-BYJvC3Ml.js",
+        "assets/index-DmzmxTmI.js",
+        "assets/motion-Bn9EUmk7.js",
         "assets/react-CYjvl0oU.js",
-        "assets/useCollator-CHd5eb6e.js",
-        "assets/useLabels-BcIpzZz_.js",
+        "assets/useCollator-z11CJWuD.js",
+        "assets/useLabels-Dt7zwNoC.js",
         "assets/with-selector-BcJo0SNu.js"
       ],
       "stylesheets": [
-        "assets/App-TuzYR60h.css",
-        "assets/index-XF9pn556.css"
+        "assets/App-2TKV1HHY.css",
+        "assets/copy-text-CLvkxg1m.css",
+        "assets/index-CekFEhwx.css"
       ]
     },
     "tree": {
-      "jsGzipBytes": 391895,
-      "cssGzipBytes": 53635,
+      "jsGzipBytes": 389015,
+      "cssGzipBytes": 52961,
       "javascript": [
-        "assets/App-DiOmZBua.js",
-        "assets/HTMLProjectionNode-Z3sxfroM.js",
+        "assets/App-B6dhxw_8.js",
+        "assets/HTMLProjectionNode-CkdLrFzN.js",
         "assets/_commonjsHelpers-CqkleIqs.js",
-        "assets/base-ui-CuypfNDa.js",
+        "assets/base-ui-DML-VZLF.js",
+        "assets/copy-text-DCA1tRMh.js",
         "assets/feedback-D5bZHH62.js",
-        "assets/index-T6XUeSZu.js",
-        "assets/motion-BYJvC3Ml.js",
+        "assets/index-DmzmxTmI.js",
+        "assets/motion-Bn9EUmk7.js",
         "assets/react-CYjvl0oU.js",
-        "assets/tree-previews-BewwwrHd.js",
-        "assets/useCollator-CHd5eb6e.js",
-        "assets/useGridListSelectionCheckbox-96T5mpF_.js",
-        "assets/useLabels-BcIpzZz_.js",
+        "assets/tree-previews-DWDgz0z4.js",
+        "assets/useCollator-z11CJWuD.js",
+        "assets/useGridListSelectionCheckbox-DiAg_dFF.js",
+        "assets/useLabels-Dt7zwNoC.js",
         "assets/with-selector-BcJo0SNu.js"
       ],
       "stylesheets": [
-        "assets/App-TuzYR60h.css",
-        "assets/index-XF9pn556.css"
+        "assets/App-2TKV1HHY.css",
+        "assets/copy-text-CLvkxg1m.css",
+        "assets/index-CekFEhwx.css"
       ]
     },
     "reorderableList": {
-      "jsGzipBytes": 418292,
-      "cssGzipBytes": 53635,
+      "jsGzipBytes": 415367,
+      "cssGzipBytes": 52961,
       "javascript": [
-        "assets/App-DiOmZBua.js",
-        "assets/HTMLProjectionNode-Z3sxfroM.js",
+        "assets/App-B6dhxw_8.js",
+        "assets/HTMLProjectionNode-CkdLrFzN.js",
         "assets/_commonjsHelpers-CqkleIqs.js",
-        "assets/ariaHideOutside-D6K_ZSTR.js",
-        "assets/base-ui-CuypfNDa.js",
+        "assets/ariaHideOutside-B2ciUhJ-.js",
+        "assets/base-ui-DML-VZLF.js",
+        "assets/copy-text-DCA1tRMh.js",
         "assets/feedback-D5bZHH62.js",
-        "assets/index-T6XUeSZu.js",
-        "assets/motion-BYJvC3Ml.js",
+        "assets/index-DmzmxTmI.js",
+        "assets/motion-Bn9EUmk7.js",
         "assets/react-CYjvl0oU.js",
-        "assets/reorderable-list-previews-y7dyNc9F.js",
-        "assets/useCollator-CHd5eb6e.js",
-        "assets/useGridListSelectionCheckbox-96T5mpF_.js",
+        "assets/reorderable-list-previews-Cfa8xzg3.js",
+        "assets/useCollator-z11CJWuD.js",
+        "assets/useGridListSelectionCheckbox-DiAg_dFF.js",
         "assets/with-selector-BcJo0SNu.js"
       ],
       "stylesheets": [
-        "assets/App-TuzYR60h.css",
-        "assets/index-XF9pn556.css"
+        "assets/App-2TKV1HHY.css",
+        "assets/copy-text-CLvkxg1m.css",
+        "assets/index-CekFEhwx.css"
       ]
     }
   },
   "initialJavaScript": [
     "_commonjsHelpers-CqkleIqs.js",
-    "index-T6XUeSZu.js",
+    "index-DmzmxTmI.js",
     "react-CYjvl0oU.js"
   ],
   "initialStylesheets": [
-    "index-XF9pn556.css"
+    "index-CekFEhwx.css"
   ],
   "assets": [
     {
-      "file": "App-DiOmZBua.js",
-      "bytes": 480845,
-      "gzipBytes": 109904
+      "file": "App-B6dhxw_8.js",
+      "bytes": 445421,
+      "gzipBytes": 98476
     },
     {
-      "file": "base-ui-CuypfNDa.js",
+      "file": "base-ui-DML-VZLF.js",
       "bytes": 272166,
-      "gzipBytes": 89284
+      "gzipBytes": 89285
     },
     {
       "file": "react-CYjvl0oU.js",
@@ -277,59 +297,59 @@
       "gzipBytes": 60739
     },
     {
-      "file": "date-picker-DjpiDAu3.js",
-      "bytes": 173029,
-      "gzipBytes": 55919
+      "file": "date-picker-B_CAgZXx.js",
+      "bytes": 173060,
+      "gzipBytes": 55935
     },
     {
-      "file": "App-TuzYR60h.css",
-      "bytes": 306200,
-      "gzipBytes": 46628
+      "file": "copy-text-CLvkxg1m.css",
+      "bytes": 307602,
+      "gzipBytes": 45349
     },
     {
-      "file": "reorderable-list-previews-y7dyNc9F.js",
-      "bytes": 147051,
-      "gzipBytes": 33993
+      "file": "reorderable-list-previews-Cfa8xzg3.js",
+      "bytes": 146954,
+      "gzipBytes": 33948
     },
     {
-      "file": "HTMLProjectionNode-Z3sxfroM.js",
-      "bytes": 97028,
-      "gzipBytes": 32090
+      "file": "HTMLProjectionNode-CkdLrFzN.js",
+      "bytes": 98336,
+      "gzipBytes": 32581
     },
     {
-      "file": "data-table-B7I8MxL9.js",
-      "bytes": 106087,
-      "gzipBytes": 29998
+      "file": "data-table-BKNOI4n1.js",
+      "bytes": 106079,
+      "gzipBytes": 29997
     },
     {
-      "file": "useGridListSelectionCheckbox-96T5mpF_.js",
+      "file": "public-docs-sC-bPhSl.js",
+      "bytes": 75992,
+      "gzipBytes": 22556
+    },
+    {
+      "file": "useGridListSelectionCheckbox-DiAg_dFF.js",
       "bytes": 74793,
       "gzipBytes": 21776
     },
     {
-      "file": "public-docs-DINnHB4x.js",
-      "bytes": 72792,
-      "gzipBytes": 21748
+      "file": "useCollator-z11CJWuD.js",
+      "bytes": 63169,
+      "gzipBytes": 20678
     },
     {
-      "file": "useCollator-CHd5eb6e.js",
-      "bytes": 63163,
-      "gzipBytes": 20673
+      "file": "copy-text-DCA1tRMh.js",
+      "bytes": 68254,
+      "gzipBytes": 20614
     },
     {
-      "file": "index-T6XUeSZu.js",
-      "bytes": 67738,
-      "gzipBytes": 17928
+      "file": "motion-Bn9EUmk7.js",
+      "bytes": 42245,
+      "gzipBytes": 14732
     },
     {
-      "file": "data-recipes-Db7O4xzw.js",
-      "bytes": 39575,
-      "gzipBytes": 13213
-    },
-    {
-      "file": "motion-BYJvC3Ml.js",
-      "bytes": 33708,
-      "gzipBytes": 11643
+      "file": "data-recipes-D0eIAjAe.js",
+      "bytes": 40234,
+      "gzipBytes": 13402
     },
     {
       "file": "feedback-D5bZHH62.js",
@@ -342,59 +362,89 @@
       "gzipBytes": 9031
     },
     {
-      "file": "tree-previews-BewwwrHd.js",
-      "bytes": 24825,
-      "gzipBytes": 8707
+      "file": "tree-previews-DWDgz0z4.js",
+      "bytes": 24783,
+      "gzipBytes": 8705
     },
     {
-      "file": "product-pattern-recipes-CzoaKUE8.js",
-      "bytes": 28903,
-      "gzipBytes": 8655
+      "file": "product-pattern-recipes-DjBToytT.js",
+      "bytes": 28935,
+      "gzipBytes": 8668
     },
     {
-      "file": "index-XF9pn556.css",
-      "bytes": 32223,
-      "gzipBytes": 7007
+      "file": "analytics-recipes-DnBLBDcj.js",
+      "bytes": 26969,
+      "gzipBytes": 8659
     },
     {
-      "file": "product-pilot-CFjgpVTy.js",
-      "bytes": 17555,
-      "gzipBytes": 6023
+      "file": "timeline-CJZ-rAJg.js",
+      "bytes": 17552,
+      "gzipBytes": 6073
     },
     {
-      "file": "analytics-recipes-qVsKEXM-.js",
-      "bytes": 16436,
-      "gzipBytes": 5493
+      "file": "index-CekFEhwx.css",
+      "bytes": 26367,
+      "gzipBytes": 6040
     },
     {
-      "file": "timeline-C2oLa_1q.js",
-      "bytes": 15525,
-      "gzipBytes": 5466
+      "file": "product-pilot-C4UUZ6xR.js",
+      "bytes": 16765,
+      "gzipBytes": 5850
     },
     {
-      "file": "data-toolbar-BO28bzUP.js",
-      "bytes": 13790,
-      "gzipBytes": 4368
+      "file": "component-index-BHInoI50.js",
+      "bytes": 15416,
+      "gzipBytes": 5243
     },
     {
-      "file": "ariaHideOutside-D6K_ZSTR.js",
+      "file": "data-toolbar-0wuvGEGC.js",
+      "bytes": 13793,
+      "gzipBytes": 4367
+    },
+    {
+      "file": "component-code-C9Yw_2Yd.js",
+      "bytes": 14937,
+      "gzipBytes": 4189
+    },
+    {
+      "file": "component-index-3JmESKfy.css",
+      "bytes": 19371,
+      "gzipBytes": 3720
+    },
+    {
+      "file": "index-DmzmxTmI.js",
+      "bytes": 5649,
+      "gzipBytes": 2276
+    },
+    {
+      "file": "App-2TKV1HHY.css",
+      "bytes": 5722,
+      "gzipBytes": 1572
+    },
+    {
+      "file": "ariaHideOutside-B2ciUhJ-.js",
       "bytes": 2990,
       "gzipBytes": 1318
     },
     {
-      "file": "date-picker-previews-D6BN4o9c.js",
-      "bytes": 2039,
-      "gzipBytes": 904
+      "file": "date-picker-previews-Bnb4q_Km.js",
+      "bytes": 2071,
+      "gzipBytes": 923
     },
     {
-      "file": "CalendarBlank.es-DSlXgyMR.js",
-      "bytes": 2233,
-      "gzipBytes": 706
+      "file": "CalendarBlank.es-DsZjycx5.js",
+      "bytes": 2237,
+      "gzipBytes": 709
     },
     {
-      "file": "useLabels-BcIpzZz_.js",
+      "file": "bulk-action-bar-AtKB7uJF.js",
+      "bytes": 799,
+      "gzipBytes": 417
+    },
+    {
+      "file": "useLabels-Dt7zwNoC.js",
       "bytes": 297,
-      "gzipBytes": 207
+      "gzipBytes": 209
     },
     {
       "file": "_commonjsHelpers-CqkleIqs.js",

@@ -78,7 +78,7 @@ test("touch-emulated controls complete representative field, tab, menu, and dial
 
   await page.goto("/#dialog");
   await page.getByRole("button", { name: "Edit details" }).first().tap();
-  const dialog = page.getByRole("dialog", { name: "Edit component metadata" });
+  const dialog = page.getByRole("dialog", { name: "Edit component details" });
   await expect(dialog).toBeVisible();
   await dialog.getByRole("button", { name: "Cancel" }).tap();
   await expect(dialog).not.toBeVisible();

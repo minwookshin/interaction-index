@@ -1,0 +1,36 @@
+/* Keep persistent documentation chrome on the same coordinates as the public
+   header. This file loads after the full workbench stylesheet by design. */
+.system-window--consolidated { grid-template-rows: var(--teum-public-header-height) minmax(0, 1fr); }
+.system-nav--consolidated { grid-column: 1; }
+.system-nav--consolidated .system-brand { height: var(--teum-public-header-height); flex-basis: var(--teum-public-header-height); padding: 0 11px 0 var(--teum-public-header-gutter-start); }
+.system-brand__home { gap: 9px; }
+.system-brand__home .system-brand__mark { width: 26px; height: 26px; border-radius: 7px; }
+.system-brand__home .system-brand__mark svg { width: 14px; height: 14px; }
+.system-nav--consolidated .system-brand__home strong { font-size: 16px; font-weight: 620; letter-spacing: -.025em; }
+.system-nav--consolidated > .system-component-search--global { display: flex; flex: 0 0 34px; margin: 8px 10px 5px; }
+.system-nav--consolidated .system-nav__items { padding-top: 3px; }
+
+.system-topbar--consolidated,
+:root[data-theme="dark"] .system-topbar--consolidated {
+  position: relative;
+  z-index: 2;
+  grid-column: 1 / 4;
+  display: grid;
+  width: 100vw;
+  min-height: var(--teum-public-header-height);
+  height: var(--teum-public-header-height);
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  padding: 0 var(--teum-public-header-gutter-end) 0 var(--teum-public-header-gutter-start);
+}
+
+.system-topbar__location { grid-column: 1; min-width: 0; padding-left: 0; }
+.system-topbar__title { position: static; grid-column: 2; justify-self: center; translate: none; }
+.system-topbar--consolidated .system-topbar__actions { grid-column: 3; justify-self: end; gap: 6px; padding-right: 0; }
+.system-topbar--consolidated .system-icon-action,
+.system-topbar--consolidated .theme-toggle { width: 30px; height: 30px; }
+
+@media (max-width: 820px) {
+  .system-topbar--consolidated { grid-column: 1; }
+  .system-nav--consolidated .system-brand { padding-inline: 20px 12px; }
+}

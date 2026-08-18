@@ -1,4 +1,4 @@
-/* Generated from src/styles.css. Do not edit directly. */
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
 @layer teum.tokens, teum.base, teum.components;
 
@@ -66,36 +66,6 @@
 .pilot-action-dialog { width: min(520px, calc(100vw - 32px)); }
 
 .pilot-action-dialog .teum-action-list { width: 100%; margin-top: 16px; box-shadow: none; }
-
-.pilot-proof { display: grid; gap: 10px; padding: 12px 14px 14px; background: var(--teum-bg-stage); }
-
-.pilot-proof > div { display: flex; min-width: 0; align-items: center; gap: 8px; }
-
-.pilot-proof > div strong { color: var(--teum-fg-default); font-size: var(--teum-type-label); font-weight: 590; }
-
-.pilot-proof > div span { min-width: 0; overflow: hidden; color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); text-overflow: ellipsis; white-space: nowrap; }
-
-.pilot-proof > div button { margin-left: auto; padding: 0; border: 0; background: transparent; color: var(--teum-fg-muted); font: inherit; font-size: var(--teum-type-metadata); cursor: pointer; }
-
-.pilot-proof > div button:hover { color: var(--teum-fg-default); }
-
-.pilot-proof ol { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin: 0; padding: 0; list-style: none; }
-
-.pilot-proof li { display: grid; grid-template-columns: 20px minmax(0, 1fr); min-height: 46px; align-items: center; gap: 7px; padding: 6px 7px; border-radius: 7px; color: var(--teum-fg-subtle); }
-
-.pilot-proof li[aria-current="step"] { background: var(--teum-bg-control); color: var(--teum-fg-default); box-shadow: inset 0 0 0 1px var(--teum-separator); }
-
-.pilot-proof li[data-complete] { color: var(--teum-fg-muted); }
-
-.pilot-proof li > span { display: grid; width: 20px; height: 20px; place-items: center; border-radius: 999px; background: var(--teum-bg-control); color: inherit; font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; }
-
-.pilot-proof li[data-complete] > span { background: var(--teum-inverse); color: var(--teum-on-inverse); }
-
-.pilot-proof li > div { display: grid; min-width: 0; gap: 1px; }
-
-.pilot-proof li strong { font-size: var(--teum-type-metadata); font-weight: 590; }
-
-.pilot-proof li small { overflow: hidden; color: inherit; font-size: var(--teum-type-metadata); text-overflow: ellipsis; white-space: nowrap; }
 
 .pilot-data-toolbar {
   min-height: 46px;
@@ -214,8 +184,6 @@
 .pilot-workspace__actions .teum-button__content > span:last-child { display: none; }
 
 .pilot-workspace__actions .teum-button { width: 30px; padding-inline: 0; }
-
-.pilot-proof ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
 .pilot-data-toolbar { align-items: stretch; }
 

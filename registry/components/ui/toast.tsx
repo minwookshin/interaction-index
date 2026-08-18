@@ -32,11 +32,11 @@ const toastClassNames = {
 export function Toaster({
   className,
   position = "bottom-center",
-  visibleToasts = 1,
+  visibleToasts = 3,
   expand = false,
   closeButton = true,
   duration = 4000,
-  gap = 8,
+  gap = 14,
   offset = 20,
   toastOptions,
   ...props

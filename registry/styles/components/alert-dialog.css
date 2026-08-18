@@ -1,4 +1,4 @@
-/* Generated from src/styles.css. Do not edit directly. */
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
 @layer teum.tokens, teum.base, teum.components;
 
@@ -12,9 +12,9 @@
 
 .teum-dialog { position: fixed; z-index: var(--teum-layer-modal); top: 50%; left: 50%; width: min(390px, calc(100vw - 32px)); padding: 16px; border-radius: var(--teum-radius-overlay); background: var(--teum-bg-modal); box-shadow: var(--teum-shadow-modal); outline: 0; transform: translate(-50%, -50%); transition: opacity var(--teum-enter-duration) var(--teum-ease-out), transform var(--teum-enter-duration) var(--teum-ease-out); }
 
-.teum-dialog[data-starting-style] { opacity: 0; transform: translate(-50%, calc(-50% + 6px)) scale(0.985); }
+.teum-dialog[data-starting-style] { opacity: 0; transform: translate(-50%, calc(-50% + 4px)) scale(0.99); }
 
-.teum-dialog[data-ending-style] { opacity: 0; transform: translate(-50%, calc(-50% + 3px)) scale(0.99); transition-duration: var(--teum-exit-duration); }
+.teum-dialog[data-ending-style] { opacity: 0; transform: translate(-50%, calc(-50% + 2px)) scale(0.995); transition-duration: var(--teum-exit-duration); }
 
 .teum-dialog__header { display: grid; gap: 7px; padding-right: 28px; }
 

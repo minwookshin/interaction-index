@@ -92,7 +92,7 @@ for (const selector of [".teum-tooltip", ".teum-popover", ".teum-menu", ".teum-d
 }
 
 assert(css.includes("@media (hover: hover) and (pointer: fine)"), "Pointer-only hover motion needs an explicit capability query.");
-assert(css.includes(":root:has(:focus-visible) .teum-menu"), "Keyboard-opened surfaces must bypass decorative travel.");
+assert(css.includes(':root[data-input-modality="keyboard"] .teum-menu'), "Keyboard-opened surfaces must bypass decorative travel.");
 
 const expectedFinalPress = new Map([
   [".teum-button:active:not(:disabled):not([data-disabled])", 0.98],

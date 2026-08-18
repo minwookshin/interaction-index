@@ -7,8 +7,10 @@ import {
   Chart,
   Cohort,
   Comparison,
+  DonutChart,
   Funnel,
   Goal,
+  Heatmap,
   Metric,
   Sparkline,
   Timeline,
@@ -70,6 +72,49 @@ describe("Teum Analytics components", () => {
 
     rerender(<Chart title="Revenue" data={[]} series={series} empty="No revenue yet." />);
     expect(screen.getByText("No revenue yet.")).toBeInTheDocument();
+  });
+
+  it("renders grouped and stacked bars with an explicit error state", () => {
+    const { container, rerender } = render(<Chart title="Revenue" data={data} series={series} type="bar" />);
+    expect(container.querySelectorAll(".teum-chart__bars rect")).toHaveLength(6);
+    rerender(<Chart title="Revenue" data={data} series={series} type="stacked-bar" />);
+    expect(container.querySelectorAll(".teum-chart__bars rect")).toHaveLength(6);
+    rerender(<Chart title="Revenue" data={data} series={series} error="Revenue could not be loaded." />);
+    expect(screen.getByRole("alert")).toHaveTextContent("Revenue could not be loaded.");
+  });
+
+  it("shares donut pointer and keyboard selection with visible values and a table", async () => {
+    const user = userEvent.setup();
+    const onActivate = vi.fn();
+    render(<DonutChart title="Plan mix" data={[
+      { id: "team", label: "Team", value: 60 },
+      { id: "business", label: "Business", value: 30 },
+      { id: "enterprise", label: "Enterprise", value: 10 },
+    ]} onDatumActivate={onActivate} />);
+
+    const plot = screen.getByRole("group", { name: "Plan mix. 3 segments." });
+    plot.focus();
+    await user.keyboard("{ArrowRight}{Enter}");
+    expect(screen.getByText("Business. 30. 30.0 percent.")).toBeInTheDocument();
+    expect(onActivate).toHaveBeenCalledWith(expect.objectContaining({ id: "business" }));
+    await user.click(screen.getByRole("button", { name: "View data" }));
+    expect(screen.getByRole("table", { name: "Plan mix data" })).toBeVisible();
+  });
+
+  it("moves through a semantic heatmap in two dimensions", async () => {
+    const user = userEvent.setup();
+    render(<Heatmap title="Feature activity" columns={["Mon", "Tue"]} rows={[
+      { id: "create", label: "Create", values: [12, 18] },
+      { id: "share", label: "Share", values: [8, null] },
+    ]} />);
+
+    const first = screen.getByRole("button", { name: "Create, Mon, 12" });
+    first.focus();
+    await user.keyboard("{ArrowRight}");
+    expect(screen.getByRole("button", { name: "Create, Tue, 18" })).toHaveAttribute("aria-pressed", "true");
+    await user.keyboard("{ArrowDown}");
+    expect(screen.getByRole("button", { name: "Share, Tue, no data" })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("region", { name: "Feature activity" })).toHaveTextContent("Share, TueNo data");
   });
 
   it("reconciles an uncontrolled legend when the recipe replaces its series", () => {

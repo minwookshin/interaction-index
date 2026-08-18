@@ -4,13 +4,13 @@
   "generatedAt": "2026-08-17T09:10:35.392Z",
   "candidate": "0.1.0-rc.22",
   "site": {
-    "url": "https://teum.minwookshin.com",
+    "url": "https://whatiuse.minwookshin.com",
     "status": "passed",
     "securityHeaders": true
   },
   "registry": {
-    "manifest": "https://teum.minwookshin.com/r/manifest.json",
-    "immutableArtifact": "https://teum.minwookshin.com/r/v/0.1.0-rc.22/button.json",
+    "manifest": "https://whatiuse.minwookshin.com/r/manifest.json",
+    "immutableArtifact": "https://whatiuse.minwookshin.com/r/v/0.1.0-rc.22/button.json",
     "exactCandidateBytes": true
   },
   "github": {
