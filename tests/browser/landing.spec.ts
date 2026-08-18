@@ -186,11 +186,13 @@ test("every catalog card renders its live preview inside the enlarged stage", as
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto("/#components");
 
-  const catalog = page.locator(".component-index-page");
-  const scrollHeight = await catalog.evaluate((element) => element.scrollHeight);
-  for (let top = 0; top < scrollHeight; top += 520) {
-    await catalog.evaluate((element, nextTop) => element.scrollTo({ top: nextTop, behavior: "instant" }), top);
-    await page.waitForTimeout(70);
+  const previews = page.locator(".component-index-preview");
+  await expect(previews.first()).toBeVisible();
+  const previewCount = await previews.count();
+  for (let index = 0; index < previewCount; index += 1) {
+    const preview = previews.nth(index);
+    await preview.scrollIntoViewIfNeeded();
+    await expect(preview.locator(".component-index-preview__loading")).toHaveCount(0);
   }
 
   await expect(page.locator(".component-index-preview__loading")).toHaveCount(0);
