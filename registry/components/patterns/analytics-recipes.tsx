@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/patterns/analytics-recipes.css";
 import { useMemo, useState } from "react";
 import { Badge } from "../ui/badge";
@@ -8,16 +8,26 @@ import { Breakdown } from "../ui/breakdown";
 import { Chart } from "../ui/chart";
 import { Cohort } from "../ui/cohort";
 import { Comparison } from "../ui/comparison";
+import { DataExportMenu } from "../ui/data-export-menu";
+import { DataResultSummary } from "../ui/data-result-summary";
 import { DataTable, type DataTableColumn } from "../ui/data-table";
+import { DataToolbar } from "../ui/data-toolbar";
+import { DateRangeFilter } from "../ui/date-range-filter";
 import { DonutChart } from "../ui/donut-chart";
+import { FacetFilter } from "../ui/facet-filter";
 import { Funnel, type FunnelStage } from "../ui/funnel";
 import { Goal } from "../ui/goal";
 import { Heatmap } from "../ui/heatmap";
 import { Metric } from "../ui/metric";
+import { PropertyList } from "../ui/property-list";
+import { SavedViewMenu } from "../ui/saved-view-menu";
+import { SearchInput } from "../ui/search-input";
 import { SegmentedControl } from "../ui/segmented-control";
 import { Sparkline } from "../ui/sparkline";
 import { Timeline, type TimelineItem } from "../ui/timeline";
 import { type AnalyticsDatum, type AnalyticsSeries } from "../../lib/analytics";
+import type { DataExportColumn } from "../../lib/data-export";
+import type { DataDateRange } from "../../lib/data-view-state";
 
 const compactCurrencyFormatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", notation: "compact", maximumFractionDigits: 1 });
 const standardCurrencyFormatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", notation: "standard", maximumFractionDigits: 0 });
@@ -44,18 +54,17 @@ const activityRows = [
 
 export function AnalyticsRendererGallery() {
   return (
-    <section className="teum-analytics-gallery" aria-label="Analytics renderer family">
-      <header className="teum-analytics-gallery__header"><div><h3>Analytics primitives</h3><p>Metrics, trends, composition, and activity.</p></div></header>
-      <div className="teum-analytics-gallery__metrics">
+    <section className="whatiuse-analytics-gallery" aria-label="Analytics renderer family">
+      <div className="whatiuse-analytics-gallery__metrics">
         <Metric label="MRR" value="$119.6k" trend={{ value: "+4.8%", label: "vs last month", direction: "up" }} visual={<Sparkline values={[82, 86, 91, 96, 105, 110, 114, 120]} decorative fill />} />
         <Metric label="Active workspaces" value="4,862" trend={{ value: "+318", label: "this month", direction: "up" }} visual={<Sparkline values={[3_910, 4_020, 4_188, 4_304, 4_472, 4_611, 4_742, 4_862]} decorative />} />
         <Metric label="Activation" value="56.9%" context="Trial workspaces" trend={{ value: "+2.1 pts", label: "vs prior period", direction: "up" }} />
       </div>
-      <div className="teum-analytics-gallery__charts">
+      <div className="whatiuse-analytics-gallery__charts">
         <Chart title="Recurring revenue" description="Area is reserved for one primary ordered measure." data={revenueData.slice(-8)} series={revenueSeries} type="area" valueFormatter={(value) => currency(value)} />
         <Chart title="Acquisition mix" description="Stacked bars compare total volume and composition." data={channelData} series={channelSeries} type="stacked-bar" valueFormatter={(value) => Math.round(value).toLocaleString()} />
       </div>
-      <div className="teum-analytics-gallery__details">
+      <div className="whatiuse-analytics-gallery__details">
         <DonutChart title="Plan mix" description="Four categories form one account total." data={[
           { id: "team", label: "Team", value: 1_086, tone: "primary" },
           { id: "business", label: "Business", value: 482, tone: "secondary" },
@@ -87,22 +96,22 @@ export function SaaSOverviewRecipe() {
   const previous = visibleData.at(-1)!.values.previous as number;
 
   return (
-    <section className="teum-analytics-recipe" aria-label="SaaS Overview recipe">
-      <header className="teum-analytics-recipe__header"><div><h3>SaaS Overview</h3><p>Revenue, retention, and expansion.</p></div><SegmentedControl size="small" label="Revenue range" value={range} onValueChange={(value) => value && setRange(value)} options={[{ value: "6m", label: "6M" }, { value: "12m", label: "12M" }]} /></header>
-      <div className="teum-analytics-recipe__metrics">
+    <section className="whatiuse-analytics-recipe" aria-label="SaaS Overview recipe">
+      <header className="whatiuse-analytics-recipe__header"><div><h3>SaaS Overview</h3><p>Revenue, retention, and expansion.</p></div><SegmentedControl size="small" label="Revenue range" value={range} onValueChange={(value) => value && setRange(value)} options={[{ value: "6m", label: "6M" }, { value: "12m", label: "12M" }]} /></header>
+      <div className="whatiuse-analytics-recipe__metrics">
         <Metric label="MRR" value={currency(current)} trend={{ value: "+4.8%", label: "vs last month", direction: "up", sentiment: "positive" }} visual={<Sparkline values={visibleData.map((datum) => datum.values.current)} decorative fill />} />
         <Metric label="Net revenue retention" value="112.4%" trend={{ value: "+1.6 pts", label: "vs last quarter", direction: "up" }} context="Expansion exceeds churn" />
         <Metric label="Paying accounts" value="1,842" trend={{ value: "+74", label: "this month", direction: "up" }} context="38 enterprise" />
       </div>
-      <div className="teum-analytics-recipe__primary">
+      <div className="whatiuse-analytics-recipe__primary">
         <Chart title="Recurring revenue" description={`${range === "6m" ? "Six" : "Twelve"}-month MRR with prior-period comparison.`} data={visibleData} series={revenueSeries} type="area" annotations={[{ id: "pricing", index: Math.max(0, visibleData.length - 4), label: "Pricing update" }]} valueFormatter={(value) => currency(value)} onDatumActivate={(datum) => setOpenedPeriod(datum.label)} />
-        <aside className="teum-analytics-recipe__aside" aria-label="Revenue summary">
+        <aside className="whatiuse-analytics-recipe__aside" aria-label="Revenue summary">
           <Comparison label="MRR comparison" current={current} previous={previous} formatter={currency} currentLabel="Current MRR" previousLabel="Prior-period MRR" positiveDirection="up" />
           <Goal label="Annual recurring revenue target" value={1_435_200} target={1_600_000} formatter={currency} description="On pace if current monthly growth holds." />
           <Breakdown label="MRR expansion drivers" formatter={(value) => currency(value)} items={[{ id: "seats", label: "Seat expansion", value: 18_400 }, { id: "upgrades", label: "Plan upgrades", value: 11_700, tone: "secondary" }, { id: "usage", label: "Usage", value: 6_900, tone: "tertiary" }]} />
         </aside>
       </div>
-      <p className="teum-analytics-recipe__status" role="status">{openedPeriod ? `${openedPeriod} revenue opened.` : "Use the chart or View data to inspect exact values."}</p>
+      <p className="whatiuse-analytics-recipe__status" role="status">{openedPeriod ? `${openedPeriod} revenue opened.` : "Use the chart or View data to inspect exact values."}</p>
     </section>
   );
 }
@@ -123,40 +132,170 @@ const usageSeries: readonly AnalyticsSeries[] = [
   { id: "sessions", label: "Sessions", tone: "secondary", lineStyle: "dashed" },
 ];
 
-const featureSeries: readonly AnalyticsSeries[] = [
-  { id: "automation", label: "Automations", tone: "primary" },
-  { id: "search", label: "Search", tone: "secondary", lineStyle: "dashed" },
+type UsageAccount = {
+  id: string;
+  account: string;
+  plan: "Team" | "Business" | "Enterprise";
+  status: "Active" | "At risk" | "Trial";
+  stage: "visited" | "started" | "activated" | "invited" | "paid";
+  activeUsers: number;
+  adoption: number;
+  features: readonly string[];
+  lastSeen: string;
+};
+
+const usageAccounts: readonly UsageAccount[] = [
+  { id: "ACC-184", account: "Northstar", plan: "Enterprise", status: "Active", stage: "paid", activeUsers: 284, adoption: 92, features: ["automation", "search"], lastSeen: "4m" },
+  { id: "ACC-176", account: "Fieldwork", plan: "Business", status: "Active", stage: "paid", activeUsers: 126, adoption: 78, features: ["command", "search"], lastSeen: "14m" },
+  { id: "ACC-168", account: "Relay", plan: "Team", status: "Trial", stage: "invited", activeUsers: 44, adoption: 63, features: ["search"], lastSeen: "32m" },
+  { id: "ACC-159", account: "Kindred", plan: "Business", status: "At risk", stage: "activated", activeUsers: 68, adoption: 51, features: ["automation"], lastSeen: "2h" },
+  { id: "ACC-151", account: "Juniper", plan: "Enterprise", status: "Active", stage: "paid", activeUsers: 197, adoption: 86, features: ["integrations", "automation"], lastSeen: "7m" },
+  { id: "ACC-147", account: "Cinder", plan: "Team", status: "Active", stage: "activated", activeUsers: 39, adoption: 57, features: ["command"], lastSeen: "1h" },
+  { id: "ACC-138", account: "Atlas", plan: "Enterprise", status: "At risk", stage: "invited", activeUsers: 111, adoption: 42, features: ["automation", "integrations"], lastSeen: "3h" },
+  { id: "ACC-129", account: "Willow", plan: "Business", status: "Active", stage: "paid", activeUsers: 96, adoption: 74, features: ["search", "command"], lastSeen: "24m" },
+  { id: "ACC-121", account: "Acme", plan: "Team", status: "Trial", stage: "started", activeUsers: 18, adoption: 28, features: ["search"], lastSeen: "6h" },
+  { id: "ACC-114", account: "Marble", plan: "Business", status: "Active", stage: "activated", activeUsers: 73, adoption: 66, features: ["automation", "command"], lastSeen: "48m" },
+  { id: "ACC-106", account: "Lantern", plan: "Enterprise", status: "Active", stage: "paid", activeUsers: 154, adoption: 81, features: ["integrations", "search"], lastSeen: "11m" },
+  { id: "ACC-098", account: "Paper", plan: "Business", status: "At risk", stage: "started", activeUsers: 29, adoption: 35, features: ["command"], lastSeen: "8h" },
 ];
 
-const releaseEvents: readonly TimelineItem[] = [
-  { id: "command", label: "Command menu shipped", timestamp: "Aug 7", description: "Workspace search and create actions", value: "+8.1%", tone: "accent" },
-  { id: "automation", label: "Automation templates", timestamp: "Aug 12", description: "Eight starter workflows", value: "+12.6%", tone: "accent" },
-  { id: "incident", label: "Search latency incident", timestamp: "Aug 15", description: "Resolved in 38 minutes", value: "−3.2%", tone: "danger" },
+const usageFeatureOptions = [
+  { id: "search", label: "Search" },
+  { id: "command", label: "Command" },
+  { id: "automation", label: "Automations" },
+  { id: "integrations", label: "Integrations" },
+] as const;
+
+const usageViews = [
+  { id: "all", label: "All accounts", description: "No account filters", count: usageAccounts.length, scope: "system" as const },
+  { id: "at-risk", label: "At risk", description: "Needs follow-up", count: usageAccounts.filter((account) => account.status === "At risk").length, scope: "system" as const },
+  { id: "enterprise", label: "Enterprise", description: "Largest workspaces", count: usageAccounts.filter((account) => account.plan === "Enterprise").length, scope: "system" as const },
+] as const;
+
+const usageRangePresets = [
+  { id: "seven-days", label: "7 days", getValue: () => ({ from: "2026-08-10", to: "2026-08-16" }) },
+  { id: "fourteen-days", label: "14 days", getValue: () => ({ from: "2026-08-03", to: "2026-08-16" }) },
+] as const;
+
+const usageTableColumns: readonly DataTableColumn<UsageAccount>[] = [
+  { id: "account", header: "Account", accessor: "account", sortable: true, width: 174 },
+  { id: "plan", header: "Plan", accessor: "plan", sortable: true, width: 112 },
+  { id: "status", header: "Status", accessor: "status", width: 100, cell: (account) => <Badge variant={account.status === "Trial" ? "outline" : "neutral"}>{account.status}</Badge> },
+  { id: "activeUsers", header: "Users", accessor: "activeUsers", sortable: true, sortType: "basic", align: "end", width: 78 },
+  { id: "adoption", header: "Adoption", accessor: "adoption", sortable: true, sortType: "basic", align: "end", width: 94, cell: (account) => `${account.adoption}%` },
+  { id: "lastSeen", header: "Seen", accessor: "lastSeen", align: "end", width: 68 },
 ];
 
-const releaseIndexes: Record<string, number> = { command: 4, automation: 9, incident: 12 };
+const usageExportColumns: readonly DataExportColumn<UsageAccount>[] = [
+  { id: "account", header: "Account", value: "account" },
+  { id: "plan", header: "Plan", value: "plan" },
+  { id: "status", header: "Status", value: "status" },
+  { id: "activeUsers", header: "Active users", value: "activeUsers" },
+  { id: "adoption", header: "Adoption", value: "adoption" },
+  { id: "lastSeen", header: "Last seen", value: "lastSeen" },
+];
+
+function daysInRange(range: DataDateRange) {
+  if (!range.from || !range.to) return usageData.length;
+  const from = Date.parse(`${range.from}T12:00:00Z`);
+  const to = Date.parse(`${range.to}T12:00:00Z`);
+  if (!Number.isFinite(from) || !Number.isFinite(to) || to < from) return usageData.length;
+  return Math.min(usageData.length, Math.max(1, Math.round((to - from) / 86_400_000) + 1));
+}
 
 export function ProductUsageRecipe() {
-  const [releaseId, setReleaseId] = useState("automation");
-  const latestDatum = usageData.at(-1)!;
-  const activeRelease = releaseEvents.find((item) => item.id === releaseId)!;
-  const annotationIndex = releaseIndexes[releaseId];
-  const selectRelease = (item: TimelineItem) => setReleaseId(item.id);
+  const [dateRange, setDateRange] = useState<DataDateRange>({ from: "2026-08-03", to: "2026-08-16" });
+  const [search, setSearch] = useState("");
+  const [statusValues, setStatusValues] = useState<readonly string[]>([]);
+  const [planValues, setPlanValues] = useState<readonly string[]>([]);
+  const [viewId, setViewId] = useState("all");
+  const [featureId, setFeatureId] = useState("all");
+  const [stageId, setStageId] = useState("all");
+  const [activeAccountId, setActiveAccountId] = useState<string | null>(usageAccounts[0].id);
+
+  const accountMatchesToolbar = useMemo(() => usageAccounts.filter((account) => {
+    const query = search.trim().toLocaleLowerCase();
+    if (query && !`${account.account} ${account.id} ${account.plan}`.toLocaleLowerCase().includes(query)) return false;
+    if (statusValues.length > 0 && !statusValues.includes(account.status.toLocaleLowerCase().replace(" ", "-"))) return false;
+    if (planValues.length > 0 && !planValues.includes(account.plan.toLocaleLowerCase())) return false;
+    return true;
+  }), [planValues, search, statusValues]);
+
+  const filteredAccounts = useMemo(() => accountMatchesToolbar.filter((account) => {
+    if (featureId !== "all" && !account.features.includes(featureId)) return false;
+    if (stageId !== "all" && account.stage !== stageId) return false;
+    return true;
+  }), [accountMatchesToolbar, featureId, stageId]);
+
+  const ratio = accountMatchesToolbar.length / usageAccounts.length;
+  const visibleUsage = useMemo(() => usageData.slice(-daysInRange(dateRange)).map((datum) => ({
+    ...datum,
+    values: Object.fromEntries(Object.entries(datum.values).map(([key, value]) => [key, typeof value === "number" ? Math.round(value * ratio) : value])),
+  })), [dateRange, ratio]);
+  const latestDatum = visibleUsage.at(-1) ?? usageData.at(-1)!;
+  const activeAccount = filteredAccounts.find((account) => account.id === activeAccountId) ?? filteredAccounts[0] ?? null;
+  const featureItems = usageFeatureOptions.map((feature, index) => ({
+    id: feature.id,
+    label: feature.label,
+    value: accountMatchesToolbar.length ? Math.round(accountMatchesToolbar.filter((account) => account.features.includes(feature.id)).length / accountMatchesToolbar.length * 100) : 0,
+    tone: index === 0 ? "primary" as const : index === 1 ? "secondary" as const : "tertiary" as const,
+  }));
+  const scaledStages = conversionStages.map((stage) => ({ ...stage, value: Math.round(stage.value * ratio) }));
+
+  const selectView = (nextViewId: string) => {
+    setViewId(nextViewId);
+    setSearch("");
+    setFeatureId("all");
+    setStageId("all");
+    setStatusValues(nextViewId === "at-risk" ? ["at-risk"] : []);
+    setPlanValues(nextViewId === "enterprise" ? ["enterprise"] : []);
+  };
 
   return (
-    <section className="teum-analytics-recipe" aria-label="Product Usage recipe">
-      <header className="teum-analytics-recipe__header"><div><h3>Product Usage</h3><p>Usage, features, and releases.</p></div><small>{activeRelease.timestamp}</small></header>
-      <div className="teum-analytics-recipe__metrics teum-analytics-recipe__metrics--two">
-        <Metric label="Daily active users" value={(latestDatum.values.active as number).toLocaleString()} trend={{ value: "+9.2%", label: "14-day change", direction: "up" }} visual={<Sparkline values={usageData.map((datum) => datum.values.active)} decorative />} />
-        <Metric label="Automation adoption" value={`${((latestDatum.values.automation as number) / (latestDatum.values.active as number) * 100).toFixed(1)}%`} trend={{ value: "+3.4 pts", label: "since launch", direction: "up" }} context="Active workspaces" />
+    <section className="whatiuse-analytics-recipe whatiuse-usage-explorer" aria-label="Usage and Adoption Explorer">
+      <header className="whatiuse-analytics-recipe__header"><div><h3>Usage &amp; Adoption</h3><p>Inspect usage, activation, and account health.</p></div><small>{filteredAccounts.length} accounts</small></header>
+      <DataToolbar
+        label="Usage filters"
+        start={<>
+          <SearchInput label="Search accounts" placeholder="Search accounts…" value={search} onChange={(event) => setSearch(event.currentTarget.value)} onClear={() => setSearch("")} />
+          <DateRangeFilter value={dateRange} onValueChange={setDateRange} presets={usageRangePresets} />
+          <FacetFilter label="Status" values={statusValues} onValuesChange={setStatusValues} options={[{ value: "active", label: "Active", count: 7 }, { value: "at-risk", label: "At risk", count: 3 }, { value: "trial", label: "Trial", count: 2 }]} />
+          <FacetFilter label="Plan" values={planValues} onValuesChange={setPlanValues} options={[{ value: "team", label: "Team", count: 3 }, { value: "business", label: "Business", count: 5 }, { value: "enterprise", label: "Enterprise", count: 4 }]} />
+        </>}
+        end={<>
+          <SavedViewMenu views={usageViews} value={viewId} onValueChange={selectView} label="View" />
+          <DataExportMenu rows={filteredAccounts} columns={usageExportColumns} fileName="usage-adoption" download={false} />
+        </>}
+      />
+      <div className="whatiuse-analytics-recipe__metrics">
+        <Metric label="Daily active users" value={(latestDatum.values.active as number).toLocaleString()} trend={{ value: "+9.2%", label: `${visibleUsage.length}-day change`, direction: "up" }} visual={<Sparkline values={visibleUsage.map((datum) => datum.values.active)} decorative />} />
+        <Metric label="Activated accounts" value={Math.round(scaledStages[2].value).toLocaleString()} trend={{ value: `${percent(scaledStages[2].value / Math.max(1, scaledStages[1].value) * 100)}`, label: "from trial", direction: "up" }} />
+        <Metric label="Feature adoption" value={`${accountMatchesToolbar.length ? Math.round(accountMatchesToolbar.reduce((sum, account) => sum + account.adoption, 0) / accountMatchesToolbar.length) : 0}%`} context={`${accountMatchesToolbar.length} matching accounts`} />
       </div>
-      <div className="teum-analytics-recipe__charts">
-        <Chart title="Active usage" description="Daily users and sessions." data={usageData} series={usageSeries} valueFormatter={(value) => value.toLocaleString()} annotations={[{ id: releaseId, index: annotationIndex, label: activeRelease.label, tone: releaseId === "incident" ? "danger" : "neutral" }]} />
-        <Chart title="Feature events" description="Automation and search activity." data={usageData} series={featureSeries} type="bar" valueFormatter={(value) => value.toLocaleString()} />
+      <div className="whatiuse-usage-explorer__primary">
+        <Chart title="Active usage" description="Daily users and sessions." data={visibleUsage} series={usageSeries} valueFormatter={(value) => value.toLocaleString()} />
+        <section className="whatiuse-usage-explorer__module" aria-labelledby="feature-adoption-title">
+          <header><div><h4 id="feature-adoption-title">Feature adoption</h4><p>Select to filter accounts.</p></div>{featureId !== "all" && <button type="button" onClick={() => setFeatureId("all")}>Clear</button>}</header>
+          <Breakdown label="Feature adoption" selectedId={featureId} onSelect={(item) => setFeatureId((current) => current === item.id ? "all" : item.id)} formatter={(value) => `${value}%`} items={featureItems} />
+        </section>
       </div>
-      <div className="teum-analytics-recipe__secondary">
-        <Timeline label="Release timeline" items={releaseEvents} activeId={releaseId} onSelect={selectRelease} />
-        <Breakdown label="Feature adoption" formatter={(value) => `${value}%`} items={[{ id: "search", label: "Search", value: 68 }, { id: "command", label: "Command menu", value: 54, tone: "secondary" }, { id: "automation", label: "Automations", value: 31, tone: "tertiary" }, { id: "integrations", label: "Integrations", value: 22, tone: "tertiary" }]} />
+      <div className="whatiuse-usage-explorer__journey">
+        <section className="whatiuse-usage-explorer__module" aria-labelledby="activation-path-title">
+          <header><div><h4 id="activation-path-title">Activation path</h4><p>Select a stage to filter accounts.</p></div>{stageId !== "all" && <button type="button" onClick={() => setStageId("all")}>Clear</button>}</header>
+          <Funnel label="Activation path" stages={scaledStages} selectedId={stageId} onSelect={(stage) => setStageId((current) => current === stage.id ? "all" : stage.id)} />
+        </section>
+        <section className="whatiuse-usage-explorer__module" aria-labelledby="retention-title">
+          <header><div><h4 id="retention-title">Retention</h4><p>Weekly active workspace cohorts.</p></div></header>
+          <Cohort label="Workspace retention" periods={["W0", "W1", "W2", "W3", "W4", "W5"]} rows={cohortRows} />
+        </section>
+      </div>
+      <div className="whatiuse-analytics-recipe__records whatiuse-usage-explorer__records">
+        <div><strong>Accounts</strong><DataResultSummary total={usageAccounts.length} filtered={filteredAccounts.length} noun="account" detail={[featureId !== "all" ? usageFeatureOptions.find((feature) => feature.id === featureId)?.label : null, stageId !== "all" ? conversionStages.find((stage) => stage.id === stageId)?.label : null].filter(Boolean).join(" · ") || undefined} /></div>
+        <DataTable ariaLabel="Usage accounts" data={filteredAccounts} columns={usageTableColumns} getRowId={(account) => account.id} getRowLabel={(account) => account.account} paginate={false} defaultSorting={[{ id: "adoption", direction: "desc" }]} onRowActivate={(account) => setActiveAccountId(account.id)} emptyTitle="No matching accounts" emptyDescription="Clear a filter to see accounts." />
+        {activeAccount && <aside className="whatiuse-usage-explorer__detail" aria-label={`${activeAccount.account} details`}>
+          <div><span>Selected account</span><strong>{activeAccount.account}</strong></div>
+          <PropertyList columns={2} items={[{ id: "plan", label: "Plan", value: activeAccount.plan }, { id: "status", label: "Status", value: activeAccount.status }, { id: "users", label: "Active users", value: activeAccount.activeUsers.toLocaleString() }, { id: "adoption", label: "Adoption", value: `${activeAccount.adoption}%` }]} />
+        </aside>}
       </div>
     </section>
   );
@@ -208,18 +347,18 @@ export function ConversionRetentionRecipe() {
   const selectedSeries = useMemo<readonly AnalyticsSeries[]>(() => [{ id: stageId, label: stage.label, tone: "primary" }], [stage.label, stageId]);
 
   return (
-    <section className="teum-analytics-recipe" aria-label="Conversion and Retention recipe">
-      <header className="teum-analytics-recipe__header"><div><h3>Conversion &amp; Retention</h3><p>Select a stage to update the trend and records.</p></div><small>12 weeks</small></header>
-      <div className="teum-analytics-recipe__metrics teum-analytics-recipe__metrics--two">
+    <section className="whatiuse-analytics-recipe" aria-label="Conversion and Retention recipe">
+      <header className="whatiuse-analytics-recipe__header"><div><h3>Conversion &amp; Retention</h3><p>Select a stage to update the trend and records.</p></div><small>12 weeks</small></header>
+      <div className="whatiuse-analytics-recipe__metrics whatiuse-analytics-recipe__metrics--two">
         <Metric label="Trial to paid" value={percent(conversionStages.at(-1)!.value / conversionStages[1].value * 100)} trend={{ value: "+2.1 pts", label: "vs prior period", direction: "up" }} />
         <Metric label={`${stage.label} conversion`} value={stageIndex === 0 ? "Entry" : percent(stage.value / prior.value * 100)} context={`${stage.value.toLocaleString()} accounts`} visual={<Sparkline values={conversionTrend.map((datum) => datum.values[stageId])} decorative fill />} />
       </div>
-      <div className="teum-analytics-recipe__conversion">
+      <div className="whatiuse-analytics-recipe__conversion">
         <Funnel label="Signup funnel" stages={conversionStages} selectedId={stageId} onSelect={(next) => setStageId(next.id)} />
         <Chart title={`${stage.label} trend`} description="Weekly count for the selected funnel stage." data={conversionTrend} series={selectedSeries} type="bar" includeZero valueFormatter={(value) => Math.round(value).toLocaleString()} />
       </div>
       <Cohort label="Weekly workspace retention" periods={["W0", "W1", "W2", "W3", "W4", "W5"]} rows={cohortRows} />
-      <div className="teum-analytics-recipe__records"><div><strong>{stage.label}</strong><span>{selectedRecords.length} sample accounts</span></div><DataTable ariaLabel={`${stage.label} accounts`} data={selectedRecords} columns={conversionColumns} getRowId={(record) => record.id} emptyTitle="No accounts" emptyDescription="No records reached this stage." /></div>
+      <div className="whatiuse-analytics-recipe__records"><div><strong>{stage.label}</strong><span>{selectedRecords.length} sample accounts</span></div><DataTable ariaLabel={`${stage.label} accounts`} data={selectedRecords} columns={conversionColumns} getRowId={(record) => record.id} emptyTitle="No accounts" emptyDescription="No records reached this stage." /></div>
     </section>
   );
 }

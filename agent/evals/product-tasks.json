@@ -108,24 +108,24 @@
     },
     {
       "id": "usage-feature-adoption",
-      "prompt": "Build product usage analytics that connects active usage, feature adoption, and each release event.",
+      "prompt": "Build a product usage explorer that connects active usage, feature adoption, and supporting account records.",
       "expectedRecipe": "product-usage",
-      "requiredComponents": ["Metric", "Chart", "Breakdown", "Timeline"],
-      "forbiddenComponents": ["Funnel"]
+      "requiredComponents": ["Metric", "Chart", "Breakdown", "DataTable"],
+      "forbiddenComponents": ["Timeline"]
     },
     {
       "id": "usage-explicit-release-context",
-      "prompt": "Create a usage trend view with two independently inspectable charts, an explicit shared release selection, and a feature breakdown.",
+      "prompt": "Create a product usage explorer with a shared date range, account filters, explicit feature selection, and supporting records.",
       "expectedRecipe": "product-usage",
-      "requiredComponents": ["Chart", "Breakdown"],
-      "forbiddenComponents": ["Cohort"]
+      "requiredComponents": ["Chart", "Breakdown", "FacetFilter", "DateRangeFilter", "DataTable"],
+      "forbiddenComponents": ["Timeline"]
     },
     {
       "id": "usage-release-impact",
-      "prompt": "Show how each release event relates to active usage while each chart keeps its own inspection state.",
+      "prompt": "Show product usage, an activation path, and retention cohorts while chart inspection stays local.",
       "expectedRecipe": "product-usage",
-      "requiredComponents": ["Chart", "Timeline"],
-      "forbiddenComponents": ["Sparkline"]
+      "requiredComponents": ["Chart", "Funnel", "Cohort"],
+      "forbiddenComponents": ["Timeline"]
     },
     {
       "id": "conversion-activation-funnel",

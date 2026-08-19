@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "currentCandidate": "0.1.0-rc.30",
+  "currentCandidate": "0.1.0-rc.38",
   "policy": "Versioned registry directories are append-only. Anchored releases must match their source commit byte-for-byte; legacy previews and the current candidate are locked by this reviewed content ledger until a release commit exists.",
   "versions": [
     {
@@ -211,9 +211,57 @@
     },
     {
       "version": "0.1.0-rc.30",
-      "status": "candidate",
+      "status": "legacy-preview",
       "fileCount": 77,
       "treeSha256": "0a8181b320b4c8a215c9fa56fdbba1d8d90a70c8cf2b2cd26f5644804c10aefb"
+    },
+    {
+      "version": "0.1.0-rc.31",
+      "status": "legacy-preview",
+      "fileCount": 96,
+      "treeSha256": "de9be4788b36d720b27ff36b7113f295712dea9c7edb22d8b287aa5aa17b9b5b"
+    },
+    {
+      "version": "0.1.0-rc.32",
+      "status": "legacy-preview",
+      "fileCount": 96,
+      "treeSha256": "2d49a36a068a08ad6209a63baebb052361d5d8b2233ab92a4039fdd375fd721e"
+    },
+    {
+      "version": "0.1.0-rc.33",
+      "status": "legacy-preview",
+      "fileCount": 96,
+      "treeSha256": "f69d80c39e0fbdf2442399c3f74abeb5fce312fc4b3962a780fd2ac95e4dd433"
+    },
+    {
+      "version": "0.1.0-rc.34",
+      "status": "legacy-preview",
+      "fileCount": 96,
+      "treeSha256": "383a3b63d2d641b8f9abfd04bbee14097e898ca668b70e85c7f73db2be60422b"
+    },
+    {
+      "version": "0.1.0-rc.35",
+      "status": "legacy-preview",
+      "fileCount": 96,
+      "treeSha256": "20ab2bced4c08c83e98ec957eb16459782850e553350610af18b0c24e4101904"
+    },
+    {
+      "version": "0.1.0-rc.36",
+      "status": "legacy-preview",
+      "fileCount": 96,
+      "treeSha256": "af154585f3c27ba3542c0e406ebb16fe5bf3dd0d52bf70a08f71e2d4b6d2567a"
+    },
+    {
+      "version": "0.1.0-rc.37",
+      "status": "legacy-preview",
+      "fileCount": 96,
+      "treeSha256": "9242a78a78c9ad48240d57c05a4299dd6ac690b7d16b942cf2cad655c30651a0"
+    },
+    {
+      "version": "0.1.0-rc.38",
+      "status": "candidate",
+      "fileCount": 96,
+      "treeSha256": "4dc3c73e6576175180ced45cb4c69ab47f579cdd742ee6cec01bfd107a1ec0a9"
     }
   ]
 }

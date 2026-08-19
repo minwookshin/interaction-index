@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "column-visibility-menu",
+  "title": "Column Visibility Menu",
+  "description": "Visible-column preferences with required-column protection.",
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base",
+    "@whatiuse/data-toolbar"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/column-visibility-menu.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/column-visibility-menu.css\";\nimport { cn } from \"../../lib/cn\";\nimport { ColumnManager, type ColumnManagerProps } from \"./data-toolbar\";\n\nexport type ColumnVisibilityMenuProps = ColumnManagerProps & {\n  className?: string;\n};\n\nexport function ColumnVisibilityMenu({ className, ...props }: ColumnVisibilityMenuProps) {\n  return (\n    <span className={cn(\"whatiuse-column-visibility-menu\", className)}>\n      <ColumnManager {...props} />\n    </span>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/column-visibility-menu.tsx"
+    },
+    {
+      "path": "registry/styles/components/column-visibility-menu.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-column-visibility-menu {\n  display: inline-flex;\n  min-width: 0;\n  vertical-align: middle;\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/column-visibility-menu.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/column-visibility-menu"
+    }
+  },
+  "type": "registry:component"
+}

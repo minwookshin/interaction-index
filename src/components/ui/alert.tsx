@@ -30,19 +30,19 @@ export function Alert({
 
   return (
     <div
-      className={cn("teum-alert", className)}
+      className={cn("whatiuse-alert", className)}
       data-variant={variant}
       role={role ?? (live === "assertive" ? "alert" : live === "polite" ? "status" : undefined)}
       aria-live={live}
       {...props}
     >
-      <span className="teum-alert__icon" aria-hidden="true">{icon ?? fallbackIcon}</span>
-      <span className="teum-alert__content">
+      <span className="whatiuse-alert__icon" aria-hidden="true">{icon ?? fallbackIcon}</span>
+      <span className="whatiuse-alert__content">
         <strong>{title}</strong>
         {children && <span>{children}</span>}
       </span>
-      {action && <span className="teum-alert__action">{action}</span>}
-      {onDismiss && <IconButton className="teum-alert__dismiss" variant="ghost" size="small" aria-label={dismissLabel} onClick={onDismiss}><X /></IconButton>}
+      {action && <span className="whatiuse-alert__action">{action}</span>}
+      {onDismiss && <IconButton className="whatiuse-alert__dismiss" variant="ghost" size="small" aria-label={dismissLabel} onClick={onDismiss}><X /></IconButton>}
     </div>
   );
 }

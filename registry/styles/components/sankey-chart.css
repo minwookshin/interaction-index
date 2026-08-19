@@ -1,0 +1,15 @@
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
+
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
+
+@layer whatiuse.components {
+.whatiuse-sankey-chart__links path { fill: none; stroke: color-mix(in oklch, var(--whatiuse-fg-default) 24%, transparent); stroke-linecap: round; cursor: pointer; }
+
+.whatiuse-sankey-chart__links path[data-muted] { opacity: .2; }
+
+.whatiuse-sankey-chart__links path[data-active] { stroke: color-mix(in oklch, var(--whatiuse-fg-default) 68%, transparent); }
+
+.whatiuse-sankey-chart__nodes rect { fill: var(--whatiuse-bg-raised); stroke: color-mix(in oklch, var(--whatiuse-control-border) 82%, transparent); stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+.whatiuse-sankey-chart__nodes text { fill: var(--whatiuse-fg-muted); font-size: 9px; font-weight: 540; dominant-baseline: middle; }
+}

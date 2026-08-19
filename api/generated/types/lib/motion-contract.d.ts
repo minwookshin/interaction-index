@@ -1,10 +1,10 @@
-export type TeumMotionFrequency = "constant" | "frequent" | "occasional" | "rare";
-export type TeumMotionRule = {
-    frequency: TeumMotionFrequency;
+export type WhatiuseMotionFrequency = "constant" | "frequent" | "occasional" | "rare";
+export type WhatiuseMotionRule = {
+    frequency: WhatiuseMotionFrequency;
     treatment: "instant" | "tonal" | "spatial" | "expressive";
     rationale: string;
 };
-export declare const teumMotionContract: {
+export declare const whatiuseMotionContract: {
     readonly version: "1.0.0";
     readonly principles: readonly ["Respond at the moment of input.", "Use motion only to explain origin, continuity, state, or recovery.", "Keep repeated keyboard paths instant.", "Let interrupted transitions retarget instead of restarting.", "Remove spatial travel when reduced motion is requested."];
     readonly frequency: {
@@ -53,4 +53,4 @@ export declare const teumMotionContract: {
         readonly forbiddenPatterns: readonly ["scale(0) entrances", "ease-in for interface feedback", "transition: all", "decorative bounce in product workflows", "layout movement for sorting or selection"];
     };
 };
-export type TeumMotionContract = typeof teumMotionContract;
+export type WhatiuseMotionContract = typeof whatiuseMotionContract;

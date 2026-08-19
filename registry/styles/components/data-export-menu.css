@@ -1,9 +1,21 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-data-export { min-width: 210px; }
+@layer whatiuse.components {
+.whatiuse-data-export { min-width: 210px; }
 
-.teum-data-export .teum-menu__item svg { width: 14px; height: 14px; color: var(--teum-fg-subtle); }
+.whatiuse-data-export .whatiuse-menu__item svg { width: 14px; height: 14px; color: var(--whatiuse-fg-subtle); }
+
+.whatiuse-data-export { min-width: 188px; }
+
+.whatiuse-data-export .whatiuse-menu__item { min-height: 38px; }
+
+.whatiuse-data-export .whatiuse-menu__item svg { width: 14px; height: 14px; color: var(--whatiuse-fg-subtle); }
+
+.whatiuse-data-export__copy { display: grid; min-width: 0; flex: 1; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; }
+
+.whatiuse-data-export__copy strong { color: var(--whatiuse-fg-default); font-size: var(--whatiuse-type-label); font-weight: 560; }
+
+.whatiuse-data-export__copy small { color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); font-variant-numeric: tabular-nums; white-space: nowrap; }
 }

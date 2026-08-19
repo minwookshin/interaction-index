@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "title": "Avatar",
+  "description": "Identity image, deterministic fallback, status, and grouping.",
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/avatar.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/avatar.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type AvatarProps = ComponentPropsWithRef<\"span\"> & {\n  src?: string;\n  alt?: string;\n  fallback: string;\n  size?: \"small\" | \"medium\" | \"large\";\n  status?: \"online\" | \"away\" | \"busy\" | \"offline\";\n};\n\nfunction fallbackTone(value: string) {\n  return [...value].reduce((total, character) => (total * 31 + (character.codePointAt(0) ?? 0)) >>> 0, 0) % 4;\n}\n\nexport function Avatar({ className, src, alt = \"\", fallback, size = \"medium\", status, role, \"aria-label\": ariaLabel, ...props }: AvatarProps) {\n  const fallbackLabel = (ariaLabel ?? alt) || undefined;\n\n  return (\n    <span\n      className={cn(\"whatiuse-avatar\", `whatiuse-avatar--${size}`, className)}\n      data-status={status || undefined}\n      data-tone={src ? undefined : fallbackTone(fallback)}\n      role={src ? role : role ?? (fallbackLabel ? \"img\" : undefined)}\n      aria-label={src ? ariaLabel : fallbackLabel}\n      {...props}\n    >\n      {src ? <img src={src} alt={alt} /> : <span className=\"whatiuse-avatar__fallback\" aria-hidden=\"true\">{fallback.slice(0, 2).toLocaleUpperCase()}</span>}\n      {status && <span className=\"whatiuse-avatar__status\" data-status={status} role=\"img\" aria-label={`${status} presence`} />}\n    </span>\n  );\n}\n\nexport function AvatarGroup({ className, children, ...props }: ComponentPropsWithRef<\"div\">) {\n  return <div role=\"group\" className={cn(\"whatiuse-avatar-group\", className)} {...props}>{children}</div>;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/avatar.tsx"
+    },
+    {
+      "path": "registry/styles/components/avatar.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-avatar {\n  position: relative;\n  display: inline-grid;\n  flex: 0 0 auto;\n  isolation: isolate;\n  place-items: center;\n  overflow: visible;\n  border: 1px solid color-mix(in oklch, var(--whatiuse-control-border) 82%, transparent);\n  border-radius: 50%;\n  background: var(--whatiuse-gray-100);\n  color: var(--whatiuse-gray-700);\n  box-shadow: 0 1px 2px rgb(17 17 19 / .045), inset 0 1px 0 rgb(255 255 255 / .5);\n  font-weight: 620;\n  letter-spacing: -0.035em;\n}\n\n.whatiuse-avatar[data-tone=\"0\"] { background: var(--whatiuse-gray-50); }\n\n.whatiuse-avatar[data-tone=\"1\"] { background: var(--whatiuse-gray-100); }\n\n.whatiuse-avatar[data-tone=\"2\"] { background: var(--whatiuse-gray-200); color: var(--whatiuse-gray-800); }\n\n.whatiuse-avatar[data-tone=\"3\"] { border-color: var(--whatiuse-gray-800); background: var(--whatiuse-gray-800); color: var(--whatiuse-gray-50); box-shadow: 0 1px 2px rgb(17 17 19 / .12), inset 0 1px 0 rgb(255 255 255 / .1); }\n\n.whatiuse-avatar img,\n.whatiuse-avatar__fallback { width: 100%; height: 100%; border-radius: inherit; object-fit: cover; display: grid; place-items: center; }\n\n.whatiuse-avatar__fallback { line-height: 1; text-align: center; transform: translateY(.25px); }\n\n.whatiuse-avatar__status { position: absolute; z-index: 2; right: -2px; bottom: -2px; width: 12px; height: 12px; border: 2px solid var(--whatiuse-bg-canvas); border-radius: 50%; background: var(--whatiuse-gray-700); box-shadow: 0 0 0 1px color-mix(in oklch, var(--whatiuse-control-border) 70%, transparent); }\n\n.whatiuse-avatar__status[data-status=\"away\"] { background: var(--whatiuse-gray-400); }\n\n.whatiuse-avatar__status[data-status=\"busy\"] { background: var(--whatiuse-gray-900); }\n\n.whatiuse-avatar__status[data-status=\"offline\"] { background: var(--whatiuse-bg-control); box-shadow: inset 0 0 0 1px var(--whatiuse-gray-400); }\n\n.whatiuse-avatar-group { display: flex; align-items: center; isolation: isolate; }\n\n.whatiuse-avatar-group .whatiuse-avatar { box-shadow: 0 0 0 2px var(--whatiuse-bg-canvas), 0 2px 5px rgb(17 17 19 / .06), inset 0 1px 0 rgb(255 255 255 / .48); }\n\n.whatiuse-avatar-group .whatiuse-avatar + .whatiuse-avatar { margin-left: -6px; }\n\n.whatiuse-avatar-group .whatiuse-avatar[data-status] { z-index: 1; }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/avatar.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/avatar",
+      "useWhen": "Visual identity helps people recognize a person or entity faster than text alone.",
+      "avoidWhen": "No identity exists or the image adds decoration without meaning."
+    }
+  },
+  "type": "registry:ui"
+}

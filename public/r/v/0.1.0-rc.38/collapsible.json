@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "title": "Collapsible",
+  "description": "Disclosure primitive for optional supporting content and advanced settings.",
+  "dependencies": [
+    "@base-ui/react@1.7.0",
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/collapsible.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/collapsible.css\";\nimport { Collapsible as CollapsiblePrimitive } from \"@base-ui/react/collapsible\";\nimport { CaretDown } from \"@phosphor-icons/react\";\nimport type { ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport const Collapsible = CollapsiblePrimitive.Root;\n\nexport type CollapsibleContentProps = CollapsiblePrimitive.Panel.Props & { children?: ReactNode };\n\nexport function CollapsibleTrigger({ className, children, ...props }: CollapsiblePrimitive.Trigger.Props) {\n  return (\n    <CollapsiblePrimitive.Trigger className={cn(\"whatiuse-collapsible__trigger\", className)} {...props}>\n      <span>{children}</span>\n      <CaretDown aria-hidden=\"true\" />\n    </CollapsiblePrimitive.Trigger>\n  );\n}\n\nexport function CollapsibleContent({ className, children, ...props }: CollapsibleContentProps) {\n  return (\n    <CollapsiblePrimitive.Panel className={cn(\"whatiuse-collapsible__panel\", className)} {...props}>\n      <div className=\"whatiuse-collapsible__content\">{children}</div>\n    </CollapsiblePrimitive.Panel>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/collapsible.tsx"
+    },
+    {
+      "path": "registry/styles/components/collapsible.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-collapsible__trigger { display: flex; width: 100%; min-height: 38px; align-items: center; justify-content: space-between; gap: 16px; padding: 0 11px; border: 0; border-radius: var(--whatiuse-radius-md); background: var(--whatiuse-bg-subtle); color: var(--whatiuse-fg-default); font-size: var(--whatiuse-type-ui); font-weight: 560; text-align: left; cursor: pointer; transition: background-color var(--whatiuse-hover-duration), color var(--whatiuse-hover-duration); }\n\n.whatiuse-collapsible__trigger svg { width: 14px; height: 14px; flex: 0 0 auto; color: var(--whatiuse-fg-subtle); transform: rotate(0); transition: transform 160ms var(--whatiuse-ease-out); }\n\n.whatiuse-collapsible__trigger[data-panel-open] svg { transform: rotate(180deg); }\n\n.whatiuse-collapsible__trigger:focus-visible { outline: 2px solid var(--whatiuse-focus-control); outline-offset: 2px; }\n\n.whatiuse-collapsible__trigger[data-disabled] { color: var(--whatiuse-fg-disabled); cursor: not-allowed; }\n\n.whatiuse-collapsible__panel {\n  height: var(--collapsible-panel-height);\n  overflow: hidden;\n  transition: height var(--whatiuse-enter-duration) var(--whatiuse-ease-out);\n}\n\n.whatiuse-collapsible__panel[data-starting-style],\n.whatiuse-collapsible__panel[data-ending-style] { height: 0; }\n\n.whatiuse-collapsible__panel[data-ending-style] { transition-duration: var(--whatiuse-exit-duration); }\n\n.whatiuse-collapsible__content { padding: 12px 11px 2px; color: var(--whatiuse-fg-muted); font-size: var(--whatiuse-type-ui); line-height: 1.55; }\n\n@media (hover: hover) and (pointer: fine) {\n.whatiuse-collapsible__trigger:not([data-disabled]):hover { background: var(--whatiuse-hover); color: var(--whatiuse-fg-default); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-collapsible__panel,\n.whatiuse-collapsible__trigger svg { transition-duration: 0.01ms; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/collapsible.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/collapsible",
+      "useWhen": "Supporting content is useful on demand but should not compete with the primary task.",
+      "avoidWhen": "The content is required, represents a destination, or several sections need accordion coordination."
+    }
+  },
+  "type": "registry:ui"
+}

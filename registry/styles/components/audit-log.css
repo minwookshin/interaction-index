@@ -1,0 +1,53 @@
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
+
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
+
+@layer whatiuse.components {
+.whatiuse-audit-log {
+  display: grid;
+  min-width: 0;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.whatiuse-audit-log li > div,
+.whatiuse-audit-log li > button {
+  display: grid;
+  width: 100%;
+  min-height: 42px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 3px 14px;
+  padding: 8px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.whatiuse-audit-log li > button { cursor: pointer; transition: background-color var(--whatiuse-hover-duration) var(--whatiuse-ease-out); }
+
+.whatiuse-audit-log__event { min-width: 0; color: var(--whatiuse-fg-muted); font-size: var(--whatiuse-type-label); line-height: 1.4; }
+
+.whatiuse-audit-log__event strong { color: var(--whatiuse-fg-default); font-weight: 570; }
+
+.whatiuse-audit-log time { color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.whatiuse-audit-log small { grid-column: 1 / -1; color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); }
+
+.whatiuse-audit-log li[data-tone="danger"] .whatiuse-audit-log__event { color: var(--whatiuse-fg-danger); }
+
+.whatiuse-audit-log li > button:focus { outline: 0; }
+
+.whatiuse-audit-log li > button:focus-visible { box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--whatiuse-focus-control) 42%, transparent); }
+
+.whatiuse-audit-log li > button[aria-pressed="true"] { background: var(--whatiuse-selected); }
+
+@media (hover: hover) and (pointer: fine) {
+.whatiuse-audit-log li > button:hover { background: var(--whatiuse-hover); }
+}
+}

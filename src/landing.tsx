@@ -24,10 +24,10 @@ export function LandingPage({
   onThemeChange,
   onOpenComponents,
 }: LandingPageProps) {
-  return <div className="teum-landing">
-    <a className="teum-skip-link" href="#teum-landing-content" onClick={(event) => {
+  return <div className="whatiuse-landing">
+    <a className="whatiuse-skip-link" href="#whatiuse-landing-content" onClick={(event) => {
       event.preventDefault();
-      document.getElementById("teum-landing-content")?.focus({ preventScroll: true });
+      document.getElementById("whatiuse-landing-content")?.focus({ preventScroll: true });
     }}>Skip to main content</a>
 
     <header className="landing-header">
@@ -35,12 +35,12 @@ export function LandingPage({
       <PublicHeaderActions theme={theme} onThemeChange={onThemeChange} />
     </header>
 
-    <main id="teum-landing-content" tabIndex={-1}>
+    <main id="whatiuse-landing-content" tabIndex={-1}>
       <section className="landing-hero" aria-labelledby="landing-title">
         <div className="landing-hero__intro">
           <div className="landing-hero__mark" aria-hidden="true"><Command weight="bold" /></div>
           <h1 id="landing-title">whatiuse</h1>
-          <p>Components for product interfaces.</p>
+          <p>components i use.</p>
           <button className="landing-hero__primary" type="button" onClick={onOpenComponents}>
             <span>Browse components</span>
             <ArrowRight aria-hidden="true" />

@@ -1,17 +1,17 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-icon-button { width: var(--teum-control-height-md); padding: 0; }
+@layer whatiuse.components {
+.whatiuse-icon-button { width: var(--whatiuse-control-height-md); padding: 0; }
 
-.teum-icon-button.teum-button--small { width: var(--teum-control-height-sm); padding: 0; }
+.whatiuse-icon-button.whatiuse-button--small { width: var(--whatiuse-control-height-sm); padding: 0; }
 
-.teum-icon-button.teum-button--large { width: var(--teum-control-height-lg); padding: 0; }
+.whatiuse-icon-button.whatiuse-button--large { width: var(--whatiuse-control-height-lg); padding: 0; }
 
-.teum-icon-button .teum-button__content { display: grid; width: 100%; height: 100%; place-items: center; }
+.whatiuse-icon-button .whatiuse-button__content { display: grid; width: 100%; height: 100%; place-items: center; }
 
-.teum-icon-button .teum-button__content > span:last-child { display: grid; width: 100%; height: 100%; place-items: center; line-height: 0; }
+.whatiuse-icon-button .whatiuse-button__content > span:last-child { display: grid; width: 100%; height: 100%; place-items: center; line-height: 0; }
 
-.teum-icon-button svg { width: calc(var(--teum-icon-size) + 1px); height: calc(var(--teum-icon-size) + 1px); transform: none; }
+.whatiuse-icon-button svg { width: calc(var(--whatiuse-icon-size) + 1px); height: calc(var(--whatiuse-icon-size) + 1px); transform: none; }
 }

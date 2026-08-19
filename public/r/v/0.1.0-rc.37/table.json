@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table",
+  "title": "Table",
+  "description": "Semantic tabular structure for product-specific sorting, filtering, and selection recipes.",
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/table.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/table.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type TableProps = ComponentPropsWithRef<\"table\"> & {\n  containerClassName?: string;\n};\n\nexport function Table({ className, containerClassName, ...props }: TableProps) {\n  return <div className={cn(\"whatiuse-table__container\", containerClassName)}><table className={cn(\"whatiuse-table\", className)} {...props} /></div>;\n}\n\nexport function TableHeader({ className, ...props }: ComponentPropsWithRef<\"thead\">) {\n  return <thead className={cn(\"whatiuse-table__header\", className)} {...props} />;\n}\n\nexport function TableBody({ className, ...props }: ComponentPropsWithRef<\"tbody\">) {\n  return <tbody className={cn(\"whatiuse-table__body\", className)} {...props} />;\n}\n\nexport function TableFooter({ className, ...props }: ComponentPropsWithRef<\"tfoot\">) {\n  return <tfoot className={cn(\"whatiuse-table__footer\", className)} {...props} />;\n}\n\nexport function TableRow({ className, ...props }: ComponentPropsWithRef<\"tr\">) {\n  return <tr className={cn(\"whatiuse-table__row\", className)} {...props} />;\n}\n\nexport function TableHead({ className, scope = \"col\", ...props }: ComponentPropsWithRef<\"th\">) {\n  return <th className={cn(\"whatiuse-table__head\", className)} scope={scope} {...props} />;\n}\n\nexport function TableCell({ className, ...props }: ComponentPropsWithRef<\"td\">) {\n  return <td className={cn(\"whatiuse-table__cell\", className)} {...props} />;\n}\n\nexport function TableCaption({ className, ...props }: ComponentPropsWithRef<\"caption\">) {\n  return <caption className={cn(\"whatiuse-table__caption\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/table.tsx"
+    },
+    {
+      "path": "registry/styles/components/table.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-table__container {\n  scrollbar-color: var(--whatiuse-scrollbar-thumb) transparent;\n  scrollbar-width: thin;\n}\n\n.whatiuse-table__container::-webkit-scrollbar { width: 10px; height: 10px; }\n\n.whatiuse-table__container::-webkit-scrollbar-track { background: transparent; }\n\n.whatiuse-table__container::-webkit-scrollbar-thumb {\n  border: 3px solid transparent;\n  border-radius: 999px;\n  background: var(--whatiuse-scrollbar-thumb);\n  background-clip: padding-box;\n}\n\n.whatiuse-table__container::-webkit-scrollbar-thumb:hover { background: var(--whatiuse-scrollbar-thumb-hover); background-clip: padding-box; }\n\n@media (forced-colors: active) {\n.whatiuse-table__container { scrollbar-color: auto; }\n}\n\n.whatiuse-table__container { width: 100%; overflow: auto; border: 1px solid color-mix(in oklch, var(--whatiuse-control-border) 78%, transparent); border-radius: var(--whatiuse-radius-container); background: var(--whatiuse-bg-surface); }\n\n.whatiuse-table { width: 100%; min-width: 560px; border-collapse: separate; border-spacing: 0; color: var(--whatiuse-fg-default); font-size: var(--whatiuse-type-label); font-variant-numeric: tabular-nums; }\n\n.whatiuse-table__caption { padding: 10px 12px; color: var(--whatiuse-fg-subtle); text-align: left; caption-side: bottom; }\n\n.whatiuse-table__head { height: 35px; padding: 0 12px; border-bottom: 1px solid color-mix(in oklch, var(--whatiuse-separator) 68%, transparent); background: color-mix(in oklch, var(--whatiuse-bg-stage) 74%, var(--whatiuse-bg-surface)); color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); font-weight: 560; text-align: left; white-space: nowrap; }\n\n.whatiuse-table__cell { height: var(--whatiuse-row-height-table); padding: 0 12px; border-bottom: 1px solid color-mix(in oklch, var(--whatiuse-separator) 66%, transparent); color: var(--whatiuse-fg-muted); vertical-align: middle; }\n\n.whatiuse-table__row { transition: background-color var(--whatiuse-hover-duration) var(--whatiuse-ease-out); }\n\n.whatiuse-table__row:last-child .whatiuse-table__cell { border-bottom: 0; }\n\n.whatiuse-table__row[data-selected] { background: var(--whatiuse-selected); }\n\n.whatiuse-table__footer .whatiuse-table__cell { background: var(--whatiuse-bg-stage); color: var(--whatiuse-fg-default); font-weight: 560; }\n\n@media (hover: hover) and (pointer: fine) {\n.whatiuse-table__body .whatiuse-table__row:hover { background: var(--whatiuse-hover); }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/table.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/table",
+      "useWhen": "Rows share the same attributes and users need to scan or compare values across columns.",
+      "avoidWhen": "Items are better understood as cards, the data is hierarchical, or responsive reading order cannot be preserved."
+    }
+  },
+  "type": "registry:ui"
+}

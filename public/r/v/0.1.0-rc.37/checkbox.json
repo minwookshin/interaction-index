@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "title": "Checkbox",
+  "dependencies": [
+    "@base-ui/react@1.7.0",
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/checkbox.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/checkbox.css\";\nimport { Checkbox as CheckboxPrimitive } from \"@base-ui/react/checkbox\";\nimport { Check, Minus } from \"@phosphor-icons/react\";\nimport { useId } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type CheckboxProps = CheckboxPrimitive.Root.Props & {\n  label?: string;\n  description?: string;\n};\n\nexport function Checkbox({ className, label, description, id: providedId, \"aria-describedby\": ariaDescribedBy, \"aria-labelledby\": ariaLabelledBy, ...props }: CheckboxProps) {\n  const generatedId = useId();\n  const id = providedId ?? generatedId;\n  const labelId = label ? `${id}-label` : undefined;\n  const descriptionId = description ? `${id}-description` : undefined;\n  const describedBy = [ariaDescribedBy, descriptionId].filter(Boolean).join(\" \") || undefined;\n  return (\n    <div className=\"whatiuse-choice-row\">\n      <CheckboxPrimitive.Root id={id} className={cn(\"whatiuse-checkbox\", className)} aria-labelledby={ariaLabelledBy ?? labelId} aria-describedby={describedBy} {...props}>\n        <CheckboxPrimitive.Indicator className=\"whatiuse-checkbox__indicator\">\n          <Check className=\"whatiuse-checkbox__check\" weight=\"bold\" />\n          <Minus className=\"whatiuse-checkbox__mixed\" weight=\"bold\" />\n        </CheckboxPrimitive.Indicator>\n      </CheckboxPrimitive.Root>\n      {label && (\n        <label htmlFor={id} className=\"whatiuse-choice-copy\">\n          <span id={labelId}>{label}</span>\n          {description && <small id={descriptionId}>{description}</small>}\n        </label>\n      )}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/checkbox.tsx"
+    },
+    {
+      "path": "registry/styles/components/checkbox.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-choice-row { display: flex; align-items: flex-start; gap: 9px; }\n\n.whatiuse-choice-copy { display: grid; gap: 3px; color: var(--whatiuse-ink); font-size: 13.5px; cursor: pointer; }\n\n.whatiuse-choice-copy small { color: var(--whatiuse-ink-tertiary); font-size: 11.5px; font-weight: 400; line-height: 1.45; }\n\n.whatiuse-checkbox { position: relative; display: grid; width: 16px; height: 16px; flex: none; margin-top: 1px; padding: 0; place-items: center; border: 1px solid var(--whatiuse-border-strong); border-radius: 4px; background: var(--whatiuse-surface); color: var(--whatiuse-on-inverse); cursor: pointer; transition: background var(--whatiuse-hover-duration), border-color var(--whatiuse-hover-duration), transform var(--whatiuse-press-duration) var(--whatiuse-ease-out); }\n\n.whatiuse-checkbox::after { position: absolute; inset: -8px; content: \"\"; }\n\n.whatiuse-checkbox[data-checked] { border-color: var(--whatiuse-inverse); background: var(--whatiuse-inverse); color: var(--whatiuse-on-inverse); }\n\n.whatiuse-checkbox[data-indeterminate] { border-color: var(--whatiuse-inverse); background: var(--whatiuse-inverse); color: var(--whatiuse-on-inverse); }\n\n.whatiuse-checkbox[data-disabled] { opacity: 0.42; cursor: not-allowed; }\n\n.whatiuse-checkbox:active:not([data-disabled]) { transform: scale(0.96); }\n\n.whatiuse-checkbox__indicator { display: grid; place-items: center; }\n\n.whatiuse-checkbox__indicator svg { width: 11px; height: 11px; }\n\n.whatiuse-checkbox__mixed { display: none; }\n\n.whatiuse-checkbox[data-indeterminate] .whatiuse-checkbox__check { display: none; }\n\n.whatiuse-checkbox[data-indeterminate] .whatiuse-checkbox__mixed { display: block; }\n\n.whatiuse-choice-row:has([data-disabled]) .whatiuse-choice-copy { opacity: 0.48; cursor: not-allowed; }\n\n@media (forced-colors: active) {\n.whatiuse-checkbox { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }\n\n.whatiuse-checkbox[data-checked],\n.whatiuse-checkbox[data-indeterminate] { background: Highlight; color: HighlightText; }\n}\n\n:root[data-theme=\"dark\"] .whatiuse-checkbox[data-checked],\n:root[data-theme=\"dark\"] .whatiuse-checkbox[data-indeterminate] { box-shadow: none; }\n\n.whatiuse-checkbox__indicator {\n  opacity: 1;\n  transform: scale(1);\n  transition: opacity 140ms var(--whatiuse-ease-out), transform 140ms var(--whatiuse-ease-out);\n}\n\n@starting-style {\n.whatiuse-checkbox__indicator {\n    opacity: 0;\n    transform: scale(.9);\n  }\n}\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-checkbox:active:not([data-disabled]) { transform: none; }\n\n.whatiuse-checkbox__indicator { transition-duration: 0.01ms; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/checkbox.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/checkbox",
+      "useWhen": "Several independent options may be selected together.",
+      "avoidWhen": "A setting takes effect immediately. Use Switch for that case."
+    }
+  },
+  "type": "registry:ui"
+}

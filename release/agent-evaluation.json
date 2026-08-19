@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/evaluate-agent-layer.mjs",
-  "generatedAt": "2026-08-18T23:57:10.364Z",
-  "version": "0.1.0-rc.30",
+  "generatedAt": "2026-08-19T13:59:24.821Z",
+  "version": "0.1.0-rc.38",
   "status": "passed",
-  "scope": "One clean React + TypeScript + Vite consumer installed the Teum agent registry item; 30 generated task modules were collectively type-checked and production-built.",
+  "scope": "One clean React + TypeScript + Vite consumer installed the whatiuse agent registry item; 30 generated task modules were collectively type-checked and production-built.",
   "taskCount": 30,
   "selectedCorrectly": 30,
   "selectionSuccessRate": 1,
@@ -13,9 +13,9 @@
   "cleanInstall": "passed",
   "typecheck": "passed",
   "productionBuild": "passed",
-  "installedItem": "@teum-pinned/teum-agent",
+  "installedItem": "@whatiuse/whatiuse-agent",
   "registryChannel": "immutable versioned",
-  "elapsedMs": 15264,
+  "elapsedMs": 16236,
   "results": [
     {
       "id": "issues-triage-backlog",
@@ -328,17 +328,17 @@
         "product usage",
         "feature adoption",
         "active usage",
-        "release event"
+        "usage explorer"
       ],
       "score": 8,
       "requiredComponents": [
         "Metric",
         "Chart",
         "Breakdown",
-        "Timeline"
+        "DataTable"
       ],
       "forbiddenComponents": [
-        "Funnel"
+        "Timeline"
       ],
       "violations": [],
       "status": "passed"
@@ -348,16 +348,19 @@
       "expectedRecipe": "product-usage",
       "selectedRecipe": "product-usage",
       "matchedSignals": [
-        "usage trend",
-        "feature breakdown"
+        "product usage",
+        "usage explorer"
       ],
       "score": 4,
       "requiredComponents": [
         "Chart",
-        "Breakdown"
+        "Breakdown",
+        "FacetFilter",
+        "DateRangeFilter",
+        "DataTable"
       ],
       "forbiddenComponents": [
-        "Cohort"
+        "Timeline"
       ],
       "violations": [],
       "status": "passed"
@@ -367,16 +370,17 @@
       "expectedRecipe": "product-usage",
       "selectedRecipe": "product-usage",
       "matchedSignals": [
-        "active usage",
-        "release event"
+        "product usage",
+        "activation path"
       ],
       "score": 4,
       "requiredComponents": [
         "Chart",
-        "Timeline"
+        "Funnel",
+        "Cohort"
       ],
       "forbiddenComponents": [
-        "Sparkline"
+        "Timeline"
       ],
       "violations": [],
       "status": "passed"

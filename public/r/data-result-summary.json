@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "data-result-summary",
+  "title": "Data Result Summary",
+  "description": "Visible, filtered, and selected record counts in one semantic status line.",
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/data-result-summary.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/data-result-summary.css\";\nimport type { HTMLAttributes, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type DataResultSummaryProps = Omit<HTMLAttributes<HTMLOutputElement>, \"children\"> & {\n  total: number;\n  filtered?: number;\n  selected?: number;\n  noun?: string;\n  detail?: ReactNode;\n};\n\nexport function DataResultSummary({ total, filtered, selected = 0, noun = \"result\", detail, className, ...props }: DataResultSummaryProps) {\n  const shown = filtered ?? total;\n  const pluralNoun = shown === 1 ? noun : `${noun}s`;\n  return (\n    <output className={cn(\"whatiuse-data-result-summary\", className)} {...props}>\n      <span><strong>{shown.toLocaleString()}</strong> {pluralNoun}</span>\n      {filtered !== undefined && filtered !== total && <span>of {total.toLocaleString()}</span>}\n      {selected > 0 && <span className=\"whatiuse-data-result-summary__selected\">{selected.toLocaleString()} selected</span>}\n      {detail && <span className=\"whatiuse-data-result-summary__detail\">{detail}</span>}\n    </output>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/data-result-summary.tsx"
+    },
+    {
+      "path": "registry/styles/components/data-result-summary.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-data-result-summary {\n  display: flex;\n  min-width: 0;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 3px 6px;\n  color: var(--whatiuse-fg-subtle);\n  font-size: var(--whatiuse-type-metadata);\n  font-variant-numeric: tabular-nums;\n}\n\n.whatiuse-data-result-summary strong { color: var(--whatiuse-fg-default); font-weight: 590; }\n\n.whatiuse-data-result-summary__selected { color: var(--whatiuse-fg-muted); }\n\n.whatiuse-data-result-summary__detail { flex-basis: 100%; color: var(--whatiuse-fg-muted); }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/data-result-summary.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/data-result-summary"
+    }
+  },
+  "type": "registry:component"
+}

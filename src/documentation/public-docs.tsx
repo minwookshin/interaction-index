@@ -8,25 +8,25 @@ import nextQuickstartManifest from "../../examples/quickstart-next/package.json"
 import { componentMaturity, maturityDefinitions, readyCriteria } from "../component-maturity";
 import { copyText } from "../lib/copy-text";
 import {
-  teumDataComponentContracts,
-  teumDataRecipeContracts,
-  teumDataViewStateContract,
-} from "../lib/teum-data-contract";
+  whatiuseDataComponentContracts,
+  whatiuseDataRecipeContracts,
+  whatiuseDataViewStateContract,
+} from "../lib/whatiuse-data-contract";
 import {
-  teumAnalyticsComponentContracts,
-  teumAnalyticsRecipeContracts,
-  teumAnalyticsStateContract,
-} from "../lib/teum-analytics-contract";
+  whatiuseAnalyticsComponentContracts,
+  whatiuseAnalyticsRecipeContracts,
+  whatiuseAnalyticsStateContract,
+} from "../lib/whatiuse-analytics-contract";
 import {
-  teumProductPatternContracts,
-  teumProductPatternSystemContract,
-} from "../lib/teum-product-patterns-contract";
+  whatiuseProductPatternContracts,
+  whatiuseProductPatternSystemContract,
+} from "../lib/whatiuse-product-patterns-contract";
 import {
-  teumAgentForbiddenRules,
-  teumAgentRecipeContracts,
-  teumAgentSelectionRules,
-  teumAgentSystemContract,
-} from "../lib/teum-agent-contract";
+  whatiuseAgentForbiddenRules,
+  whatiuseAgentRecipeContracts,
+  whatiuseAgentSelectionRules,
+  whatiuseAgentSystemContract,
+} from "../lib/whatiuse-agent-contract";
 import { publicDocItems, type PublicDocId } from "./public-doc-metadata";
 
 const ProductPilot = lazy(() => import("./product-pilot").then((module) => ({ default: module.ProductPilot })));
@@ -79,22 +79,22 @@ function DecisionTable({ label, rows }: { label: string; rows: readonly (readonl
 function ProductPilotPage() {
   return <>
     <section className="public-doc-section public-doc-section--pilot" id="data-workspace" aria-labelledby="data-workspace-title"><h2 id="data-workspace-title">Issues Workspace</h2><p>Search, inspect, act, and undo.</p><Suspense fallback={<div className="pilot-workspace pilot-workspace--loading" role="status">Loading Issues Workspace…</div>}><ProductPilot /></Suspense></section>
-    <section className="public-doc-section public-doc-section--pilot" id="customer-directory" aria-labelledby="customer-directory-title"><h2 id="customer-directory-title">Customer Directory</h2><p>Saved views, filters, columns, and export.</p><Suspense fallback={<div className="teum-data-recipe teum-data-recipe--loading" role="status">Loading Customer Directory…</div>}><CustomerDirectoryRecipe /></Suspense></section>
-    <section className="public-doc-section public-doc-section--pilot" id="audit-log" aria-labelledby="audit-log-title"><h2 id="audit-log-title">Audit Log</h2><p>Virtualized events with search and date filters.</p><Suspense fallback={<div className="teum-data-recipe teum-data-recipe--loading" role="status">Loading Audit Log…</div>}><AuditLogRecipe /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="customer-directory" aria-labelledby="customer-directory-title"><h2 id="customer-directory-title">Customer Directory</h2><p>Saved views, filters, columns, and export.</p><Suspense fallback={<div className="whatiuse-data-recipe whatiuse-data-recipe--loading" role="status">Loading Customer Directory…</div>}><CustomerDirectoryRecipe /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="audit-log" aria-labelledby="audit-log-title"><h2 id="audit-log-title">Audit Log</h2><p>Virtualized events with search and date filters.</p><Suspense fallback={<div className="whatiuse-data-recipe whatiuse-data-recipe--loading" role="status">Loading Audit Log…</div>}><AuditLogRecipe /></Suspense></section>
     <DocSection id="data-layer" title="Product primitives">
       <StatusTable
         label="whatiuse Data product primitives"
         columns={["Primitive", "Job", "States"]}
-        rows={teumDataComponentContracts.map((component) => [component.id, component.intent, component.states.join(", ")] as const)}
+        rows={whatiuseDataComponentContracts.map((component) => [component.id, component.intent, component.states.join(", ")] as const)}
       />
     </DocSection>
     <DocSection id="data-contract" title="Composition contract">
       <p>URL, server, saved-view, and display state share one model.</p>
-      <CodeBlock label="data-view-state.contract.json" collapsed>{JSON.stringify(teumDataViewStateContract, null, 2)}</CodeBlock>
-      <CodeBlock label="data-recipes.contract.json" collapsed>{JSON.stringify(teumDataRecipeContracts, null, 2)}</CodeBlock>
+      <CodeBlock label="data-view-state.contract.json" collapsed>{JSON.stringify(whatiuseDataViewStateContract, null, 2)}</CodeBlock>
+      <CodeBlock label="data-recipes.contract.json" collapsed>{JSON.stringify(whatiuseDataRecipeContracts, null, 2)}</CodeBlock>
     </DocSection>
     <DocSection id="data-install" title="Install the vertical slice">
-      <CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx ${shadcnCli} add @teum-pinned/teum-data`}</CodeBlock>
+      <CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx ${shadcnCli} add @whatiuse/whatiuse-data`}</CodeBlock>
       <p>Installs the Data components, recipes, styles, and contracts. Pre-release.</p>
     </DocSection>
   </>;
@@ -102,20 +102,20 @@ function ProductPilotPage() {
 
 function AnalyticsPage() {
   return <>
-    <section className="public-doc-section public-doc-section--pilot" id="renderer-family" aria-labelledby="renderer-family-title"><h2 id="renderer-family-title">Primitives</h2><p>Charts and metrics share one visual contract.</p><Suspense fallback={<div className="teum-analytics-gallery" role="status">Loading analytics primitives…</div>}><AnalyticsRendererGallery /></Suspense></section>
-    <section className="public-doc-section public-doc-section--pilot" id="saas-overview" aria-labelledby="saas-overview-title"><h2 id="saas-overview-title">SaaS Overview</h2><p>Revenue, retention, targets, and expansion in one period.</p><Suspense fallback={<div className="teum-analytics-recipe" role="status">Loading SaaS Overview…</div>}><SaaSOverviewRecipe /></Suspense></section>
-    <section className="public-doc-section public-doc-section--pilot" id="product-usage" aria-labelledby="product-usage-title"><h2 id="product-usage-title">Product Usage</h2><p>Usage and releases with independent chart inspection.</p><Suspense fallback={<div className="teum-analytics-recipe" role="status">Loading Product Usage…</div>}><ProductUsageRecipe /></Suspense></section>
-    <section className="public-doc-section public-doc-section--pilot" id="conversion-retention" aria-labelledby="conversion-retention-title"><h2 id="conversion-retention-title">Conversion &amp; Retention</h2><p>A selected funnel stage updates the trend, cohort context, and supporting records.</p><Suspense fallback={<div className="teum-analytics-recipe" role="status">Loading Conversion &amp; Retention…</div>}><ConversionRetentionRecipe /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="renderer-family" aria-labelledby="renderer-family-title"><h2 id="renderer-family-title">Primitives</h2><p>Charts and metrics share one visual contract.</p><Suspense fallback={<div className="whatiuse-analytics-gallery" role="status">Loading analytics primitives…</div>}><AnalyticsRendererGallery /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="saas-overview" aria-labelledby="saas-overview-title"><h2 id="saas-overview-title">SaaS Overview</h2><p>Revenue, retention, targets, and expansion in one period.</p><Suspense fallback={<div className="whatiuse-analytics-recipe" role="status">Loading SaaS Overview…</div>}><SaaSOverviewRecipe /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="product-usage" aria-labelledby="product-usage-title"><h2 id="product-usage-title">Usage &amp; Adoption</h2><p>Filter accounts, inspect behavior, and follow activation.</p><Suspense fallback={<div className="whatiuse-analytics-recipe" role="status">Loading Usage &amp; Adoption…</div>}><ProductUsageRecipe /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="conversion-retention" aria-labelledby="conversion-retention-title"><h2 id="conversion-retention-title">Conversion &amp; Retention</h2><p>A selected funnel stage updates the trend, cohort context, and supporting records.</p><Suspense fallback={<div className="whatiuse-analytics-recipe" role="status">Loading Conversion &amp; Retention…</div>}><ConversionRetentionRecipe /></Suspense></section>
     <DocSection id="analytics-layer" title="Product primitives">
-      <StatusTable label="whatiuse Analytics product primitives" columns={["Primitive", "Job", "States"]} rows={teumAnalyticsComponentContracts.map((component) => [component.id, component.intent, component.states.join(", ")] as const)} />
+      <StatusTable label="whatiuse Analytics product primitives" columns={["Primitive", "Job", "States"]} rows={whatiuseAnalyticsComponentContracts.map((component) => [component.id, component.intent, component.states.join(", ")] as const)} />
     </DocSection>
     <DocSection id="analytics-contract" title="Composition contract">
       <p>Product state remains controlled by the recipe. Transient inspection stays local to each chart.</p>
-      <CodeBlock label="analytics-state.contract.json" collapsed>{JSON.stringify(teumAnalyticsStateContract, null, 2)}</CodeBlock>
-      <CodeBlock label="analytics-recipes.contract.json" collapsed>{JSON.stringify(teumAnalyticsRecipeContracts, null, 2)}</CodeBlock>
+      <CodeBlock label="analytics-state.contract.json" collapsed>{JSON.stringify(whatiuseAnalyticsStateContract, null, 2)}</CodeBlock>
+      <CodeBlock label="analytics-recipes.contract.json" collapsed>{JSON.stringify(whatiuseAnalyticsRecipeContracts, null, 2)}</CodeBlock>
     </DocSection>
     <DocSection id="analytics-install" title="Install the vertical slice">
-      <CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx ${shadcnCli} add @teum-pinned/teum-analytics`}</CodeBlock>
+      <CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx ${shadcnCli} add @whatiuse/whatiuse-analytics`}</CodeBlock>
       <p>Installs the Analytics components, recipes, styles, and contracts. Pre-release.</p>
     </DocSection>
   </>;
@@ -123,17 +123,31 @@ function AnalyticsPage() {
 
 function ProductPatternsPage() {
   return <>
-    <section className="public-doc-section public-doc-section--pilot" id="customer-workspace" aria-labelledby="customer-workspace-title"><h2 id="customer-workspace-title">Customer Workspace</h2><p>Find an account, inspect health, and finish a follow-up without losing the list.</p><Suspense fallback={<div className="teum-product-pattern" role="status">Loading Customer Workspace…</div>}><CustomerWorkspaceRecipe /></Suspense></section>
-    <section className="public-doc-section public-doc-section--pilot" id="billing-usage" aria-labelledby="billing-usage-title"><h2 id="billing-usage-title">Billing &amp; Usage</h2><p>Plan, spend, limits, usage, and invoices share one billing period.</p><Suspense fallback={<div className="teum-product-pattern" role="status">Loading Billing &amp; Usage…</div>}><BillingUsageRecipe /></Suspense></section>
-    <section className="public-doc-section public-doc-section--pilot" id="members-permissions" aria-labelledby="members-permissions-title"><h2 id="members-permissions-title">Members &amp; Permissions</h2><p>Membership, invitations, roles, and access policy stay in one task.</p><Suspense fallback={<div className="teum-product-pattern" role="status">Loading Members &amp; Permissions…</div>}><MembersPermissionsRecipe /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="customer-workspace" aria-labelledby="customer-workspace-title"><h2 id="customer-workspace-title">Customer Workspace</h2><p>Find an account, inspect health, and finish a follow-up without losing the list.</p><Suspense fallback={<div className="whatiuse-product-pattern" role="status">Loading Customer Workspace…</div>}><CustomerWorkspaceRecipe /></Suspense></section>
+    <section className="public-doc-section public-doc-section--pilot" id="billing-usage" aria-labelledby="billing-usage-title"><h2 id="billing-usage-title">Billing &amp; Usage</h2><p>Plan, spend, limits, usage, and invoices share one billing period.</p><Suspense fallback={<div className="whatiuse-product-pattern" role="status">Loading Billing &amp; Usage…</div>}><BillingUsageRecipe /></Suspense></section>
     <DocSection id="product-pattern-contract" title="Composition contract">
-      <p>Each pattern names its task, state ownership, failure states, and accessibility boundaries.</p>
-      <CodeBlock label="product-patterns.contract.json">{JSON.stringify(teumProductPatternContracts, null, 2)}</CodeBlock>
-      <CodeBlock label="product-pattern-system.contract.json">{JSON.stringify(teumProductPatternSystemContract, null, 2)}</CodeBlock>
+      <p>Each workflow names its task, state owner, failure states, and keyboard boundary.</p>
+      <CodeBlock label="product-patterns.contract.json">{JSON.stringify(whatiuseProductPatternContracts, null, 2)}</CodeBlock>
+      <CodeBlock label="product-pattern-system.contract.json">{JSON.stringify(whatiuseProductPatternSystemContract, null, 2)}</CodeBlock>
     </DocSection>
-    <DocSection id="product-pattern-install" title="Install the product patterns">
-      <CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx ${shadcnCli} add @teum-pinned/teum-product-patterns`}</CodeBlock>
-      <p>The block installs the three source-owned B2B recipes and their composition contract. It remains pre-release.</p>
+    <DocSection id="product-pattern-install" title="Install workflows">
+      <CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx ${shadcnCli} add @whatiuse/whatiuse-product-patterns`}</CodeBlock>
+      <p>Installs the workflow and collaboration recipes. Pre-release.</p>
+    </DocSection>
+  </>;
+}
+
+function CollaborationPatternsPage() {
+  const memberContract = whatiuseProductPatternContracts.filter((contract) => contract.id === "members-permissions");
+  return <>
+    <section className="public-doc-section public-doc-section--pilot" id="members-permissions" aria-labelledby="members-permissions-title"><h2 id="members-permissions-title">Members &amp; Permissions</h2><p>Invite people, assign roles, and review access in one task.</p><Suspense fallback={<div className="whatiuse-product-pattern" role="status">Loading Members &amp; Permissions…</div>}><MembersPermissionsRecipe /></Suspense></section>
+    <DocSection id="collaboration-contract" title="Composition contract">
+      <p>Shared work keeps identity, permission, and recovery visible.</p>
+      <CodeBlock label="collaboration.contract.json">{JSON.stringify(memberContract, null, 2)}</CodeBlock>
+    </DocSection>
+    <DocSection id="collaboration-install" title="Install collaboration patterns">
+      <CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx ${shadcnCli} add @whatiuse/whatiuse-product-patterns`}</CodeBlock>
+      <p>Installs the shared pattern bundle. Pre-release.</p>
     </DocSection>
   </>;
 }
@@ -142,21 +156,21 @@ function AgentNativePage() {
   return <>
     <DocSection id="agent-contract" title="One contract for people and agents">
       <p>The generated catalog records every installable item, product recipe, selection boundary, and forbidden rule. Registry metadata, the agent skill, and this page use the same source.</p>
-      <CodeBlock label="teum-agent.json">{`${packageManifest.homepage}/agent/teum-agent.json`}</CodeBlock>
-      <CodeBlock label="system.contract.json">{JSON.stringify(teumAgentSystemContract, null, 2)}</CodeBlock>
+      <CodeBlock label="whatiuse-agent.json">{`${packageManifest.homepage}/agent/whatiuse-agent.json`}</CodeBlock>
+      <CodeBlock label="system.contract.json">{JSON.stringify(whatiuseAgentSystemContract, null, 2)}</CodeBlock>
     </DocSection>
     <DocSection id="selection-rules" title="Choose by task boundary">
-      <StatusTable label="Agent selection rules" columns={["Task", "Choose", "Reject when"]} rows={teumAgentSelectionRules.map((rule) => [rule.task, rule.choose, rule.rejectWhen.join(" ")] as const)} />
+      <StatusTable label="Agent selection rules" columns={["Task", "Choose", "Reject when"]} rows={whatiuseAgentSelectionRules.map((rule) => [rule.task, rule.choose, rule.rejectWhen.join(" ")] as const)} />
     </DocSection>
     <DocSection id="composition-rules" title="Start from a complete recipe">
       <p>Nine recipes connect product intent to public exports, required state, and composition rules. Agents should select one recipe before adding individual components.</p>
-      <StatusTable label="Agent product recipes" columns={["Recipe", "Registry item", "Composition"]} rows={teumAgentRecipeContracts.map((recipe) => [recipe.title, `@teum-pinned/${recipe.registryItem}`, recipe.components.join(", ")] as const)} />
+      <StatusTable label="Agent product recipes" columns={["Recipe", "Registry item", "Composition"]} rows={whatiuseAgentRecipeContracts.map((recipe) => [recipe.title, `@whatiuse/${recipe.registryItem}`, recipe.components.join(", ")] as const)} />
     </DocSection>
     <DocSection id="forbidden-rules" title="Reject invalid shortcuts">
-      <CheckList items={teumAgentForbiddenRules} />
+      <CheckList items={whatiuseAgentForbiddenRules} />
     </DocSection>
     <DocSection id="skill-install" title="Install the agent skill">
-      <CodeBlock label="Project skill">{`npx skills add minwookshin/whatiuse --skill teum --copy --yes`}</CodeBlock>
+      <CodeBlock label="Project skill">{`npx skills add minwookshin/whatiuse --skill whatiuse --copy --yes`}</CodeBlock>
       <p>The skill inspects the project, selects a documented recipe, installs source through the pinned registry, and runs the product's own quality gates. Review installed skills before use.</p>
     </DocSection>
     <DocSection id="agent-evaluation" title="Deterministic product-task evaluation">
@@ -195,7 +209,7 @@ function Installation() {
     tailwind: { config: "", css: "src/index.css", baseColor: "neutral", cssVariables: true, prefix: "" },
     iconLibrary: "lucide",
     aliases: { components: "components", utils: "lib/utils", ui: "components/ui", lib: "lib", hooks: "hooks" },
-    registries: { "@teum-pinned": pinnedRegistry },
+    registries: { "@whatiuse": pinnedRegistry },
   }, null, 2);
   const nextConfig = JSON.stringify({
     $schema: "https://ui.shadcn.com/schema.json",
@@ -205,7 +219,7 @@ function Installation() {
     tailwind: { config: "", css: "src/app/globals.css", baseColor: "neutral", cssVariables: true, prefix: "" },
     iconLibrary: "lucide",
     aliases: { components: "@/components", utils: "@/lib/utils", ui: "@/components/ui", lib: "@/lib", hooks: "@/hooks" },
-    registries: { "@teum-pinned": pinnedRegistry },
+    registries: { "@whatiuse": pinnedRegistry },
   }, null, 2);
   return <>
     <DocSection id="quickstart" title="Choose a path">
@@ -219,38 +233,38 @@ function Installation() {
     <DocSection id="vite" title="Vite">
       <CodeBlock label="1 · Create or open a React + TypeScript app">npm create vite@latest whatiuse-app -- --template react-ts</CodeBlock>
       <CodeBlock label="2 · Add components.json">{viteConfig}</CodeBlock>
-      <CodeBlock label="3 · Install Button">{`npx ${shadcnCli} add @teum-pinned/button`}</CodeBlock>
+      <CodeBlock label="3 · Install Button">{`npx ${shadcnCli} add @whatiuse/button`}</CodeBlock>
       <CodeBlock label="4 · Render it">{'import { Button } from "./components/ui/button";\n\nexport function App() {\n  return <Button variant="primary">Create issue</Button>;\n}'}</CodeBlock>
       <p>The verified fixture lives in <code>examples/quickstart-vite</code>. It builds against React 18 and React 19 without a Tailwind runtime.</p>
     </DocSection>
     <DocSection id="next" title="Next.js App Router">
       <CodeBlock label="1 · Create or open an App Router project">{`npx create-next-app@${nextQuickstartManifest.dependencies.next} whatiuse-app --ts --app --src-dir --use-npm --empty --no-tailwind --yes`}</CodeBlock>
       <CodeBlock label="2 · Add components.json">{nextConfig}</CodeBlock>
-      <CodeBlock label="3 · Install Button">{`npx ${shadcnCli} add @teum-pinned/button`}</CodeBlock>
+      <CodeBlock label="3 · Install Button">{`npx ${shadcnCli} add @whatiuse/button`}</CodeBlock>
       <CodeBlock label="4 · Keep interaction behind a client boundary">{'"use client";\n\nimport { Button } from "@/components/ui/button";\n\nexport function CreateIssue() {\n  return <Button variant="primary">Create issue</Button>;\n}'}</CodeBlock>
       <p>Import <code>src/app/globals.css</code> once from the root layout. The layout and page stay Server Components; only interactive compositions need <code>"use client"</code>.</p>
     </DocSection>
     <DocSection id="theme" title="Theme and customize">
       <CodeBlock label="Switch the public theme contract">document.documentElement.dataset.theme = "dark";</CodeBlock>
-      <CodeBlock label="Override one semantic role in product CSS">{':root {\n  --teum-radius-control: 9px;\n}'}</CodeBlock>
-      <p>Light is the default. Product CSS is unlayered and therefore overrides whatiuse's <code>teum.tokens → teum.base → teum.components</code> cascade without selector escalation. Use <code>--teum-*</code> roles instead of copying raw graphite values.</p>
+      <CodeBlock label="Override one semantic role in product CSS">{':root {\n  --whatiuse-radius-control: 9px;\n}'}</CodeBlock>
+      <p>Light is the default. Product CSS is unlayered and therefore overrides whatiuse's <code>whatiuse.tokens → whatiuse.base → whatiuse.components</code> cascade without selector escalation. Use <code>--whatiuse-*</code> roles instead of copying raw graphite values.</p>
     </DocSection>
     <DocSection id="registry" title="Pin what enters the product">
-      <CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx ${shadcnCli} registry add @teum-pinned=${pinnedRegistry}\nnpx ${shadcnCli} view @teum-pinned/button\nnpx ${shadcnCli} add @teum-pinned/button`}</CodeBlock>
-      <p>The registry copies source, scoped CSS, shared tokens, utilities, and declared dependencies into the product. Review and own those files. Use the mutable <code>@teum</code> channel only for active pre-release evaluation.</p>
+      <CodeBlock label={`Pinned ${packageManifest.version}`}>{`npx ${shadcnCli} registry add @whatiuse=${pinnedRegistry}\nnpx ${shadcnCli} view @whatiuse/button\nnpx ${shadcnCli} add @whatiuse/button`}</CodeBlock>
+      <p>The registry copies source, scoped CSS, shared tokens, utilities, and declared dependencies into the product. Review and own those files. Use the mutable <code>@whatiuse</code> channel only for active pre-release evaluation.</p>
     </DocSection>
     <DocSection id="update" title="Review before overwrite">
-      <CodeBlock label="Inspect the next pinned candidate">{`npx ${shadcnCli} add @teum-pinned/button --dry-run\nnpx ${shadcnCli} add @teum-pinned/button --diff src/components/ui/button.tsx`}</CodeBlock>
-      <CodeBlock label="Accept only after review">{`npx ${shadcnCli} add @teum-pinned/button --overwrite --yes\nnpm run typecheck\nnpm run build`}</CodeBlock>
+      <CodeBlock label="Inspect the next pinned candidate">{`npx ${shadcnCli} add @whatiuse/button --dry-run\nnpx ${shadcnCli} add @whatiuse/button --diff src/components/ui/button.tsx`}</CodeBlock>
+      <CodeBlock label="Accept only after review">{`npx ${shadcnCli} add @whatiuse/button --overwrite --yes\nnpm run typecheck\nnpm run build`}</CodeBlock>
       <p>Commit local edits first. Dry-run and diff never write; overwrite is the explicit acceptance step. The previous pinned path remains the rollback boundary.</p>
     </DocSection>
     <DocSection id="migrate" title="Migrate deliberately">
-      <CheckList items={["Read CHANGELOG.md and MIGRATIONS.md for every version between the current and target candidate.", "Review props, tokens, dependencies, behavior, and CSS together; copied source may contain local edits.", "Use a codemod only when the migration note names one; do not run unrelated shadcn migrations by default.", "Keep the previous pinned registry URL and the pre-update commit until product checks pass."]} />
+      <CheckList items={["Read each GitHub Release between the current and target candidate.", "Review props, tokens, dependencies, behavior, and CSS together; copied source may contain local edits.", "Use a codemod only when a release note names one; do not run unrelated shadcn migrations by default.", "Keep the previous pinned registry URL and the pre-update commit until product checks pass."]} />
     </DocSection>
     <DocSection id="troubleshooting" title="Common failures">
       <StatusTable label="Installation troubleshooting" columns={["Symptom", "Cause", "Fix"]} rows={[
-        ["@teum-pinned cannot resolve", "The registry entry is absent or points to a different candidate", "Copy the pinned registries block into components.json and run view before add"],
-        ["Button has no whatiuse styles", "A generated CSS import was removed or moved", "Restore teum-base.css and the component stylesheet beside the copied source"],
+        ["@whatiuse cannot resolve", "The registry entry is absent or points to a different candidate", "Copy the pinned registries block into components.json and run view before add"],
+        ["Button has no whatiuse styles", "A generated CSS import was removed or moved", "Restore whatiuse-base.css and the component stylesheet beside the copied source"],
         ["Next.js reports a client boundary error", "An interactive component was rendered through an invalid Server Component boundary", "Move the interactive composition into a small file with an explicit use client directive"],
         ["Update would replace local edits", "Copied source differs from the candidate", "Commit, dry-run, inspect the exact file diff, then overwrite only after acceptance"],
       ]} />
@@ -331,6 +345,7 @@ function Contributing() {
 
 function Releases() {
   return <>
+    <DocSection id="current-candidate" title={`Current candidate · ${packageManifest.version}`}><p>Unpublished release candidate. Data and Analytics include the Usage &amp; Adoption explorer, shared external chart inspection, clean-consumer fixtures, and generated contracts. Publication remains locked.</p></DocSection>
     <DocSection id="version-policy" title="Version policy"><p>The project follows Semantic Versioning once a stable public API exists. During 0.x, every breaking change is still documented and paired with a migration path.</p></DocSection>
     <DocSection id="release-evidence" title="Release evidence"><CheckList items={["All tests, types, registry checks, clean-consumer and production builds pass.", "The immutable version path preserves source bytes, pins internal dependencies to its release scope, and rejects changed content without a version bump.", "The clean consumer preserves a local modification, stages the upstream candidate, and builds after explicit acceptance.", "Cross-browser, 200% reflow, forced-colors, reduced-motion, keyboard, and accessibility matrices match the support claim.", "Representative light, dark, focus, loading, error, and product visual baselines are reviewed.", "The changelog, migration note, compatibility table, maintainer ownership, and security status are current."]} /></DocSection>
     <DocSection id="package-candidate" title="Package candidate is not publication"><p>The private package candidate has defined exports, React peer boundaries, an allowlisted tarball, and a fresh TypeScript/Vite consumer test. Its entry preserves a React client boundary; the recorded package fixture exposes {packageContractEvidence.runtimeExports} runtime exports, server-renders a representative tree, and hydrates with {packageContractEvidence.hydrationRecoverableErrors} recoverable mismatch errors. Framework-specific RSC integration, npm publication, and trusted-publisher configuration remain separate maintainer decisions.</p></DocSection>
@@ -354,6 +369,7 @@ const contentById: Record<PublicDocId, (props: { onNavigate: (id: string) => voi
   "product-pilot": ProductPilotPage,
   analytics: AnalyticsPage,
   "product-patterns": ProductPatternsPage,
+  "collaboration-patterns": CollaborationPatternsPage,
   "agent-native": AgentNativePage,
   "component-status": ComponentStatus,
   accessibility: Accessibility,
@@ -367,7 +383,7 @@ const contentById: Record<PublicDocId, (props: { onNavigate: (id: string) => voi
 export function PublicDocPage({ id, onNavigate }: { id: PublicDocId; onNavigate: (id: string) => void }) {
   const doc = publicDocItems.find((item) => item.id === id)!;
   const Content = contentById[id];
-  return <div className={"system-detail__content public-doc-page system-reference-page" + (["product-pilot", "analytics", "product-patterns"].includes(id) ? " public-doc-page--pilot" : "")}>
+  return <div className={"system-detail__content public-doc-page system-reference-page" + (["product-pilot", "analytics", "product-patterns", "collaboration-patterns"].includes(id) ? " public-doc-page--pilot" : "")}>
     <section className="system-overview" id="system-overview"><span className="public-doc-kicker">{doc.group}</span><h1>{doc.label}</h1><p>{doc.description}</p></section><div className="public-doc-body"><Content onNavigate={onNavigate} /></div>
     <footer className="system-footer"><span>whatiuse</span><span>Public system documentation</span></footer>
   </div>;

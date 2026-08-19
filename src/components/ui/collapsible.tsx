@@ -9,7 +9,7 @@ export type CollapsibleContentProps = CollapsiblePrimitive.Panel.Props & { child
 
 export function CollapsibleTrigger({ className, children, ...props }: CollapsiblePrimitive.Trigger.Props) {
   return (
-    <CollapsiblePrimitive.Trigger className={cn("teum-collapsible__trigger", className)} {...props}>
+    <CollapsiblePrimitive.Trigger className={cn("whatiuse-collapsible__trigger", className)} {...props}>
       <span>{children}</span>
       <CaretDown aria-hidden="true" />
     </CollapsiblePrimitive.Trigger>
@@ -18,8 +18,8 @@ export function CollapsibleTrigger({ className, children, ...props }: Collapsibl
 
 export function CollapsibleContent({ className, children, ...props }: CollapsibleContentProps) {
   return (
-    <CollapsiblePrimitive.Panel className={cn("teum-collapsible__panel", className)} {...props}>
-      <div className="teum-collapsible__content">{children}</div>
+    <CollapsiblePrimitive.Panel className={cn("whatiuse-collapsible__panel", className)} {...props}>
+      <div className="whatiuse-collapsible__content">{children}</div>
     </CollapsiblePrimitive.Panel>
   );
 }

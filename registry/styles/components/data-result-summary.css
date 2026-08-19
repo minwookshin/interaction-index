@@ -1,0 +1,22 @@
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
+
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
+
+@layer whatiuse.components {
+.whatiuse-data-result-summary {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 3px 6px;
+  color: var(--whatiuse-fg-subtle);
+  font-size: var(--whatiuse-type-metadata);
+  font-variant-numeric: tabular-nums;
+}
+
+.whatiuse-data-result-summary strong { color: var(--whatiuse-fg-default); font-weight: 590; }
+
+.whatiuse-data-result-summary__selected { color: var(--whatiuse-fg-muted); }
+
+.whatiuse-data-result-summary__detail { flex-basis: 100%; color: var(--whatiuse-fg-muted); }
+}

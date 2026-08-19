@@ -248,7 +248,7 @@ function key(prefix: string, name: string): string {
 }
 
 export function serializeDataViewState(state: DataViewState, options: DataViewCodecOptions = {}): string {
-  const prefix = options.prefix ?? "teum-";
+  const prefix = options.prefix ?? "whatiuse-";
   const baseline = createDataViewState(options.baseline);
   const params = new URLSearchParams();
   const changed = (left: unknown, right: unknown) => JSON.stringify(left) !== JSON.stringify(right);
@@ -292,7 +292,7 @@ export function parseDataViewState(
   fallback: DataViewStateInput = {},
   options: DataViewCodecOptions = {},
 ): DataViewState {
-  const prefix = options.prefix ?? "teum-";
+  const prefix = options.prefix ?? "whatiuse-";
   const params = new URLSearchParams(search.startsWith("?") ? search.slice(1) : search);
   const base = createDataViewState(fallback);
   const hidden = cleanStringList(parseJsonArray(params, key(prefix, "hidden")));
@@ -332,7 +332,7 @@ export function mergeDataViewSearch(
   state: DataViewState,
   options: DataViewCodecOptions = {},
 ): string {
-  const prefix = options.prefix ?? "teum-";
+  const prefix = options.prefix ?? "whatiuse-";
   const params = new URLSearchParams(currentSearch.startsWith("?") ? currentSearch.slice(1) : currentSearch);
   for (const name of [...params.keys()]) if (name.startsWith(prefix)) params.delete(name);
   const next = new URLSearchParams(serializeDataViewState(state, options));
@@ -383,7 +383,7 @@ export function useDataViewState({
   syncToUrl = false,
   location,
   historyMode = "replace",
-  parameterPrefix = "teum-",
+  parameterPrefix = "whatiuse-",
   onStateChange,
 }: UseDataViewStateOptions = {}): UseDataViewStateResult {
   const initialRef = useRef(createDataViewState(initialState));

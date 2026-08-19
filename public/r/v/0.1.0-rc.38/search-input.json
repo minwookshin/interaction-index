@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "search-input",
+  "title": "Search Input",
+  "description": "Free-form native search with clear, loading, and shortcut affordances.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/search-input.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/search-input.css\";\nimport { MagnifyingGlass, X } from \"@phosphor-icons/react\";\nimport { forwardRef, useId, useState, type InputHTMLAttributes } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type SearchInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, \"type\"> & {\n  label?: string;\n  loading?: boolean;\n  onClear?: () => void;\n  shortcut?: string;\n};\n\nexport const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(function SearchInput({ id: providedId, label = \"Search\", loading, onClear, shortcut, className, value, defaultValue, onChange, ...props }, ref) {\n  const generatedId = useId();\n  const id = providedId ?? generatedId;\n  const controlled = value !== undefined;\n  const [uncontrolledValue, setUncontrolledValue] = useState(() => String(defaultValue ?? \"\"));\n  const currentValue = controlled ? String(value ?? \"\") : uncontrolledValue;\n  const hasValue = currentValue.length > 0;\n  return (\n    <div className=\"whatiuse-search-field\">\n      <label className=\"whatiuse-sr-only\" htmlFor={id}>{label}</label>\n      <div className={cn(\"whatiuse-search\", className)} data-loading={loading || undefined}>\n        {loading ? <span className=\"whatiuse-spinner whatiuse-search__spinner\" aria-hidden=\"true\" /> : <MagnifyingGlass className=\"whatiuse-search__icon\" aria-hidden=\"true\" />}\n        <input\n          ref={ref}\n          id={id}\n          type=\"search\"\n          value={controlled ? value : uncontrolledValue}\n          aria-busy={loading || undefined}\n          onChange={(event) => {\n            if (!controlled) setUncontrolledValue(event.currentTarget.value);\n            onChange?.(event);\n          }}\n          {...props}\n        />\n        {hasValue && onClear ? <button type=\"button\" aria-label=\"Clear search\" onClick={() => { if (!controlled) setUncontrolledValue(\"\"); onClear(); }}><X /></button> : shortcut ? <kbd>{shortcut}</kbd> : null}\n      </div>\n    </div>\n  );\n});\n",
+      "type": "registry:ui",
+      "target": "components/ui/search-input.tsx"
+    },
+    {
+      "path": "registry/styles/components/search-input.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-search { display: flex; width: 100%; min-width: 220px; height: 32px; align-items: center; gap: 7px; padding: 0 8px; border: 1px solid var(--whatiuse-border); border-radius: var(--whatiuse-radius-sm); background: var(--whatiuse-control-surface); box-shadow: var(--whatiuse-shadow-control); transition: border-color var(--whatiuse-hover-duration) ease, box-shadow var(--whatiuse-hover-duration) ease; }\n\n.whatiuse-search__icon { width: 14px; height: 14px; color: var(--whatiuse-ink-tertiary); }\n\n.whatiuse-search__spinner { width: 13px; height: 13px; }\n\n.whatiuse-search input { min-width: 0; height: 100%; flex: 1; border: 0; outline: 0; background: transparent; color: var(--whatiuse-ink); font: inherit; font-size: var(--whatiuse-type-ui); -webkit-appearance: none; appearance: none; }\n\n.whatiuse-search input::-webkit-search-cancel-button { display: none; }\n\n.whatiuse-search input::placeholder { color: var(--whatiuse-ink-tertiary); }\n\n.whatiuse-search button { display: grid; width: 24px; height: 24px; flex: 0 0 24px; place-items: center; border: 0; border-radius: 5px; background: transparent; color: var(--whatiuse-ink-tertiary); cursor: pointer; }\n\n.whatiuse-search button svg { width: 12px; height: 12px; }\n\n.whatiuse-search kbd { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; color: var(--whatiuse-ink-tertiary); font-size: 10px; line-height: 1; white-space: nowrap; }\n\n@media (hover: hover) and (pointer: fine) {\n.whatiuse-search button:hover { background: var(--whatiuse-hover); color: var(--whatiuse-ink); }\n\n.whatiuse-search:hover { border-color: var(--whatiuse-border-strong); }\n}\n\n.whatiuse-search input:focus-visible { outline: 0; }\n\n.whatiuse-spinner { width: 13px; height: 13px; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: whatiuse-spin 0.75s linear infinite; }\n\n.whatiuse-search button { transition: color var(--whatiuse-hover-duration), background-color var(--whatiuse-hover-duration), transform var(--whatiuse-press-duration) var(--whatiuse-ease-out); }\n\n.whatiuse-search button:active { transform: scale(.96); }\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-search button:active { transform: none; }\n\n.whatiuse-spinner { animation-duration: 2.4s; }\n}\n\n@keyframes whatiuse-spin { to { transform: rotate(360deg); } }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/search-input.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/search-input",
+      "useWhen": "The user enters a free-form query and results update or submit elsewhere.",
+      "avoidWhen": "The value must come from a predefined set. Use Combobox."
+    }
+  },
+  "type": "registry:ui"
+}

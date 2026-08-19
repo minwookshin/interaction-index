@@ -1,79 +1,79 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-field-layout {
+@layer whatiuse.components {
+.whatiuse-field-layout {
   display: grid;
   min-width: 0;
   gap: 6px;
 }
 
-.teum-field-layout__label,
-.teum-fieldset__legend {
-  color: var(--teum-fg-default);
-  font-size: var(--teum-type-label);
-  font-weight: var(--teum-label-weight);
-  line-height: var(--teum-line-label);
+.whatiuse-field-layout__label,
+.whatiuse-fieldset__legend {
+  color: var(--whatiuse-fg-default);
+  font-size: var(--whatiuse-type-label);
+  font-weight: var(--whatiuse-label-weight);
+  line-height: var(--whatiuse-line-label);
 }
 
-.teum-field-layout__description,
-.teum-field-layout__error {
-  color: var(--teum-fg-muted);
-  font-size: var(--teum-type-metadata);
-  line-height: var(--teum-line-metadata);
+.whatiuse-field-layout__description,
+.whatiuse-field-layout__error {
+  color: var(--whatiuse-fg-muted);
+  font-size: var(--whatiuse-type-metadata);
+  line-height: var(--whatiuse-line-metadata);
 }
 
-.teum-field-layout__error { color: var(--teum-fg-danger); }
+.whatiuse-field-layout__error { color: var(--whatiuse-fg-danger); }
 
-.teum-field-layout__control {
+.whatiuse-field-layout__control {
   width: 100%;
   min-width: 0;
-  height: var(--teum-control-height-md);
+  height: var(--whatiuse-control-height-md);
   padding: 0 9px;
-  border: 1px solid var(--teum-control-border);
-  border-radius: var(--teum-radius-control);
+  border: 1px solid var(--whatiuse-control-border);
+  border-radius: var(--whatiuse-radius-control);
   outline: 0;
-  background: var(--teum-bg-control);
-  box-shadow: var(--teum-shadow-control);
-  color: var(--teum-fg-default);
+  background: var(--whatiuse-bg-control);
+  box-shadow: var(--whatiuse-shadow-control);
+  color: var(--whatiuse-fg-default);
   font: inherit;
-  font-size: var(--teum-type-ui);
-  transition: background-color var(--teum-hover-duration), border-color var(--teum-hover-duration), box-shadow var(--teum-hover-duration);
+  font-size: var(--whatiuse-type-ui);
+  transition: background-color var(--whatiuse-hover-duration), border-color var(--whatiuse-hover-duration), box-shadow var(--whatiuse-hover-duration);
 }
 
-.teum-field-layout__control::placeholder { color: var(--teum-fg-subtle); }
+.whatiuse-field-layout__control::placeholder { color: var(--whatiuse-fg-subtle); }
 
-.teum-field-layout__control:hover:not(:disabled):not(:read-only) { border-color: var(--teum-control-border-hover); }
+.whatiuse-field-layout__control:hover:not(:disabled):not(:read-only) { border-color: var(--whatiuse-control-border-hover); }
 
-.teum-field-layout__control:focus-visible {
-  border-color: var(--teum-control-border-hover);
-  box-shadow: var(--teum-shadow-control), 0 0 0 2px var(--teum-focus-halo);
+.whatiuse-field-layout__control:focus-visible {
+  border-color: var(--whatiuse-control-border-hover);
+  box-shadow: var(--whatiuse-shadow-control), 0 0 0 2px var(--whatiuse-focus-halo);
 }
 
-.teum-field-layout[data-invalid] .teum-field-layout__control,
-.teum-field-layout__control[aria-invalid="true"] {
-  border-color: color-mix(in oklch, var(--teum-fg-danger) 42%, var(--teum-control-border));
-  box-shadow: var(--teum-shadow-control), 0 0 0 2px color-mix(in oklch, var(--teum-fg-danger) 10%, transparent);
+.whatiuse-field-layout[data-invalid] .whatiuse-field-layout__control,
+.whatiuse-field-layout__control[aria-invalid="true"] {
+  border-color: color-mix(in oklch, var(--whatiuse-fg-danger) 42%, var(--whatiuse-control-border));
+  box-shadow: var(--whatiuse-shadow-control), 0 0 0 2px color-mix(in oklch, var(--whatiuse-fg-danger) 10%, transparent);
 }
 
-.teum-field-layout[data-disabled] .teum-field-layout__control,
-.teum-field-layout__control:disabled { background: var(--teum-bg-subtle); box-shadow: none; color: var(--teum-fg-disabled); cursor: not-allowed; }
+.whatiuse-field-layout[data-disabled] .whatiuse-field-layout__control,
+.whatiuse-field-layout__control:disabled { background: var(--whatiuse-bg-subtle); box-shadow: none; color: var(--whatiuse-fg-disabled); cursor: not-allowed; }
 
-.teum-field-layout__control:read-only { color: var(--teum-fg-muted); }
+.whatiuse-field-layout__control:read-only { color: var(--whatiuse-fg-muted); }
 
-.teum-fieldset {
+.whatiuse-fieldset {
   min-width: 0;
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-.teum-fieldset__legend { margin: 0 0 8px; padding: 0; }
+.whatiuse-fieldset__legend { margin: 0 0 8px; padding: 0; }
 
-.teum-field-group { display: grid; gap: 4px; }
+.whatiuse-field-group { display: grid; gap: 4px; }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-field-layout__control { transition-duration: 0.01ms; }
+.whatiuse-field-layout__control { transition-duration: 0.01ms; }
 }
 }

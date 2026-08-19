@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "segmented-control",
+  "title": "Segmented Control",
+  "description": "Compact single selection between visible peer views or presentation modes.",
+  "dependencies": [
+    "@base-ui/react@1.7.0"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/segmented-control.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/segmented-control.css\";\nimport { Toggle } from \"@base-ui/react/toggle\";\nimport { ToggleGroup } from \"@base-ui/react/toggle-group\";\nimport { useState, type ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type SegmentedControlOption = {\n  value: string;\n  label: ReactNode;\n  accessibleLabel?: string;\n  icon?: ReactNode;\n  disabled?: boolean;\n};\n\nexport type SegmentedControlProps = {\n  options: readonly SegmentedControlOption[];\n  label: string;\n  value?: string;\n  defaultValue?: string;\n  onValueChange?: (value: string | null) => void;\n  allowEmpty?: boolean;\n  disabled?: boolean;\n  orientation?: \"horizontal\" | \"vertical\";\n  size?: \"small\" | \"medium\";\n  className?: string;\n};\n\nexport function SegmentedControl({\n  options,\n  label,\n  value,\n  defaultValue,\n  onValueChange,\n  allowEmpty = false,\n  disabled = false,\n  orientation = \"horizontal\",\n  size = \"medium\",\n  className,\n}: SegmentedControlProps) {\n  const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue ?? options.find((option) => !option.disabled)?.value ?? null);\n  const selectedValue = value === undefined ? uncontrolledValue : value;\n  const handleValueChange = (nextValues: string[]) => {\n    const nextValue = nextValues[0] ?? null;\n    if (!allowEmpty && nextValue === null) return;\n    if (value === undefined) setUncontrolledValue(nextValue);\n    onValueChange?.(nextValue);\n  };\n\n  return (\n    <ToggleGroup\n      className={cn(\"whatiuse-segmented-control\", className)}\n      data-size={size}\n      aria-label={label}\n      value={selectedValue ? [selectedValue] : []}\n      onValueChange={handleValueChange}\n      disabled={disabled}\n      orientation={orientation}\n    >\n      {options.map((option) => (\n        <Toggle key={option.value} className=\"whatiuse-segmented-control__item\" value={option.value} disabled={option.disabled} aria-label={option.accessibleLabel}>\n          {option.icon && <span aria-hidden=\"true\">{option.icon}</span>}\n          <span>{option.label}</span>\n        </Toggle>\n      ))}\n    </ToggleGroup>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/segmented-control.tsx"
+    },
+    {
+      "path": "registry/styles/components/segmented-control.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-segmented-control {\n  display: inline-flex;\n  width: fit-content;\n  max-width: 100%;\n  align-items: center;\n  gap: 2px;\n  padding: 2px;\n  border-radius: 8px;\n  background: var(--whatiuse-bg-subtle);\n}\n\n.whatiuse-segmented-control[data-orientation=\"vertical\"] { flex-direction: column; align-items: stretch; }\n\n.whatiuse-segmented-control__item { display: inline-flex; min-width: 0; height: 28px; align-items: center; justify-content: center; gap: 6px; padding: 0 9px; border: 0; border-radius: 6px; background: transparent; color: var(--whatiuse-fg-muted); font-size: var(--whatiuse-type-label); white-space: nowrap; cursor: pointer; transition: color var(--whatiuse-hover-duration), background-color var(--whatiuse-hover-duration), box-shadow var(--whatiuse-hover-duration), transform var(--whatiuse-press-duration) var(--whatiuse-ease-out); }\n\n.whatiuse-segmented-control[data-size=\"small\"] .whatiuse-segmented-control__item { height: 24px; padding-inline: 7px; font-size: var(--whatiuse-type-metadata); }\n\n.whatiuse-segmented-control__item > span { display: inline-flex; min-width: 0; align-items: center; }\n\n.whatiuse-segmented-control__item svg { width: 13px; height: 13px; }\n\n.whatiuse-segmented-control__item[data-pressed] { background: var(--whatiuse-bg-control); color: var(--whatiuse-fg-default); box-shadow: var(--whatiuse-shadow-control); font-weight: 560; }\n\n.whatiuse-segmented-control__item:focus-visible { z-index: 1; outline: 2px solid var(--whatiuse-focus-control); outline-offset: 1px; }\n\n.whatiuse-segmented-control__item:active { transform: scale(.97); }\n\n.whatiuse-segmented-control__item[data-disabled] { color: var(--whatiuse-fg-disabled); cursor: not-allowed; }\n\n@media (hover: hover) and (pointer: fine) {\n.whatiuse-segmented-control__item:not([data-disabled]):not([data-pressed]):hover { background: var(--whatiuse-hover); color: var(--whatiuse-fg-default); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-segmented-control__item:active { transform: none; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/segmented-control.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/segmented-control",
+      "useWhen": "Two to four short peer options should remain visible and switch immediately.",
+      "avoidWhen": "Options are numerous, require descriptions, or submit later as part of a form."
+    }
+  },
+  "type": "registry:ui"
+}

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
   "generatedBy": "scripts/verify-shadcn-consumer.mjs",
-  "generatedAt": "2026-08-18T23:55:07.973Z",
-  "version": "0.1.0-rc.30",
+  "generatedAt": "2026-08-19T13:57:29.697Z",
+  "version": "0.1.0-rc.38",
   "status": "passed",
   "framework": "Vite",
   "fixture": "examples/quickstart-vite",
@@ -14,35 +14,35 @@
       "runtime": "React 18",
       "react": "18.3.1",
       "reactDom": "18.3.1",
-      "elapsedMs": 15764,
+      "elapsedMs": 15414,
       "typecheck": "passed",
       "productionBuild": "passed",
       "plainCss": true,
       "themeToggle": true,
-      "semanticOverride": "--teum-radius-control: 9px"
+      "semanticOverride": "--whatiuse-radius-control: 9px"
     },
     {
       "runtime": "React 19",
       "react": "19.2.0",
       "reactDom": "19.2.0",
-      "elapsedMs": 9445,
+      "elapsedMs": 9175,
       "typecheck": "passed",
       "productionBuild": "passed",
       "plainCss": true,
       "themeToggle": true,
-      "semanticOverride": "--teum-radius-control: 9px"
+      "semanticOverride": "--whatiuse-radius-control: 9px"
     }
   ],
   "commands": [
-    "npx shadcn@4.18.0 registry add @teum-pinned=https://whatiuse.minwookshin.com/r/v/0.1.0-rc.30/{name}.json",
-    "npx shadcn@4.18.0 add @teum-pinned/button",
+    "npx shadcn@4.18.0 registry add @whatiuse=https://whatiuse.minwookshin.com/r/v/0.1.0-rc.38/{name}.json",
+    "npx shadcn@4.18.0 add @whatiuse/button",
     "npm run typecheck",
     "npm run build"
   ],
   "verifiedFiles": [
     "src/components/ui/button.tsx",
     "src/lib/cn.ts",
-    "src/styles/teum-base.css",
+    "src/styles/whatiuse-base.css",
     "src/styles/components/button.css"
   ],
   "optionalTailwindBridgeVerified": true

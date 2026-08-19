@@ -2,14 +2,13 @@ import { expect, test } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("/#product-patterns");
-  await expect(page.getByRole("heading", { level: 1, name: "Recipes" })).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByRole("heading", { level: 1, name: "Workflow" })).toBeVisible({ timeout: 15_000 });
 });
 
-test("Recipes expose three complete B2B tasks", async ({ page }) => {
+test("Workflow exposes complete B2B tasks", async ({ page }) => {
   await expect(page.getByRole("region", { name: "Customer Workspace recipe" })).toBeVisible();
   await expect(page.getByRole("region", { name: "Billing and Usage recipe" })).toBeVisible();
-  await expect(page.getByRole("region", { name: "Members and Permissions recipe" })).toBeVisible();
-  await expect(page.getByText("@teum-pinned/teum-product-patterns", { exact: false })).toBeVisible();
+  await expect(page.getByText("@whatiuse/whatiuse-product-patterns", { exact: false })).toBeVisible();
 });
 
 test("Customer Workspace preserves list origin while completing work", async ({ page }) => {
@@ -38,6 +37,8 @@ test("Billing period updates chart without changing recipe width", async ({ page
 });
 
 test("Members and Permissions keeps policy and invitation in one task", async ({ page }) => {
+  await page.goto("/#collaboration-patterns");
+  await expect(page.getByRole("heading", { level: 1, name: "Collaboration" })).toBeVisible({ timeout: 15_000 });
   const recipe = page.getByRole("region", { name: "Members and Permissions recipe" });
   await recipe.getByRole("tab", { name: "Permissions" }).click();
   const permission = recipe.getByRole("checkbox", { name: "Export data for Member" });
@@ -53,11 +54,11 @@ test("Members and Permissions keeps policy and invitation in one task", async ({
 test("Product Patterns contain overflow and remove movement for reduced motion", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.reload();
-  await expect(page.getByRole("heading", { level: 1, name: "Recipes" })).toBeVisible({ timeout: 15_000 });
-  for (const recipe of await page.locator(".teum-product-pattern").all()) {
+  await expect(page.getByRole("heading", { level: 1, name: "Workflow" })).toBeVisible({ timeout: 15_000 });
+  for (const recipe of await page.locator(".whatiuse-product-pattern").all()) {
     const dimensions = await recipe.evaluate((element) => ({ clientWidth: element.clientWidth, scrollWidth: element.scrollWidth }));
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1);
   }
-  const detail = page.locator(".teum-product-pattern__customer-detail");
+  const detail = page.locator(".whatiuse-product-pattern__customer-detail");
   await expect(detail).toHaveAttribute("data-motion-mode", "reduced");
 });

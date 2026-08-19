@@ -7,33 +7,35 @@ import {
 } from "@phosphor-icons/react";
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type RefObject } from "react";
-import packageManifest from "../package.json";
 import {
-  components,
-  libraryComponentGroups,
-  libraryComponents,
+  getPublicLibraryItem,
+  libraryCollections,
+  publicLibraryItems,
   type ComponentId,
-  type LibraryComponentGroup,
+  type CollectionLibraryComponentId,
+  type LibraryCollection,
+  type PublicLibraryItem,
+  type PublicLibraryItemId,
 } from "./component-catalog";
 import { ComponentCodeInspector } from "./component-code-inspector";
 import { AsyncActionButton } from "./components/showcase/async-action-button";
 import { Toaster, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, UndoStackProvider } from "./components/ui";
 import type { Theme } from "./App";
 import { copyText } from "./lib/copy-text";
+import { getComponentInstallCommand } from "./lib/component-install-command";
 import { PublicHeaderActions } from "./public-header-actions";
 import "./styles.css";
 import "./component-index.css";
 
 const PrimaryPreviewFor = lazy(() => import("./App").then((module) => ({ default: module.PrimaryPreviewFor })));
-
-type CatalogFilter = "All" | LibraryComponentGroup;
+const CollectionPreviewFor = lazy(() => import("./collection-preview").then((module) => ({ default: module.CollectionPreviewFor })));
 
 type ComponentIndexPageProps = {
   theme: Theme;
   onThemeChange: (theme: Theme) => void;
 };
 
-const spaciousPreviews = new Set<ComponentId>([
+const spaciousPreviews = new Set<PublicLibraryItemId>([
   "field",
   "input-group",
   "toolbar",
@@ -45,12 +47,88 @@ const spaciousPreviews = new Set<ComponentId>([
   "empty-state",
   "table",
   "tree",
+  "data-table",
+  "data-toolbar",
+  "chart",
+  "donut-chart",
+  "heatmap",
 ]);
 
-function inspectorIdFromHash(): ComponentId | null {
+type PreviewStage = "compact" | "form" | "product";
+
+const compactPreviews = new Set<PublicLibraryItemId>([
+  "button",
+  "icon-button",
+  "checkbox",
+  "switch",
+  "segmented-control",
+  "breadcrumbs",
+  "pagination",
+  "progress",
+  "spinner",
+  "skeleton",
+  "badge",
+  "avatar",
+]);
+
+const productPreviews = new Set<PublicLibraryItemId>([
+  "tooltip",
+  "popover",
+  "menu",
+  "context-menu",
+  "dialog",
+  "sheet",
+  "alert-dialog",
+  "toast",
+  "table",
+  "tree",
+]);
+
+const overlayPreviews = new Set<PublicLibraryItemId>([
+  "select",
+  "context-switcher",
+  "combobox",
+  "date-picker",
+  "tooltip",
+  "popover",
+  "menu",
+  "context-menu",
+  "dialog",
+  "sheet",
+  "alert-dialog",
+  "toast",
+  "filter-builder",
+  "data-toolbar",
+  "saved-view-menu",
+  "column-visibility-menu",
+  "facet-filter",
+  "data-sort-menu",
+  "data-group-menu",
+  "row-actions-menu",
+  "date-range-filter",
+  "data-export-menu",
+]);
+
+const flagshipPreviews = new Set<PublicLibraryItemId>([
+  "button",
+  "select",
+  "combobox",
+  "dialog",
+  "toast",
+  "data-table",
+  "filter-builder",
+  "chart",
+]);
+
+function previewStageFor(item: PublicLibraryItem): PreviewStage {
+  if (item.collection !== "Core" || productPreviews.has(item.id)) return "product";
+  return compactPreviews.has(item.id) ? "compact" : "form";
+}
+
+function inspectorIdFromHash(): PublicLibraryItemId | null {
   const [route, id] = window.location.hash.slice(1).split("/");
   if (route !== "components" || !id) return null;
-  return components.some((component) => component.id === id) ? id as ComponentId : null;
+  return getPublicLibraryItem(id)?.id ?? null;
 }
 
 type WordmarkGeometry = {
@@ -110,7 +188,28 @@ function ScrollDockedWordmark({
   );
 }
 
-function ComponentPreview({ id, eager }: { id: ComponentId; eager: boolean }) {
+function AuthorIdentity() {
+  return (
+    <span className="component-index-author">
+      <a
+        className="component-index-author__link"
+        href="https://www.minwookshin.com/"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="@minwook — portfolio"
+      >
+        @minwook
+      </a>
+      <span className="component-index-author__portraits" aria-hidden="true">
+        <img src="/assets/minwook-mario.jpeg" alt="" />
+        <img src="/assets/minwook-ice-cream.jpeg" alt="" />
+        <img src="/assets/minwook-portrait.jpeg" alt="" />
+      </span>
+    </span>
+  );
+}
+
+function ComponentPreview({ item, eager }: { item: PublicLibraryItem; eager: boolean }) {
   const frameRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(eager);
 
@@ -138,13 +237,17 @@ function ComponentPreview({ id, eager }: { id: ComponentId; eager: boolean }) {
     <div
       ref={frameRef}
       className="component-index-preview"
-      data-component={id}
-      data-spacious={spaciousPreviews.has(id) || undefined}
-      aria-label={`${libraryComponents.find((component) => component.id === id)?.name ?? id} interactive preview`}
+      data-component={item.id}
+      data-collection={item.collection.toLocaleLowerCase()}
+      data-stage={previewStageFor(item)}
+      data-spacious={spaciousPreviews.has(item.id) || undefined}
+      aria-label={`${item.name} interactive preview`}
     >
       {ready ? (
         <Suspense fallback={<span className="component-index-preview__loading">Loading preview</span>}>
-          {id === "button" ? <AsyncActionButton compact autoResetMs={1400} /> : <PrimaryPreviewFor id={id} />}
+          {item.collection === "Core"
+            ? item.id === "button" ? <AsyncActionButton compact autoResetMs={1400} widthBehavior="morph" /> : <PrimaryPreviewFor id={item.id as ComponentId} />
+            : <CollectionPreviewFor id={item.id as CollectionLibraryComponentId} />}
         </Suspense>
       ) : <span className="component-index-preview__loading">Loading preview</span>}
     </div>
@@ -158,18 +261,24 @@ function CatalogRow({
   onCopy,
   onOpenCode,
 }: {
-  component: (typeof libraryComponents)[number];
+  component: PublicLibraryItem;
   eager: boolean;
   copied: boolean;
   onCopy: () => void;
   onOpenCode: () => void;
 }) {
   return (
-    <li className="component-index-row" data-component={component.id}>
+    <li
+      className="component-index-row"
+      data-component={component.id}
+      data-stage={previewStageFor(component)}
+      data-overlay={overlayPreviews.has(component.id) || undefined}
+      data-flagship={flagshipPreviews.has(component.id) || undefined}
+    >
       <div className="component-index-row__identity">
         <strong>{component.name}</strong>
       </div>
-      <ComponentPreview id={component.id} eager={eager} />
+      <ComponentPreview item={component} eager={eager} />
       <div className="component-index-row__actions">
         <Tooltip>
           <TooltipTrigger render={<a href={`#components/${component.id}`} aria-label={`Open ${component.name} code`} onClick={(event) => { event.preventDefault(); onOpenCode(); }}><CodeSimple aria-hidden="true" /></a>} />
@@ -189,17 +298,33 @@ export function ComponentIndexPage({
   onThemeChange,
 }: ComponentIndexPageProps) {
   const pageRef = useRef<HTMLDivElement>(null);
-  const [filter, setFilter] = useState<CatalogFilter>("All");
+  const catalogRef = useRef<HTMLDivElement>(null);
+  const [collection, setCollection] = useState<LibraryCollection>("Core");
   const [query, setQuery] = useState("");
-  const [copiedId, setCopiedId] = useState<ComponentId | null>(null);
-  const [inspectedId, setInspectedId] = useState<ComponentId | null>(inspectorIdFromHash);
+  const [copiedId, setCopiedId] = useState<PublicLibraryItemId | null>(null);
+  const [inspectedId, setInspectedId] = useState<PublicLibraryItemId | null>(inspectorIdFromHash);
   const copyTimer = useRef<number | undefined>(undefined);
+  const resetCollectionScroll = useRef(false);
 
   useEffect(() => {
     document.title = "whatiuse";
     document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute("content", "Browse, try, and install whatiuse components.");
     return () => window.clearTimeout(copyTimer.current);
   }, []);
+
+  useLayoutEffect(() => {
+    if (!resetCollectionScroll.current) return;
+    resetCollectionScroll.current = false;
+
+    const page = pageRef.current;
+    const catalog = catalogRef.current;
+    const toolbar = page?.querySelector<HTMLElement>(".component-index-toolbar");
+    if (!page || !catalog || !toolbar) return;
+
+    const target = Math.max(0, page.scrollTop + catalog.getBoundingClientRect().top - toolbar.getBoundingClientRect().bottom);
+    if (typeof page.scrollTo === "function") page.scrollTo({ top: target, behavior: "auto" });
+    else page.scrollTop = target;
+  }, [collection]);
 
   useEffect(() => {
     const syncInspector = () => setInspectedId(inspectorIdFromHash());
@@ -213,37 +338,42 @@ export function ComponentIndexPage({
 
   const filteredComponents = useMemo(() => {
     const queryTokens = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
-    return libraryComponents.filter((component) => {
-      const matchesGroup = filter === "All" || component.group === filter;
-      const searchTokens = `${component.id} ${component.name} ${component.group} ${component.description}`
+    return publicLibraryItems.filter((component) => {
+      const matchesCollection = component.collection === collection;
+      const searchTokens = `${component.id} ${component.name} ${component.group ?? ""} ${component.description}`
         .toLocaleLowerCase()
         .split(/[^a-z0-9]+/)
         .filter(Boolean);
       const matchesQuery = queryTokens.every((queryToken) => searchTokens.some((token) => token.startsWith(queryToken)));
-      return matchesGroup && matchesQuery;
+      return matchesCollection && matchesQuery;
     });
-  }, [filter, query]);
+  }, [collection, query]);
 
-  const visibleGroups = useMemo(() => libraryComponentGroups
-    .map((group) => ({ group, items: filteredComponents.filter((component) => component.group === group) }))
-    .filter(({ items }) => items.length > 0), [filteredComponents]);
+  const visibleGroups = useMemo(() => [{ group: collection, items: filteredComponents }], [collection, filteredComponents]);
 
-  const copyInstall = async (id: ComponentId) => {
-    const command = `npx shadcn@${packageManifest.devDependencies.shadcn} add ${packageManifest.homepage}/r/v/${packageManifest.version}/${id}.json`;
+  const selectCollection = (nextCollection: LibraryCollection) => {
+    if (nextCollection === collection) return;
+    resetCollectionScroll.current = true;
+    setCollection(nextCollection);
+    setQuery("");
+  };
+
+  const copyInstall = async (id: PublicLibraryItemId) => {
+    const command = getComponentInstallCommand(id);
     if (!await copyText(command)) return;
     setCopiedId(id);
     window.clearTimeout(copyTimer.current);
     copyTimer.current = window.setTimeout(() => setCopiedId(null), 1400);
   };
 
-  const openInspector = (id: ComponentId) => {
+  const openInspector = (id: PublicLibraryItemId) => {
     setInspectedId(id);
-    window.history.pushState({ teumInspector: true }, "", `#components/${id}`);
+    window.history.pushState({ whatiuseInspector: true }, "", `#components/${id}`);
   };
 
   const closeInspector = () => {
     setInspectedId(null);
-    if (window.history.state?.teumInspector) {
+    if (window.history.state?.whatiuseInspector) {
       window.history.back();
       return;
     }
@@ -254,7 +384,7 @@ export function ComponentIndexPage({
     <TooltipProvider>
       <UndoStackProvider>
         <div ref={pageRef} className="component-index-page">
-          <a className="teum-skip-link" href="#component-index-content" onClick={(event) => {
+          <a className="whatiuse-skip-link" href="#component-index-content" onClick={(event) => {
             event.preventDefault();
             document.getElementById("component-index-content")?.focus({ preventScroll: true });
           }}>Skip to main content</a>
@@ -267,37 +397,33 @@ export function ComponentIndexPage({
           <main id="component-index-content" tabIndex={-1}>
             <section className="component-index-intro" aria-labelledby="component-index-title">
               <span className="component-index-intro__static-wordmark" aria-hidden="true">whatiuse</span>
-              <h1 id="component-index-title">Components for product interfaces.</h1>
+              <div className="component-index-intro__descriptor">
+                <h1 id="component-index-title">components i use.</h1>
+                <AuthorIdentity />
+              </div>
             </section>
 
             <div className="component-index-library-heading">
               <h2>Library</h2>
-              <p><strong>{libraryComponents.length}</strong> components</p>
             </div>
 
             <div className="component-index-toolbar">
-              <div className="component-index-filters" role="group" aria-label="Filter components by group">
-                {(["All", ...libraryComponentGroups] as const).map((group) => (
-                  <button type="button" key={group} aria-pressed={filter === group} onClick={() => setFilter(group)}>{group}</button>
-                ))}
+              <div className="component-index-collections" role="tablist" aria-label="Component collections">
+                {libraryCollections.map((item) => <button key={item} type="button" role="tab" aria-selected={collection === item} onClick={() => selectCollection(item)}>{item}</button>)}
               </div>
               <div className="component-index-search">
                 <MagnifyingGlass aria-hidden="true" />
-                <label className="teum-sr-only" htmlFor="component-index-search">Search components</label>
-                <input id="component-index-search" value={query} onChange={(event) => setQuery(event.currentTarget.value)} placeholder="Search" />
+                <label className="whatiuse-sr-only" htmlFor="component-index-search">Search components</label>
+                <input id="component-index-search" value={query} onChange={(event) => setQuery(event.currentTarget.value)} placeholder="Search components" />
                 {query && <button type="button" aria-label="Clear component search" onClick={() => setQuery("")}><X aria-hidden="true" /></button>}
               </div>
             </div>
 
-            <p className="teum-sr-only" role="status" aria-live="polite">{filteredComponents.length} components shown</p>
+            <p className="whatiuse-sr-only" role="status" aria-live="polite">{filteredComponents.length} components shown</p>
 
-            <div className="component-index-groups">
+            <div ref={catalogRef} className="component-index-groups">
               {visibleGroups.map(({ group, items }) => (
-                <section className="component-index-group" key={group} aria-labelledby={`component-index-${group.toLocaleLowerCase().replaceAll(" ", "-")}`}>
-                  <header>
-                    <h2 id={`component-index-${group.toLocaleLowerCase().replaceAll(" ", "-")}`}>{group}</h2>
-                    <span>{items.length}</span>
-                  </header>
+                <section className="component-index-group" data-collection={collection.toLocaleLowerCase()} key={group} aria-label={`${group} components`}>
                   <ul aria-label={`${group} components`}>
                     {items.map((component) => (
                       <CatalogRow
@@ -312,7 +438,7 @@ export function ComponentIndexPage({
                   </ul>
                 </section>
               ))}
-              {!visibleGroups.length && <div className="component-index-empty"><strong>No components</strong><button type="button" onClick={() => { setFilter("All"); setQuery(""); }}>Clear filters</button></div>}
+              {!visibleGroups.some(({ items }) => items.length) && <div className="component-index-empty"><strong>No components</strong><button type="button" onClick={() => setQuery("")}>Clear search</button></div>}
             </div>
 
             <footer className="component-index-footer">

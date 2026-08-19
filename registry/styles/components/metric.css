@@ -1,9 +1,9 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-metric {
+@layer whatiuse.components {
+.whatiuse-metric {
   display: flex;
   min-width: 0;
   min-height: 110px;
@@ -12,16 +12,16 @@
   gap: 14px;
   padding: 15px;
   border-radius: 10px;
-  background: color-mix(in srgb, var(--teum-bg-stage) 68%, transparent);
+  background: color-mix(in srgb, var(--whatiuse-bg-stage) 68%, transparent);
 }
 
-.teum-metric__body { display: grid; min-width: 0; gap: 5px; }
+.whatiuse-metric__body { display: grid; min-width: 0; gap: 5px; }
 
-.teum-metric__label { overflow: hidden; color: var(--teum-fg-muted); font-size: var(--teum-type-label); font-weight: 540; text-overflow: ellipsis; white-space: nowrap; }
+.whatiuse-metric__label { overflow: hidden; color: var(--whatiuse-fg-muted); font-size: var(--whatiuse-type-label); font-weight: 540; text-overflow: ellipsis; white-space: nowrap; }
 
-.teum-metric__value {
+.whatiuse-metric__value {
   min-width: 64px;
-  color: var(--teum-fg-default);
+  color: var(--whatiuse-fg-default);
   font-size: clamp(24px, 3vw, 32px);
   font-variant-numeric: tabular-nums;
   font-weight: 610;
@@ -29,19 +29,19 @@
   line-height: 1.05;
 }
 
-.teum-metric__meta { display: flex; min-width: 0; flex-wrap: wrap; align-items: center; gap: 5px 9px; color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+.whatiuse-metric__meta { display: flex; min-width: 0; flex-wrap: wrap; align-items: center; gap: 5px 9px; color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); }
 
-.teum-metric__trend { display: inline-flex; min-width: 0; align-items: center; gap: 3px; white-space: nowrap; }
+.whatiuse-metric__trend { display: inline-flex; min-width: 0; align-items: center; gap: 3px; white-space: nowrap; }
 
-.teum-metric__trend svg { width: 12px; height: 12px; }
+.whatiuse-metric__trend svg { width: 12px; height: 12px; }
 
-.teum-metric__trend strong { color: var(--teum-fg-default); font-variant-numeric: tabular-nums; font-weight: 570; }
+.whatiuse-metric__trend strong { color: var(--whatiuse-fg-default); font-variant-numeric: tabular-nums; font-weight: 570; }
 
-.teum-metric__trend[data-sentiment="negative"] { color: var(--teum-fg-danger); }
+.whatiuse-metric__trend[data-sentiment="negative"] { color: var(--whatiuse-fg-danger); }
 
-.teum-metric__trend[data-sentiment="negative"] strong { color: inherit; }
+.whatiuse-metric__trend[data-sentiment="negative"] strong { color: inherit; }
 
-.teum-metric__visual {
+.whatiuse-metric__visual {
   display: grid;
   width: min(84px, 30%);
   min-width: 64px;
@@ -50,26 +50,42 @@
   align-items: end;
 }
 
-.teum-metric__visual .teum-sparkline { width: 100%; max-width: 100%; }
+.whatiuse-metric__visual .whatiuse-sparkline { width: 100%; max-width: 100%; }
 
-.teum-metric__placeholder {
+.whatiuse-metric__placeholder {
   display: inline-block;
   width: 84px;
   height: .78em;
   border-radius: 5px;
-  background: var(--teum-bg-subtle);
-  animation: teum-analytics-pulse 1.35s var(--teum-ease) infinite alternate;
+  background: var(--whatiuse-bg-subtle);
+  animation: whatiuse-analytics-pulse 1.35s var(--whatiuse-ease) infinite alternate;
 }
 
 @media (max-width: 640px) {
-.teum-metric { min-height: 92px; gap: 12px; }
+.whatiuse-metric { min-height: 92px; gap: 12px; }
 
-.teum-metric__value { font-size: 25px; }
+.whatiuse-metric__value { font-size: 25px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-metric__placeholder { animation: none; }
+.whatiuse-metric__placeholder { animation: none; }
 }
 
-@keyframes teum-analytics-pulse { from { opacity: .5; } to { opacity: 1; } }
+.whatiuse-metric {
+    min-height: 124px;
+    padding: 16px;
+    border-radius: 10px;
+    background: color-mix(in oklch, var(--whatiuse-bg-stage) 72%, transparent);
+    box-shadow: none;
+  }
+
+.whatiuse-metric__body { gap: 4px; }
+
+.whatiuse-metric__label { font-weight: 500; }
+
+.whatiuse-metric__value { font-size: clamp(26px, 3vw, 32px); font-weight: 620; }
+
+.whatiuse-metric__visual { width: min(112px, 34%); }
+
+@keyframes whatiuse-analytics-pulse { from { opacity: .5; } to { opacity: 1; } }
 }

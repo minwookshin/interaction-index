@@ -1,28 +1,28 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-pagination { display: flex; align-items: center; gap: 3px; }
+@layer whatiuse.components {
+.whatiuse-pagination { display: flex; align-items: center; gap: 3px; }
 
-.teum-pagination button,
-.teum-pagination > span { display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid transparent; border-radius: var(--teum-radius-sm); background: transparent; color: var(--teum-ink-secondary); font: inherit; font-size: var(--teum-type-label); font-variant-numeric: tabular-nums; }
+.whatiuse-pagination button,
+.whatiuse-pagination > span { display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid transparent; border-radius: var(--whatiuse-radius-sm); background: transparent; color: var(--whatiuse-ink-secondary); font: inherit; font-size: var(--whatiuse-type-label); font-variant-numeric: tabular-nums; }
 
-.teum-pagination button { cursor: pointer; transition: background-color var(--teum-hover-duration) ease, color var(--teum-hover-duration) ease, transform var(--teum-press-duration) var(--teum-ease-out, ease-out); }
+.whatiuse-pagination button { cursor: pointer; transition: background-color var(--whatiuse-hover-duration) ease, color var(--whatiuse-hover-duration) ease, transform var(--whatiuse-press-duration) var(--whatiuse-ease-out, ease-out); }
 
-.teum-pagination button[aria-current="page"] { border-color: var(--teum-border); background: var(--teum-control-surface); box-shadow: var(--teum-shadow-control); color: var(--teum-ink); font-weight: 550; }
+.whatiuse-pagination button[aria-current="page"] { border-color: var(--whatiuse-border); background: var(--whatiuse-control-surface); box-shadow: var(--whatiuse-shadow-control); color: var(--whatiuse-ink); font-weight: 550; }
 
-.teum-pagination button:focus-visible { outline: 2px solid var(--teum-focus-control); outline-offset: 2px; }
+.whatiuse-pagination button:focus-visible { outline: 2px solid var(--whatiuse-focus-control); outline-offset: 2px; }
 
-.teum-pagination button:disabled { color: var(--teum-ink-disabled); cursor: not-allowed; }
+.whatiuse-pagination button:disabled { color: var(--whatiuse-ink-disabled); cursor: not-allowed; }
 
-.teum-pagination svg { width: 13px; height: 13px; }
+.whatiuse-pagination svg { width: 13px; height: 13px; }
 
 @media (hover: hover) and (pointer: fine) {
-.teum-pagination button:not(:disabled):hover { background: var(--teum-hover); color: var(--teum-ink); }
+.whatiuse-pagination button:not(:disabled):hover { background: var(--whatiuse-hover); color: var(--whatiuse-ink); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-pagination button:not(:disabled):active { transform: none; }
+.whatiuse-pagination button:not(:disabled):active { transform: none; }
 }
 }

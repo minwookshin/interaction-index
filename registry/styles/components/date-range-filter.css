@@ -1,36 +1,36 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-date-range { width: min(520px, calc(100vw - 24px)); }
+@layer whatiuse.components {
+.whatiuse-date-range { width: min(376px, calc(100vw - 24px)); }
 
-.teum-date-range__heading {
+.whatiuse-date-range__heading {
   display: grid;
   gap: 2px;
   margin-bottom: 10px;
 }
 
-.teum-date-range__heading strong { font-size: var(--teum-type-ui); font-weight: 600; }
+.whatiuse-date-range__heading strong { font-size: var(--whatiuse-type-ui); font-weight: 600; }
 
-.teum-date-range__heading span { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+.whatiuse-date-range__heading span { color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); }
 
-.teum-date-range__presets {
+.whatiuse-date-range__presets {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
   margin: 0 -5px 12px;
 }
 
-.teum-date-range__fields {
+.whatiuse-date-range__fields {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
 }
 
-.teum-date-range__fields .teum-date-picker { width: 100%; }
+.whatiuse-date-range__fields .whatiuse-date-picker { width: 100%; }
 
-.teum-date-range__actions {
+.whatiuse-date-range__actions {
   display: grid;
   grid-template-columns: auto 1fr auto auto;
   align-items: center;
@@ -39,6 +39,40 @@
 }
 
 @media (max-width: 700px) {
-.teum-date-range__fields { grid-template-columns: minmax(0, 1fr); }
+.whatiuse-date-range__fields { grid-template-columns: minmax(0, 1fr); }
+}
+
+.whatiuse-date-range { width: min(376px, calc(100vw - 24px)); }
+
+.whatiuse-date-range__heading { min-height: 20px; margin-bottom: 7px; }
+
+.whatiuse-date-range__heading strong { font-size: var(--whatiuse-type-label); font-weight: 600; }
+
+.whatiuse-date-range__heading span { color: var(--whatiuse-fg-danger); }
+
+.whatiuse-date-range__presets {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+    margin: 0 0 10px;
+  }
+
+.whatiuse-date-range__presets .whatiuse-button {
+    width: 100%;
+    justify-content: center;
+    padding-inline: 6px;
+  }
+
+.whatiuse-date-range__presets .whatiuse-button[aria-pressed="true"] {
+    background: var(--whatiuse-selected);
+    color: var(--whatiuse-fg-default);
+  }
+
+.whatiuse-date-range__fields { gap: 8px; }
+
+.whatiuse-date-range__actions { gap: 4px; margin-top: 10px; }
+
+@media (max-width: 640px) {
+.whatiuse-date-range__presets { grid-template-columns: minmax(0, 1fr); }
 }
 }

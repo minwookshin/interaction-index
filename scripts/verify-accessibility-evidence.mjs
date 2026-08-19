@@ -13,9 +13,9 @@ const contracts = Object.values(evidence.contracts ?? {});
 if (evidence.releaseVersion !== packageJson.version) throw new Error(`[accessibility-evidence] expected ${packageJson.version}, received ${evidence.releaseVersion}`);
 if (evidence.status !== "passed" || evidence.failed !== 0 || evidence.flaky !== 0) throw new Error("[accessibility-evidence] the latest matrix is not clean");
 if (
-  evidence.routes?.public !== 69
+  evidence.routes?.public !== 70
   || evidence.routes?.landing !== 1
-  || evidence.routes?.documentation !== 13
+  || evidence.routes?.documentation !== 14
   || evidence.routes?.foundations !== 5
   || evidence.routes?.components !== 45
   || evidence.routes?.patterns !== 5

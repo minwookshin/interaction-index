@@ -96,7 +96,7 @@ test("authored task composes Action List, Shared Detail, and Undo Stack", async 
   await expect(page.getByRole("listitem").filter({ hasText: "Choose Undo" })).toHaveAttribute("data-complete", "true");
 });
 
-test("Teum Data compares, selects, mutates, and recovers the same collection", async ({ page }) => {
+test("whatiuse Data compares, selects, mutates, and recovers the same collection", async ({ page }) => {
   await page.goto("/#product-pilot");
   await page.getByRole("tab", { name: "Cycle" }).click();
 
@@ -118,7 +118,7 @@ test("Teum Data compares, selects, mutates, and recovers the same collection", a
   await expect(table.getByRole("row").filter({ hasText: "Verify registry consumer" })).toBeVisible();
 });
 
-test("Teum Data keeps keyboard selection instant under reduced motion", async ({ page, isMobile }) => {
+test("whatiuse Data keeps keyboard selection instant under reduced motion", async ({ page, isMobile }) => {
   test.skip(Boolean(isMobile), "The input-modality contract requires a physical keyboard path.");
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/#product-pilot");
@@ -154,7 +154,7 @@ test("Customer Directory keeps server state shareable and personal views persist
   await page.getByRole("button", { name: "Save view", exact: true }).click();
   await expect(page.getByRole("button", { name: "Saved views: Arc review" })).toBeVisible();
 
-  const persisted = await page.evaluate(() => window.localStorage.getItem("teum:data:customer-views:v1"));
+  const persisted = await page.evaluate(() => window.localStorage.getItem("whatiuse:data:customer-views:v1"));
   expect(persisted).toContain("Arc review");
   await page.reload({ waitUntil: "domcontentloaded" });
   const restoredView = page.getByRole("button", { name: "Saved views: Arc review" });
@@ -179,7 +179,7 @@ test("Audit Log virtualizes ten thousand rows and exposes export choices", async
   expect(renderedBefore).toBeLessThan(60);
   const firstRowBefore = await rows.nth(1).innerText();
 
-  const viewport = page.locator(".teum-data-table__virtual-viewport");
+  const viewport = page.locator(".whatiuse-data-table__virtual-viewport");
   await viewport.evaluate((element) => {
     element.scrollTop = element.scrollHeight / 2;
     element.dispatchEvent(new Event("scroll", { bubbles: true }));
@@ -189,6 +189,6 @@ test("Audit Log virtualizes ten thousand rows and exposes export choices", async
 
   await page.getByRole("button", { name: "Export", exact: true }).last().click();
   const menu = page.getByRole("menu");
-  await expect(menu.getByRole("menuitem", { name: "Export CSV" })).toBeVisible();
-  await expect(menu.getByRole("menuitem", { name: "Export JSON" })).toBeVisible();
+  await expect(menu.getByRole("menuitem", { name: "Export all rows as CSV" })).toBeVisible();
+  await expect(menu.getByRole("menuitem", { name: "Export all rows as JSON" })).toBeVisible();
 });

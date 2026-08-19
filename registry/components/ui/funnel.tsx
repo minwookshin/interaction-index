@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/components/funnel.css";
 import type { CSSProperties, HTMLAttributes, ReactNode } from "react";
 import { formatAnalyticsValue } from "../../lib/analytics";
@@ -24,15 +24,15 @@ export type FunnelProps = Omit<HTMLAttributes<HTMLOListElement>, "onSelect"> & {
 export function Funnel({ label, stages, formatter = (value) => formatAnalyticsValue(value), selectedId, onSelect, className, ...props }: FunnelProps) {
   const baseline = Math.max(1, stages[0]?.value ?? 0, ...stages.map((stage) => stage.value));
   return (
-    <ol className={cn("teum-funnel", className)} aria-label={label} {...props}>
+    <ol className={cn("whatiuse-funnel", className)} aria-label={label} {...props}>
       {stages.map((stage, index) => {
         const previous = stages[index - 1]?.value;
         const conversion = index === 0 || !previous ? null : stage.value / previous * 100;
         const width = Math.max(0.08, Math.min(1, stage.value / baseline));
         const body = <>
-          <span className="teum-funnel__heading"><strong>{stage.label}</strong><b>{formatter(stage.value, stage)}</b></span>
-          <span className="teum-funnel__track" aria-hidden="true"><i style={{ "--teum-funnel-progress": width } as CSSProperties} /></span>
-          <span className="teum-funnel__meta">{conversion === null ? "Entry" : `${conversion.toFixed(1)}% from previous`}{stage.detail && <small>{stage.detail}</small>}</span>
+          <span className="whatiuse-funnel__heading"><strong>{stage.label}</strong><b>{formatter(stage.value, stage)}</b></span>
+          <span className="whatiuse-funnel__track" aria-hidden="true"><i style={{ "--whatiuse-funnel-progress": width } as CSSProperties} /></span>
+          <span className="whatiuse-funnel__meta">{conversion === null ? "Entry" : `${conversion.toFixed(1)}% from previous`}{stage.detail && <small>{stage.detail}</small>}</span>
         </>;
         return <li key={stage.id}>{onSelect ? <button type="button" aria-pressed={stage.id === selectedId} onClick={() => onSelect(stage)}>{body}</button> : <div>{body}</div>}</li>;
       })}

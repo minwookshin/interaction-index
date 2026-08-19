@@ -25,8 +25,8 @@ test("installation opens with verified Vite, Next.js, and update paths", async (
   await expect(quickstart.getByText("Next.js 16.3.1", { exact: false })).toBeVisible();
   await expect(quickstart.getByText("Registry update — dry-run", { exact: false })).toBeVisible();
 
-  await expect(page.locator("#vite").getByText("npx shadcn@4.18.0 add @teum-pinned/button", { exact: true })).toBeVisible();
-  await expect(page.locator("#next").getByText("npx shadcn@4.18.0 add @teum-pinned/button", { exact: true })).toBeVisible();
+  await expect(page.locator("#vite").getByText("npx shadcn@4.18.0 add @whatiuse/button", { exact: true })).toBeVisible();
+  await expect(page.locator("#next").getByText("npx shadcn@4.18.0 add @whatiuse/button", { exact: true })).toBeVisible();
   await expect(page.locator("#update").getByText("--dry-run", { exact: false })).toBeVisible();
 
   const overflowingCodeBlocks = await page.locator(".public-doc-code pre").evaluateAll((blocks) =>
@@ -46,7 +46,7 @@ test("desktop navigation disclosures and theme persistence work", async ({ page,
   await page.goto("/#installation");
 
   const navigation = page.getByRole("complementary", { name: "Design system navigation" });
-  const components = navigation.getByRole("button", { name: /^Components \d+$/ });
+  const components = navigation.getByRole("button", { name: "Components", exact: true });
   await expect(components).toHaveAttribute("aria-expanded", "false");
   await components.click();
   await expect(page.getByRole("region", { name: "Component catalog" })).toBeVisible();
@@ -94,11 +94,11 @@ test("component reference exposes a real registry item and compiler-derived prim
   await page.goto("/#field/system-api");
   await expect(page).toHaveTitle("whatiuse");
   await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /Accessible form structure/);
-  await expect(page.getByText("npx shadcn@4.18.0 add @teum-pinned/field", { exact: true })).toBeVisible();
+  await expect(page.getByText("npx shadcn@4.18.0 add @whatiuse/field", { exact: true })).toBeVisible();
   const summary = page.getByRole("region", { name: "Field & Fieldset reference summary" });
   await expect(summary.getByText("Primary export")).toBeVisible();
   await expect(summary.getByText("Field", { exact: true })).toBeVisible();
-  await expect(summary.getByText("@teum-pinned/field", { exact: true })).toBeVisible();
+  await expect(summary.getByText("@whatiuse/field", { exact: true })).toBeVisible();
 });
 
 test("mobile navigation opens, routes, and closes", async ({ page, isMobile }) => {
@@ -108,7 +108,7 @@ test("mobile navigation opens, routes, and closes", async ({ page, isMobile }) =
   await page.getByRole("button", { name: "Open navigation" }).click();
   const navigation = page.getByRole("complementary", { name: "Design system navigation" });
   await expect(navigation).toHaveAttribute("data-open", "true");
-  const components = navigation.getByRole("button", { name: /^Components \d+$/ });
+  const components = navigation.getByRole("button", { name: "Components", exact: true });
   if (await components.getAttribute("aria-expanded") === "false") await components.click();
   await page.getByRole("link", { name: "Button", exact: true }).click();
   await expect(page.getByRole("heading", { level: 1, name: "Button" })).toBeVisible();

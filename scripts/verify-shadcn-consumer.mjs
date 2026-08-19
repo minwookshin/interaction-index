@@ -38,7 +38,7 @@ const results = [];
 
 try {
   for (const matrix of matrices) {
-    const fixture = await createExampleFixture("quickstart-vite", `teum-vite-${matrix.react.split(".")[0]}-`);
+    const fixture = await createExampleFixture("quickstart-vite", `whatiuse-vite-${matrix.react.split(".")[0]}-`);
     try {
       const fixturePackagePath = resolve(fixture, "package.json");
       const fixturePackage = JSON.parse(await readFile(fixturePackagePath, "utf8"));
@@ -54,7 +54,7 @@ try {
       for (const path of [
         "src/components/ui/button.tsx",
         "src/lib/cn.ts",
-        "src/styles/teum-base.css",
+        "src/styles/whatiuse-base.css",
         "src/styles/components/button.css",
       ]) {
         await access(resolve(fixture, path)).catch(() => {
@@ -76,8 +76,8 @@ try {
 
       const builtCss = await readFilesContaining(resolve(fixture, "dist/assets"), /\.css$/);
       const builtJavaScript = await readFilesContaining(resolve(fixture, "dist/assets"), /\.js$/);
-      if (!builtCss.includes(".teum-button") || !/--teum-radius-control:\s*9px/.test(builtCss)) {
-        throw new Error(`[vite-adoption] ${matrix.label} build omitted Teum Button CSS or the semantic override`);
+      if (!builtCss.includes(".whatiuse-button") || !/--whatiuse-radius-control:\s*9px/.test(builtCss)) {
+        throw new Error(`[vite-adoption] ${matrix.label} build omitted whatiuse Button CSS or the semantic override`);
       }
       if (!builtCss.includes(':root[data-theme="dark"]') && !builtCss.includes(":root[data-theme=dark]")) {
         throw new Error(`[vite-adoption] ${matrix.label} build omitted the dark theme contract`);
@@ -87,8 +87,8 @@ try {
       }
 
       if (matrix.label === "React 19") {
-        await run(shadcnExecutable, ["add", "@teum-pinned/teum-tailwind", "-y", "-c", fixture]);
-        await access(resolve(fixture, "src/styles/teum-tailwind.css"));
+        await run(shadcnExecutable, ["add", "@whatiuse/whatiuse-tailwind", "-y", "-c", fixture]);
+        await access(resolve(fixture, "src/styles/whatiuse-tailwind.css"));
       }
 
       const elapsedMs = Math.round(performance.now() - startedAt);
@@ -102,7 +102,7 @@ try {
         productionBuild: "passed",
         plainCss: true,
         themeToggle: true,
-        semanticOverride: "--teum-radius-control: 9px",
+        semanticOverride: "--whatiuse-radius-control: 9px",
       });
       console.log(`[vite-adoption] ${matrix.label} installed, customized, type-checked, and built in ${elapsedMs} ms`);
     } finally {
@@ -110,7 +110,7 @@ try {
     }
   }
 
-  if (process.env.TEUM_QUICKSTART_EVIDENCE === "1") {
+  if (process.env.WHATIUSE_QUICKSTART_EVIDENCE === "1") {
     await writeFile(evidencePath, `${JSON.stringify({
       schemaVersion: 2,
       generatedBy: "scripts/verify-shadcn-consumer.mjs",
@@ -124,15 +124,15 @@ try {
       humanNoviceTimingClaim: false,
       results,
       commands: [
-        `npx ${shadcnCli} registry add @teum-pinned=${packageJson.homepage}/r/v/${packageJson.version}/{name}.json`,
-        `npx ${shadcnCli} add @teum-pinned/button`,
+        `npx ${shadcnCli} registry add @whatiuse=${packageJson.homepage}/r/v/${packageJson.version}/{name}.json`,
+        `npx ${shadcnCli} add @whatiuse/button`,
         "npm run typecheck",
         "npm run build",
       ],
       verifiedFiles: [
         "src/components/ui/button.tsx",
         "src/lib/cn.ts",
-        "src/styles/teum-base.css",
+        "src/styles/whatiuse-base.css",
         "src/styles/components/button.css",
       ],
       optionalTailwindBridgeVerified: true,

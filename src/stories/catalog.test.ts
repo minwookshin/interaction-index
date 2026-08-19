@@ -11,7 +11,7 @@ import * as overlays from "./overlays.stories";
 
 type StoryExport = {
   parameters?: {
-    teum?: {
+    whatiuse?: {
       componentId?: ComponentId;
     };
   };
@@ -22,7 +22,7 @@ const modules = [controls, dataDisplay, disclosure, feedback, interaction, navig
 function storyComponentIds() {
   return modules.flatMap((module) =>
     Object.values(module)
-      .map((story) => (story as StoryExport).parameters?.teum?.componentId)
+      .map((story) => (story as StoryExport).parameters?.whatiuse?.componentId)
       .filter((id): id is ComponentId => Boolean(id)),
   );
 }

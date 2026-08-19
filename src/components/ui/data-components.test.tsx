@@ -31,7 +31,7 @@ const columns: readonly DataTableColumn<Issue>[] = [
   { id: "status", header: "Status", accessor: "status" },
 ];
 
-describe("Teum Data components", () => {
+describe("whatiuse Data components", () => {
   it("sorts semantic rows and keeps controlled selection stable", async () => {
     const user = userEvent.setup();
 
@@ -227,7 +227,7 @@ describe("Teum Data components", () => {
       />,
     );
     await user.click(screen.getByRole("button", { name: "Export" }));
-    await user.click(await screen.findByRole("menuitem", { name: "Export selected CSV" }));
+    await user.click(await screen.findByRole("menuitem", { name: "Export selected rows as CSV" }));
     expect(onExport).toHaveBeenCalledWith(expect.objectContaining({ fileName: "issues-selected.csv", rowCount: 1 }), "selected");
     expect(screen.getByText("1 rows exported as CSV")).toBeInTheDocument();
   });

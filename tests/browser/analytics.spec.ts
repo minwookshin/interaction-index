@@ -8,10 +8,10 @@ test.beforeEach(async ({ page }) => {
 test("Analytics exposes one renderer family and three complete product recipes", async ({ page }) => {
   await expect(page.getByRole("region", { name: "Analytics renderer family" })).toBeVisible();
   await expect(page.getByRole("region", { name: "SaaS Overview recipe" })).toBeVisible();
-  await expect(page.getByRole("region", { name: "Product Usage recipe" })).toBeVisible();
+  await expect(page.getByRole("region", { name: "Usage and Adoption Explorer" })).toBeVisible();
   await expect(page.getByRole("region", { name: "Conversion and Retention recipe" })).toBeVisible();
   await expect(page.getByRole("table", { name: "whatiuse Analytics product primitives" })).toBeVisible();
-  await expect(page.getByText("@teum-pinned/teum-analytics", { exact: false })).toBeVisible();
+  await expect(page.getByText("@whatiuse/whatiuse-analytics", { exact: false })).toBeVisible();
 });
 
 test("Renderer family shares keyboard inspection, semantic data, and source-owned chart states", async ({ page, isMobile }) => {
@@ -46,22 +46,28 @@ test("SaaS Overview changes range without changing the recipe geometry", async (
   expect(Math.abs((initialBox?.height ?? 0) - (finalBox?.height ?? 0))).toBeLessThanOrEqual(1);
 });
 
-test("Product Usage keeps transient chart inspection local", async ({ page, isMobile }) => {
+test("Usage and Adoption keeps transient chart inspection local", async ({ page, isMobile }) => {
   test.skip(Boolean(isMobile), "The keyboard inspection proof requires a physical keyboard path.");
-  const recipe = page.getByRole("region", { name: "Product Usage recipe" });
+  const recipe = page.getByRole("region", { name: "Usage and Adoption Explorer" });
   const usage = recipe.getByRole("group", { name: "Active usage. 14 data points." });
-  await expect(recipe.locator(".teum-chart__tooltip")).toHaveCount(0);
+  const chart = usage.locator("xpath=ancestor::figure[contains(@class, 'whatiuse-chart')]");
+  const inspection = chart.locator(".whatiuse-analytics-inspection");
+
+  await expect(recipe.locator(".whatiuse-chart__tooltip")).toHaveCount(0);
+  await expect(inspection).toContainText("Aug 16");
+  await expect(inspection).not.toHaveAttribute("data-active", "true");
   await usage.focus();
   await page.keyboard.press("Home");
 
-  await expect(recipe.locator(".teum-analytics-recipe__header small")).toHaveText("Aug 12");
-  await expect(recipe.locator(".teum-chart__tooltip")).toHaveCount(1);
-  await expect(recipe.locator(".teum-chart__tooltip").first()).toContainText("Aug 3");
+  await expect(inspection).toHaveAttribute("data-active", "true");
+  await expect(inspection).toContainText("Aug 3");
+  await expect(inspection).toContainText("Daily active users");
+  await expect(chart.locator(".whatiuse-sr-only[aria-live='polite']")).toContainText("Aug 3");
   await expect(page.locator("html")).toHaveAttribute("data-input-modality", "keyboard");
 
-  await recipe.getByRole("button", { name: /Search latency incident/ }).click();
-  await expect(recipe.locator(".teum-analytics-recipe__header small")).toHaveText("Aug 15");
-  await expect(recipe.getByRole("button", { name: /Search latency incident/ })).toHaveAttribute("aria-pressed", "true");
+  await page.keyboard.press("Escape");
+  await expect(inspection).not.toHaveAttribute("data-active", "true");
+  await expect(recipe.getByRole("table", { name: "Usage accounts" })).toBeVisible();
 });
 
 test("Chart legend filtering keeps one visible series and one exact data table", async ({ page }) => {
@@ -104,11 +110,11 @@ test("Analytics honors reduced motion and contains overflow inside its data surf
   await page.reload();
   await expect(page.getByRole("heading", { level: 1, name: "Analytics" })).toBeVisible({ timeout: 15_000 });
 
-  const goalIndicator = page.locator(".teum-goal__indicator").first();
+  const goalIndicator = page.locator(".whatiuse-goal__indicator").first();
   await expect(goalIndicator).toBeVisible();
   expect(await goalIndicator.evaluate((element) => getComputedStyle(element).transitionDuration)).toBe("0s");
 
-  for (const recipe of await page.locator(".teum-analytics-recipe").all()) {
+  for (const recipe of await page.locator(".whatiuse-analytics-recipe").all()) {
     const dimensions = await recipe.evaluate((element) => ({ clientWidth: element.clientWidth, scrollWidth: element.scrollWidth }));
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1);
   }

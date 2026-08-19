@@ -65,7 +65,7 @@ async function stopChild(child) {
 async function installObservers(context) {
   await context.addInitScript(() => {
     const store = { cls: 0, lcp: 0, longTasks: [] };
-    window.__teumRuntimePerformance = store;
+    window.__whatiuseRuntimePerformance = store;
     try {
       new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
@@ -102,7 +102,7 @@ async function pageMetrics(browser, url, heading) {
   await page.getByRole("heading", { level: 1, name: heading }).waitFor({ state: "visible" });
   await settle(page);
   const metrics = await page.evaluate(() => {
-    const store = window.__teumRuntimePerformance ?? { cls: 0, lcp: 0, longTasks: [] };
+    const store = window.__whatiuseRuntimePerformance ?? { cls: 0, lcp: 0, longTasks: [] };
     const fcp = performance.getEntriesByName("first-contentful-paint")[0]?.startTime ?? 0;
     const navigation = performance.getEntriesByType("navigation")[0];
     const resources = performance.getEntriesByType("resource");
@@ -155,7 +155,7 @@ async function interactionMetrics(browser, baseUrl) {
     };
     inspect();
   }));
-  const longTasks = await page.evaluate(() => window.__teumRuntimePerformance?.longTasks ?? []);
+  const longTasks = await page.evaluate(() => window.__whatiuseRuntimePerformance?.longTasks ?? []);
   await context.close();
   return {
     sharedDetailSelectionMs: Math.round(selectionMs),
@@ -181,18 +181,18 @@ try {
   await waitForServer(baseUrl, preview, previewOutput);
   browser = await chromium.launch({ headless: true });
   const [landing, documentation] = await Promise.all([
-    pageMetrics(browser, `${baseUrl}/`, "Components for product interfaces."),
+    pageMetrics(browser, `${baseUrl}/`, "components i use."),
     pageMetrics(browser, `${baseUrl}/#installation`, "Installation"),
   ]);
 
   const transitionContext = await browser.newContext({ viewport: { width: 1280, height: 720 }, reducedMotion: "reduce" });
   const transitionPage = await transitionContext.newPage();
   await transitionPage.goto(`${baseUrl}/`, { waitUntil: "networkidle" });
-  await transitionPage.getByRole("heading", { level: 1, name: "Components for product interfaces." }).waitFor({ state: "visible" });
-  await transitionPage.evaluate(() => { window.__teumTransitionStartedAt = performance.now(); });
+  await transitionPage.getByRole("heading", { level: 1, name: "components i use." }).waitFor({ state: "visible" });
+  await transitionPage.evaluate(() => { window.__whatiuseTransitionStartedAt = performance.now(); });
   await transitionPage.getByRole("link", { name: "Open documentation" }).click();
   await transitionPage.getByRole("heading", { level: 1, name: "Installation" }).waitFor({ state: "visible" });
-  const documentationTransitionMs = Math.round(await transitionPage.evaluate(() => performance.now() - window.__teumTransitionStartedAt));
+  const documentationTransitionMs = Math.round(await transitionPage.evaluate(() => performance.now() - window.__whatiuseTransitionStartedAt));
   await transitionContext.close();
 
   const interactions = await interactionMetrics(browser, baseUrl);

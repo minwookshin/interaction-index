@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import { describe, expect, it, vi } from "vitest";
@@ -29,16 +29,18 @@ const series: readonly AnalyticsSeries[] = [
   { id: "previous", label: "Previous", tone: "secondary", lineStyle: "dashed" },
 ];
 
-describe("Teum Analytics components", () => {
+describe("whatiuse Analytics components", () => {
   it("shares one keyboard inspection state with its live text and drill-down", async () => {
     const user = userEvent.setup();
     const onActivate = vi.fn();
-    render(<Chart title="Revenue" data={data} series={series} onDatumActivate={onActivate} />);
+    const { container } = render(<Chart title="Revenue" data={data} series={series} onDatumActivate={onActivate} />);
 
     const plot = screen.getByRole("group", { name: "Revenue. 3 data points." });
     plot.focus();
     await user.keyboard("{ArrowLeft}");
     expect(screen.getByText("Feb. Current 14, Previous 11.")).toBeInTheDocument();
+    expect(container.querySelector(".whatiuse-analytics-inspection")).toHaveTextContent("FebCurrent14Previous11");
+    expect(container.querySelector(".whatiuse-chart__tooltip")).not.toBeInTheDocument();
     await user.keyboard("{Home}");
     expect(screen.getByText("Jan. Current 10, Previous 8.")).toBeInTheDocument();
     await user.keyboard("{End}{Enter}");
@@ -51,9 +53,9 @@ describe("Teum Analytics components", () => {
     const user = userEvent.setup();
     render(<Chart title="Revenue" data={data} series={series} />);
     const table = screen.getByRole("table", { name: "Revenue data" });
-    expect(table.parentElement).toHaveClass("teum-chart__table--visually-hidden");
+    expect(table.parentElement).toHaveClass("whatiuse-chart__table--visually-hidden");
     await user.click(screen.getByRole("button", { name: "View data" }));
-    expect(table.parentElement).not.toHaveClass("teum-chart__table--visually-hidden");
+    expect(table.parentElement).not.toHaveClass("whatiuse-chart__table--visually-hidden");
     expect(within(table).getByRole("rowheader", { name: "Mar" })).toBeInTheDocument();
 
     const current = screen.getByRole("button", { name: "Current" });
@@ -63,6 +65,52 @@ describe("Teum Analytics components", () => {
     expect(current).toHaveAttribute("aria-disabled", "true");
     await user.click(current);
     expect(current).toHaveAttribute("aria-pressed", "true");
+  });
+
+  it("coalesces repeated pointer inspection into one frame and cancels stale work on leave", () => {
+    const onActiveIndexChange = vi.fn();
+    const frames = new Map<number, FrameRequestCallback>();
+    let nextFrame = 0;
+    const requestFrame = vi.spyOn(window, "requestAnimationFrame").mockImplementation((callback) => {
+      nextFrame += 1;
+      frames.set(nextFrame, callback);
+      return nextFrame;
+    });
+    const cancelFrame = vi.spyOn(window, "cancelAnimationFrame").mockImplementation((id) => {
+      frames.delete(id);
+    });
+    render(<Chart title="Revenue" data={data} series={series} onActiveIndexChange={onActiveIndexChange} />);
+
+    const plot = screen.getByRole("group", { name: "Revenue. 3 data points." });
+    vi.spyOn(plot, "getBoundingClientRect").mockReturnValue({
+      x: 0,
+      y: 0,
+      top: 0,
+      right: 640,
+      bottom: 264,
+      left: 0,
+      width: 640,
+      height: 264,
+      toJSON: () => ({}),
+    });
+
+    fireEvent.pointerMove(plot, { clientX: 120 });
+    fireEvent.pointerMove(plot, { clientX: 120 });
+    expect(requestFrame).toHaveBeenCalledTimes(1);
+    expect(onActiveIndexChange).not.toHaveBeenCalled();
+
+    act(() => frames.get(1)?.(16));
+    expect(onActiveIndexChange).toHaveBeenCalledTimes(1);
+    expect(onActiveIndexChange).toHaveBeenLastCalledWith(0);
+
+    fireEvent.pointerMove(plot, { clientX: 520 });
+    expect(requestFrame).toHaveBeenCalledTimes(2);
+    fireEvent.pointerLeave(plot);
+    expect(cancelFrame).toHaveBeenCalledWith(2);
+    expect(onActiveIndexChange).toHaveBeenLastCalledWith(null);
+
+    requestFrame.mockRestore();
+    cancelFrame.mockRestore();
   });
 
   it("renders explicit loading and empty contracts", () => {
@@ -76,9 +124,9 @@ describe("Teum Analytics components", () => {
 
   it("renders grouped and stacked bars with an explicit error state", () => {
     const { container, rerender } = render(<Chart title="Revenue" data={data} series={series} type="bar" />);
-    expect(container.querySelectorAll(".teum-chart__bars rect")).toHaveLength(6);
+    expect(container.querySelectorAll(".whatiuse-chart__bars rect")).toHaveLength(6);
     rerender(<Chart title="Revenue" data={data} series={series} type="stacked-bar" />);
-    expect(container.querySelectorAll(".teum-chart__bars rect")).toHaveLength(6);
+    expect(container.querySelectorAll(".whatiuse-chart__bars rect")).toHaveLength(6);
     rerender(<Chart title="Revenue" data={data} series={series} error="Revenue could not be loaded." />);
     expect(screen.getByRole("alert")).toHaveTextContent("Revenue could not be loaded.");
   });
@@ -148,7 +196,7 @@ describe("Teum Analytics components", () => {
     expect(screen.getByLabelText("MRR comparison")).toHaveTextContent("50.0%");
     expect(screen.getByRole("progressbar", { name: "Revenue target" })).toHaveAttribute("aria-valuetext", "75 of 100");
     expect(screen.getByRole("img", { name: "Three-month MRR trend" })).toBeInTheDocument();
-    expect(document.querySelectorAll(".teum-sparkline[aria-hidden='true']")).toHaveLength(1);
+    expect(document.querySelectorAll(".whatiuse-sparkline[aria-hidden='true']")).toHaveLength(1);
   });
 
   it("uses native pressed controls when a recipe makes lists selectable", async () => {

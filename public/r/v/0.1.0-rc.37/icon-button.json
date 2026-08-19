@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icon-button",
+  "title": "Icon Button",
+  "description": "Accessible square icon action with tooltip support.",
+  "registryDependencies": [
+    "@whatiuse/button",
+    "@whatiuse/tooltip"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/icon-button.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/icon-button.css\";\nimport type { ReactNode } from \"react\";\nimport { Button, type ButtonProps } from \"./button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"./tooltip\";\nimport { cn } from \"../../lib/cn\";\n\nexport type IconButtonProps = Omit<ButtonProps, \"children\" | \"leadingIcon\" | \"trailingIcon\"> & {\n  children?: ReactNode;\n  \"aria-label\": string;\n  tooltip?: string;\n};\n\nexport function IconButton({ children, className, tooltip, ...props }: IconButtonProps) {\n  const button = (\n    <Button\n      className={cn(\"whatiuse-icon-button\", className)}\n      focusableWhenDisabled={Boolean(tooltip) && props.disabled}\n      {...props}\n    >\n      {children}\n    </Button>\n  );\n\n  if (!tooltip) return button;\n\n  return (\n    <Tooltip>\n      <TooltipTrigger render={button} />\n      <TooltipContent>{tooltip}</TooltipContent>\n    </Tooltip>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/icon-button.tsx"
+    },
+    {
+      "path": "registry/styles/components/icon-button.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-icon-button { width: var(--whatiuse-control-height-md); padding: 0; }\n\n.whatiuse-icon-button.whatiuse-button--small { width: var(--whatiuse-control-height-sm); padding: 0; }\n\n.whatiuse-icon-button.whatiuse-button--large { width: var(--whatiuse-control-height-lg); padding: 0; }\n\n.whatiuse-icon-button .whatiuse-button__content { display: grid; width: 100%; height: 100%; place-items: center; }\n\n.whatiuse-icon-button .whatiuse-button__content > span:last-child { display: grid; width: 100%; height: 100%; place-items: center; line-height: 0; }\n\n.whatiuse-icon-button svg { width: calc(var(--whatiuse-icon-size) + 1px); height: calc(var(--whatiuse-icon-size) + 1px); transform: none; }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/icon-button.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/icon-button",
+      "useWhen": "A familiar icon can represent a frequent action in a constrained area.",
+      "avoidWhen": "The icon is ambiguous without explanation. Prefer a labelled Button."
+    }
+  },
+  "type": "registry:ui"
+}

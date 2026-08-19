@@ -36,10 +36,10 @@ export function BreadcrumbPathPreview() {
   };
 
   return (
-    <div className="teum-breadcrumb-preview">
+    <div className="whatiuse-breadcrumb-preview">
       <Breadcrumbs label="Component preview breadcrumb" items={breadcrumbPaths[level]} onClick={navigate} />
       {level !== "refresh" && <Button variant="quiet" size="small" onClick={() => setLevel("refresh")}>Return to issue</Button>}
-      <span className="teum-sr-only" role="status" aria-live="polite">Current location: {breadcrumbPaths[level].at(-1)?.label}</span>
+      <span className="whatiuse-sr-only" role="status" aria-live="polite">Current location: {breadcrumbPaths[level].at(-1)?.label}</span>
     </div>
   );
 }
@@ -67,7 +67,7 @@ export function FilterCollapsiblePreview() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Collapsible className="teum-collapsible teum-filter-collapsible-preview" open={open} onOpenChange={setOpen}>
+    <Collapsible className="whatiuse-collapsible whatiuse-filter-collapsible-preview" open={open} onOpenChange={setOpen}>
       <CollapsibleTrigger>Advanced filter rules</CollapsibleTrigger>
       <CollapsibleContent>
         <span>State is ready</span>
@@ -115,12 +115,12 @@ export function ExportProgressPreview() {
   };
 
   return (
-    <div className="teum-export-progress-preview" data-state={state}>
+    <div className="whatiuse-export-progress-preview" data-state={state}>
       <Progress key={runKey} label={state === "complete" ? "Export complete" : "Export components"} value={value} />
       <Button variant="secondary" size="small" disabled={state === "running"} onClick={run}>
         {state === "complete" ? "Run again" : state === "running" ? "Exporting" : "Run export"}
       </Button>
-      <span className="teum-sr-only" role="status" aria-live="polite">{state === "complete" ? "Export complete" : ""}</span>
+      <span className="whatiuse-sr-only" role="status" aria-live="polite">{state === "complete" ? "Export complete" : ""}</span>
     </div>
   );
 }
@@ -129,7 +129,7 @@ export function DismissibleAlertPreview() {
   const [visible, setVisible] = useState(true);
 
   return (
-    <div className="teum-alert-preview">
+    <div className="whatiuse-alert-preview">
       {visible ? (
         <Alert title="Import complete" onDismiss={() => setVisible(false)} dismissLabel="Dismiss import confirmation">
           40 components were added.
@@ -156,7 +156,7 @@ export function EmptyCollectionPreview() {
   }
 
   return (
-    <section className="product-context product-context--toolbar teum-empty-state-result" aria-label="Created component example">
+    <section className="product-context product-context--toolbar whatiuse-empty-state-result" aria-label="Created component example">
       <div className="product-context__identity">
         <span className="product-context__icon"><CheckCircle weight="fill" aria-hidden="true" /></span>
         <div><strong>Button</strong><span>Added to the collection</span></div>

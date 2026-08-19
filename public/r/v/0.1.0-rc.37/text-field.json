@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text-field",
+  "title": "Text Field",
+  "description": "Dense labelled input with hints, validation, and adornments.",
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/text-field.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/text-field.css\";\nimport { useId, type ComponentPropsWithRef, type ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type TextFieldProps = Omit<ComponentPropsWithRef<\"input\">, \"size\"> & {\n  label?: string;\n  description?: string;\n  error?: string;\n  leading?: ReactNode;\n  trailing?: ReactNode;\n  fieldClassName?: string;\n};\n\nexport function TextField({\n  id: providedId,\n  label,\n  description,\n  error,\n  leading,\n  trailing,\n  className,\n  fieldClassName,\n  ref,\n  ...props\n}: TextFieldProps) {\n  const generatedId = useId();\n  const id = providedId ?? generatedId;\n  const descriptionId = description ? `${id}-description` : undefined;\n  const errorId = error ? `${id}-error` : undefined;\n  const describedBy = [props[\"aria-describedby\"], descriptionId, errorId].filter(Boolean).join(\" \") || undefined;\n\n  return (\n    <div className={cn(\"whatiuse-field\", fieldClassName)} data-invalid={Boolean(error) || undefined}>\n      {label && <label className=\"whatiuse-field__label\" htmlFor={id}>{label}</label>}\n      <div className=\"whatiuse-field__control\">\n        {leading && <span className=\"whatiuse-field__adornment\" aria-hidden=\"true\">{leading}</span>}\n        <input\n          ref={ref}\n          id={id}\n          className={cn(\"whatiuse-input\", className)}\n          aria-invalid={Boolean(error) || undefined}\n          aria-describedby={describedBy}\n          {...props}\n        />\n        {trailing && <span className=\"whatiuse-field__adornment\">{trailing}</span>}\n      </div>\n      {description && <div id={descriptionId} className=\"whatiuse-field__description\">{description}</div>}\n      {error && <div id={errorId} className=\"whatiuse-field__error\">{error}</div>}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/text-field.tsx"
+    },
+    {
+      "path": "registry/styles/components/text-field.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-field { display: grid; min-width: 0; gap: 6px; }\n\n.whatiuse-field__label { color: var(--whatiuse-ink); font-size: 12px; font-weight: 550; }\n\n.whatiuse-field__control { display: flex; align-items: center; height: var(--whatiuse-control-height-md); overflow: hidden; border: 1px solid var(--whatiuse-border); border-radius: var(--whatiuse-radius-control); background: var(--whatiuse-control-surface); box-shadow: var(--whatiuse-shadow-control); transition: border-color var(--whatiuse-fast), box-shadow var(--whatiuse-fast); }\n\n.whatiuse-field[data-invalid] .whatiuse-field__control { border-color: color-mix(in oklch, var(--whatiuse-fg-danger) 46%, var(--whatiuse-control-border)); box-shadow: 0 0 0 2px color-mix(in oklch, var(--whatiuse-fg-danger) 11%, transparent); }\n\n.whatiuse-input { width: 100%; min-width: 0; height: 100%; padding: 0 9px; border: 0; outline: 0; background: transparent; color: var(--whatiuse-ink); font-size: 13.5px; }\n\n.whatiuse-input::placeholder { color: var(--whatiuse-fg-subtle); }\n\n.whatiuse-input:disabled { background: var(--whatiuse-bg-subtle); color: var(--whatiuse-fg-disabled); cursor: not-allowed; }\n\n.whatiuse-input:read-only { color: var(--whatiuse-fg-muted); }\n\n.whatiuse-field__adornment { display: inline-flex; align-items: center; padding: 0 8px; color: var(--whatiuse-fg-subtle); }\n\n.whatiuse-field__adornment + .whatiuse-input { padding-left: 0; }\n\n.whatiuse-field__adornment svg { width: 14px; height: 14px; }\n\n.whatiuse-field__adornment kbd { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; padding: 1px 4px; border: 1px solid var(--whatiuse-border); border-radius: 3px; background: #fafafa; color: #7b7b7b; font-family: inherit; font-size: 9px; line-height: 1; white-space: nowrap; }\n\n.whatiuse-field__description,\n.whatiuse-field__error { color: var(--whatiuse-ink-tertiary); font-size: 11.5px; line-height: 1.45; }\n\n.whatiuse-field__error { color: var(--whatiuse-fg-danger); font-weight: 520; }\n\n@media (forced-colors: active) {\n.whatiuse-field__control { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }\n}\n\n.whatiuse-field__adornment kbd { background: var(--whatiuse-subtle); color: var(--whatiuse-ink-secondary); }\n\n:root[data-theme=\"dark\"] .whatiuse-input:disabled { background: rgb(255 255 255 / 0.025); color: var(--whatiuse-ink-disabled); }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/text-field.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/text-field",
+      "useWhen": "The user enters a short, unstructured value.",
+      "avoidWhen": "A finite option set can be selected with less effort."
+    }
+  },
+  "type": "registry:ui"
+}

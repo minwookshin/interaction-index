@@ -1,43 +1,43 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-dialog__backdrop { position: fixed; inset: 0; z-index: var(--teum-layer-modal-backdrop); background: var(--teum-bg-scrim); backdrop-filter: blur(1.5px); transition: opacity var(--teum-enter-duration) var(--teum-ease-out); }
+@layer whatiuse.components {
+.whatiuse-dialog__backdrop { position: fixed; inset: 0; z-index: var(--whatiuse-layer-modal-backdrop); background: var(--whatiuse-bg-scrim); backdrop-filter: blur(1.5px); transition: opacity var(--whatiuse-enter-duration) var(--whatiuse-ease-out); }
 
-.teum-dialog__backdrop[data-starting-style],
-.teum-dialog__backdrop[data-ending-style] { opacity: 0; }
+.whatiuse-dialog__backdrop[data-starting-style],
+.whatiuse-dialog__backdrop[data-ending-style] { opacity: 0; }
 
-.teum-dialog__backdrop[data-ending-style] { transition-duration: var(--teum-exit-duration); }
+.whatiuse-dialog__backdrop[data-ending-style] { transition-duration: var(--whatiuse-exit-duration); }
 
-.teum-dialog { position: fixed; z-index: var(--teum-layer-modal); top: 50%; left: 50%; width: min(390px, calc(100vw - 32px)); padding: 16px; border-radius: var(--teum-radius-overlay); background: var(--teum-bg-modal); box-shadow: var(--teum-shadow-modal); outline: 0; transform: translate(-50%, -50%); transition: opacity var(--teum-enter-duration) var(--teum-ease-out), transform var(--teum-enter-duration) var(--teum-ease-out); }
+.whatiuse-dialog { position: fixed; z-index: var(--whatiuse-layer-modal); top: 50%; left: 50%; width: min(390px, calc(100vw - 32px)); padding: 16px; border-radius: var(--whatiuse-radius-overlay); background: var(--whatiuse-bg-modal); box-shadow: var(--whatiuse-shadow-modal); outline: 0; transform: translate(-50%, -50%); transition: opacity var(--whatiuse-enter-duration) var(--whatiuse-ease-out), transform var(--whatiuse-enter-duration) var(--whatiuse-ease-out); }
 
-.teum-dialog[data-starting-style] { opacity: 0; transform: translate(-50%, calc(-50% + 4px)) scale(0.99); }
+.whatiuse-dialog[data-starting-style] { opacity: 0; transform: translate(-50%, calc(-50% + 2px)) scale(0.99); }
 
-.teum-dialog[data-ending-style] { opacity: 0; transform: translate(-50%, calc(-50% + 2px)) scale(0.995); transition-duration: var(--teum-exit-duration); }
+.whatiuse-dialog[data-ending-style] { opacity: 0; transform: translate(-50%, calc(-50% + 1px)) scale(0.995); transition-duration: var(--whatiuse-exit-duration); }
 
-.teum-dialog__close { position: absolute; top: 8px; right: 8px; }
+.whatiuse-dialog__close { position: absolute; top: 8px; right: 8px; }
 
-.teum-dialog__header { display: grid; gap: 7px; padding-right: 28px; }
+.whatiuse-dialog__header { display: grid; gap: 7px; padding-right: 28px; }
 
-.teum-dialog__header [data-slot="dialog-title"],
-.teum-dialog__header h2 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.015em; }
+.whatiuse-dialog__header [data-slot="dialog-title"],
+.whatiuse-dialog__header h2 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.015em; }
 
-.teum-dialog__header [data-slot="dialog-description"],
-.teum-dialog__header p { margin: 0; color: var(--teum-ink-secondary); font-size: 13px; line-height: 1.55; }
+.whatiuse-dialog__header [data-slot="dialog-description"],
+.whatiuse-dialog__header p { margin: 0; color: var(--whatiuse-ink-secondary); font-size: 13px; line-height: 1.55; }
 
-.teum-dialog__footer { display: flex; justify-content: flex-end; gap: 6px; margin-top: 20px; padding-top: 0; border-top: 0; }
+.whatiuse-dialog__footer { display: flex; justify-content: flex-end; gap: 6px; margin-top: 20px; padding-top: 0; border-top: 0; }
 
-.teum-dialog { background: var(--teum-bg-modal); }
+.whatiuse-dialog { background: var(--whatiuse-bg-modal); }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-dialog,
-.teum-dialog__backdrop {
+.whatiuse-dialog,
+.whatiuse-dialog__backdrop {
     transition-property: opacity;
-    transition-duration: var(--teum-exit-duration);
+    transition-duration: var(--whatiuse-exit-duration);
   }
 
-.teum-dialog[data-starting-style],
-.teum-dialog[data-ending-style] { transform: translate(-50%, -50%); }
+.whatiuse-dialog[data-starting-style],
+.whatiuse-dialog[data-ending-style] { transform: translate(-50%, -50%); }
 }
 }

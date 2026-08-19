@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "data-state",
+  "title": "Data State",
+  "description": "Stable loading, empty, and error feedback for collection surfaces.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base",
+    "@whatiuse/spinner"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/data-state.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/data-state.css\";\nimport { MagnifyingGlass, WarningCircle } from \"@phosphor-icons/react\";\nimport type { HTMLAttributes, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\nimport { Spinner } from \"./spinner\";\n\nexport type DataStateProps = HTMLAttributes<HTMLDivElement> & {\n  state: \"loading\" | \"empty\" | \"error\";\n  title?: ReactNode;\n  description?: ReactNode;\n  action?: ReactNode;\n};\n\nexport function DataState({ state, title, description, action, className, ...props }: DataStateProps) {\n  const defaults = state === \"loading\"\n    ? { title: \"Loading data\", description: \"This view will update when the data is ready.\" }\n    : state === \"error\"\n      ? { title: \"Data could not be loaded\", description: \"Try again or change the active filters.\" }\n      : { title: \"No results\", description: \"Try changing the search or active filters.\" };\n  return (\n    <div\n      className={cn(\"whatiuse-data-state\", className)}\n      data-state={state}\n      role={state === \"error\" ? \"alert\" : \"status\"}\n      aria-live={state === \"loading\" ? \"polite\" : undefined}\n      {...props}\n    >\n      <span className=\"whatiuse-data-state__icon\" aria-hidden=\"true\">\n        {state === \"loading\" ? <Spinner label=\"Loading\" role=\"presentation\" aria-hidden=\"true\" /> : state === \"error\" ? <WarningCircle /> : <MagnifyingGlass />}\n      </span>\n      <strong>{title ?? defaults.title}</strong>\n      <p>{description ?? defaults.description}</p>\n      {action && <div className=\"whatiuse-data-state__action\">{action}</div>}\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/data-state.tsx"
+    },
+    {
+      "path": "registry/styles/components/data-state.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-data-state {\n  display: grid;\n  min-width: 0;\n  min-height: 176px;\n  place-content: center;\n  justify-items: center;\n  gap: 5px;\n  padding: 24px;\n  border-radius: var(--whatiuse-radius-container);\n  background: color-mix(in oklch, var(--whatiuse-bg-stage) 72%, transparent);\n  text-align: center;\n}\n\n.whatiuse-data-state__icon {\n  display: grid;\n  width: 28px;\n  height: 28px;\n  place-items: center;\n  margin-bottom: 3px;\n  border-radius: 8px;\n  background: var(--whatiuse-bg-subtle);\n  color: var(--whatiuse-fg-muted);\n}\n\n.whatiuse-data-state__icon > svg { width: 15px; height: 15px; }\n\n.whatiuse-data-state__icon .whatiuse-loading-spinner { width: 14px; height: 14px; }\n\n.whatiuse-data-state > strong { color: var(--whatiuse-fg-default); font-size: var(--whatiuse-type-ui); font-weight: 590; }\n\n.whatiuse-data-state > p { max-width: 280px; margin: 0; color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); line-height: 1.45; }\n\n.whatiuse-data-state__action { margin-top: 7px; }\n\n.whatiuse-data-state[data-state=\"error\"] .whatiuse-data-state__icon { background: color-mix(in oklch, var(--whatiuse-fg-danger) 9%, transparent); color: var(--whatiuse-fg-danger); }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/data-state.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/data-state"
+    }
+  },
+  "type": "registry:component"
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "data-density-control",
+  "title": "Data Density Control",
+  "description": "Compact, default, and comfortable collection row rhythm.",
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base",
+    "@whatiuse/segmented-control"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/data-density-control.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/data-density-control.css\";\nimport { cn } from \"../../lib/cn\";\nimport { SegmentedControl, type SegmentedControlOption } from \"./segmented-control\";\n\nexport type DataDensity = \"compact\" | \"default\" | \"comfortable\";\n\nexport type DataDensityControlProps = {\n  value?: DataDensity;\n  defaultValue?: DataDensity;\n  onValueChange?: (value: DataDensity) => void;\n  label?: string;\n  className?: string;\n};\n\nconst densityOptions: readonly SegmentedControlOption[] = [\n  { value: \"compact\", label: \"Compact\" },\n  { value: \"default\", label: \"Default\" },\n  { value: \"comfortable\", label: \"Comfortable\" },\n];\n\nexport function DataDensityControl({ value, defaultValue = \"default\", onValueChange, label = \"Row density\", className }: DataDensityControlProps) {\n  return (\n    <div className={cn(\"whatiuse-data-density-control\", className)}>\n      <SegmentedControl\n        label={label}\n        options={densityOptions}\n        value={value}\n        defaultValue={defaultValue}\n        size=\"small\"\n        onValueChange={(nextValue) => {\n          if (nextValue) onValueChange?.(nextValue as DataDensity);\n        }}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/data-density-control.tsx"
+    },
+    {
+      "path": "registry/styles/components/data-density-control.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-data-density-control {\n  display: inline-flex;\n  min-width: 0;\n}\n\n.whatiuse-data-density-control .whatiuse-segmented-control { padding: 2px; }\n\n.whatiuse-data-density-control .whatiuse-segmented-control__item { min-width: 0; padding-inline: 8px; }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/data-density-control.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/data-density-control"
+    }
+  },
+  "type": "registry:component"
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/components/combobox.css";
 import { CaretDown, Check, X } from "@phosphor-icons/react";
 import { Combobox as ComboboxPrimitive } from "@base-ui/react/combobox";
@@ -25,23 +25,23 @@ export function Combobox({ label, "aria-label": ariaLabel, description, error, p
   const descriptionId = description ? `${id}-description` : undefined;
   const errorId = error ? `${id}-error` : undefined;
   return (
-    <div className="teum-field teum-combobox-field" data-invalid={Boolean(error) || undefined}>
-      {label && <label className="teum-field__label" htmlFor={id}>{label}</label>}
+    <div className="whatiuse-field whatiuse-combobox-field" data-invalid={Boolean(error) || undefined}>
+      {label && <label className="whatiuse-field__label" htmlFor={id}>{label}</label>}
       <ComboboxPrimitive.Root items={[...options]} itemToStringLabel={(option) => option.label} itemToStringValue={(option) => option.value} {...props}>
-        <ComboboxPrimitive.InputGroup className={cn("teum-combobox", className)}>
-          <ComboboxPrimitive.Input ref={ref} id={id} className="teum-combobox__input" placeholder={placeholder} aria-label={label ? undefined : ariaLabel} aria-describedby={[descriptionId, errorId].filter(Boolean).join(" ") || undefined} aria-invalid={Boolean(error) || undefined} />
-          <ComboboxPrimitive.Clear className="teum-combobox__action" aria-label="Clear selection"><X /></ComboboxPrimitive.Clear>
-          <ComboboxPrimitive.Trigger className="teum-combobox__action teum-combobox__trigger" aria-label="Show options"><CaretDown /></ComboboxPrimitive.Trigger>
+        <ComboboxPrimitive.InputGroup className={cn("whatiuse-combobox", className)}>
+          <ComboboxPrimitive.Input ref={ref} id={id} className="whatiuse-combobox__input" placeholder={placeholder} aria-label={label ? undefined : ariaLabel} aria-describedby={[descriptionId, errorId].filter(Boolean).join(" ") || undefined} aria-invalid={Boolean(error) || undefined} />
+          <ComboboxPrimitive.Clear className="whatiuse-combobox__action" aria-label="Clear selection"><X /></ComboboxPrimitive.Clear>
+          <ComboboxPrimitive.Trigger className="whatiuse-combobox__action whatiuse-combobox__trigger" aria-label="Show options"><CaretDown /></ComboboxPrimitive.Trigger>
         </ComboboxPrimitive.InputGroup>
         <ComboboxPrimitive.Portal>
-          <ComboboxPrimitive.Positioner className="teum-positioner" sideOffset={5} align="start">
-            <ComboboxPrimitive.Popup className="teum-combobox-popup" data-layer="flyout">
-              <ComboboxPrimitive.Empty className="teum-combobox-empty">No matching options</ComboboxPrimitive.Empty>
-              <ComboboxPrimitive.List className="teum-combobox-list" aria-label={`${label ?? ariaLabel ?? "Combobox"} options`}>
+          <ComboboxPrimitive.Positioner className="whatiuse-positioner" sideOffset={5} align="start">
+            <ComboboxPrimitive.Popup className="whatiuse-combobox-popup" data-layer="flyout">
+              <ComboboxPrimitive.Empty className="whatiuse-combobox-empty">No matching options</ComboboxPrimitive.Empty>
+              <ComboboxPrimitive.List className="whatiuse-combobox-list" aria-label={`${label ?? ariaLabel ?? "Combobox"} options`}>
                 {(option: ComboboxOption, index: number) => (
-                  <ComboboxPrimitive.Item className="teum-combobox-item" key={option.value} value={option} index={index} disabled={option.disabled}>
+                  <ComboboxPrimitive.Item className="whatiuse-combobox-item" key={option.value} value={option} index={index} disabled={option.disabled}>
                     <span><strong>{option.label}</strong>{option.description && <small>{option.description}</small>}</span>
-                    <ComboboxPrimitive.ItemIndicator className="teum-combobox-item__indicator"><Check weight="bold" /></ComboboxPrimitive.ItemIndicator>
+                    <ComboboxPrimitive.ItemIndicator className="whatiuse-combobox-item__indicator"><Check weight="bold" /></ComboboxPrimitive.ItemIndicator>
                   </ComboboxPrimitive.Item>
                 )}
               </ComboboxPrimitive.List>
@@ -49,8 +49,8 @@ export function Combobox({ label, "aria-label": ariaLabel, description, error, p
           </ComboboxPrimitive.Positioner>
         </ComboboxPrimitive.Portal>
       </ComboboxPrimitive.Root>
-      {description && <div id={descriptionId} className="teum-field__description">{description}</div>}
-      {error && <div id={errorId} className="teum-field__error">{error}</div>}
+      {description && <div id={descriptionId} className="whatiuse-field__description">{description}</div>}
+      {error && <div id={errorId} className="whatiuse-field__error">{error}</div>}
     </div>
   );
 }

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Teum"
-  short_description: "Build product interfaces from Teum contracts"
-  default_prompt: "Use $teum to choose and compose Teum components for this product task."

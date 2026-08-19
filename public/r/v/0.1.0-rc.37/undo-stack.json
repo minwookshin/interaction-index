@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "undo-stack",
+  "title": "Undo Stack",
+  "description": "LIFO reversible-action history with keyboard recovery and live announcements.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/button",
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/undo-stack.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/undo-stack.css\";\nimport { ArrowCounterClockwise } from \"@phosphor-icons/react\";\nimport { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from \"react\";\nimport type { BehaviorContract } from \"../../lib/behavior-contract\";\nimport { Button } from \"./button\";\n\nexport const undoStackContract: BehaviorContract = {\n  input: [\"Registered reversible action\", \"Undo button\", \"Cmd/Ctrl+Z\"],\n  origin: \"Each mutation registers its inverse at the moment the visible state changes.\",\n  enter: \"A compact undo bar confirms the latest reversible action.\",\n  active: \"The stack is last-in-first-out and exposes the latest action label.\",\n  exit: \"Undo runs the inverse once, removes it from the stack, and announces restoration.\",\n  interruption: \"Repeated mutations replace the visible label while retaining the full stack.\",\n  keyboard: [\"Cmd/Ctrl+Z: undo latest\", \"Tab: reach Undo button\", \"Enter/Space: undo\"],\n  reducedMotion: \"The bar appears without translation; recovery timing is unchanged.\",\n};\n\nexport type UndoAction = {\n  id?: string;\n  label: string;\n  undo: () => void;\n};\n\nexport type UndoContextValue = {\n  pushUndo: (action: UndoAction) => void;\n  undoLatest: () => void;\n  canUndo: boolean;\n  latestLabel?: string;\n  count: number;\n};\n\nconst UndoContext = createContext<UndoContextValue | null>(null);\n\nexport function UndoStackProvider({ children }: { children: ReactNode }) {\n  const [stack, setStack] = useState<UndoAction[]>([]);\n  const [announcement, setAnnouncement] = useState(\"\");\n  const stackRef = useRef<UndoAction[]>([]);\n\n  const pushUndo = useCallback((action: UndoAction) => {\n    const next = [...stackRef.current, { ...action, id: action.id ?? crypto.randomUUID() }];\n    stackRef.current = next;\n    setStack(next);\n    setAnnouncement(`${action.label}. Undo available.`);\n  }, []);\n\n  const undoLatest = useCallback(() => {\n    const latest = stackRef.current.at(-1);\n    if (!latest) return;\n    const next = stackRef.current.slice(0, -1);\n    stackRef.current = next;\n    setStack(next);\n    latest.undo();\n    setAnnouncement(`Undid ${latest.label}`);\n  }, []);\n\n  useEffect(() => {\n    const onKeyDown = (event: KeyboardEvent) => {\n      if ((event.metaKey || event.ctrlKey) && event.key.toLocaleLowerCase() === \"z\" && !event.shiftKey) {\n        const target = event.target as HTMLElement | null;\n        if (target?.matches(\"input, textarea, select, [contenteditable]:not([contenteditable='false'])\")) return;\n        event.preventDefault();\n        undoLatest();\n      }\n    };\n    window.addEventListener(\"keydown\", onKeyDown);\n    return () => window.removeEventListener(\"keydown\", onKeyDown);\n  }, [undoLatest]);\n\n  const value = useMemo(() => ({\n    pushUndo,\n    undoLatest,\n    canUndo: stack.length > 0,\n    latestLabel: stack.at(-1)?.label,\n    count: stack.length,\n  }), [pushUndo, stack, undoLatest]);\n\n  return (\n    <UndoContext.Provider value={value}>\n      {children}\n      <span className=\"whatiuse-sr-only\" aria-live=\"polite\">{announcement}</span>\n    </UndoContext.Provider>\n  );\n}\n\nexport function useUndoStack() {\n  const context = useContext(UndoContext);\n  if (!context) throw new Error(\"useUndoStack must be used inside UndoStackProvider\");\n  return context;\n}\n\nexport function UndoBar() {\n  const { canUndo, latestLabel, undoLatest, count } = useUndoStack();\n  if (!canUndo) return null;\n  return (\n    <div className=\"whatiuse-undo-bar\" role=\"region\" aria-label=\"Undo history\">\n      <span><strong>{latestLabel}</strong><small>{count > 1 ? `${count} actions in history` : \"Action can be restored\"}</small></span>\n      <Button variant=\"ghost\" size=\"small\" leadingIcon={<ArrowCounterClockwise />} onClick={undoLatest}>Undo</Button>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/undo-stack.tsx"
+    },
+    {
+      "path": "registry/styles/components/undo-stack.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-undo-bar { display: flex; min-height: 48px; align-items: center; justify-content: space-between; gap: 12px; padding: 7px 8px 7px 11px; border: 1px solid var(--whatiuse-inverse); border-radius: 8px; background: var(--whatiuse-inverse); color: var(--whatiuse-on-inverse); box-shadow: 0 12px 30px rgb(0 0 0 / 0.16); opacity: 1; transform: translateY(0); transition: opacity var(--whatiuse-enter-duration) var(--whatiuse-ease-out), transform var(--whatiuse-enter-duration) var(--whatiuse-ease-out); }\n\n@starting-style {\n.whatiuse-undo-bar { opacity: 0; transform: translateY(5px); }\n}\n\n.whatiuse-undo-bar > span { display: grid; gap: 1px; }\n\n.whatiuse-undo-bar strong { overflow: hidden; max-width: 440px; font-size: 13px; font-weight: 550; text-overflow: ellipsis; white-space: nowrap; }\n\n.whatiuse-undo-bar small { color: color-mix(in oklch, var(--whatiuse-on-inverse) 68%, transparent); font-size: 11.5px; }\n\n.whatiuse-undo-bar .whatiuse-button--ghost { color: var(--whatiuse-on-inverse); }\n\n.whatiuse-undo-bar .whatiuse-button--ghost:hover { background: color-mix(in oklch, var(--whatiuse-on-inverse) 12%, transparent); }\n\n@media (forced-colors: active) {\n.whatiuse-undo-bar { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/undo-stack.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/undo-stack",
+      "useWhen": "A mutation can be reversed reliably without a confirmation dialog.",
+      "avoidWhen": "The inverse action is unsafe, lossy, or impossible after submission."
+    }
+  },
+  "type": "registry:ui"
+}

@@ -1,9 +1,9 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-textarea {
+@layer whatiuse.components {
+.whatiuse-textarea {
   box-sizing: border-box;
   max-width: 100%;
   min-height: 96px;
@@ -12,30 +12,30 @@
   line-height: 1.5;
 }
 
-.teum-textarea-field__meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.whatiuse-textarea-field__meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 
-.teum-textarea-field__meta > span { min-width: 0; }
+.whatiuse-textarea-field__meta > span { min-width: 0; }
 
-.teum-textarea-field__meta output { flex: 0 0 auto; color: var(--teum-ink-tertiary); font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; }
+.whatiuse-textarea-field__meta output { flex: 0 0 auto; color: var(--whatiuse-ink-tertiary); font-size: var(--whatiuse-type-metadata); font-variant-numeric: tabular-nums; }
 
-.teum-field { display: grid; min-width: 0; gap: 6px; }
+.whatiuse-field { display: grid; min-width: 0; gap: 6px; }
 
-.teum-field__label { color: var(--teum-ink); font-size: 12px; font-weight: 550; }
+.whatiuse-field__label { color: var(--whatiuse-ink); font-size: 12px; font-weight: 550; }
 
-.teum-field[data-invalid] .teum-field__control { border-color: color-mix(in oklch, var(--teum-fg-danger) 46%, var(--teum-control-border)); box-shadow: 0 0 0 2px color-mix(in oklch, var(--teum-fg-danger) 11%, transparent); }
+.whatiuse-field[data-invalid] .whatiuse-field__control { border-color: color-mix(in oklch, var(--whatiuse-fg-danger) 46%, var(--whatiuse-control-border)); box-shadow: 0 0 0 2px color-mix(in oklch, var(--whatiuse-fg-danger) 11%, transparent); }
 
-.teum-input { width: 100%; min-width: 0; height: 100%; padding: 0 9px; border: 0; outline: 0; background: transparent; color: var(--teum-ink); font-size: 13.5px; }
+.whatiuse-input { width: 100%; min-width: 0; height: 100%; padding: 0 9px; border: 0; outline: 0; background: transparent; color: var(--whatiuse-ink); font-size: 13.5px; }
 
-.teum-input::placeholder { color: var(--teum-fg-subtle); }
+.whatiuse-input::placeholder { color: var(--whatiuse-fg-subtle); }
 
-.teum-input:disabled { background: var(--teum-bg-subtle); color: var(--teum-fg-disabled); cursor: not-allowed; }
+.whatiuse-input:disabled { background: var(--whatiuse-bg-subtle); color: var(--whatiuse-fg-disabled); cursor: not-allowed; }
 
-.teum-input:read-only { color: var(--teum-fg-muted); }
+.whatiuse-input:read-only { color: var(--whatiuse-fg-muted); }
 
-.teum-field__description,
-.teum-field__error { color: var(--teum-ink-tertiary); font-size: 11.5px; line-height: 1.45; }
+.whatiuse-field__description,
+.whatiuse-field__error { color: var(--whatiuse-ink-tertiary); font-size: 11.5px; line-height: 1.45; }
 
-.teum-field__error { color: var(--teum-fg-danger); font-weight: 520; }
+.whatiuse-field__error { color: var(--whatiuse-fg-danger); font-weight: 520; }
 
-:root[data-theme="dark"] .teum-input:disabled { background: rgb(255 255 255 / 0.025); color: var(--teum-ink-disabled); }
+:root[data-theme="dark"] .whatiuse-input:disabled { background: rgb(255 255 255 / 0.025); color: var(--whatiuse-ink-disabled); }
 }

@@ -76,7 +76,7 @@ export function UndoStackProvider({ children }: { children: ReactNode }) {
   return (
     <UndoContext.Provider value={value}>
       {children}
-      <span className="teum-sr-only" aria-live="polite">{announcement}</span>
+      <span className="whatiuse-sr-only" aria-live="polite">{announcement}</span>
     </UndoContext.Provider>
   );
 }
@@ -91,7 +91,7 @@ export function UndoBar() {
   const { canUndo, latestLabel, undoLatest, count } = useUndoStack();
   if (!canUndo) return null;
   return (
-    <div className="teum-undo-bar" role="region" aria-label="Undo history">
+    <div className="whatiuse-undo-bar" role="region" aria-label="Undo history">
       <span><strong>{latestLabel}</strong><small>{count > 1 ? `${count} actions in history` : "Action can be restored"}</small></span>
       <Button variant="ghost" size="small" leadingIcon={<ArrowCounterClockwise />} onClick={undoLatest}>Undo</Button>
     </div>

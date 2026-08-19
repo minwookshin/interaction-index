@@ -25,8 +25,8 @@ test("toast feedback owns the highest non-navigation layer and reveals a three-i
   await trigger.click();
   await trigger.click();
 
-  const toaster = page.locator(".teum-toaster");
-  const visibleToast = page.locator(".teum-toast:visible");
+  const toaster = page.locator(".whatiuse-toaster");
+  const visibleToast = page.locator(".whatiuse-toast:visible");
   await expect(visibleToast).toHaveCount(3);
   await expect(visibleToast.first()).toBeVisible();
   await expect(toaster).toHaveCount(1);
@@ -47,7 +47,7 @@ test("product feedback keeps bounded event identities and scopes undo to its ori
   await page.getByRole("button", { name: "Show undo" }).click();
   await page.getByRole("button", { name: "Show error" }).click();
 
-  const visibleToast = page.locator(".teum-toast:visible");
+  const visibleToast = page.locator(".whatiuse-toast:visible");
   await expect(visibleToast).toHaveCount(3);
   const errorToast = visibleToast.filter({ hasText: "Couldn’t publish" });
   await expect(errorToast).toHaveCount(1);
@@ -81,12 +81,12 @@ test("keyboard-opened flyouts skip spatial travel and reduced motion keeps only 
 
 test("data-display polish keeps compact geometry optically balanced", async ({ page }) => {
   await page.goto("/#table");
-  await expect(page.locator(".data-table-recipe .teum-table__body .teum-table__row").first()).toHaveCSS("height", "46px");
-  await expect(page.locator(".data-table-recipe .teum-badge--strong")).toHaveCount(0);
+  await expect(page.locator(".data-table-recipe .whatiuse-table__body .whatiuse-table__row").first()).toHaveCSS("height", "46px");
+  await expect(page.locator(".data-table-recipe .whatiuse-badge--strong")).toHaveCount(0);
 
   await page.goto("/#avatar");
-  const avatar = page.locator(".primary-avatar-group .teum-avatar[data-status]").first().or(page.locator(".live-specimen .teum-avatar[data-status]").first());
-  const status = avatar.locator(".teum-avatar__status");
+  const avatar = page.locator(".primary-avatar-group .whatiuse-avatar[data-status]").first().or(page.locator(".live-specimen .whatiuse-avatar[data-status]").first());
+  const status = avatar.locator(".whatiuse-avatar__status");
   await expect(status).toHaveCSS("width", "12px");
   await expect(status).toHaveCSS("height", "12px");
 });

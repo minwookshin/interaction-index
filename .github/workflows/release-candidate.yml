@@ -32,13 +32,11 @@ jobs:
         run: node -e "const actual = JSON.parse(require('fs').readFileSync('package.json')).version; if (actual !== process.env.EXPECTED_VERSION) { console.error(actual); process.exit(1); }"
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: teum-${{ inputs.version }}
+          name: whatiuse-${{ inputs.version }}
           path: |
             dist
             public/r
             performance-report.json
-            RELEASE_QA.md
-            RC_EXTERNAL_GATES.md
           if-no-files-found: error
 
   publication-remains-manual:

@@ -1,9 +1,9 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-segmented-control {
+@layer whatiuse.components {
+.whatiuse-segmented-control {
   display: inline-flex;
   width: fit-content;
   max-width: 100%;
@@ -11,32 +11,32 @@
   gap: 2px;
   padding: 2px;
   border-radius: 8px;
-  background: var(--teum-bg-subtle);
+  background: var(--whatiuse-bg-subtle);
 }
 
-.teum-segmented-control[data-orientation="vertical"] { flex-direction: column; align-items: stretch; }
+.whatiuse-segmented-control[data-orientation="vertical"] { flex-direction: column; align-items: stretch; }
 
-.teum-segmented-control__item { display: inline-flex; min-width: 0; height: 28px; align-items: center; justify-content: center; gap: 6px; padding: 0 9px; border: 0; border-radius: 6px; background: transparent; color: var(--teum-fg-muted); font-size: var(--teum-type-label); white-space: nowrap; cursor: pointer; transition: color var(--teum-hover-duration), background-color var(--teum-hover-duration), box-shadow var(--teum-hover-duration), transform var(--teum-press-duration) var(--teum-ease-out); }
+.whatiuse-segmented-control__item { display: inline-flex; min-width: 0; height: 28px; align-items: center; justify-content: center; gap: 6px; padding: 0 9px; border: 0; border-radius: 6px; background: transparent; color: var(--whatiuse-fg-muted); font-size: var(--whatiuse-type-label); white-space: nowrap; cursor: pointer; transition: color var(--whatiuse-hover-duration), background-color var(--whatiuse-hover-duration), box-shadow var(--whatiuse-hover-duration), transform var(--whatiuse-press-duration) var(--whatiuse-ease-out); }
 
-.teum-segmented-control[data-size="small"] .teum-segmented-control__item { height: 24px; padding-inline: 7px; font-size: var(--teum-type-metadata); }
+.whatiuse-segmented-control[data-size="small"] .whatiuse-segmented-control__item { height: 24px; padding-inline: 7px; font-size: var(--whatiuse-type-metadata); }
 
-.teum-segmented-control__item > span { display: inline-flex; min-width: 0; align-items: center; }
+.whatiuse-segmented-control__item > span { display: inline-flex; min-width: 0; align-items: center; }
 
-.teum-segmented-control__item svg { width: 13px; height: 13px; }
+.whatiuse-segmented-control__item svg { width: 13px; height: 13px; }
 
-.teum-segmented-control__item[data-pressed] { background: var(--teum-bg-control); color: var(--teum-fg-default); box-shadow: var(--teum-shadow-control); font-weight: 560; }
+.whatiuse-segmented-control__item[data-pressed] { background: var(--whatiuse-bg-control); color: var(--whatiuse-fg-default); box-shadow: var(--whatiuse-shadow-control); font-weight: 560; }
 
-.teum-segmented-control__item:focus-visible { z-index: 1; outline: 2px solid var(--teum-focus-control); outline-offset: 1px; }
+.whatiuse-segmented-control__item:focus-visible { z-index: 1; outline: 2px solid var(--whatiuse-focus-control); outline-offset: 1px; }
 
-.teum-segmented-control__item:active { transform: scale(.97); }
+.whatiuse-segmented-control__item:active { transform: scale(.97); }
 
-.teum-segmented-control__item[data-disabled] { color: var(--teum-fg-disabled); cursor: not-allowed; }
+.whatiuse-segmented-control__item[data-disabled] { color: var(--whatiuse-fg-disabled); cursor: not-allowed; }
 
 @media (hover: hover) and (pointer: fine) {
-.teum-segmented-control__item:not([data-disabled]):not([data-pressed]):hover { background: var(--teum-hover); color: var(--teum-fg-default); }
+.whatiuse-segmented-control__item:not([data-disabled]):not([data-pressed]):hover { background: var(--whatiuse-hover); color: var(--whatiuse-fg-default); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-segmented-control__item:active { transform: none; }
+.whatiuse-segmented-control__item:active { transform: none; }
 }
 }

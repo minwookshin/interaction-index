@@ -1,21 +1,21 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/verify-registry-upgrade.mjs",
-  "generatedAt": "2026-08-18T23:55:37.632Z",
-  "version": "0.1.0-rc.30",
-  "fromVersion": "0.1.0-rc.29",
+  "generatedAt": "2026-08-19T13:58:15.753Z",
+  "version": "0.1.0-rc.38",
+  "fromVersion": "0.1.0-rc.37",
   "status": "passed",
   "targetMs": 600000,
-  "elapsedMs": 13432,
+  "elapsedMs": 13739,
   "flow": "install prior pinned source, add a local customization, inspect dry-run and file diff without writes, explicitly accept current pinned source, type-check, and build",
   "humanNoviceTimingClaim": false,
   "localSourcePreservedDuringReview": true,
   "explicitOverwriteRequired": true,
   "acceptedBuild": true,
   "commands": [
-    "npx shadcn@4.18.0 add @teum-pinned/button --dry-run",
-    "npx shadcn@4.18.0 add @teum-pinned/button --diff src/components/ui/button.tsx",
-    "npx shadcn@4.18.0 add @teum-pinned/button --overwrite --yes",
+    "npx shadcn@4.18.0 add @whatiuse/button --dry-run",
+    "npx shadcn@4.18.0 add @whatiuse/button --diff src/components/ui/button.tsx",
+    "npx shadcn@4.18.0 add @whatiuse/button --overwrite --yes",
     "npm run typecheck",
     "npm run build"
   ]

@@ -27,8 +27,8 @@ async function loadTypeScriptModule(path) {
 
 const packageJson = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
 const registry = JSON.parse(await readFile(resolve(root, "registry.json"), "utf8"));
-const schema = await readFile(resolve(root, "agent/teum-agent.schema.json"), "utf8");
-const agent = await loadTypeScriptModule(resolve(root, "src/lib/teum-agent-contract.ts"));
+const schema = await readFile(resolve(root, "agent/whatiuse-agent.schema.json"), "utf8");
+const agent = await loadTypeScriptModule(resolve(root, "src/lib/whatiuse-agent-contract.ts"));
 const guidanceModule = await loadTypeScriptModule(resolve(root, "src/component-guidance.ts"));
 const guidance = guidanceModule.componentGuidance;
 
@@ -40,7 +40,7 @@ const components = registry.items.filter((item) => installableTypes.has(item.typ
     title: item.title ?? item.name,
     type: item.type,
     description: item.description ?? "",
-    registryItem: `@teum/${item.name}`,
+    registryItem: `@whatiuse/${item.name}`,
     registryDependencies: item.registryDependencies ?? [],
     packageDependencies: item.dependencies ?? [],
     ...(componentGuidance ? {
@@ -54,15 +54,15 @@ const components = registry.items.filter((item) => installableTypes.has(item.typ
 });
 
 const contract = {
-  $schema: "https://whatiuse.minwookshin.com/agent/teum-agent.schema.json",
+  $schema: "https://whatiuse.minwookshin.com/agent/whatiuse-agent.schema.json",
   schemaVersion: 1,
   version: packageJson.version,
   generatedBy: "scripts/build-agent-contract.mjs",
-  system: agent.teumAgentSystemContract,
+  system: agent.whatiuseAgentSystemContract,
   components,
-  recipes: agent.teumAgentRecipeContracts,
-  selectionRules: agent.teumAgentSelectionRules,
-  forbiddenRules: agent.teumAgentForbiddenRules,
+  recipes: agent.whatiuseAgentRecipeContracts,
+  selectionRules: agent.whatiuseAgentSelectionRules,
+  forbiddenRules: agent.whatiuseAgentForbiddenRules,
 };
 
 const validate = new Ajv2020({ allErrors: true, strict: true }).compile(JSON.parse(schema));
@@ -72,10 +72,10 @@ if (!validate(contract)) {
 
 const serialized = `${JSON.stringify(contract, null, 2)}\n`;
 const outputs = new Map([
-  [resolve(root, "agent/generated/teum-agent.json"), serialized],
-  [resolve(root, "public/agent/teum-agent.json"), serialized],
-  [resolve(root, "skills/teum/references/catalog.json"), serialized],
-  [resolve(root, "public/agent/teum-agent.schema.json"), schema.endsWith("\n") ? schema : `${schema}\n`],
+  [resolve(root, "agent/generated/whatiuse-agent.json"), serialized],
+  [resolve(root, "public/agent/whatiuse-agent.json"), serialized],
+  [resolve(root, "skills/whatiuse/references/catalog.json"), serialized],
+  [resolve(root, "public/agent/whatiuse-agent.schema.json"), schema.endsWith("\n") ? schema : `${schema}\n`],
 ]);
 
 for (const [path, expected] of outputs) {

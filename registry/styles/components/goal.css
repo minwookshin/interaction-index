@@ -1,26 +1,26 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-goal { display: grid; min-width: 0; gap: 8px; }
+@layer whatiuse.components {
+.whatiuse-goal { display: grid; min-width: 0; gap: 8px; }
 
-.teum-goal__heading,
-.teum-goal__meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.whatiuse-goal__heading,
+.whatiuse-goal__meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 
-.teum-goal__heading { color: var(--teum-fg-default); font-size: var(--teum-type-ui); }
+.whatiuse-goal__heading { color: var(--whatiuse-fg-default); font-size: var(--whatiuse-type-ui); }
 
-.teum-goal__heading strong { font-variant-numeric: tabular-nums; font-weight: 590; }
+.whatiuse-goal__heading strong { font-variant-numeric: tabular-nums; font-weight: 590; }
 
-.teum-goal__track { height: 5px; overflow: hidden; border-radius: 999px; background: var(--teum-bg-subtle); }
+.whatiuse-goal__track { height: 5px; overflow: hidden; border-radius: 999px; background: var(--whatiuse-bg-subtle); }
 
-.teum-goal__indicator { display: block; width: 100%; height: 100%; border-radius: inherit; background: var(--teum-fg-default); transform: scaleX(var(--teum-goal-progress)); transform-origin: left center; transition: transform var(--teum-medium) var(--teum-ease-out); }
+.whatiuse-goal__indicator { display: block; width: 100%; height: 100%; border-radius: inherit; background: var(--whatiuse-fg-default); transform: scaleX(var(--whatiuse-goal-progress)); transform-origin: left center; transition: transform var(--whatiuse-medium) var(--whatiuse-ease-out); }
 
-.teum-goal__meta { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; }
+.whatiuse-goal__meta { color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); font-variant-numeric: tabular-nums; }
 
-.teum-goal__description { color: var(--teum-fg-muted); font-size: var(--teum-type-metadata); line-height: 1.45; }
+.whatiuse-goal__description { color: var(--whatiuse-fg-muted); font-size: var(--whatiuse-type-metadata); line-height: 1.45; }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-goal__indicator { transition-duration: 0ms; }
+.whatiuse-goal__indicator { transition-duration: 0ms; }
 }
 }

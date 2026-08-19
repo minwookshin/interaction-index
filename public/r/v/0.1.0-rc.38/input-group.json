@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group",
+  "title": "Input Group",
+  "description": "One text-entry boundary with contextual addons and compact actions.",
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base",
+    "@whatiuse/button"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/input-group.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/input-group.css\";\nimport { createContext, useContext, type ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\nimport { Button, type ButtonProps } from \"./button\";\n\nexport type InputGroupProps = ComponentPropsWithRef<\"div\"> & {\n  invalid?: boolean;\n  disabled?: boolean;\n};\n\ntype InputGroupContextValue = {\n  invalid: boolean;\n  disabled: boolean;\n};\n\nconst InputGroupContext = createContext<InputGroupContextValue>({ invalid: false, disabled: false });\n\nexport function InputGroup({ className, invalid, disabled, ...props }: InputGroupProps) {\n  return (\n    <InputGroupContext.Provider value={{ invalid: Boolean(invalid), disabled: Boolean(disabled) }}>\n      <div\n        className={cn(\"whatiuse-input-group\", className)}\n        data-invalid={invalid || undefined}\n        data-disabled={disabled || undefined}\n        {...props}\n      />\n    </InputGroupContext.Provider>\n  );\n}\n\nexport type InputGroupInputProps = ComponentPropsWithRef<\"input\">;\n\nexport function InputGroupInput({ className, disabled, \"aria-invalid\": ariaInvalid, ...props }: InputGroupInputProps) {\n  const group = useContext(InputGroupContext);\n  return (\n    <input\n      className={cn(\"whatiuse-input-group__input\", className)}\n      disabled={disabled ?? group.disabled}\n      aria-invalid={ariaInvalid ?? (group.invalid || undefined)}\n      {...props}\n    />\n  );\n}\n\nexport type InputGroupAddonProps = ComponentPropsWithRef<\"span\"> & {\n  side?: \"start\" | \"end\";\n};\n\nexport function InputGroupAddon({ className, side = \"start\", ...props }: InputGroupAddonProps) {\n  return <span className={cn(\"whatiuse-input-group__addon\", className)} data-side={side} {...props} />;\n}\n\nexport type InputGroupButtonProps = ButtonProps;\n\nexport function InputGroupButton({ className, variant = \"ghost\", size = \"small\", disabled, ...props }: InputGroupButtonProps) {\n  const group = useContext(InputGroupContext);\n  return <Button className={cn(\"whatiuse-input-group__button\", className)} variant={variant} size={size} disabled={disabled ?? group.disabled} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/input-group.tsx"
+    },
+    {
+      "path": "registry/styles/components/input-group.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-input-group {\n  display: flex;\n  width: 100%;\n  min-width: 0;\n  height: var(--whatiuse-control-height-md);\n  align-items: center;\n  border: 1px solid var(--whatiuse-control-border);\n  border-radius: var(--whatiuse-radius-control);\n  background: var(--whatiuse-bg-control);\n  box-shadow: var(--whatiuse-shadow-control);\n  color: var(--whatiuse-fg-default);\n  transition: background-color var(--whatiuse-hover-duration), border-color var(--whatiuse-hover-duration), box-shadow var(--whatiuse-hover-duration);\n}\n\n.whatiuse-input-group:hover:not([data-disabled]) { border-color: var(--whatiuse-control-border-hover); }\n\n.whatiuse-input-group:has(.whatiuse-input-group__input:focus-visible) {\n  border-color: var(--whatiuse-control-border-hover);\n  box-shadow: var(--whatiuse-shadow-control), 0 0 0 2px var(--whatiuse-focus-halo);\n}\n\n.whatiuse-input-group[data-invalid] {\n  border-color: color-mix(in oklch, var(--whatiuse-fg-danger) 42%, var(--whatiuse-control-border));\n  box-shadow: var(--whatiuse-shadow-control), 0 0 0 2px color-mix(in oklch, var(--whatiuse-fg-danger) 10%, transparent);\n}\n\n.whatiuse-input-group[data-disabled] { background: var(--whatiuse-bg-subtle); box-shadow: none; color: var(--whatiuse-fg-disabled); cursor: not-allowed; }\n\n.whatiuse-input-group__input {\n  width: 100%;\n  min-width: 60px;\n  height: 100%;\n  flex: 1 1 auto;\n  padding: 0 9px;\n  border: 0;\n  outline: 0;\n  background: transparent;\n  color: inherit;\n  font: inherit;\n  font-size: var(--whatiuse-type-ui);\n}\n\n.whatiuse-input-group__input::placeholder { color: var(--whatiuse-fg-subtle); }\n\n.whatiuse-input-group__input:disabled { cursor: not-allowed; }\n\n.whatiuse-input-group__addon {\n  display: inline-flex;\n  height: 100%;\n  flex: 0 0 auto;\n  align-items: center;\n  padding-left: 9px;\n  color: var(--whatiuse-fg-muted);\n  font-size: var(--whatiuse-type-label);\n  white-space: nowrap;\n}\n\n.whatiuse-input-group__addon[data-side=\"end\"] { padding-right: 7px; padding-left: 0; }\n\n.whatiuse-input-group__addon + .whatiuse-input-group__input { padding-left: 6px; }\n\n.whatiuse-input-group__button { height: 26px; margin: 0 2px; padding-inline: 6px; border: 0; }\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-input-group { transition-duration: 0.01ms; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/input-group.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/input-group",
+      "useWhen": "An addon or action belongs inside the same visual entry boundary as one text input.",
+      "avoidWhen": "The adjacent controls perform unrelated work or several inputs form a compound value."
+    }
+  },
+  "type": "registry:ui"
+}

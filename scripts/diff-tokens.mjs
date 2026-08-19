@@ -15,8 +15,8 @@ try {
   previous = collectTokens(JSON.parse(source));
 } catch {
   previous = collectTokens({
-    $extensions: { "dev.teum": { modes: ["light", "dark"] } },
-    empty: { $extensions: { "dev.teum": { cssPrefix: "--teum-" } } },
+    $extensions: { "dev.whatiuse": { modes: ["light", "dark"] } },
+    empty: { $extensions: { "dev.whatiuse": { cssPrefix: "--whatiuse-" } } },
   });
 }
 

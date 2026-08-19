@@ -1,9 +1,9 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-badge {
+@layer whatiuse.components {
+.whatiuse-badge {
   display: inline-flex;
   min-width: 0;
   height: 21px;
@@ -12,8 +12,8 @@
   padding: 0 6px;
   border: 1px solid transparent;
   border-radius: 6px;
-  background: color-mix(in oklch, var(--teum-bg-subtle) 88%, transparent);
-  color: var(--teum-fg-muted);
+  background: color-mix(in oklch, var(--whatiuse-bg-subtle) 88%, transparent);
+  color: var(--whatiuse-fg-muted);
   font-size: 11.5px;
   font-weight: 550;
   line-height: 1;
@@ -21,12 +21,12 @@
   white-space: nowrap;
 }
 
-.teum-badge__icon,
-.teum-badge__icon svg { width: 11px; height: 11px; flex: 0 0 auto; }
+.whatiuse-badge__icon,
+.whatiuse-badge__icon svg { width: 11px; height: 11px; flex: 0 0 auto; }
 
-.teum-badge__label { overflow: hidden; text-overflow: ellipsis; }
+.whatiuse-badge__label { overflow: hidden; text-overflow: ellipsis; }
 
-.teum-badge__remove {
+.whatiuse-badge__remove {
   position: relative;
   display: grid;
   width: 17px;
@@ -40,25 +40,25 @@
   cursor: pointer;
 }
 
-.teum-badge__remove::after {
+.whatiuse-badge__remove::after {
   position: absolute;
   inset: -4px;
   content: "";
 }
 
-.teum-badge__remove svg { width: 11px; height: 11px; }
+.whatiuse-badge__remove svg { width: 11px; height: 11px; }
 
-.teum-badge__remove:focus-visible { outline: 1.5px solid currentColor; outline-offset: -2px; }
+.whatiuse-badge__remove:focus-visible { outline: 1.5px solid currentColor; outline-offset: -2px; }
 
 @media (hover: hover) and (pointer: fine) {
-.teum-badge__remove:hover { background: var(--teum-hover); color: var(--teum-ink); }
+.whatiuse-badge__remove:hover { background: var(--whatiuse-hover); color: var(--whatiuse-ink); }
 }
 
-.teum-badge__remove { transition: color var(--teum-hover-duration), background-color var(--teum-hover-duration), transform var(--teum-press-duration) var(--teum-ease-out); }
+.whatiuse-badge__remove { transition: color var(--whatiuse-hover-duration), background-color var(--whatiuse-hover-duration), transform var(--whatiuse-press-duration) var(--whatiuse-ease-out); }
 
-.teum-badge__remove:active { transform: scale(.96); }
+.whatiuse-badge__remove:active { transform: scale(.96); }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-badge__remove:active { transform: none; }
+.whatiuse-badge__remove:active { transform: none; }
 }
 }

@@ -1,6 +1,6 @@
 import { getLocalTimeZone, parseDate, today, CalendarDate, type DateValue } from "@internationalized/date";
 import { CalendarBlank } from "@phosphor-icons/react";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import type { DataDateRange } from "../../lib/data-view-state";
 import { Button } from "./button";
 import { DatePicker } from "./date-picker";
@@ -79,7 +79,6 @@ export function DateRangeFilter({
   const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState<DataDateRange>(value);
   const invalid = Boolean(draft.from && draft.to && draft.from > draft.to);
-  const description = useMemo(() => invalid ? "The start date must be before the end date." : "Choose either boundary or a complete range.", [invalid]);
 
   const setOpenState = (next: boolean) => {
     if (next) setDraft(value);
@@ -99,17 +98,21 @@ export function DateRangeFilter({
       >
         {formatRange(value, label)}
       </PopoverTrigger>
-      <PopoverContent className="teum-date-range" align="start">
-        <div className="teum-date-range__heading">
+      <PopoverContent className="whatiuse-date-range" align="start">
+        <div className="whatiuse-date-range__heading">
           <strong>{label}</strong>
-          <span>{description}</span>
+          {invalid && <span role="alert">Start must be before end.</span>}
         </div>
         {presets.length > 0 && (
-          <div className="teum-date-range__presets" aria-label="Date range presets">
-            {presets.map((preset) => <Button key={preset.id} size="small" variant="ghost" onClick={() => setDraft(preset.getValue())}>{preset.label}</Button>)}
+          <div className="whatiuse-date-range__presets" aria-label="Date range presets">
+            {presets.map((preset) => {
+              const presetValue = preset.getValue();
+              const selected = presetValue.from === draft.from && presetValue.to === draft.to;
+              return <Button key={preset.id} size="small" variant="ghost" aria-pressed={selected} onClick={() => setDraft(presetValue)}>{preset.label}</Button>;
+            })}
           </div>
         )}
-        <div className="teum-date-range__fields">
+        <div className="whatiuse-date-range__fields">
           <DatePicker
             label="From"
             value={toDate(draft.from)}
@@ -126,7 +129,7 @@ export function DateRangeFilter({
             onChange={(date) => setDraft((current) => ({ ...current, to: date?.toString() ?? null }))}
           />
         </div>
-        <div className="teum-date-range__actions">
+        <div className="whatiuse-date-range__actions">
           {(draft.from || draft.to) && <Button size="small" variant="ghost" onClick={() => setDraft({ from: null, to: null })}>Clear</Button>}
           <span />
           <Button size="small" variant="ghost" onClick={() => setOpen(false)}>Cancel</Button>

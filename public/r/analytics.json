@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "analytics",
   "title": "Analytics Geometry",
-  "description": "Dependency-free domain, tick, path, formatting, and text-summary utilities for Teum Analytics.",
+  "description": "Dependency-free domain, tick, path, formatting, and text-summary utilities for whatiuse Analytics.",
   "files": [
     {
       "path": "registry/lib/analytics.ts",
@@ -12,9 +12,9 @@
     }
   ],
   "meta": {
-    "teum": {
-      "contract": "/agent/teum-agent.json",
-      "registryItem": "@teum/analytics"
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/analytics"
     }
   },
   "type": "registry:lib"

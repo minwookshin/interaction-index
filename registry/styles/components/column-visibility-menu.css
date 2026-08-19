@@ -1,0 +1,11 @@
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
+
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
+
+@layer whatiuse.components {
+.whatiuse-column-visibility-menu {
+  display: inline-flex;
+  min-width: 0;
+  vertical-align: middle;
+}
+}

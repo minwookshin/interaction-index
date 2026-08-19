@@ -1,5 +1,5 @@
 export type ComponentGuidance = {
-  source: "Base UI" | "React Aria" | "Native" | "Authored";
+  source: "Base UI" | "React Aria" | "Sonner" | "Native" | "Authored";
   maturity: "Alpha";
   productCase: string;
   useWhen: string;
@@ -311,7 +311,7 @@ export const componentGuidance = {
     quality: ["Trigger names the hidden content", "Disclosure state is announced", "Reduced motion keeps the content change clear"],
   },
   toast: {
-    source: "Native",
+    source: "Sonner",
     maturity: "Alpha",
     productCase: "Mutation confirmation, recoverable archive, and transient failure feedback.",
     useWhen: "The result is useful but should not block the current task.",

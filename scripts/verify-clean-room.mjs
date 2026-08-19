@@ -8,7 +8,7 @@ const exec = promisify(execFile);
 const root = process.cwd();
 const npm = process.platform === "win32" ? "npm.cmd" : "npm";
 const git = process.platform === "win32" ? "git.exe" : "git";
-const work = await mkdtemp(join(tmpdir(), "teum-clean-room-"));
+const work = await mkdtemp(join(tmpdir(), "whatiuse-clean-room-"));
 const fixture = resolve(work, "source");
 
 const excludedPrefixes = [

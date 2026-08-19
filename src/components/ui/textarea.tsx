@@ -19,12 +19,12 @@ export function Textarea({ id: providedId, label, description, error, showCount,
   const count = typeof value === "string" ? value.length : uncontrolledCount;
 
   return (
-    <div className="teum-field teum-textarea-field" data-invalid={Boolean(error) || undefined}>
-      {label && <label className="teum-field__label" htmlFor={id}>{label}</label>}
+    <div className="whatiuse-field whatiuse-textarea-field" data-invalid={Boolean(error) || undefined}>
+      {label && <label className="whatiuse-field__label" htmlFor={id}>{label}</label>}
       <textarea
         ref={ref}
         id={id}
-        className={cn("teum-input teum-textarea", className)}
+        className={cn("whatiuse-input whatiuse-textarea", className)}
         aria-invalid={Boolean(error) || undefined}
         aria-describedby={describedBy}
         maxLength={maxLength}
@@ -33,10 +33,10 @@ export function Textarea({ id: providedId, label, description, error, showCount,
         onChange={(event) => { setUncontrolledCount(event.currentTarget.value.length); onChange?.(event); }}
         {...props}
       />
-      <div className="teum-textarea-field__meta">
+      <div className="whatiuse-textarea-field__meta">
         <span>
-          {description && <span id={descriptionId} className="teum-field__description">{description}</span>}
-          {error && <span id={errorId} className="teum-field__error">{error}</span>}
+          {description && <span id={descriptionId} className="whatiuse-field__description">{description}</span>}
+          {error && <span id={errorId} className="whatiuse-field__error">{error}</span>}
         </span>
         {showCount && maxLength && <output aria-label="Character count">{count}/{maxLength}</output>}
       </div>

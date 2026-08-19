@@ -19,7 +19,7 @@ describe("core controls", () => {
     expect(button).toHaveAttribute("aria-busy", "true");
     expect(button).toHaveTextContent("Save changes");
     expect(button).toHaveTextContent("Saving");
-    expect(button.querySelector(".teum-button__loader")).toHaveAttribute("data-visible", "true");
+    expect(button.querySelector(".whatiuse-button__loader")).toHaveAttribute("data-visible", "true");
   });
 
   it("toggles checkbox and switch with the keyboard", async () => {
@@ -51,14 +51,14 @@ describe("core controls", () => {
 
 describe("authored interaction components", () => {
   function InlineHarness() {
-    const [value, setValue] = useState("Teum");
+    const [value, setValue] = useState("whatiuse");
     return <InlineEdit value={value} onSave={setValue} />;
   }
 
   it("saves inline edits with Enter and cancels with Escape", async () => {
     const user = userEvent.setup();
     render(<InlineHarness />);
-    await user.click(screen.getByRole("button", { name: "Edit value: Teum" }));
+    await user.click(screen.getByRole("button", { name: "Edit value: whatiuse" }));
     const input = screen.getByRole("textbox", { name: "Edit value" });
     await user.clear(input);
     await user.type(input, "Index Core{Enter}");
@@ -129,7 +129,7 @@ describe("authored interaction components", () => {
     const origin = screen.getByRole("button", { name: /Motion contract/ });
     origin.focus();
     await user.keyboard("{Enter}");
-    expect(container.querySelector(".teum-shared-detail")).toHaveAttribute("data-motion-mode", "direct");
+    expect(container.querySelector(".whatiuse-shared-detail")).toHaveAttribute("data-motion-mode", "direct");
     expect(await screen.findByRole("region", { name: "Motion contract" })).toBeInTheDocument();
   });
 

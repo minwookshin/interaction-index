@@ -1,0 +1,4 @@
+interface:
+  display_name: "whatiuse"
+  short_description: "Build product interfaces from whatiuse contracts"
+  default_prompt: "Use $whatiuse to choose and compose whatiuse components for this product task."

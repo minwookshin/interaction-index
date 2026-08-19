@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/components/data-toolbar.css";
 import { ArrowCounterClockwise, CaretDown, Check, FloppyDisk, SlidersHorizontal, Trash } from "@phosphor-icons/react";
 import type { HTMLAttributes, ReactNode } from "react";
@@ -25,7 +25,7 @@ export type DataToolbarProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 export function DataToolbar({ label, start, end, className, ...props }: DataToolbarProps) {
-  return <div className={cn("teum-data-toolbar", className)} role="toolbar" aria-label={label} {...props}><div className="teum-data-toolbar__start">{start}</div><div className="teum-data-toolbar__end">{end}</div></div>;
+  return <div className={cn("whatiuse-data-toolbar", className)} role="toolbar" aria-label={label} {...props}><div className="whatiuse-data-toolbar__start">{start}</div><div className="whatiuse-data-toolbar__end">{end}</div></div>;
 }
 
 export type SavedView = {
@@ -52,15 +52,15 @@ export function SavedViews({ views, value, onValueChange, onSaveCurrent, onUpdat
   return (
     <Menu>
       <MenuTrigger render={<Button size="small" variant="ghost" trailingIcon={<CaretDown />} aria-label={`${label}: ${selected?.label ?? "None"}`} />}>{selected?.label ?? label}</MenuTrigger>
-      <MenuContent className="teum-saved-views" align="start">
+      <MenuContent className="whatiuse-saved-views" align="start">
         <MenuLabel>{label}</MenuLabel>
         <MenuRadioGroup value={value} onValueChange={(nextValue) => onValueChange(nextValue)}>
-          {views.map((view) => <MenuRadioItem key={view.id} value={view.id} closeOnClick><span className="teum-saved-views__copy"><strong>{view.label}</strong>{view.description && <small>{view.description}</small>}</span>{typeof view.count === "number" && <small className="teum-saved-views__count">{view.count}</small>}</MenuRadioItem>)}
+          {views.map((view) => <MenuRadioItem key={view.id} value={view.id} closeOnClick><span className="whatiuse-saved-views__copy"><strong>{view.label}</strong>{view.description && <small>{view.description}</small>}</span>{typeof view.count === "number" && <small className="whatiuse-saved-views__count">{view.count}</small>}</MenuRadioItem>)}
         </MenuRadioGroup>
         {(onSaveCurrent || (canManageCurrent && (onUpdateCurrent || onDeleteCurrent))) && <MenuSeparator />}
         {onSaveCurrent && <MenuItem onClick={onSaveCurrent}><FloppyDisk aria-hidden="true" />Save as new view</MenuItem>}
         {canManageCurrent && onUpdateCurrent && <MenuItem onClick={onUpdateCurrent}><ArrowCounterClockwise aria-hidden="true" />Update current view</MenuItem>}
-        {canManageCurrent && onDeleteCurrent && <MenuItem className="teum-menu__item--danger" onClick={onDeleteCurrent}><Trash aria-hidden="true" />Delete current view</MenuItem>}
+        {canManageCurrent && onDeleteCurrent && <MenuItem className="whatiuse-menu__item--danger" onClick={onDeleteCurrent}><Trash aria-hidden="true" />Delete current view</MenuItem>}
       </MenuContent>
     </Menu>
   );
@@ -85,9 +85,9 @@ export function ColumnManager({ columns, onVisibilityChange, onResetSizing, labe
   return (
     <Menu>
       <MenuTrigger render={<Button size="small" variant="ghost" leadingIcon={<SlidersHorizontal />} aria-label={`${visibleCount} of ${columns.length} columns visible`} />}>{label}</MenuTrigger>
-      <MenuContent className="teum-column-manager" align="end">
+      <MenuContent className="whatiuse-column-manager" align="end">
         <MenuLabel>Visible columns</MenuLabel>
-        {columns.map((column) => <MenuCheckboxItem key={column.id} checked={column.visible} disabled={column.required} closeOnClick={false} onCheckedChange={(checked) => onVisibilityChange(column.id, checked)}>{column.label}{column.required && <span className="teum-column-manager__required"><Check aria-hidden="true" />Required</span>}</MenuCheckboxItem>)}
+        {columns.map((column) => <MenuCheckboxItem key={column.id} checked={column.visible} disabled={column.required} closeOnClick={false} onCheckedChange={(checked) => onVisibilityChange(column.id, checked)}>{column.label}{column.required && <span className="whatiuse-column-manager__required"><Check aria-hidden="true" />Required</span>}</MenuCheckboxItem>)}
         {onResetSizing && <><MenuSeparator /><MenuItem onClick={onResetSizing}><ArrowCounterClockwise aria-hidden="true" />Reset column widths</MenuItem></>}
       </MenuContent>
     </Menu>

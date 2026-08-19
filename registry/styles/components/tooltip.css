@@ -1,33 +1,33 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-positioner { z-index: var(--teum-layer-flyout); }
+@layer whatiuse.components {
+.whatiuse-positioner { z-index: var(--whatiuse-layer-flyout); }
 
-.teum-tooltip kbd { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; color: var(--teum-ink-tertiary); font-family: inherit; font-size: 10px; line-height: 1; white-space: nowrap; }
+.whatiuse-tooltip kbd { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; color: var(--whatiuse-ink-tertiary); font-family: inherit; font-size: 10px; line-height: 1; white-space: nowrap; }
 
-.teum-tooltip { display: flex; align-items: center; gap: 8px; max-width: 240px; padding: 6px 8px; border-radius: 5px; background: var(--teum-inverse); color: var(--teum-on-inverse); font-size: 12px; line-height: 1.35; box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18); transform-origin: var(--transform-origin); transition: opacity var(--teum-enter-duration) var(--teum-ease-out), transform var(--teum-enter-duration) var(--teum-ease-out); }
+.whatiuse-tooltip { display: flex; align-items: center; gap: 8px; max-width: 240px; padding: 6px 8px; border-radius: 5px; background: var(--whatiuse-inverse); color: var(--whatiuse-on-inverse); font-size: 12px; line-height: 1.35; box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18); transform-origin: var(--transform-origin); transition: opacity var(--whatiuse-enter-duration) var(--whatiuse-ease-out), transform var(--whatiuse-enter-duration) var(--whatiuse-ease-out); }
 
-.teum-tooltip[data-starting-style] { opacity: 0; transform: scale(0.96); }
+.whatiuse-tooltip[data-starting-style] { opacity: 0; transform: scale(0.96); }
 
-.teum-tooltip[data-ending-style] { opacity: 0; transform: scale(0.98); transition-duration: var(--teum-exit-duration); }
+.whatiuse-tooltip[data-ending-style] { opacity: 0; transform: scale(0.98); transition-duration: var(--whatiuse-exit-duration); }
 
-.teum-tooltip[data-instant] { transition-duration: 0ms; }
+.whatiuse-tooltip[data-instant] { transition-duration: 0ms; }
 
-.teum-tooltip kbd { padding: 0 3px; border: 1px solid color-mix(in oklch, var(--teum-on-inverse) 24%, transparent); border-radius: 3px; color: color-mix(in oklch, var(--teum-on-inverse) 76%, transparent); }
+.whatiuse-tooltip kbd { padding: 0 3px; border: 1px solid color-mix(in oklch, var(--whatiuse-on-inverse) 24%, transparent); border-radius: 3px; color: color-mix(in oklch, var(--whatiuse-on-inverse) 76%, transparent); }
 
-.teum-tooltip__arrow { width: 8px; height: 4px; fill: var(--teum-inverse); }
+.whatiuse-tooltip__arrow { width: 8px; height: 4px; fill: var(--whatiuse-inverse); }
 
-:root[data-theme="dark"] .teum-tooltip__arrow { fill: var(--teum-inverse); }
+:root[data-theme="dark"] .whatiuse-tooltip__arrow { fill: var(--whatiuse-inverse); }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-tooltip {
+.whatiuse-tooltip {
     transition-property: opacity;
-    transition-duration: var(--teum-exit-duration);
+    transition-duration: var(--whatiuse-exit-duration);
   }
 
-.teum-tooltip[data-starting-style],
-.teum-tooltip[data-ending-style] { transform: none; }
+.whatiuse-tooltip[data-starting-style],
+.whatiuse-tooltip[data-ending-style] { transform: none; }
 }
 }

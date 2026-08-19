@@ -6,40 +6,40 @@
 
 html, body, #root { width: 100%; min-width: 320px; height: 100%; margin: 0; overflow: hidden; }
 
-body { background: var(--teum-canvas); color: var(--teum-ink); font-size: var(--teum-type-ui); font-weight: var(--teum-ui-weight); line-height: 1.45; letter-spacing: var(--teum-ui-tracking); }
+body { background: var(--whatiuse-canvas); color: var(--whatiuse-ink); font-size: var(--whatiuse-type-ui); font-weight: var(--whatiuse-ui-weight); line-height: 1.45; letter-spacing: var(--whatiuse-ui-tracking); }
 
 button, input, textarea, select { font: inherit; }
 button { color: inherit; }
 button, [role="option"] { -webkit-tap-highlight-color: transparent; }
 
-::selection { color: var(--teum-on-inverse); background: var(--teum-inverse); }
+::selection { color: var(--whatiuse-on-inverse); background: var(--whatiuse-inverse); }
 
-:focus-visible { outline: var(--teum-focus-width) solid var(--teum-focus-control); outline-offset: var(--teum-focus-offset); }
+:focus-visible { outline: var(--whatiuse-focus-width) solid var(--whatiuse-focus-control); outline-offset: var(--whatiuse-focus-offset); }
 
-.teum-sr-only, .teum-sr-only:not(:focus):not(:active) {
+.whatiuse-sr-only, .whatiuse-sr-only:not(:focus):not(:active) {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
 
-.teum-skip-link {
+.whatiuse-skip-link {
   position: fixed;
-  z-index: calc(var(--teum-layer-toast) + 1);
+  z-index: calc(var(--whatiuse-layer-toast) + 1);
   top: 8px;
   left: 8px;
   padding: 8px 11px;
-  border: 1px solid var(--teum-border-strong);
+  border: 1px solid var(--whatiuse-border-strong);
   border-radius: 7px;
-  background: var(--teum-bg-float);
-  color: var(--teum-fg-default);
-  box-shadow: var(--teum-shadow-flyout);
-  font-size: var(--teum-type-label);
+  background: var(--whatiuse-bg-float);
+  color: var(--whatiuse-fg-default);
+  box-shadow: var(--whatiuse-shadow-flyout);
+  font-size: var(--whatiuse-type-label);
   font-weight: 560;
   text-decoration: none;
   transform: translateY(calc(-100% - 16px));
-  transition: transform var(--teum-hover-duration) var(--teum-ease-out);
+  transition: transform var(--whatiuse-hover-duration) var(--whatiuse-ease-out);
 }
 
-.teum-skip-link:focus-visible { transform: translateY(0); }
+.whatiuse-skip-link:focus-visible { transform: translateY(0); }
 
 @media (prefers-reduced-motion: reduce) {
-  .teum-skip-link { transition: none; }
+  .whatiuse-skip-link { transition: none; }
 }

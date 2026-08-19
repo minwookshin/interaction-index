@@ -1,0 +1,21 @@
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
+
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
+
+@layer whatiuse.components {
+.whatiuse-menu__item--danger { color: var(--whatiuse-fg-danger); }
+
+.whatiuse-menu__item--danger svg { color: currentColor; }
+
+.whatiuse-row-actions-menu {
+  display: inline-flex;
+  min-width: 0;
+  vertical-align: middle;
+}
+
+.whatiuse-row-actions-menu__menu { min-width: 168px; }
+
+.whatiuse-row-actions-menu__entry { display: contents; }
+
+.whatiuse-row-actions-menu__entry .whatiuse-menu__item svg { width: 14px; height: 14px; color: var(--whatiuse-fg-subtle); }
+}

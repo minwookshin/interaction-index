@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress",
+  "title": "Progress",
+  "description": "Determinate and indeterminate task progress with accessible status.",
+  "dependencies": [
+    "@base-ui/react@1.7.0"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/progress.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/progress.css\";\nimport { Progress as ProgressPrimitive } from \"@base-ui/react/progress\";\nimport type { CSSProperties } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type ProgressProps = Omit<ProgressPrimitive.Root.Props, \"children\"> & {\n  label?: string;\n  \"aria-label\"?: string;\n  showValue?: boolean;\n  size?: \"small\" | \"medium\";\n  className?: string;\n};\n\nexport function Progress({ label, \"aria-label\": ariaLabel, showValue = true, size = \"medium\", className, value, min = 0, max = 100, style, ...props }: ProgressProps) {\n  const range = max - min;\n  const scale = typeof value === \"number\" && range > 0 ? Math.min(1, Math.max(0, (value - min) / range)) : 0.42;\n  const progressStyle = { ...style, \"--whatiuse-progress-scale\": scale } as CSSProperties;\n  return (\n    <ProgressPrimitive.Root className={cn(\"whatiuse-progress\", `whatiuse-progress--${size}`, className)} value={value} min={min} max={max} aria-label={label ? undefined : ariaLabel ?? \"Progress\"} style={progressStyle} {...props}>\n      {(label || showValue) && <div className=\"whatiuse-progress__meta\">{label ? <ProgressPrimitive.Label>{label}</ProgressPrimitive.Label> : <span />}{showValue && <ProgressPrimitive.Value />}</div>}\n      <ProgressPrimitive.Track className=\"whatiuse-progress__track\">\n        <ProgressPrimitive.Indicator className=\"whatiuse-progress__indicator\" />\n      </ProgressPrimitive.Track>\n    </ProgressPrimitive.Root>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/progress.tsx"
+    },
+    {
+      "path": "registry/styles/components/progress.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-progress { display: grid; width: min(320px, 100%); gap: 7px; }\n\n.whatiuse-progress__meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--whatiuse-ink-secondary); font-size: var(--whatiuse-type-label); }\n\n.whatiuse-progress__meta > span:last-child { color: var(--whatiuse-ink-tertiary); font-variant-numeric: tabular-nums; }\n\n.whatiuse-progress__track { position: relative; overflow: hidden; width: 100%; border-radius: 999px; background: var(--whatiuse-gray-200); }\n\n.whatiuse-progress__indicator { width: 100%; height: 100%; border-radius: inherit; background: var(--whatiuse-gray-900); transform: scaleX(var(--whatiuse-progress-scale)); transform-origin: left center; transition: transform 220ms var(--whatiuse-ease-out, ease-out); }\n\n.whatiuse-progress[data-indeterminate] .whatiuse-progress__indicator { animation: whatiuse-progress-indeterminate 1.15s var(--whatiuse-ease-in-out, ease-in-out) infinite; }\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-progress[data-indeterminate] .whatiuse-progress__indicator { animation-duration: 2.4s; }\n}\n\n@keyframes whatiuse-progress-indeterminate { from { transform: translateX(-72%) scaleX(.42); } to { transform: translateX(116%) scaleX(.42); } }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/progress.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/progress",
+      "useWhen": "A task duration is long enough that explicit completion feedback reduces uncertainty.",
+      "avoidWhen": "The work is effectively immediate or progress cannot be meaningfully represented."
+    }
+  },
+  "type": "registry:ui"
+}

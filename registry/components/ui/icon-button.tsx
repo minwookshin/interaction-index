@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/components/icon-button.css";
 import type { ReactNode } from "react";
 import { Button, type ButtonProps } from "./button";
@@ -16,7 +16,7 @@ export type IconButtonProps = Omit<ButtonProps, "children" | "leadingIcon" | "tr
 export function IconButton({ children, className, tooltip, ...props }: IconButtonProps) {
   const button = (
     <Button
-      className={cn("teum-icon-button", className)}
+      className={cn("whatiuse-icon-button", className)}
       focusableWhenDisabled={Boolean(tooltip) && props.disabled}
       {...props}
     >

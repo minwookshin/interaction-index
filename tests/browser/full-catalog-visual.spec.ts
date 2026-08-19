@@ -7,8 +7,9 @@ test.skip(({ browserName, isMobile }) => browserName !== "chromium" || isMobile,
 const lazyPreviewRoutes = new Set(["date-picker", "tree", "reorderable-list"]);
 const lazyDocumentSelectors = new Map([
   ["product-pilot", '.pilot-workspace[aria-label="Issues Workspace"]'],
-  ["analytics", '.teum-analytics-recipe[aria-label="SaaS Overview recipe"]'],
-  ["product-patterns", '.teum-product-pattern[aria-label="Customer Workspace recipe"]'],
+  ["analytics", '.whatiuse-analytics-recipe[aria-label="SaaS Overview recipe"]'],
+  ["product-patterns", '.whatiuse-product-pattern[aria-label="Customer Workspace recipe"]'],
+  ["collaboration-patterns", '.whatiuse-product-pattern[aria-label="Members and Permissions recipe"]'],
 ]);
 
 for (const [route, heading, group] of publicRoutes) {

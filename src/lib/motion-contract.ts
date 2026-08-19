@@ -1,12 +1,12 @@
-export type TeumMotionFrequency = "constant" | "frequent" | "occasional" | "rare";
+export type WhatiuseMotionFrequency = "constant" | "frequent" | "occasional" | "rare";
 
-export type TeumMotionRule = {
-  frequency: TeumMotionFrequency;
+export type WhatiuseMotionRule = {
+  frequency: WhatiuseMotionFrequency;
   treatment: "instant" | "tonal" | "spatial" | "expressive";
   rationale: string;
 };
 
-export const teumMotionContract = {
+export const whatiuseMotionContract = {
   version: "1.0.0",
   principles: [
     "Respond at the moment of input.",
@@ -36,7 +36,7 @@ export const teumMotionContract = {
       treatment: "expressive",
       rationale: "First-run or explanatory moments may carry more character without delaying the task.",
     },
-  } satisfies Record<TeumMotionFrequency, TeumMotionRule>,
+  } satisfies Record<WhatiuseMotionFrequency, WhatiuseMotionRule>,
   durationMs: {
     press: 110,
     hover: 120,
@@ -68,4 +68,4 @@ export const teumMotionContract = {
   },
 } as const;
 
-export type TeumMotionContract = typeof teumMotionContract;
+export type WhatiuseMotionContract = typeof whatiuseMotionContract;

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/verify-whatiuse-data-consumer.mjs",
+  "generatedAt": "2026-08-19T13:58:37.829Z",
+  "version": "0.1.0-rc.38",
+  "status": "passed",
+  "fixture": "Fresh React + TypeScript + Vite application using the source registry",
+  "item": "whatiuse-data",
+  "recipes": [
+    "Issues Workspace",
+    "Customer Directory",
+    "Audit Log"
+  ],
+  "verifiedFiles": [
+    "src/components/patterns/issues-workspace.tsx",
+    "src/components/patterns/data-recipes.tsx",
+    "src/components/ui/data-table.tsx",
+    "src/components/ui/filter-builder.tsx",
+    "src/components/ui/data-toolbar.tsx",
+    "src/components/ui/bulk-action-bar.tsx",
+    "src/components/ui/date-range-filter.tsx",
+    "src/components/ui/data-export-menu.tsx",
+    "src/lib/data-view-state.ts",
+    "src/lib/data-export.ts",
+    "src/lib/whatiuse-data-contract.ts",
+    "src/lib/motion-contract.ts",
+    "src/styles/patterns/issues-workspace.css",
+    "src/styles/patterns/data-recipes.css"
+  ],
+  "typecheck": "passed",
+  "productionBuild": "passed",
+  "elapsedMs": 16614
+}

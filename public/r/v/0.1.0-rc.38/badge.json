@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "title": "Badge",
+  "description": "Compact monochrome metadata and removable-filter labelling.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/badge.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/badge.css\";\nimport { X } from \"@phosphor-icons/react\";\nimport type { ComponentPropsWithRef, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type BadgeProps = ComponentPropsWithRef<\"span\"> & {\n  variant?: \"neutral\" | \"strong\" | \"outline\" | \"success\" | \"warning\" | \"danger\";\n  leadingIcon?: ReactNode;\n  removable?: boolean;\n  onRemove?: () => void;\n  removeLabel?: string;\n};\n\nexport function Badge({\n  className,\n  variant = \"neutral\",\n  leadingIcon,\n  removable,\n  onRemove,\n  removeLabel = \"Remove\",\n  children,\n  ...props\n}: BadgeProps) {\n  return (\n    <span className={cn(\"whatiuse-badge\", `whatiuse-badge--${variant}`, className)} {...props}>\n      {leadingIcon && <span className=\"whatiuse-badge__icon\" aria-hidden=\"true\">{leadingIcon}</span>}\n      <span className=\"whatiuse-badge__label\">{children}</span>\n      {removable && (\n        <button type=\"button\" className=\"whatiuse-badge__remove\" aria-label={removeLabel} onClick={onRemove}>\n          <X aria-hidden=\"true\" />\n        </button>\n      )}\n    </span>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/badge.tsx"
+    },
+    {
+      "path": "registry/styles/components/badge.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-badge {\n  display: inline-flex;\n  min-width: 0;\n  height: 21px;\n  align-items: center;\n  gap: 4px;\n  padding: 0 6px;\n  border: 1px solid transparent;\n  border-radius: 6px;\n  background: color-mix(in oklch, var(--whatiuse-bg-subtle) 88%, transparent);\n  color: var(--whatiuse-fg-muted);\n  font-size: 11.5px;\n  font-weight: 550;\n  line-height: 1;\n  letter-spacing: -0.006em;\n  white-space: nowrap;\n}\n\n.whatiuse-badge__icon,\n.whatiuse-badge__icon svg { width: 11px; height: 11px; flex: 0 0 auto; }\n\n.whatiuse-badge__label { overflow: hidden; text-overflow: ellipsis; }\n\n.whatiuse-badge__remove {\n  position: relative;\n  display: grid;\n  width: 17px;\n  height: 17px;\n  margin-right: -4px;\n  place-items: center;\n  border: 0;\n  border-radius: 999px;\n  background: transparent;\n  color: currentColor;\n  cursor: pointer;\n}\n\n.whatiuse-badge__remove::after {\n  position: absolute;\n  inset: -4px;\n  content: \"\";\n}\n\n.whatiuse-badge__remove svg { width: 11px; height: 11px; }\n\n.whatiuse-badge__remove:focus-visible { outline: 1.5px solid currentColor; outline-offset: -2px; }\n\n@media (hover: hover) and (pointer: fine) {\n.whatiuse-badge__remove:hover { background: var(--whatiuse-hover); color: var(--whatiuse-ink); }\n}\n\n.whatiuse-badge__remove { transition: color var(--whatiuse-hover-duration), background-color var(--whatiuse-hover-duration), transform var(--whatiuse-press-duration) var(--whatiuse-ease-out); }\n\n.whatiuse-badge__remove:active { transform: scale(.96); }\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-badge__remove:active { transform: none; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/badge.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/badge",
+      "useWhen": "A short label adds secondary classification or compact status context.",
+      "avoidWhen": "The label triggers a primary action or contains a sentence."
+    }
+  },
+  "type": "registry:ui"
+}

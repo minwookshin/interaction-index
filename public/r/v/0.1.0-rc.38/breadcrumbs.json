@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumbs",
+  "title": "Breadcrumbs",
+  "description": "Semantic location hierarchy with current-page and collapsed-depth handling.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/breadcrumbs.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/breadcrumbs.css\";\nimport { CaretRight, DotsThree } from \"@phosphor-icons/react\";\nimport type { ComponentPropsWithRef, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type BreadcrumbItem = { label: string; href?: string; icon?: ReactNode };\nexport type BreadcrumbsProps = ComponentPropsWithRef<\"nav\"> & { items: readonly BreadcrumbItem[]; maxItems?: number; label?: string };\n\nexport function Breadcrumbs({ items, maxItems = 4, label = \"Breadcrumb\", className, ...props }: BreadcrumbsProps) {\n  const collapsed = items.length > maxItems;\n  const visibleItems = collapsed ? [items[0], { label: \"More\" }, ...items.slice(-(maxItems - 2))] : items;\n  return (\n    <nav className={cn(\"whatiuse-breadcrumbs\", className)} aria-label={label} {...props}>\n      <ol>\n        {visibleItems.map((item, index) => {\n          const current = index === visibleItems.length - 1;\n          const collapsedItem = collapsed && index === 1;\n          return (\n            <li key={`${item.label}-${index}`}>\n              {index > 0 && <CaretRight className=\"whatiuse-breadcrumbs__separator\" aria-hidden=\"true\" />}\n              {collapsedItem ? <span className=\"whatiuse-breadcrumbs__ellipsis\" role=\"img\" aria-label=\"Collapsed breadcrumbs\"><DotsThree weight=\"bold\" /></span> : item.href && !current ? <a href={item.href}>{item.icon}{item.label}</a> : <span aria-current={current ? \"page\" : undefined}>{item.icon}{item.label}</span>}\n            </li>\n          );\n        })}\n      </ol>\n    </nav>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/breadcrumbs.tsx"
+    },
+    {
+      "path": "registry/styles/components/breadcrumbs.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-breadcrumbs ol { display: flex; min-width: 0; align-items: center; gap: 3px; margin: 0; padding: 0; list-style: none; }\n\n.whatiuse-breadcrumbs li { display: flex; min-width: 0; align-items: center; gap: 3px; }\n\n.whatiuse-breadcrumbs a,\n.whatiuse-breadcrumbs li > span:not(.whatiuse-breadcrumbs__separator) { display: inline-flex; min-width: 0; align-items: center; gap: 5px; border-radius: 4px; color: var(--whatiuse-ink-tertiary); font-size: var(--whatiuse-type-label); line-height: 24px; text-decoration: none; white-space: nowrap; }\n\n.whatiuse-breadcrumbs [aria-current=\"page\"] { color: var(--whatiuse-ink); font-weight: 500; overflow: hidden; text-overflow: ellipsis; }\n\n.whatiuse-breadcrumbs svg { width: 12px; height: 12px; }\n\n.whatiuse-breadcrumbs__separator { color: var(--whatiuse-gray-400); }\n\n.whatiuse-breadcrumbs__ellipsis { display: grid !important; width: 22px; height: 22px; place-items: center; }\n\n@media (hover: hover) and (pointer: fine) {\n.whatiuse-breadcrumbs a:hover { color: var(--whatiuse-ink); }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/breadcrumbs.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/breadcrumbs",
+      "useWhen": "Users benefit from seeing and navigating the hierarchy above the current destination.",
+      "avoidWhen": "The product is flat or the path duplicates a nearby persistent navigation tree."
+    }
+  },
+  "type": "registry:ui"
+}

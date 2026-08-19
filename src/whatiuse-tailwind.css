@@ -1,0 +1,57 @@
+/*
+ * Optional Tailwind CSS v4 bridge for whatiuse.
+ * Import after `tailwindcss` and `whatiuse/tokens.css`.
+ * whatiuse's CSS variables remain the source of truth; this file only maps them
+ * to semantic Tailwind utilities such as bg-background and shadow-flyout.
+ */
+
+@theme inline {
+  --color-background: var(--whatiuse-bg-canvas);
+  --color-foreground: var(--whatiuse-fg-default);
+  --color-card: var(--whatiuse-bg-surface);
+  --color-card-foreground: var(--whatiuse-fg-default);
+  --color-popover: var(--whatiuse-bg-flyout);
+  --color-popover-foreground: var(--whatiuse-fg-default);
+  --color-primary: var(--whatiuse-inverse);
+  --color-primary-foreground: var(--whatiuse-on-inverse);
+  --color-secondary: var(--whatiuse-bg-control);
+  --color-secondary-foreground: var(--whatiuse-fg-default);
+  --color-muted: var(--whatiuse-bg-subtle);
+  --color-muted-foreground: var(--whatiuse-fg-muted);
+  --color-accent: var(--whatiuse-hover);
+  --color-accent-foreground: var(--whatiuse-fg-default);
+  --color-destructive: var(--whatiuse-fg-danger);
+  --color-border: var(--whatiuse-control-border);
+  --color-input: var(--whatiuse-control-border);
+  --color-ring: var(--whatiuse-focus-control);
+
+  --color-canvas: var(--whatiuse-bg-canvas);
+  --color-stage: var(--whatiuse-bg-stage);
+  --color-float: var(--whatiuse-bg-float);
+  --color-flyout: var(--whatiuse-bg-flyout);
+  --color-modal: var(--whatiuse-bg-modal);
+
+  --radius-xs: var(--whatiuse-radius-xs);
+  --radius-sm: var(--whatiuse-radius-sm);
+  --radius-md: var(--whatiuse-radius-md);
+  --radius-lg: var(--whatiuse-radius-lg);
+  --radius-control: var(--whatiuse-radius-control);
+  --radius-container: var(--whatiuse-radius-container);
+  --radius-overlay: var(--whatiuse-radius-overlay);
+
+  --shadow-control: var(--whatiuse-shadow-control);
+  --shadow-float: var(--whatiuse-shadow-float);
+  --shadow-flyout: var(--whatiuse-shadow-flyout);
+  --shadow-modal: var(--whatiuse-shadow-modal);
+
+  --font-sans: var(--whatiuse-font-ui);
+  --font-mono: var(--whatiuse-font-code);
+  --text-metadata: var(--whatiuse-type-metadata);
+  --text-label: var(--whatiuse-type-label);
+  --text-ui: var(--whatiuse-type-ui);
+  --text-body: var(--whatiuse-type-body);
+
+  --ease-whatiuse-out: var(--whatiuse-ease-out);
+  --ease-whatiuse-in-out: var(--whatiuse-ease-in-out);
+  --ease-whatiuse-drawer: var(--whatiuse-ease-drawer);
+}

@@ -1,63 +1,63 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-data-recipe {
-  --teum-row-height-table: 40px;
+@layer whatiuse.components {
+.whatiuse-data-recipe {
+  --whatiuse-row-height-table: 40px;
   position: relative;
   display: grid;
   min-width: 0;
   margin-top: 20px;
   overflow: hidden;
   border-radius: 11px;
-  background: var(--teum-bg-surface);
-  box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--teum-fg-default) 7%, transparent), 0 18px 52px color-mix(in oklch, var(--teum-fg-default) 6%, transparent);
+  background: var(--whatiuse-bg-surface);
+  box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--whatiuse-fg-default) 7%, transparent), 0 18px 52px color-mix(in oklch, var(--whatiuse-fg-default) 6%, transparent);
   container-type: inline-size;
 }
 
-.teum-data-recipe--loading {
+.whatiuse-data-recipe--loading {
   min-height: 360px;
   place-items: center;
-  color: var(--teum-fg-subtle);
-  font-size: var(--teum-type-ui);
+  color: var(--whatiuse-fg-subtle);
+  font-size: var(--whatiuse-type-ui);
 }
 
-.teum-data-recipe__header {
+.whatiuse-data-recipe__header {
   display: flex;
   min-height: 58px;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   padding: 10px 14px;
-  background: color-mix(in oklch, var(--teum-bg-surface) 88%, transparent);
+  background: color-mix(in oklch, var(--whatiuse-bg-surface) 88%, transparent);
 }
 
-.teum-data-recipe__header > div { display: grid; gap: 2px; }
+.whatiuse-data-recipe__header > div { display: grid; gap: 2px; }
 
-.teum-data-recipe__header h3 { margin: 0; font-size: var(--teum-type-ui); font-weight: 620; letter-spacing: -.012em; }
+.whatiuse-data-recipe__header h3 { margin: 0; font-size: var(--whatiuse-type-ui); font-weight: 620; letter-spacing: -.012em; }
 
-.teum-data-recipe__header p { margin: 0; color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+.whatiuse-data-recipe__header p { margin: 0; color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); }
 
-.teum-data-recipe__header small { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; }
+.whatiuse-data-recipe__header small { color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); font-variant-numeric: tabular-nums; }
 
-.teum-data-recipe > .teum-data-toolbar {
+.whatiuse-data-recipe > .whatiuse-data-toolbar {
   padding: 8px 12px;
-  background: var(--teum-bg-stage);
+  background: var(--whatiuse-bg-stage);
 }
 
-.teum-data-recipe > .teum-data-toolbar .teum-search-field { width: 210px; }
+.whatiuse-data-recipe > .whatiuse-data-toolbar .whatiuse-search-field { width: 210px; }
 
-.teum-data-recipe > .teum-data-toolbar .teum-search { background: var(--teum-bg-surface); }
+.whatiuse-data-recipe > .whatiuse-data-toolbar .whatiuse-search { background: var(--whatiuse-bg-surface); }
 
-.teum-data-recipe > .teum-data-table { padding: 0 12px 12px; }
+.whatiuse-data-recipe > .whatiuse-data-table { padding: 0 12px 12px; }
 
-.teum-data-recipe > .teum-data-table > .teum-table__container,
-.teum-data-recipe > .teum-data-table > .teum-data-table__virtual-viewport { border-radius: 8px; }
+.whatiuse-data-recipe > .whatiuse-data-table > .whatiuse-table__container,
+.whatiuse-data-recipe > .whatiuse-data-table > .whatiuse-data-table__virtual-viewport { border-radius: 8px; }
 
-.teum-data-recipe__bulk-slot {
+.whatiuse-data-recipe__bulk-slot {
   position: absolute;
-  z-index: var(--teum-layer-float);
+  z-index: var(--whatiuse-layer-float);
   right: 12px;
   bottom: 64px;
   left: 12px;
@@ -66,22 +66,33 @@
   pointer-events: none;
 }
 
-.teum-data-recipe__bulk-slot > * { max-width: calc(100% - 16px); pointer-events: auto; }
+.whatiuse-data-recipe__bulk-slot > * { max-width: calc(100% - 16px); pointer-events: auto; }
 
 @container (max-width: 720px) {
-.teum-data-recipe > .teum-data-toolbar { align-items: stretch; flex-direction: column; }
+.whatiuse-data-recipe > .whatiuse-data-toolbar {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+  }
 
-.teum-data-recipe > .teum-data-toolbar .teum-data-toolbar__start,
-.teum-data-recipe > .teum-data-toolbar .teum-data-toolbar__end { width: 100%; justify-content: flex-start; margin-left: 0; }
+.whatiuse-data-recipe > .whatiuse-data-toolbar .whatiuse-data-toolbar__start,
+.whatiuse-data-recipe > .whatiuse-data-toolbar .whatiuse-data-toolbar__end {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: 0;
+  }
 
-.teum-data-recipe > .teum-data-toolbar .teum-search-field { width: min(100%, 280px); flex: 1 1 220px; }
+.whatiuse-data-recipe > .whatiuse-data-toolbar .whatiuse-search-field {
+    width: min(100%, 280px);
+    flex: 1 1 220px;
+  }
 }
 
 @media (max-width: 720px) {
-.teum-data-recipe__header { align-items: flex-start; }
+.whatiuse-data-recipe__header { align-items: flex-start; }
 
-.teum-data-recipe > .teum-data-toolbar .teum-search-field { width: 100%; }
+.whatiuse-data-recipe > .whatiuse-data-toolbar .whatiuse-search-field { width: 100%; }
 
-.teum-data-recipe > .teum-data-table { padding-inline: 8px; }
+.whatiuse-data-recipe > .whatiuse-data-table { padding-inline: 8px; }
 }
 }

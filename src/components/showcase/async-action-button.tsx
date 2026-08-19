@@ -14,6 +14,7 @@ export type AsyncActionButtonProps = {
   successLabel?: string;
   showIdleArrow?: boolean;
   autoResetMs?: number;
+  widthBehavior?: "stable" | "morph";
   replayActivation?: "pointer" | "keyboard";
   replayKey?: number;
   resetKey?: number;
@@ -27,6 +28,7 @@ export function AsyncActionButton({
   successLabel = "Created",
   showIdleArrow = true,
   autoResetMs,
+  widthBehavior = "stable",
   replayActivation = "pointer",
   replayKey = 0,
   resetKey = 0,
@@ -81,29 +83,37 @@ export function AsyncActionButton({
   };
 
   const currentLabel = state === "loading" ? loadingLabel : state === "success" ? successLabel : idleLabel;
-  const shouldMorphWidth = activation === "pointer" && !reduceMotion;
+  const shouldMorphWidth = widthBehavior === "morph" && activation === "pointer" && !reduceMotion;
+  const size = compact ? "medium" : "large";
 
   return (
-    <div className="teum-async-action" data-state={state} data-activation={activation} data-compact={compact || undefined}>
-      <MotionButton
-        className="teum-async-action__button teum-async-action__morph"
-        variant="primary"
-        size={compact ? "medium" : "large"}
-        aria-label={idleLabel}
-        layout={shouldMorphWidth ? "size" : false}
-        layoutDependency={state}
-        transition={shouldMorphWidth ? { type: "spring", visualDuration: 0.16, bounce: 0 } : { duration: 0 }}
-        loading={state === "loading"}
-        loadingLabel={loadingLabel}
-        disabled={state === "success"}
-        focusableWhenDisabled
-        leadingIcon={state === "success" ? <Check weight="bold" /> : undefined}
-        trailingIcon={state !== "success" && showIdleArrow ? <ArrowRight weight="bold" /> : undefined}
-        onClick={run}
-      >
-        {state === "success" ? successLabel : idleLabel}
-      </MotionButton>
-      <span className="teum-sr-only" role="status" aria-live="polite">{state === "idle" ? "" : currentLabel}</span>
+    <div className="whatiuse-async-action" data-state={state} data-activation={activation} data-compact={compact || undefined} data-width-behavior={widthBehavior}>
+      <span className="whatiuse-async-action__frame">
+        {widthBehavior === "stable" && <span className="whatiuse-async-action__sizer" aria-hidden="true">
+          <Button className="whatiuse-async-action__sizer-button" variant="primary" size={size} disabled trailingIcon={showIdleArrow ? <ArrowRight weight="bold" /> : undefined}>{idleLabel}</Button>
+          <Button className="whatiuse-async-action__sizer-button" variant="primary" size={size} disabled leadingIcon={<span className="whatiuse-spinner" />}>{loadingLabel}</Button>
+          <Button className="whatiuse-async-action__sizer-button" variant="primary" size={size} disabled leadingIcon={<Check weight="bold" />}>{successLabel}</Button>
+        </span>}
+        <MotionButton
+          className="whatiuse-async-action__button whatiuse-async-action__morph"
+          variant="primary"
+          size={size}
+          aria-label={idleLabel}
+          layout={shouldMorphWidth ? "size" : false}
+          layoutDependency={state}
+          transition={shouldMorphWidth ? { type: "spring", visualDuration: 0.16, bounce: 0 } : { duration: 0 }}
+          loading={state === "loading"}
+          loadingLabel={loadingLabel}
+          disabled={state === "success"}
+          focusableWhenDisabled
+          leadingIcon={state === "success" ? <Check weight="bold" /> : undefined}
+          trailingIcon={state !== "success" && showIdleArrow ? <ArrowRight weight="bold" /> : undefined}
+          onClick={run}
+        >
+          {state === "success" ? successLabel : idleLabel}
+        </MotionButton>
+      </span>
+      <span className="whatiuse-sr-only" role="status" aria-live="polite">{state === "idle" ? "" : currentLabel}</span>
     </div>
   );
 }

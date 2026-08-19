@@ -26,7 +26,7 @@ describe("Data view state", () => {
     });
 
     const serialized = serializeDataViewState(state);
-    expect(serialized).toContain("teum-q=renewal");
+    expect(serialized).toContain("whatiuse-q=renewal");
     expect(parseDataViewState(serialized)).toEqual(state);
     expect(mergeDataViewSearch("utm_source=docs&legacy=1", state)).toContain("utm_source=docs");
     expect(getDataRequestKey(state)).not.toContain("columnSizing");
@@ -54,7 +54,7 @@ describe("Data view state", () => {
 
   it("sanitizes malformed URL state without discarding a safe fallback", () => {
     const state = parseDataViewState(
-      "teum-page=-20&teum-size=99999&teum-from=not-a-date&teum-filter=%7Bbad",
+      "whatiuse-page=-20&whatiuse-size=99999&whatiuse-from=not-a-date&whatiuse-filter=%7Bbad",
       { query: "fallback", columnPinning: { start: ["name"] } },
     );
     expect(state.query).toBe("fallback");

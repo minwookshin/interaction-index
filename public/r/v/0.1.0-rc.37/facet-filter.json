@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "facet-filter",
+  "title": "Facet Filter",
+  "description": "Counted multi-selection for small enumerable data dimensions.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base",
+    "@whatiuse/button",
+    "@whatiuse/menu"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/facet-filter.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/facet-filter.css\";\nimport { FunnelSimple, X } from \"@phosphor-icons/react\";\nimport { cn } from \"../../lib/cn\";\nimport { Button } from \"./button\";\nimport {\n  Menu,\n  MenuCheckboxItem,\n  MenuContent,\n  MenuItem,\n  MenuLabel,\n  MenuSeparator,\n  MenuTrigger,\n} from \"./menu\";\n\nexport type FacetFilterOption = {\n  value: string;\n  label: string;\n  count?: number;\n  disabled?: boolean;\n};\n\nexport type FacetFilterProps = {\n  label: string;\n  options: readonly FacetFilterOption[];\n  values: readonly string[];\n  onValuesChange: (values: readonly string[]) => void;\n  className?: string;\n};\n\nexport function FacetFilter({ label, options, values, onValuesChange, className }: FacetFilterProps) {\n  const selected = new Set(values);\n  const toggle = (value: string, checked: boolean) => {\n    const next = checked\n      ? [...values.filter((item) => item !== value), value]\n      : values.filter((item) => item !== value);\n    onValuesChange(next);\n  };\n\n  return (\n    <span className={cn(\"whatiuse-facet-filter\", className)}>\n      <Menu>\n        <MenuTrigger\n          render={(\n            <Button\n              size=\"small\"\n              variant={values.length > 0 ? \"secondary\" : \"ghost\"}\n              leadingIcon={<FunnelSimple />}\n              aria-label={`${label}: ${values.length > 0 ? `${values.length} selected` : \"Any\"}`}\n            />\n          )}\n        >\n          <span className=\"whatiuse-facet-filter__trigger-content\">\n            <span>{label}</span>\n            {values.length > 0 && <span className=\"whatiuse-facet-filter__count\" aria-hidden=\"true\">{values.length}</span>}\n          </span>\n        </MenuTrigger>\n        <MenuContent className=\"whatiuse-facet-filter__menu\" align=\"start\">\n          <MenuLabel>{label}</MenuLabel>\n          {options.map((option) => (\n            <MenuCheckboxItem\n              key={option.value}\n              checked={selected.has(option.value)}\n              disabled={option.disabled}\n              closeOnClick={false}\n              onCheckedChange={(checked) => toggle(option.value, checked)}\n            >\n              <span className=\"whatiuse-facet-filter__option\">\n                <span>{option.label}</span>\n                {typeof option.count === \"number\" && <small>{option.count}</small>}\n              </span>\n            </MenuCheckboxItem>\n          ))}\n          {values.length > 0 && (\n            <>\n              <MenuSeparator />\n              <MenuItem onClick={() => onValuesChange([])}>\n                <X aria-hidden=\"true\" />Clear {label.toLocaleLowerCase()}\n              </MenuItem>\n            </>\n          )}\n        </MenuContent>\n      </Menu>\n    </span>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/facet-filter.tsx"
+    },
+    {
+      "path": "registry/styles/components/facet-filter.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-facet-filter {\n  display: inline-flex;\n  min-width: 0;\n  vertical-align: middle;\n}\n\n.whatiuse-facet-filter__count {\n  display: grid;\n  min-width: 16px;\n  height: 16px;\n  place-items: center;\n  flex: 0 0 auto;\n  padding-inline: 4px;\n  border-radius: 999px;\n  background: var(--whatiuse-bg-subtle);\n  color: var(--whatiuse-fg-muted);\n  font-size: 10px;\n  font-variant-numeric: tabular-nums;\n  line-height: 1;\n}\n\n.whatiuse-facet-filter__trigger-content {\n  display: inline-flex;\n  min-width: 0;\n  align-items: center;\n  gap: 6px;\n  white-space: nowrap;\n}\n\n.whatiuse-facet-filter__trigger-content > span:first-child {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.whatiuse-facet-filter__menu { min-width: 208px; }\n\n.whatiuse-facet-filter__option {\n  display: grid;\n  min-width: 0;\n  flex: 1;\n  grid-template-columns: minmax(0, 1fr) auto;\n  align-items: center;\n  gap: 14px;\n}\n\n.whatiuse-facet-filter__option > span {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.whatiuse-facet-filter__option small {\n  color: var(--whatiuse-fg-subtle);\n  font-size: var(--whatiuse-type-metadata);\n  font-variant-numeric: tabular-nums;\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/facet-filter.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/facet-filter"
+    }
+  },
+  "type": "registry:component"
+}

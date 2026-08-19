@@ -1,37 +1,37 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-input-group {
+@layer whatiuse.components {
+.whatiuse-input-group {
   display: flex;
   width: 100%;
   min-width: 0;
-  height: var(--teum-control-height-md);
+  height: var(--whatiuse-control-height-md);
   align-items: center;
-  border: 1px solid var(--teum-control-border);
-  border-radius: var(--teum-radius-control);
-  background: var(--teum-bg-control);
-  box-shadow: var(--teum-shadow-control);
-  color: var(--teum-fg-default);
-  transition: background-color var(--teum-hover-duration), border-color var(--teum-hover-duration), box-shadow var(--teum-hover-duration);
+  border: 1px solid var(--whatiuse-control-border);
+  border-radius: var(--whatiuse-radius-control);
+  background: var(--whatiuse-bg-control);
+  box-shadow: var(--whatiuse-shadow-control);
+  color: var(--whatiuse-fg-default);
+  transition: background-color var(--whatiuse-hover-duration), border-color var(--whatiuse-hover-duration), box-shadow var(--whatiuse-hover-duration);
 }
 
-.teum-input-group:hover:not([data-disabled]) { border-color: var(--teum-control-border-hover); }
+.whatiuse-input-group:hover:not([data-disabled]) { border-color: var(--whatiuse-control-border-hover); }
 
-.teum-input-group:has(.teum-input-group__input:focus-visible) {
-  border-color: var(--teum-control-border-hover);
-  box-shadow: var(--teum-shadow-control), 0 0 0 2px var(--teum-focus-halo);
+.whatiuse-input-group:has(.whatiuse-input-group__input:focus-visible) {
+  border-color: var(--whatiuse-control-border-hover);
+  box-shadow: var(--whatiuse-shadow-control), 0 0 0 2px var(--whatiuse-focus-halo);
 }
 
-.teum-input-group[data-invalid] {
-  border-color: color-mix(in oklch, var(--teum-fg-danger) 42%, var(--teum-control-border));
-  box-shadow: var(--teum-shadow-control), 0 0 0 2px color-mix(in oklch, var(--teum-fg-danger) 10%, transparent);
+.whatiuse-input-group[data-invalid] {
+  border-color: color-mix(in oklch, var(--whatiuse-fg-danger) 42%, var(--whatiuse-control-border));
+  box-shadow: var(--whatiuse-shadow-control), 0 0 0 2px color-mix(in oklch, var(--whatiuse-fg-danger) 10%, transparent);
 }
 
-.teum-input-group[data-disabled] { background: var(--teum-bg-subtle); box-shadow: none; color: var(--teum-fg-disabled); cursor: not-allowed; }
+.whatiuse-input-group[data-disabled] { background: var(--whatiuse-bg-subtle); box-shadow: none; color: var(--whatiuse-fg-disabled); cursor: not-allowed; }
 
-.teum-input-group__input {
+.whatiuse-input-group__input {
   width: 100%;
   min-width: 60px;
   height: 100%;
@@ -42,31 +42,31 @@
   background: transparent;
   color: inherit;
   font: inherit;
-  font-size: var(--teum-type-ui);
+  font-size: var(--whatiuse-type-ui);
 }
 
-.teum-input-group__input::placeholder { color: var(--teum-fg-subtle); }
+.whatiuse-input-group__input::placeholder { color: var(--whatiuse-fg-subtle); }
 
-.teum-input-group__input:disabled { cursor: not-allowed; }
+.whatiuse-input-group__input:disabled { cursor: not-allowed; }
 
-.teum-input-group__addon {
+.whatiuse-input-group__addon {
   display: inline-flex;
   height: 100%;
   flex: 0 0 auto;
   align-items: center;
   padding-left: 9px;
-  color: var(--teum-fg-muted);
-  font-size: var(--teum-type-label);
+  color: var(--whatiuse-fg-muted);
+  font-size: var(--whatiuse-type-label);
   white-space: nowrap;
 }
 
-.teum-input-group__addon[data-side="end"] { padding-right: 7px; padding-left: 0; }
+.whatiuse-input-group__addon[data-side="end"] { padding-right: 7px; padding-left: 0; }
 
-.teum-input-group__addon + .teum-input-group__input { padding-left: 6px; }
+.whatiuse-input-group__addon + .whatiuse-input-group__input { padding-left: 6px; }
 
-.teum-input-group__button { height: 26px; margin: 0 2px; padding-inline: 6px; border: 0; }
+.whatiuse-input-group__button { height: 26px; margin: 0 2px; padding-inline: 6px; border: 0; }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-input-group { transition-duration: 0.01ms; }
+.whatiuse-input-group { transition-duration: 0.01ms; }
 }
 }

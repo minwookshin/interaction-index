@@ -49,33 +49,33 @@ export function ContextSwitcher({
       highlightItemOnHover={highlightItemOnHover}
       {...rootProps}
     >
-      <SelectPrimitive.Trigger ref={ref} className={cn("teum-context-switcher", className)} aria-label={ariaLabel}>
-        <SelectPrimitive.Value className="teum-context-switcher__value">
+      <SelectPrimitive.Trigger ref={ref} className={cn("whatiuse-context-switcher", className)} aria-label={ariaLabel}>
+        <SelectPrimitive.Value className="whatiuse-context-switcher__value">
           {(selectedValue) => {
             const selected = options.find((option) => option.value === selectedValue);
-            if (!selectedValue || !selected) return <span className="teum-context-switcher__label" data-placeholder>{placeholder}</span>;
+            if (!selectedValue || !selected) return <span className="whatiuse-context-switcher__label" data-placeholder>{placeholder}</span>;
             return (
               <>
-                <span className="teum-context-switcher__icon" aria-hidden="true">{selected.icon}</span>
-                <span className="teum-context-switcher__label">{selected.label}</span>
+                <span className="whatiuse-context-switcher__icon" aria-hidden="true">{selected.icon}</span>
+                <span className="whatiuse-context-switcher__label">{selected.label}</span>
               </>
             );
           }}
         </SelectPrimitive.Value>
-        <SelectPrimitive.Icon className="teum-context-switcher__chevron"><CaretUpDown aria-hidden="true" /></SelectPrimitive.Icon>
+        <SelectPrimitive.Icon className="whatiuse-context-switcher__chevron"><CaretUpDown aria-hidden="true" /></SelectPrimitive.Icon>
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>
-        <SelectPrimitive.Positioner className="teum-positioner" sideOffset={4} align="start" alignItemWithTrigger={false}>
-          <SelectPrimitive.Popup className="teum-context-switcher__popup" data-layer="flyout">
-            <SelectPrimitive.List className="teum-context-switcher__list" aria-label={`${ariaLabel} options`}>
+        <SelectPrimitive.Positioner className="whatiuse-positioner" sideOffset={4} align="start" alignItemWithTrigger={false}>
+          <SelectPrimitive.Popup className="whatiuse-context-switcher__popup" data-layer="flyout">
+            <SelectPrimitive.List className="whatiuse-context-switcher__list" aria-label={`${ariaLabel} options`}>
               {options.map((option) => (
-                <SelectPrimitive.Item className="teum-context-switcher__item" key={option.value} value={option.value} disabled={option.disabled}>
-                  <span className="teum-context-switcher__item-icon" aria-hidden="true">{option.icon}</span>
-                  <span className="teum-context-switcher__copy">
-                    <SelectPrimitive.ItemText className="teum-context-switcher__item-label">{option.label}</SelectPrimitive.ItemText>
-                    <span className="teum-context-switcher__description">{option.description}</span>
+                <SelectPrimitive.Item className="whatiuse-context-switcher__item" key={option.value} value={option.value} disabled={option.disabled}>
+                  <span className="whatiuse-context-switcher__item-icon" aria-hidden="true">{option.icon}</span>
+                  <span className="whatiuse-context-switcher__copy">
+                    <SelectPrimitive.ItemText className="whatiuse-context-switcher__item-label">{option.label}</SelectPrimitive.ItemText>
+                    <span className="whatiuse-context-switcher__description">{option.description}</span>
                   </span>
-                  <SelectPrimitive.ItemIndicator className="teum-context-switcher__indicator"><Check weight="bold" aria-hidden="true" /></SelectPrimitive.ItemIndicator>
+                  <SelectPrimitive.ItemIndicator className="whatiuse-context-switcher__indicator"><Check weight="bold" aria-hidden="true" /></SelectPrimitive.ItemIndicator>
                 </SelectPrimitive.Item>
               ))}
             </SelectPrimitive.List>

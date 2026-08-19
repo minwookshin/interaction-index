@@ -291,7 +291,7 @@ function PilotWorkspaceInner({ onReset }: { onReset: () => void }) {
         </div>
       </header>
 
-      <ol className="pilot-proof-status teum-sr-only" aria-label="Interaction proof task">{proofSteps.map(([label, description], index) => {
+      <ol className="pilot-proof-status whatiuse-sr-only" aria-label="Interaction proof task">{proofSteps.map(([label, description], index) => {
           const step = index + 1;
           return <li key={label} data-complete={proofStep >= step || undefined} aria-current={proofStep === index ? "step" : undefined}>{label}: {description}</li>;
         })}</ol>
@@ -339,7 +339,7 @@ function PilotWorkspaceInner({ onReset }: { onReset: () => void }) {
                 </div>
                 <dl className="pilot-detail-meta"><div><dt><UserCircle aria-hidden="true" />Assignee</dt><dd>{issue.assignee}</dd></div><div><dt><CalendarBlank aria-hidden="true" />Updated</dt><dd>{issue.updated}</dd></div></dl>
                 <div className="pilot-detail-title"><span>Title</span><InlineEdit value={issue.title} label="Edit issue title" onSave={(title) => updateIssue(issue.id, { title })} validate={(title) => title.length < 4 ? "Use at least four characters." : undefined} /></div>
-                <div className="pilot-detail-actions"><Button size="small" variant="secondary" onClick={() => { updateIssue(issue.id, { status: issue.status === "Done" ? "In progress" : "Done" }); toast(issue.status === "Done" ? "Issue reopened" : "Issue completed", { id: "pilot-feedback" }); }}>{issue.status === "Done" ? "Reopen" : "Mark done"}</Button><Menu><MenuTrigger render={<IconButton size="small" variant="ghost" aria-label="More issue actions"><DotsThree /></IconButton>} /><MenuContent align="end"><MenuLabel>{issue.code}</MenuLabel><MenuItem onClick={() => updateIssue(issue.id, { priority: "High" })}>Set high priority</MenuItem><MenuSeparator /><MenuItem className="teum-menu__item--danger" onClick={() => archiveIssue(issue.id)}><Archive aria-hidden="true" />Archive issue</MenuItem></MenuContent></Menu></div>
+                <div className="pilot-detail-actions"><Button size="small" variant="secondary" onClick={() => { updateIssue(issue.id, { status: issue.status === "Done" ? "In progress" : "Done" }); toast(issue.status === "Done" ? "Issue reopened" : "Issue completed", { id: "pilot-feedback" }); }}>{issue.status === "Done" ? "Reopen" : "Mark done"}</Button><Menu><MenuTrigger render={<IconButton size="small" variant="ghost" aria-label="More issue actions"><DotsThree /></IconButton>} /><MenuContent align="end"><MenuLabel>{issue.code}</MenuLabel><MenuItem onClick={() => updateIssue(issue.id, { priority: "High" })}>Set high priority</MenuItem><MenuSeparator /><MenuItem className="whatiuse-menu__item--danger" onClick={() => archiveIssue(issue.id)}><Archive aria-hidden="true" />Archive issue</MenuItem></MenuContent></Menu></div>
               </div>;
             }}
           /> : <div className="pilot-empty"><strong>No matching issues</strong><p>Try a different query or create a new issue.</p><Button size="small" onClick={() => setQuery("")}>Clear search</Button></div>}
@@ -374,7 +374,7 @@ function PilotWorkspaceInner({ onReset }: { onReset: () => void }) {
         </TabsContent>
       </Tabs>
       <UndoBar />
-      <span className="teum-sr-only" aria-live="polite">{selected ? `${selected.code} selected` : "No issue selected"}</span>
+      <span className="whatiuse-sr-only" aria-live="polite">{selected ? `${selected.code} selected` : "No issue selected"}</span>
     </section>
   );
 }

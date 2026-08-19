@@ -29,22 +29,22 @@ export type CalendarProps<T extends DateValue> = Omit<AriaCalendarProps<T>, "chi
 
 export function Calendar<T extends DateValue>({ className, ...props }: CalendarProps<T>) {
   return (
-    <AriaCalendar className={cn("teum-calendar", className)} {...props}>
-      <header className="teum-calendar__header">
-        <AriaButton slot="previous" className="teum-calendar__nav" aria-label="Previous month">
+    <AriaCalendar className={cn("whatiuse-calendar", className)} {...props}>
+      <header className="whatiuse-calendar__header">
+        <AriaButton slot="previous" className="whatiuse-calendar__nav" aria-label="Previous month">
           <CaretLeft aria-hidden="true" />
         </AriaButton>
-        <Heading className="teum-calendar__heading" />
-        <AriaButton slot="next" className="teum-calendar__nav" aria-label="Next month">
+        <Heading className="whatiuse-calendar__heading" />
+        <AriaButton slot="next" className="whatiuse-calendar__nav" aria-label="Next month">
           <CaretRight aria-hidden="true" />
         </AriaButton>
       </header>
-      <CalendarGrid className="teum-calendar__grid" weekdayStyle="short">
+      <CalendarGrid className="whatiuse-calendar__grid" weekdayStyle="short">
         <CalendarGridHeader>
-          {(day) => <CalendarHeaderCell className="teum-calendar__weekday">{day}</CalendarHeaderCell>}
+          {(day) => <CalendarHeaderCell className="whatiuse-calendar__weekday">{day}</CalendarHeaderCell>}
         </CalendarGridHeader>
         <CalendarGridBody>
-          {(date) => <CalendarCell className="teum-calendar__cell" date={date} />}
+          {(date) => <CalendarCell className="whatiuse-calendar__cell" date={date} />}
         </CalendarGridBody>
       </CalendarGrid>
     </AriaCalendar>
@@ -70,23 +70,23 @@ export function DatePicker<T extends DateValue>({
   return (
     <AriaDatePicker
       aria-label={label ? undefined : ariaLabel}
-      className={cn("teum-date-picker", className)}
+      className={cn("whatiuse-date-picker", className)}
       isInvalid={Boolean(errorMessage) || props.isInvalid}
       {...props}
     >
-      {label && <Label className="teum-field__label">{label}</Label>}
-      <Group className="teum-date-picker__group">
-        <DateInput className="teum-date-picker__input">
-          {(segment) => <DateSegment className="teum-date-picker__segment" segment={segment} />}
+      {label && <Label className="whatiuse-field__label">{label}</Label>}
+      <Group className="whatiuse-date-picker__group">
+        <DateInput className="whatiuse-date-picker__input">
+          {(segment) => <DateSegment className="whatiuse-date-picker__segment" segment={segment} />}
         </DateInput>
-        <AriaButton className="teum-date-picker__button" aria-label="Open calendar">
+        <AriaButton className="whatiuse-date-picker__button" aria-label="Open calendar">
           <CalendarBlank aria-hidden="true" />
         </AriaButton>
       </Group>
-      {description && <Text slot="description" className="teum-field__description">{description}</Text>}
-      {errorMessage && <Text slot="errorMessage" className="teum-field__error">{errorMessage}</Text>}
-      <Popover className="teum-date-picker__popover" placement="bottom" data-layer="flyout">
-        <AriaDialog className="teum-date-picker__dialog">
+      {description && <Text slot="description" className="whatiuse-field__description">{description}</Text>}
+      {errorMessage && <Text slot="errorMessage" className="whatiuse-field__error">{errorMessage}</Text>}
+      <Popover className="whatiuse-date-picker__popover" placement="bottom" data-layer="flyout">
+        <AriaDialog className="whatiuse-date-picker__dialog">
           <Calendar />
         </AriaDialog>
       </Popover>

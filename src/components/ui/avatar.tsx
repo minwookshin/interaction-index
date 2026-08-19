@@ -18,19 +18,19 @@ export function Avatar({ className, src, alt = "", fallback, size = "medium", st
 
   return (
     <span
-      className={cn("teum-avatar", `teum-avatar--${size}`, className)}
+      className={cn("whatiuse-avatar", `whatiuse-avatar--${size}`, className)}
       data-status={status || undefined}
       data-tone={src ? undefined : fallbackTone(fallback)}
       role={src ? role : role ?? (fallbackLabel ? "img" : undefined)}
       aria-label={src ? ariaLabel : fallbackLabel}
       {...props}
     >
-      {src ? <img src={src} alt={alt} /> : <span className="teum-avatar__fallback" aria-hidden="true">{fallback.slice(0, 2).toLocaleUpperCase()}</span>}
-      {status && <span className="teum-avatar__status" data-status={status} role="img" aria-label={`${status} presence`} />}
+      {src ? <img src={src} alt={alt} /> : <span className="whatiuse-avatar__fallback" aria-hidden="true">{fallback.slice(0, 2).toLocaleUpperCase()}</span>}
+      {status && <span className="whatiuse-avatar__status" data-status={status} role="img" aria-label={`${status} presence`} />}
     </span>
   );
 }
 
 export function AvatarGroup({ className, children, ...props }: ComponentPropsWithRef<"div">) {
-  return <div role="group" className={cn("teum-avatar-group", className)} {...props}>{children}</div>;
+  return <div role="group" className={cn("whatiuse-avatar-group", className)} {...props}>{children}</div>;
 }

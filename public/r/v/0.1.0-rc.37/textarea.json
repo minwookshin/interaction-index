@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "title": "Textarea",
+  "description": "Long-form input with guidance, validation, and character count.",
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/textarea.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/textarea.css\";\nimport { useId, useState, type ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type TextareaProps = ComponentPropsWithRef<\"textarea\"> & {\n  label?: string;\n  description?: string;\n  error?: string;\n  showCount?: boolean;\n};\n\nexport function Textarea({ id: providedId, label, description, error, showCount, maxLength, className, value, defaultValue, onChange, ref, ...props }: TextareaProps) {\n  const generatedId = useId();\n  const id = providedId ?? generatedId;\n  const descriptionId = description ? `${id}-description` : undefined;\n  const errorId = error ? `${id}-error` : undefined;\n  const describedBy = [props[\"aria-describedby\"], descriptionId, errorId].filter(Boolean).join(\" \") || undefined;\n  const initialValue = value ?? defaultValue ?? \"\";\n  const [uncontrolledCount, setUncontrolledCount] = useState(typeof initialValue === \"string\" ? initialValue.length : 0);\n  const count = typeof value === \"string\" ? value.length : uncontrolledCount;\n\n  return (\n    <div className=\"whatiuse-field whatiuse-textarea-field\" data-invalid={Boolean(error) || undefined}>\n      {label && <label className=\"whatiuse-field__label\" htmlFor={id}>{label}</label>}\n      <textarea\n        ref={ref}\n        id={id}\n        className={cn(\"whatiuse-input whatiuse-textarea\", className)}\n        aria-invalid={Boolean(error) || undefined}\n        aria-describedby={describedBy}\n        maxLength={maxLength}\n        value={value}\n        defaultValue={defaultValue}\n        onChange={(event) => { setUncontrolledCount(event.currentTarget.value.length); onChange?.(event); }}\n        {...props}\n      />\n      <div className=\"whatiuse-textarea-field__meta\">\n        <span>\n          {description && <span id={descriptionId} className=\"whatiuse-field__description\">{description}</span>}\n          {error && <span id={errorId} className=\"whatiuse-field__error\">{error}</span>}\n        </span>\n        {showCount && maxLength && <output aria-label=\"Character count\">{count}/{maxLength}</output>}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/textarea.tsx"
+    },
+    {
+      "path": "registry/styles/components/textarea.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-textarea {\n  box-sizing: border-box;\n  max-width: 100%;\n  min-height: 96px;\n  resize: vertical;\n  padding: 9px 10px;\n  line-height: 1.5;\n}\n\n.whatiuse-textarea-field__meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }\n\n.whatiuse-textarea-field__meta > span { min-width: 0; }\n\n.whatiuse-textarea-field__meta output { flex: 0 0 auto; color: var(--whatiuse-ink-tertiary); font-size: var(--whatiuse-type-metadata); font-variant-numeric: tabular-nums; }\n\n.whatiuse-field { display: grid; min-width: 0; gap: 6px; }\n\n.whatiuse-field__label { color: var(--whatiuse-ink); font-size: 12px; font-weight: 550; }\n\n.whatiuse-field[data-invalid] .whatiuse-field__control { border-color: color-mix(in oklch, var(--whatiuse-fg-danger) 46%, var(--whatiuse-control-border)); box-shadow: 0 0 0 2px color-mix(in oklch, var(--whatiuse-fg-danger) 11%, transparent); }\n\n.whatiuse-input { width: 100%; min-width: 0; height: 100%; padding: 0 9px; border: 0; outline: 0; background: transparent; color: var(--whatiuse-ink); font-size: 13.5px; }\n\n.whatiuse-input::placeholder { color: var(--whatiuse-fg-subtle); }\n\n.whatiuse-input:disabled { background: var(--whatiuse-bg-subtle); color: var(--whatiuse-fg-disabled); cursor: not-allowed; }\n\n.whatiuse-input:read-only { color: var(--whatiuse-fg-muted); }\n\n.whatiuse-field__description,\n.whatiuse-field__error { color: var(--whatiuse-ink-tertiary); font-size: 11.5px; line-height: 1.45; }\n\n.whatiuse-field__error { color: var(--whatiuse-fg-danger); font-weight: 520; }\n\n:root[data-theme=\"dark\"] .whatiuse-input:disabled { background: rgb(255 255 255 / 0.025); color: var(--whatiuse-ink-disabled); }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/textarea.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/textarea",
+      "useWhen": "The user needs to enter more than one line of unstructured text.",
+      "avoidWhen": "The value is short or highly structured. Use Text Field or a purpose-built selector."
+    }
+  },
+  "type": "registry:ui"
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "data-sort-menu",
+  "title": "Data Sort Menu",
+  "description": "One explicit sort field and direction for predictable collection order.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base",
+    "@whatiuse/button",
+    "@whatiuse/menu"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/data-sort-menu.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/data-sort-menu.css\";\nimport { ArrowDown, ArrowUp, ArrowsDownUp, X } from \"@phosphor-icons/react\";\nimport { cn } from \"../../lib/cn\";\nimport { Button } from \"./button\";\nimport {\n  Menu,\n  MenuContent,\n  MenuItem,\n  MenuLabel,\n  MenuRadioGroup,\n  MenuRadioItem,\n  MenuSeparator,\n  MenuTrigger,\n} from \"./menu\";\n\nexport type DataSortOption = {\n  id: string;\n  label: string;\n  disabled?: boolean;\n};\n\nexport type DataSortValue = {\n  id: string;\n  direction: \"asc\" | \"desc\";\n};\n\nexport type DataSortMenuProps = {\n  options: readonly DataSortOption[];\n  value: DataSortValue | null;\n  onValueChange: (value: DataSortValue | null) => void;\n  label?: string;\n  className?: string;\n};\n\nexport function DataSortMenu({ options, value, onValueChange, label = \"Sort\", className }: DataSortMenuProps) {\n  const selected = options.find((option) => option.id === value?.id);\n  const direction = value?.direction ?? \"asc\";\n  return (\n    <span className={cn(\"whatiuse-data-sort-menu\", className)}>\n      <Menu>\n        <MenuTrigger\n          render={<Button size=\"small\" variant={value ? \"secondary\" : \"ghost\"} leadingIcon={<ArrowsDownUp />} aria-label={value ? `${label}: ${selected?.label}, ${direction === \"asc\" ? \"ascending\" : \"descending\"}` : label} />}\n        >\n          {selected?.label ?? label}\n        </MenuTrigger>\n        <MenuContent className=\"whatiuse-data-sort-menu__menu\" align=\"start\">\n          <MenuLabel>Sort by</MenuLabel>\n          <MenuRadioGroup\n            value={value?.id ?? \"\"}\n            onValueChange={(id) => onValueChange({ id, direction })}\n          >\n            {options.map((option) => (\n              <MenuRadioItem key={option.id} value={option.id} disabled={option.disabled} closeOnClick={false}>\n                {option.label}\n              </MenuRadioItem>\n            ))}\n          </MenuRadioGroup>\n          <MenuSeparator />\n          <MenuLabel>Direction</MenuLabel>\n          <MenuRadioGroup\n            value={direction}\n            onValueChange={(nextDirection) => onValueChange({ id: value?.id ?? options[0]?.id ?? \"\", direction: nextDirection as \"asc\" | \"desc\" })}\n          >\n            <MenuRadioItem value=\"asc\" closeOnClick={false}><ArrowUp aria-hidden=\"true\" />Ascending</MenuRadioItem>\n            <MenuRadioItem value=\"desc\" closeOnClick={false}><ArrowDown aria-hidden=\"true\" />Descending</MenuRadioItem>\n          </MenuRadioGroup>\n          {value && <><MenuSeparator /><MenuItem onClick={() => onValueChange(null)}><X aria-hidden=\"true\" />Clear sort</MenuItem></>}\n        </MenuContent>\n      </Menu>\n    </span>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/data-sort-menu.tsx"
+    },
+    {
+      "path": "registry/styles/components/data-sort-menu.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-data-sort-menu {\n  display: inline-flex;\n  min-width: 0;\n  vertical-align: middle;\n}\n\n.whatiuse-data-sort-menu__menu { min-width: 208px; }\n\n.whatiuse-data-sort-menu__menu .whatiuse-menu__item > span:first-child { gap: 7px; }\n\n.whatiuse-data-sort-menu__menu .whatiuse-menu__item svg { width: 13px; height: 13px; color: var(--whatiuse-fg-subtle); }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/data-sort-menu.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/data-sort-menu"
+    }
+  },
+  "type": "registry:component"
+}

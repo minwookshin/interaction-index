@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination",
+  "title": "Pagination",
+  "description": "Controlled, bounded, condensed page navigation.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/pagination.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/pagination.css\";\nimport { CaretLeft, CaretRight, DotsThree } from \"@phosphor-icons/react\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type PaginationProps = Omit<ComponentPropsWithRef<\"nav\">, \"children\"> & {\n  page: number;\n  totalPages: number;\n  onPageChange: (page: number) => void;\n  siblingCount?: number;\n  className?: string;\n  label?: string;\n};\n\nfunction pageRange(page: number, total: number, siblingCount: number) {\n  if (total <= 7) return Array.from({ length: total }, (_, index) => index + 1);\n  const start = Math.max(2, page - siblingCount);\n  const end = Math.min(total - 1, page + siblingCount);\n  const values: Array<number | \"ellipsis-start\" | \"ellipsis-end\"> = [1];\n  if (start > 2) values.push(\"ellipsis-start\");\n  for (let value = start; value <= end; value += 1) values.push(value);\n  if (end < total - 1) values.push(\"ellipsis-end\");\n  values.push(total);\n  return values;\n}\n\nexport function Pagination({ page, totalPages, onPageChange, siblingCount = 1, className, label = \"Pagination\", ...props }: PaginationProps) {\n  const safeTotalPages = Math.max(1, Math.floor(totalPages));\n  const safePage = Math.min(safeTotalPages, Math.max(1, Math.floor(page)));\n  const safeSiblingCount = Math.max(0, Math.floor(siblingCount));\n  const setPage = (next: number) => onPageChange(Math.min(safeTotalPages, Math.max(1, next)));\n  return (\n    <nav className={cn(\"whatiuse-pagination\", className)} aria-label={label} {...props}>\n      <button type=\"button\" aria-label=\"Previous page\" disabled={safePage <= 1} onClick={() => setPage(safePage - 1)}><CaretLeft /></button>\n      {pageRange(safePage, safeTotalPages, safeSiblingCount).map((item) => typeof item === \"number\" ? <button type=\"button\" key={item} aria-label={`Page ${item}`} aria-current={item === safePage ? \"page\" : undefined} onClick={() => setPage(item)}>{item}</button> : <span key={item} aria-hidden=\"true\"><DotsThree /></span>)}\n      <button type=\"button\" aria-label=\"Next page\" disabled={safePage >= safeTotalPages} onClick={() => setPage(safePage + 1)}><CaretRight /></button>\n    </nav>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/pagination.tsx"
+    },
+    {
+      "path": "registry/styles/components/pagination.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-pagination { display: flex; align-items: center; gap: 3px; }\n\n.whatiuse-pagination button,\n.whatiuse-pagination > span { display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid transparent; border-radius: var(--whatiuse-radius-sm); background: transparent; color: var(--whatiuse-ink-secondary); font: inherit; font-size: var(--whatiuse-type-label); font-variant-numeric: tabular-nums; }\n\n.whatiuse-pagination button { cursor: pointer; transition: background-color var(--whatiuse-hover-duration) ease, color var(--whatiuse-hover-duration) ease, transform var(--whatiuse-press-duration) var(--whatiuse-ease-out, ease-out); }\n\n.whatiuse-pagination button[aria-current=\"page\"] { border-color: var(--whatiuse-border); background: var(--whatiuse-control-surface); box-shadow: var(--whatiuse-shadow-control); color: var(--whatiuse-ink); font-weight: 550; }\n\n.whatiuse-pagination button:focus-visible { outline: 2px solid var(--whatiuse-focus-control); outline-offset: 2px; }\n\n.whatiuse-pagination button:disabled { color: var(--whatiuse-ink-disabled); cursor: not-allowed; }\n\n.whatiuse-pagination svg { width: 13px; height: 13px; }\n\n@media (hover: hover) and (pointer: fine) {\n.whatiuse-pagination button:not(:disabled):hover { background: var(--whatiuse-hover); color: var(--whatiuse-ink); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-pagination button:not(:disabled):active { transform: none; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/pagination.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/pagination",
+      "useWhen": "Users need stable page positions or direct access to a distant result page.",
+      "avoidWhen": "Continuous browsing is the goal and an infinite list preserves context better."
+    }
+  },
+  "type": "registry:ui"
+}

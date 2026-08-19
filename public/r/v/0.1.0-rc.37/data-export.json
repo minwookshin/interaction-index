@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "data-export",
+  "title": "Data Export",
+  "description": "Declared-column CSV and JSON export with safe filenames and spreadsheet formula neutralization.",
+  "files": [
+    {
+      "path": "registry/lib/data-export.ts",
+      "content": "export type DataExportFormat = \"csv\" | \"json\";\n\nexport type DataExportColumn<TData> = {\n  id: string;\n  header: string;\n  value: keyof TData | ((row: TData) => unknown);\n  format?: (value: unknown, row: TData) => string | number | boolean | null;\n};\n\nexport type DataExportOptions<TData> = {\n  rows: readonly TData[];\n  columns: readonly DataExportColumn<TData>[];\n  format: DataExportFormat;\n  fileName: string;\n  includeBom?: boolean;\n};\n\nexport type DataExportArtifact = {\n  content: string;\n  fileName: string;\n  mimeType: string;\n  rowCount: number;\n  format: DataExportFormat;\n};\n\nfunction readColumnValue<TData>(row: TData, column: DataExportColumn<TData>): unknown {\n  return typeof column.value === \"function\" ? column.value(row) : row[column.value];\n}\n\nfunction normalizeExportValue(value: unknown): string | number | boolean | null {\n  if (value === null || value === undefined) return null;\n  if (typeof value === \"string\" || typeof value === \"number\" || typeof value === \"boolean\") return value;\n  if (value instanceof Date) return value.toISOString();\n  if (Array.isArray(value)) return value.map((item) => String(item)).join(\", \");\n  return JSON.stringify(value);\n}\n\nfunction protectSpreadsheetFormula(value: string): string {\n  return /^[\\t\\r ]*[=+\\-@]/.test(value) ? `'${value}` : value;\n}\n\nfunction escapeCsv(value: string | number | boolean | null): string {\n  const normalized = protectSpreadsheetFormula(value === null ? \"\" : String(value));\n  return /[\",\\r\\n]/.test(normalized) ? `\"${normalized.replaceAll('\"', '\"\"')}\"` : normalized;\n}\n\nfunction safeFileName(value: string, extension: DataExportFormat): string {\n  const base = value.trim().replace(/\\.(csv|json)$/i, \"\").replace(/[\\\\/:*?\"<>|]+/g, \"-\").slice(0, 120) || \"export\";\n  return `${base}.${extension}`;\n}\n\nexport function buildDataExport<TData>({\n  rows,\n  columns,\n  format,\n  fileName,\n  includeBom = format === \"csv\",\n}: DataExportOptions<TData>): DataExportArtifact {\n  const records = rows.map((row) => Object.fromEntries(columns.map((column) => {\n    const raw = readColumnValue(row, column);\n    return [column.header, column.format ? column.format(raw, row) : normalizeExportValue(raw)];\n  })));\n  const content = format === \"json\"\n    ? JSON.stringify(records, null, 2)\n    : `${includeBom ? \"\\uFEFF\" : \"\"}${[\n      columns.map((column) => escapeCsv(column.header)).join(\",\"),\n      ...records.map((record) => columns.map((column) => escapeCsv(record[column.header] ?? null)).join(\",\")),\n    ].join(\"\\r\\n\")}`;\n  return {\n    content,\n    fileName: safeFileName(fileName, format),\n    mimeType: format === \"csv\" ? \"text/csv;charset=utf-8\" : \"application/json;charset=utf-8\",\n    rowCount: rows.length,\n    format,\n  };\n}\n\nexport function downloadDataExport(artifact: DataExportArtifact): void {\n  if (typeof document === \"undefined\" || typeof URL === \"undefined\") return;\n  const url = URL.createObjectURL(new Blob([artifact.content], { type: artifact.mimeType }));\n  const anchor = document.createElement(\"a\");\n  anchor.href = url;\n  anchor.download = artifact.fileName;\n  anchor.hidden = true;\n  document.body.append(anchor);\n  anchor.click();\n  anchor.remove();\n  window.setTimeout(() => URL.revokeObjectURL(url), 0);\n}\n",
+      "type": "registry:lib",
+      "target": "lib/data-export.ts"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/data-export"
+    }
+  },
+  "type": "registry:lib"
+}

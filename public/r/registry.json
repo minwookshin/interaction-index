@@ -1,12 +1,12 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "teum",
+  "name": "whatiuse",
   "homepage": "https://whatiuse.minwookshin.com",
   "items": [
     {
-      "name": "teum-base",
+      "name": "whatiuse-base",
       "type": "registry:style",
-      "title": "Teum Base",
+      "title": "whatiuse Base",
       "description": "Inter, semantic monochrome tokens, global accessibility defaults, and the documented cascade contract.",
       "dependencies": [
         "@fontsource-variable/inter@^5.3.0",
@@ -30,25 +30,25 @@
           "target": "lib/motion-contract.ts"
         },
         {
-          "path": "registry/styles/teum-base.css",
+          "path": "registry/styles/whatiuse-base.css",
           "type": "registry:style",
-          "target": "styles/teum-base.css"
+          "target": "styles/whatiuse-base.css"
         }
       ]
     },
     {
-      "name": "teum-tailwind",
+      "name": "whatiuse-tailwind",
       "type": "registry:style",
-      "title": "Teum Tailwind Bridge",
-      "description": "Optional Tailwind CSS v4 semantic utility mapping backed by the same Teum tokens.",
+      "title": "whatiuse Tailwind Bridge",
+      "description": "Optional Tailwind CSS v4 semantic utility mapping backed by the same whatiuse tokens.",
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
-          "path": "registry/styles/teum-tailwind.css",
+          "path": "registry/styles/whatiuse-tailwind.css",
           "type": "registry:style",
-          "target": "styles/teum-tailwind.css"
+          "target": "styles/whatiuse-tailwind.css"
         }
       ]
     },
@@ -62,7 +62,7 @@
         "class-variance-authority@^0.7.1"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -77,9 +77,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/button",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/button",
           "useWhen": "The user needs to start or confirm a discrete action.",
           "avoidWhen": "Navigation is the intent. Use a link that can still look like a button."
         }
@@ -91,8 +91,8 @@
       "title": "Icon Button",
       "description": "Accessible square icon action with tooltip support.",
       "registryDependencies": [
-        "@teum/button",
-        "@teum/tooltip"
+        "@whatiuse/button",
+        "@whatiuse/tooltip"
       ],
       "files": [
         {
@@ -107,9 +107,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/icon-button",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/icon-button",
           "useWhen": "A familiar icon can represent a frequent action in a constrained area.",
           "avoidWhen": "The icon is ambiguous without explanation. Prefer a labelled Button."
         }
@@ -124,7 +124,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -139,9 +139,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/field",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/field",
           "useWhen": "A control needs a persistent label, supporting guidance, validation, or grouping semantics.",
           "avoidWhen": "The content is not form input or the label would only repeat nearby visible context."
         }
@@ -153,8 +153,8 @@
       "title": "Input Group",
       "description": "One text-entry boundary with contextual addons and compact actions.",
       "registryDependencies": [
-        "@teum/teum-base",
-        "@teum/button"
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/button"
       ],
       "files": [
         {
@@ -169,9 +169,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/input-group",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/input-group",
           "useWhen": "An addon or action belongs inside the same visual entry boundary as one text input.",
           "avoidWhen": "The adjacent controls perform unrelated work or several inputs form a compound value."
         }
@@ -183,7 +183,7 @@
       "title": "Kbd",
       "description": "Presentational keyboard hints for keys, chords, and sequences.",
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -198,9 +198,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/kbd",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/kbd",
           "useWhen": "A visible hint explains a real keyboard shortcut or key sequence.",
           "avoidWhen": "The key is interactive on its own or no working shortcut exists."
         }
@@ -212,7 +212,7 @@
       "title": "Button Group",
       "description": "Related actions with shared rhythm and optional joined geometry.",
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -227,9 +227,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/button-group",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/button-group",
           "useWhen": "Two or more related actions benefit from shared alignment or joined geometry.",
           "avoidWhen": "Actions are unrelated, one action dominates an entire form, or arrow-key navigation is expected."
         }
@@ -244,7 +244,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -259,9 +259,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/toolbar",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/toolbar",
           "useWhen": "A compact set of frequent peer controls benefits from one arrow-navigable region.",
           "avoidWhen": "Actions are infrequent, form submission is the main task, or controls need explanatory copy."
         }
@@ -273,7 +273,7 @@
       "title": "Text Field",
       "description": "Dense labelled input with hints, validation, and adornments.",
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -288,9 +288,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/text-field",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/text-field",
           "useWhen": "The user enters a short, unstructured value.",
           "avoidWhen": "A finite option set can be selected with less effort."
         }
@@ -306,7 +306,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -321,9 +321,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/number-field",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/number-field",
           "useWhen": "The value is numeric and stepping, bounds, or locale-aware formatting reduce entry errors.",
           "avoidWhen": "The number is an identifier, phone number, postal code, or another string that is not mathematically stepped."
         }
@@ -338,7 +338,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -353,9 +353,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/segmented-control",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/segmented-control",
           "useWhen": "Two to four short peer options should remain visible and switch immediately.",
           "avoidWhen": "Options are numerous, require descriptions, or submit later as part of a form."
         }
@@ -372,7 +372,7 @@
         "react-aria-components@^1.20.0"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -387,9 +387,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/date-picker",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/date-picker",
           "useWhen": "A date must be entered precisely while a calendar also makes nearby dates easier to inspect.",
           "avoidWhen": "The value is relative prose, a date range, or a full scheduling workflow with time zones and recurrence."
         }
@@ -404,7 +404,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -419,9 +419,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/checkbox",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/checkbox",
           "useWhen": "Several independent options may be selected together.",
           "avoidWhen": "A setting takes effect immediately. Use Switch for that case."
         }
@@ -435,7 +435,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -450,9 +450,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/switch",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/switch",
           "useWhen": "Changing the setting should take effect immediately.",
           "avoidWhen": "The change must be reviewed and submitted with a form."
         }
@@ -466,7 +466,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -481,9 +481,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/tooltip",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/tooltip",
           "useWhen": "A concise label clarifies an otherwise understandable control.",
           "avoidWhen": "The content is required to complete the task or contains actions."
         }
@@ -497,7 +497,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -512,9 +512,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/popover",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/popover",
           "useWhen": "A small set of controls belongs next to its trigger.",
           "avoidWhen": "The task requires full attention, long forms, or a destructive decision."
         }
@@ -529,7 +529,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -544,9 +544,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/menu",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/menu",
           "useWhen": "Related actions need a compact, temporary container.",
           "avoidWhen": "Options must remain visible for comparison or frequent access."
         }
@@ -561,7 +561,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/icon-button"
+        "@whatiuse/icon-button"
       ],
       "files": [
         {
@@ -576,9 +576,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/dialog",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/dialog",
           "useWhen": "A short, reversible task needs focused attention and a clear completion point.",
           "avoidWhen": "The work can be completed inline, requires a long workflow, or demands an explicit consequential response. Use Alert Dialog for the latter."
         }
@@ -594,7 +594,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -609,9 +609,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/context-menu",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/context-menu",
           "useWhen": "A familiar object has secondary actions that benefit from right click or long press and also have a keyboard path.",
           "avoidWhen": "The action is required, frequent, undiscoverable without instruction, or the trigger has no stable object boundary."
         }
@@ -627,8 +627,8 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base",
-        "@teum/icon-button"
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/icon-button"
       ],
       "files": [
         {
@@ -643,9 +643,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/sheet",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/sheet",
           "useWhen": "A focused task needs more room than a Popover but the originating page should remain spatially legible.",
           "avoidWhen": "The task is a short anchored choice, a full destination, or a gesture-driven drawer with snap points."
         }
@@ -660,7 +660,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -675,9 +675,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/alert-dialog",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/alert-dialog",
           "useWhen": "A consequential action must interrupt the task and requires an explicit response.",
           "avoidWhen": "The action is safely reversible with Undo or ordinary information is being displayed."
         }
@@ -691,7 +691,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -706,9 +706,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/tabs",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/tabs",
           "useWhen": "Peer views of the same object can switch without navigation.",
           "avoidWhen": "The sections form a sequence or users need to compare them simultaneously."
         }
@@ -722,7 +722,7 @@
         "sonner@^2.0.8"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -737,9 +737,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/toast",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/toast",
           "useWhen": "The result is useful but should not block the current task.",
           "avoidWhen": "The user must act before continuing or the error belongs beside a field."
         }
@@ -754,7 +754,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -769,9 +769,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/inline-edit",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/inline-edit",
           "useWhen": "A visible value is changed frequently and its location should remain stable.",
           "avoidWhen": "Validation is complex or several fields must be edited together."
         }
@@ -787,7 +787,7 @@
         "react-aria-components@^1.20.0"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -802,9 +802,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/reorderable-list",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/reorderable-list",
           "useWhen": "Users need to change a meaningful order and the new position can be previewed and reversed.",
           "avoidWhen": "Order is calculated, changes are destructive, or move up and down controls would be clearer for a tiny list."
         }
@@ -819,7 +819,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -834,9 +834,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/action-list",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/action-list",
           "useWhen": "Many actions must be searched and executed without leaving keyboard flow.",
           "avoidWhen": "The list is ordinary navigation or needs persistent multi-selection."
         }
@@ -852,8 +852,8 @@
         "motion@^13.1.0"
       ],
       "registryDependencies": [
-        "@teum/icon-button",
-        "@teum/teum-base"
+        "@whatiuse/icon-button",
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -873,9 +873,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/shared-detail",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/shared-detail",
           "useWhen": "Users need to inspect several neighboring objects without losing list context.",
           "avoidWhen": "The detail is a separate destination with deep navigation or a long workflow."
         }
@@ -890,8 +890,8 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/button",
-        "@teum/teum-base"
+        "@whatiuse/button",
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -906,9 +906,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/undo-stack",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/undo-stack",
           "useWhen": "A mutation can be reversed reliably without a confirmation dialog.",
           "avoidWhen": "The inverse action is unsafe, lossy, or impossible after submission."
         }
@@ -923,7 +923,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -938,9 +938,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/badge",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/badge",
           "useWhen": "A short label adds secondary classification or compact status context.",
           "avoidWhen": "The label triggers a primary action or contains a sentence."
         }
@@ -952,7 +952,7 @@
       "title": "Avatar",
       "description": "Identity image, deterministic fallback, status, and grouping.",
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -967,9 +967,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/avatar",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/avatar",
           "useWhen": "Visual identity helps people recognize a person or entity faster than text alone.",
           "avoidWhen": "No identity exists or the image adds decoration without meaning."
         }
@@ -981,7 +981,7 @@
       "title": "Textarea",
       "description": "Long-form input with guidance, validation, and character count.",
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -996,9 +996,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/textarea",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/textarea",
           "useWhen": "The user needs to enter more than one line of unstructured text.",
           "avoidWhen": "The value is short or highly structured. Use Text Field or a purpose-built selector."
         }
@@ -1013,7 +1013,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -1028,9 +1028,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/radio-group",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/radio-group",
           "useWhen": "A small set of mutually exclusive options should remain visible for comparison.",
           "avoidWhen": "The list is long or space is constrained. Use Select instead."
         }
@@ -1046,7 +1046,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -1061,9 +1061,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/select",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/select",
           "useWhen": "A compact control should choose one value from a short predefined list.",
           "avoidWhen": "The option set is large enough to require filtering. Use Combobox."
         }
@@ -1079,7 +1079,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -1094,9 +1094,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/context-switcher",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/context-switcher",
           "useWhen": "A short single-choice set changes the surrounding product context and each option needs an icon or one line of explanation.",
           "avoidWhen": "The value is an ordinary form field or the option set needs filtering. Use Select or Combobox instead."
         }
@@ -1112,7 +1112,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -1127,9 +1127,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/combobox",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/combobox",
           "useWhen": "A predefined collection is large enough that filtering reduces selection effort.",
           "avoidWhen": "Free-form text should be accepted. Use Search Input or Text Field."
         }
@@ -1144,7 +1144,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -1159,9 +1159,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/search-input",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/search-input",
           "useWhen": "The user enters a free-form query and results update or submit elsewhere.",
           "avoidWhen": "The value must come from a predefined set. Use Combobox."
         }
@@ -1176,7 +1176,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -1191,9 +1191,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/breadcrumbs",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/breadcrumbs",
           "useWhen": "Users benefit from seeing and navigating the hierarchy above the current destination.",
           "avoidWhen": "The product is flat or the path duplicates a nearby persistent navigation tree."
         }
@@ -1208,7 +1208,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -1223,9 +1223,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/pagination",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/pagination",
           "useWhen": "Users need stable page positions or direct access to a distant result page.",
           "avoidWhen": "Continuous browsing is the goal and an infinite list preserves context better."
         }
@@ -1241,7 +1241,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -1256,9 +1256,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/collapsible",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/collapsible",
           "useWhen": "Supporting content is useful on demand but should not compete with the primary task.",
           "avoidWhen": "The content is required, represents a destination, or several sections need accordion coordination."
         }
@@ -1270,7 +1270,7 @@
       "title": "Skeleton",
       "description": "Layout-preserving content placeholder geometry.",
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -1285,9 +1285,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/skeleton",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/skeleton",
           "useWhen": "The final layout is known and content is expected imminently.",
           "avoidWhen": "The layout is unknown, the wait is long, or progress can be quantified."
         }
@@ -1302,7 +1302,7 @@
         "@base-ui/react@^1.7.0"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -1317,9 +1317,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/progress",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/progress",
           "useWhen": "A task duration is long enough that explicit completion feedback reduces uncertainty.",
           "avoidWhen": "The work is effectively immediate or progress cannot be meaningfully represented."
         }
@@ -1331,7 +1331,7 @@
       "title": "Spinner",
       "description": "Compact labelled ongoing-work status.",
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -1346,9 +1346,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/spinner",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/spinner",
           "useWhen": "Ongoing work needs a compact indicator and progress cannot be quantified.",
           "avoidWhen": "The loading layout is large enough for a Skeleton or progress is measurable."
         }
@@ -1363,8 +1363,8 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/icon-button",
-        "@teum/teum-base"
+        "@whatiuse/icon-button",
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -1379,9 +1379,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/alert",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/alert",
           "useWhen": "Feedback should remain visible beside the affected work until it is understood or resolved.",
           "avoidWhen": "The message is transient, belongs to one field, or blocks progress until a response is chosen."
         }
@@ -1396,7 +1396,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -1411,9 +1411,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/empty-state",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/empty-state",
           "useWhen": "A collection has no content and the reason or next useful action is not otherwise obvious.",
           "avoidWhen": "Content is still loading or the empty region is too small to justify explanatory UI."
         }
@@ -1425,7 +1425,7 @@
       "title": "Table",
       "description": "Semantic tabular structure for product-specific sorting, filtering, and selection recipes.",
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -1440,9 +1440,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/table",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/table",
           "useWhen": "Rows share the same attributes and users need to scan or compare values across columns.",
           "avoidWhen": "Items are better understood as cards, the data is hierarchical, or responsive reading order cannot be preserved."
         }
@@ -1459,15 +1459,15 @@
         "@tanstack/react-virtual@3.14.9"
       ],
       "registryDependencies": [
-        "@teum/teum-base",
-        "@teum/button",
-        "@teum/checkbox",
-        "@teum/data-view-state",
-        "@teum/empty-state",
-        "@teum/pagination",
-        "@teum/skeleton",
-        "@teum/spinner",
-        "@teum/table"
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/button",
+        "@whatiuse/checkbox",
+        "@whatiuse/data-view-state",
+        "@whatiuse/empty-state",
+        "@whatiuse/pagination",
+        "@whatiuse/skeleton",
+        "@whatiuse/spinner",
+        "@whatiuse/table"
       ],
       "files": [
         {
@@ -1482,9 +1482,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/data-table"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/data-table"
         }
       }
     },
@@ -1497,13 +1497,13 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base",
-        "@teum/badge",
-        "@teum/button",
-        "@teum/data-view-state",
-        "@teum/popover",
-        "@teum/select",
-        "@teum/text-field"
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/badge",
+        "@whatiuse/button",
+        "@whatiuse/data-view-state",
+        "@whatiuse/popover",
+        "@whatiuse/select",
+        "@whatiuse/text-field"
       ],
       "files": [
         {
@@ -1518,9 +1518,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/filter-builder"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/filter-builder"
         }
       }
     },
@@ -1533,9 +1533,9 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base",
-        "@teum/button",
-        "@teum/menu"
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/button",
+        "@whatiuse/menu"
       ],
       "files": [
         {
@@ -1550,9 +1550,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/data-toolbar"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/data-toolbar"
         }
       }
     },
@@ -1565,8 +1565,8 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base",
-        "@teum/icon-button"
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/icon-button"
       ],
       "files": [
         {
@@ -1581,11 +1581,366 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/bulk-action-bar"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/bulk-action-bar"
         }
       }
+    },
+    {
+      "name": "saved-view-menu",
+      "type": "registry:component",
+      "title": "Saved View Menu",
+      "description": "Named system and personal collection states with explicit management actions.",
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/data-toolbar"
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/saved-view-menu"
+        }
+      },
+      "files": [
+        {
+          "path": "registry/components/ui/saved-view-menu.tsx",
+          "type": "registry:component",
+          "target": "components/ui/saved-view-menu.tsx"
+        },
+        {
+          "path": "registry/styles/components/saved-view-menu.css",
+          "type": "registry:style",
+          "target": "styles/components/saved-view-menu.css"
+        }
+      ]
+    },
+    {
+      "name": "column-visibility-menu",
+      "type": "registry:component",
+      "title": "Column Visibility Menu",
+      "description": "Visible-column preferences with required-column protection.",
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/data-toolbar"
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/column-visibility-menu"
+        }
+      },
+      "files": [
+        {
+          "path": "registry/components/ui/column-visibility-menu.tsx",
+          "type": "registry:component",
+          "target": "components/ui/column-visibility-menu.tsx"
+        },
+        {
+          "path": "registry/styles/components/column-visibility-menu.css",
+          "type": "registry:style",
+          "target": "styles/components/column-visibility-menu.css"
+        }
+      ]
+    },
+    {
+      "name": "facet-filter",
+      "type": "registry:component",
+      "title": "Facet Filter",
+      "description": "Counted multi-selection for small enumerable data dimensions.",
+      "dependencies": [
+        "@phosphor-icons/react@^2.1.10"
+      ],
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/button",
+        "@whatiuse/menu"
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/facet-filter"
+        }
+      },
+      "files": [
+        {
+          "path": "registry/components/ui/facet-filter.tsx",
+          "type": "registry:component",
+          "target": "components/ui/facet-filter.tsx"
+        },
+        {
+          "path": "registry/styles/components/facet-filter.css",
+          "type": "registry:style",
+          "target": "styles/components/facet-filter.css"
+        }
+      ]
+    },
+    {
+      "name": "data-sort-menu",
+      "type": "registry:component",
+      "title": "Data Sort Menu",
+      "description": "One explicit sort field and direction for predictable collection order.",
+      "dependencies": [
+        "@phosphor-icons/react@^2.1.10"
+      ],
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/button",
+        "@whatiuse/menu"
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/data-sort-menu"
+        }
+      },
+      "files": [
+        {
+          "path": "registry/components/ui/data-sort-menu.tsx",
+          "type": "registry:component",
+          "target": "components/ui/data-sort-menu.tsx"
+        },
+        {
+          "path": "registry/styles/components/data-sort-menu.css",
+          "type": "registry:style",
+          "target": "styles/components/data-sort-menu.css"
+        }
+      ]
+    },
+    {
+      "name": "data-group-menu",
+      "type": "registry:component",
+      "title": "Data Group Menu",
+      "description": "A single collection grouping dimension with an explicit clear path.",
+      "dependencies": [
+        "@phosphor-icons/react@^2.1.10"
+      ],
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/button",
+        "@whatiuse/menu"
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/data-group-menu"
+        }
+      },
+      "files": [
+        {
+          "path": "registry/components/ui/data-group-menu.tsx",
+          "type": "registry:component",
+          "target": "components/ui/data-group-menu.tsx"
+        },
+        {
+          "path": "registry/styles/components/data-group-menu.css",
+          "type": "registry:style",
+          "target": "styles/components/data-group-menu.css"
+        }
+      ]
+    },
+    {
+      "name": "data-density-control",
+      "type": "registry:component",
+      "title": "Data Density Control",
+      "description": "Compact, default, and comfortable collection row rhythm.",
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/segmented-control"
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/data-density-control"
+        }
+      },
+      "files": [
+        {
+          "path": "registry/components/ui/data-density-control.tsx",
+          "type": "registry:component",
+          "target": "components/ui/data-density-control.tsx"
+        },
+        {
+          "path": "registry/styles/components/data-density-control.css",
+          "type": "registry:style",
+          "target": "styles/components/data-density-control.css"
+        }
+      ]
+    },
+    {
+      "name": "data-result-summary",
+      "type": "registry:component",
+      "title": "Data Result Summary",
+      "description": "Visible, filtered, and selected record counts in one semantic status line.",
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base"
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/data-result-summary"
+        }
+      },
+      "files": [
+        {
+          "path": "registry/components/ui/data-result-summary.tsx",
+          "type": "registry:component",
+          "target": "components/ui/data-result-summary.tsx"
+        },
+        {
+          "path": "registry/styles/components/data-result-summary.css",
+          "type": "registry:style",
+          "target": "styles/components/data-result-summary.css"
+        }
+      ]
+    },
+    {
+      "name": "cursor-pagination",
+      "type": "registry:component",
+      "title": "Cursor Pagination",
+      "description": "Previous and next traversal for collections without a stable total page count.",
+      "dependencies": [
+        "@phosphor-icons/react@^2.1.10"
+      ],
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/button"
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/cursor-pagination"
+        }
+      },
+      "files": [
+        {
+          "path": "registry/components/ui/cursor-pagination.tsx",
+          "type": "registry:component",
+          "target": "components/ui/cursor-pagination.tsx"
+        },
+        {
+          "path": "registry/styles/components/cursor-pagination.css",
+          "type": "registry:style",
+          "target": "styles/components/cursor-pagination.css"
+        }
+      ]
+    },
+    {
+      "name": "row-actions-menu",
+      "type": "registry:component",
+      "title": "Row Actions Menu",
+      "description": "Object-specific actions behind a consistently placed compact control.",
+      "dependencies": [
+        "@phosphor-icons/react@^2.1.10"
+      ],
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/icon-button",
+        "@whatiuse/menu"
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/row-actions-menu"
+        }
+      },
+      "files": [
+        {
+          "path": "registry/components/ui/row-actions-menu.tsx",
+          "type": "registry:component",
+          "target": "components/ui/row-actions-menu.tsx"
+        },
+        {
+          "path": "registry/styles/components/row-actions-menu.css",
+          "type": "registry:style",
+          "target": "styles/components/row-actions-menu.css"
+        }
+      ]
+    },
+    {
+      "name": "property-list",
+      "type": "registry:component",
+      "title": "Property List",
+      "description": "Dense semantic label-value metadata for inspectors and detail views.",
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base"
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/property-list"
+        }
+      },
+      "files": [
+        {
+          "path": "registry/components/ui/property-list.tsx",
+          "type": "registry:component",
+          "target": "components/ui/property-list.tsx"
+        },
+        {
+          "path": "registry/styles/components/property-list.css",
+          "type": "registry:style",
+          "target": "styles/components/property-list.css"
+        }
+      ]
+    },
+    {
+      "name": "audit-log",
+      "type": "registry:component",
+      "title": "Audit Log",
+      "description": "Chronological product events with actors, targets, timestamps, and optional evidence.",
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base"
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/audit-log"
+        }
+      },
+      "files": [
+        {
+          "path": "registry/components/ui/audit-log.tsx",
+          "type": "registry:component",
+          "target": "components/ui/audit-log.tsx"
+        },
+        {
+          "path": "registry/styles/components/audit-log.css",
+          "type": "registry:style",
+          "target": "styles/components/audit-log.css"
+        }
+      ]
+    },
+    {
+      "name": "data-state",
+      "type": "registry:component",
+      "title": "Data State",
+      "description": "Stable loading, empty, and error feedback for collection surfaces.",
+      "dependencies": [
+        "@phosphor-icons/react@^2.1.10"
+      ],
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/spinner"
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/data-state"
+        }
+      },
+      "files": [
+        {
+          "path": "registry/components/ui/data-state.tsx",
+          "type": "registry:component",
+          "target": "components/ui/data-state.tsx"
+        },
+        {
+          "path": "registry/styles/components/data-state.css",
+          "type": "registry:style",
+          "target": "styles/components/data-state.css"
+        }
+      ]
     },
     {
       "name": "data-view-state",
@@ -1600,9 +1955,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/data-view-state"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/data-view-state"
         }
       }
     },
@@ -1619,9 +1974,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/data-export"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/data-export"
         }
       }
     },
@@ -1635,11 +1990,11 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base",
-        "@teum/button",
-        "@teum/data-view-state",
-        "@teum/date-picker",
-        "@teum/popover"
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/button",
+        "@whatiuse/data-view-state",
+        "@whatiuse/date-picker",
+        "@whatiuse/popover"
       ],
       "files": [
         {
@@ -1654,9 +2009,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/date-range-filter"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/date-range-filter"
         }
       }
     },
@@ -1669,10 +2024,10 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base",
-        "@teum/button",
-        "@teum/data-export",
-        "@teum/menu"
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/button",
+        "@whatiuse/data-export",
+        "@whatiuse/menu"
       ],
       "files": [
         {
@@ -1687,9 +2042,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/data-export-menu"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/data-export-menu"
         }
       }
     },
@@ -1703,7 +2058,7 @@
         "react-aria-components@^1.20.0"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -1718,9 +2073,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/tree",
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/tree",
           "useWhen": "The hierarchy itself matters and users need to expand, collapse, navigate, or select nested items.",
           "avoidWhen": "The content is flat, several branches must be compared at once, or ordinary disclosure sections are sufficient."
         }
@@ -1730,7 +2085,7 @@
       "name": "analytics",
       "type": "registry:lib",
       "title": "Analytics Geometry",
-      "description": "Dependency-free domain, tick, path, formatting, and text-summary utilities for Teum Analytics.",
+      "description": "Dependency-free domain, tick, path, formatting, and text-summary utilities for whatiuse Analytics.",
       "files": [
         {
           "path": "registry/lib/analytics.ts",
@@ -1739,47 +2094,47 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/analytics"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/analytics"
         }
       }
     },
     {
-      "name": "teum-analytics-contract",
+      "name": "whatiuse-analytics-contract",
       "type": "registry:lib",
-      "title": "Teum Analytics Contract",
+      "title": "whatiuse Analytics Contract",
       "description": "Agent-readable component choice, state ownership, accessibility, and recipe contracts for analytic product surfaces.",
       "files": [
         {
-          "path": "registry/lib/teum-analytics-contract.ts",
+          "path": "registry/lib/whatiuse-analytics-contract.ts",
           "type": "registry:lib",
-          "target": "lib/teum-analytics-contract.ts"
+          "target": "lib/whatiuse-analytics-contract.ts"
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/teum-analytics-contract"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/whatiuse-analytics-contract"
         }
       }
     },
     {
-      "name": "teum-product-patterns-contract",
+      "name": "whatiuse-product-patterns-contract",
       "type": "registry:lib",
-      "title": "Teum Product Patterns Contract",
+      "title": "whatiuse Product Patterns Contract",
       "description": "Agent-readable task, state ownership, failure, accessibility, and composition contracts for B2B product patterns.",
       "files": [
         {
-          "path": "registry/lib/teum-product-patterns-contract.ts",
+          "path": "registry/lib/whatiuse-product-patterns-contract.ts",
           "type": "registry:lib",
-          "target": "lib/teum-product-patterns-contract.ts"
+          "target": "lib/whatiuse-product-patterns-contract.ts"
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/teum-product-patterns-contract"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/whatiuse-product-patterns-contract"
         }
       }
     },
@@ -1789,8 +2144,8 @@
       "title": "Sparkline",
       "description": "A compact, non-interactive directional trace for an already-labelled metric.",
       "registryDependencies": [
-        "@teum/teum-base",
-        "@teum/analytics"
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/analytics"
       ],
       "files": [
         {
@@ -1805,9 +2160,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/sparkline"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/sparkline"
         }
       }
     },
@@ -1820,7 +2175,7 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -1835,9 +2190,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/metric"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/metric"
         }
       }
     },
@@ -1847,8 +2202,9 @@
       "title": "Chart",
       "description": "An interactive ordered-series chart with synchronized pointer and keyboard inspection plus a semantic data table.",
       "registryDependencies": [
-        "@teum/teum-base",
-        "@teum/analytics"
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/analytics",
+        "@whatiuse/analytics-frame"
       ],
       "files": [
         {
@@ -1863,9 +2219,124 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/chart"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/chart"
+        }
+      }
+    },
+    {
+      "name": "analytics-frame",
+      "type": "registry:component",
+      "title": "Analytics Frame",
+      "description": "Shared stable chart and semantic-table frame with loading, empty, error, and live inspection contracts.",
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/analytics"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/analytics-frame.tsx",
+          "type": "registry:component",
+          "target": "components/ui/analytics-frame.tsx"
+        },
+        {
+          "path": "registry/styles/components/analytics-frame.css",
+          "type": "registry:style",
+          "target": "styles/components/analytics-frame.css"
+        }
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/analytics-frame"
+        }
+      }
+    },
+    {
+      "name": "histogram",
+      "type": "registry:component",
+      "title": "Histogram",
+      "description": "A pre-binned distribution with shared pointer and keyboard inspection plus an exact semantic table.",
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/analytics",
+        "@whatiuse/analytics-frame"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/histogram.tsx",
+          "type": "registry:component",
+          "target": "components/ui/histogram.tsx"
+        },
+        {
+          "path": "registry/styles/components/histogram.css",
+          "type": "registry:style",
+          "target": "styles/components/histogram.css"
+        }
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/histogram"
+        }
+      }
+    },
+    {
+      "name": "scatter-chart",
+      "type": "registry:component",
+      "title": "Scatter Chart",
+      "description": "A two-measure point view with nearest-point inspection, keyboard parity, and source data.",
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/analytics",
+        "@whatiuse/analytics-frame"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/scatter-chart.tsx",
+          "type": "registry:component",
+          "target": "components/ui/scatter-chart.tsx"
+        },
+        {
+          "path": "registry/styles/components/scatter-chart.css",
+          "type": "registry:style",
+          "target": "styles/components/scatter-chart.css"
+        }
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/scatter-chart"
+        }
+      }
+    },
+    {
+      "name": "waterfall-chart",
+      "type": "registry:component",
+      "title": "Waterfall Chart",
+      "description": "Sequential gains, losses, subtotals, and totals with a visible running-value contract.",
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/analytics",
+        "@whatiuse/analytics-frame"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/waterfall-chart.tsx",
+          "type": "registry:component",
+          "target": "components/ui/waterfall-chart.tsx"
+        },
+        {
+          "path": "registry/styles/components/waterfall-chart.css",
+          "type": "registry:style",
+          "target": "styles/components/waterfall-chart.css"
+        }
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/waterfall-chart"
         }
       }
     },
@@ -1875,8 +2346,8 @@
       "title": "Donut Chart",
       "description": "A small part-to-whole chart with shared pointer and keyboard inspection, visible shares, and a semantic table.",
       "registryDependencies": [
-        "@teum/teum-base",
-        "@teum/analytics"
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/analytics"
       ],
       "files": [
         {
@@ -1891,9 +2362,96 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/donut-chart"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/donut-chart"
+        }
+      }
+    },
+    {
+      "name": "radar-chart",
+      "type": "registry:component",
+      "title": "Radar Chart",
+      "description": "A bounded multi-dimensional comparison with line-pattern redundancy and exact source values.",
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/analytics",
+        "@whatiuse/analytics-frame"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/radar-chart.tsx",
+          "type": "registry:component",
+          "target": "components/ui/radar-chart.tsx"
+        },
+        {
+          "path": "registry/styles/components/radar-chart.css",
+          "type": "registry:style",
+          "target": "styles/components/radar-chart.css"
+        }
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/radar-chart"
+        }
+      }
+    },
+    {
+      "name": "gauge",
+      "type": "registry:component",
+      "title": "Gauge",
+      "description": "One bounded measure with explicit minimum, maximum, current value, and optional target marker.",
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/analytics",
+        "@whatiuse/analytics-frame"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/gauge.tsx",
+          "type": "registry:component",
+          "target": "components/ui/gauge.tsx"
+        },
+        {
+          "path": "registry/styles/components/gauge.css",
+          "type": "registry:style",
+          "target": "styles/components/gauge.css"
+        }
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/gauge"
+        }
+      }
+    },
+    {
+      "name": "sankey-chart",
+      "type": "registry:component",
+      "title": "Sankey Chart",
+      "description": "A compact directed-flow view with named nodes, inspectable links, and a semantic source table.",
+      "registryDependencies": [
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/analytics",
+        "@whatiuse/analytics-frame"
+      ],
+      "files": [
+        {
+          "path": "registry/components/ui/sankey-chart.tsx",
+          "type": "registry:component",
+          "target": "components/ui/sankey-chart.tsx"
+        },
+        {
+          "path": "registry/styles/components/sankey-chart.css",
+          "type": "registry:style",
+          "target": "styles/components/sankey-chart.css"
+        }
+      ],
+      "meta": {
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/sankey-chart"
         }
       }
     },
@@ -1903,8 +2461,8 @@
       "title": "Heatmap",
       "description": "An interactive semantic matrix for repeated intensity patterns with explicit values and two-dimensional keyboard navigation.",
       "registryDependencies": [
-        "@teum/teum-base",
-        "@teum/analytics"
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/analytics"
       ],
       "files": [
         {
@@ -1919,9 +2477,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/heatmap"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/heatmap"
         }
       }
     },
@@ -1934,8 +2492,8 @@
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/teum-base",
-        "@teum/analytics"
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/analytics"
       ],
       "files": [
         {
@@ -1950,9 +2508,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/comparison"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/comparison"
         }
       }
     },
@@ -1962,8 +2520,8 @@
       "title": "Breakdown",
       "description": "A ranked part-to-whole list with visible values and optional product selection.",
       "registryDependencies": [
-        "@teum/teum-base",
-        "@teum/analytics"
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/analytics"
       ],
       "files": [
         {
@@ -1978,9 +2536,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/breakdown"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/breakdown"
         }
       }
     },
@@ -1990,8 +2548,8 @@
       "title": "Goal",
       "description": "Progress toward one explicit target with visible actual and target values.",
       "registryDependencies": [
-        "@teum/teum-base",
-        "@teum/analytics"
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/analytics"
       ],
       "files": [
         {
@@ -2006,9 +2564,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/goal"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/goal"
         }
       }
     },
@@ -2018,8 +2576,8 @@
       "title": "Funnel",
       "description": "Ordered stage volume with explicit adjacent conversion and optional supporting-record selection.",
       "registryDependencies": [
-        "@teum/teum-base",
-        "@teum/analytics"
+        "@whatiuse/whatiuse-base",
+        "@whatiuse/analytics"
       ],
       "files": [
         {
@@ -2034,9 +2592,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/funnel"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/funnel"
         }
       }
     },
@@ -2046,7 +2604,7 @@
       "title": "Cohort",
       "description": "A keyboard-reachable semantic retention matrix with text in every heat cell.",
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -2061,9 +2619,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/cohort"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/cohort"
         }
       }
     },
@@ -2073,7 +2631,7 @@
       "title": "Timeline",
       "description": "Dated product events that can control an analytic annotation without crowding the plot.",
       "registryDependencies": [
-        "@teum/teum-base"
+        "@whatiuse/whatiuse-base"
       ],
       "files": [
         {
@@ -2088,43 +2646,55 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/timeline"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/timeline"
         }
       }
     },
     {
-      "name": "teum-data",
+      "name": "whatiuse-data",
       "type": "registry:block",
-      "title": "Teum Data",
+      "title": "whatiuse Data",
       "description": "Three source-owned collection recipes for mutation, server data, and large immutable event streams.",
       "dependencies": [
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/action-list",
-        "@teum/badge",
-        "@teum/bulk-action-bar",
-        "@teum/button",
-        "@teum/data-table",
-        "@teum/data-toolbar",
-        "@teum/date-range-filter",
-        "@teum/data-export-menu",
-        "@teum/data-export",
-        "@teum/data-view-state",
-        "@teum/dialog",
-        "@teum/filter-builder",
-        "@teum/icon-button",
-        "@teum/inline-edit",
-        "@teum/menu",
-        "@teum/search-input",
-        "@teum/select",
-        "@teum/shared-detail",
-        "@teum/tabs",
-        "@teum/text-field",
-        "@teum/toast",
-        "@teum/undo-stack"
+        "@whatiuse/action-list",
+        "@whatiuse/badge",
+        "@whatiuse/bulk-action-bar",
+        "@whatiuse/button",
+        "@whatiuse/column-visibility-menu",
+        "@whatiuse/cursor-pagination",
+        "@whatiuse/data-density-control",
+        "@whatiuse/data-group-menu",
+        "@whatiuse/data-result-summary",
+        "@whatiuse/data-sort-menu",
+        "@whatiuse/data-state",
+        "@whatiuse/data-table",
+        "@whatiuse/data-toolbar",
+        "@whatiuse/date-range-filter",
+        "@whatiuse/data-export-menu",
+        "@whatiuse/data-export",
+        "@whatiuse/data-view-state",
+        "@whatiuse/dialog",
+        "@whatiuse/facet-filter",
+        "@whatiuse/filter-builder",
+        "@whatiuse/icon-button",
+        "@whatiuse/inline-edit",
+        "@whatiuse/menu",
+        "@whatiuse/property-list",
+        "@whatiuse/row-actions-menu",
+        "@whatiuse/saved-view-menu",
+        "@whatiuse/search-input",
+        "@whatiuse/select",
+        "@whatiuse/shared-detail",
+        "@whatiuse/tabs",
+        "@whatiuse/text-field",
+        "@whatiuse/toast",
+        "@whatiuse/undo-stack",
+        "@whatiuse/audit-log"
       ],
       "files": [
         {
@@ -2148,9 +2718,9 @@
           "target": "lib/data-export.ts"
         },
         {
-          "path": "registry/lib/teum-data-contract.ts",
+          "path": "registry/lib/whatiuse-data-contract.ts",
           "type": "registry:lib",
-          "target": "lib/teum-data-contract.ts"
+          "target": "lib/whatiuse-data-contract.ts"
         },
         {
           "path": "registry/styles/patterns/issues-workspace.css",
@@ -2164,37 +2734,54 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/teum-data"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/whatiuse-data"
         }
       }
     },
     {
-      "name": "teum-analytics",
+      "name": "whatiuse-analytics",
       "type": "registry:block",
-      "title": "Teum Analytics",
+      "title": "whatiuse Analytics",
       "description": "Three source-owned product analytics recipes for revenue, usage, conversion, and retention decisions.",
       "dependencies": [
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/analytics",
-        "@teum/badge",
-        "@teum/breakdown",
-        "@teum/chart",
-        "@teum/cohort",
-        "@teum/comparison",
-        "@teum/data-table",
-        "@teum/donut-chart",
-        "@teum/funnel",
-        "@teum/goal",
-        "@teum/heatmap",
-        "@teum/metric",
-        "@teum/segmented-control",
-        "@teum/sparkline",
-        "@teum/teum-analytics-contract",
-        "@teum/timeline"
+        "@whatiuse/analytics",
+        "@whatiuse/analytics-frame",
+        "@whatiuse/badge",
+        "@whatiuse/breakdown",
+        "@whatiuse/chart",
+        "@whatiuse/cohort",
+        "@whatiuse/comparison",
+        "@whatiuse/data-export",
+        "@whatiuse/data-export-menu",
+        "@whatiuse/data-result-summary",
+        "@whatiuse/data-table",
+        "@whatiuse/data-toolbar",
+        "@whatiuse/data-view-state",
+        "@whatiuse/date-range-filter",
+        "@whatiuse/donut-chart",
+        "@whatiuse/facet-filter",
+        "@whatiuse/funnel",
+        "@whatiuse/goal",
+        "@whatiuse/heatmap",
+        "@whatiuse/histogram",
+        "@whatiuse/metric",
+        "@whatiuse/gauge",
+        "@whatiuse/radar-chart",
+        "@whatiuse/property-list",
+        "@whatiuse/sankey-chart",
+        "@whatiuse/saved-view-menu",
+        "@whatiuse/scatter-chart",
+        "@whatiuse/search-input",
+        "@whatiuse/segmented-control",
+        "@whatiuse/sparkline",
+        "@whatiuse/whatiuse-analytics-contract",
+        "@whatiuse/timeline",
+        "@whatiuse/waterfall-chart"
       ],
       "files": [
         {
@@ -2208,9 +2795,9 @@
           "target": "lib/analytics.ts"
         },
         {
-          "path": "registry/lib/teum-analytics-contract.ts",
+          "path": "registry/lib/whatiuse-analytics-contract.ts",
           "type": "registry:lib",
-          "target": "lib/teum-analytics-contract.ts"
+          "target": "lib/whatiuse-analytics-contract.ts"
         },
         {
           "path": "registry/styles/patterns/analytics-recipes.css",
@@ -2219,45 +2806,45 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/teum-analytics"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/whatiuse-analytics"
         }
       }
     },
     {
-      "name": "teum-product-patterns",
+      "name": "whatiuse-product-patterns",
       "type": "registry:block",
-      "title": "Teum Product Patterns",
+      "title": "whatiuse Product Patterns",
       "description": "Three source-owned B2B product tasks for customer success, billing and usage, and member access.",
       "dependencies": [
         "@phosphor-icons/react@^2.1.10"
       ],
       "registryDependencies": [
-        "@teum/alert",
-        "@teum/analytics",
-        "@teum/avatar",
-        "@teum/badge",
-        "@teum/button",
-        "@teum/chart",
-        "@teum/checkbox",
-        "@teum/data-table",
-        "@teum/data-toolbar",
-        "@teum/dialog",
-        "@teum/filter-builder",
-        "@teum/goal",
-        "@teum/metric",
-        "@teum/progress",
-        "@teum/search-input",
-        "@teum/segmented-control",
-        "@teum/select",
-        "@teum/shared-detail",
-        "@teum/sparkline",
-        "@teum/tabs",
-        "@teum/teum-product-patterns-contract",
-        "@teum/text-field",
-        "@teum/timeline",
-        "@teum/toast"
+        "@whatiuse/alert",
+        "@whatiuse/analytics",
+        "@whatiuse/avatar",
+        "@whatiuse/badge",
+        "@whatiuse/button",
+        "@whatiuse/chart",
+        "@whatiuse/checkbox",
+        "@whatiuse/data-table",
+        "@whatiuse/data-toolbar",
+        "@whatiuse/dialog",
+        "@whatiuse/filter-builder",
+        "@whatiuse/goal",
+        "@whatiuse/metric",
+        "@whatiuse/progress",
+        "@whatiuse/search-input",
+        "@whatiuse/segmented-control",
+        "@whatiuse/select",
+        "@whatiuse/shared-detail",
+        "@whatiuse/sparkline",
+        "@whatiuse/tabs",
+        "@whatiuse/whatiuse-product-patterns-contract",
+        "@whatiuse/text-field",
+        "@whatiuse/timeline",
+        "@whatiuse/toast"
       ],
       "files": [
         {
@@ -2266,9 +2853,9 @@
           "target": "components/patterns/product-pattern-recipes.tsx"
         },
         {
-          "path": "registry/lib/teum-product-patterns-contract.ts",
+          "path": "registry/lib/whatiuse-product-patterns-contract.ts",
           "type": "registry:lib",
-          "target": "lib/teum-product-patterns-contract.ts"
+          "target": "lib/whatiuse-product-patterns-contract.ts"
         },
         {
           "path": "registry/styles/patterns/product-pattern-recipes.css",
@@ -2277,40 +2864,40 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/teum-product-patterns"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/whatiuse-product-patterns"
         }
       }
     },
     {
-      "name": "teum-agent",
+      "name": "whatiuse-agent",
       "type": "registry:item",
-      "title": "Teum Agent Contract",
+      "title": "whatiuse Agent Contract",
       "description": "Machine-readable recipe selection, composition, rejection, and quality contracts for coding agents.",
       "registryDependencies": [
-        "@teum/teum-data",
-        "@teum/teum-analytics",
-        "@teum/teum-product-patterns"
+        "@whatiuse/whatiuse-data",
+        "@whatiuse/whatiuse-analytics",
+        "@whatiuse/whatiuse-product-patterns"
       ],
       "files": [
         {
-          "path": "registry/lib/teum-agent-contract.ts",
+          "path": "registry/lib/whatiuse-agent-contract.ts",
           "type": "registry:lib",
-          "target": "lib/teum-agent-contract.ts"
+          "target": "lib/whatiuse-agent-contract.ts"
         },
         {
-          "path": "registry/agent/teum-agent.json",
+          "path": "registry/agent/whatiuse-agent.json",
           "type": "registry:file",
-          "target": "lib/teum-agent.json"
+          "target": "lib/whatiuse-agent.json"
         }
       ]
     },
     {
-      "name": "teum",
+      "name": "whatiuse",
       "type": "registry:block",
-      "title": "Teum",
-      "description": "The 45-component Teum Core plus source-owned Data, Analytics, and B2B Product Patterns, with reviewed light and dark themes.",
+      "title": "whatiuse",
+      "description": "The 45-component whatiuse Core plus source-owned Data, Analytics, and B2B Product Patterns, with reviewed light and dark themes.",
       "dependencies": [
         "@base-ui/react@^1.7.0",
         "@fontsource-variable/inter@^5.3.0",
@@ -2342,14 +2929,14 @@
           "target": "lib/motion-contract.ts"
         },
         {
-          "path": "registry/styles/teum-base.css",
+          "path": "registry/styles/whatiuse-base.css",
           "type": "registry:style",
-          "target": "styles/teum-base.css"
+          "target": "styles/whatiuse-base.css"
         },
         {
-          "path": "registry/styles/teum.css",
+          "path": "registry/styles/whatiuse.css",
           "type": "registry:style",
-          "target": "styles/teum.css"
+          "target": "styles/whatiuse.css"
         },
         {
           "path": "registry/components/ui/button.tsx",
@@ -2847,6 +3434,126 @@
           "target": "styles/components/bulk-action-bar.css"
         },
         {
+          "path": "registry/components/ui/saved-view-menu.tsx",
+          "type": "registry:component",
+          "target": "components/ui/saved-view-menu.tsx"
+        },
+        {
+          "path": "registry/styles/components/saved-view-menu.css",
+          "type": "registry:style",
+          "target": "styles/components/saved-view-menu.css"
+        },
+        {
+          "path": "registry/components/ui/column-visibility-menu.tsx",
+          "type": "registry:component",
+          "target": "components/ui/column-visibility-menu.tsx"
+        },
+        {
+          "path": "registry/styles/components/column-visibility-menu.css",
+          "type": "registry:style",
+          "target": "styles/components/column-visibility-menu.css"
+        },
+        {
+          "path": "registry/components/ui/facet-filter.tsx",
+          "type": "registry:component",
+          "target": "components/ui/facet-filter.tsx"
+        },
+        {
+          "path": "registry/styles/components/facet-filter.css",
+          "type": "registry:style",
+          "target": "styles/components/facet-filter.css"
+        },
+        {
+          "path": "registry/components/ui/data-sort-menu.tsx",
+          "type": "registry:component",
+          "target": "components/ui/data-sort-menu.tsx"
+        },
+        {
+          "path": "registry/styles/components/data-sort-menu.css",
+          "type": "registry:style",
+          "target": "styles/components/data-sort-menu.css"
+        },
+        {
+          "path": "registry/components/ui/data-group-menu.tsx",
+          "type": "registry:component",
+          "target": "components/ui/data-group-menu.tsx"
+        },
+        {
+          "path": "registry/styles/components/data-group-menu.css",
+          "type": "registry:style",
+          "target": "styles/components/data-group-menu.css"
+        },
+        {
+          "path": "registry/components/ui/data-density-control.tsx",
+          "type": "registry:component",
+          "target": "components/ui/data-density-control.tsx"
+        },
+        {
+          "path": "registry/styles/components/data-density-control.css",
+          "type": "registry:style",
+          "target": "styles/components/data-density-control.css"
+        },
+        {
+          "path": "registry/components/ui/data-result-summary.tsx",
+          "type": "registry:component",
+          "target": "components/ui/data-result-summary.tsx"
+        },
+        {
+          "path": "registry/styles/components/data-result-summary.css",
+          "type": "registry:style",
+          "target": "styles/components/data-result-summary.css"
+        },
+        {
+          "path": "registry/components/ui/cursor-pagination.tsx",
+          "type": "registry:component",
+          "target": "components/ui/cursor-pagination.tsx"
+        },
+        {
+          "path": "registry/styles/components/cursor-pagination.css",
+          "type": "registry:style",
+          "target": "styles/components/cursor-pagination.css"
+        },
+        {
+          "path": "registry/components/ui/row-actions-menu.tsx",
+          "type": "registry:component",
+          "target": "components/ui/row-actions-menu.tsx"
+        },
+        {
+          "path": "registry/styles/components/row-actions-menu.css",
+          "type": "registry:style",
+          "target": "styles/components/row-actions-menu.css"
+        },
+        {
+          "path": "registry/components/ui/property-list.tsx",
+          "type": "registry:component",
+          "target": "components/ui/property-list.tsx"
+        },
+        {
+          "path": "registry/styles/components/property-list.css",
+          "type": "registry:style",
+          "target": "styles/components/property-list.css"
+        },
+        {
+          "path": "registry/components/ui/audit-log.tsx",
+          "type": "registry:component",
+          "target": "components/ui/audit-log.tsx"
+        },
+        {
+          "path": "registry/styles/components/audit-log.css",
+          "type": "registry:style",
+          "target": "styles/components/audit-log.css"
+        },
+        {
+          "path": "registry/components/ui/data-state.tsx",
+          "type": "registry:component",
+          "target": "components/ui/data-state.tsx"
+        },
+        {
+          "path": "registry/styles/components/data-state.css",
+          "type": "registry:style",
+          "target": "styles/components/data-state.css"
+        },
+        {
           "path": "registry/components/ui/date-range-filter.tsx",
           "type": "registry:component",
           "target": "components/ui/date-range-filter.tsx"
@@ -2897,6 +3604,46 @@
           "target": "styles/components/chart.css"
         },
         {
+          "path": "registry/components/ui/analytics-frame.tsx",
+          "type": "registry:component",
+          "target": "components/ui/analytics-frame.tsx"
+        },
+        {
+          "path": "registry/styles/components/analytics-frame.css",
+          "type": "registry:style",
+          "target": "styles/components/analytics-frame.css"
+        },
+        {
+          "path": "registry/components/ui/histogram.tsx",
+          "type": "registry:component",
+          "target": "components/ui/histogram.tsx"
+        },
+        {
+          "path": "registry/styles/components/histogram.css",
+          "type": "registry:style",
+          "target": "styles/components/histogram.css"
+        },
+        {
+          "path": "registry/components/ui/scatter-chart.tsx",
+          "type": "registry:component",
+          "target": "components/ui/scatter-chart.tsx"
+        },
+        {
+          "path": "registry/styles/components/scatter-chart.css",
+          "type": "registry:style",
+          "target": "styles/components/scatter-chart.css"
+        },
+        {
+          "path": "registry/components/ui/waterfall-chart.tsx",
+          "type": "registry:component",
+          "target": "components/ui/waterfall-chart.tsx"
+        },
+        {
+          "path": "registry/styles/components/waterfall-chart.css",
+          "type": "registry:style",
+          "target": "styles/components/waterfall-chart.css"
+        },
+        {
           "path": "registry/components/ui/donut-chart.tsx",
           "type": "registry:component",
           "target": "components/ui/donut-chart.tsx"
@@ -2905,6 +3652,36 @@
           "path": "registry/styles/components/donut-chart.css",
           "type": "registry:style",
           "target": "styles/components/donut-chart.css"
+        },
+        {
+          "path": "registry/components/ui/radar-chart.tsx",
+          "type": "registry:component",
+          "target": "components/ui/radar-chart.tsx"
+        },
+        {
+          "path": "registry/styles/components/radar-chart.css",
+          "type": "registry:style",
+          "target": "styles/components/radar-chart.css"
+        },
+        {
+          "path": "registry/components/ui/gauge.tsx",
+          "type": "registry:component",
+          "target": "components/ui/gauge.tsx"
+        },
+        {
+          "path": "registry/styles/components/gauge.css",
+          "type": "registry:style",
+          "target": "styles/components/gauge.css"
+        },
+        {
+          "path": "registry/components/ui/sankey-chart.tsx",
+          "type": "registry:component",
+          "target": "components/ui/sankey-chart.tsx"
+        },
+        {
+          "path": "registry/styles/components/sankey-chart.css",
+          "type": "registry:style",
+          "target": "styles/components/sankey-chart.css"
         },
         {
           "path": "registry/components/ui/heatmap.tsx",
@@ -2987,9 +3764,9 @@
           "target": "lib/data-export.ts"
         },
         {
-          "path": "registry/lib/teum-data-contract.ts",
+          "path": "registry/lib/whatiuse-data-contract.ts",
           "type": "registry:lib",
-          "target": "lib/teum-data-contract.ts"
+          "target": "lib/whatiuse-data-contract.ts"
         },
         {
           "path": "registry/lib/analytics.ts",
@@ -2997,24 +3774,24 @@
           "target": "lib/analytics.ts"
         },
         {
-          "path": "registry/lib/teum-analytics-contract.ts",
+          "path": "registry/lib/whatiuse-analytics-contract.ts",
           "type": "registry:lib",
-          "target": "lib/teum-analytics-contract.ts"
+          "target": "lib/whatiuse-analytics-contract.ts"
         },
         {
-          "path": "registry/lib/teum-product-patterns-contract.ts",
+          "path": "registry/lib/whatiuse-product-patterns-contract.ts",
           "type": "registry:lib",
-          "target": "lib/teum-product-patterns-contract.ts"
+          "target": "lib/whatiuse-product-patterns-contract.ts"
         },
         {
-          "path": "registry/lib/teum-agent-contract.ts",
+          "path": "registry/lib/whatiuse-agent-contract.ts",
           "type": "registry:lib",
-          "target": "lib/teum-agent-contract.ts"
+          "target": "lib/whatiuse-agent-contract.ts"
         },
         {
-          "path": "registry/agent/teum-agent.json",
+          "path": "registry/agent/whatiuse-agent.json",
           "type": "registry:file",
-          "target": "lib/teum-agent.json"
+          "target": "lib/whatiuse-agent.json"
         },
         {
           "path": "registry/components/ui/index.ts",
@@ -3023,9 +3800,9 @@
         }
       ],
       "meta": {
-        "teum": {
-          "contract": "/agent/teum-agent.json",
-          "registryItem": "@teum/teum"
+        "whatiuse": {
+          "contract": "/agent/whatiuse-agent.json",
+          "registryItem": "@whatiuse/whatiuse"
         }
       }
     }

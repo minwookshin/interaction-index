@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/components/context-menu.css";
 import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu";
 import { Check } from "@phosphor-icons/react";
@@ -10,7 +10,7 @@ import { cn } from "../../lib/cn";
 export const ContextMenu = ContextMenuPrimitive.Root;
 
 export function ContextMenuTrigger({ className, ...props }: ContextMenuPrimitive.Trigger.Props) {
-  return <ContextMenuPrimitive.Trigger className={cn("teum-context-menu__trigger", className)} {...props} />;
+  return <ContextMenuPrimitive.Trigger className={cn("whatiuse-context-menu__trigger", className)} {...props} />;
 }
 
 export type ContextMenuContentProps = ContextMenuPrimitive.Popup.Props &
@@ -19,30 +19,30 @@ export type ContextMenuContentProps = ContextMenuPrimitive.Popup.Props &
 export function ContextMenuContent({ className, align = "start", alignOffset = 0, collisionAvoidance, side = "bottom", sideOffset = 4, ...props }: ContextMenuContentProps) {
   return (
     <ContextMenuPrimitive.Portal>
-      <ContextMenuPrimitive.Positioner className="teum-positioner" align={align} alignOffset={alignOffset} collisionAvoidance={collisionAvoidance} side={side} sideOffset={sideOffset}>
-        <ContextMenuPrimitive.Popup className={cn("teum-menu teum-context-menu", className)} data-layer="flyout" {...props} />
+      <ContextMenuPrimitive.Positioner className="whatiuse-positioner" align={align} alignOffset={alignOffset} collisionAvoidance={collisionAvoidance} side={side} sideOffset={sideOffset}>
+        <ContextMenuPrimitive.Popup className={cn("whatiuse-menu whatiuse-context-menu", className)} data-layer="flyout" {...props} />
       </ContextMenuPrimitive.Positioner>
     </ContextMenuPrimitive.Portal>
   );
 }
 
 export function ContextMenuLabel({ className, ...props }: ComponentPropsWithRef<"div">) {
-  return <div role="presentation" className={cn("teum-menu__label", className)} {...props} />;
+  return <div role="presentation" className={cn("whatiuse-menu__label", className)} {...props} />;
 }
 
 export function ContextMenuItem({ className, ...props }: ContextMenuPrimitive.Item.Props) {
-  return <ContextMenuPrimitive.Item className={cn("teum-menu__item", className)} {...props} />;
+  return <ContextMenuPrimitive.Item className={cn("whatiuse-menu__item", className)} {...props} />;
 }
 
 export function ContextMenuSeparator(props: ContextMenuPrimitive.Separator.Props) {
-  return <ContextMenuPrimitive.Separator className="teum-menu__separator" {...props} />;
+  return <ContextMenuPrimitive.Separator className="whatiuse-menu__separator" {...props} />;
 }
 
 export function ContextMenuCheckboxItem({ className, children, ...props }: ContextMenuPrimitive.CheckboxItem.Props) {
   return (
-    <ContextMenuPrimitive.CheckboxItem className={cn("teum-menu__item teum-menu__item--check", className)} {...props}>
+    <ContextMenuPrimitive.CheckboxItem className={cn("whatiuse-menu__item whatiuse-menu__item--check", className)} {...props}>
       <span>{children}</span>
-      <ContextMenuPrimitive.CheckboxItemIndicator className="teum-menu__check"><Check weight="bold" /></ContextMenuPrimitive.CheckboxItemIndicator>
+      <ContextMenuPrimitive.CheckboxItemIndicator className="whatiuse-menu__check"><Check weight="bold" /></ContextMenuPrimitive.CheckboxItemIndicator>
     </ContextMenuPrimitive.CheckboxItem>
   );
 }
@@ -51,9 +51,9 @@ export const ContextMenuRadioGroup = ContextMenuPrimitive.RadioGroup;
 
 export function ContextMenuRadioItem({ className, children, closeOnClick = true, ...props }: ContextMenuPrimitive.RadioItem.Props) {
   return (
-    <ContextMenuPrimitive.RadioItem className={cn("teum-menu__item teum-menu__item--check", className)} closeOnClick={closeOnClick} {...props}>
+    <ContextMenuPrimitive.RadioItem className={cn("whatiuse-menu__item whatiuse-menu__item--check", className)} closeOnClick={closeOnClick} {...props}>
       <span>{children}</span>
-      <ContextMenuPrimitive.RadioItemIndicator className="teum-menu__check"><Check weight="bold" /></ContextMenuPrimitive.RadioItemIndicator>
+      <ContextMenuPrimitive.RadioItemIndicator className="whatiuse-menu__check"><Check weight="bold" /></ContextMenuPrimitive.RadioItemIndicator>
     </ContextMenuPrimitive.RadioItem>
   );
 }

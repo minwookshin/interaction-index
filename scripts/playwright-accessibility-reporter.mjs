@@ -78,7 +78,7 @@ export default class PlaywrightAccessibilityReporter {
     const foundationRoutes = count(routeSource, /^\s*\["[^"]+",\s*"[^"]+",\s*"foundations"\],?$/gm);
     const patternRoutes = count(routeSource, /^\s*\["[^"]+",\s*"[^"]+",\s*"patterns"\],?$/gm);
     const publicRoutes = 1 + documentationRoutes + foundationRoutes + componentRoutes + patternRoutes;
-    const output = resolve(process.env.TEUM_ACCESSIBILITY_EVIDENCE_PATH ?? "release/accessibility.json");
+    const output = resolve(process.env.WHATIUSE_ACCESSIBILITY_EVIDENCE_PATH ?? "release/accessibility.json");
     const evidence = {
       schemaVersion: 1,
       generatedBy: "scripts/playwright-accessibility-reporter.mjs",

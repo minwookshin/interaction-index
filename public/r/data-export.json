@@ -12,9 +12,9 @@
     }
   ],
   "meta": {
-    "teum": {
-      "contract": "/agent/teum-agent.json",
-      "registryItem": "@teum/data-export"
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/data-export"
     }
   },
   "type": "registry:lib"

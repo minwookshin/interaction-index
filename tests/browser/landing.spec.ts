@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("public root opens directly into the component Library", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { level: 1, name: "Components for product interfaces." })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "components i use." })).toBeVisible();
   await expect(page.getByRole("heading", { level: 2, name: "Library" })).toBeVisible();
   await expect(page.getByRole("link", { name: "View whatiuse on GitHub" })).toHaveAttribute("href", "https://github.com/minwookshin/whatiuse");
   await expect(page.getByRole("button", { name: "Copy whatiuse install command" })).toHaveCount(0);
@@ -19,7 +19,74 @@ test("public root opens directly into the component Library", async ({ page }) =
   await expect(page.getByRole("link", { name: "whatiuse home" })).toHaveCount(0);
 });
 
-test("component catalog filters, previews, and opens code without nesting controls", async ({ page }) => {
+test("the author reveal stays inline and card copy writes the exact install command", async ({ page, context, browserName }) => {
+  if (browserName === "chromium") {
+    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  }
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await page.goto("/");
+
+  const identity = page.getByRole("link", { name: "@minwook — portfolio" });
+  await expect(identity).toHaveAttribute("href", "https://www.minwookshin.com/");
+  await expect(identity).toHaveText("@minwook");
+  const headingBefore = await page.getByRole("heading", { level: 1, name: "components i use." }).boundingBox();
+  const supportsHover = await page.evaluate(() => window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  if (supportsHover) await identity.hover();
+  else await identity.focus();
+
+  const portraits = page.locator(".component-index-author__portraits img");
+  await expect(portraits).toHaveCount(3);
+  await expect(portraits.first()).toHaveCSS("opacity", "1");
+  const portraitBoxes = await portraits.evaluateAll((images) => images.map((image) => {
+    const box = image.getBoundingClientRect();
+    return { width: box.width, height: box.height };
+  }));
+  for (const box of portraitBoxes) expect(Math.abs(box.height - box.width)).toBeLessThanOrEqual(0.5);
+  expect(await page.getByRole("heading", { level: 1, name: "components i use." }).boundingBox()).toEqual(headingBefore);
+
+  const copyButton = page.locator('.component-index-row[data-component="button"] .component-index-row__actions').getByRole("button");
+  await copyButton.scrollIntoViewIfNeeded();
+  await copyButton.click();
+  await expect(copyButton).toHaveAttribute("aria-label", "Button install command copied");
+  if (browserName === "chromium") {
+    await expect.poll(() => page.evaluate(() => navigator.clipboard.readText())).toBe(
+      "npx shadcn@4.18.0 add https://whatiuse.minwookshin.com/r/v/0.1.0-rc.38/button.json",
+    );
+  }
+
+  await page.getByRole("link", { name: "Open Button code" }).click();
+  const inspector = page.getByRole("dialog", { name: "Button" });
+  const reactSource = inspector.getByRole("region", { name: "Button React source" });
+  await expect(reactSource).not.toContainText("Loading source...");
+  const expectedReactSource = await reactSource.textContent();
+  const sourceCopy = inspector.locator(".component-code-inspector__copy");
+  await sourceCopy.click();
+  await expect(sourceCopy).toHaveAttribute("aria-label", "Button React source copied");
+  if (browserName === "chromium") {
+    await expect.poll(() => page.evaluate(() => navigator.clipboard.readText())).toBe(expectedReactSource);
+  }
+
+  await inspector.getByRole("button", { name: "CSS", exact: true }).click();
+  const cssSource = inspector.getByRole("region", { name: "Button CSS source" });
+  const expectedCssSource = await cssSource.textContent();
+  await sourceCopy.click();
+  await expect(sourceCopy).toHaveAttribute("aria-label", "Button CSS source copied");
+  if (browserName === "chromium") {
+    await expect.poll(() => page.evaluate(() => navigator.clipboard.readText())).toBe(expectedCssSource);
+  }
+
+  await inspector.getByRole("tab", { name: "Install" }).click();
+  const installCopy = inspector.locator(".component-code-inspector__install-copy button");
+  await installCopy.click();
+  await expect(installCopy).toHaveAttribute("aria-label", "Button install command copied");
+  if (browserName === "chromium") {
+    await expect.poll(() => page.evaluate(() => navigator.clipboard.readText())).toBe(
+      "npx shadcn@4.18.0 add https://whatiuse.minwookshin.com/r/v/0.1.0-rc.38/button.json",
+    );
+  }
+});
+
+test("component catalog searches, previews, and opens code without nested group filters", async ({ page }) => {
   await page.goto("/#components");
 
   await expect(page.locator(".component-index-row")).toHaveCount(39);
@@ -32,8 +99,9 @@ test("component catalog filters, previews, and opens code without nesting contro
   await expect(page.getByRole("button", { name: "Copy Button install command" })).toBeVisible();
   await expect(page.locator(".component-index-row a button")).toHaveCount(0);
 
-  await page.getByRole("button", { name: "Overlays", exact: true }).click();
-  await expect(page.locator(".component-index-row")).toHaveCount(7);
+  await expect(page.getByRole("button", { name: "Controls", exact: true })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Overlays", exact: true })).toHaveCount(0);
+  await expect(page.getByRole("textbox", { name: "Search components" })).toHaveAttribute("placeholder", "Search components");
   const popoverCard = page.locator('.component-index-row[data-component="popover"]');
   await popoverCard.scrollIntoViewIfNeeded();
   await popoverCard.getByRole("button", { name: "View", exact: true }).click();
@@ -42,22 +110,62 @@ test("component catalog filters, previews, and opens code without nesting contro
 
   const search = page.getByRole("textbox", { name: "Search components" });
   await search.fill("toast");
-  await expect(page.locator(".component-index-row")).toHaveCount(0);
-  await page.getByRole("button", { name: "All", exact: true }).click();
   await expect(page.locator(".component-index-row")).toHaveCount(1);
   await page.getByRole("link", { name: "Open Toast code" }).click();
   await expect(page).toHaveURL(/#components\/toast$/);
   const inspector = page.getByRole("dialog", { name: "Toast" });
   await expect(inspector).toBeVisible();
   await expect(inspector.getByRole("tab", { name: "Source" })).toHaveAttribute("aria-selected", "true");
-  await expect(inspector.getByRole("button", { name: "Copy Toast source" })).toBeVisible();
+  await expect(inspector.getByRole("button", { name: "React", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(inspector.getByRole("region", { name: "Toast React source" })).toContainText('import "../../styles/whatiuse-base.css";');
+  await expect(inspector.getByRole("button", { name: "Copy Toast React source" })).toBeVisible();
+  await inspector.getByRole("button", { name: "CSS", exact: true }).click();
+  const cssFileName = inspector.getByText("toast.css", { exact: true });
+  if ((page.viewportSize()?.width ?? 0) < 600) await expect(cssFileName).toBeHidden();
+  else await expect(cssFileName).toBeVisible();
+  await expect(inspector.getByRole("region", { name: "Toast CSS source" })).toContainText(".whatiuse-toast");
+  await expect(inspector.getByRole("button", { name: "Copy Toast CSS source" })).toBeVisible();
+  await expect(inspector.getByRole("button", { name: "React Native" })).toHaveCount(0);
 
   await page.keyboard.press("Escape");
   await expect(inspector).toBeHidden();
   await expect(page).toHaveURL(/#components$/);
 });
 
-test("component catalog keeps compact 16:10 previews in a two-column desktop grid", async ({ page }) => {
+test("Data and Analytics collections expose live B2B primitives without Core filter noise", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await page.goto("/#components");
+
+  await page.getByRole("tab", { name: "Analytics" }).click();
+  await expect(page.locator(".component-index-row")).toHaveCount(17);
+  await expect(page.getByRole("figure", { name: "Recurring revenue" })).toBeAttached();
+  await expect(page.getByRole("textbox", { name: "Search components" })).toHaveAttribute("placeholder", "Search components");
+  await page.locator('.component-index-row[data-component="sankey-chart"]').scrollIntoViewIfNeeded();
+
+  await page.getByRole("tab", { name: "Data" }).click();
+  await expect(page.locator(".component-index-row")).toHaveCount(18);
+  await expect(page.getByRole("button", { name: "Controls", exact: true })).toHaveCount(0);
+  await expect(page.getByRole("textbox", { name: "Search components" })).toHaveAttribute("placeholder", "Search components");
+  await expect(page.locator('.component-index-row[data-component="data-table"]')).toBeInViewport();
+  await expect(page.locator('.component-index-row[data-component="filter-builder"]')).toBeInViewport();
+  const catalogOffset = await page.locator('.component-index-row[data-component="data-table"]').evaluate((card) => {
+    const toolbar = document.querySelector<HTMLElement>(".component-index-toolbar");
+    return card.getBoundingClientRect().top - (toolbar?.getBoundingClientRect().bottom ?? 0);
+  });
+  expect(catalogOffset).toBeGreaterThanOrEqual(20);
+  expect(catalogOffset).toBeLessThanOrEqual(44);
+  await expect(page.getByRole("table", { name: "Accounts" })).toBeVisible();
+  await page.getByRole("link", { name: "Open Data Table code" }).click();
+  await expect(page).toHaveURL(/#components\/data-table$/);
+  await expect(page.getByRole("dialog", { name: "Data Table" }).getByRole("link", { name: "Accessibility & API" })).toHaveAttribute("href", "#product-pilot");
+  await page.keyboard.press("Escape");
+
+  await page.getByRole("tab", { name: "Core" }).click();
+  await expect(page.locator('.component-index-row[data-component="button"]')).toBeInViewport();
+  await expect(page.getByRole("textbox", { name: "Search components" })).toHaveAttribute("placeholder", "Search components");
+});
+
+test("component catalog keeps compact 16:9 previews in a two-column desktop grid", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto("/#components");
 
@@ -67,7 +175,7 @@ test("component catalog keeps compact 16:10 previews in a two-column desktop gri
   await expect.poll(columnCount).toBe(2);
   const previewBox = await page.locator('.component-index-row[data-component="button"] .component-index-preview').boundingBox();
   expect(previewBox).not.toBeNull();
-  expect(Math.abs((previewBox!.width / previewBox!.height) - (16 / 10))).toBeLessThanOrEqual(0.01);
+  expect(Math.abs((previewBox!.width / previewBox!.height) - (16 / 9))).toBeLessThanOrEqual(0.01);
   const buttonCard = page.locator('.component-index-row[data-component="button"]');
   const cardBox = await buttonCard.boundingBox();
   const copyBox = await buttonCard.getByRole("button", { name: "Copy Button install command" }).boundingBox();
@@ -102,7 +210,7 @@ test("compact form and tree previews stay bounded in their card stages", async (
 
   const numberFieldCard = page.locator('.component-index-row[data-component="number-field"]');
   await numberFieldCard.scrollIntoViewIfNeeded();
-  const numberField = numberFieldCard.locator(".teum-number-field");
+  const numberField = numberFieldCard.locator(".whatiuse-number-field");
   await expect(numberField).toBeVisible();
   const numberBox = await numberField.boundingBox();
   expect(numberBox).not.toBeNull();
@@ -110,10 +218,10 @@ test("compact form and tree previews stay bounded in their card stages", async (
 
   const datePickerCard = page.locator('.component-index-row[data-component="date-picker"]');
   await datePickerCard.scrollIntoViewIfNeeded();
-  const dateGeometry = await datePickerCard.locator(".teum-date-picker").evaluate((element) => {
-    const group = element.querySelector<HTMLElement>(".teum-date-picker__group")!;
-    const icon = element.querySelector<SVGElement>(".teum-date-picker__button svg")!;
-    const segments = Array.from(element.querySelectorAll<HTMLElement>(".teum-date-picker__segment"));
+  const dateGeometry = await datePickerCard.locator(".whatiuse-date-picker").evaluate((element) => {
+    const group = element.querySelector<HTMLElement>(".whatiuse-date-picker__group")!;
+    const icon = element.querySelector<SVGElement>(".whatiuse-date-picker__button svg")!;
+    const segments = Array.from(element.querySelectorAll<HTMLElement>(".whatiuse-date-picker__segment"));
     const groupBox = group.getBoundingClientRect();
     const iconBox = icon.getBoundingClientRect();
     const firstVisibleEdge = Math.min(...segments.map((segment) => segment.getBoundingClientRect().left));
@@ -157,7 +265,7 @@ test("compact form and tree previews stay bounded in their card stages", async (
   await expect(treeCard.getByText("Data display", { exact: true })).toHaveCount(0);
   await expect(treeCard.getByText("Overlays", { exact: true })).toHaveCount(0);
   const treeStageBox = await treeCard.locator(".component-index-preview").boundingBox();
-  const treeBox = await treeCard.locator(".teum-tree").boundingBox();
+  const treeBox = await treeCard.locator(".whatiuse-tree").boundingBox();
   expect(treeStageBox).not.toBeNull();
   expect(treeBox).not.toBeNull();
   expect(treeBox!.y + treeBox!.height).toBeLessThanOrEqual(treeStageBox!.y + treeStageBox!.height + 1);
@@ -180,13 +288,17 @@ test("wordmark moves from the first-viewport center into the sticky header", asy
   expect(Math.abs(initial.centerX - 640)).toBeLessThanOrEqual(0.5);
   expect(initial.centerY).toBeCloseTo(360, 1);
   expect(initial.width).toBeGreaterThan(240);
-  await expect(page.getByRole("heading", { level: 1, name: "Components for product interfaces." })).toBeInViewport();
+  await expect(page.getByRole("heading", { level: 1, name: "components i use." })).toBeInViewport();
 
   await page.locator(".component-index-page").evaluate((element) => element.scrollTo({ top: 500, behavior: "instant" }));
   await expect.poll(async () => (await geometry()).centerY).toBeCloseTo(32, 1);
   const docked = await geometry();
   expect(Math.abs(docked.centerX - 640)).toBeLessThanOrEqual(0.5);
-  expect(docked.width).toBeCloseTo(60.125, 1);
+  expect(docked.width).toBeGreaterThan(56);
+  expect(docked.width).toBeLessThan(64);
+
+  await page.locator(".component-index-page").evaluate((element) => element.scrollTo({ top: 900, behavior: "instant" }));
+  await expect.poll(async () => (await geometry()).width).toBeCloseTo(docked.width, 2);
 
   const actionsAfter = await page.locator(".landing-header__actions").boundingBox();
   expect(actionsAfter?.x).toBeCloseTo(actionsBefore!.x, 1);
@@ -250,6 +362,32 @@ test("every catalog card renders its live preview inside the enlarged stage", as
 
   expect(overflow).toEqual([]);
   expect(runtimeErrors).toEqual([]);
+});
+
+test("catalog assigns deliberate geometry to compact, form, and product stages", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await page.goto("/#components");
+
+  const button = page.locator('.component-index-row[data-component="button"]');
+  const select = page.locator('.component-index-row[data-component="select"]');
+  const dialog = page.locator('.component-index-row[data-component="dialog"]');
+  await expect(button).toHaveAttribute("data-stage", "compact");
+  await expect(select).toHaveAttribute("data-stage", "form");
+  await expect(dialog).toHaveAttribute("data-stage", "product");
+  await expect(button).toHaveAttribute("data-flagship", "true");
+  await expect(select).toHaveAttribute("data-flagship", "true");
+  await expect(dialog).toHaveAttribute("data-flagship", "true");
+
+  const height = async (row: typeof button) => (await row.locator(".component-index-preview").boundingBox())?.height ?? 0;
+  expect(await height(button)).toBeLessThan(await height(select));
+  expect(await height(select)).toBeLessThan(await height(dialog));
+
+  await page.getByRole("tab", { name: "Data" }).click();
+  await expect(page.locator('.component-index-row[data-component="data-table"]')).toHaveAttribute("data-stage", "product");
+  await expect(page.locator('.component-index-row[data-component="filter-builder"]')).toHaveAttribute("data-flagship", "true");
+
+  await page.getByRole("tab", { name: "Analytics" }).click();
+  await expect(page.locator('.component-index-row[data-component="chart"]')).toHaveAttribute("data-flagship", "true");
 });
 
 test("desktop public header centers the text wordmark and keeps action geometry stable", async ({ page, isMobile }) => {

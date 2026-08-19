@@ -7,7 +7,7 @@ const LazyDocumentationApp = lazy(() => import("./App").then((module) => ({ defa
 const LazyComponentIndexPage = lazy(() => import("./component-index").then((module) => ({ default: module.ComponentIndexPage })));
 
 function RouteFallback() {
-  return <div className="teum-route-loading" role="status"><span>Loading</span></div>;
+  return <div className="whatiuse-route-loading" role="status"><span>Loading</span></div>;
 }
 
 function initialRoute() {
@@ -21,7 +21,7 @@ export default function PublicRoot() {
   const [view, setView] = useState(initialRoute);
   const [pendingSearchFocus, setPendingSearchFocus] = useState(false);
   const [theme, setTheme] = useState<Theme>(() => {
-    const storedTheme = window.localStorage.getItem("teum-theme") ?? window.localStorage.getItem("index-ui-theme");
+    const storedTheme = window.localStorage.getItem("whatiuse-theme") ?? window.localStorage.getItem("index-ui-theme");
     return storedTheme === "dark" ? "dark" : "light";
   });
 
@@ -54,7 +54,7 @@ export default function PublicRoot() {
   useLayoutEffect(() => {
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
-    window.localStorage.setItem("teum-theme", theme);
+    window.localStorage.setItem("whatiuse-theme", theme);
   }, [theme]);
 
   const select = (next: ViewId | string) => {

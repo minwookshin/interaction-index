@@ -1,64 +1,92 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-menu__item--danger { color: var(--teum-fg-danger); }
+@layer whatiuse.components {
+.whatiuse-menu__item--danger { color: var(--whatiuse-fg-danger); }
 
-.teum-menu__item--danger svg { color: currentColor; }
+.whatiuse-menu__item--danger svg { color: currentColor; }
 
-.teum-data-toolbar {
-  display: flex;
+.whatiuse-data-toolbar {
+  container: whatiuse-data-toolbar / inline-size;
+  display: grid;
   min-width: 0;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
   gap: 10px 16px;
   padding: 8px 0;
 }
 
-.teum-data-toolbar__start,
-.teum-data-toolbar__end {
+.whatiuse-data-toolbar__start,
+.whatiuse-data-toolbar__end {
   display: flex;
   min-width: 0;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 6px;
 }
 
-.teum-data-toolbar__end { justify-content: flex-end; margin-left: auto; }
+.whatiuse-data-toolbar__start > .whatiuse-search-field { min-width: 112px; flex: 1 1 180px; }
 
-.teum-saved-views { min-width: 232px; }
+.whatiuse-data-toolbar__end { justify-content: flex-end; }
 
-.teum-saved-views__copy {
+@container whatiuse-data-toolbar (max-width: 360px) {
+.whatiuse-data-toolbar { grid-template-columns: minmax(0, 1fr); }
+
+.whatiuse-data-toolbar__end { justify-content: flex-start; }
+}
+
+.whatiuse-saved-views { min-width: 232px; }
+
+.whatiuse-saved-views__copy {
   display: grid;
   min-width: 0;
   flex: 1;
   gap: 1px;
 }
 
-.teum-saved-views__copy strong { font-size: var(--teum-type-label); font-weight: 560; }
+.whatiuse-saved-views__copy strong { font-size: var(--whatiuse-type-label); font-weight: 560; }
 
-.teum-saved-views__copy small,
-.teum-saved-views__count { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+.whatiuse-saved-views__copy small,
+.whatiuse-saved-views__count { color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); }
 
-.teum-saved-views__count { margin-left: auto; font-variant-numeric: tabular-nums; }
+.whatiuse-saved-views__count { margin-left: auto; font-variant-numeric: tabular-nums; }
 
-.teum-column-manager { min-width: 216px; }
+.whatiuse-column-manager { min-width: 216px; }
 
-.teum-column-manager__required {
+.whatiuse-column-manager__required {
   display: inline-flex;
   align-items: center;
   gap: 3px;
   margin-left: auto;
-  color: var(--teum-fg-subtle);
-  font-size: var(--teum-type-metadata);
+  color: var(--whatiuse-fg-subtle);
+  font-size: var(--whatiuse-type-metadata);
 }
 
-.teum-column-manager__required svg { width: 10px; height: 10px; }
+.whatiuse-column-manager__required svg { width: 10px; height: 10px; }
 
 @media (max-width: 700px) {
-.teum-data-toolbar { align-items: stretch; flex-direction: column; }
+.whatiuse-data-toolbar {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+  }
 
-.teum-data-toolbar__end { width: 100%; justify-content: flex-start; margin-left: 0; }
+.whatiuse-data-toolbar__start,
+.whatiuse-data-toolbar__end {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: 0;
+  }
+
+.whatiuse-data-toolbar__start > .whatiuse-search-field { flex-basis: 100%; }
 }
+
+.whatiuse-data-toolbar {
+    gap: 8px 12px;
+    padding: 0;
+  }
+
+.whatiuse-data-toolbar__start,
+.whatiuse-data-toolbar__end { gap: 5px; }
 }

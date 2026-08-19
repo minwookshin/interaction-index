@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "data-group-menu",
+  "title": "Data Group Menu",
+  "description": "A single collection grouping dimension with an explicit clear path.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base",
+    "@whatiuse/button",
+    "@whatiuse/menu"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/data-group-menu.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/data-group-menu.css\";\nimport { Rows, X } from \"@phosphor-icons/react\";\nimport { cn } from \"../../lib/cn\";\nimport { Button } from \"./button\";\nimport {\n  Menu,\n  MenuContent,\n  MenuItem,\n  MenuLabel,\n  MenuRadioGroup,\n  MenuRadioItem,\n  MenuSeparator,\n  MenuTrigger,\n} from \"./menu\";\n\nexport type DataGroupOption = {\n  id: string;\n  label: string;\n  disabled?: boolean;\n};\n\nexport type DataGroupMenuProps = {\n  options: readonly DataGroupOption[];\n  value: string | null;\n  onValueChange: (value: string | null) => void;\n  label?: string;\n  className?: string;\n};\n\nexport function DataGroupMenu({ options, value, onValueChange, label = \"Group\", className }: DataGroupMenuProps) {\n  const selected = options.find((option) => option.id === value);\n  return (\n    <span className={cn(\"whatiuse-data-group-menu\", className)}>\n      <Menu>\n        <MenuTrigger render={<Button size=\"small\" variant={value ? \"secondary\" : \"ghost\"} leadingIcon={<Rows />} aria-label={value ? `${label}: ${selected?.label}` : label} />}>\n          {selected?.label ?? label}\n        </MenuTrigger>\n        <MenuContent className=\"whatiuse-data-group-menu__menu\" align=\"start\">\n          <MenuLabel>Group by</MenuLabel>\n          <MenuRadioGroup value={value ?? \"\"} onValueChange={(nextValue) => onValueChange(nextValue)}>\n            {options.map((option) => <MenuRadioItem key={option.id} value={option.id} disabled={option.disabled}>{option.label}</MenuRadioItem>)}\n          </MenuRadioGroup>\n          {value && <><MenuSeparator /><MenuItem onClick={() => onValueChange(null)}><X aria-hidden=\"true\" />Remove grouping</MenuItem></>}\n        </MenuContent>\n      </Menu>\n    </span>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/data-group-menu.tsx"
+    },
+    {
+      "path": "registry/styles/components/data-group-menu.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-data-group-menu {\n  display: inline-flex;\n  min-width: 0;\n  vertical-align: middle;\n}\n\n.whatiuse-data-group-menu__menu { min-width: 208px; }\n\n.whatiuse-data-group-menu__menu .whatiuse-menu__item > span:first-child { gap: 7px; }\n\n.whatiuse-data-group-menu__menu .whatiuse-menu__item svg { width: 13px; height: 13px; color: var(--whatiuse-fg-subtle); }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/data-group-menu.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/data-group-menu"
+    }
+  },
+  "type": "registry:component"
+}

@@ -16,7 +16,7 @@ import {
 const evidencePath = resolve(root, "release/next-quickstart.json");
 const maxJourneyMs = 10 * 60 * 1000;
 const registry = await startRegistryServer();
-const fixture = await createExampleFixture("quickstart-next", "teum-next-");
+const fixture = await createExampleFixture("quickstart-next", "whatiuse-next-");
 
 try {
   const startedAt = performance.now();
@@ -25,7 +25,7 @@ try {
   for (const path of [
     "src/components/ui/button.tsx",
     "src/lib/cn.ts",
-    "src/styles/teum-base.css",
+    "src/styles/whatiuse-base.css",
     "src/styles/components/button.css",
   ]) {
     await access(resolve(fixture, path)).catch(() => {
@@ -39,8 +39,8 @@ try {
 
   const builtCss = await readFilesContaining(resolve(fixture, ".next"), /\.css$/);
   const builtOutput = await readFilesContaining(resolve(fixture, ".next/server/app"), /\.(?:html|js)$/);
-  if (!builtCss.includes(".teum-button") || !/--teum-radius-control:\s*9px/.test(builtCss)) {
-    throw new Error("[next-adoption] production build omitted Teum Button CSS or the semantic override");
+  if (!builtCss.includes(".whatiuse-button") || !/--whatiuse-radius-control:\s*9px/.test(builtCss)) {
+    throw new Error("[next-adoption] production build omitted whatiuse Button CSS or the semantic override");
   }
   if (!builtCss.includes(':root[data-theme="dark"]') && !builtCss.includes(":root[data-theme=dark]")) {
     throw new Error("[next-adoption] production build omitted the dark theme contract");
@@ -53,7 +53,7 @@ try {
   const elapsedMs = Math.round(performance.now() - startedAt);
   if (elapsedMs >= maxJourneyMs) throw new Error("[next-adoption] journey exceeded ten minutes");
 
-  if (process.env.TEUM_NEXT_EVIDENCE === "1") {
+  if (process.env.WHATIUSE_NEXT_EVIDENCE === "1") {
     await writeFile(evidencePath, `${JSON.stringify({
       schemaVersion: 1,
       generatedBy: "scripts/verify-next-consumer.mjs",
@@ -71,10 +71,10 @@ try {
       serverComponentBoundary: "layout and page stay server-rendered; the interactive proof is an explicit client component",
       globalCssBoundary: "src/app/globals.css is imported once by the root layout",
       themeToggle: true,
-      semanticOverride: "--teum-radius-control: 9px",
+      semanticOverride: "--whatiuse-radius-control: 9px",
       commands: [
-        `npx ${shadcnCli} registry add @teum-pinned=${packageJson.homepage}/r/v/${packageJson.version}/{name}.json`,
-        `npx ${shadcnCli} add @teum-pinned/button`,
+        `npx ${shadcnCli} registry add @whatiuse=${packageJson.homepage}/r/v/${packageJson.version}/{name}.json`,
+        `npx ${shadcnCli} add @whatiuse/button`,
         "npm run typecheck",
         "npm run build",
       ],

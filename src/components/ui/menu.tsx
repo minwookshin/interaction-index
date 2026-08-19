@@ -15,30 +15,30 @@ export type MenuContentProps = MenuPrimitive.Popup.Props &
 export function MenuContent({ className, align = "start", alignOffset = 0, collisionAvoidance, side = "bottom", sideOffset = 6, ...props }: MenuContentProps) {
   return (
     <MenuPrimitive.Portal>
-      <MenuPrimitive.Positioner className="teum-positioner" align={align} alignOffset={alignOffset} collisionAvoidance={collisionAvoidance} side={side} sideOffset={sideOffset}>
-        <MenuPrimitive.Popup className={cn("teum-menu", className)} {...props} data-layer="flyout" />
+      <MenuPrimitive.Positioner className="whatiuse-positioner" align={align} alignOffset={alignOffset} collisionAvoidance={collisionAvoidance} side={side} sideOffset={sideOffset}>
+        <MenuPrimitive.Popup className={cn("whatiuse-menu", className)} {...props} data-layer="flyout" />
       </MenuPrimitive.Positioner>
     </MenuPrimitive.Portal>
   );
 }
 
 export function MenuLabel({ className, ...props }: ComponentPropsWithRef<"div">) {
-  return <div role="presentation" className={cn("teum-menu__label", className)} {...props} />;
+  return <div role="presentation" className={cn("whatiuse-menu__label", className)} {...props} />;
 }
 
 export function MenuItem({ className, ...props }: MenuPrimitive.Item.Props) {
-  return <MenuPrimitive.Item className={cn("teum-menu__item", className)} {...props} />;
+  return <MenuPrimitive.Item className={cn("whatiuse-menu__item", className)} {...props} />;
 }
 
 export function MenuSeparator(props: MenuPrimitive.Separator.Props) {
-  return <MenuPrimitive.Separator className="teum-menu__separator" {...props} />;
+  return <MenuPrimitive.Separator className="whatiuse-menu__separator" {...props} />;
 }
 
 export function MenuCheckboxItem({ className, children, ...props }: MenuPrimitive.CheckboxItem.Props) {
   return (
-    <MenuPrimitive.CheckboxItem className={cn("teum-menu__item teum-menu__item--check", className)} {...props}>
+    <MenuPrimitive.CheckboxItem className={cn("whatiuse-menu__item whatiuse-menu__item--check", className)} {...props}>
       <span>{children}</span>
-      <MenuPrimitive.CheckboxItemIndicator className="teum-menu__check"><Check weight="bold" /></MenuPrimitive.CheckboxItemIndicator>
+      <MenuPrimitive.CheckboxItemIndicator className="whatiuse-menu__check"><Check weight="bold" /></MenuPrimitive.CheckboxItemIndicator>
     </MenuPrimitive.CheckboxItem>
   );
 }
@@ -47,9 +47,9 @@ export const MenuRadioGroup = MenuPrimitive.RadioGroup;
 
 export function MenuRadioItem({ className, children, closeOnClick = true, ...props }: MenuPrimitive.RadioItem.Props) {
   return (
-    <MenuPrimitive.RadioItem className={cn("teum-menu__item teum-menu__item--check", className)} closeOnClick={closeOnClick} {...props}>
+    <MenuPrimitive.RadioItem className={cn("whatiuse-menu__item whatiuse-menu__item--check", className)} closeOnClick={closeOnClick} {...props}>
       <span>{children}</span>
-      <MenuPrimitive.RadioItemIndicator className="teum-menu__check"><Check weight="bold" /></MenuPrimitive.RadioItemIndicator>
+      <MenuPrimitive.RadioItemIndicator className="whatiuse-menu__check"><Check weight="bold" /></MenuPrimitive.RadioItemIndicator>
     </MenuPrimitive.RadioItem>
   );
 }

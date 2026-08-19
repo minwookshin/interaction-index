@@ -8,18 +8,18 @@ const exec = promisify(execFile);
 const root = process.cwd();
 const npm = process.platform === "win32" ? "npm.cmd" : "npm";
 const packageJson = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
-const requestedOutput = process.env.TEUM_PACKAGE_CANDIDATE_DIR;
+const requestedOutput = process.env.WHATIUSE_PACKAGE_CANDIDATE_DIR;
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 
 if (!requestedOutput || !isAbsolute(requestedOutput)) {
-  throw new Error("[package-candidate] TEUM_PACKAGE_CANDIDATE_DIR must be an explicit absolute path");
+  throw new Error("[package-candidate] WHATIUSE_PACKAGE_CANDIDATE_DIR must be an explicit absolute path");
 }
 const output = resolve(requestedOutput);
 await mkdir(dirname(output), { recursive: true });
 if (await lstat(output).then(() => true).catch(() => false)) {
   throw new Error(`[package-candidate] output already exists: ${output}`);
 }
-const staging = await mkdtemp(resolve(dirname(output), ".teum-package-candidate-"));
+const staging = await mkdtemp(resolve(dirname(output), ".whatiuse-package-candidate-"));
 
 try {
 const packed = await exec(npm, ["pack", "--json", "--pack-destination", staging], {

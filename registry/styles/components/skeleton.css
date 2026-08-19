@@ -1,17 +1,17 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-skeleton { position: relative; overflow: hidden; border-radius: var(--teum-radius-xs); background: var(--teum-gray-100); }
+@layer whatiuse.components {
+.whatiuse-skeleton { position: relative; overflow: hidden; border-radius: var(--whatiuse-radius-xs); background: var(--whatiuse-gray-100); }
 
-.teum-skeleton::after { position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.65), transparent); content: ""; transform: translateX(-100%); animation: teum-skeleton-shimmer 1.6s linear infinite; }
+.whatiuse-skeleton::after { position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.65), transparent); content: ""; transform: translateX(-100%); animation: whatiuse-skeleton-shimmer 1.6s linear infinite; }
 
-.teum-skeleton-text { display: grid; width: min(320px, 100%); gap: 8px; }
+.whatiuse-skeleton-text { display: grid; width: min(320px, 100%); gap: 8px; }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-skeleton::after { animation-duration: 2.4s; }
+.whatiuse-skeleton::after { animation-duration: 2.4s; }
 }
 
-@keyframes teum-skeleton-shimmer { to { transform: translateX(100%); } }
+@keyframes whatiuse-skeleton-shimmer { to { transform: translateX(100%); } }
 }

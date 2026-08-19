@@ -85,9 +85,9 @@ export function AsyncIconButtonPreview() {
   };
 
   return (
-    <div className="teum-icon-action-preview" data-state={state} data-activation={activation}>
+    <div className="whatiuse-icon-action-preview" data-state={state} data-activation={activation}>
       <IconButton
-        className="teum-icon-action-preview__button"
+        className="whatiuse-icon-action-preview__button"
         variant="secondary"
         aria-label="Create item"
         tooltip={state === "success" ? "Item created" : state === "loading" ? "Creating item" : "Create item"}
@@ -97,7 +97,7 @@ export function AsyncIconButtonPreview() {
       >
         {state === "success" ? <Check weight="bold" /> : <Plus />}
       </IconButton>
-      <span className="teum-sr-only" role="status" aria-live="polite">
+      <span className="whatiuse-sr-only" role="status" aria-live="polite">
         {state === "loading" ? "Creating item" : state === "success" ? "Item created" : ""}
       </span>
     </div>
@@ -108,7 +108,7 @@ export function PrioritySelectPreview() {
   const [value, setValue] = useState("medium");
 
   return (
-    <div className="teum-priority-select-preview">
+    <div className="whatiuse-priority-select-preview">
       <Select
         label="Priority"
         options={priorityOptions}
@@ -125,33 +125,33 @@ export function IssueActionsMenuPreview() {
   const metadata = message || `INT-184 · ${following ? "Following" : "In review"}`;
 
   return (
-    <section className="product-context product-context--toolbar teum-issue-menu-preview" aria-label="Issue toolbar menu example">
+    <section className="product-context product-context--toolbar whatiuse-issue-menu-preview" aria-label="Issue toolbar menu example">
       <div className="product-context__identity">
         <span className="product-context__icon"><Rows aria-hidden="true" /></span>
         <div>
           <strong>Motion contract</strong>
-          <span className="teum-product-context__status">{metadata}</span>
+          <span className="whatiuse-product-context__status">{metadata}</span>
         </div>
       </div>
       <Menu>
         <MenuTrigger render={<Button variant="secondary" size="small" trailingIcon={<CaretDown />}>Actions</Button>} />
-        <MenuContent className="teum-issue-actions-menu" aria-label="Issue actions">
+        <MenuContent className="whatiuse-issue-actions-menu" aria-label="Issue actions">
           <MenuLabel>Issue</MenuLabel>
           <MenuCheckboxItem
             checked={following}
             closeOnClick={false}
             onCheckedChange={(checked) => setFollowing(checked === true)}
           >
-            <span className="teum-menu-preview__item-copy"><Bell />Follow issue</span>
+            <span className="whatiuse-menu-preview__item-copy"><Bell />Follow issue</span>
           </MenuCheckboxItem>
           <MenuSeparator />
           <MenuItem onClick={() => showMessage("Issue duplicated")}><Copy />Duplicate <kbd>⌘D</kbd></MenuItem>
           <MenuItem onClick={() => showMessage("Issue archived")}><Archive />Archive</MenuItem>
           <MenuSeparator />
-          <MenuItem className="teum-menu__item--danger" onClick={() => showMessage("Delete requires confirmation")}><Trash />Delete</MenuItem>
+          <MenuItem className="whatiuse-menu__item--danger" onClick={() => showMessage("Delete requires confirmation")}><Trash />Delete</MenuItem>
         </MenuContent>
       </Menu>
-      <span className="teum-sr-only" role="status" aria-live="polite">{message}</span>
+      <span className="whatiuse-sr-only" role="status" aria-live="polite">{message}</span>
     </section>
   );
 }
@@ -187,12 +187,12 @@ export function ComponentMetadataDialogPreview() {
   };
 
   return (
-    <section className="product-context product-context--toolbar teum-metadata-dialog-preview" aria-label="Component metadata example">
+    <section className="product-context product-context--toolbar whatiuse-metadata-dialog-preview" aria-label="Component metadata example">
       <div className="product-context__identity">
         <span className="product-context__icon"><Package aria-hidden="true" /></span>
         <div>
           <strong>{name}</strong>
-          <span className="teum-product-context__status">{message || `${maturityLabel(maturity)} · Local component`}</span>
+          <span className="whatiuse-product-context__status">{message || `${maturityLabel(maturity)} · Local component`}</span>
         </div>
       </div>
       <Dialog open={open} onOpenChange={handleOpenChange}>
@@ -202,7 +202,7 @@ export function ComponentMetadataDialogPreview() {
             <DialogTitle>Edit component details</DialogTitle>
             <DialogDescription>Change the name and maturity shown in the catalog.</DialogDescription>
           </DialogHeader>
-          <form className="teum-metadata-dialog__form" onSubmit={(event) => { event.preventDefault(); save(); }}>
+          <form className="whatiuse-metadata-dialog__form" onSubmit={(event) => { event.preventDefault(); save(); }}>
             <TextField
               label="Display name"
               value={draftName}
@@ -221,7 +221,7 @@ export function ComponentMetadataDialogPreview() {
           </form>
         </DialogContent>
       </Dialog>
-      <span className="teum-sr-only" role="status" aria-live="polite">{message}</span>
+      <span className="whatiuse-sr-only" role="status" aria-live="polite">{message}</span>
     </section>
   );
 }

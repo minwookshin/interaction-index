@@ -1,44 +1,56 @@
 import { describe, expect, it } from "vitest";
-import { teumMotionContract } from "./motion-contract";
-import { issuesWorkspaceContract, teumDataComponentContracts } from "./teum-data-contract";
+import { whatiuseMotionContract } from "./motion-contract";
+import { issuesWorkspaceContract, whatiuseDataComponentContracts } from "./whatiuse-data-contract";
 import {
-  teumAnalyticsComponentContracts,
-  teumAnalyticsRecipeContracts,
-  teumAnalyticsStateContract,
-} from "./teum-analytics-contract";
+  whatiuseAnalyticsComponentContracts,
+  whatiuseAnalyticsRecipeContracts,
+  whatiuseAnalyticsStateContract,
+} from "./whatiuse-analytics-contract";
 import {
-  teumProductPatternContracts,
-  teumProductPatternSystemContract,
-} from "./teum-product-patterns-contract";
+  whatiuseProductPatternContracts,
+  whatiuseProductPatternSystemContract,
+} from "./whatiuse-product-patterns-contract";
 
 describe("Motion Contract v1", () => {
   it("keeps routine motion responsive and repeated work instant", () => {
-    expect(Math.max(...Object.values(teumMotionContract.durationMs))).toBeLessThanOrEqual(
-      teumMotionContract.constraints.maxRoutineDurationMs,
+    expect(Math.max(...Object.values(whatiuseMotionContract.durationMs))).toBeLessThanOrEqual(
+      whatiuseMotionContract.constraints.maxRoutineDurationMs,
     );
-    expect(teumMotionContract.frequency.constant.treatment).toBe("instant");
-    expect(teumMotionContract.constraints.minimumEntryScale).toBeGreaterThanOrEqual(0.95);
-    expect(teumMotionContract.constraints.forbiddenPatterns).toContain("transition: all");
-    expect(teumMotionContract.constraints.forbiddenPatterns).toContain("ease-in for interface feedback");
+    expect(whatiuseMotionContract.frequency.constant.treatment).toBe("instant");
+    expect(whatiuseMotionContract.constraints.minimumEntryScale).toBeGreaterThanOrEqual(0.95);
+    expect(whatiuseMotionContract.constraints.forbiddenPatterns).toContain("transition: all");
+    expect(whatiuseMotionContract.constraints.forbiddenPatterns).toContain("ease-in for interface feedback");
   });
 
   it("keeps reduced motion and interruption explicit", () => {
-    expect(teumMotionContract.principles).toContain("Let interrupted transitions retarget instead of restarting.");
-    expect(teumMotionContract.principles).toContain("Remove spatial travel when reduced motion is requested.");
+    expect(whatiuseMotionContract.principles).toContain("Let interrupted transitions retarget instead of restarting.");
+    expect(whatiuseMotionContract.principles).toContain("Remove spatial travel when reduced motion is requested.");
   });
 });
 
-describe("Teum Data contracts", () => {
-  it("defines the six public product primitives", () => {
-    expect(teumDataComponentContracts.map(({ id }) => id)).toEqual([
+describe("whatiuse Data contracts", () => {
+  it("defines the public product primitives", () => {
+    expect(whatiuseDataComponentContracts.map(({ id }) => id)).toEqual([
       "data-table",
       "filter-builder",
       "data-toolbar",
+      "saved-view-menu",
+      "column-visibility-menu",
+      "facet-filter",
+      "data-sort-menu",
+      "data-group-menu",
+      "data-density-control",
+      "data-result-summary",
       "bulk-action-bar",
+      "row-actions-menu",
+      "cursor-pagination",
       "date-range-filter",
       "data-export-menu",
+      "property-list",
+      "audit-log",
+      "data-state",
     ]);
-    for (const contract of teumDataComponentContracts) {
+    for (const contract of whatiuseDataComponentContracts) {
       expect(contract.intent).not.toBe("");
       expect(contract.requires.length).toBeGreaterThan(0);
       expect(contract.accessibility.length).toBeGreaterThan(0);
@@ -59,13 +71,19 @@ describe("Teum Data contracts", () => {
   });
 });
 
-describe("Teum Analytics contracts", () => {
-  it("defines eleven bounded product primitives without pretending a chart engine is a product API", () => {
-    expect(teumAnalyticsComponentContracts.map(({ id }) => id)).toEqual([
+describe("whatiuse Analytics contracts", () => {
+  it("defines seventeen bounded product primitives without pretending a chart engine is a product API", () => {
+    expect(whatiuseAnalyticsComponentContracts.map(({ id }) => id)).toEqual([
       "metric",
       "sparkline",
       "chart",
+      "histogram",
+      "scatter-chart",
+      "waterfall-chart",
       "donut-chart",
+      "radar-chart",
+      "gauge",
+      "sankey-chart",
       "heatmap",
       "comparison",
       "breakdown",
@@ -74,7 +92,7 @@ describe("Teum Analytics contracts", () => {
       "cohort",
       "timeline",
     ]);
-    for (const contract of teumAnalyticsComponentContracts) {
+    for (const contract of whatiuseAnalyticsComponentContracts) {
       expect(contract.useWhen.length).toBeGreaterThan(0);
       expect(contract.avoidWhen.length).toBeGreaterThan(0);
       expect(contract.accessibility.length).toBeGreaterThan(0);
@@ -82,31 +100,31 @@ describe("Teum Analytics contracts", () => {
   });
 
   it("keeps visual, interactive, and textual analytic evidence on one state contract", () => {
-    expect(teumAnalyticsStateContract.rules).toContain(
+    expect(whatiuseAnalyticsStateContract.rules).toContain(
       "Every visual encoding has a textual value, label, or semantic table equivalent.",
     );
-    expect(teumAnalyticsStateContract.rules).toContain(
+    expect(whatiuseAnalyticsStateContract.rules).toContain(
       "Recipes own URL and server state; visual primitives remain transport-agnostic.",
     );
-    expect(teumAnalyticsRecipeContracts.map(({ id }) => id)).toEqual([
+    expect(whatiuseAnalyticsRecipeContracts.map(({ id }) => id)).toEqual([
       "saas-overview",
       "product-usage",
       "conversion-retention",
     ]);
-    expect(teumAnalyticsRecipeContracts.find(({ id }) => id === "product-usage")?.invariants).toContain(
-      "Each chart owns its transient active point.",
+    expect(whatiuseAnalyticsRecipeContracts.find(({ id }) => id === "product-usage")?.invariants).toContain(
+      "Only explicit feature and stage selection cross-filter records.",
     );
   });
 });
 
-describe("Teum Product Pattern contracts", () => {
+describe("whatiuse Product Pattern contracts", () => {
   it("defines the three B2B tasks without adding another primitive layer", () => {
-    expect(teumProductPatternContracts.map(({ id }) => id)).toEqual([
+    expect(whatiuseProductPatternContracts.map(({ id }) => id)).toEqual([
       "customer-workspace",
       "billing-usage",
       "members-permissions",
     ]);
-    for (const contract of teumProductPatternContracts) {
+    for (const contract of whatiuseProductPatternContracts) {
       expect(contract.taskSequence.length).toBeGreaterThanOrEqual(5);
       expect(contract.components.length).toBeGreaterThanOrEqual(8);
       expect(contract.failureStates.length).toBeGreaterThan(0);
@@ -115,10 +133,10 @@ describe("Teum Product Pattern contracts", () => {
   });
 
   it("keeps product state outside visual primitives and requires a recovery path", () => {
-    expect(teumProductPatternSystemContract.rules).toContain(
-      "Patterns compose public Teum components and keep product state outside visual primitives.",
+    expect(whatiuseProductPatternSystemContract.rules).toContain(
+      "Patterns compose public whatiuse components and keep product state outside visual primitives.",
     );
-    expect(teumProductPatternSystemContract.rules).toContain(
+    expect(whatiuseProductPatternSystemContract.rules).toContain(
       "Destructive or costly work always exposes a review, cancellation, or recovery path.",
     );
   });

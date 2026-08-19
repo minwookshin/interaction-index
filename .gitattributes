@@ -1,0 +1,5 @@
+public/r/** linguist-generated=true
+api/generated/** linguist-generated=true
+tokens/generated/** linguist-generated=true
+release/*.json linguist-generated=true
+tests/**/*.png linguist-generated=true

@@ -47,7 +47,7 @@ export function SegmentedControl({
 
   return (
     <ToggleGroup
-      className={cn("teum-segmented-control", className)}
+      className={cn("whatiuse-segmented-control", className)}
       data-size={size}
       aria-label={label}
       value={selectedValue ? [selectedValue] : []}
@@ -56,7 +56,7 @@ export function SegmentedControl({
       orientation={orientation}
     >
       {options.map((option) => (
-        <Toggle key={option.value} className="teum-segmented-control__item" value={option.value} disabled={option.disabled} aria-label={option.accessibleLabel}>
+        <Toggle key={option.value} className="whatiuse-segmented-control__item" value={option.value} disabled={option.disabled} aria-label={option.accessibleLabel}>
           {option.icon && <span aria-hidden="true">{option.icon}</span>}
           <span>{option.label}</span>
         </Toggle>

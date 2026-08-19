@@ -7,7 +7,7 @@ const root = process.cwd();
 const checkOnly = process.argv.includes("--check");
 const sourceRoot = resolve(root, "src");
 const entryPoint = resolve(sourceRoot, "components/ui/index.ts");
-const virtualOut = resolve(root, ".teum-api-emit");
+const virtualOut = resolve(root, ".whatiuse-api-emit");
 const generatedRoot = resolve(root, "api/generated");
 const generatedTypesRoot = resolve(generatedRoot, "types");
 const documentationOutput = resolve(sourceRoot, "documentation/generated-component-exports.ts");
@@ -142,11 +142,11 @@ const contractDefinitions = [
   { id: "motion-contract", source: "lib/motion-contract.ts" },
   { id: "data-view-state", source: "lib/data-view-state.ts" },
   { id: "data-export", source: "lib/data-export.ts" },
-  { id: "teum-data-contract", source: "lib/teum-data-contract.ts" },
+  { id: "whatiuse-data-contract", source: "lib/whatiuse-data-contract.ts" },
   { id: "analytics", source: "lib/analytics.ts" },
-  { id: "teum-analytics-contract", source: "lib/teum-analytics-contract.ts" },
-  { id: "teum-product-patterns-contract", source: "lib/teum-product-patterns-contract.ts" },
-  { id: "teum-agent-contract", source: "lib/teum-agent-contract.ts" },
+  { id: "whatiuse-analytics-contract", source: "lib/whatiuse-analytics-contract.ts" },
+  { id: "whatiuse-product-patterns-contract", source: "lib/whatiuse-product-patterns-contract.ts" },
+  { id: "whatiuse-agent-contract", source: "lib/whatiuse-agent-contract.ts" },
 ];
 const contracts = {};
 for (const { id, source } of contractDefinitions) {
@@ -196,7 +196,7 @@ const manifest = {
 };
 
 const report = [
-  "# Teum public API report",
+  "# whatiuse public API report",
   "",
   "> Generated from the TypeScript compiler. Do not edit directly.",
   "",

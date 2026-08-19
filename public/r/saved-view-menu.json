@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "saved-view-menu",
+  "title": "Saved View Menu",
+  "description": "Named system and personal collection states with explicit management actions.",
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base",
+    "@whatiuse/data-toolbar"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/saved-view-menu.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/saved-view-menu.css\";\nimport type { HTMLAttributes } from \"react\";\nimport { cn } from \"../../lib/cn\";\nimport { SavedViews, type SavedViewsProps } from \"./data-toolbar\";\n\nexport type SavedViewMenuProps = SavedViewsProps & {\n  className?: string;\n};\n\nexport function SavedViewMenu({ className, ...props }: SavedViewMenuProps) {\n  return (\n    <span className={cn(\"whatiuse-saved-view-menu\", className)}>\n      <SavedViews {...props} />\n    </span>\n  );\n}\n\nexport type SavedViewMenuContainerProps = HTMLAttributes<HTMLSpanElement>;\n",
+      "type": "registry:component",
+      "target": "components/ui/saved-view-menu.tsx"
+    },
+    {
+      "path": "registry/styles/components/saved-view-menu.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-saved-view-menu {\n  display: inline-flex;\n  min-width: 0;\n  vertical-align: middle;\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/saved-view-menu.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/saved-view-menu"
+    }
+  },
+  "type": "registry:component"
+}

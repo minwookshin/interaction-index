@@ -1,24 +1,24 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/components/button.css";
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import type { ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/cn";
 
-export const buttonVariants = cva("teum-button", {
+export const buttonVariants = cva("whatiuse-button", {
   variants: {
     variant: {
-      primary: "teum-button--primary",
-      secondary: "teum-button--secondary",
-      ghost: "teum-button--ghost",
-      quiet: "teum-button--quiet",
+      primary: "whatiuse-button--primary",
+      secondary: "whatiuse-button--secondary",
+      ghost: "whatiuse-button--ghost",
+      quiet: "whatiuse-button--quiet",
     },
     size: {
-      small: "teum-button--small",
-      medium: "teum-button--medium",
-      large: "teum-button--large",
+      small: "whatiuse-button--small",
+      medium: "whatiuse-button--medium",
+      large: "whatiuse-button--large",
     },
   },
   defaultVariants: {
@@ -60,14 +60,14 @@ export function Button({
       className={cn(buttonVariants({ variant, size }), className)}
       {...props}
     >
-      <span className="teum-button__content">
-        {leadingIcon && <span className="teum-button__icon teum-button__icon--leading">{leadingIcon}</span>}
+      <span className="whatiuse-button__content">
+        {leadingIcon && <span className="whatiuse-button__icon whatiuse-button__icon--leading">{leadingIcon}</span>}
         <span>{children}</span>
-        {trailingIcon && <span className="teum-button__icon teum-button__icon--trailing">{trailingIcon}</span>}
+        {trailingIcon && <span className="whatiuse-button__icon whatiuse-button__icon--trailing">{trailingIcon}</span>}
       </span>
-      <span className="teum-button__loader" aria-hidden="true" data-visible={loading || undefined}>
-        <span className="teum-spinner" />
-        {loadingLabel && <span className="teum-button__loading-label">{loadingLabel}</span>}
+      <span className="whatiuse-button__loader" aria-hidden="true" data-visible={loading || undefined}>
+        <span className="whatiuse-spinner" />
+        {loadingLabel && <span className="whatiuse-button__loading-label">{loadingLabel}</span>}
       </span>
     </ButtonPrimitive>
   );

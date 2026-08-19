@@ -1,23 +1,23 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-progress { display: grid; width: min(320px, 100%); gap: 7px; }
+@layer whatiuse.components {
+.whatiuse-progress { display: grid; width: min(320px, 100%); gap: 7px; }
 
-.teum-progress__meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--teum-ink-secondary); font-size: var(--teum-type-label); }
+.whatiuse-progress__meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--whatiuse-ink-secondary); font-size: var(--whatiuse-type-label); }
 
-.teum-progress__meta > span:last-child { color: var(--teum-ink-tertiary); font-variant-numeric: tabular-nums; }
+.whatiuse-progress__meta > span:last-child { color: var(--whatiuse-ink-tertiary); font-variant-numeric: tabular-nums; }
 
-.teum-progress__track { position: relative; overflow: hidden; width: 100%; border-radius: 999px; background: var(--teum-gray-200); }
+.whatiuse-progress__track { position: relative; overflow: hidden; width: 100%; border-radius: 999px; background: var(--whatiuse-gray-200); }
 
-.teum-progress__indicator { width: 100%; height: 100%; border-radius: inherit; background: var(--teum-gray-900); transform: scaleX(var(--teum-progress-scale)); transform-origin: left center; transition: transform 220ms var(--teum-ease-out, ease-out); }
+.whatiuse-progress__indicator { width: 100%; height: 100%; border-radius: inherit; background: var(--whatiuse-gray-900); transform: scaleX(var(--whatiuse-progress-scale)); transform-origin: left center; transition: transform 220ms var(--whatiuse-ease-out, ease-out); }
 
-.teum-progress[data-indeterminate] .teum-progress__indicator { animation: teum-progress-indeterminate 1.15s var(--teum-ease-in-out, ease-in-out) infinite; }
+.whatiuse-progress[data-indeterminate] .whatiuse-progress__indicator { animation: whatiuse-progress-indeterminate 1.15s var(--whatiuse-ease-in-out, ease-in-out) infinite; }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-progress[data-indeterminate] .teum-progress__indicator { animation-duration: 2.4s; }
+.whatiuse-progress[data-indeterminate] .whatiuse-progress__indicator { animation-duration: 2.4s; }
 }
 
-@keyframes teum-progress-indeterminate { from { transform: translateX(-72%) scaleX(.42); } to { transform: translateX(116%) scaleX(.42); } }
+@keyframes whatiuse-progress-indeterminate { from { transform: translateX(-72%) scaleX(.42); } to { transform: translateX(116%) scaleX(.42); } }
 }

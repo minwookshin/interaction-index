@@ -1,61 +1,98 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-heatmap { display: grid; width: 100%; min-width: 0; gap: 12px; }
+@layer whatiuse.components {
+.whatiuse-heatmap { display: grid; width: 100%; min-width: 0; gap: 12px; }
 
-.teum-heatmap__header { display: flex; min-width: 0; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.whatiuse-heatmap__header { display: flex; min-width: 0; align-items: flex-start; justify-content: space-between; gap: 20px; }
 
-.teum-heatmap__header > div { display: grid; min-width: 0; gap: 3px; }
+.whatiuse-heatmap__header > div { display: grid; min-width: 0; gap: 3px; }
 
-.teum-heatmap__header h3 { margin: 0; color: var(--teum-fg-default); font-size: var(--teum-type-section); font-weight: 610; letter-spacing: -.022em; }
+.whatiuse-heatmap__header h3 { margin: 0; color: var(--whatiuse-fg-default); font-size: var(--whatiuse-type-section); font-weight: 610; letter-spacing: -.022em; }
 
-.teum-heatmap__header p { margin: 0; color: var(--teum-fg-muted); font-size: var(--teum-type-metadata); line-height: 1.45; }
+.whatiuse-heatmap__header p { margin: 0; color: var(--whatiuse-fg-muted); font-size: var(--whatiuse-type-metadata); line-height: 1.45; }
 
-.teum-heatmap__header output { display: grid; min-width: 116px; flex: none; gap: 2px; color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); text-align: right; }
+.whatiuse-heatmap__header output { display: grid; min-width: 116px; flex: none; gap: 2px; color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); text-align: right; }
 
-.teum-heatmap__header output strong { color: var(--teum-fg-default); font-variant-numeric: tabular-nums; font-weight: 570; }
+.whatiuse-heatmap__header output strong { color: var(--whatiuse-fg-default); font-variant-numeric: tabular-nums; font-weight: 570; }
 
-.teum-heatmap__stage { min-width: 0; min-height: 248px; overflow: auto; border-radius: var(--teum-radius-container); background: color-mix(in srgb, var(--teum-bg-stage) 76%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--teum-fg-default) 7%, transparent); }
+.whatiuse-heatmap__stage { min-width: 0; min-height: 248px; overflow: auto; border-radius: var(--whatiuse-radius-container); background: color-mix(in srgb, var(--whatiuse-bg-stage) 76%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--whatiuse-fg-default) 7%, transparent); }
 
-.teum-heatmap table { width: 100%; min-width: 520px; border-collapse: separate; border-spacing: 4px; padding: 9px; font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; }
+.whatiuse-heatmap table { width: 100%; min-width: 520px; border-collapse: separate; border-spacing: 4px; padding: 9px; font-size: var(--whatiuse-type-metadata); font-variant-numeric: tabular-nums; }
 
-.teum-heatmap th { height: 28px; padding: 0 6px; color: var(--teum-fg-subtle); font-weight: 520; text-align: center; white-space: nowrap; }
+.whatiuse-heatmap th { height: 28px; padding: 0 6px; color: var(--whatiuse-fg-subtle); font-weight: 520; text-align: center; white-space: nowrap; }
 
-.teum-heatmap tbody th { min-width: 90px; color: var(--teum-fg-muted); font-weight: 540; text-align: left; }
+.whatiuse-heatmap tbody th { min-width: 90px; color: var(--whatiuse-fg-muted); font-weight: 540; text-align: left; }
 
-.teum-heatmap td { height: 38px; padding: 0; }
+.whatiuse-heatmap td { height: 38px; padding: 0; }
 
-.teum-heatmap td button { display: grid; width: 100%; height: 100%; min-width: 48px; place-items: center; padding: 0 5px; border: 0; border-radius: 6px; background: color-mix(in srgb, var(--teum-fg-default) calc(4% + var(--teum-heatmap-strength) * 24%), transparent); color: var(--teum-fg-default); font: inherit; font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; cursor: pointer; transition: background-color var(--teum-hover-duration) var(--teum-ease), box-shadow var(--teum-hover-duration) var(--teum-ease); }
+.whatiuse-heatmap td button { display: grid; width: 100%; height: 100%; min-width: 48px; place-items: center; padding: 0 5px; border: 0; border-radius: 6px; background: color-mix(in srgb, var(--whatiuse-fg-default) calc(4% + var(--whatiuse-heatmap-strength) * 24%), transparent); color: var(--whatiuse-fg-default); font: inherit; font-size: var(--whatiuse-type-metadata); font-variant-numeric: tabular-nums; cursor: pointer; transition: background-color var(--whatiuse-hover-duration) var(--whatiuse-ease), box-shadow var(--whatiuse-hover-duration) var(--whatiuse-ease); }
 
-.teum-heatmap td[data-empty] button { background: color-mix(in srgb, var(--teum-bg-subtle) 52%, transparent); color: var(--teum-fg-subtle); }
+.whatiuse-heatmap td[data-empty] button { background: color-mix(in srgb, var(--whatiuse-bg-subtle) 52%, transparent); color: var(--whatiuse-fg-subtle); }
 
-.teum-heatmap td button:focus { outline: 0; }
+.whatiuse-heatmap td button:focus { outline: 0; }
 
-.teum-heatmap td button[data-selected] { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--teum-fg-default) 24%, transparent); }
+.whatiuse-heatmap td button[data-selected] { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--whatiuse-fg-default) 24%, transparent); }
 
-.teum-heatmap td button:focus-visible { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--teum-focus-control) 45%, transparent); }
+.whatiuse-heatmap td button:focus-visible { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--whatiuse-focus-control) 45%, transparent); }
 
-.teum-heatmap__state { display: grid; min-height: 248px; place-content: center; color: var(--teum-fg-subtle); font-size: var(--teum-type-ui); }
+.whatiuse-heatmap__state { display: grid; min-height: 248px; place-content: center; color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-ui); }
 
-.teum-heatmap__state[role="status"] { grid-auto-flow: column; align-items: center; gap: 8px; }
+.whatiuse-heatmap__state[role="status"] { grid-auto-flow: column; align-items: center; gap: 8px; }
 
-.teum-heatmap__state > span { width: 12px; height: 12px; border: 1.5px solid var(--teum-separator-strong); border-top-color: var(--teum-fg-default); border-radius: 50%; animation: teum-spinner .7s linear infinite; }
+.whatiuse-heatmap__state > span { width: 12px; height: 12px; border: 1.5px solid var(--whatiuse-separator-strong); border-top-color: var(--whatiuse-fg-default); border-radius: 50%; animation: whatiuse-spinner .7s linear infinite; }
 
-.teum-heatmap__state--error { color: var(--teum-fg-danger); }
+.whatiuse-heatmap__state--error { color: var(--whatiuse-fg-danger); }
 
 @media (max-width: 640px) {
-.teum-heatmap__header { align-items: flex-start; }
+.whatiuse-heatmap__header { align-items: flex-start; }
 
-.teum-heatmap__header output { min-width: 92px; }
+.whatiuse-heatmap__header output { min-width: 92px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-heatmap__state > span { animation: none; }
+.whatiuse-heatmap__state > span { animation: none; }
 
-.teum-heatmap td button { transition-duration: 0ms; }
+.whatiuse-heatmap td button { transition-duration: 0ms; }
 }
 
-@keyframes teum-spin { to { transform: rotate(360deg); } }
+.whatiuse-heatmap { gap: 9px; }
+
+.whatiuse-heatmap__header { align-items: center; }
+
+.whatiuse-heatmap__header h3 {
+    font-size: var(--whatiuse-type-ui);
+    font-weight: 600;
+    letter-spacing: -.014em;
+  }
+
+.whatiuse-heatmap__header p { line-height: 1.35; }
+
+.whatiuse-heatmap__header output:not([data-active]) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+.whatiuse-heatmap__header output[data-active] { min-width: 104px; }
+
+.whatiuse-heatmap__stage {
+    min-height: 206px;
+    border-radius: 9px;
+    background: var(--whatiuse-bg-surface);
+    box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--whatiuse-control-border) 58%, transparent), 0 1px 2px rgb(17 17 19 / .025);
+  }
+
+.whatiuse-heatmap table { border-spacing: 3px; padding: 8px; }
+
+.whatiuse-heatmap th { height: 25px; padding-inline: 5px; }
+
+.whatiuse-heatmap td { height: 34px; }
+
+.whatiuse-heatmap td button { min-width: 42px; border-radius: 5px; }
+
+@keyframes whatiuse-spin { to { transform: rotate(360deg); } }
 }

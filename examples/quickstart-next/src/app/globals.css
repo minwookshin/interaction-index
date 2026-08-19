@@ -1,8 +1,8 @@
 :root {
-  --teum-radius-control: 9px;
-  background: var(--teum-bg-canvas);
-  color: var(--teum-fg-default);
-  font-family: var(--teum-font-ui);
+  --whatiuse-radius-control: 9px;
+  background: var(--whatiuse-bg-canvas);
+  color: var(--whatiuse-fg-default);
+  font-family: var(--whatiuse-font-ui);
 }
 
 * { box-sizing: border-box; }
@@ -18,6 +18,6 @@ body { min-width: 320px; min-height: 100vh; margin: 0; }
 
 .quickstart-shell p,
 .quickstart-shell h1 { margin: 0; }
-.quickstart-shell p { color: var(--teum-fg-muted); font-size: 13px; }
+.quickstart-shell p { color: var(--whatiuse-fg-muted); font-size: 13px; }
 .quickstart-shell h1 { font-size: 28px; letter-spacing: -0.035em; }
 .quickstart-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }

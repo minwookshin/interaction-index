@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tree",
+  "title": "Tree",
+  "description": "Hierarchical navigation and selection with expansion, typeahead, and roving focus.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10",
+    "react-aria-components@1.20.0"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/tree.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/tree.css\";\nimport {\n  Button as AriaButton,\n  Tree as AriaTree,\n  TreeItem as AriaTreeItem,\n  TreeItemContent,\n  type Key,\n  type TreeProps as AriaTreeProps,\n} from \"react-aria-components\";\nimport { CaretRight, File, Folder } from \"@phosphor-icons/react\";\nimport type { ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type TreeNode = {\n  id: Key;\n  label: string;\n  description?: string;\n  icon?: ReactNode;\n  children?: readonly TreeNode[];\n  disabled?: boolean;\n};\n\nexport type TreeProps = Omit<AriaTreeProps<TreeNode>, \"children\" | \"className\" | \"items\"> & {\n  items: readonly TreeNode[];\n  className?: string;\n};\n\nfunction TreeNodeItem({ node }: { node: TreeNode }) {\n  const hasChildren = Boolean(node.children?.length);\n  return (\n    <AriaTreeItem id={node.id} textValue={node.label} isDisabled={node.disabled}>\n      <TreeItemContent>\n        {({ isExpanded, level }) => (\n          <div className=\"whatiuse-tree__row\" style={{ \"--whatiuse-tree-indent\": `${Math.max(0, level - 1) * 18}px` } as React.CSSProperties}>\n            {hasChildren ? (\n              <AriaButton slot=\"chevron\" className=\"whatiuse-tree__chevron\" data-visible data-expanded={isExpanded || undefined}>\n                <CaretRight aria-hidden=\"true\" />\n              </AriaButton>\n            ) : <span className=\"whatiuse-tree__chevron\" aria-hidden=\"true\"><CaretRight /></span>}\n            <span className=\"whatiuse-tree__icon\" aria-hidden=\"true\">{node.icon ?? (hasChildren ? <Folder /> : <File />)}</span>\n            <span className=\"whatiuse-tree__copy\">\n              <span className=\"whatiuse-tree__label\">{node.label}</span>\n              {node.description && <span className=\"whatiuse-tree__description\">{node.description}</span>}\n            </span>\n          </div>\n        )}\n      </TreeItemContent>\n      {node.children?.map((child) => <TreeNodeItem key={child.id} node={child} />)}\n    </AriaTreeItem>\n  );\n}\n\nexport function Tree({ items, className, selectionMode = \"single\", ...props }: TreeProps) {\n  return (\n    <AriaTree className={cn(\"whatiuse-tree\", className)} selectionMode={selectionMode} {...props}>\n      {items.map((item) => <TreeNodeItem key={item.id} node={item} />)}\n    </AriaTree>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/tree.tsx"
+    },
+    {
+      "path": "registry/styles/components/tree.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-tree { display: grid; width: min(420px, 100%); gap: 1px; outline: 0; color: var(--whatiuse-fg-default); }\n\n.whatiuse-tree[data-focus-visible] { outline: 0; }\n\n.whatiuse-tree [role=\"row\"] { outline: 0; }\n\n.whatiuse-tree__row {\n  display: grid;\n  min-height: 32px;\n  grid-template-columns: 16px 17px minmax(0, 1fr);\n  align-items: center;\n  gap: 6px;\n  padding: 4px 8px 4px calc(8px + var(--whatiuse-tree-indent, 0px));\n  border-radius: 7px;\n  color: var(--whatiuse-fg-muted);\n  cursor: default;\n  transition: background-color var(--whatiuse-hover-duration), color var(--whatiuse-hover-duration), transform var(--whatiuse-press-duration) var(--whatiuse-ease-out);\n}\n\n.whatiuse-tree [role=\"row\"][data-hovered] > .whatiuse-tree__row { background: var(--whatiuse-hover); color: var(--whatiuse-fg-default); }\n\n.whatiuse-tree [role=\"row\"][data-selected] > .whatiuse-tree__row { background: var(--whatiuse-selection); color: var(--whatiuse-fg-default); }\n\n.whatiuse-tree [role=\"row\"][data-focus-visible] > .whatiuse-tree__row { box-shadow: inset 0 0 0 1px var(--whatiuse-focus-control); }\n\n.whatiuse-tree [role=\"row\"][data-pressed] > .whatiuse-tree__row { transform: scale(.995); }\n\n.whatiuse-tree [role=\"row\"][data-disabled] > .whatiuse-tree__row { color: var(--whatiuse-fg-disabled); cursor: not-allowed; }\n\n.whatiuse-tree__chevron { position: relative; display: grid; width: 16px; height: 16px; place-items: center; padding: 0; border: 0; border-radius: 4px; background: transparent; opacity: 0; color: var(--whatiuse-fg-subtle); transition: transform var(--whatiuse-enter-duration) var(--whatiuse-ease-out); }\n\n.whatiuse-tree__chevron[data-visible] { opacity: 1; }\n\n.whatiuse-tree__chevron[data-visible]::after { position: absolute; inset: -4px; content: \"\"; }\n\n.whatiuse-tree__chevron[data-expanded] { transform: rotate(90deg); }\n\n.whatiuse-tree__chevron:focus-visible { outline: 0; box-shadow: inset 0 0 0 1px var(--whatiuse-focus-control); }\n\n.whatiuse-tree__chevron svg,\n.whatiuse-tree__icon svg { width: 13px; height: 13px; }\n\n.whatiuse-tree__icon { display: grid; width: 17px; height: 17px; place-items: center; color: var(--whatiuse-fg-subtle); }\n\n.whatiuse-tree__copy { display: grid; min-width: 0; gap: 1px; }\n\n.whatiuse-tree__label { overflow: hidden; font-size: var(--whatiuse-type-ui); line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }\n\n.whatiuse-tree__description { overflow: hidden; color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-tree__chevron { transition-duration: 0.01ms; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/tree.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/tree",
+      "useWhen": "The hierarchy itself matters and users need to expand, collapse, navigate, or select nested items.",
+      "avoidWhen": "The content is flat, several branches must be compared at once, or ordinary disclosure sections are sufficient."
+    }
+  },
+  "type": "registry:ui"
+}

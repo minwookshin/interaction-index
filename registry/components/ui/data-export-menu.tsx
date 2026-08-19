@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/components/data-export-menu.css";
 import { DownloadSimple, FileCode, FileCsv } from "@phosphor-icons/react";
 import { useState } from "react";
@@ -53,21 +53,21 @@ export function DataExportMenu<TData>({
     <>
       <Menu>
         <MenuTrigger render={<Button size="small" variant="ghost" leadingIcon={<DownloadSimple />} disabled={disabled || rows.length === 0} />}>{label}</MenuTrigger>
-        <MenuContent className="teum-data-export" align="end">
-          <MenuLabel>Visible rows · {rows.length}</MenuLabel>
-          <MenuItem onClick={() => runExport("csv", "visible")}><FileCsv aria-hidden="true" />Export CSV</MenuItem>
-          <MenuItem onClick={() => runExport("json", "visible")}><FileCode aria-hidden="true" />Export JSON</MenuItem>
+        <MenuContent className="whatiuse-data-export" align="end">
+          <MenuLabel>All rows</MenuLabel>
+          <MenuItem aria-label="Export all rows as CSV" onClick={() => runExport("csv", "visible")}><FileCsv aria-hidden="true" /><span className="whatiuse-data-export__copy"><strong>CSV</strong><small>{rows.length} rows</small></span></MenuItem>
+          <MenuItem aria-label="Export all rows as JSON" onClick={() => runExport("json", "visible")}><FileCode aria-hidden="true" /><span className="whatiuse-data-export__copy"><strong>JSON</strong><small>{rows.length} rows</small></span></MenuItem>
           {selectedRows.length > 0 && (
             <>
               <MenuSeparator />
-              <MenuLabel>Selected rows · {selectedRows.length}</MenuLabel>
-              <MenuItem onClick={() => runExport("csv", "selected")}><FileCsv aria-hidden="true" />Export selected CSV</MenuItem>
-              <MenuItem onClick={() => runExport("json", "selected")}><FileCode aria-hidden="true" />Export selected JSON</MenuItem>
+              <MenuLabel>Selected</MenuLabel>
+              <MenuItem aria-label="Export selected rows as CSV" onClick={() => runExport("csv", "selected")}><FileCsv aria-hidden="true" /><span className="whatiuse-data-export__copy"><strong>CSV</strong><small>{selectedRows.length} selected</small></span></MenuItem>
+              <MenuItem aria-label="Export selected rows as JSON" onClick={() => runExport("json", "selected")}><FileCode aria-hidden="true" /><span className="whatiuse-data-export__copy"><strong>JSON</strong><small>{selectedRows.length} selected</small></span></MenuItem>
             </>
           )}
         </MenuContent>
       </Menu>
-      <span className="teum-sr-only" aria-live="polite">{announcement}</span>
+      <span className="whatiuse-sr-only" aria-live="polite">{announcement}</span>
     </>
   );
 }
