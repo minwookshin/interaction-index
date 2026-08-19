@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/build-evidence.mjs",
-  "generatedAt": "2026-08-19T14:28:37.707Z",
+  "generatedAt": "2026-08-19T15:27:36.438Z",
   "release": {
     "name": "whatiuse",
     "version": "0.1.0-rc.38",
@@ -149,18 +149,10 @@
   },
   "visuals": {
     "platforms": [
-      "darwin"
+      "darwin",
+      "linux"
     ],
-    "incompletePlatformBaselines": [
-      {
-        "platform": "linux",
-        "shellCount": 136,
-        "landingCount": 2,
-        "storyCount": 180,
-        "analyticsCount": 8,
-        "productPatternCount": 6
-      }
-    ],
+    "incompletePlatformBaselines": [],
     "publicRouteSnapshotsPerPlatform": 140,
     "componentProductSnapshotsPerPlatform": 90,
     "componentStateSnapshotsPerPlatform": 90,
@@ -1550,7 +1542,6 @@
     }
   },
   "externalGates": [
-    "complete-platform-specific-visual-baselines",
     "windows-edge-and-high-contrast",
     "physical-ios-and-android",
     "macos-increase-contrast-and-reduce-transparency",
