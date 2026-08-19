@@ -65,10 +65,10 @@ The generated baselines live beside their Playwright specifications in `tests/br
 
 ## Public candidate endpoint
 
-- `https://whatiuse.minwookshin.com` has managed TLS and an existing public deployment, but the local `0.1.0-rc.30` candidate has not been promoted in this verification pass.
+- `https://whatiuse.minwookshin.com` has managed TLS and serves the reviewed `0.1.0-rc.30` candidate. The GitHub prerelease and npm publication remain open gates.
 - The public HTML declares `https://whatiuse.minwookshin.com` as canonical.
 - Root, Documentation, Component, and Pattern entry URLs return the SPA shell with HTTP 200; built JavaScript, CSS, mutable registry JSON, and immutable registry JSON retain their expected content types.
-- The live mutable manifest and `0.1.0-rc.30` immutable endpoint must be fetched and matched to this candidate after any approved deployment; the immutable endpoint must respond with `cache-control: public, max-age=31536000, immutable`.
+- The live mutable manifest and `0.1.0-rc.30` immutable endpoint match the local candidate bytes; the immutable endpoint responds with `cache-control: public, max-age=31536000, immutable`.
 - `https://interactions.minwookshin.com` remains available as a compatibility host. This is release-candidate access evidence, not npm publication or independent adoption evidence.
 
 ## Manual review boundary
