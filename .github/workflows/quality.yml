@@ -15,6 +15,9 @@ permissions:
 jobs:
   quality:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright@sha256:c091b21d9fae78c76e85cd4356431e9b018402f172a214fc7d7a5e9a7e29d8ac # v1.62.1-noble, linux/amd64
+      options: --ipc=host
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -26,5 +29,4 @@ jobs:
           node-version: 22.14.0
           cache: npm
       - run: npm ci
-      - run: npx --no-install playwright install --with-deps chromium
       - run: npm run quality
