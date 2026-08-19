@@ -1,25 +1,25 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-positioner { z-index: var(--teum-layer-flyout); }
+@layer whatiuse.components {
+.whatiuse-positioner { z-index: var(--whatiuse-layer-flyout); }
 
-.teum-popover { width: 278px; padding: 12px; border-radius: var(--teum-radius-overlay); background: var(--teum-bg-flyout); box-shadow: var(--teum-shadow-flyout); outline: 0; transform-origin: var(--transform-origin); transition: opacity var(--teum-enter-duration) var(--teum-ease-out), transform var(--teum-enter-duration) var(--teum-ease-out); }
+.whatiuse-popover { width: 278px; padding: 12px; border-radius: var(--whatiuse-radius-overlay); background: var(--whatiuse-bg-flyout); box-shadow: var(--whatiuse-shadow-flyout); outline: 0; transform-origin: var(--transform-origin); transition: opacity var(--whatiuse-enter-duration) var(--whatiuse-ease-out), transform var(--whatiuse-enter-duration) var(--whatiuse-ease-out); }
 
-.teum-popover[data-starting-style] { opacity: 0; transform: scale(0.98); }
+.whatiuse-popover[data-starting-style] { opacity: 0; transform: scale(0.98); }
 
-.teum-popover[data-ending-style] { opacity: 0; transform: scale(0.99); transition-duration: var(--teum-exit-duration); }
+.whatiuse-popover[data-ending-style] { opacity: 0; transform: scale(0.99); transition-duration: var(--whatiuse-exit-duration); }
 
-.teum-popover { background: var(--teum-bg-flyout); }
+.whatiuse-popover { background: var(--whatiuse-bg-flyout); }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-popover {
+.whatiuse-popover {
     transition-property: opacity;
-    transition-duration: var(--teum-exit-duration);
+    transition-duration: var(--whatiuse-exit-duration);
   }
 
-.teum-popover[data-starting-style],
-.teum-popover[data-ending-style] { transform: none; }
+.whatiuse-popover[data-starting-style],
+.whatiuse-popover[data-ending-style] { transform: none; }
 }
 }

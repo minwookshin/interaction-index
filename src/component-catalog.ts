@@ -57,3 +57,75 @@ export const componentGroups = [...new Set(components.map((component) => compone
 export const libraryComponents = components.filter((component) => component.group !== "Interaction" && component.id !== "kbd");
 export type LibraryComponentGroup = Exclude<ComponentGroup, "Interaction">;
 export const libraryComponentGroups = [...new Set(libraryComponents.map((component) => component.group))] as readonly LibraryComponentGroup[];
+
+export const libraryCollections = ["Core", "Data", "Analytics"] as const;
+export type LibraryCollection = (typeof libraryCollections)[number];
+
+export const dataLibraryComponents = [
+  { id: "data-table", name: "Data Table", collection: "Data", description: "Sort, select, and inspect product data without moving the surrounding layout.", docsHref: "#product-pilot" },
+  { id: "filter-builder", name: "Filters", collection: "Data", description: "Small visible conditions that stay attached to the list they change.", docsHref: "#product-pilot" },
+  { id: "data-toolbar", name: "Data Toolbar", collection: "Data", description: "Search, view, and column controls in one compact product row.", docsHref: "#product-pilot" },
+  { id: "saved-view-menu", name: "Saved Views", collection: "Data", description: "Named collection states with explicit personal-view management.", docsHref: "#product-pilot" },
+  { id: "column-visibility-menu", name: "Columns", collection: "Data", description: "Visible-column choices that preserve required product context.", docsHref: "#product-pilot" },
+  { id: "facet-filter", name: "Facet Filter", collection: "Data", description: "Fast multi-selection for small enumerable dimensions and counts.", docsHref: "#product-pilot" },
+  { id: "data-sort-menu", name: "Sort", collection: "Data", description: "One explicit field and direction for predictable collection order.", docsHref: "#product-pilot" },
+  { id: "data-group-menu", name: "Group", collection: "Data", description: "A single grouping dimension without turning the toolbar into a query builder.", docsHref: "#product-pilot" },
+  { id: "data-density-control", name: "Density", collection: "Data", description: "Compact, default, and comfortable row rhythm as a user preference.", docsHref: "#product-pilot" },
+  { id: "data-result-summary", name: "Result Summary", collection: "Data", description: "Visible, filtered, and selected record counts in one quiet status line.", docsHref: "#product-pilot" },
+  { id: "bulk-action-bar", name: "Bulk Actions", collection: "Data", description: "Selection-aware actions that stay close to the affected records.", docsHref: "#product-pilot" },
+  { id: "row-actions-menu", name: "Row Actions", collection: "Data", description: "Object-specific actions behind one consistently placed table control.", docsHref: "#product-pilot" },
+  { id: "cursor-pagination", name: "Cursor Pagination", collection: "Data", description: "Previous and next traversal when total page counts are unknown or unstable.", docsHref: "#product-pilot" },
+  { id: "date-range-filter", name: "Date Range", collection: "Data", description: "Preset or exact date boundaries in one small temporary surface.", docsHref: "#product-pilot" },
+  { id: "data-export-menu", name: "Export", collection: "Data", description: "Download visible or selected records as CSV or JSON.", docsHref: "#product-pilot" },
+  { id: "property-list", name: "Property List", collection: "Data", description: "Dense label-value metadata for inspectors, details, and settings summaries.", docsHref: "#product-pilot" },
+  { id: "audit-log", name: "Audit Log", collection: "Data", description: "Chronological product events with actors, targets, time, and optional evidence.", docsHref: "#product-pilot" },
+  { id: "data-state", name: "Data State", collection: "Data", description: "Stable loading, empty, and error feedback for any collection surface.", docsHref: "#product-pilot" },
+] as const;
+
+export const analyticsLibraryComponents = [
+  { id: "metric", name: "Metric", collection: "Analytics", description: "A primary value with just enough trend context to make a decision.", docsHref: "#analytics" },
+  { id: "sparkline", name: "Sparkline", collection: "Analytics", description: "A compact direction signal for metrics and table cells.", docsHref: "#analytics" },
+  { id: "chart", name: "Chart", collection: "Analytics", description: "Line, area, bar, and stacked-bar views with keyboard inspection and semantic data.", docsHref: "#analytics" },
+  { id: "histogram", name: "Histogram", collection: "Analytics", description: "A binned distribution with exact ranges, counts, and keyboard inspection.", docsHref: "#analytics" },
+  { id: "scatter-chart", name: "Scatter", collection: "Analytics", description: "Two continuous measures with nearest-point inspection and a semantic source table.", docsHref: "#analytics" },
+  { id: "waterfall-chart", name: "Waterfall", collection: "Analytics", description: "Sequential gains, losses, subtotals, and totals on one running-value contract.", docsHref: "#analytics" },
+  { id: "donut-chart", name: "Donut", collection: "Analytics", description: "A part-to-whole view with direct segment inspection.", docsHref: "#analytics" },
+  { id: "radar-chart", name: "Radar", collection: "Analytics", description: "A small multi-dimensional comparison with normalized scales and exact values.", docsHref: "#analytics" },
+  { id: "gauge", name: "Gauge", collection: "Analytics", description: "One bounded measure with explicit range, current value, and optional target.", docsHref: "#analytics" },
+  { id: "sankey-chart", name: "Sankey", collection: "Analytics", description: "A compact flow view with named nodes, inspectable links, and source values.", docsHref: "#analytics" },
+  { id: "heatmap", name: "Heatmap", collection: "Analytics", description: "Dense two-dimensional values with pointer and keyboard parity.", docsHref: "#analytics" },
+  { id: "comparison", name: "Comparison", collection: "Analytics", description: "Current, previous, and relative change in one compact semantic block.", docsHref: "#analytics" },
+  { id: "breakdown", name: "Breakdown", collection: "Analytics", description: "A ranked dimension with visible values and restrained proportional context.", docsHref: "#analytics" },
+  { id: "goal", name: "Goal", collection: "Analytics", description: "Progress toward one named target with readable actual and target values.", docsHref: "#analytics" },
+  { id: "funnel", name: "Funnel", collection: "Analytics", description: "Ordered stage volume with explicit adjacent conversion.", docsHref: "#analytics" },
+  { id: "cohort", name: "Cohort", collection: "Analytics", description: "Retention by start group and elapsed period with text in every cell.", docsHref: "#analytics" },
+  { id: "timeline", name: "Timeline", collection: "Analytics", description: "Dated product events that can control one stable analytic selection.", docsHref: "#analytics" },
+] as const;
+
+export type DataLibraryComponentId = (typeof dataLibraryComponents)[number]["id"];
+export type AnalyticsLibraryComponentId = (typeof analyticsLibraryComponents)[number]["id"];
+export type CollectionLibraryComponentId = DataLibraryComponentId | AnalyticsLibraryComponentId;
+export type PublicLibraryItemId = ComponentId | CollectionLibraryComponentId;
+
+export type PublicLibraryItem = {
+  id: PublicLibraryItemId;
+  name: string;
+  collection: LibraryCollection;
+  description: string;
+  group?: LibraryComponentGroup;
+  docsHref: string;
+};
+
+export const publicLibraryItems: readonly PublicLibraryItem[] = [
+  ...libraryComponents.map((component) => ({
+    ...component,
+    collection: "Core" as const,
+    docsHref: `#${component.id}`,
+  })),
+  ...dataLibraryComponents,
+  ...analyticsLibraryComponents,
+];
+
+export function getPublicLibraryItem(id: string | null | undefined): PublicLibraryItem | undefined {
+  return publicLibraryItems.find((item) => item.id === id);
+}

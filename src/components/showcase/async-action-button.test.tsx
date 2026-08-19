@@ -44,6 +44,19 @@ describe("AsyncActionButton", () => {
 
     rerender(<AsyncActionButton replayActivation="keyboard" replayKey={1} />);
 
-    expect(screen.getByRole("button", { name: "Create issue" }).closest(".teum-async-action")).toHaveAttribute("data-activation", "keyboard");
+    expect(screen.getByRole("button", { name: "Create issue" }).closest(".whatiuse-async-action")).toHaveAttribute("data-activation", "keyboard");
+  });
+
+  it("keeps width stable by default and exposes morphing as an explicit option", () => {
+    const { rerender } = render(<AsyncActionButton />);
+    const root = screen.getByRole("button", { name: "Create issue" }).closest(".whatiuse-async-action");
+
+    expect(root).toHaveAttribute("data-width-behavior", "stable");
+    expect(root?.querySelector(".whatiuse-async-action__sizer")).toBeInTheDocument();
+    expect(root?.querySelectorAll(".whatiuse-async-action__sizer-button")).toHaveLength(3);
+
+    rerender(<AsyncActionButton widthBehavior="morph" />);
+    expect(root).toHaveAttribute("data-width-behavior", "morph");
+    expect(root?.querySelector(".whatiuse-async-action__sizer")).not.toBeInTheDocument();
   });
 });

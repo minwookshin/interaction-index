@@ -1,0 +1,23 @@
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
+
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
+
+@layer whatiuse.components {
+.whatiuse-waterfall-chart__grid line { stroke: color-mix(in oklch, var(--whatiuse-separator) 70%, transparent); stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+.whatiuse-waterfall-chart__grid text { fill: var(--whatiuse-fg-subtle); font-size: 9px; dominant-baseline: middle; }
+
+.whatiuse-waterfall-chart__connectors line { stroke: color-mix(in oklch, var(--whatiuse-fg-default) 20%, transparent); stroke-dasharray: 2 2; stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+.whatiuse-waterfall-chart__bars rect { fill: color-mix(in oklch, var(--whatiuse-fg-default) 72%, var(--whatiuse-bg-surface)); opacity: .68; }
+
+.whatiuse-waterfall-chart__bars rect[data-direction="down"] { fill: color-mix(in oklch, var(--whatiuse-fg-default) 38%, var(--whatiuse-bg-surface)); }
+
+.whatiuse-waterfall-chart__bars rect[data-kind="subtotal"] { fill: color-mix(in oklch, var(--whatiuse-fg-default) 54%, var(--whatiuse-bg-surface)); }
+
+.whatiuse-waterfall-chart__bars rect[data-kind="total"] { fill: var(--whatiuse-fg-default); }
+
+.whatiuse-waterfall-chart__bars rect[data-active] { opacity: 1; }
+
+.whatiuse-waterfall-chart__x-axis text { fill: var(--whatiuse-fg-subtle); font-size: 9px; }
+}

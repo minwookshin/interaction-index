@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "audit-log",
+  "title": "Audit Log",
+  "description": "Chronological product events with actors, targets, timestamps, and optional evidence.",
+  "registryDependencies": [
+    "@teum-pinned/teum-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/audit-log.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/audit-log.css\";\nimport type { HTMLAttributes, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type AuditLogItem = {\n  id: string;\n  actor: ReactNode;\n  action: ReactNode;\n  timestamp: ReactNode;\n  metadata?: ReactNode;\n  tone?: \"neutral\" | \"danger\";\n};\n\nexport type AuditLogProps = Omit<HTMLAttributes<HTMLOListElement>, \"onSelect\"> & {\n  label: string;\n  items: readonly AuditLogItem[];\n  activeId?: string;\n  onSelect?: (item: AuditLogItem) => void;\n};\n\nexport function AuditLog({ label, items, activeId, onSelect, className, ...props }: AuditLogProps) {\n  return (\n    <ol className={cn(\"teum-audit-log\", className)} aria-label={label} {...props}>\n      {items.map((item) => {\n        const content = (\n          <>\n            <span className=\"teum-audit-log__event\"><strong>{item.actor}</strong> <span>{item.action}</span></span>\n            <time>{item.timestamp}</time>\n            {item.metadata && <small>{item.metadata}</small>}\n          </>\n        );\n        return (\n          <li key={item.id} data-tone={item.tone ?? \"neutral\"}>\n            {onSelect ? <button type=\"button\" aria-pressed={activeId === item.id} onClick={() => onSelect(item)}>{content}</button> : <div>{content}</div>}\n          </li>\n        );\n      })}\n    </ol>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/audit-log.tsx"
+    },
+    {
+      "path": "registry/styles/components/audit-log.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-audit-log {\n  display: grid;\n  min-width: 0;\n  gap: 0;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n.teum-audit-log li > div,\n.teum-audit-log li > button {\n  display: grid;\n  width: 100%;\n  min-height: 42px;\n  grid-template-columns: minmax(0, 1fr) auto;\n  align-items: baseline;\n  gap: 3px 14px;\n  padding: 8px;\n  border: 0;\n  border-radius: 7px;\n  background: transparent;\n  color: inherit;\n  font: inherit;\n  text-align: left;\n}\n\n.teum-audit-log li > button { cursor: pointer; transition: background-color var(--teum-hover-duration) var(--teum-ease-out); }\n\n.teum-audit-log__event { min-width: 0; color: var(--teum-fg-muted); font-size: var(--teum-type-label); line-height: 1.4; }\n\n.teum-audit-log__event strong { color: var(--teum-fg-default); font-weight: 570; }\n\n.teum-audit-log time { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; white-space: nowrap; }\n\n.teum-audit-log small { grid-column: 1 / -1; color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }\n\n.teum-audit-log li[data-tone=\"danger\"] .teum-audit-log__event { color: var(--teum-fg-danger); }\n\n.teum-audit-log li > button:focus { outline: 0; }\n\n.teum-audit-log li > button:focus-visible { box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--teum-focus-control) 42%, transparent); }\n\n.teum-audit-log li > button[aria-pressed=\"true\"] { background: var(--teum-selected); }\n\n@media (hover: hover) and (pointer: fine) {\n.teum-audit-log li > button:hover { background: var(--teum-hover); }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/audit-log.css"
+    }
+  ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/audit-log"
+    }
+  },
+  "type": "registry:component"
+}

@@ -1,9 +1,9 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-comparison {
+@layer whatiuse.components {
+.whatiuse-comparison {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: end;
@@ -11,25 +11,25 @@
   margin: 0;
 }
 
-.teum-comparison > div { display: grid; min-width: 0; gap: 3px; }
+.whatiuse-comparison > div { display: grid; min-width: 0; gap: 3px; }
 
-.teum-comparison dt { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+.whatiuse-comparison dt { color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); }
 
-.teum-comparison dd { margin: 0; color: var(--teum-fg-default); font-size: var(--teum-type-ui); font-variant-numeric: tabular-nums; font-weight: 570; }
+.whatiuse-comparison dd { margin: 0; color: var(--whatiuse-fg-default); font-size: var(--whatiuse-type-ui); font-variant-numeric: tabular-nums; font-weight: 570; }
 
-.teum-comparison__primary dd { font-size: 20px; letter-spacing: -.025em; }
+.whatiuse-comparison__primary dd { font-size: 20px; letter-spacing: -.025em; }
 
-.teum-comparison__change dd { display: inline-flex; align-items: center; gap: 3px; }
+.whatiuse-comparison__change dd { display: inline-flex; align-items: center; gap: 3px; }
 
-.teum-comparison__change { grid-column: 1 / -1; }
+.whatiuse-comparison__change { grid-column: 1 / -1; }
 
-.teum-comparison__change svg { width: 12px; height: 12px; }
+.whatiuse-comparison__change svg { width: 12px; height: 12px; }
 
-.teum-comparison__change[data-sentiment="negative"] dd { color: var(--teum-fg-danger); }
+.whatiuse-comparison__change[data-sentiment="negative"] dd { color: var(--whatiuse-fg-danger); }
 
 @media (max-width: 640px) {
-.teum-comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.whatiuse-comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
-.teum-comparison__change { grid-column: 1 / -1; }
+.whatiuse-comparison__change { grid-column: 1 / -1; }
 }
 }

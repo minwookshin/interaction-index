@@ -17,12 +17,12 @@ export type ToastApi = {
 };
 
 const toastClassNames = {
-  toast: "teum-toast",
-  content: "teum-toast__content",
-  title: "teum-toast__title",
-  description: "teum-toast__description",
-  actionButton: "teum-toast__action",
-  closeButton: "teum-toast__close",
+  toast: "whatiuse-toast",
+  content: "whatiuse-toast__content",
+  title: "whatiuse-toast__title",
+  description: "whatiuse-toast__description",
+  actionButton: "whatiuse-toast__action",
+  closeButton: "whatiuse-toast__close",
 };
 
 export function Toaster({
@@ -40,7 +40,7 @@ export function Toaster({
   return (
     <SonnerToaster
       {...props}
-      className={["teum-toaster", className].filter(Boolean).join(" ")}
+      className={["whatiuse-toaster", className].filter(Boolean).join(" ")}
       position={position}
       visibleToasts={visibleToasts}
       expand={expand}

@@ -30,7 +30,7 @@ export const CustomerWorkspace: Story = {
     await expect(detail).toHaveTextContent("At risk");
     await waitFor(() => {
       expect(detail).toHaveStyle({ opacity: "1" });
-      expect(detail.querySelector(".teum-shared-detail__content")).toHaveStyle({ opacity: "1" });
+      expect(detail.querySelector(".whatiuse-shared-detail__content")).toHaveStyle({ opacity: "1" });
     });
     canvasElement.dataset.storyReady = "true";
   },

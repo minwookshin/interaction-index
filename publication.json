@@ -5,7 +5,7 @@
   "issueTracker": "https://github.com/minwookshin/whatiuse/issues",
   "securityAdvisories": "https://github.com/minwookshin/whatiuse/security/advisories/new",
   "homepage": "https://whatiuse.minwookshin.com",
-  "registryNamespace": "@teum",
-  "packageCandidate": "teum",
-  "registryInstall": "npx shadcn@4.18.0 add minwookshin/whatiuse/teum#v0.1.0-rc.30"
+  "registryNamespace": "@whatiuse",
+  "packageCandidate": "whatiuse",
+  "registryInstall": "npx shadcn@4.18.0 add minwookshin/whatiuse/whatiuse#v0.1.0-rc.38"
 }

@@ -1,49 +1,49 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-table__container {
-  scrollbar-color: var(--teum-scrollbar-thumb) transparent;
+@layer whatiuse.components {
+.whatiuse-table__container {
+  scrollbar-color: var(--whatiuse-scrollbar-thumb) transparent;
   scrollbar-width: thin;
 }
 
-.teum-table__container::-webkit-scrollbar { width: 10px; height: 10px; }
+.whatiuse-table__container::-webkit-scrollbar { width: 10px; height: 10px; }
 
-.teum-table__container::-webkit-scrollbar-track { background: transparent; }
+.whatiuse-table__container::-webkit-scrollbar-track { background: transparent; }
 
-.teum-table__container::-webkit-scrollbar-thumb {
+.whatiuse-table__container::-webkit-scrollbar-thumb {
   border: 3px solid transparent;
   border-radius: 999px;
-  background: var(--teum-scrollbar-thumb);
+  background: var(--whatiuse-scrollbar-thumb);
   background-clip: padding-box;
 }
 
-.teum-table__container::-webkit-scrollbar-thumb:hover { background: var(--teum-scrollbar-thumb-hover); background-clip: padding-box; }
+.whatiuse-table__container::-webkit-scrollbar-thumb:hover { background: var(--whatiuse-scrollbar-thumb-hover); background-clip: padding-box; }
 
 @media (forced-colors: active) {
-.teum-table__container { scrollbar-color: auto; }
+.whatiuse-table__container { scrollbar-color: auto; }
 }
 
-.teum-table__container { width: 100%; overflow: auto; border: 1px solid color-mix(in oklch, var(--teum-control-border) 78%, transparent); border-radius: var(--teum-radius-container); background: var(--teum-bg-surface); }
+.whatiuse-table__container { width: 100%; overflow: auto; border: 1px solid color-mix(in oklch, var(--whatiuse-control-border) 78%, transparent); border-radius: var(--whatiuse-radius-container); background: var(--whatiuse-bg-surface); }
 
-.teum-table { width: 100%; min-width: 560px; border-collapse: separate; border-spacing: 0; color: var(--teum-fg-default); font-size: var(--teum-type-label); font-variant-numeric: tabular-nums; }
+.whatiuse-table { width: 100%; min-width: 560px; border-collapse: separate; border-spacing: 0; color: var(--whatiuse-fg-default); font-size: var(--whatiuse-type-label); font-variant-numeric: tabular-nums; }
 
-.teum-table__caption { padding: 10px 12px; color: var(--teum-fg-subtle); text-align: left; caption-side: bottom; }
+.whatiuse-table__caption { padding: 10px 12px; color: var(--whatiuse-fg-subtle); text-align: left; caption-side: bottom; }
 
-.teum-table__head { height: 35px; padding: 0 12px; border-bottom: 1px solid color-mix(in oklch, var(--teum-separator) 68%, transparent); background: color-mix(in oklch, var(--teum-bg-stage) 74%, var(--teum-bg-surface)); color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); font-weight: 560; text-align: left; white-space: nowrap; }
+.whatiuse-table__head { height: 35px; padding: 0 12px; border-bottom: 1px solid color-mix(in oklch, var(--whatiuse-separator) 68%, transparent); background: color-mix(in oklch, var(--whatiuse-bg-stage) 74%, var(--whatiuse-bg-surface)); color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); font-weight: 560; text-align: left; white-space: nowrap; }
 
-.teum-table__cell { height: var(--teum-row-height-table); padding: 0 12px; border-bottom: 1px solid color-mix(in oklch, var(--teum-separator) 66%, transparent); color: var(--teum-fg-muted); vertical-align: middle; }
+.whatiuse-table__cell { height: var(--whatiuse-row-height-table); padding: 0 12px; border-bottom: 1px solid color-mix(in oklch, var(--whatiuse-separator) 66%, transparent); color: var(--whatiuse-fg-muted); vertical-align: middle; }
 
-.teum-table__row { transition: background-color var(--teum-hover-duration) var(--teum-ease-out); }
+.whatiuse-table__row { transition: background-color var(--whatiuse-hover-duration) var(--whatiuse-ease-out); }
 
-.teum-table__row:last-child .teum-table__cell { border-bottom: 0; }
+.whatiuse-table__row:last-child .whatiuse-table__cell { border-bottom: 0; }
 
-.teum-table__row[data-selected] { background: var(--teum-selected); }
+.whatiuse-table__row[data-selected] { background: var(--whatiuse-selected); }
 
-.teum-table__footer .teum-table__cell { background: var(--teum-bg-stage); color: var(--teum-fg-default); font-weight: 560; }
+.whatiuse-table__footer .whatiuse-table__cell { background: var(--whatiuse-bg-stage); color: var(--whatiuse-fg-default); font-weight: 560; }
 
 @media (hover: hover) and (pointer: fine) {
-.teum-table__body .teum-table__row:hover { background: var(--teum-hover); }
+.whatiuse-table__body .whatiuse-table__row:hover { background: var(--whatiuse-hover); }
 }
 }

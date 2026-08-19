@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "audit-log",
+  "title": "Audit Log",
+  "description": "Chronological product events with actors, targets, timestamps, and optional evidence.",
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/audit-log.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/audit-log.css\";\nimport type { HTMLAttributes, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type AuditLogItem = {\n  id: string;\n  actor: ReactNode;\n  action: ReactNode;\n  timestamp: ReactNode;\n  metadata?: ReactNode;\n  tone?: \"neutral\" | \"danger\";\n};\n\nexport type AuditLogProps = Omit<HTMLAttributes<HTMLOListElement>, \"onSelect\"> & {\n  label: string;\n  items: readonly AuditLogItem[];\n  activeId?: string;\n  onSelect?: (item: AuditLogItem) => void;\n};\n\nexport function AuditLog({ label, items, activeId, onSelect, className, ...props }: AuditLogProps) {\n  return (\n    <ol className={cn(\"whatiuse-audit-log\", className)} aria-label={label} {...props}>\n      {items.map((item) => {\n        const content = (\n          <>\n            <span className=\"whatiuse-audit-log__event\"><strong>{item.actor}</strong> <span>{item.action}</span></span>\n            <time>{item.timestamp}</time>\n            {item.metadata && <small>{item.metadata}</small>}\n          </>\n        );\n        return (\n          <li key={item.id} data-tone={item.tone ?? \"neutral\"}>\n            {onSelect ? <button type=\"button\" aria-pressed={activeId === item.id} onClick={() => onSelect(item)}>{content}</button> : <div>{content}</div>}\n          </li>\n        );\n      })}\n    </ol>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/audit-log.tsx"
+    },
+    {
+      "path": "registry/styles/components/audit-log.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-audit-log {\n  display: grid;\n  min-width: 0;\n  gap: 0;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n.whatiuse-audit-log li > div,\n.whatiuse-audit-log li > button {\n  display: grid;\n  width: 100%;\n  min-height: 42px;\n  grid-template-columns: minmax(0, 1fr) auto;\n  align-items: baseline;\n  gap: 3px 14px;\n  padding: 8px;\n  border: 0;\n  border-radius: 7px;\n  background: transparent;\n  color: inherit;\n  font: inherit;\n  text-align: left;\n}\n\n.whatiuse-audit-log li > button { cursor: pointer; transition: background-color var(--whatiuse-hover-duration) var(--whatiuse-ease-out); }\n\n.whatiuse-audit-log__event { min-width: 0; color: var(--whatiuse-fg-muted); font-size: var(--whatiuse-type-label); line-height: 1.4; }\n\n.whatiuse-audit-log__event strong { color: var(--whatiuse-fg-default); font-weight: 570; }\n\n.whatiuse-audit-log time { color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); font-variant-numeric: tabular-nums; white-space: nowrap; }\n\n.whatiuse-audit-log small { grid-column: 1 / -1; color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); }\n\n.whatiuse-audit-log li[data-tone=\"danger\"] .whatiuse-audit-log__event { color: var(--whatiuse-fg-danger); }\n\n.whatiuse-audit-log li > button:focus { outline: 0; }\n\n.whatiuse-audit-log li > button:focus-visible { box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--whatiuse-focus-control) 42%, transparent); }\n\n.whatiuse-audit-log li > button[aria-pressed=\"true\"] { background: var(--whatiuse-selected); }\n\n@media (hover: hover) and (pointer: fine) {\n.whatiuse-audit-log li > button:hover { background: var(--whatiuse-hover); }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/audit-log.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/audit-log"
+    }
+  },
+  "type": "registry:component"
+}

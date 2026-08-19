@@ -1,13 +1,13 @@
-# Teum public API report
+# whatiuse public API report
 
 > Generated from the TypeScript compiler. Do not edit directly.
 
 - Entry point: `src/components/ui/index.ts`
 - TypeScript: `6.0.3`
 - Core components: `45`
-- Product components: `17`
-- Public exports: `356`
-- Runtime exports: `201`
+- Product components: `36`
+- Public exports: `418`
+- Runtime exports: `224`
 
 ## button
 
@@ -456,7 +456,7 @@ Declaration: [`data-table.d.ts`](./types/components/ui/data-table.d.ts)
 - **DataTableProps** · type · `DataTableProps = { ariaLabel: string; data: readonly TData[]; columns: readonly DataTableColumn<TData>[]; getRowId: (row: TData, index: number) => string; getRowLabel?: (row: TData) => string; className?: string; selectable?: boolean; sele…`
 - **DataTableSort** · type · `DataTableSort = DataViewSort`
 - **DataTableVirtualization** · type · `DataTableVirtualization = { height?: number; estimateRowHeight?: number; overscan?: number; }`
-- **teumDataTableFeatures** · const · `teumDataTableFeatures: { columnSizingFeature: import("@tanstack/table-core").TableFeature; columnResizingFeature: import("@tanstack/table-core").TableFeature; columnPinningFeature: import("@tanstack/table-core").TableFeature; columnVisibil…`
+- **whatiuseDataTableFeatures** · const · `whatiuseDataTableFeatures: { columnSizingFeature: import("@tanstack/table-core").TableFeature; columnResizingFeature: import("@tanstack/table-core").TableFeature; columnPinningFeature: import("@tanstack/table-core").TableFeature; columnVis…`
 
 ## filter-builder
 
@@ -487,6 +487,99 @@ Declaration: [`bulk-action-bar.d.ts`](./types/components/ui/bulk-action-bar.d.ts
 
 - **BulkActionBar** · function · `BulkActionBar({ count, noun, actions, onClear, busy, className, ...props }: BulkActionBarProps): import("react").JSX.Element | null`
 - **BulkActionBarProps** · type · `BulkActionBarProps = HTMLAttributes<HTMLDivElement> & { count: number; noun?: string; actions: ReactNode; onClear: () => void; busy?: boolean; }`
+
+## saved-view-menu
+
+Declaration: [`saved-view-menu.d.ts`](./types/components/ui/saved-view-menu.d.ts)
+
+- **SavedViewMenu** · function · `SavedViewMenu({ className, ...props }: SavedViewMenuProps): import("react").JSX.Element`
+- **SavedViewMenuContainerProps** · type · `SavedViewMenuContainerProps = HTMLAttributes<HTMLSpanElement>`
+- **SavedViewMenuProps** · type · `SavedViewMenuProps = SavedViewsProps & { className?: string; }`
+
+## column-visibility-menu
+
+Declaration: [`column-visibility-menu.d.ts`](./types/components/ui/column-visibility-menu.d.ts)
+
+- **ColumnVisibilityMenu** · function · `ColumnVisibilityMenu({ className, ...props }: ColumnVisibilityMenuProps): import("react").JSX.Element`
+- **ColumnVisibilityMenuProps** · type · `ColumnVisibilityMenuProps = ColumnManagerProps & { className?: string; }`
+
+## facet-filter
+
+Declaration: [`facet-filter.d.ts`](./types/components/ui/facet-filter.d.ts)
+
+- **FacetFilter** · function · `FacetFilter({ label, options, values, onValuesChange, className }: FacetFilterProps): import("react").JSX.Element`
+- **FacetFilterOption** · type · `FacetFilterOption = { value: string; label: string; count?: number; disabled?: boolean; }`
+- **FacetFilterProps** · type · `FacetFilterProps = { label: string; options: readonly FacetFilterOption[]; values: readonly string[]; onValuesChange: (values: readonly string[]) => void; className?: string; }`
+
+## data-sort-menu
+
+Declaration: [`data-sort-menu.d.ts`](./types/components/ui/data-sort-menu.d.ts)
+
+- **DataSortMenu** · function · `DataSortMenu({ options, value, onValueChange, label, className }: DataSortMenuProps): import("react").JSX.Element`
+- **DataSortMenuProps** · type · `DataSortMenuProps = { options: readonly DataSortOption[]; value: DataSortValue | null; onValueChange: (value: DataSortValue | null) => void; label?: string; className?: string; }`
+- **DataSortOption** · type · `DataSortOption = { id: string; label: string; disabled?: boolean; }`
+- **DataSortValue** · type · `DataSortValue = { id: string; direction: "asc" | "desc"; }`
+
+## data-group-menu
+
+Declaration: [`data-group-menu.d.ts`](./types/components/ui/data-group-menu.d.ts)
+
+- **DataGroupMenu** · function · `DataGroupMenu({ options, value, onValueChange, label, className }: DataGroupMenuProps): import("react").JSX.Element`
+- **DataGroupMenuProps** · type · `DataGroupMenuProps = { options: readonly DataGroupOption[]; value: string | null; onValueChange: (value: string | null) => void; label?: string; className?: string; }`
+- **DataGroupOption** · type · `DataGroupOption = { id: string; label: string; disabled?: boolean; }`
+
+## data-density-control
+
+Declaration: [`data-density-control.d.ts`](./types/components/ui/data-density-control.d.ts)
+
+- **DataDensity** · type · `DataDensity = "compact" | "default" | "comfortable"`
+- **DataDensityControl** · function · `DataDensityControl({ value, defaultValue, onValueChange, label, className }: DataDensityControlProps): import("react").JSX.Element`
+- **DataDensityControlProps** · type · `DataDensityControlProps = { value?: DataDensity; defaultValue?: DataDensity; onValueChange?: (value: DataDensity) => void; label?: string; className?: string; }`
+
+## data-result-summary
+
+Declaration: [`data-result-summary.d.ts`](./types/components/ui/data-result-summary.d.ts)
+
+- **DataResultSummary** · function · `DataResultSummary({ total, filtered, selected, noun, detail, className, ...props }: DataResultSummaryProps): import("react").JSX.Element`
+- **DataResultSummaryProps** · type · `DataResultSummaryProps = Omit<HTMLAttributes<HTMLOutputElement>, "children"> & { total: number; filtered?: number; selected?: number; noun?: string; detail?: ReactNode; }`
+
+## cursor-pagination
+
+Declaration: [`cursor-pagination.d.ts`](./types/components/ui/cursor-pagination.d.ts)
+
+- **CursorPagination** · function · `CursorPagination({ label, hasPrevious, hasNext, onPrevious, onNext, range, loading, className, ...props }: CursorPaginationProps): import("react").JSX.Element`
+- **CursorPaginationProps** · type · `CursorPaginationProps = HTMLAttributes<HTMLElement> & { label?: string; hasPrevious: boolean; hasNext: boolean; onPrevious: () => void; onNext: () => void; range?: ReactNode; loading?: boolean; }`
+
+## row-actions-menu
+
+Declaration: [`row-actions-menu.d.ts`](./types/components/ui/row-actions-menu.d.ts)
+
+- **RowAction** · type · `RowAction = { id: string; label: string; icon?: ReactNode; disabled?: boolean; destructive?: boolean; separatorBefore?: boolean; }`
+- **RowActionsMenu** · function · `RowActionsMenu({ label, actions, onAction, className }: RowActionsMenuProps): import("react").JSX.Element`
+- **RowActionsMenuProps** · type · `RowActionsMenuProps = { label: string; actions: readonly RowAction[]; onAction: (action: RowAction) => void; className?: string; }`
+
+## property-list
+
+Declaration: [`property-list.d.ts`](./types/components/ui/property-list.d.ts)
+
+- **PropertyList** · function · `PropertyList({ items, columns, className, ...props }: PropertyListProps): import("react").JSX.Element`
+- **PropertyListItem** · type · `PropertyListItem = { id: string; label: ReactNode; value: ReactNode; description?: ReactNode; }`
+- **PropertyListProps** · type · `PropertyListProps = HTMLAttributes<HTMLDListElement> & { items: readonly PropertyListItem[]; columns?: 1 | 2; }`
+
+## audit-log
+
+Declaration: [`audit-log.d.ts`](./types/components/ui/audit-log.d.ts)
+
+- **AuditLog** · function · `AuditLog({ label, items, activeId, onSelect, className, ...props }: AuditLogProps): import("react").JSX.Element`
+- **AuditLogItem** · type · `AuditLogItem = { id: string; actor: ReactNode; action: ReactNode; timestamp: ReactNode; metadata?: ReactNode; tone?: "neutral" | "danger"; }`
+- **AuditLogProps** · type · `AuditLogProps = Omit<HTMLAttributes<HTMLOListElement>, "onSelect"> & { label: string; items: readonly AuditLogItem[]; activeId?: string; onSelect?: (item: AuditLogItem) => void; }`
+
+## data-state
+
+Declaration: [`data-state.d.ts`](./types/components/ui/data-state.d.ts)
+
+- **DataState** · function · `DataState({ state, title, description, action, className, ...props }: DataStateProps): import("react").JSX.Element`
+- **DataStateProps** · type · `DataStateProps = HTMLAttributes<HTMLDivElement> & { state: "loading" | "empty" | "error"; title?: ReactNode; description?: ReactNode; action?: ReactNode; }`
 
 ## date-range-filter
 
@@ -527,6 +620,44 @@ Declaration: [`chart.d.ts`](./types/components/ui/chart.d.ts)
 - **ChartProps** · type · `ChartProps = { title: string; description?: string; data: readonly AnalyticsDatum[]; series: readonly AnalyticsSeries[]; className?: string; height?: number; includeZero?: boolean; domain?: readonly [number, number]; type?: ChartType; /** …`
 - **ChartType** · type · `ChartType = "line" | "area" | "bar" | "stacked-bar"`
 
+## analytics-frame
+
+Declaration: [`analytics-frame.d.ts`](./types/components/ui/analytics-frame.d.ts)
+
+- **AnalyticsActiveIndexOptions** · type · `AnalyticsActiveIndexOptions = { length: number; value?: number | null; defaultValue?: number | null; onChange?: (index: number | null) => void; }`
+- **analyticsClassNames** · const · `analyticsClassNames: { readonly interactivePlot: "whatiuse-analytics-interactive-plot"; }`
+- **AnalyticsFrame** · function · `AnalyticsFrame({ title, description, summary, plotLabel, plot, table, className, height, loading, empty, error, activeDescription, inspection, showDataByDefault, }: AnalyticsFrameProps): import("react").JSX.Element`
+- **AnalyticsFrameProps** · type · `AnalyticsFrameProps = { title: string; description?: string; summary: string; plotLabel: string; plot: ReactNode; table: ReactNode; className?: string; height?: number; loading?: boolean; empty?: ReactNode; error?: ReactNode; activeDescrip…`
+- **AnalyticsInspection** · function · `AnalyticsInspection({ label, items, active, className }: AnalyticsInspectionProps): import("react").JSX.Element`
+- **AnalyticsInspectionItem** · type · `AnalyticsInspectionItem = { id: string; label: ReactNode; value?: ReactNode; tone?: string; }`
+- **AnalyticsInspectionProps** · type · `AnalyticsInspectionProps = { label: ReactNode; items?: readonly AnalyticsInspectionItem[]; active?: boolean; className?: string; }`
+- **getLinearAnalyticsKeyIndex** · function · `getLinearAnalyticsKeyIndex(key: string, activeIndex: number | null, length: number): number | null | undefined`
+- **useAnalyticsActiveIndex** · function · `useAnalyticsActiveIndex({ length, value, defaultValue, onChange }: AnalyticsActiveIndexOptions): { readonly activeIndex: number | null; readonly setActiveIndex: (next: number | null) => void; readonly scheduleActiveIndex: (next: number | n…`
+
+## histogram
+
+Declaration: [`histogram.d.ts`](./types/components/ui/histogram.d.ts)
+
+- **Histogram** · function · `Histogram({ title, description, data, className, height, valueFormatter, binFormatter, activeIndex, defaultActiveIndex, onActiveIndexChange, onBinActivate, loading, empty, error, showDataByDefault, }: HistogramProps): import("react").JSX.E…`
+- **HistogramBin** · type · `HistogramBin = { id: string; label: string; start: number; end: number; value: number; }`
+- **HistogramProps** · type · `HistogramProps = { title: string; description?: string; data: readonly HistogramBin[]; className?: string; height?: number; valueFormatter?: (value: number) => string; binFormatter?: (bin: HistogramBin) => string; activeIndex?: number | nu…`
+
+## scatter-chart
+
+Declaration: [`scatter-chart.d.ts`](./types/components/ui/scatter-chart.d.ts)
+
+- **ScatterChart** · function · `ScatterChart({ title, description, data, xLabel, yLabel, className, height, xDomain, yDomain, xFormatter, yFormatter, activeIndex, defaultActiveIndex, onActiveIndexChange, onPointActivate, loading, empty, error, showDataByDefault, }: Scatt…`
+- **ScatterChartProps** · type · `ScatterChartProps = { title: string; description?: string; data: readonly ScatterPoint[]; xLabel: string; yLabel: string; className?: string; height?: number; xDomain?: readonly [number, number]; yDomain?: readonly [number, number]; xForma…`
+- **ScatterPoint** · type · `ScatterPoint = { id: string; label: string; x: number; y: number; series?: string; tone?: "primary" | "secondary" | "tertiary"; }`
+
+## waterfall-chart
+
+Declaration: [`waterfall-chart.d.ts`](./types/components/ui/waterfall-chart.d.ts)
+
+- **WaterfallChart** · function · `WaterfallChart({ title, description, data, className, height, valueFormatter, activeIndex, defaultActiveIndex, onActiveIndexChange, onDatumActivate, loading, empty, error, showDataByDefault, }: WaterfallChartProps): import("react").JSX.Ele…`
+- **WaterfallChartProps** · type · `WaterfallChartProps = { title: string; description?: string; data: readonly WaterfallDatum[]; className?: string; height?: number; valueFormatter?: (value: number) => string; activeIndex?: number | null; defaultActiveIndex?: number | null;…`
+- **WaterfallDatum** · type · `WaterfallDatum = { id: string; label: string; value: number; kind?: "change" | "subtotal" | "total"; }`
+
 ## donut-chart
 
 Declaration: [`donut-chart.d.ts`](./types/components/ui/donut-chart.d.ts)
@@ -534,6 +665,32 @@ Declaration: [`donut-chart.d.ts`](./types/components/ui/donut-chart.d.ts)
 - **DonutChart** · function · `DonutChart({ title, description, data, className, valueFormatter, centerLabel, centerValue, activeId, defaultActiveId, onActiveIdChange, onDatumActivate, loading, empty, error, showDataByDefault, }: DonutChartProps): import("react").JSX.El…`
 - **DonutChartDatum** · type · `DonutChartDatum = { id: string; label: string; value: number; tone?: AnalyticsSeriesTone; }`
 - **DonutChartProps** · type · `DonutChartProps = { title: string; description?: string; data: readonly DonutChartDatum[]; className?: string; valueFormatter?: (value: number, datum: DonutChartDatum) => string; centerLabel?: string; centerValue?: ReactNode; activeId?: st…`
+
+## radar-chart
+
+Declaration: [`radar-chart.d.ts`](./types/components/ui/radar-chart.d.ts)
+
+- **RadarAxis** · type · `RadarAxis = { id: string; label: string; max: number; }`
+- **RadarChart** · function · `RadarChart({ title, description, axes, series, className, height, valueFormatter, activeAxisIndex, defaultActiveAxisIndex, onActiveAxisIndexChange, onAxisActivate, loading, empty, error, showDataByDefault, }: RadarChartProps): import("reac…`
+- **RadarChartProps** · type · `RadarChartProps = { title: string; description?: string; axes: readonly RadarAxis[]; series: readonly RadarSeries[]; className?: string; height?: number; valueFormatter?: (value: number, axis: RadarAxis, series: RadarSeries) => string; act…`
+- **RadarSeries** · type · `RadarSeries = { id: string; label: string; values: Readonly<Record<string, number | null>>; tone?: AnalyticsSeriesTone; }`
+
+## gauge
+
+Declaration: [`gauge.d.ts`](./types/components/ui/gauge.d.ts)
+
+- **Gauge** · function · `Gauge({ title, description, value, min, max, label, marker, className, height, valueFormatter, tone, loading, error, showDataByDefault, }: GaugeProps): import("react").JSX.Element`
+- **GaugeMarker** · type · `GaugeMarker = { value: number; label: string; }`
+- **GaugeProps** · type · `GaugeProps = { title: string; description?: string; value: number; min?: number; max?: number; label?: string; marker?: GaugeMarker; className?: string; height?: number; valueFormatter?: (value: number) => string; tone?: "neutral" | "dange…`
+
+## sankey-chart
+
+Declaration: [`sankey-chart.d.ts`](./types/components/ui/sankey-chart.d.ts)
+
+- **SankeyChart** · function · `SankeyChart({ title, description, nodes, links, className, height, valueFormatter, activeLinkIndex, defaultActiveLinkIndex, onActiveLinkIndexChange, onLinkActivate, loading, empty, error, showDataByDefault, }: SankeyChartProps): import("re…`
+- **SankeyChartProps** · type · `SankeyChartProps = { title: string; description?: string; nodes: readonly SankeyNode[]; links: readonly SankeyLink[]; className?: string; height?: number; valueFormatter?: (value: number) => string; activeLinkIndex?: number | null; default…`
+- **SankeyLink** · type · `SankeyLink = { id: string; source: string; target: string; value: number; label?: string; }`
+- **SankeyNode** · type · `SankeyNode = { id: string; label: string; column?: number; }`
 
 ## heatmap
 
@@ -596,10 +753,10 @@ Declaration: [`timeline.d.ts`](./types/components/ui/timeline.d.ts)
 
 Declaration: [`motion-contract.d.ts`](./types/lib/motion-contract.d.ts)
 
-- **teumMotionContract** · const · `teumMotionContract: { readonly version: "1.0.0"; readonly principles: readonly ["Respond at the moment of input.", "Use motion only to explain origin, continuity, state, or recovery.", "Keep repeated keyboard paths instant.", "Let interrup…`
-- **TeumMotionContract** · type · `TeumMotionContract = typeof teumMotionContract`
-- **TeumMotionFrequency** · type · `TeumMotionFrequency = "constant" | "frequent" | "occasional" | "rare"`
-- **TeumMotionRule** · type · `TeumMotionRule = { frequency: TeumMotionFrequency; treatment: "instant" | "tonal" | "spatial" | "expressive"; rationale: string; }`
+- **whatiuseMotionContract** · const · `whatiuseMotionContract: { readonly version: "1.0.0"; readonly principles: readonly ["Respond at the moment of input.", "Use motion only to explain origin, continuity, state, or recovery.", "Keep repeated keyboard paths instant.", "Let inte…`
+- **WhatiuseMotionContract** · type · `WhatiuseMotionContract = typeof whatiuseMotionContract`
+- **WhatiuseMotionFrequency** · type · `WhatiuseMotionFrequency = "constant" | "frequent" | "occasional" | "rare"`
+- **WhatiuseMotionRule** · type · `WhatiuseMotionRule = { frequency: WhatiuseMotionFrequency; treatment: "instant" | "tonal" | "spatial" | "expressive"; rationale: string; }`
 
 ## data-view-state
 
@@ -648,17 +805,17 @@ Declaration: [`data-export.d.ts`](./types/lib/data-export.d.ts)
 - **DataExportOptions** · type · `DataExportOptions = { rows: readonly TData[]; columns: readonly DataExportColumn<TData>[]; format: DataExportFormat; fileName: string; includeBom?: boolean; }`
 - **downloadDataExport** · function · `downloadDataExport(artifact: DataExportArtifact): void`
 
-## teum-data-contract
+## whatiuse-data-contract
 
-Declaration: [`teum-data-contract.d.ts`](./types/lib/teum-data-contract.d.ts)
+Declaration: [`whatiuse-data-contract.d.ts`](./types/lib/whatiuse-data-contract.d.ts)
 
 - **auditLogContract** · const · `auditLogContract: { readonly id: "audit-log"; readonly intent: "Inspect and export a large immutable event collection without rendering every row."; readonly taskSequence: readonly ["Choose a date range", "Search or filter", "Compare event…`
 - **customerDirectoryContract** · const · `customerDirectoryContract: { readonly id: "customer-directory"; readonly intent: "Find and compare a server-owned customer collection without losing a shareable view."; readonly taskSequence: readonly ["Search or restore a view", "Filter r…`
 - **issuesWorkspaceContract** · const · `issuesWorkspaceContract: { readonly id: "issues-workspace"; readonly intent: "Find, compare, inspect, mutate, and recover work from one shared issue collection."; readonly taskSequence: readonly ["Search or filter", "Sort and compare", "Se…`
-- **TeumDataComponentContract** · type · `TeumDataComponentContract = { id: string; intent: string; useWhen: readonly string[]; avoidWhen: readonly string[]; requires: readonly string[]; states: readonly string[]; compositionRules: readonly string[]; accessibility: readonly string…`
-- **teumDataComponentContracts** · const · `teumDataComponentContracts: readonly [{ readonly id: "data-table"; readonly intent: "Compare and act on structured records without hiding the underlying table semantics."; readonly useWhen: readonly ["Rows share comparable attributes.", "S…`
-- **teumDataRecipeContracts** · const · `teumDataRecipeContracts: readonly [{ readonly id: "issues-workspace"; readonly intent: "Find, compare, inspect, mutate, and recover work from one shared issue collection."; readonly taskSequence: readonly ["Search or filter", "Sort and com…`
-- **teumDataViewStateContract** · const · `teumDataViewStateContract: { readonly version: 1; readonly serverOwned: readonly ["query", "filters", "sorting", "pagination", "dateRange"]; readonly viewOwned: readonly ["columnVisibility", "columnSizing", "columnPinning", "viewId"]; read…`
+- **WhatiuseDataComponentContract** · type · `WhatiuseDataComponentContract = { id: string; intent: string; useWhen: readonly string[]; avoidWhen: readonly string[]; requires: readonly string[]; states: readonly string[]; compositionRules: readonly string[]; accessibility: readonly st…`
+- **whatiuseDataComponentContracts** · const · `whatiuseDataComponentContracts: readonly [{ readonly id: "data-table"; readonly intent: "Compare and act on structured records without hiding the underlying table semantics."; readonly useWhen: readonly ["Rows share comparable attributes."…`
+- **whatiuseDataRecipeContracts** · const · `whatiuseDataRecipeContracts: readonly [{ readonly id: "issues-workspace"; readonly intent: "Find, compare, inspect, mutate, and recover work from one shared issue collection."; readonly taskSequence: readonly ["Search or filter", "Sort and…`
+- **whatiuseDataViewStateContract** · const · `whatiuseDataViewStateContract: { readonly version: 1; readonly serverOwned: readonly ["query", "filters", "sorting", "grouping", "pagination", "dateRange"]; readonly viewOwned: readonly ["columnVisibility", "columnSizing", "columnPinning",…`
 
 ## analytics
 
@@ -685,36 +842,36 @@ Declaration: [`analytics.d.ts`](./types/lib/analytics.d.ts)
 - **getStackedAnalyticsDomain** · function · `getStackedAnalyticsDomain(data: readonly AnalyticsDatum[], seriesIds: readonly string[], { includeZero, paddingRatio, domain }?: AnalyticsDomainOptions): readonly [number, number]`
 - **summarizeAnalyticsSeries** · function · `summarizeAnalyticsSeries(data: readonly AnalyticsDatum[], series: AnalyticsSeries, valueFormatter?: (value: number, series: AnalyticsSeries) => string): string`
 
-## teum-analytics-contract
+## whatiuse-analytics-contract
 
-Declaration: [`teum-analytics-contract.d.ts`](./types/lib/teum-analytics-contract.d.ts)
+Declaration: [`whatiuse-analytics-contract.d.ts`](./types/lib/whatiuse-analytics-contract.d.ts)
 
-- **TeumAnalyticsComponentContract** · type · `TeumAnalyticsComponentContract = { id: string; intent: string; useWhen: readonly string[]; avoidWhen: readonly string[]; requires: readonly string[]; states: readonly string[]; compatibleWith: readonly string[]; dataSchema: string; interac…`
-- **teumAnalyticsComponentContracts** · const · `teumAnalyticsComponentContracts: readonly [{ readonly id: "metric"; readonly intent: "State one important value, its direction, and comparison context without turning a dashboard into a card grid."; readonly useWhen: readonly ["One value c…`
-- **teumAnalyticsRecipeContracts** · const · `teumAnalyticsRecipeContracts: readonly [{ readonly id: "saas-overview"; readonly intent: "Review recurring revenue, growth, target progress, and expansion drivers from one calm overview."; readonly taskSequence: readonly ["Choose range", "…`
-- **teumAnalyticsStateContract** · const · `teumAnalyticsStateContract: { readonly version: 1; readonly controlled: readonly ["date range", "comparison period", "visible series", "active datum", "selected segment"]; readonly derived: readonly ["domain", "ticks", "percent change", "c…`
+- **WhatiuseAnalyticsComponentContract** · type · `WhatiuseAnalyticsComponentContract = { id: string; intent: string; useWhen: readonly string[]; avoidWhen: readonly string[]; requires: readonly string[]; states: readonly string[]; compatibleWith: readonly string[]; dataSchema: string; int…`
+- **whatiuseAnalyticsComponentContracts** · const · `whatiuseAnalyticsComponentContracts: readonly [{ readonly id: "metric"; readonly intent: "State one important value, its direction, and comparison context without turning a dashboard into a card grid."; readonly useWhen: readonly ["One val…`
+- **whatiuseAnalyticsRecipeContracts** · const · `whatiuseAnalyticsRecipeContracts: readonly [{ readonly id: "saas-overview"; readonly intent: "Review recurring revenue, growth, target progress, and expansion drivers from one calm overview."; readonly taskSequence: readonly ["Choose range…`
+- **whatiuseAnalyticsStateContract** · const · `whatiuseAnalyticsStateContract: { readonly version: 1; readonly controlled: readonly ["date range", "comparison period", "visible series", "active datum", "selected segment", "active bin", "active dimension", "active flow"]; readonly deriv…`
 
-## teum-product-patterns-contract
+## whatiuse-product-patterns-contract
 
-Declaration: [`teum-product-patterns-contract.d.ts`](./types/lib/teum-product-patterns-contract.d.ts)
+Declaration: [`whatiuse-product-patterns-contract.d.ts`](./types/lib/whatiuse-product-patterns-contract.d.ts)
 
 - **billingUsageContract** · const · `billingUsageContract: { readonly id: "billing-usage"; readonly intent: "Compare plan usage, limits, and invoices before changing a subscription or exporting a receipt."; readonly roles: readonly ["Workspace owner", "Billing admin", "Financ…`
 - **customerWorkspaceContract** · const · `customerWorkspaceContract: { readonly id: "customer-workspace"; readonly intent: "Find an account, inspect its health and activity, then complete a follow-up without losing the customer list."; readonly roles: readonly ["Customer success",…`
 - **membersPermissionsContract** · const · `membersPermissionsContract: { readonly id: "members-permissions"; readonly intent: "Invite people, change roles, and audit permission boundaries without separating membership from access policy."; readonly roles: readonly ["Workspace owner…`
-- **TeumProductPatternContract** · type · `TeumProductPatternContract = { id: string; intent: string; roles: readonly string[]; taskSequence: readonly string[]; components: readonly string[]; stateOwnership: { shareable: readonly string[]; persisted: readonly string[]; transient: r…`
-- **teumProductPatternContracts** · const · `teumProductPatternContracts: readonly [{ readonly id: "customer-workspace"; readonly intent: "Find an account, inspect its health and activity, then complete a follow-up without losing the customer list."; readonly roles: readonly ["Custom…`
-- **teumProductPatternSystemContract** · const · `teumProductPatternSystemContract: { readonly version: 1; readonly layers: readonly ["Core controls", "Data state", "Analytics context", "Product task"]; readonly rules: readonly ["Patterns compose public Teum components and keep product st…`
+- **WhatiuseProductPatternContract** · type · `WhatiuseProductPatternContract = { id: string; intent: string; roles: readonly string[]; taskSequence: readonly string[]; components: readonly string[]; stateOwnership: { shareable: readonly string[]; persisted: readonly string[]; transien…`
+- **whatiuseProductPatternContracts** · const · `whatiuseProductPatternContracts: readonly [{ readonly id: "customer-workspace"; readonly intent: "Find an account, inspect its health and activity, then complete a follow-up without losing the customer list."; readonly roles: readonly ["Cu…`
+- **whatiuseProductPatternSystemContract** · const · `whatiuseProductPatternSystemContract: { readonly version: 1; readonly layers: readonly ["Core controls", "Data state", "Analytics context", "Product task"]; readonly rules: readonly ["Patterns compose public whatiuse components and keep pr…`
 
-## teum-agent-contract
+## whatiuse-agent-contract
 
-Declaration: [`teum-agent-contract.d.ts`](./types/lib/teum-agent-contract.d.ts)
+Declaration: [`whatiuse-agent-contract.d.ts`](./types/lib/whatiuse-agent-contract.d.ts)
 
-- **selectTeumRecipe** · function · `selectTeumRecipe(task: string): TeumAgentPlan | null`
-- **teumAgentForbiddenRules** · const · `teumAgentForbiddenRules: readonly ["Do not invent undocumented props, exports, registry items, or private CSS selectors.", "Do not merge components because their closed shapes look similar; preserve task, focus, and recovery boundaries.", …`
-- **TeumAgentPlan** · type · `TeumAgentPlan = { recipe: TeumAgentRecipeContract; score: number; matchedSignals: readonly string[]; }`
-- **TeumAgentRecipeContract** · type · `TeumAgentRecipeContract = { id: TeumAgentRecipeId; title: string; domain: "data" | "analytics" | "product"; intent: string; signals: readonly string[]; registryItem: "teum-data" | "teum-analytics" | "teum-product-patterns"; modulePath: str…`
-- **teumAgentRecipeContracts** · const · `teumAgentRecipeContracts: readonly [{ readonly id: "issues-workspace"; readonly title: "Issues Workspace"; readonly domain: "data"; readonly intent: "Triage, inspect, mutate, and recover issue work from one shared collection."; readonly si…`
-- **TeumAgentRecipeId** · type · `TeumAgentRecipeId = | "issues-workspace" | "customer-directory" | "audit-log" | "saas-overview" | "product-usage" | "conversion-retention" | "customer-workspace" | "billing-usage" | "members-permissions"`
-- **TeumAgentSelectionRule** · type · `TeumAgentSelectionRule = { task: string; choose: string; insteadOf: readonly string[]; when: readonly string[]; rejectWhen: readonly string[]; }`
-- **teumAgentSelectionRules** · const · `teumAgentSelectionRules: readonly [{ readonly task: "Choose one submitted value"; readonly choose: "Select"; readonly insteadOf: readonly ["Combobox", "ContextSwitcher"]; readonly when: readonly ["The values are short and predefined."]; re…`
-- **teumAgentSystemContract** · const · `teumAgentSystemContract: { readonly schemaVersion: 1; readonly product: "Teum"; readonly principles: readonly ["stable geometry", "shared origin", "reversible completion"]; readonly workflow: readonly ["inspect project", "classify task", "…`
+- **selectWhatiuseRecipe** · function · `selectWhatiuseRecipe(task: string): WhatiuseAgentPlan | null`
+- **whatiuseAgentForbiddenRules** · const · `whatiuseAgentForbiddenRules: readonly ["Do not invent undocumented props, exports, registry items, or private CSS selectors.", "Do not merge components because their closed shapes look similar; preserve task, focus, and recovery boundaries…`
+- **WhatiuseAgentPlan** · type · `WhatiuseAgentPlan = { recipe: WhatiuseAgentRecipeContract; score: number; matchedSignals: readonly string[]; }`
+- **WhatiuseAgentRecipeContract** · type · `WhatiuseAgentRecipeContract = { id: WhatiuseAgentRecipeId; title: string; domain: "data" | "analytics" | "product"; intent: string; signals: readonly string[]; registryItem: "whatiuse-data" | "whatiuse-analytics" | "whatiuse-product-patter…`
+- **whatiuseAgentRecipeContracts** · const · `whatiuseAgentRecipeContracts: readonly [{ readonly id: "issues-workspace"; readonly title: "Issues Workspace"; readonly domain: "data"; readonly intent: "Triage, inspect, mutate, and recover issue work from one shared collection."; readonl…`
+- **WhatiuseAgentRecipeId** · type · `WhatiuseAgentRecipeId = | "issues-workspace" | "customer-directory" | "audit-log" | "saas-overview" | "product-usage" | "conversion-retention" | "customer-workspace" | "billing-usage" | "members-permissions"`
+- **WhatiuseAgentSelectionRule** · type · `WhatiuseAgentSelectionRule = { task: string; choose: string; insteadOf: readonly string[]; when: readonly string[]; rejectWhen: readonly string[]; }`
+- **whatiuseAgentSelectionRules** · const · `whatiuseAgentSelectionRules: readonly [{ readonly task: "Choose one submitted value"; readonly choose: "Select"; readonly insteadOf: readonly ["Combobox", "ContextSwitcher"]; readonly when: readonly ["The values are short and predefined."]…`
+- **whatiuseAgentSystemContract** · const · `whatiuseAgentSystemContract: { readonly schemaVersion: 1; readonly product: "whatiuse"; readonly principles: readonly ["stable geometry", "shared origin", "reversible completion"]; readonly workflow: readonly ["inspect project", "classify …`

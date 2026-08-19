@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cursor-pagination",
+  "title": "Cursor Pagination",
+  "description": "Previous and next traversal for collections without a stable total page count.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base",
+    "@whatiuse/button"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/cursor-pagination.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/cursor-pagination.css\";\nimport { ArrowLeft, ArrowRight } from \"@phosphor-icons/react\";\nimport type { HTMLAttributes, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\nimport { Button } from \"./button\";\n\nexport type CursorPaginationProps = HTMLAttributes<HTMLElement> & {\n  label?: string;\n  hasPrevious: boolean;\n  hasNext: boolean;\n  onPrevious: () => void;\n  onNext: () => void;\n  range?: ReactNode;\n  loading?: boolean;\n};\n\nexport function CursorPagination({ label = \"Data pages\", hasPrevious, hasNext, onPrevious, onNext, range, loading = false, className, ...props }: CursorPaginationProps) {\n  return (\n    <nav className={cn(\"whatiuse-cursor-pagination\", className)} aria-label={label} aria-busy={loading || undefined} {...props}>\n      <Button size=\"small\" variant=\"ghost\" leadingIcon={<ArrowLeft />} disabled={!hasPrevious || loading} onClick={onPrevious}>Previous</Button>\n      {range && <span className=\"whatiuse-cursor-pagination__range\" aria-live=\"polite\">{range}</span>}\n      <Button size=\"small\" variant=\"ghost\" trailingIcon={<ArrowRight />} disabled={!hasNext || loading} onClick={onNext}>Next</Button>\n    </nav>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/cursor-pagination.tsx"
+    },
+    {
+      "path": "registry/styles/components/cursor-pagination.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-cursor-pagination {\n  display: grid;\n  min-width: 0;\n  grid-template-columns: auto minmax(48px, 1fr) auto;\n  align-items: center;\n  gap: 8px;\n}\n\n.whatiuse-cursor-pagination__range {\n  overflow: hidden;\n  color: var(--whatiuse-fg-subtle);\n  font-size: var(--whatiuse-type-metadata);\n  font-variant-numeric: tabular-nums;\n  text-align: center;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/cursor-pagination.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/cursor-pagination"
+    }
+  },
+  "type": "registry:component"
+}

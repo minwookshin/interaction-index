@@ -1,37 +1,37 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-collapsible__trigger { display: flex; width: 100%; min-height: 38px; align-items: center; justify-content: space-between; gap: 16px; padding: 0 11px; border: 0; border-radius: var(--teum-radius-md); background: var(--teum-bg-subtle); color: var(--teum-fg-default); font-size: var(--teum-type-ui); font-weight: 560; text-align: left; cursor: pointer; transition: background-color var(--teum-hover-duration), color var(--teum-hover-duration); }
+@layer whatiuse.components {
+.whatiuse-collapsible__trigger { display: flex; width: 100%; min-height: 38px; align-items: center; justify-content: space-between; gap: 16px; padding: 0 11px; border: 0; border-radius: var(--whatiuse-radius-md); background: var(--whatiuse-bg-subtle); color: var(--whatiuse-fg-default); font-size: var(--whatiuse-type-ui); font-weight: 560; text-align: left; cursor: pointer; transition: background-color var(--whatiuse-hover-duration), color var(--whatiuse-hover-duration); }
 
-.teum-collapsible__trigger svg { width: 14px; height: 14px; flex: 0 0 auto; color: var(--teum-fg-subtle); transform: rotate(0); transition: transform 160ms var(--teum-ease-out); }
+.whatiuse-collapsible__trigger svg { width: 14px; height: 14px; flex: 0 0 auto; color: var(--whatiuse-fg-subtle); transform: rotate(0); transition: transform 160ms var(--whatiuse-ease-out); }
 
-.teum-collapsible__trigger[data-panel-open] svg { transform: rotate(180deg); }
+.whatiuse-collapsible__trigger[data-panel-open] svg { transform: rotate(180deg); }
 
-.teum-collapsible__trigger:focus-visible { outline: 2px solid var(--teum-focus-control); outline-offset: 2px; }
+.whatiuse-collapsible__trigger:focus-visible { outline: 2px solid var(--whatiuse-focus-control); outline-offset: 2px; }
 
-.teum-collapsible__trigger[data-disabled] { color: var(--teum-fg-disabled); cursor: not-allowed; }
+.whatiuse-collapsible__trigger[data-disabled] { color: var(--whatiuse-fg-disabled); cursor: not-allowed; }
 
-.teum-collapsible__panel {
+.whatiuse-collapsible__panel {
   height: var(--collapsible-panel-height);
   overflow: hidden;
-  transition: height var(--teum-enter-duration) var(--teum-ease-out);
+  transition: height var(--whatiuse-enter-duration) var(--whatiuse-ease-out);
 }
 
-.teum-collapsible__panel[data-starting-style],
-.teum-collapsible__panel[data-ending-style] { height: 0; }
+.whatiuse-collapsible__panel[data-starting-style],
+.whatiuse-collapsible__panel[data-ending-style] { height: 0; }
 
-.teum-collapsible__panel[data-ending-style] { transition-duration: var(--teum-exit-duration); }
+.whatiuse-collapsible__panel[data-ending-style] { transition-duration: var(--whatiuse-exit-duration); }
 
-.teum-collapsible__content { padding: 12px 11px 2px; color: var(--teum-fg-muted); font-size: var(--teum-type-ui); line-height: 1.55; }
+.whatiuse-collapsible__content { padding: 12px 11px 2px; color: var(--whatiuse-fg-muted); font-size: var(--whatiuse-type-ui); line-height: 1.55; }
 
 @media (hover: hover) and (pointer: fine) {
-.teum-collapsible__trigger:not([data-disabled]):hover { background: var(--teum-hover); color: var(--teum-fg-default); }
+.whatiuse-collapsible__trigger:not([data-disabled]):hover { background: var(--whatiuse-hover); color: var(--whatiuse-fg-default); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-collapsible__panel,
-.teum-collapsible__trigger svg { transition-duration: 0.01ms; }
+.whatiuse-collapsible__panel,
+.whatiuse-collapsible__trigger svg { transition-duration: 0.01ms; }
 }
 }

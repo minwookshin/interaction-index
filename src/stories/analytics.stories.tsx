@@ -56,8 +56,8 @@ export const ProductUsage: Story = {
     const plot = canvas.getByRole("group", { name: "Active usage. 14 data points." });
     plot.focus();
     await userEvent.keyboard("{Home}");
-    await expect(canvas.getByText("Aug 12", { selector: ".teum-analytics-recipe__header small" })).toBeVisible();
-    await expect(canvas.getByText("Aug 3", { selector: ".teum-chart__tooltip > strong" })).toBeVisible();
+    await expect(canvas.getByText("12 accounts", { selector: ".whatiuse-analytics-recipe__header small" })).toBeVisible();
+    await expect(canvas.getByText("Aug 3", { selector: ".whatiuse-analytics-inspection > strong" })).toBeVisible();
     canvasElement.dataset.storyReady = "true";
   },
 };

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "title": "Spinner",
+  "description": "Compact labelled ongoing-work status.",
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/spinner.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/spinner.css\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type SpinnerProps = ComponentPropsWithRef<\"span\"> & {\n  size?: \"small\" | \"medium\" | \"large\";\n  label?: string;\n};\n\nexport function Spinner({ className, size = \"medium\", label = \"Loading\", ...props }: SpinnerProps) {\n  return <span className={cn(\"whatiuse-loading-spinner\", `whatiuse-loading-spinner--${size}`, className)} role=\"status\" aria-label={label} {...props}><span aria-hidden=\"true\" /></span>;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/spinner.tsx"
+    },
+    {
+      "path": "registry/styles/components/spinner.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-loading-spinner { display: inline-grid; place-items: center; color: currentColor; }\n\n.whatiuse-loading-spinner > span { width: 100%; height: 100%; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: whatiuse-spin 620ms linear infinite; }\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-loading-spinner > span { animation-duration: 2.4s; }\n}\n\n@keyframes whatiuse-spin { to { transform: rotate(360deg); } }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/spinner.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/spinner",
+      "useWhen": "Ongoing work needs a compact indicator and progress cannot be quantified.",
+      "avoidWhen": "The loading layout is large enough for a Skeleton or progress is measurable."
+    }
+  },
+  "type": "registry:ui"
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "bulk-action-bar",
+  "title": "Bulk Action Bar",
+  "description": "Selection-scoped actions that appear without moving the collection.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base",
+    "@whatiuse/icon-button"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/bulk-action-bar.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/bulk-action-bar.css\";\nimport { X } from \"@phosphor-icons/react\";\nimport type { HTMLAttributes, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\nimport { IconButton } from \"./icon-button\";\n\nexport type BulkActionBarProps = HTMLAttributes<HTMLDivElement> & {\n  count: number;\n  noun?: string;\n  actions: ReactNode;\n  onClear: () => void;\n  busy?: boolean;\n};\n\nexport function BulkActionBar({ count, noun = \"row\", actions, onClear, busy = false, className, ...props }: BulkActionBarProps) {\n  if (count <= 0) return null;\n  return (\n    <div className={cn(\"whatiuse-bulk-action-bar\", className)} role=\"region\" aria-label=\"Bulk actions\" aria-busy={busy || undefined} {...props}>\n      <div className=\"whatiuse-bulk-action-bar__selection\"><strong>{count}</strong><span>{noun}{count === 1 ? \"\" : \"s\"} selected</span></div>\n      <div className=\"whatiuse-bulk-action-bar__actions\">{actions}</div>\n      <IconButton size=\"small\" variant=\"ghost\" aria-label=\"Clear selection\" onClick={onClear}><X aria-hidden=\"true\" /></IconButton>\n      <span className=\"whatiuse-sr-only\" aria-live=\"polite\">{count} {noun}{count === 1 ? \"\" : \"s\"} selected</span>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/bulk-action-bar.tsx"
+    },
+    {
+      "path": "registry/styles/components/bulk-action-bar.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-bulk-action-bar {\n  display: flex;\n  min-height: 46px;\n  align-items: center;\n  gap: 10px;\n  padding: 6px 7px 6px 12px;\n  border-radius: 9px;\n  background: var(--whatiuse-inverse);\n  color: var(--whatiuse-on-inverse);\n  box-shadow: 0 12px 32px rgb(0 0 0 / .18);\n  opacity: 1;\n  transform: translateY(0);\n  transition: opacity 160ms var(--whatiuse-ease-out), transform 180ms var(--whatiuse-ease-out);\n}\n\n@starting-style {\n.whatiuse-bulk-action-bar { opacity: 0; transform: translateY(8px); }\n}\n\n.whatiuse-bulk-action-bar__selection {\n  display: inline-flex;\n  align-items: baseline;\n  gap: 5px;\n  white-space: nowrap;\n}\n\n.whatiuse-bulk-action-bar__selection strong { font-size: var(--whatiuse-type-ui); font-weight: 650; font-variant-numeric: tabular-nums; }\n\n.whatiuse-bulk-action-bar__selection span { color: color-mix(in oklch, var(--whatiuse-on-inverse) 72%, transparent); font-size: var(--whatiuse-type-label); }\n\n.whatiuse-bulk-action-bar__actions {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  margin-left: auto;\n}\n\n.whatiuse-bulk-action-bar .whatiuse-button,\n.whatiuse-bulk-action-bar .whatiuse-icon-button { color: var(--whatiuse-on-inverse); }\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-bulk-action-bar { transform: none; transition: opacity 120ms var(--whatiuse-ease-out); }\n}\n\n.whatiuse-bulk-action-bar {\n    min-height: 44px;\n    gap: 8px;\n    padding: 6px 7px 6px 11px;\n    border: 1px solid color-mix(in oklch, var(--whatiuse-control-border) 72%, transparent);\n    border-radius: 10px;\n    background: var(--whatiuse-bg-flyout);\n    color: var(--whatiuse-fg-default);\n    box-shadow: 0 12px 32px -20px rgb(17 17 19 / .32), var(--whatiuse-shadow-control);\n    transform: translateY(0);\n  }\n\n.whatiuse-bulk-action-bar__selection span { color: var(--whatiuse-fg-subtle); }\n\n.whatiuse-bulk-action-bar .whatiuse-button,\n.whatiuse-bulk-action-bar .whatiuse-icon-button { color: var(--whatiuse-fg-muted); }\n\n@starting-style {\n.whatiuse-bulk-action-bar { opacity: 0; transform: translateY(2px); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-bulk-action-bar { transform: none; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/bulk-action-bar.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/bulk-action-bar"
+    }
+  },
+  "type": "registry:component"
+}

@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { BillingUsageRecipe, CustomerWorkspaceRecipe, MembersPermissionsRecipe } from "./product-pattern-recipes";
 
-describe("Teum Product Patterns", () => {
+describe("whatiuse Product Patterns", () => {
   it("keeps customer search and detail in one task", async () => {
     const user = userEvent.setup();
     render(<CustomerWorkspaceRecipe />);

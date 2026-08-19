@@ -102,12 +102,12 @@ export function FilterBuilder({ fields, filters, onFiltersChange, className, lab
   const removeFilter = (id: string) => onFiltersChange(filters.filter((filter) => filter.id !== id));
 
   return (
-    <div className={cn("teum-filter-builder", className)} aria-label="Active data filters">
+    <div className={cn("whatiuse-filter-builder", className)} aria-label="Active data filters">
       <Popover open={open} onOpenChange={(nextOpen) => { setOpen(nextOpen); if (!nextOpen) resetDraft(); }}>
-        <PopoverTrigger render={<Button size="small" variant="secondary" leadingIcon={<Funnel />} />}>{label}{filters.length ? <span className="teum-filter-builder__count">{filters.length}</span> : null}</PopoverTrigger>
-        <PopoverContent className="teum-filter-builder__popover" aria-labelledby={`${generatedId}-title`}>
-          <div className="teum-filter-builder__heading"><strong id={`${generatedId}-title`}>Add filter</strong><span>Keep each active condition visible.</span></div>
-          <div className="teum-filter-builder__form">
+        <PopoverTrigger render={<Button size="small" variant="secondary" leadingIcon={<Funnel />} />}>{label}{filters.length ? <span className="whatiuse-filter-builder__count">{filters.length}</span> : null}</PopoverTrigger>
+        <PopoverContent className="whatiuse-filter-builder__popover" aria-labelledby={`${generatedId}-title`}>
+          <div className="whatiuse-filter-builder__heading"><strong id={`${generatedId}-title`}>Add filter</strong></div>
+          <div className="whatiuse-filter-builder__form">
             <Select label="Field" options={fieldOptions} value={fieldId} onValueChange={(next) => { if (next) resetDraft(next); }} />
             <Select label="Operator" options={operatorOptions} value={operator} onValueChange={(next) => { if (next) setOperator(next as FilterOperator); }} />
             {needsValue(operator) && (activeField?.kind === "text" || activeField?.kind === "number" ? (
@@ -122,12 +122,12 @@ export function FilterBuilder({ fields, filters, onFiltersChange, className, lab
               <Select label="Value" options={values} value={value} placeholder="Choose value" onValueChange={(next) => setValue(next ?? "")} />
             ))}
           </div>
-          <div className="teum-filter-builder__actions"><Button size="small" variant="ghost" onClick={() => setOpen(false)}>Cancel</Button><Button size="small" variant="primary" leadingIcon={<Plus />} disabled={needsValue(operator) && !value.trim()} onClick={addFilter}>Add filter</Button></div>
+          <div className="whatiuse-filter-builder__actions"><Button size="small" variant="ghost" onClick={() => setOpen(false)}>Cancel</Button><Button size="small" variant="primary" leadingIcon={<Plus />} disabled={needsValue(operator) && !value.trim()} onClick={addFilter}>Add filter</Button></div>
         </PopoverContent>
       </Popover>
       {filters.map((filter) => <Badge key={filter.id} variant="outline" removable removeLabel={`Remove ${filterDescriptions.get(filter.id)}`} onRemove={() => removeFilter(filter.id)}>{filterDescriptions.get(filter.id)}</Badge>)}
-      {filters.length > 1 && <button type="button" className="teum-filter-builder__clear" onClick={() => onFiltersChange([])}><X aria-hidden="true" />Clear</button>}
-      <span className="teum-sr-only" aria-live="polite">{filters.length} active filters</span>
+      {filters.length > 1 && <button type="button" className="whatiuse-filter-builder__clear" onClick={() => onFiltersChange([])}><X aria-hidden="true" />Clear</button>}
+      <span className="whatiuse-sr-only" aria-live="polite">{filters.length} active filters</span>
     </div>
   );
 }

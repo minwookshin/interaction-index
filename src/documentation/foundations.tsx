@@ -2,7 +2,7 @@ import { ArrowLeft, ArrowRight, Check, Copy, Play } from "@phosphor-icons/react"
 import { useState } from "react";
 import { Button, Switch } from "../components/ui";
 import { copyText } from "../lib/copy-text";
-import { teumMotionContract } from "../lib/motion-contract";
+import { whatiuseMotionContract } from "../lib/motion-contract";
 import { tokenByPath, type TokenPath } from "../tokens/generated";
 
 function token(path: TokenPath) {
@@ -118,12 +118,12 @@ const semanticColors = semanticColorRoles.map(([path, role, usage]) => [
 ] as const);
 
 const elevationContract = [
-  ["Canvas", "Page and persistent regions", "--teum-bg-canvas", "none", "document flow"],
-  ["Stage", "Specimens and grouped controls", "--teum-bg-stage", "none", "document flow"],
-  ["Float", "Persistent raised composition", "--teum-bg-float", "--teum-shadow-float", "document flow"],
-  ["Flyout", "Select, Combobox, Context Switcher, Menu, Popover", "--teum-bg-flyout", "--teum-shadow-flyout", "120"],
-  ["Modal", "Dialog and Alert Dialog", "--teum-bg-modal", "--teum-shadow-modal", "100 / 110"],
-  ["Toast", "Non-blocking outcome feedback", "--teum-bg-flyout", "--teum-shadow-flyout", "130"],
+  ["Canvas", "Page and persistent regions", "--whatiuse-bg-canvas", "none", "document flow"],
+  ["Stage", "Specimens and grouped controls", "--whatiuse-bg-stage", "none", "document flow"],
+  ["Float", "Persistent raised composition", "--whatiuse-bg-float", "--whatiuse-shadow-float", "document flow"],
+  ["Flyout", "Select, Combobox, Context Switcher, Menu, Popover", "--whatiuse-bg-flyout", "--whatiuse-shadow-flyout", "120"],
+  ["Modal", "Dialog and Alert Dialog", "--whatiuse-bg-modal", "--whatiuse-shadow-modal", "100 / 110"],
+  ["Toast", "Non-blocking outcome feedback", "--whatiuse-bg-flyout", "--whatiuse-shadow-flyout", "130"],
 ] as const;
 
 const materialDecisionContract = [
@@ -218,7 +218,7 @@ function TypographyFoundation() {
         <div className="type-product-example"><div><small>INT-184 · UPDATED 8M</small><h3>Define motion contract</h3><p>Document origin, continuity, interruption, keyboard behavior, and reduced motion before implementation.</p></div><span>In review</span></div>
       </FoundationSection>
       <FoundationSection eyebrow="Implementation" title="Copy the role, not the number" description="Semantic type tokens keep component decisions stable when optical adjustments change.">
-        <div className="foundation-code-line"><code>font: var(--teum-type-ui) / 1.35 "Inter Variable", Inter, sans-serif;</code><CopyValue value={'font: var(--teum-type-ui) / 1.35 "Inter Variable", Inter, sans-serif;'} /></div>
+        <div className="foundation-code-line"><code>font: var(--whatiuse-type-ui) / 1.35 "Inter Variable", Inter, sans-serif;</code><CopyValue value={'font: var(--whatiuse-type-ui) / 1.35 "Inter Variable", Inter, sans-serif;'} /></div>
       </FoundationSection>
     </>
   );
@@ -256,7 +256,7 @@ function SpacingFoundation() {
         <div className="dna-contract" aria-label="Component DNA contract">{componentDnaRoles.map(([role, value, description]) => <article key={role}><span>{role}</span><strong>{value}</strong><p>{description}</p></article>)}</div>
       </FoundationSection>
       <FoundationSection eyebrow="Implementation" title="Layout owns external spacing" description="Components define their internal geometry. Parent stacks and grids decide the space between components.">
-        <div className="foundation-code-line"><code>gap: var(--teum-space-section); /* 22px section rhythm */</code><CopyValue value="gap: var(--teum-space-section);" /></div>
+        <div className="foundation-code-line"><code>gap: var(--whatiuse-space-section); /* 22px section rhythm */</code><CopyValue value="gap: var(--whatiuse-space-section);" /></div>
       </FoundationSection>
     </>
   );
@@ -274,8 +274,8 @@ function MotionFoundation() {
   const [reduced, setReduced] = useState(false);
   return (
     <>
-      <FoundationSection eyebrow={`Contract v${teumMotionContract.version}`} title="Motion explains, then gets out of the way" description="Repeated actions stay nearly instant. Spatial transitions animate only when continuity, state, or feedback would otherwise be unclear.">
-        <div className="motion-principles"><article><span>01</span><strong>Responsive</strong><p>{teumMotionContract.principles[0]}</p></article><article><span>02</span><strong>Purposeful</strong><p>{teumMotionContract.principles[1]}</p></article><article><span>03</span><strong>Interruptible</strong><p>{teumMotionContract.principles[3]}</p></article></div>
+      <FoundationSection eyebrow={`Contract v${whatiuseMotionContract.version}`} title="Motion explains, then gets out of the way" description="Repeated actions stay nearly instant. Spatial transitions animate only when continuity, state, or feedback would otherwise be unclear.">
+        <div className="motion-principles"><article><span>01</span><strong>Responsive</strong><p>{whatiuseMotionContract.principles[0]}</p></article><article><span>02</span><strong>Purposeful</strong><p>{whatiuseMotionContract.principles[1]}</p></article><article><span>03</span><strong>Interruptible</strong><p>{whatiuseMotionContract.principles[3]}</p></article></div>
       </FoundationSection>
       <FoundationSection eyebrow="Live behavior" title="A purposeful entrance" description="Replay the same state change with and without spatial movement. Reduced motion preserves hierarchy and state.">
         <div className="motion-stage">
@@ -287,8 +287,8 @@ function MotionFoundation() {
         <div className="motion-token-grid">{motionTokens.map(([name, path, usage]) => <div key={name}><span>{name}</span><strong>{resolvedToken(path)}</strong><small>{usage}</small></div>)}</div>
         <div className="easing-list"><div><span>Enter / exit</span><code>{resolvedToken("foundation.motion.easing.ease-out")}</code><CopyValue value={resolvedToken("foundation.motion.easing.ease-out")} /></div><div><span>Spatial change</span><code>{resolvedToken("foundation.motion.easing.ease-in-out")}</code><CopyValue value={resolvedToken("foundation.motion.easing.ease-in-out")} /></div></div>
       </FoundationSection>
-      <FoundationSection eyebrow="Accessibility" title="Reduced motion is a behavior contract" description={teumMotionContract.principles[4]}>
-        <div className="foundation-code-line foundation-code-line--multiline"><code>{`@media (prefers-reduced-motion: reduce) {\n  .overlay { transition: opacity 120ms var(--teum-ease-out); transform: none; }\n}`}</code><CopyValue value={'@media (prefers-reduced-motion: reduce) {\n  .overlay { transition: opacity 120ms var(--teum-ease-out); transform: none; }\n}'} /></div>
+      <FoundationSection eyebrow="Accessibility" title="Reduced motion is a behavior contract" description={whatiuseMotionContract.principles[4]}>
+        <div className="foundation-code-line foundation-code-line--multiline"><code>{`@media (prefers-reduced-motion: reduce) {\n  .overlay { transition: opacity 120ms var(--whatiuse-ease-out); transform: none; }\n}`}</code><CopyValue value={'@media (prefers-reduced-motion: reduce) {\n  .overlay { transition: opacity 120ms var(--whatiuse-ease-out); transform: none; }\n}'} /></div>
       </FoundationSection>
     </>
   );

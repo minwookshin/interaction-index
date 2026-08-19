@@ -7,11 +7,14 @@ type AxeResult = { violations: Array<{ id: string; impact: string | null; descri
 const componentRoutes = publicRouteGroups.components;
 
 async function runAxe(page: import("@playwright/test").Page) {
+  // Scan the settled interface state. Motion can briefly lower text opacity
+  // during a valid entrance and otherwise makes the contrast result timing-dependent.
+  await page.waitForTimeout(350);
   await page.addScriptTag({ content: axe.source });
   return page.evaluate(() => (window as typeof window & { axe: { run: () => Promise<AxeResult> } }).axe.run());
 }
 
-for (const [route, heading] of [["", "Components for product interfaces."], ["button", "Button"], ["product-pilot", "Data"], ["product-patterns", "Recipes"]] as const) {
+for (const [route, heading] of [["", "components i use."], ["button", "Button"], ["product-pilot", "Data"], ["product-patterns", "Workflow"]] as const) {
   test(route + " has no serious or critical automated accessibility violations", async ({ page }) => {
     test.setTimeout(90_000);
     await page.goto(route ? "/#" + route : "/");
@@ -35,7 +38,7 @@ test("all public documents have no serious or critical automated violations", as
 test("Library and documentation expose a keyboard-first skip path", async ({ page }) => {
   await page.goto("/");
   const landingSkipLink = page.getByRole("link", { name: "Skip to main content" });
-  await expect(page.locator(".component-index-page").locator("a[href], button, input, [tabindex='0']").first()).toHaveClass(/teum-skip-link/);
+  await expect(page.locator(".component-index-page").locator("a[href], button, input, [tabindex='0']").first()).toHaveClass(/whatiuse-skip-link/);
   await landingSkipLink.focus();
   await expect(landingSkipLink).toBeFocused();
   await page.keyboard.press("Enter");
@@ -44,7 +47,7 @@ test("Library and documentation expose a keyboard-first skip path", async ({ pag
   await page.goto("/#button");
   await expect(page.getByRole("heading", { level: 1, name: "Button" })).toBeVisible();
   const documentationSkipLink = page.getByRole("link", { name: "Skip to documentation" });
-  await expect(page.locator(".system-window--consolidated").locator("a[href], button, input, [tabindex='0']").first()).toHaveClass(/teum-skip-link/);
+  await expect(page.locator(".system-window--consolidated").locator("a[href], button, input, [tabindex='0']").first()).toHaveClass(/whatiuse-skip-link/);
   await documentationSkipLink.focus();
   await expect(documentationSkipLink).toBeFocused();
   await page.keyboard.press("Enter");
@@ -54,7 +57,7 @@ test("Library and documentation expose a keyboard-first skip path", async ({ pag
 test("documentation announces in-app route changes without moving desktop focus", async ({ page, isMobile }) => {
   test.skip(Boolean(isMobile), "Desktop route changes preserve navigation focus; the mobile drawer has a separate focus handoff.");
   await page.goto("/#button");
-  const routeStatus = page.locator(".system-window--consolidated > [role='status'].teum-sr-only");
+  const routeStatus = page.locator(".system-window--consolidated > [role='status'].whatiuse-sr-only");
   await expect(routeStatus).toHaveText("Button page loaded");
   const popoverLink = page.getByRole("link", { name: "Popover", exact: true });
   await popoverLink.focus();
@@ -76,7 +79,7 @@ test("mobile navigation hands focus to the selected document", async ({ page }) 
 test("every public view owns one main landmark and one page heading", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "chromium", "The complete landmark scan runs once; shared landmark behavior is covered in every engine.");
   test.slow();
-  const routes = [["", "Components for product interfaces."], ...publicRoutes] as const;
+  const routes = [["", "components i use."], ...publicRoutes] as const;
   for (const [route, heading] of routes) {
     await page.goto(route ? `/#${route}` : "/");
     await expect(page.locator("main")).toHaveCount(1);
@@ -146,7 +149,7 @@ test("representative product surfaces tolerate synthetic translated-content expa
     ["dialog", "Dialog"],
     ["shared-detail", "Shared Detail"],
     ["product-pilot", "Data"],
-    ["product-patterns", "Recipes"],
+    ["product-patterns", "Workflow"],
   ] as const;
 
   for (const width of [1280, 640]) {

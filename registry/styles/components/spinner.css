@@ -1,15 +1,15 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-loading-spinner { display: inline-grid; place-items: center; color: currentColor; }
+@layer whatiuse.components {
+.whatiuse-loading-spinner { display: inline-grid; place-items: center; color: currentColor; }
 
-.teum-loading-spinner > span { width: 100%; height: 100%; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: teum-spin 620ms linear infinite; }
+.whatiuse-loading-spinner > span { width: 100%; height: 100%; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: whatiuse-spin 620ms linear infinite; }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-loading-spinner > span { animation-duration: 2.4s; }
+.whatiuse-loading-spinner > span { animation-duration: 2.4s; }
 }
 
-@keyframes teum-spin { to { transform: rotate(360deg); } }
+@keyframes whatiuse-spin { to { transform: rotate(360deg); } }
 }

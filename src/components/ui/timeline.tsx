@@ -19,12 +19,12 @@ export type TimelineProps = Omit<HTMLAttributes<HTMLOListElement>, "onSelect"> &
 
 export function Timeline({ label, items, activeId, onSelect, className, ...props }: TimelineProps) {
   return (
-    <ol className={cn("teum-timeline", className)} aria-label={label} {...props}>
+    <ol className={cn("whatiuse-timeline", className)} aria-label={label} {...props}>
       {items.map((item) => {
         const content = <>
-          <span className="teum-timeline__marker" data-tone={item.tone ?? "neutral"} aria-hidden="true" />
-          <span className="teum-timeline__content"><span><strong>{item.label}</strong><time>{item.timestamp}</time></span>{item.description && <small>{item.description}</small>}</span>
-          {item.value && <b className="teum-timeline__value">{item.value}</b>}
+          <span className="whatiuse-timeline__marker" data-tone={item.tone ?? "neutral"} aria-hidden="true" />
+          <span className="whatiuse-timeline__content"><span><strong>{item.label}</strong><time>{item.timestamp}</time></span>{item.description && <small>{item.description}</small>}</span>
+          {item.value && <b className="whatiuse-timeline__value">{item.value}</b>}
         </>;
         return <li key={item.id}>{onSelect ? <button type="button" aria-pressed={item.id === activeId} onClick={() => onSelect(item)}>{content}</button> : <div>{content}</div>}</li>;
       })}

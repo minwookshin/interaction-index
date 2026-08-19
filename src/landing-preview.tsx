@@ -110,7 +110,7 @@ function DataPreview() {
 function AnalyticsPreview() {
   return <div className="landing-analytics-preview">
     <section className="landing-analytics-preview__surface" aria-labelledby="landing-analytics-title">
-      <h2 id="landing-analytics-title" className="teum-sr-only">Issue analytics</h2>
+      <h2 id="landing-analytics-title" className="whatiuse-sr-only">Issue analytics</h2>
       <div className="landing-analytics-preview__metrics">
         <Metric label="Completed" value="102" />
         <Metric label="Created" value="98" />

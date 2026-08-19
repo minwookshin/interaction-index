@@ -11,9 +11,9 @@ export const AlertDialogDescription = AlertDialogPrimitive.Description;
 export function AlertDialogContent({ className, children, ...props }: AlertDialogPrimitive.Popup.Props) {
   return (
     <AlertDialogPrimitive.Portal>
-      <AlertDialogPrimitive.Backdrop className="teum-dialog__backdrop" />
-      <AlertDialogPrimitive.Viewport className="teum-alert-dialog__viewport">
-        <AlertDialogPrimitive.Popup className={cn("teum-dialog", "teum-alert-dialog", className)} {...props} data-layer="modal">
+      <AlertDialogPrimitive.Backdrop className="whatiuse-dialog__backdrop" />
+      <AlertDialogPrimitive.Viewport className="whatiuse-alert-dialog__viewport">
+        <AlertDialogPrimitive.Popup className={cn("whatiuse-dialog", "whatiuse-alert-dialog", className)} {...props} data-layer="modal">
           {children}
         </AlertDialogPrimitive.Popup>
       </AlertDialogPrimitive.Viewport>
@@ -22,9 +22,9 @@ export function AlertDialogContent({ className, children, ...props }: AlertDialo
 }
 
 export function AlertDialogHeader({ className, ...props }: ComponentPropsWithRef<"div">) {
-  return <div className={cn("teum-dialog__header", className)} {...props} />;
+  return <div className={cn("whatiuse-dialog__header", className)} {...props} />;
 }
 
 export function AlertDialogFooter({ className, ...props }: ComponentPropsWithRef<"div">) {
-  return <div className={cn("teum-dialog__footer", className)} {...props} />;
+  return <div className={cn("whatiuse-dialog__footer", className)} {...props} />;
 }

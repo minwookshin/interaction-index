@@ -38,7 +38,7 @@ export default class PlaywrightEvidenceReporter {
       { expected: 0, skipped: 0, unexpected: 0, flaky: 0 },
     );
     const packageJson = JSON.parse(await readFile(resolve("package.json"), "utf8"));
-    const output = resolve(process.env.TEUM_BROWSER_EVIDENCE_PATH ?? "release/browser-matrix.json");
+    const output = resolve(process.env.WHATIUSE_BROWSER_EVIDENCE_PATH ?? "release/browser-matrix.json");
     const evidence = {
       schemaVersion: 1,
       generatedBy: "scripts/playwright-evidence-reporter.mjs",

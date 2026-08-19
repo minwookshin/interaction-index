@@ -19,3 +19,6 @@ design-qa.md
 design-qa-*.png
 launch/
 .vercel
+figma/
+beta/
+release/*.md

@@ -5,7 +5,7 @@ const root = process.cwd();
 const sourcePath = resolve(root, "src/styles.css");
 const foundationSourcePath = resolve(root, "src/foundation.css");
 const tokenSourcePath = resolve(root, "src/tokens/generated.css");
-const tailwindBridgeSourcePath = resolve(root, "src/teum-tailwind.css");
+const tailwindBridgeSourcePath = resolve(root, "src/whatiuse-tailwind.css");
 const registryPath = resolve(root, "registry.json");
 const generatedRoot = resolve(root, "registry");
 const source = await readFile(sourcePath, "utf8");
@@ -19,7 +19,7 @@ const productComponentItems = registry.items.filter((item) => item.type === "reg
 const componentItems = [...coreComponentItems, ...productComponentItems];
 
 const generatedHeader = "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */";
-const layerOrder = "@layer teum.tokens, teum.base, teum.components;";
+const layerOrder = "@layer whatiuse.tokens, whatiuse.base, whatiuse.components;";
 const fontImport = foundationSource.match(/^@import\s+[^;]+;/m)?.[0] ?? "";
 
 function packageName(specifier) {
@@ -176,7 +176,7 @@ function filterCss(css, keepSelector) {
 
 function collectKeyframes(css) {
   const keyframes = new Map();
-  const matcher = /@keyframes\s+(teum-[a-z0-9-]+)\s*\{/g;
+  const matcher = /@keyframes\s+(whatiuse-[a-z0-9-]+)\s*\{/g;
   let match;
   while ((match = matcher.exec(css)) !== null) {
     const openIndex = css.indexOf("{", match.index);
@@ -185,6 +185,65 @@ function collectKeyframes(css) {
     matcher.lastIndex = closingBrace + 1;
   }
   return keyframes;
+}
+
+function compactCssWhitespace(css) {
+  let output = "";
+  let quote = "";
+  let comment = false;
+  let pendingSpace = false;
+
+  for (let index = 0; index < css.length; index += 1) {
+    const character = css[index];
+    const next = css[index + 1];
+
+    if (comment) {
+      if (character === "*" && next === "/") {
+        comment = false;
+        index += 1;
+      }
+      continue;
+    }
+
+    if (quote) {
+      output += character;
+      if (character === "\\") {
+        output += css[index + 1] ?? "";
+        index += 1;
+      } else if (character === quote) quote = "";
+      continue;
+    }
+
+    if (character === "/" && next === "*") {
+      comment = true;
+      index += 1;
+      continue;
+    }
+
+    if (character === '"' || character === "'") {
+      if (pendingSpace && output) output += " ";
+      pendingSpace = false;
+      quote = character;
+      output += character;
+      continue;
+    }
+
+    if (/\s/.test(character)) {
+      pendingSpace = true;
+      continue;
+    }
+
+    if (
+      pendingSpace
+      && output
+      && !/[{}:;,]/.test(character)
+      && !/[{}:;,]/.test(output.at(-1) ?? "")
+    ) output += " ";
+    pendingSpace = false;
+    output += character;
+  }
+
+  return output.trim();
 }
 
 const keyframes = collectKeyframes(source);
@@ -201,12 +260,12 @@ const baseSelectors = new Set([
 ]);
 const baseSelector = (selector) => {
   const normalized = normalizeSelector(selector);
-  return baseSelectors.has(normalized) || normalized.startsWith(".teum-sr-only");
+  return baseSelectors.has(normalized) || normalized.startsWith(".whatiuse-sr-only");
 };
 
 const tokenRules = filterCss(tokenSource, rootSelector);
 const baseRules = filterCss(foundationSource, baseSelector);
-if (!tokenRules.includes("--teum-bg-canvas") || !baseRules.includes("box-sizing")) {
+if (!tokenRules.includes("--whatiuse-bg-canvas") || !baseRules.includes("box-sizing")) {
   throw new Error("Registry base extraction omitted required tokens or reset rules.");
 }
 
@@ -214,13 +273,13 @@ const baseCss = [
   generatedHeader,
   fontImport,
   layerOrder,
-  `@layer teum.tokens {\n${tokenRules}\n}`,
-  `@layer teum.base {\n${baseRules}\n}`,
+  `@layer whatiuse.tokens {\n${tokenRules}\n}`,
+  `@layer whatiuse.base {\n${baseRules}\n}`,
   "",
 ].filter(Boolean).join("\n\n");
 
 function classNamesFromSource(componentSource) {
-  return new Set(componentSource.match(/\bteum-[a-z0-9_-]+/g) ?? []);
+  return new Set(componentSource.match(/\bwhatiuse-[a-z0-9_-]+/g) ?? []);
 }
 
 function escapeRegExp(value) {
@@ -241,7 +300,7 @@ async function componentOutput(item) {
   const sourceComponentPath = resolve(root, `src/components/ui/${item.name}.tsx`);
   const componentSource = await readFile(sourceComponentPath, "utf8");
   const classNames = classNamesFromSource(componentSource);
-  if (classNames.size === 0) throw new Error(`${item.name} does not expose an teum-* component class.`);
+  if (classNames.size === 0) throw new Error(`${item.name} does not expose an whatiuse-* component class.`);
 
   let rules = filterCss(source, componentSelector(classNames));
   const requiredKeyframes = [...keyframes.entries()]
@@ -250,7 +309,7 @@ async function componentOutput(item) {
   if (requiredKeyframes.length > 0) rules = `${rules}\n\n${requiredKeyframes.join("\n\n")}`;
   if (!rules.trim()) throw new Error(`No component CSS was extracted for ${item.name}.`);
 
-  const layeredRules = `@layer teum.components {\n${rules}\n}`;
+  const layeredRules = `@layer whatiuse.components {\n${rules}\n}`;
   const componentCss = `${generatedHeader}\n\n${layerOrder}\n\n${layeredRules}\n`;
   const generatedComponentPath = resolve(generatedRoot, `styles/components/${item.name}.css`);
   const generatedSourcePath = resolve(generatedRoot, `components/ui/${item.name}.tsx`);
@@ -259,7 +318,7 @@ async function componentOutput(item) {
   await writeFile(generatedComponentPath, componentCss, "utf8");
   await writeFile(
     generatedSourcePath,
-    `"use client";\n\nimport "../../styles/teum-base.css";\nimport "../../styles/components/${item.name}.css";\n${componentSource}`,
+    `"use client";\n\nimport "../../styles/whatiuse-base.css";\nimport "../../styles/components/${item.name}.css";\n${componentSource}`,
     "utf8",
   );
 
@@ -304,15 +363,15 @@ await copyFile(resolve(root, "src/lib/behavior-contract.ts"), resolve(generatedR
 await copyFile(resolve(root, "src/lib/motion-contract.ts"), resolve(generatedRoot, "lib/motion-contract.ts"));
 await copyFile(resolve(root, "src/lib/data-view-state.ts"), resolve(generatedRoot, "lib/data-view-state.ts"));
 await copyFile(resolve(root, "src/lib/data-export.ts"), resolve(generatedRoot, "lib/data-export.ts"));
-await copyFile(resolve(root, "src/lib/teum-data-contract.ts"), resolve(generatedRoot, "lib/teum-data-contract.ts"));
+await copyFile(resolve(root, "src/lib/whatiuse-data-contract.ts"), resolve(generatedRoot, "lib/whatiuse-data-contract.ts"));
 await copyFile(resolve(root, "src/lib/analytics.ts"), resolve(generatedRoot, "lib/analytics.ts"));
-await copyFile(resolve(root, "src/lib/teum-analytics-contract.ts"), resolve(generatedRoot, "lib/teum-analytics-contract.ts"));
-await copyFile(resolve(root, "src/lib/teum-product-patterns-contract.ts"), resolve(generatedRoot, "lib/teum-product-patterns-contract.ts"));
-await copyFile(resolve(root, "src/lib/teum-agent-contract.ts"), resolve(generatedRoot, "lib/teum-agent-contract.ts"));
-await copyFile(resolve(root, "agent/generated/teum-agent.json"), resolve(generatedRoot, "agent/teum-agent.json"));
+await copyFile(resolve(root, "src/lib/whatiuse-analytics-contract.ts"), resolve(generatedRoot, "lib/whatiuse-analytics-contract.ts"));
+await copyFile(resolve(root, "src/lib/whatiuse-product-patterns-contract.ts"), resolve(generatedRoot, "lib/whatiuse-product-patterns-contract.ts"));
+await copyFile(resolve(root, "src/lib/whatiuse-agent-contract.ts"), resolve(generatedRoot, "lib/whatiuse-agent-contract.ts"));
+await copyFile(resolve(root, "agent/generated/whatiuse-agent.json"), resolve(generatedRoot, "agent/whatiuse-agent.json"));
 await copyFile(resolve(root, "src/components/ui/index.ts"), resolve(generatedRoot, "components/ui/index.ts"));
-await writeFile(resolve(generatedRoot, "styles/teum-base.css"), baseCss, "utf8");
-await writeFile(resolve(generatedRoot, "styles/teum-tailwind.css"), tailwindBridgeSource, "utf8");
+await writeFile(resolve(generatedRoot, "styles/whatiuse-base.css"), baseCss, "utf8");
+await writeFile(resolve(generatedRoot, "styles/whatiuse-tailwind.css"), tailwindBridgeSource, "utf8");
 
 const componentResults = new Map();
 for (const item of componentItems) componentResults.set(item.name, await componentOutput(item));
@@ -345,10 +404,10 @@ if (generatedIssuesWorkspaceSource === issuesWorkspaceSource) {
 }
 const issuesWorkspaceRules = filterCss(source, (selector) => /\.pilot-[a-z0-9_-]+/.test(normalizeSelector(selector)));
 if (!issuesWorkspaceRules.trim()) throw new Error("Issues Workspace CSS extraction produced no rules.");
-const issuesWorkspaceCss = `${generatedHeader}\n\n${layerOrder}\n\n@layer teum.components {\n${issuesWorkspaceRules}\n}\n`;
+const issuesWorkspaceCss = `${generatedHeader}\n\n${layerOrder}\n\n@layer whatiuse.components {\n${issuesWorkspaceRules}\n}\n`;
 await writeFile(
   resolve(generatedRoot, "components/patterns/issues-workspace.tsx"),
-  `"use client";\n\nimport "../../styles/teum-base.css";\nimport "../../styles/patterns/issues-workspace.css";\n${generatedIssuesWorkspaceSource}`,
+  `"use client";\n\nimport "../../styles/whatiuse-base.css";\nimport "../../styles/patterns/issues-workspace.css";\n${generatedIssuesWorkspaceSource}`,
   "utf8",
 );
 await writeFile(resolve(generatedRoot, "styles/patterns/issues-workspace.css"), issuesWorkspaceCss, "utf8");
@@ -383,14 +442,14 @@ const generatedDataRecipesSource = dataRecipesSource.replace(
   dataRecipesImports,
 );
 if (generatedDataRecipesSource === dataRecipesSource) {
-  throw new Error("Teum Data recipe imports could not be rewritten for the public registry target.");
+  throw new Error("whatiuse Data recipe imports could not be rewritten for the public registry target.");
 }
-const dataRecipesRules = filterCss(source, (selector) => /\.teum-data-recipe[a-z0-9_\s.:[#>+~-]*/.test(normalizeSelector(selector)));
-if (!dataRecipesRules.trim()) throw new Error("Teum Data recipe CSS extraction produced no rules.");
-const dataRecipesCss = `${generatedHeader}\n\n${layerOrder}\n\n@layer teum.components {\n${dataRecipesRules}\n}\n`;
+const dataRecipesRules = filterCss(source, (selector) => /\.whatiuse-data-recipe[a-z0-9_\s.:[#>+~-]*/.test(normalizeSelector(selector)));
+if (!dataRecipesRules.trim()) throw new Error("whatiuse Data recipe CSS extraction produced no rules.");
+const dataRecipesCss = `${generatedHeader}\n\n${layerOrder}\n\n@layer whatiuse.components {\n${dataRecipesRules}\n}\n`;
 await writeFile(
   resolve(generatedRoot, "components/patterns/data-recipes.tsx"),
-  `"use client";\n\nimport "../../styles/teum-base.css";\nimport "../../styles/patterns/data-recipes.css";\n${generatedDataRecipesSource}`,
+  `"use client";\n\nimport "../../styles/whatiuse-base.css";\nimport "../../styles/patterns/data-recipes.css";\n${generatedDataRecipesSource}`,
   "utf8",
 );
 await writeFile(resolve(generatedRoot, "styles/patterns/data-recipes.css"), dataRecipesCss, "utf8");
@@ -401,29 +460,40 @@ import { Breakdown } from "../ui/breakdown";
 import { Chart } from "../ui/chart";
 import { Cohort } from "../ui/cohort";
 import { Comparison } from "../ui/comparison";
+import { DataExportMenu } from "../ui/data-export-menu";
+import { DataResultSummary } from "../ui/data-result-summary";
 import { DataTable, type DataTableColumn } from "../ui/data-table";
+import { DataToolbar } from "../ui/data-toolbar";
+import { DateRangeFilter } from "../ui/date-range-filter";
 import { DonutChart } from "../ui/donut-chart";
+import { FacetFilter } from "../ui/facet-filter";
 import { Funnel, type FunnelStage } from "../ui/funnel";
 import { Goal } from "../ui/goal";
 import { Heatmap } from "../ui/heatmap";
 import { Metric } from "../ui/metric";
+import { PropertyList } from "../ui/property-list";
+import { SavedViewMenu } from "../ui/saved-view-menu";
+import { SearchInput } from "../ui/search-input";
 import { SegmentedControl } from "../ui/segmented-control";
 import { Sparkline } from "../ui/sparkline";
 import { Timeline, type TimelineItem } from "../ui/timeline";
 import { type AnalyticsDatum, type AnalyticsSeries } from "../../lib/analytics";`;
-const generatedAnalyticsRecipesSource = analyticsRecipesSource.replace(
-  /import \{\n  Badge,[\s\S]*?\n\} from "\.\.\/components\/ui";/,
-  analyticsRecipesImports,
-);
+const generatedAnalyticsRecipesSource = analyticsRecipesSource
+  .replace(
+    /import \{\n  Badge,[\s\S]*?\n\} from "\.\.\/components\/ui";/,
+    analyticsRecipesImports,
+  )
+  .replace('from "../lib/data-export";', 'from "../../lib/data-export";')
+  .replace('from "../lib/data-view-state";', 'from "../../lib/data-view-state";');
 if (generatedAnalyticsRecipesSource === analyticsRecipesSource) {
-  throw new Error("Teum Analytics recipe imports could not be rewritten for the public registry target.");
+  throw new Error("whatiuse Analytics recipe imports could not be rewritten for the public registry target.");
 }
-const analyticsRecipesRules = filterCss(source, (selector) => /\.teum-analytics-(?:recipe|gallery)/.test(normalizeSelector(selector)));
-if (!analyticsRecipesRules.trim()) throw new Error("Teum Analytics recipe CSS extraction produced no rules.");
-const analyticsRecipesCss = `${generatedHeader}\n\n${layerOrder}\n\n@layer teum.components {\n${analyticsRecipesRules}\n}\n`;
+const analyticsRecipesRules = filterCss(source, (selector) => /\.whatiuse-analytics-(?:recipe|gallery)/.test(normalizeSelector(selector)));
+if (!analyticsRecipesRules.trim()) throw new Error("whatiuse Analytics recipe CSS extraction produced no rules.");
+const analyticsRecipesCss = `${generatedHeader}\n\n${layerOrder}\n\n@layer whatiuse.components {\n${analyticsRecipesRules}\n}\n`;
 await writeFile(
   resolve(generatedRoot, "components/patterns/analytics-recipes.tsx"),
-  `"use client";\n\nimport "../../styles/teum-base.css";\nimport "../../styles/patterns/analytics-recipes.css";\n${generatedAnalyticsRecipesSource}`,
+  `"use client";\n\nimport "../../styles/whatiuse-base.css";\nimport "../../styles/patterns/analytics-recipes.css";\n${generatedAnalyticsRecipesSource}`,
   "utf8",
 );
 await writeFile(resolve(generatedRoot, "styles/patterns/analytics-recipes.css"), analyticsRecipesCss, "utf8");
@@ -457,102 +527,102 @@ const generatedProductPatternRecipesSource = productPatternRecipesSource.replace
   productPatternRecipesImports,
 );
 if (generatedProductPatternRecipesSource === productPatternRecipesSource) {
-  throw new Error("Teum Product Pattern imports could not be rewritten for the public registry target.");
+  throw new Error("whatiuse Product Pattern imports could not be rewritten for the public registry target.");
 }
-const productPatternRules = filterCss(source, (selector) => /\.teum-product-pattern/.test(normalizeSelector(selector)));
-if (!productPatternRules.trim()) throw new Error("Teum Product Pattern CSS extraction produced no rules.");
-const productPatternCss = `${generatedHeader}\n\n${layerOrder}\n\n@layer teum.components {\n${productPatternRules}\n}\n`;
+const productPatternRules = filterCss(source, (selector) => /\.whatiuse-product-pattern/.test(normalizeSelector(selector)));
+if (!productPatternRules.trim()) throw new Error("whatiuse Product Pattern CSS extraction produced no rules.");
+const productPatternCss = `${generatedHeader}\n\n${layerOrder}\n\n@layer whatiuse.components {\n${productPatternRules}\n}\n`;
 await writeFile(
   resolve(generatedRoot, "components/patterns/product-pattern-recipes.tsx"),
-  `"use client";\n\nimport "../../styles/teum-base.css";\nimport "../../styles/patterns/product-pattern-recipes.css";\n${generatedProductPatternRecipesSource}`,
+  `"use client";\n\nimport "../../styles/whatiuse-base.css";\nimport "../../styles/patterns/product-pattern-recipes.css";\n${generatedProductPatternRecipesSource}`,
   "utf8",
 );
 await writeFile(resolve(generatedRoot, "styles/patterns/product-pattern-recipes.css"), productPatternCss, "utf8");
 
 const registryAggregator = [
   generatedHeader,
-  '@import "./teum-base.css";',
+  '@import "./whatiuse-base.css";',
   "",
 ].join("\n");
-await writeFile(resolve(generatedRoot, "styles/teum.css"), registryAggregator, "utf8");
+await writeFile(resolve(generatedRoot, "styles/whatiuse.css"), registryAggregator, "utf8");
 
 const expandedAggregator = [
   baseCss.trim(),
   ...componentItems.map((item) => componentResults.get(item.name).layeredRules),
 ].join("\n\n");
-await writeFile(resolve(root, "src/teum.css"), `${expandedAggregator}\n`, "utf8");
+await writeFile(resolve(root, "src/whatiuse.css"), `${compactCssWhitespace(expandedAggregator)}\n`, "utf8");
 
-const baseItem = registry.items.find((item) => item.name === "teum-base");
+const baseItem = registry.items.find((item) => item.name === "whatiuse-base");
 baseItem.description = "Inter, semantic monochrome tokens, global accessibility defaults, and the documented cascade contract.";
 baseItem.files = [
   { path: "registry/lib/cn.ts", type: "registry:lib", target: "lib/cn.ts" },
   { path: "registry/lib/behavior-contract.ts", type: "registry:lib", target: "lib/behavior-contract.ts" },
   { path: "registry/lib/motion-contract.ts", type: "registry:lib", target: "lib/motion-contract.ts" },
-  { path: "registry/styles/teum-base.css", type: "registry:style", target: "styles/teum-base.css" },
+  { path: "registry/styles/whatiuse-base.css", type: "registry:style", target: "styles/whatiuse-base.css" },
 ];
 
-const tailwindItem = registry.items.find((item) => item.name === "teum-tailwind");
-tailwindItem.description = "Optional Tailwind CSS v4 semantic utility mapping backed by the same Teum tokens.";
+const tailwindItem = registry.items.find((item) => item.name === "whatiuse-tailwind");
+tailwindItem.description = "Optional Tailwind CSS v4 semantic utility mapping backed by the same whatiuse tokens.";
 tailwindItem.files = [
-  { path: "registry/styles/teum-tailwind.css", type: "registry:style", target: "styles/teum-tailwind.css" },
+  { path: "registry/styles/whatiuse-tailwind.css", type: "registry:style", target: "styles/whatiuse-tailwind.css" },
 ];
 
 for (const item of componentItems) item.files = componentResults.get(item.name).files;
 
-const teumDataItem = registry.items.find((item) => item.name === "teum-data");
-teumDataItem.files = [
+const whatiuseDataItem = registry.items.find((item) => item.name === "whatiuse-data");
+whatiuseDataItem.files = [
   { path: "registry/components/patterns/issues-workspace.tsx", type: "registry:block", target: "components/patterns/issues-workspace.tsx" },
   { path: "registry/components/patterns/data-recipes.tsx", type: "registry:block", target: "components/patterns/data-recipes.tsx" },
   { path: "registry/lib/data-view-state.ts", type: "registry:lib", target: "lib/data-view-state.ts" },
   { path: "registry/lib/data-export.ts", type: "registry:lib", target: "lib/data-export.ts" },
-  { path: "registry/lib/teum-data-contract.ts", type: "registry:lib", target: "lib/teum-data-contract.ts" },
+  { path: "registry/lib/whatiuse-data-contract.ts", type: "registry:lib", target: "lib/whatiuse-data-contract.ts" },
   { path: "registry/styles/patterns/issues-workspace.css", type: "registry:style", target: "styles/patterns/issues-workspace.css" },
   { path: "registry/styles/patterns/data-recipes.css", type: "registry:style", target: "styles/patterns/data-recipes.css" },
 ];
 
-const teumAnalyticsItem = registry.items.find((item) => item.name === "teum-analytics");
-teumAnalyticsItem.files = [
+const whatiuseAnalyticsItem = registry.items.find((item) => item.name === "whatiuse-analytics");
+whatiuseAnalyticsItem.files = [
   { path: "registry/components/patterns/analytics-recipes.tsx", type: "registry:block", target: "components/patterns/analytics-recipes.tsx" },
   { path: "registry/lib/analytics.ts", type: "registry:lib", target: "lib/analytics.ts" },
-  { path: "registry/lib/teum-analytics-contract.ts", type: "registry:lib", target: "lib/teum-analytics-contract.ts" },
+  { path: "registry/lib/whatiuse-analytics-contract.ts", type: "registry:lib", target: "lib/whatiuse-analytics-contract.ts" },
   { path: "registry/styles/patterns/analytics-recipes.css", type: "registry:style", target: "styles/patterns/analytics-recipes.css" },
 ];
 
-const teumProductPatternsItem = registry.items.find((item) => item.name === "teum-product-patterns");
-teumProductPatternsItem.files = [
+const whatiuseProductPatternsItem = registry.items.find((item) => item.name === "whatiuse-product-patterns");
+whatiuseProductPatternsItem.files = [
   { path: "registry/components/patterns/product-pattern-recipes.tsx", type: "registry:block", target: "components/patterns/product-pattern-recipes.tsx" },
-  { path: "registry/lib/teum-product-patterns-contract.ts", type: "registry:lib", target: "lib/teum-product-patterns-contract.ts" },
+  { path: "registry/lib/whatiuse-product-patterns-contract.ts", type: "registry:lib", target: "lib/whatiuse-product-patterns-contract.ts" },
   { path: "registry/styles/patterns/product-pattern-recipes.css", type: "registry:style", target: "styles/patterns/product-pattern-recipes.css" },
 ];
 
-const teumAgentItem = registry.items.find((item) => item.name === "teum-agent");
-teumAgentItem.files = [
-  { path: "registry/lib/teum-agent-contract.ts", type: "registry:lib", target: "lib/teum-agent-contract.ts" },
-  { path: "registry/agent/teum-agent.json", type: "registry:file", target: "lib/teum-agent.json" },
+const whatiuseAgentItem = registry.items.find((item) => item.name === "whatiuse-agent");
+whatiuseAgentItem.files = [
+  { path: "registry/lib/whatiuse-agent-contract.ts", type: "registry:lib", target: "lib/whatiuse-agent-contract.ts" },
+  { path: "registry/agent/whatiuse-agent.json", type: "registry:file", target: "lib/whatiuse-agent.json" },
 ];
 
-const agentCatalog = JSON.parse(await readFile(resolve(root, "agent/generated/teum-agent.json"), "utf8"));
+const agentCatalog = JSON.parse(await readFile(resolve(root, "agent/generated/whatiuse-agent.json"), "utf8"));
 const agentItemById = new Map(agentCatalog.components.map((item) => [item.id, item]));
 for (const item of registry.items) {
   const agentItem = agentItemById.get(item.name);
   if (!agentItem) continue;
   item.meta = {
     ...(item.meta ?? {}),
-    teum: {
-      contract: "/agent/teum-agent.json",
+    whatiuse: {
+      contract: "/agent/whatiuse-agent.json",
       registryItem: agentItem.registryItem,
       ...(agentItem.useWhen ? { useWhen: agentItem.useWhen, avoidWhen: agentItem.avoidWhen } : {}),
     },
   };
 }
 
-const completeSystem = registry.items.find((item) => item.name === "teum");
+const completeSystem = registry.items.find((item) => item.name === "whatiuse");
 completeSystem.files = [
   ...baseItem.files,
   {
-    path: "registry/styles/teum.css",
+    path: "registry/styles/whatiuse.css",
     type: "registry:style",
-    target: "styles/teum.css",
+    target: "styles/whatiuse.css",
   },
   ...componentItems.flatMap((item) => item.files),
   {
@@ -566,9 +636,9 @@ completeSystem.files = [
     target: "lib/data-export.ts",
   },
   {
-    path: "registry/lib/teum-data-contract.ts",
+    path: "registry/lib/whatiuse-data-contract.ts",
     type: "registry:lib",
-    target: "lib/teum-data-contract.ts",
+    target: "lib/whatiuse-data-contract.ts",
   },
   {
     path: "registry/lib/analytics.ts",
@@ -576,24 +646,24 @@ completeSystem.files = [
     target: "lib/analytics.ts",
   },
   {
-    path: "registry/lib/teum-analytics-contract.ts",
+    path: "registry/lib/whatiuse-analytics-contract.ts",
     type: "registry:lib",
-    target: "lib/teum-analytics-contract.ts",
+    target: "lib/whatiuse-analytics-contract.ts",
   },
   {
-    path: "registry/lib/teum-product-patterns-contract.ts",
+    path: "registry/lib/whatiuse-product-patterns-contract.ts",
     type: "registry:lib",
-    target: "lib/teum-product-patterns-contract.ts",
+    target: "lib/whatiuse-product-patterns-contract.ts",
   },
   {
-    path: "registry/lib/teum-agent-contract.ts",
+    path: "registry/lib/whatiuse-agent-contract.ts",
     type: "registry:lib",
-    target: "lib/teum-agent-contract.ts",
+    target: "lib/whatiuse-agent-contract.ts",
   },
   {
-    path: "registry/agent/teum-agent.json",
+    path: "registry/agent/whatiuse-agent.json",
     type: "registry:file",
-    target: "lib/teum-agent.json",
+    target: "lib/whatiuse-agent.json",
   },
   {
     path: "registry/components/ui/index.ts",
@@ -605,4 +675,4 @@ completeSystem.files = [
 await writeFile(registryPath, `${JSON.stringify(registry, null, 2)}\n`, "utf8");
 
 const componentBytes = [...componentResults.values()].reduce((total, result) => total + result.bytes, 0);
-console.log(`[registry-style] generated ${coreComponentItems.length} core and ${productComponentItems.length} product component styles (${componentBytes} bytes), three Teum Data, three Teum Analytics, three Product Pattern recipes, and the Teum Agent contract, plus ${Buffer.byteLength(baseCss)} base bytes`);
+console.log(`[registry-style] generated ${coreComponentItems.length} core and ${productComponentItems.length} product component styles (${componentBytes} bytes), three whatiuse Data, three whatiuse Analytics, three Product Pattern recipes, and the whatiuse Agent contract, plus ${Buffer.byteLength(baseCss)} base bytes`);

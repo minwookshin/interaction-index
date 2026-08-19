@@ -44,7 +44,7 @@ export function ProjectFieldPreview() {
   const invalid = touched && name.trim().length === 0;
 
   return (
-    <div className="primary-field-preview teum-project-field-preview">
+    <div className="primary-field-preview whatiuse-project-field-preview">
       <Field invalid={invalid}>
         <FieldLabel>Project name</FieldLabel>
         <FieldControl
@@ -65,8 +65,8 @@ export function ActionButtonGroupPreview() {
   const [approved, setApproved] = useState(false);
 
   return (
-    <div className="teum-button-group-preview">
-      <span className="teum-sr-only" role="status" aria-live="polite">{message}</span>
+    <div className="whatiuse-button-group-preview">
+      <span className="whatiuse-sr-only" role="status" aria-live="polite">{message}</span>
       <ButtonGroup aria-label="Issue actions" attached>
         <Button size="small" variant="secondary" onClick={() => setMessage("Preview opened")}>Preview</Button>
         <Button size="small" variant="secondary" onClick={() => setMessage("Issue opened")}>Open</Button>
@@ -94,12 +94,12 @@ export function ProjectTextFieldPreview() {
   const error = touched && !valid ? "Use at least three lowercase characters." : undefined;
 
   return (
-    <div className="primary-field-preview teum-text-field-preview">
+    <div className="primary-field-preview whatiuse-text-field-preview">
       <TextField
         label="Handle"
         value={value}
-        leading={<span className="teum-text-field-preview__prefix">@</span>}
-        trailing={valid ? <Check className="teum-text-field-preview__valid" weight="bold" aria-hidden="true" /> : undefined}
+        leading={<span className="whatiuse-text-field-preview__prefix">@</span>}
+        trailing={valid ? <Check className="whatiuse-text-field-preview__valid" weight="bold" aria-hidden="true" /> : undefined}
         error={error}
         autoCapitalize="none"
         autoCorrect="off"
@@ -107,7 +107,7 @@ export function ProjectTextFieldPreview() {
         onChange={(event) => setValue(event.currentTarget.value.toLowerCase().replace(/[^a-z0-9-]/g, ""))}
         onBlur={() => setTouched(true)}
       />
-      <span className="teum-sr-only" role="status" aria-live="polite">{valid ? "Handle available" : "Handle unavailable"}</span>
+      <span className="whatiuse-sr-only" role="status" aria-live="polite">{valid ? "Handle available" : "Handle unavailable"}</span>
     </div>
   );
 }
@@ -116,7 +116,7 @@ export function DescriptionTextareaPreview() {
   const [value, setValue] = useState("Document the interaction contract.");
 
   return (
-    <div className="primary-field-preview teum-textarea-preview">
+    <div className="primary-field-preview whatiuse-textarea-preview">
       <Textarea
         label="Description"
         value={value}
@@ -190,7 +190,7 @@ export function AssigneeComboboxPreview() {
   const [value, setValue] = useState<ComboboxOption | null>(peopleOptions[1]);
 
   return (
-    <div className="primary-field-preview teum-assignee-preview">
+    <div className="primary-field-preview whatiuse-assignee-preview">
       <Combobox label="Assignee" options={peopleOptions} value={value} onValueChange={setValue} />
     </div>
   );
@@ -215,7 +215,7 @@ export function ComponentSearchPreview() {
   };
 
   return (
-    <div className="teum-component-search-preview">
+    <div className="whatiuse-component-search-preview">
       <SearchInput
         value={query}
         loading={loading}
@@ -223,7 +223,7 @@ export function ComponentSearchPreview() {
         onChange={(event) => updateQuery(event.currentTarget.value)}
         onClear={() => updateQuery("")}
       />
-      <span className="teum-sr-only" role="status" aria-live="polite">
+      <span className="whatiuse-sr-only" role="status" aria-live="polite">
         {loading ? "Searching components" : query ? "Search results updated" : ""}
       </span>
     </div>

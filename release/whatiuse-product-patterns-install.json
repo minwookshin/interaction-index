@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/verify-whatiuse-product-patterns-consumer.mjs",
+  "generatedAt": "2026-08-19T13:59:06.940Z",
+  "version": "0.1.0-rc.38",
+  "status": "passed",
+  "fixture": "Fresh React + TypeScript + Vite application using the source registry",
+  "item": "whatiuse-product-patterns",
+  "recipes": [
+    "Customer Workspace",
+    "Billing & Usage",
+    "Members & Permissions"
+  ],
+  "verifiedFiles": [
+    "src/components/patterns/product-pattern-recipes.tsx",
+    "src/lib/whatiuse-product-patterns-contract.ts",
+    "src/styles/patterns/product-pattern-recipes.css",
+    "src/components/ui/shared-detail.tsx",
+    "src/components/ui/data-table.tsx",
+    "src/components/ui/chart.tsx",
+    "src/components/ui/dialog.tsx"
+  ],
+  "typecheck": "passed",
+  "productionBuild": "passed",
+  "elapsedMs": 12402
+}

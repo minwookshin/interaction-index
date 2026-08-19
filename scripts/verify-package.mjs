@@ -69,12 +69,10 @@ const { stdout } = await exec(process.platform === "win32" ? "npm.cmd" : "npm", 
 const report = JSON.parse(stdout)[0];
 const paths = report.files.map((file) => file.path);
 const allowedRootFiles = new Set([
-  "CHANGELOG.md",
-  "COMPATIBILITY.md",
   "LICENSE",
-  "MIGRATIONS.md",
   "README.md",
   "SECURITY.md",
+  "THIRD_PARTY_NOTICES.md",
   "package.json",
 ]);
 for (const path of paths) {

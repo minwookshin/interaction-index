@@ -1,70 +1,70 @@
-.teum-tooltip-preview {
+.whatiuse-tooltip-preview {
   display: grid;
   min-width: 32px;
   place-items: center;
 }
 
-.teum-tooltip-preview[data-favorite] .teum-button {
-  color: var(--teum-fg-default);
+.whatiuse-tooltip-preview[data-favorite] .whatiuse-button {
+  color: var(--whatiuse-fg-default);
 }
 
-.teum-view-options-preview,
-.teum-sheet-preview,
-.teum-alert-dialog-preview {
+.whatiuse-view-options-preview,
+.whatiuse-sheet-preview,
+.whatiuse-alert-dialog-preview {
   width: min(520px, 100%);
 }
 
-.teum-sheet-preview .product-context__icon,
-.teum-alert-dialog-preview .product-context__icon {
+.whatiuse-sheet-preview .product-context__icon,
+.whatiuse-alert-dialog-preview .product-context__icon {
   width: 36px;
   height: 36px;
   border-radius: 9px;
 }
 
-.teum-sheet-preview .product-context__icon svg,
-.teum-alert-dialog-preview .product-context__icon svg {
+.whatiuse-sheet-preview .product-context__icon svg,
+.whatiuse-alert-dialog-preview .product-context__icon svg {
   width: 16px;
   height: 16px;
 }
 
-.teum-view-options-preview__popover {
+.whatiuse-view-options-preview__popover {
   display: grid;
   gap: 8px;
 }
 
-.teum-view-options-preview__setting {
+.whatiuse-view-options-preview__setting {
   padding-top: 2px;
 }
 
-.teum-context-menu-preview > svg:last-of-type {
+.whatiuse-context-menu-preview > svg:last-of-type {
   width: 13px;
   height: 13px;
-  color: var(--teum-fg-muted);
+  color: var(--whatiuse-fg-muted);
 }
 
-.teum-overlay-preview__menu-copy {
+.whatiuse-overlay-preview__menu-copy {
   display: inline-flex;
   min-width: 0;
   align-items: center;
   gap: 7px;
 }
 
-.teum-overlay-preview__danger-button {
-  background: var(--teum-fg-danger);
+.whatiuse-overlay-preview__danger-button {
+  background: var(--whatiuse-fg-danger);
   color: white;
-  box-shadow: 0 1px 2px color-mix(in oklch, var(--teum-fg-danger) 24%, transparent);
+  box-shadow: 0 1px 2px color-mix(in oklch, var(--whatiuse-fg-danger) 24%, transparent);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .teum-overlay-preview__danger-button:hover {
-    background: color-mix(in oklch, var(--teum-fg-danger) 88%, black);
+  .whatiuse-overlay-preview__danger-button:hover {
+    background: color-mix(in oklch, var(--whatiuse-fg-danger) 88%, black);
   }
 }
 
 @media (max-width: 540px) {
-  .teum-view-options-preview,
-  .teum-sheet-preview,
-  .teum-alert-dialog-preview {
+  .whatiuse-view-options-preview,
+  .whatiuse-sheet-preview,
+  .whatiuse-alert-dialog-preview {
     gap: 12px;
   }
 }

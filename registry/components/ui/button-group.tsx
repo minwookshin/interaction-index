@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/components/button-group.css";
 import type { ComponentPropsWithRef } from "react";
 import { cn } from "../../lib/cn";
@@ -13,7 +13,7 @@ export type ButtonGroupProps = ComponentPropsWithRef<"div"> & {
 export function ButtonGroup({ className, orientation = "horizontal", attached = false, role = "group", ...props }: ButtonGroupProps) {
   return (
     <div
-      className={cn("teum-button-group", className)}
+      className={cn("whatiuse-button-group", className)}
       role={role}
       data-orientation={orientation}
       data-attached={attached || undefined}
@@ -27,5 +27,5 @@ export type ButtonGroupSeparatorProps = ComponentPropsWithRef<"span"> & {
 };
 
 export function ButtonGroupSeparator({ className, orientation = "vertical", ...props }: ButtonGroupSeparatorProps) {
-  return <span className={cn("teum-button-group__separator", className)} role="separator" aria-orientation={orientation} {...props} />;
+  return <span className={cn("whatiuse-button-group__separator", className)} role="separator" aria-orientation={orientation} {...props} />;
 }

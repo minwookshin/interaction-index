@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-field",
+  "title": "Number Field",
+  "description": "Locale-aware bounded numeric input with direct entry and step controls.",
+  "dependencies": [
+    "@base-ui/react@1.7.0",
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/number-field.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/number-field.css\";\nimport { NumberField as NumberFieldPrimitive } from \"@base-ui/react/number-field\";\nimport { Minus, Plus } from \"@phosphor-icons/react\";\nimport { useId, type ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type NumberFieldProps = Omit<NumberFieldPrimitive.Root.Props, \"children\" | \"className\" | \"id\"> & {\n  id?: string;\n  label?: string;\n  description?: string;\n  error?: string;\n  suffix?: ReactNode;\n  className?: string;\n  inputClassName?: string;\n  inputProps?: Omit<NumberFieldPrimitive.Input.Props, \"id\" | \"className\" | \"aria-describedby\" | \"aria-invalid\">;\n};\n\nexport function NumberField({\n  id: providedId,\n  label,\n  description,\n  error,\n  suffix,\n  className,\n  inputClassName,\n  inputProps,\n  ...props\n}: NumberFieldProps) {\n  const generatedId = useId();\n  const id = providedId ?? generatedId;\n  const descriptionId = description ? `${id}-description` : undefined;\n  const errorId = error ? `${id}-error` : undefined;\n  const describedBy = [descriptionId, errorId].filter(Boolean).join(\" \") || undefined;\n  const accessibleLabel = label ?? inputProps?.[\"aria-label\"] ?? \"Value\";\n\n  return (\n    <NumberFieldPrimitive.Root id={id} className={cn(\"whatiuse-number-field\", className)} data-invalid={Boolean(error) || undefined} {...props}>\n      {label && <label className=\"whatiuse-field__label\" htmlFor={id}>{label}</label>}\n      <NumberFieldPrimitive.Group className=\"whatiuse-number-field__group\">\n        <NumberFieldPrimitive.Decrement className=\"whatiuse-number-field__step\" aria-label={`Decrease ${accessibleLabel}`}><Minus /></NumberFieldPrimitive.Decrement>\n        <NumberFieldPrimitive.Input className={cn(\"whatiuse-number-field__input\", inputClassName)} aria-invalid={Boolean(error) || undefined} aria-describedby={describedBy} {...inputProps} />\n        {suffix && <span className=\"whatiuse-number-field__suffix\" aria-hidden=\"true\">{suffix}</span>}\n        <NumberFieldPrimitive.Increment className=\"whatiuse-number-field__step\" aria-label={`Increase ${accessibleLabel}`}><Plus /></NumberFieldPrimitive.Increment>\n      </NumberFieldPrimitive.Group>\n      {description && <div id={descriptionId} className=\"whatiuse-field__description\">{description}</div>}\n      {error && <div id={errorId} className=\"whatiuse-field__error\">{error}</div>}\n    </NumberFieldPrimitive.Root>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/number-field.tsx"
+    },
+    {
+      "path": "registry/styles/components/number-field.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-field__label { color: var(--whatiuse-ink); font-size: 12px; font-weight: 550; }\n\n.whatiuse-field__description,\n.whatiuse-field__error { color: var(--whatiuse-ink-tertiary); font-size: 11.5px; line-height: 1.45; }\n\n.whatiuse-field__error { color: var(--whatiuse-fg-danger); font-weight: 520; }\n\n.whatiuse-number-field { display: grid; min-width: 0; gap: 6px; }\n\n.whatiuse-number-field__group {\n  display: flex;\n  width: 100%;\n  min-width: 0;\n  height: 32px;\n  align-items: center;\n  overflow: hidden;\n  border: 1px solid var(--whatiuse-control-border);\n  border-radius: var(--whatiuse-radius-sm);\n  background: var(--whatiuse-bg-control);\n  box-shadow: var(--whatiuse-shadow-control);\n  transition: border-color var(--whatiuse-hover-duration), box-shadow var(--whatiuse-hover-duration);\n}\n\n.whatiuse-number-field__input { width: 100%; min-width: 0; height: 100%; padding: 0 6px; border: 0; outline: 0; background: transparent; color: var(--whatiuse-fg-default); font-size: var(--whatiuse-type-ui); font-variant-numeric: tabular-nums; }\n\n.whatiuse-number-field__input::placeholder { color: var(--whatiuse-fg-subtle); }\n\n.whatiuse-number-field__step { display: grid; width: 30px; height: 30px; flex: 0 0 30px; padding: 0; place-items: center; border: 0; background: transparent; color: var(--whatiuse-fg-muted); cursor: pointer; transition: color var(--whatiuse-hover-duration), background-color var(--whatiuse-hover-duration), transform var(--whatiuse-press-duration) var(--whatiuse-ease-out); }\n\n.whatiuse-number-field__step svg { width: 12px; height: 12px; }\n\n.whatiuse-number-field__step:focus-visible { z-index: 1; outline: 2px solid var(--whatiuse-focus-control); outline-offset: -2px; }\n\n.whatiuse-number-field__step:active { transform: scale(.96); }\n\n.whatiuse-number-field__step[data-disabled] { color: var(--whatiuse-fg-disabled); cursor: not-allowed; }\n\n.whatiuse-number-field__suffix { padding-right: 4px; color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-label); }\n\n.whatiuse-number-field[data-disabled] .whatiuse-number-field__group { background: var(--whatiuse-bg-subtle); box-shadow: none; }\n\n.whatiuse-number-field[data-disabled] .whatiuse-number-field__input { color: var(--whatiuse-fg-disabled); cursor: not-allowed; }\n\n.whatiuse-number-field[data-invalid] .whatiuse-number-field__group { border-color: color-mix(in oklch, var(--whatiuse-fg-danger) 46%, var(--whatiuse-control-border)); box-shadow: 0 0 0 2px color-mix(in oklch, var(--whatiuse-fg-danger) 11%, transparent); }\n\n@media (hover: hover) and (pointer: fine) {\n.whatiuse-number-field__step:not([data-disabled]):hover { background: var(--whatiuse-hover); color: var(--whatiuse-fg-default); }\n}\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-number-field__step:active { transform: none; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/number-field.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/number-field",
+      "useWhen": "The value is numeric and stepping, bounds, or locale-aware formatting reduce entry errors.",
+      "avoidWhen": "The number is an identifier, phone number, postal code, or another string that is not mathematically stepped."
+    }
+  },
+  "type": "registry:ui"
+}

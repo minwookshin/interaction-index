@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "row-actions-menu",
+  "title": "Row Actions Menu",
+  "description": "Object-specific actions behind a consistently placed compact control.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base",
+    "@whatiuse/icon-button",
+    "@whatiuse/menu"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/row-actions-menu.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/row-actions-menu.css\";\nimport { DotsThree } from \"@phosphor-icons/react\";\nimport type { ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\nimport { IconButton } from \"./icon-button\";\nimport { Menu, MenuContent, MenuItem, MenuSeparator, MenuTrigger } from \"./menu\";\n\nexport type RowAction = {\n  id: string;\n  label: string;\n  icon?: ReactNode;\n  disabled?: boolean;\n  destructive?: boolean;\n  separatorBefore?: boolean;\n};\n\nexport type RowActionsMenuProps = {\n  label: string;\n  actions: readonly RowAction[];\n  onAction: (action: RowAction) => void;\n  className?: string;\n};\n\nexport function RowActionsMenu({ label, actions, onAction, className }: RowActionsMenuProps) {\n  return (\n    <span className={cn(\"whatiuse-row-actions-menu\", className)}>\n      <Menu>\n        <MenuTrigger render={<IconButton size=\"small\" variant=\"ghost\" aria-label={label}><DotsThree weight=\"bold\" /></IconButton>} />\n        <MenuContent className=\"whatiuse-row-actions-menu__menu\" align=\"end\">\n          {actions.map((action) => (\n            <span key={action.id} className=\"whatiuse-row-actions-menu__entry\">\n              {action.separatorBefore && <MenuSeparator />}\n              <MenuItem className={action.destructive ? \"whatiuse-menu__item--danger\" : undefined} disabled={action.disabled} onClick={() => onAction(action)}>\n                {action.icon && <span aria-hidden=\"true\">{action.icon}</span>}\n                {action.label}\n              </MenuItem>\n            </span>\n          ))}\n        </MenuContent>\n      </Menu>\n    </span>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/row-actions-menu.tsx"
+    },
+    {
+      "path": "registry/styles/components/row-actions-menu.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-menu__item--danger { color: var(--whatiuse-fg-danger); }\n\n.whatiuse-menu__item--danger svg { color: currentColor; }\n\n.whatiuse-row-actions-menu {\n  display: inline-flex;\n  min-width: 0;\n  vertical-align: middle;\n}\n\n.whatiuse-row-actions-menu__menu { min-width: 168px; }\n\n.whatiuse-row-actions-menu__entry { display: contents; }\n\n.whatiuse-row-actions-menu__entry .whatiuse-menu__item svg { width: 14px; height: 14px; color: var(--whatiuse-fg-subtle); }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/row-actions-menu.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/row-actions-menu"
+    }
+  },
+  "type": "registry:component"
+}

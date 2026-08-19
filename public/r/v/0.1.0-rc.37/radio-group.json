@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "title": "Radio Group",
+  "description": "Accessible mutually exclusive choices with descriptions and validation.",
+  "dependencies": [
+    "@base-ui/react@1.7.0"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/radio-group.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/radio-group.css\";\nimport { Radio } from \"@base-ui/react/radio\";\nimport { RadioGroup as RadioGroupPrimitive } from \"@base-ui/react/radio-group\";\nimport { useId } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type RadioOption = {\n  value: string;\n  label: string;\n  description?: string;\n  disabled?: boolean;\n};\n\nexport type RadioGroupProps = Omit<RadioGroupPrimitive.Props<string>, \"children\"> & {\n  label: string;\n  description?: string;\n  error?: string;\n  options: readonly RadioOption[];\n  orientation?: \"vertical\" | \"horizontal\";\n};\n\nexport function RadioGroup({ className, label, description, error, options, orientation = \"vertical\", ...props }: RadioGroupProps) {\n  const id = useId();\n  const descriptionId = description ? `${id}-description` : undefined;\n  const errorId = error ? `${id}-error` : undefined;\n\n  return (\n    <div className=\"whatiuse-radio-field\" data-invalid={Boolean(error) || undefined}>\n      <div id={id} className=\"whatiuse-radio-field__label\">{label}</div>\n      {description && <div id={descriptionId} className=\"whatiuse-field__description\">{description}</div>}\n      <RadioGroupPrimitive\n        aria-labelledby={id}\n        aria-describedby={[descriptionId, errorId].filter(Boolean).join(\" \") || undefined}\n        aria-invalid={Boolean(error) || undefined}\n        className={cn(\"whatiuse-radio-group\", `whatiuse-radio-group--${orientation}`, className)}\n        {...props}\n      >\n        {options.map((option) => (\n          <label className=\"whatiuse-radio-option\" key={option.value} data-disabled={option.disabled || undefined}>\n            <Radio.Root value={option.value} disabled={option.disabled} className=\"whatiuse-radio\">\n              <Radio.Indicator className=\"whatiuse-radio__indicator\" />\n            </Radio.Root>\n            <span><strong>{option.label}</strong>{option.description && <small>{option.description}</small>}</span>\n          </label>\n        ))}\n      </RadioGroupPrimitive>\n      {error && <div id={errorId} className=\"whatiuse-field__error\">{error}</div>}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/radio-group.tsx"
+    },
+    {
+      "path": "registry/styles/components/radio-group.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-radio-field { display: grid; gap: 6px; min-width: 220px; }\n\n.whatiuse-radio-field__label { color: var(--whatiuse-ink); font-size: var(--whatiuse-type-label); font-weight: 540; }\n\n.whatiuse-radio-group { display: flex; gap: 4px; }\n\n.whatiuse-radio-option { display: flex; min-height: 32px; align-items: flex-start; gap: 9px; padding: 6px 0; color: var(--whatiuse-ink); cursor: pointer; }\n\n.whatiuse-radio-option > span { display: grid; gap: 2px; line-height: 1.3; }\n\n.whatiuse-radio-option strong { font-size: var(--whatiuse-type-ui); font-weight: 480; }\n\n.whatiuse-radio-option small { max-width: 280px; color: var(--whatiuse-ink-tertiary); font-size: var(--whatiuse-type-metadata); }\n\n.whatiuse-radio-option[data-disabled] { color: var(--whatiuse-ink-disabled); cursor: not-allowed; }\n\n.whatiuse-radio {\n  display: grid;\n  width: 16px;\n  height: 16px;\n  margin-top: 1px;\n  flex: 0 0 auto;\n  place-items: center;\n  border: 1px solid var(--whatiuse-border-strong);\n  border-radius: 50%;\n  background: var(--whatiuse-control-surface);\n  cursor: inherit;\n  transition: border-color var(--whatiuse-hover-duration) ease, background-color var(--whatiuse-hover-duration) ease, transform var(--whatiuse-press-duration) var(--whatiuse-ease-out, ease-out);\n}\n\n.whatiuse-radio[data-checked] { border-color: var(--whatiuse-inverse); background: var(--whatiuse-inverse); }\n\n.whatiuse-radio__indicator { width: 6px; height: 6px; border-radius: 50%; background: var(--whatiuse-on-inverse); }\n\n.whatiuse-radio:focus-visible { outline: 2px solid var(--whatiuse-focus-control); outline-offset: 2px; }\n\n.whatiuse-radio[data-disabled] { border-color: var(--whatiuse-border); background: var(--whatiuse-gray-100); }\n\n@media (hover: hover) and (pointer: fine) {\n.whatiuse-radio-option:hover .whatiuse-radio:not([data-disabled]) { border-color: var(--whatiuse-gray-700); }\n}\n\n.whatiuse-field__description,\n.whatiuse-field__error { color: var(--whatiuse-ink-tertiary); font-size: 11.5px; line-height: 1.45; }\n\n.whatiuse-field__error { color: var(--whatiuse-fg-danger); font-weight: 520; }\n\n:root[data-theme=\"dark\"] .whatiuse-radio[data-disabled] { background: rgb(255 255 255 / 0.025); color: var(--whatiuse-ink-disabled); }\n\n:root[data-theme=\"dark\"] .whatiuse-radio[data-checked] { box-shadow: none; }\n\n.whatiuse-radio__indicator {\n  opacity: 1;\n  transform: scale(1);\n  transition: opacity 140ms var(--whatiuse-ease-out), transform 140ms var(--whatiuse-ease-out);\n}\n\n@starting-style {\n.whatiuse-radio__indicator {\n    opacity: 0;\n    transform: scale(.9);\n  }\n}\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-radio:active { transform: none; }\n\n.whatiuse-radio__indicator { transition-duration: 0.01ms; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/radio-group.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/radio-group",
+      "useWhen": "A small set of mutually exclusive options should remain visible for comparison.",
+      "avoidWhen": "The list is long or space is constrained. Use Select instead."
+    }
+  },
+  "type": "registry:ui"
+}

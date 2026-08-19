@@ -1,0 +1,31 @@
+import { type ReactNode } from "react";
+export type ScatterPoint = {
+    id: string;
+    label: string;
+    x: number;
+    y: number;
+    series?: string;
+    tone?: "primary" | "secondary" | "tertiary";
+};
+export type ScatterChartProps = {
+    title: string;
+    description?: string;
+    data: readonly ScatterPoint[];
+    xLabel: string;
+    yLabel: string;
+    className?: string;
+    height?: number;
+    xDomain?: readonly [number, number];
+    yDomain?: readonly [number, number];
+    xFormatter?: (value: number) => string;
+    yFormatter?: (value: number) => string;
+    activeIndex?: number | null;
+    defaultActiveIndex?: number | null;
+    onActiveIndexChange?: (index: number | null) => void;
+    onPointActivate?: (point: ScatterPoint, index: number) => void;
+    loading?: boolean;
+    empty?: ReactNode;
+    error?: ReactNode;
+    showDataByDefault?: boolean;
+};
+export declare function ScatterChart({ title, description, data, xLabel, yLabel, className, height, xDomain, yDomain, xFormatter, yFormatter, activeIndex, defaultActiveIndex, onActiveIndexChange, onPointActivate, loading, empty, error, showDataByDefault, }: ScatterChartProps): import("react").JSX.Element;

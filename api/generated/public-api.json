@@ -4,10 +4,10 @@
   "entryPoint": "src/components/ui/index.ts",
   "typescriptVersion": "6.0.3",
   "componentCount": 45,
-  "productComponentCount": 17,
-  "publicComponentCount": 62,
-  "exportCount": 356,
-  "runtimeExportCount": 201,
+  "productComponentCount": 36,
+  "publicComponentCount": 81,
+  "exportCount": 418,
+  "runtimeExportCount": 224,
   "indexExports": [
     "ActionList",
     "ActionListItem",
@@ -22,14 +22,23 @@
     "AlertDialogTitle",
     "AlertDialogTrigger",
     "AlertProps",
+    "AnalyticsActiveIndexOptions",
     "AnalyticsBandPosition",
     "AnalyticsDatum",
     "AnalyticsDomainOptions",
+    "AnalyticsFrame",
+    "AnalyticsFrameProps",
+    "AnalyticsInspection",
+    "AnalyticsInspectionItem",
+    "AnalyticsInspectionProps",
     "AnalyticsPlotBox",
     "AnalyticsPointPosition",
     "AnalyticsSeries",
     "AnalyticsSeriesTone",
     "AnalyticsValue",
+    "AuditLog",
+    "AuditLogItem",
+    "AuditLogProps",
     "Avatar",
     "AvatarGroup",
     "AvatarProps",
@@ -67,6 +76,8 @@
     "ColumnManager",
     "ColumnManagerColumn",
     "ColumnManagerProps",
+    "ColumnVisibilityMenu",
+    "ColumnVisibilityMenuProps",
     "Combobox",
     "ComboboxOption",
     "ComboboxProps",
@@ -85,8 +96,13 @@
     "ContextSwitcher",
     "ContextSwitcherOption",
     "ContextSwitcherProps",
+    "CursorPagination",
+    "CursorPaginationProps",
     "DATA_VIEW_STATE_VERSION",
     "DataDateRange",
+    "DataDensity",
+    "DataDensityControl",
+    "DataDensityControlProps",
     "DataExportArtifact",
     "DataExportColumn",
     "DataExportFormat",
@@ -96,8 +112,19 @@
     "DataFilter",
     "DataFilterOperator",
     "DataFilterValue",
+    "DataGroupMenu",
+    "DataGroupMenuProps",
+    "DataGroupOption",
     "DataRequest",
+    "DataResultSummary",
+    "DataResultSummaryProps",
     "DataSavedView",
+    "DataSortMenu",
+    "DataSortMenuProps",
+    "DataSortOption",
+    "DataSortValue",
+    "DataState",
+    "DataStateProps",
     "DataTable",
     "DataTableColumn",
     "DataTableColumnPinning",
@@ -134,6 +161,9 @@
     "DonutChartProps",
     "EmptyState",
     "EmptyStateProps",
+    "FacetFilter",
+    "FacetFilterOption",
+    "FacetFilterProps",
     "Field",
     "FieldControl",
     "FieldControlProps",
@@ -156,12 +186,18 @@
     "Funnel",
     "FunnelProps",
     "FunnelStage",
+    "Gauge",
+    "GaugeMarker",
+    "GaugeProps",
     "Goal",
     "GoalProps",
     "Heatmap",
     "HeatmapCell",
     "HeatmapProps",
     "HeatmapRow",
+    "Histogram",
+    "HistogramBin",
+    "HistogramProps",
     "IconButton",
     "IconButtonProps",
     "InlineEdit",
@@ -203,15 +239,35 @@
     "PopoverTrigger",
     "Progress",
     "ProgressProps",
+    "PropertyList",
+    "PropertyListItem",
+    "PropertyListProps",
+    "RadarAxis",
+    "RadarChart",
+    "RadarChartProps",
+    "RadarSeries",
     "RadioGroup",
     "RadioGroupProps",
     "RadioOption",
     "ReorderableItem",
     "ReorderableList",
     "ReorderableListProps",
+    "RowAction",
+    "RowActionsMenu",
+    "RowActionsMenuProps",
+    "SankeyChart",
+    "SankeyChartProps",
+    "SankeyLink",
+    "SankeyNode",
     "SavedView",
+    "SavedViewMenu",
+    "SavedViewMenuContainerProps",
+    "SavedViewMenuProps",
     "SavedViews",
     "SavedViewsProps",
+    "ScatterChart",
+    "ScatterChartProps",
+    "ScatterPoint",
     "SearchInput",
     "SearchInputProps",
     "SegmentedControl",
@@ -258,16 +314,6 @@
     "TabsContent",
     "TabsList",
     "TabsTrigger",
-    "TeumAgentPlan",
-    "TeumAgentRecipeContract",
-    "TeumAgentRecipeId",
-    "TeumAgentSelectionRule",
-    "TeumAnalyticsComponentContract",
-    "TeumDataComponentContract",
-    "TeumMotionContract",
-    "TeumMotionFrequency",
-    "TeumMotionRule",
-    "TeumProductPatternContract",
     "TextField",
     "TextFieldProps",
     "Textarea",
@@ -307,7 +353,21 @@
     "UseDataViewStateOptions",
     "UseDataViewStateResult",
     "UseSavedViewsOptions",
+    "WaterfallChart",
+    "WaterfallChartProps",
+    "WaterfallDatum",
+    "WhatiuseAgentPlan",
+    "WhatiuseAgentRecipeContract",
+    "WhatiuseAgentRecipeId",
+    "WhatiuseAgentSelectionRule",
+    "WhatiuseAnalyticsComponentContract",
+    "WhatiuseDataComponentContract",
+    "WhatiuseMotionContract",
+    "WhatiuseMotionFrequency",
+    "WhatiuseMotionRule",
+    "WhatiuseProductPatternContract",
     "actionListContract",
+    "analyticsClassNames",
     "auditLogContract",
     "billingUsageContract",
     "buildDataExport",
@@ -328,6 +388,7 @@
     "getAnalyticsDomain",
     "getAnalyticsPointPosition",
     "getDataRequestKey",
+    "getLinearAnalyticsKeyIndex",
     "getPercentChange",
     "getSharedDetailMotionPreset",
     "getStackedAnalyticsDomain",
@@ -338,33 +399,34 @@
     "parseDataViewState",
     "parseSavedViews",
     "patchDataViewState",
-    "selectTeumRecipe",
+    "selectWhatiuseRecipe",
     "selectedSharedDetailMotionPreset",
     "serializeDataViewState",
     "serializeSavedViews",
     "sharedDetailContract",
     "sharedDetailMotionPresets",
     "summarizeAnalyticsSeries",
-    "teumAgentForbiddenRules",
-    "teumAgentRecipeContracts",
-    "teumAgentSelectionRules",
-    "teumAgentSystemContract",
-    "teumAnalyticsComponentContracts",
-    "teumAnalyticsRecipeContracts",
-    "teumAnalyticsStateContract",
-    "teumDataComponentContracts",
-    "teumDataRecipeContracts",
-    "teumDataTableFeatures",
-    "teumDataViewStateContract",
-    "teumMotionContract",
-    "teumProductPatternContracts",
-    "teumProductPatternSystemContract",
     "toDataRequest",
     "toast",
     "undoStackContract",
+    "useAnalyticsActiveIndex",
     "useDataViewState",
     "useSavedViews",
-    "useUndoStack"
+    "useUndoStack",
+    "whatiuseAgentForbiddenRules",
+    "whatiuseAgentRecipeContracts",
+    "whatiuseAgentSelectionRules",
+    "whatiuseAgentSystemContract",
+    "whatiuseAnalyticsComponentContracts",
+    "whatiuseAnalyticsRecipeContracts",
+    "whatiuseAnalyticsStateContract",
+    "whatiuseDataComponentContracts",
+    "whatiuseDataRecipeContracts",
+    "whatiuseDataTableFeatures",
+    "whatiuseDataViewStateContract",
+    "whatiuseMotionContract",
+    "whatiuseProductPatternContracts",
+    "whatiuseProductPatternSystemContract"
   ],
   "indexRuntimeExports": [
     "ActionList",
@@ -377,6 +439,9 @@
     "AlertDialogHeader",
     "AlertDialogTitle",
     "AlertDialogTrigger",
+    "AnalyticsFrame",
+    "AnalyticsInspection",
+    "AuditLog",
     "Avatar",
     "AvatarGroup",
     "Badge",
@@ -394,6 +459,7 @@
     "CollapsibleContent",
     "CollapsibleTrigger",
     "ColumnManager",
+    "ColumnVisibilityMenu",
     "Combobox",
     "Comparison",
     "ContextMenu",
@@ -406,8 +472,14 @@
     "ContextMenuSeparator",
     "ContextMenuTrigger",
     "ContextSwitcher",
+    "CursorPagination",
     "DATA_VIEW_STATE_VERSION",
+    "DataDensityControl",
     "DataExportMenu",
+    "DataGroupMenu",
+    "DataResultSummary",
+    "DataSortMenu",
+    "DataState",
     "DataTable",
     "DataToolbar",
     "DatePicker",
@@ -422,6 +494,7 @@
     "DialogTrigger",
     "DonutChart",
     "EmptyState",
+    "FacetFilter",
     "Field",
     "FieldControl",
     "FieldDescription",
@@ -432,8 +505,10 @@
     "FieldsetLegend",
     "FilterBuilder",
     "Funnel",
+    "Gauge",
     "Goal",
     "Heatmap",
+    "Histogram",
     "IconButton",
     "InlineEdit",
     "InputGroup",
@@ -460,9 +535,15 @@
     "PopoverTitle",
     "PopoverTrigger",
     "Progress",
+    "PropertyList",
+    "RadarChart",
     "RadioGroup",
     "ReorderableList",
+    "RowActionsMenu",
+    "SankeyChart",
+    "SavedViewMenu",
     "SavedViews",
+    "ScatterChart",
     "SearchInput",
     "SegmentedControl",
     "Select",
@@ -510,7 +591,9 @@
     "Tree",
     "UndoBar",
     "UndoStackProvider",
+    "WaterfallChart",
     "actionListContract",
+    "analyticsClassNames",
     "auditLogContract",
     "billingUsageContract",
     "buildDataExport",
@@ -531,6 +614,7 @@
     "getAnalyticsDomain",
     "getAnalyticsPointPosition",
     "getDataRequestKey",
+    "getLinearAnalyticsKeyIndex",
     "getPercentChange",
     "getSharedDetailMotionPreset",
     "getStackedAnalyticsDomain",
@@ -541,38 +625,39 @@
     "parseDataViewState",
     "parseSavedViews",
     "patchDataViewState",
-    "selectTeumRecipe",
+    "selectWhatiuseRecipe",
     "selectedSharedDetailMotionPreset",
     "serializeDataViewState",
     "serializeSavedViews",
     "sharedDetailContract",
     "sharedDetailMotionPresets",
     "summarizeAnalyticsSeries",
-    "teumAgentForbiddenRules",
-    "teumAgentRecipeContracts",
-    "teumAgentSelectionRules",
-    "teumAgentSystemContract",
-    "teumAnalyticsComponentContracts",
-    "teumAnalyticsRecipeContracts",
-    "teumAnalyticsStateContract",
-    "teumDataComponentContracts",
-    "teumDataRecipeContracts",
-    "teumDataTableFeatures",
-    "teumDataViewStateContract",
-    "teumMotionContract",
-    "teumProductPatternContracts",
-    "teumProductPatternSystemContract",
     "toDataRequest",
     "toast",
     "undoStackContract",
+    "useAnalyticsActiveIndex",
     "useDataViewState",
     "useSavedViews",
-    "useUndoStack"
+    "useUndoStack",
+    "whatiuseAgentForbiddenRules",
+    "whatiuseAgentRecipeContracts",
+    "whatiuseAgentSelectionRules",
+    "whatiuseAgentSystemContract",
+    "whatiuseAnalyticsComponentContracts",
+    "whatiuseAnalyticsRecipeContracts",
+    "whatiuseAnalyticsStateContract",
+    "whatiuseDataComponentContracts",
+    "whatiuseDataRecipeContracts",
+    "whatiuseDataTableFeatures",
+    "whatiuseDataViewStateContract",
+    "whatiuseMotionContract",
+    "whatiuseProductPatternContracts",
+    "whatiuseProductPatternSystemContract"
   ],
   "components": {
     "button": {
       "source": "src/components/ui/button.tsx",
-      "sourceHash": "3819370dd8b4eb9ab119fb095cebf01fbb4f07b5b5cff155abb8b1af47e54009",
+      "sourceHash": "bad559f00f9cb47cdab8355d2a85f4783a891b4121526a7b0e8b2cf447b314a9",
       "declaration": "api/generated/types/components/ui/button.d.ts",
       "exports": [
         {
@@ -600,7 +685,7 @@
     },
     "icon-button": {
       "source": "src/components/ui/icon-button.tsx",
-      "sourceHash": "ffd0f4f62485e1a570e7ff6322a296b7ad9da848c27ecaebc7d093a953d3cc23",
+      "sourceHash": "bcd537ff66dbc6cafbd8781147e1e9291fc578d4c4e4aacb41e35c4be7aa97fe",
       "declaration": "api/generated/types/components/ui/icon-button.d.ts",
       "exports": [
         {
@@ -621,7 +706,7 @@
     },
     "field": {
       "source": "src/components/ui/field.tsx",
-      "sourceHash": "984b06383e1f74468a27746635f105a5d3539760251eebc901c9560e71003788",
+      "sourceHash": "dea91a71c061e9cd288d543f1639287ab184bf9fb69091c3a65527232e28d4d2",
       "declaration": "api/generated/types/components/ui/field.d.ts",
       "exports": [
         {
@@ -733,7 +818,7 @@
     },
     "input-group": {
       "source": "src/components/ui/input-group.tsx",
-      "sourceHash": "b7895877bc4ee8a920e937ae9d2da5a1509ff64f243d469d3ad1afd0b2112495",
+      "sourceHash": "f968ae71a9406acc91d29d4dd85fc844b748141cf266f7d7a7a2245e96a5d00c",
       "declaration": "api/generated/types/components/ui/input-group.d.ts",
       "exports": [
         {
@@ -796,7 +881,7 @@
     },
     "kbd": {
       "source": "src/components/ui/kbd.tsx",
-      "sourceHash": "b3e0486044259bb7422d9d131dbde501a585e048c0e79f01212b07a360ec3da6",
+      "sourceHash": "003346fb02fecfb2c50a10c9504c4f63c436adfc9292d9fcf96bac3c70974414",
       "declaration": "api/generated/types/components/ui/kbd.d.ts",
       "exports": [
         {
@@ -831,7 +916,7 @@
     },
     "button-group": {
       "source": "src/components/ui/button-group.tsx",
-      "sourceHash": "bf27f324861a9122da4291acc078c7e5e8a70cd77c1b9245b723abe8a0a9617b",
+      "sourceHash": "ba0725897a62e1e2ade92d35ad84461c4ae8017382329f285ab6d33be050def4",
       "declaration": "api/generated/types/components/ui/button-group.d.ts",
       "exports": [
         {
@@ -866,7 +951,7 @@
     },
     "toolbar": {
       "source": "src/components/ui/toolbar.tsx",
-      "sourceHash": "2fc7c7227cac12c1431c443658c69e6b99e1b14e4f89b259711b9240b7c0d34d",
+      "sourceHash": "124b3b3373b4caea4875d088a680ebde23b2939b8aeb599d70b332263a18a5f3",
       "declaration": "api/generated/types/components/ui/toolbar.d.ts",
       "exports": [
         {
@@ -957,7 +1042,7 @@
     },
     "text-field": {
       "source": "src/components/ui/text-field.tsx",
-      "sourceHash": "a067ec8e837cb3131231972920cbf9bb7d2901d921bcba0c20c9fa645dafd70a",
+      "sourceHash": "072e9afd71c4c1da24aa0a7139bdcebfbb87c7e0ab93e7fe62a4f62f91261a8d",
       "declaration": "api/generated/types/components/ui/text-field.d.ts",
       "exports": [
         {
@@ -978,7 +1063,7 @@
     },
     "number-field": {
       "source": "src/components/ui/number-field.tsx",
-      "sourceHash": "1eebfe4427d19e7efb5304fb9cb7f2cbc2f0ea92131dcbcb4e63891c82d76e67",
+      "sourceHash": "2372051e49e434862d40d46456913b8b90738fd2085c183024d0e25c6711f4bc",
       "declaration": "api/generated/types/components/ui/number-field.d.ts",
       "exports": [
         {
@@ -999,7 +1084,7 @@
     },
     "segmented-control": {
       "source": "src/components/ui/segmented-control.tsx",
-      "sourceHash": "7f06df594f83ea8f689594757459b5a8e61e3a6dc01ceb4c3e9fc4b6136ee8d4",
+      "sourceHash": "b854cf8afa32cca0da36bc92e7c85f96ebd32d2a0273f3e1e722db67fc4a91b3",
       "declaration": "api/generated/types/components/ui/segmented-control.d.ts",
       "exports": [
         {
@@ -1027,7 +1112,7 @@
     },
     "date-picker": {
       "source": "src/components/ui/date-picker.tsx",
-      "sourceHash": "7be209d9159a5e678395e495ce45b8e1069cb8d48d0bc578e39b9d4db30341dc",
+      "sourceHash": "7b000f4b92fd323837012c092a70321a812881fcba0c20006463280a508a38bc",
       "declaration": "api/generated/types/components/ui/date-picker.d.ts",
       "exports": [
         {
@@ -1062,7 +1147,7 @@
     },
     "checkbox": {
       "source": "src/components/ui/checkbox.tsx",
-      "sourceHash": "d6e5d90166fa986c46b62d44729ceb580a20d8da4f7f61ad99c39ae8b904b163",
+      "sourceHash": "0db8de22a283dda1886e22a94725a827c31d451f95539b5e93d142a37e0a1eb1",
       "declaration": "api/generated/types/components/ui/checkbox.d.ts",
       "exports": [
         {
@@ -1083,7 +1168,7 @@
     },
     "switch": {
       "source": "src/components/ui/switch.tsx",
-      "sourceHash": "1662d901a81773e6fb4517024b914c689cc107a3bb678c87933b71f76714b4ed",
+      "sourceHash": "49ec29206b3514001569791c742d6eec92f04c9baf66270cb40b0818f05bd9f7",
       "declaration": "api/generated/types/components/ui/switch.d.ts",
       "exports": [
         {
@@ -1104,7 +1189,7 @@
     },
     "tooltip": {
       "source": "src/components/ui/tooltip.tsx",
-      "sourceHash": "72ca009e516f98bacfaf9be67335e4246bef7c3aa47467335ddde199a27954c7",
+      "sourceHash": "7460903982388ace7ceee7b139fb43234d87609c90077b31bf79e1eb7ba54626",
       "declaration": "api/generated/types/components/ui/tooltip.d.ts",
       "exports": [
         {
@@ -1146,7 +1231,7 @@
     },
     "popover": {
       "source": "src/components/ui/popover.tsx",
-      "sourceHash": "20d2d0ee61f3b8be232992c3664e7d04e698fd68b19df4cb2d2d32206ac37f9f",
+      "sourceHash": "59429329479109b5b222b4a28be973e406ec1d6fd0a196a696a2b93efe9c5d64",
       "declaration": "api/generated/types/components/ui/popover.d.ts",
       "exports": [
         {
@@ -1195,7 +1280,7 @@
     },
     "menu": {
       "source": "src/components/ui/menu.tsx",
-      "sourceHash": "5942ac27f6331af122fd4478098d67a8dd372029b7c10a335e21865135aa8a23",
+      "sourceHash": "186f0a2545ce57f2de28adc14d4d5182ef2021d35d51d2a584e32fa267b8c708",
       "declaration": "api/generated/types/components/ui/menu.d.ts",
       "exports": [
         {
@@ -1272,7 +1357,7 @@
     },
     "dialog": {
       "source": "src/components/ui/dialog.tsx",
-      "sourceHash": "0f2a1a170b29ef48ec0ac4e5de90671948ea26ddf3f2fb8429c41b9781be4324",
+      "sourceHash": "3dc9526891efb951f2ad8ca5c9b7fbb498bd0340521d54be903ce2635f52d5e7",
       "declaration": "api/generated/types/components/ui/dialog.d.ts",
       "exports": [
         {
@@ -1342,7 +1427,7 @@
     },
     "context-menu": {
       "source": "src/components/ui/context-menu.tsx",
-      "sourceHash": "fe95d3e4083c2125dbc536977baef6a3a7fbca695768b78c38016efd1f9364af",
+      "sourceHash": "f5d74d05f14b0cebd3c78842f392160951be06ddc468875ad396955ffdd7a560",
       "declaration": "api/generated/types/components/ui/context-menu.d.ts",
       "exports": [
         {
@@ -1419,7 +1504,7 @@
     },
     "sheet": {
       "source": "src/components/ui/sheet.tsx",
-      "sourceHash": "c23899fda032764103ec99ccc6c623f695e4f1118ff359b5b9a51c6c8439bdcc",
+      "sourceHash": "122eae79863a9f3c94eb28802c8cba618d2fc2f3e6840030d4ab7dbb2822590f",
       "declaration": "api/generated/types/components/ui/sheet.d.ts",
       "exports": [
         {
@@ -1503,7 +1588,7 @@
     },
     "alert-dialog": {
       "source": "src/components/ui/alert-dialog.tsx",
-      "sourceHash": "854abad07256ae9ebe9ff634fe5db1b081bf9a2b1e0ec6b5fdf28494bc47817d",
+      "sourceHash": "854b0c5dd80b4746c3efd52e33971f1b1571ea95f5e03cd6f827aa901a7cd158",
       "declaration": "api/generated/types/components/ui/alert-dialog.d.ts",
       "exports": [
         {
@@ -1566,7 +1651,7 @@
     },
     "tabs": {
       "source": "src/components/ui/tabs.tsx",
-      "sourceHash": "ad268bc73eff272eca0a99db5000ed022b100e4aca9fb9a4ac887b94814cd360",
+      "sourceHash": "b96d333770a6eeb29dbba078ba95631a64ccd0574f053be60a5777173b760bac",
       "declaration": "api/generated/types/components/ui/tabs.d.ts",
       "exports": [
         {
@@ -1601,7 +1686,7 @@
     },
     "toast": {
       "source": "src/components/ui/toast.tsx",
-      "sourceHash": "640ae76406aa51dbbc584457dfb46ffc205e4c4cf37a3489397b0b83856573bb",
+      "sourceHash": "63918acbc72232c8966ab96a1ff27e5d290b2b2aceac4764cd37b132caf1d1d3",
       "declaration": "api/generated/types/components/ui/toast.d.ts",
       "exports": [
         {
@@ -1650,7 +1735,7 @@
     },
     "inline-edit": {
       "source": "src/components/ui/inline-edit.tsx",
-      "sourceHash": "fada713cec9d3791575fdc0542531b19383fe82db831f9fb604153b3be553545",
+      "sourceHash": "62780f64f9580eb93761e7613fb7945fb9fd589d85281afe8807e5bb03c36f63",
       "declaration": "api/generated/types/components/ui/inline-edit.d.ts",
       "exports": [
         {
@@ -1678,7 +1763,7 @@
     },
     "reorderable-list": {
       "source": "src/components/ui/reorderable-list.tsx",
-      "sourceHash": "a72ab72f721c5814fec97b6f3a0d25ef26754ec1d5ecd7cb78740a1a3b428cdc",
+      "sourceHash": "ebb0d760d8a20eaddd278750fce4942bde0a4ed3d99ce643ad4fbf995d120e95",
       "declaration": "api/generated/types/components/ui/reorderable-list.d.ts",
       "exports": [
         {
@@ -1706,7 +1791,7 @@
     },
     "action-list": {
       "source": "src/components/ui/action-list.tsx",
-      "sourceHash": "a83eeafb7a285a5e2f34d37fad41615be796b7c22ecd05b47bcb1a46c1f61449",
+      "sourceHash": "4f71179d873c6b8b1f86da6311eb3f6b1efe6e646b9f06cb3d3e29c19fddedbd",
       "declaration": "api/generated/types/components/ui/action-list.d.ts",
       "exports": [
         {
@@ -1741,7 +1826,7 @@
     },
     "shared-detail": {
       "source": "src/components/ui/shared-detail.tsx",
-      "sourceHash": "0b7d45ee2b7b378fccea25ba498bef4c55620194325ea33871a2c94ec7a05abd",
+      "sourceHash": "6174e2783e1cf64f326c3bc63a7511fbb9bd2f5783d7247be1a3f090bef1a3ee",
       "declaration": "api/generated/types/components/ui/shared-detail.d.ts",
       "exports": [
         {
@@ -1811,7 +1896,7 @@
     },
     "undo-stack": {
       "source": "src/components/ui/undo-stack.tsx",
-      "sourceHash": "46a6450f5b91b9d771fe6a076981339ccffb4dbadaa1ece5781763dfea3fa570",
+      "sourceHash": "eba27b22f87c9d23f5e87618b1306dfb6bf2a284948a71fb40ea9f75a389b3b8",
       "declaration": "api/generated/types/components/ui/undo-stack.d.ts",
       "exports": [
         {
@@ -1860,7 +1945,7 @@
     },
     "badge": {
       "source": "src/components/ui/badge.tsx",
-      "sourceHash": "8443f0a980d44892f20c42b6d2894ba8b037fb9afae391ee8a40f68a3e26dd1b",
+      "sourceHash": "297f82a1049b069dc1b1b30cc851f87a8fbd7f284b8ed7ab32bd38ba44b29a65",
       "declaration": "api/generated/types/components/ui/badge.d.ts",
       "exports": [
         {
@@ -1881,7 +1966,7 @@
     },
     "avatar": {
       "source": "src/components/ui/avatar.tsx",
-      "sourceHash": "450ef069cb8ff327b0ba828b14d90cc09c9e0bac3dfcb7d9bcbee87e294c9109",
+      "sourceHash": "2b12a04a2fb008ee802cab0bf3729a7b5d3603b927284b6d877832ebd503997d",
       "declaration": "api/generated/types/components/ui/avatar.d.ts",
       "exports": [
         {
@@ -1909,7 +1994,7 @@
     },
     "textarea": {
       "source": "src/components/ui/textarea.tsx",
-      "sourceHash": "32825b66f709a5743bc9cb1ea9d8db357b677fd31e3083b80ca706461bbe968b",
+      "sourceHash": "87d2ba2ace9c7009ff3d57a400c3aec03a69a971b4b203a0381300ae44081418",
       "declaration": "api/generated/types/components/ui/textarea.d.ts",
       "exports": [
         {
@@ -1930,7 +2015,7 @@
     },
     "radio-group": {
       "source": "src/components/ui/radio-group.tsx",
-      "sourceHash": "0b58af1ff14dc09b1e6bee35d53b0777fa80cb3a438b40859ce9e38a13d40a56",
+      "sourceHash": "81027dd69fd9f034cd6863f47eb237c2f3c8cf02346fdbe6cae683a6dbcecb33",
       "declaration": "api/generated/types/components/ui/radio-group.d.ts",
       "exports": [
         {
@@ -1958,7 +2043,7 @@
     },
     "select": {
       "source": "src/components/ui/select.tsx",
-      "sourceHash": "2bef93cfac4ea65f9b00ce31489fd8770bf488e6792acd4f51e45dbba7bfc7cf",
+      "sourceHash": "b52fe9ad9db3c9879087a4c36902e548a363a1ec46afd9c4ef0eacfe51754518",
       "declaration": "api/generated/types/components/ui/select.d.ts",
       "exports": [
         {
@@ -1986,7 +2071,7 @@
     },
     "context-switcher": {
       "source": "src/components/ui/context-switcher.tsx",
-      "sourceHash": "6d40bb94c42a4850eebfc682a0b4585ab7868ab36b3bad0ac8397197aad07bcb",
+      "sourceHash": "8ff4a659c69adc76edbbffa26ccb1f2c99ee213d94fed027b57542b04a676274",
       "declaration": "api/generated/types/components/ui/context-switcher.d.ts",
       "exports": [
         {
@@ -2014,7 +2099,7 @@
     },
     "combobox": {
       "source": "src/components/ui/combobox.tsx",
-      "sourceHash": "e872d500c3ecf74a95642982be950052f8f334d177e7616a408a16d4ef348bc9",
+      "sourceHash": "7f915860d96a1b6b951c768f0d8013b47019734d4ab2363e4bb7583fc90ef0bf",
       "declaration": "api/generated/types/components/ui/combobox.d.ts",
       "exports": [
         {
@@ -2042,7 +2127,7 @@
     },
     "search-input": {
       "source": "src/components/ui/search-input.tsx",
-      "sourceHash": "7a620a6296f022ebecdc0c159c002fd2bcd1394aa8648b817b45df9defd3b5df",
+      "sourceHash": "4b5fc1591a7aa86e34157ad91191e0d97428fe00ad0bdd1e2d77833baa9a05c7",
       "declaration": "api/generated/types/components/ui/search-input.d.ts",
       "exports": [
         {
@@ -2063,7 +2148,7 @@
     },
     "breadcrumbs": {
       "source": "src/components/ui/breadcrumbs.tsx",
-      "sourceHash": "5a82fb0d3b015aa3e443907c2345adbc6484c47963b670174ea1ccf9b09dc584",
+      "sourceHash": "f74137962d45a8745b0703b27a7430e967e858b2befcc8dc77ac8a7bb89c1944",
       "declaration": "api/generated/types/components/ui/breadcrumbs.d.ts",
       "exports": [
         {
@@ -2091,7 +2176,7 @@
     },
     "pagination": {
       "source": "src/components/ui/pagination.tsx",
-      "sourceHash": "6a78f80123ee33b19e9a451db45cab2a73dd215f647f7b0f3f99a40eccdac769",
+      "sourceHash": "157eba6d9b10bbcf8ecb8dd05cc40c5168780d9cb0f6140fac15755545b3d73c",
       "declaration": "api/generated/types/components/ui/pagination.d.ts",
       "exports": [
         {
@@ -2112,7 +2197,7 @@
     },
     "collapsible": {
       "source": "src/components/ui/collapsible.tsx",
-      "sourceHash": "85faa7ec526e7424f8485cdbd403dcaf4611fff189add0a3f0c410de93f5cba6",
+      "sourceHash": "ae08b94c839943becbd93b6c2f7630ece2dbd7093aa43479ada96aeb51fc9b80",
       "declaration": "api/generated/types/components/ui/collapsible.d.ts",
       "exports": [
         {
@@ -2147,7 +2232,7 @@
     },
     "skeleton": {
       "source": "src/components/ui/skeleton.tsx",
-      "sourceHash": "b833cc6ff0210b4b3865fa89cc49292b3739aaa281900287c2b76d8223fff33d",
+      "sourceHash": "3ee29ba5e79b99cfa46715145079b3b7973af2d9673bcf60f84e4f9d6d5d352a",
       "declaration": "api/generated/types/components/ui/skeleton.d.ts",
       "exports": [
         {
@@ -2175,7 +2260,7 @@
     },
     "progress": {
       "source": "src/components/ui/progress.tsx",
-      "sourceHash": "1ba0bea333cb7028331b923f121347d1d7a2c3d5e230fec9d33f42453a769878",
+      "sourceHash": "1379231a66799aa1657ff78c5f4aecbb6fafb525ffacc56eec09ff89ed1b3f1c",
       "declaration": "api/generated/types/components/ui/progress.d.ts",
       "exports": [
         {
@@ -2196,7 +2281,7 @@
     },
     "spinner": {
       "source": "src/components/ui/spinner.tsx",
-      "sourceHash": "918c0b475fd4de803f924939cc8d851445ccf07758c563df43608a31b9b04fa9",
+      "sourceHash": "b5cae65f3b03a2bcf7e175ae8b439165340661c9a828f6ac05baf1965d5f2102",
       "declaration": "api/generated/types/components/ui/spinner.d.ts",
       "exports": [
         {
@@ -2217,7 +2302,7 @@
     },
     "alert": {
       "source": "src/components/ui/alert.tsx",
-      "sourceHash": "3cc39f193c373baf1dbda8451ca31cb8985a9e326f8de9628c8ed8cf105bcd43",
+      "sourceHash": "3be5f8111ffaf9f240c08abadb91bc37266f71d6080b62e49ec47f5e204cbb35",
       "declaration": "api/generated/types/components/ui/alert.d.ts",
       "exports": [
         {
@@ -2238,7 +2323,7 @@
     },
     "empty-state": {
       "source": "src/components/ui/empty-state.tsx",
-      "sourceHash": "c80b0776fb155b38a1781c1104b3ee4fe87900a060f6b0700408a50e9a4320c1",
+      "sourceHash": "6271b2b64fc596e373e9fc30c545d9fa56f969daff3baad7a0378c11268f0cff",
       "declaration": "api/generated/types/components/ui/empty-state.d.ts",
       "exports": [
         {
@@ -2259,7 +2344,7 @@
     },
     "table": {
       "source": "src/components/ui/table.tsx",
-      "sourceHash": "9d97736dd5fb54c560637c6ae56ad46bbb4546d7100a9336a40fc932b197b24e",
+      "sourceHash": "702e0a1a349c7bdf9f240f0c8ac34d36b3694bcc69a1ba0e768de5fdda172eea",
       "declaration": "api/generated/types/components/ui/table.d.ts",
       "exports": [
         {
@@ -2329,7 +2414,7 @@
     },
     "tree": {
       "source": "src/components/ui/tree.tsx",
-      "sourceHash": "b81a225396842e88781cb431760197c6c33b172eab1d4b162e6becc3dca0c843",
+      "sourceHash": "cca5e68fa9f26b0e91515979a756648e879f5e85445d22e863155be7c1991e00",
       "declaration": "api/generated/types/components/ui/tree.d.ts",
       "exports": [
         {
@@ -2359,7 +2444,7 @@
   "productComponents": {
     "data-table": {
       "source": "src/components/ui/data-table.tsx",
-      "sourceHash": "3697eaf98b672797dd559dc261b44600e15ee95b45bbe9667482d14e69fd3ce8",
+      "sourceHash": "535398e3e33bb42c2bf31d496ad63a14e1d96cc562d6eb72435fd696d1a0bda6",
       "declaration": "api/generated/types/components/ui/data-table.d.ts",
       "exports": [
         {
@@ -2405,17 +2490,17 @@
           "description": ""
         },
         {
-          "name": "teumDataTableFeatures",
+          "name": "whatiuseDataTableFeatures",
           "kind": "const",
-          "signature": "teumDataTableFeatures: { columnSizingFeature: import(\"@tanstack/table-core\").TableFeature; columnResizingFeature: import(\"@tanstack/table-core\").TableFeature; columnPinningFeature: import(\"@tanstack/table-core\").TableFeature; columnVisibil…",
-          "typeHash": "230af307754ba9bdec8a4d4c6351f4ed9ed024b362219ec04a70229e7965d1ee",
+          "signature": "whatiuseDataTableFeatures: { columnSizingFeature: import(\"@tanstack/table-core\").TableFeature; columnResizingFeature: import(\"@tanstack/table-core\").TableFeature; columnPinningFeature: import(\"@tanstack/table-core\").TableFeature; columnVis…",
+          "typeHash": "5cb01cc8f01260f690dd151f592d67cc086dc2fcbdfb8c86f87b4393d8066208",
           "description": ""
         }
       ]
     },
     "filter-builder": {
       "source": "src/components/ui/filter-builder.tsx",
-      "sourceHash": "e9c064cdfa49d49b68ec0fed79d1504b31c946f2d7c49172f34262a802298973",
+      "sourceHash": "63da993e897e8e14589ed19dc6c49a01fd7337a4ef0d2972467c340a410c9382",
       "declaration": "api/generated/types/components/ui/filter-builder.d.ts",
       "exports": [
         {
@@ -2457,7 +2542,7 @@
     },
     "data-toolbar": {
       "source": "src/components/ui/data-toolbar.tsx",
-      "sourceHash": "ab70305e8f8d87f5cfcee82fc782700b928149b74078a9ef43d10cc92a28a9d1",
+      "sourceHash": "cf00bdd0647665041d9118b411080fe6d5b7dc3aa6124c309874e82fb129281d",
       "declaration": "api/generated/types/components/ui/data-toolbar.d.ts",
       "exports": [
         {
@@ -2520,7 +2605,7 @@
     },
     "bulk-action-bar": {
       "source": "src/components/ui/bulk-action-bar.tsx",
-      "sourceHash": "b5b3c6a2fb9152e736dc3705bc51161aeffe4850a3be121e4999ea006d14c564",
+      "sourceHash": "8ee8e91842f4b49cbde0d52d93269c245abbe09f11f2696baad879b6ac0d9278",
       "declaration": "api/generated/types/components/ui/bulk-action-bar.d.ts",
       "exports": [
         {
@@ -2539,9 +2624,324 @@
         }
       ]
     },
+    "saved-view-menu": {
+      "source": "src/components/ui/saved-view-menu.tsx",
+      "sourceHash": "cc39ef12dd1e5cf0da88a198497cb32cd8912615a1af44a00c90fda350de10d7",
+      "declaration": "api/generated/types/components/ui/saved-view-menu.d.ts",
+      "exports": [
+        {
+          "name": "SavedViewMenu",
+          "kind": "function",
+          "signature": "SavedViewMenu({ className, ...props }: SavedViewMenuProps): import(\"react\").JSX.Element",
+          "typeHash": "0bb4c462e6ae8f672a35bcf4e4dccb2eff67082c1cc34759ba7d658e701122e0",
+          "description": ""
+        },
+        {
+          "name": "SavedViewMenuContainerProps",
+          "kind": "type",
+          "signature": "SavedViewMenuContainerProps = HTMLAttributes<HTMLSpanElement>",
+          "typeHash": "602e984cb328fdbf0bff895c611f05bd3f6f7d226a7591dee68564004369c7a2",
+          "description": ""
+        },
+        {
+          "name": "SavedViewMenuProps",
+          "kind": "type",
+          "signature": "SavedViewMenuProps = SavedViewsProps & { className?: string; }",
+          "typeHash": "b46a1350e7af373036c018fa60f7dfc7db8512609fa6449410af86ff237c217f",
+          "description": ""
+        }
+      ]
+    },
+    "column-visibility-menu": {
+      "source": "src/components/ui/column-visibility-menu.tsx",
+      "sourceHash": "e2a20280c47cff0c7b43205648587b22ab3e34f7d817fd08fa15e6c74823be2e",
+      "declaration": "api/generated/types/components/ui/column-visibility-menu.d.ts",
+      "exports": [
+        {
+          "name": "ColumnVisibilityMenu",
+          "kind": "function",
+          "signature": "ColumnVisibilityMenu({ className, ...props }: ColumnVisibilityMenuProps): import(\"react\").JSX.Element",
+          "typeHash": "60d8043cccfe129aa8a76b04893aadf22861b24448571b760d92e42ebd3a95b9",
+          "description": ""
+        },
+        {
+          "name": "ColumnVisibilityMenuProps",
+          "kind": "type",
+          "signature": "ColumnVisibilityMenuProps = ColumnManagerProps & { className?: string; }",
+          "typeHash": "245092f6671213f0970c16e83dea77672e76fe8bb72ee2b0bf17ff5df44e1925",
+          "description": ""
+        }
+      ]
+    },
+    "facet-filter": {
+      "source": "src/components/ui/facet-filter.tsx",
+      "sourceHash": "e55557a3f402f04b132747b76856fa6b3198efac5a292c88f32083a0b087ca09",
+      "declaration": "api/generated/types/components/ui/facet-filter.d.ts",
+      "exports": [
+        {
+          "name": "FacetFilter",
+          "kind": "function",
+          "signature": "FacetFilter({ label, options, values, onValuesChange, className }: FacetFilterProps): import(\"react\").JSX.Element",
+          "typeHash": "ba34832cf2cb297bcaa03eee17c61fa90274b0f68d1757c7f92ca1f54c253d13",
+          "description": ""
+        },
+        {
+          "name": "FacetFilterOption",
+          "kind": "type",
+          "signature": "FacetFilterOption = { value: string; label: string; count?: number; disabled?: boolean; }",
+          "typeHash": "d133e45519fe08b2dd9a90a7d9f242bb0e1deddf52193c0b717e5e0ecb71039b",
+          "description": ""
+        },
+        {
+          "name": "FacetFilterProps",
+          "kind": "type",
+          "signature": "FacetFilterProps = { label: string; options: readonly FacetFilterOption[]; values: readonly string[]; onValuesChange: (values: readonly string[]) => void; className?: string; }",
+          "typeHash": "dfe78373581c7ac6f57719b8ec5198e4d412fade137b2758cbcb89ad7fe212b7",
+          "description": ""
+        }
+      ]
+    },
+    "data-sort-menu": {
+      "source": "src/components/ui/data-sort-menu.tsx",
+      "sourceHash": "58e365c94b1e361392ac39844abee554c693e088db8cbe24743dd5359b7c44ce",
+      "declaration": "api/generated/types/components/ui/data-sort-menu.d.ts",
+      "exports": [
+        {
+          "name": "DataSortMenu",
+          "kind": "function",
+          "signature": "DataSortMenu({ options, value, onValueChange, label, className }: DataSortMenuProps): import(\"react\").JSX.Element",
+          "typeHash": "1bdcabdc18b5b65955277c3f86e6c16075a5a1f0ea9a978e993c721e5f36419c",
+          "description": ""
+        },
+        {
+          "name": "DataSortMenuProps",
+          "kind": "type",
+          "signature": "DataSortMenuProps = { options: readonly DataSortOption[]; value: DataSortValue | null; onValueChange: (value: DataSortValue | null) => void; label?: string; className?: string; }",
+          "typeHash": "4b5e78d1e5fcbd31d8f59c4142548ba9303af4cd2cc0f9db426a3864ce8981d3",
+          "description": ""
+        },
+        {
+          "name": "DataSortOption",
+          "kind": "type",
+          "signature": "DataSortOption = { id: string; label: string; disabled?: boolean; }",
+          "typeHash": "40232e9f62d256d00549764dd4c7b33be3b1c785708413ac039021cef3007606",
+          "description": ""
+        },
+        {
+          "name": "DataSortValue",
+          "kind": "type",
+          "signature": "DataSortValue = { id: string; direction: \"asc\" | \"desc\"; }",
+          "typeHash": "0a1483f75b8806ae936198f4ae58e7235c44a336c1981141a665a584f46b012a",
+          "description": ""
+        }
+      ]
+    },
+    "data-group-menu": {
+      "source": "src/components/ui/data-group-menu.tsx",
+      "sourceHash": "bc86b3374f49e113c90fcb95cd5bbaa47833d45b2eeecdbf7cfc64c9a4cc96f0",
+      "declaration": "api/generated/types/components/ui/data-group-menu.d.ts",
+      "exports": [
+        {
+          "name": "DataGroupMenu",
+          "kind": "function",
+          "signature": "DataGroupMenu({ options, value, onValueChange, label, className }: DataGroupMenuProps): import(\"react\").JSX.Element",
+          "typeHash": "9db42f7bd185f046c363fff9e98471c134fc700d898e9f6c3f99bf93fe29c311",
+          "description": ""
+        },
+        {
+          "name": "DataGroupMenuProps",
+          "kind": "type",
+          "signature": "DataGroupMenuProps = { options: readonly DataGroupOption[]; value: string | null; onValueChange: (value: string | null) => void; label?: string; className?: string; }",
+          "typeHash": "5c54d9e2c4fc271a725e4f558a794a46ca16bab61a3b87f4911f230407d522c9",
+          "description": ""
+        },
+        {
+          "name": "DataGroupOption",
+          "kind": "type",
+          "signature": "DataGroupOption = { id: string; label: string; disabled?: boolean; }",
+          "typeHash": "d6aa76b6bffdeb93c216f98815525a7663c903879f526b526ed154da3027f5cb",
+          "description": ""
+        }
+      ]
+    },
+    "data-density-control": {
+      "source": "src/components/ui/data-density-control.tsx",
+      "sourceHash": "df0f312dcdbfca2600f159bf73f7f0326d208e287f69a5342162c55d4c29d281",
+      "declaration": "api/generated/types/components/ui/data-density-control.d.ts",
+      "exports": [
+        {
+          "name": "DataDensity",
+          "kind": "type",
+          "signature": "DataDensity = \"compact\" | \"default\" | \"comfortable\"",
+          "typeHash": "8e8b67988876ac484687a839cb30d85908940e643965d1af91cf6f1766f7f772",
+          "description": ""
+        },
+        {
+          "name": "DataDensityControl",
+          "kind": "function",
+          "signature": "DataDensityControl({ value, defaultValue, onValueChange, label, className }: DataDensityControlProps): import(\"react\").JSX.Element",
+          "typeHash": "84d7ec33f4d17cd85a3edbd9e6dab66a0828cf862fe950460b2512e9082030ef",
+          "description": ""
+        },
+        {
+          "name": "DataDensityControlProps",
+          "kind": "type",
+          "signature": "DataDensityControlProps = { value?: DataDensity; defaultValue?: DataDensity; onValueChange?: (value: DataDensity) => void; label?: string; className?: string; }",
+          "typeHash": "78890d3f894059b3e8eb1ccb6c08e2df55a9316f398a9cc12f4927ae42ac0286",
+          "description": ""
+        }
+      ]
+    },
+    "data-result-summary": {
+      "source": "src/components/ui/data-result-summary.tsx",
+      "sourceHash": "2884eec8acfa6917cb4923312db09b4e7622db45d80eacf4c63231e2d183f70d",
+      "declaration": "api/generated/types/components/ui/data-result-summary.d.ts",
+      "exports": [
+        {
+          "name": "DataResultSummary",
+          "kind": "function",
+          "signature": "DataResultSummary({ total, filtered, selected, noun, detail, className, ...props }: DataResultSummaryProps): import(\"react\").JSX.Element",
+          "typeHash": "827e862714a1fff93e6c8abc89c838a94355b04deda41d2a6fa37d7c2acdaf90",
+          "description": ""
+        },
+        {
+          "name": "DataResultSummaryProps",
+          "kind": "type",
+          "signature": "DataResultSummaryProps = Omit<HTMLAttributes<HTMLOutputElement>, \"children\"> & { total: number; filtered?: number; selected?: number; noun?: string; detail?: ReactNode; }",
+          "typeHash": "8e21a8bef828a105bd0c34d126ad28f7056e16fd09d4be608aa2312577ba637b",
+          "description": ""
+        }
+      ]
+    },
+    "cursor-pagination": {
+      "source": "src/components/ui/cursor-pagination.tsx",
+      "sourceHash": "0f0c7dc63ef20f0c11b5e47675d2824cf843ccd2944ea2160eb08ca4745a6346",
+      "declaration": "api/generated/types/components/ui/cursor-pagination.d.ts",
+      "exports": [
+        {
+          "name": "CursorPagination",
+          "kind": "function",
+          "signature": "CursorPagination({ label, hasPrevious, hasNext, onPrevious, onNext, range, loading, className, ...props }: CursorPaginationProps): import(\"react\").JSX.Element",
+          "typeHash": "501d25f0c2933b269839d6e345f22e80b61ed4fa9de56215326149cca363abe5",
+          "description": ""
+        },
+        {
+          "name": "CursorPaginationProps",
+          "kind": "type",
+          "signature": "CursorPaginationProps = HTMLAttributes<HTMLElement> & { label?: string; hasPrevious: boolean; hasNext: boolean; onPrevious: () => void; onNext: () => void; range?: ReactNode; loading?: boolean; }",
+          "typeHash": "3e31feee56a75fd3a732926f0ba2a9c286490e60a8d69b8676e18408a14bb918",
+          "description": ""
+        }
+      ]
+    },
+    "row-actions-menu": {
+      "source": "src/components/ui/row-actions-menu.tsx",
+      "sourceHash": "b61be61c712cfd5724b9564f0c7f2e7a0e24c090075ffcea18d11b8c83f510bd",
+      "declaration": "api/generated/types/components/ui/row-actions-menu.d.ts",
+      "exports": [
+        {
+          "name": "RowAction",
+          "kind": "type",
+          "signature": "RowAction = { id: string; label: string; icon?: ReactNode; disabled?: boolean; destructive?: boolean; separatorBefore?: boolean; }",
+          "typeHash": "0c2ff608f421c661ad30c55b952268aa7dc368c062802af40dba43599babf3b0",
+          "description": ""
+        },
+        {
+          "name": "RowActionsMenu",
+          "kind": "function",
+          "signature": "RowActionsMenu({ label, actions, onAction, className }: RowActionsMenuProps): import(\"react\").JSX.Element",
+          "typeHash": "7e406b9a36e348c22153daccff7813c96b93c17274f1f32f0fa273d936b8fde1",
+          "description": ""
+        },
+        {
+          "name": "RowActionsMenuProps",
+          "kind": "type",
+          "signature": "RowActionsMenuProps = { label: string; actions: readonly RowAction[]; onAction: (action: RowAction) => void; className?: string; }",
+          "typeHash": "3c5407799e6c631e61c6f1f41160313e9b8cd058629c89265e0932d6f73d96b2",
+          "description": ""
+        }
+      ]
+    },
+    "property-list": {
+      "source": "src/components/ui/property-list.tsx",
+      "sourceHash": "c8d97f6457a3b46dd4edbac45599350219f571a4c3bd303282344f8997ef7234",
+      "declaration": "api/generated/types/components/ui/property-list.d.ts",
+      "exports": [
+        {
+          "name": "PropertyList",
+          "kind": "function",
+          "signature": "PropertyList({ items, columns, className, ...props }: PropertyListProps): import(\"react\").JSX.Element",
+          "typeHash": "8b04253d8474f9e54b8bf11ba2504926eb2b42c0aa209705b9841379405c5e07",
+          "description": ""
+        },
+        {
+          "name": "PropertyListItem",
+          "kind": "type",
+          "signature": "PropertyListItem = { id: string; label: ReactNode; value: ReactNode; description?: ReactNode; }",
+          "typeHash": "2c9ca7e48d32fe2108a290e9ef4748a0cb4f96a14845cf7d61d7744a7a2e4764",
+          "description": ""
+        },
+        {
+          "name": "PropertyListProps",
+          "kind": "type",
+          "signature": "PropertyListProps = HTMLAttributes<HTMLDListElement> & { items: readonly PropertyListItem[]; columns?: 1 | 2; }",
+          "typeHash": "2dc39f470c121b99c46b47ac30d413ed21b08515310acd4e7369d5523bc1db70",
+          "description": ""
+        }
+      ]
+    },
+    "audit-log": {
+      "source": "src/components/ui/audit-log.tsx",
+      "sourceHash": "89618575484a48645dedb2062458dd5b4554346a7ab6713a815a2622595a608a",
+      "declaration": "api/generated/types/components/ui/audit-log.d.ts",
+      "exports": [
+        {
+          "name": "AuditLog",
+          "kind": "function",
+          "signature": "AuditLog({ label, items, activeId, onSelect, className, ...props }: AuditLogProps): import(\"react\").JSX.Element",
+          "typeHash": "0bda456c2f929199c05023563148076c26a6cfcb57de409dda4af46190036863",
+          "description": ""
+        },
+        {
+          "name": "AuditLogItem",
+          "kind": "type",
+          "signature": "AuditLogItem = { id: string; actor: ReactNode; action: ReactNode; timestamp: ReactNode; metadata?: ReactNode; tone?: \"neutral\" | \"danger\"; }",
+          "typeHash": "e89778a935f06e6dc6688fce6c76535d7e7e55a8e18a9ca9d9186e5b2f2b9766",
+          "description": ""
+        },
+        {
+          "name": "AuditLogProps",
+          "kind": "type",
+          "signature": "AuditLogProps = Omit<HTMLAttributes<HTMLOListElement>, \"onSelect\"> & { label: string; items: readonly AuditLogItem[]; activeId?: string; onSelect?: (item: AuditLogItem) => void; }",
+          "typeHash": "da45ec0aae547a45934dcd87983a2e7fd22f817211e96d68e4392ea1125635ba",
+          "description": ""
+        }
+      ]
+    },
+    "data-state": {
+      "source": "src/components/ui/data-state.tsx",
+      "sourceHash": "3681c7aecbae11c95060e9c288037e7882575a62e4466aa2a9fb4f335f5f2cb2",
+      "declaration": "api/generated/types/components/ui/data-state.d.ts",
+      "exports": [
+        {
+          "name": "DataState",
+          "kind": "function",
+          "signature": "DataState({ state, title, description, action, className, ...props }: DataStateProps): import(\"react\").JSX.Element",
+          "typeHash": "cef9b91f5f835c896ca206b3233c17c53983a4f095e80b56e515914a3d45d328",
+          "description": ""
+        },
+        {
+          "name": "DataStateProps",
+          "kind": "type",
+          "signature": "DataStateProps = HTMLAttributes<HTMLDivElement> & { state: \"loading\" | \"empty\" | \"error\"; title?: ReactNode; description?: ReactNode; action?: ReactNode; }",
+          "typeHash": "bd6b5ec6cdecf453e3f7c07fe395ad29441dd438b187bcd8bf350d13a9de69a6",
+          "description": ""
+        }
+      ]
+    },
     "date-range-filter": {
       "source": "src/components/ui/date-range-filter.tsx",
-      "sourceHash": "25fec7be0fdeee8beb4e39240a3a81a87da699a483750bac08b8370bb86cc794",
+      "sourceHash": "e8d285ee6a65d7f9fdbccd51fe60338850f7b7fd65e2dc3ff72b91b3c40b1fc6",
       "declaration": "api/generated/types/components/ui/date-range-filter.d.ts",
       "exports": [
         {
@@ -2569,7 +2969,7 @@
     },
     "data-export-menu": {
       "source": "src/components/ui/data-export-menu.tsx",
-      "sourceHash": "f941cac9d96071ab56d50a91c2c1ff4aaff3cff1a5c83a2b71302a97f5b9ccc0",
+      "sourceHash": "71591425adc87e4260feda2b0548340cc8d82dcedd3588092bb9a303d5aa6076",
       "declaration": "api/generated/types/components/ui/data-export-menu.d.ts",
       "exports": [
         {
@@ -2590,7 +2990,7 @@
     },
     "sparkline": {
       "source": "src/components/ui/sparkline.tsx",
-      "sourceHash": "d1c0e2d8af8cb373964ffd019b8e84c915569feabc005029801ae2663947ddc0",
+      "sourceHash": "a6455eba7e4adfd1010c88c5c854e8dc16f7dc64e318ad6fdf3d5d214eb33a34",
       "declaration": "api/generated/types/components/ui/sparkline.d.ts",
       "exports": [
         {
@@ -2611,7 +3011,7 @@
     },
     "metric": {
       "source": "src/components/ui/metric.tsx",
-      "sourceHash": "c399da31ba4ef5000cb1cfb546b5b3ad5cd1d7faf408bb20e8c923ff801990cd",
+      "sourceHash": "9db581527c2d8d73aac69319f875ae2e1729e3be2d575afe6f74d180f51befd4",
       "declaration": "api/generated/types/components/ui/metric.d.ts",
       "exports": [
         {
@@ -2639,7 +3039,7 @@
     },
     "chart": {
       "source": "src/components/ui/chart.tsx",
-      "sourceHash": "2c5ba221018dd61bfe8629cb0389c0bee3d26e190d7a14303fa8384f470e2332",
+      "sourceHash": "4e893fa7f2b2fcaa5d377042e3dab931da82a57263275673b21e4771650a4695",
       "declaration": "api/generated/types/components/ui/chart.d.ts",
       "exports": [
         {
@@ -2672,9 +3072,163 @@
         }
       ]
     },
+    "analytics-frame": {
+      "source": "src/components/ui/analytics-frame.tsx",
+      "sourceHash": "fc9c160d6da62bf94c5793f8fc3d6b21bbfc3613fd2e2540d7552e3b742cfc39",
+      "declaration": "api/generated/types/components/ui/analytics-frame.d.ts",
+      "exports": [
+        {
+          "name": "AnalyticsActiveIndexOptions",
+          "kind": "type",
+          "signature": "AnalyticsActiveIndexOptions = { length: number; value?: number | null; defaultValue?: number | null; onChange?: (index: number | null) => void; }",
+          "typeHash": "169a53359b5ce88b7c7ef8c9ae1cbb9924a9f629916cb1daeeb85a714ce9fe3e",
+          "description": ""
+        },
+        {
+          "name": "analyticsClassNames",
+          "kind": "const",
+          "signature": "analyticsClassNames: { readonly interactivePlot: \"whatiuse-analytics-interactive-plot\"; }",
+          "typeHash": "d0dc33ff6a63b10e37f945b5cf98f580d89e992dfc9e704b53c332a42b688b1d",
+          "description": ""
+        },
+        {
+          "name": "AnalyticsFrame",
+          "kind": "function",
+          "signature": "AnalyticsFrame({ title, description, summary, plotLabel, plot, table, className, height, loading, empty, error, activeDescription, inspection, showDataByDefault, }: AnalyticsFrameProps): import(\"react\").JSX.Element",
+          "typeHash": "fe77eb79ebc5f698cc0ba2071647d07474c84c33ca59c125f2870a0db8e2f1a1",
+          "description": ""
+        },
+        {
+          "name": "AnalyticsFrameProps",
+          "kind": "type",
+          "signature": "AnalyticsFrameProps = { title: string; description?: string; summary: string; plotLabel: string; plot: ReactNode; table: ReactNode; className?: string; height?: number; loading?: boolean; empty?: ReactNode; error?: ReactNode; activeDescrip…",
+          "typeHash": "db85e8f26bfe5e673771bf8a6543eb076fdbd1eef10433035521b4137fb2e3d1",
+          "description": ""
+        },
+        {
+          "name": "AnalyticsInspection",
+          "kind": "function",
+          "signature": "AnalyticsInspection({ label, items, active, className }: AnalyticsInspectionProps): import(\"react\").JSX.Element",
+          "typeHash": "87d024f3a6b00604aed00863e5de6d17e7ecd77f2cb3fe8fe55887dcf9314747",
+          "description": ""
+        },
+        {
+          "name": "AnalyticsInspectionItem",
+          "kind": "type",
+          "signature": "AnalyticsInspectionItem = { id: string; label: ReactNode; value?: ReactNode; tone?: string; }",
+          "typeHash": "d4b67e3794e6a4014c2454096cc1ebc08eda420e31f5742e948a62ef4839e887",
+          "description": ""
+        },
+        {
+          "name": "AnalyticsInspectionProps",
+          "kind": "type",
+          "signature": "AnalyticsInspectionProps = { label: ReactNode; items?: readonly AnalyticsInspectionItem[]; active?: boolean; className?: string; }",
+          "typeHash": "86c0257f0111cab608530c4717ce45b6b6c17d9f474a467db63c07466ae33819",
+          "description": ""
+        },
+        {
+          "name": "getLinearAnalyticsKeyIndex",
+          "kind": "function",
+          "signature": "getLinearAnalyticsKeyIndex(key: string, activeIndex: number | null, length: number): number | null | undefined",
+          "typeHash": "491ebb398a8e104a0f3d109f35fd57c2c751f0e65d46a9f4cef2cd25e4c58d32",
+          "description": ""
+        },
+        {
+          "name": "useAnalyticsActiveIndex",
+          "kind": "function",
+          "signature": "useAnalyticsActiveIndex({ length, value, defaultValue, onChange }: AnalyticsActiveIndexOptions): { readonly activeIndex: number | null; readonly setActiveIndex: (next: number | null) => void; readonly scheduleActiveIndex: (next: number | n…",
+          "typeHash": "662de0764f66fcf04ad4ba62f23c6696bb09d8f3806dc00b005d45ff7c79961e",
+          "description": ""
+        }
+      ]
+    },
+    "histogram": {
+      "source": "src/components/ui/histogram.tsx",
+      "sourceHash": "bd958874e365ec1f80161c1b623f49a0f48705500aca840817ec5f0d9870fc45",
+      "declaration": "api/generated/types/components/ui/histogram.d.ts",
+      "exports": [
+        {
+          "name": "Histogram",
+          "kind": "function",
+          "signature": "Histogram({ title, description, data, className, height, valueFormatter, binFormatter, activeIndex, defaultActiveIndex, onActiveIndexChange, onBinActivate, loading, empty, error, showDataByDefault, }: HistogramProps): import(\"react\").JSX.E…",
+          "typeHash": "f89822a30c24af83486862a03a53414ec00890846420c6711f166c2d42e1a2a4",
+          "description": ""
+        },
+        {
+          "name": "HistogramBin",
+          "kind": "type",
+          "signature": "HistogramBin = { id: string; label: string; start: number; end: number; value: number; }",
+          "typeHash": "1bc37f17a35b13e65141219fe689ac012af097f9980a712e2003d65464005717",
+          "description": ""
+        },
+        {
+          "name": "HistogramProps",
+          "kind": "type",
+          "signature": "HistogramProps = { title: string; description?: string; data: readonly HistogramBin[]; className?: string; height?: number; valueFormatter?: (value: number) => string; binFormatter?: (bin: HistogramBin) => string; activeIndex?: number | nu…",
+          "typeHash": "34c94372c9c3af755c2b0fba63c0a46147feea55dda5676ca96cba0b0e8076ec",
+          "description": ""
+        }
+      ]
+    },
+    "scatter-chart": {
+      "source": "src/components/ui/scatter-chart.tsx",
+      "sourceHash": "9b0a243b0c9142be142ec936fb66098006cc5a2ac0e0e2f08a7c93a7ac0ee7af",
+      "declaration": "api/generated/types/components/ui/scatter-chart.d.ts",
+      "exports": [
+        {
+          "name": "ScatterChart",
+          "kind": "function",
+          "signature": "ScatterChart({ title, description, data, xLabel, yLabel, className, height, xDomain, yDomain, xFormatter, yFormatter, activeIndex, defaultActiveIndex, onActiveIndexChange, onPointActivate, loading, empty, error, showDataByDefault, }: Scatt…",
+          "typeHash": "b628edaf05ef2b4e1c3f3f5180acb3b2dc3ef964d3ac4739b506523853abadd1",
+          "description": ""
+        },
+        {
+          "name": "ScatterChartProps",
+          "kind": "type",
+          "signature": "ScatterChartProps = { title: string; description?: string; data: readonly ScatterPoint[]; xLabel: string; yLabel: string; className?: string; height?: number; xDomain?: readonly [number, number]; yDomain?: readonly [number, number]; xForma…",
+          "typeHash": "6bcd0e79ed6f178ce39fef4fa8151dafa3af5c6b88ff0407c372dff0f1721b66",
+          "description": ""
+        },
+        {
+          "name": "ScatterPoint",
+          "kind": "type",
+          "signature": "ScatterPoint = { id: string; label: string; x: number; y: number; series?: string; tone?: \"primary\" | \"secondary\" | \"tertiary\"; }",
+          "typeHash": "4088e6c225cf201191732921dc3467d49b2a5223fbbd969001583c5db79a42bc",
+          "description": ""
+        }
+      ]
+    },
+    "waterfall-chart": {
+      "source": "src/components/ui/waterfall-chart.tsx",
+      "sourceHash": "93ffdf632866dae96dc858392b3cb4dcfb04c67e51a3d757e8b96e5b97ec10b0",
+      "declaration": "api/generated/types/components/ui/waterfall-chart.d.ts",
+      "exports": [
+        {
+          "name": "WaterfallChart",
+          "kind": "function",
+          "signature": "WaterfallChart({ title, description, data, className, height, valueFormatter, activeIndex, defaultActiveIndex, onActiveIndexChange, onDatumActivate, loading, empty, error, showDataByDefault, }: WaterfallChartProps): import(\"react\").JSX.Ele…",
+          "typeHash": "7df350a6a492323c460015c144dcaf02e3981329dbb7619c89be83fbc5a05ccc",
+          "description": ""
+        },
+        {
+          "name": "WaterfallChartProps",
+          "kind": "type",
+          "signature": "WaterfallChartProps = { title: string; description?: string; data: readonly WaterfallDatum[]; className?: string; height?: number; valueFormatter?: (value: number) => string; activeIndex?: number | null; defaultActiveIndex?: number | null;…",
+          "typeHash": "9ea1b30964edca73599f72c9e64ec98d5928275531991f2a8aaba2ec598a9c38",
+          "description": ""
+        },
+        {
+          "name": "WaterfallDatum",
+          "kind": "type",
+          "signature": "WaterfallDatum = { id: string; label: string; value: number; kind?: \"change\" | \"subtotal\" | \"total\"; }",
+          "typeHash": "42d9ff41d31e29057404f0dd5f0a753f7affc3c24f612507e0cf6e00e816b6d8",
+          "description": ""
+        }
+      ]
+    },
     "donut-chart": {
       "source": "src/components/ui/donut-chart.tsx",
-      "sourceHash": "fe5415df30abb7b53b5122f77c9df712490bb98a5a423baf2678aec89f54c9c5",
+      "sourceHash": "981d4dbfb92d9205c09377315746e9792e475c8833bf9de022c8af168da24652",
       "declaration": "api/generated/types/components/ui/donut-chart.d.ts",
       "exports": [
         {
@@ -2700,9 +3254,107 @@
         }
       ]
     },
+    "radar-chart": {
+      "source": "src/components/ui/radar-chart.tsx",
+      "sourceHash": "193fb4ace65cd31c36a0287afefc24e3e38ea06c74dea9fc3e55ecf6c2fbf02b",
+      "declaration": "api/generated/types/components/ui/radar-chart.d.ts",
+      "exports": [
+        {
+          "name": "RadarAxis",
+          "kind": "type",
+          "signature": "RadarAxis = { id: string; label: string; max: number; }",
+          "typeHash": "a66450e470700885691fad65772b85b0bd36a3780a27479f13e17f9540ca0197",
+          "description": ""
+        },
+        {
+          "name": "RadarChart",
+          "kind": "function",
+          "signature": "RadarChart({ title, description, axes, series, className, height, valueFormatter, activeAxisIndex, defaultActiveAxisIndex, onActiveAxisIndexChange, onAxisActivate, loading, empty, error, showDataByDefault, }: RadarChartProps): import(\"reac…",
+          "typeHash": "38f6f4be112f90516de2778e39367eb5001cdd6174f57dbb83a08f879fd7e427",
+          "description": ""
+        },
+        {
+          "name": "RadarChartProps",
+          "kind": "type",
+          "signature": "RadarChartProps = { title: string; description?: string; axes: readonly RadarAxis[]; series: readonly RadarSeries[]; className?: string; height?: number; valueFormatter?: (value: number, axis: RadarAxis, series: RadarSeries) => string; act…",
+          "typeHash": "0597804d0e26f9d16ceb0edfa79ee97ccfa745a6ac0f998fad919b1838682116",
+          "description": ""
+        },
+        {
+          "name": "RadarSeries",
+          "kind": "type",
+          "signature": "RadarSeries = { id: string; label: string; values: Readonly<Record<string, number | null>>; tone?: AnalyticsSeriesTone; }",
+          "typeHash": "bb96a176105a9f0879000f3f00c10a88489d178e4298c6aa2716fe894c0b8d09",
+          "description": ""
+        }
+      ]
+    },
+    "gauge": {
+      "source": "src/components/ui/gauge.tsx",
+      "sourceHash": "c4fe2b89c3aea26691ada702393be34065a821e3a97f2875b3e74174e7163a82",
+      "declaration": "api/generated/types/components/ui/gauge.d.ts",
+      "exports": [
+        {
+          "name": "Gauge",
+          "kind": "function",
+          "signature": "Gauge({ title, description, value, min, max, label, marker, className, height, valueFormatter, tone, loading, error, showDataByDefault, }: GaugeProps): import(\"react\").JSX.Element",
+          "typeHash": "685b0047bacb808fc100dd4b463f0666d2dfa3917910908986ee34213fb2995d",
+          "description": ""
+        },
+        {
+          "name": "GaugeMarker",
+          "kind": "type",
+          "signature": "GaugeMarker = { value: number; label: string; }",
+          "typeHash": "a643744d998321a791b6ad02a91a0aeeccc51e57d7734abbf9141efaac4ed251",
+          "description": ""
+        },
+        {
+          "name": "GaugeProps",
+          "kind": "type",
+          "signature": "GaugeProps = { title: string; description?: string; value: number; min?: number; max?: number; label?: string; marker?: GaugeMarker; className?: string; height?: number; valueFormatter?: (value: number) => string; tone?: \"neutral\" | \"dange…",
+          "typeHash": "66ef3ab7e3901482c8d664d9b4501e81bf443643f80c805c62e5f5d7e0fba2e0",
+          "description": ""
+        }
+      ]
+    },
+    "sankey-chart": {
+      "source": "src/components/ui/sankey-chart.tsx",
+      "sourceHash": "369e5641bbf43ca5ab3d640303c2f73fda3a7363ae07f0de411e98d28aabd136",
+      "declaration": "api/generated/types/components/ui/sankey-chart.d.ts",
+      "exports": [
+        {
+          "name": "SankeyChart",
+          "kind": "function",
+          "signature": "SankeyChart({ title, description, nodes, links, className, height, valueFormatter, activeLinkIndex, defaultActiveLinkIndex, onActiveLinkIndexChange, onLinkActivate, loading, empty, error, showDataByDefault, }: SankeyChartProps): import(\"re…",
+          "typeHash": "c3b4cb46dc23ee283bfc02dc9662e597efa19a67df3b1497cdc10c1806df39f5",
+          "description": ""
+        },
+        {
+          "name": "SankeyChartProps",
+          "kind": "type",
+          "signature": "SankeyChartProps = { title: string; description?: string; nodes: readonly SankeyNode[]; links: readonly SankeyLink[]; className?: string; height?: number; valueFormatter?: (value: number) => string; activeLinkIndex?: number | null; default…",
+          "typeHash": "3ef63fbaaf9507b77b53103d037bdbc7cf9ea0f918d2654ce7f75a1776bd72f5",
+          "description": ""
+        },
+        {
+          "name": "SankeyLink",
+          "kind": "type",
+          "signature": "SankeyLink = { id: string; source: string; target: string; value: number; label?: string; }",
+          "typeHash": "51e4e16c294f3bf579444ae10d24c5c82dc3fcbf897c19570182593ad2393b12",
+          "description": ""
+        },
+        {
+          "name": "SankeyNode",
+          "kind": "type",
+          "signature": "SankeyNode = { id: string; label: string; column?: number; }",
+          "typeHash": "b53378a61c69bb43c09abd1098752493f00857d6eadac4fdd224ffd3bd4cacfb",
+          "description": ""
+        }
+      ]
+    },
     "heatmap": {
       "source": "src/components/ui/heatmap.tsx",
-      "sourceHash": "d6a1e10376575d9ce380085d41619831ac38781f841f7907cab0f07197e66304",
+      "sourceHash": "554d1541092a84f155872c528e455b637a8e28ce7aa14d0a8b9058e4ecb704c7",
       "declaration": "api/generated/types/components/ui/heatmap.d.ts",
       "exports": [
         {
@@ -2737,7 +3389,7 @@
     },
     "comparison": {
       "source": "src/components/ui/comparison.tsx",
-      "sourceHash": "7122a060bdbeed819598c04dfd85b0e4919ef3843dae5896d3e1dbbbaadde051",
+      "sourceHash": "d636c85bea553900cf4aa78b8954150315227467593c0043519593e61d6bfc57",
       "declaration": "api/generated/types/components/ui/comparison.d.ts",
       "exports": [
         {
@@ -2758,7 +3410,7 @@
     },
     "breakdown": {
       "source": "src/components/ui/breakdown.tsx",
-      "sourceHash": "65e0622623aebe8d958af5306c13165e3674e9f8c509a1df68cfc2b5f048c801",
+      "sourceHash": "22cf5f2fe4d5ec1ef791ce4e697dc2b983d9ff7c7013ef827bf54fe75c4f5c12",
       "declaration": "api/generated/types/components/ui/breakdown.d.ts",
       "exports": [
         {
@@ -2786,7 +3438,7 @@
     },
     "goal": {
       "source": "src/components/ui/goal.tsx",
-      "sourceHash": "e13d0e5fdf863031f7e8083c21840d8119137a2e5ae194363248cd96fb0fea8f",
+      "sourceHash": "120f20b42ef951489178d3e338853d3a85557c77a580970c7f2dc12f2177ec6b",
       "declaration": "api/generated/types/components/ui/goal.d.ts",
       "exports": [
         {
@@ -2807,7 +3459,7 @@
     },
     "funnel": {
       "source": "src/components/ui/funnel.tsx",
-      "sourceHash": "aed86cdabd24e4ce9d6db3c049cc3fb0c68fee39de67d288424828c5532fe58f",
+      "sourceHash": "8f06ad8cbce5df89b36740552ce30f13d07bc867ca01cbdaddb7154abe8e7340",
       "declaration": "api/generated/types/components/ui/funnel.d.ts",
       "exports": [
         {
@@ -2835,7 +3487,7 @@
     },
     "cohort": {
       "source": "src/components/ui/cohort.tsx",
-      "sourceHash": "6c9dfd1898285b12f8f2996028d74c78a88dacaeb8ece2fe66731450dd2d366d",
+      "sourceHash": "7be9748b6a5cc8f49e37cc24b3f6f550b7f3f06816c0aee5ded8bd3662e8b771",
       "declaration": "api/generated/types/components/ui/cohort.d.ts",
       "exports": [
         {
@@ -2863,7 +3515,7 @@
     },
     "timeline": {
       "source": "src/components/ui/timeline.tsx",
-      "sourceHash": "8fa851b0632113e6ab4dccf70145b355df335e7525694171d9e4f8846f631d59",
+      "sourceHash": "33dfcf6b9827986f047c24d7354fd241a949dd4aa67a34874dbdc0a89abc35d9",
       "declaration": "api/generated/types/components/ui/timeline.d.ts",
       "exports": [
         {
@@ -2893,42 +3545,42 @@
   "contracts": {
     "motion-contract": {
       "source": "lib/motion-contract.ts",
-      "sourceHash": "3beb040dace4334c0c206a71fc384b49dac47b24a80a7662df71e93eccca0fa4",
+      "sourceHash": "b93ea0ae5a7de8d2cc497e86878873f973f0ed4568e8896669fb2f8e69ce7949",
       "declaration": "api/generated/types/lib/motion-contract.d.ts",
       "exports": [
         {
-          "name": "teumMotionContract",
+          "name": "whatiuseMotionContract",
           "kind": "const",
-          "signature": "teumMotionContract: { readonly version: \"1.0.0\"; readonly principles: readonly [\"Respond at the moment of input.\", \"Use motion only to explain origin, continuity, state, or recovery.\", \"Keep repeated keyboard paths instant.\", \"Let interrup…",
-          "typeHash": "3020894386b90b28039d7da770d2c06a76f12bc34c3517545c4387d790175bcf",
+          "signature": "whatiuseMotionContract: { readonly version: \"1.0.0\"; readonly principles: readonly [\"Respond at the moment of input.\", \"Use motion only to explain origin, continuity, state, or recovery.\", \"Keep repeated keyboard paths instant.\", \"Let inte…",
+          "typeHash": "4d7c0fc6e11e06ecb92978a81d50b173cfdfd1b8df3e52099e6a22ebe9dc2a2c",
           "description": ""
         },
         {
-          "name": "TeumMotionContract",
+          "name": "WhatiuseMotionContract",
           "kind": "type",
-          "signature": "TeumMotionContract = typeof teumMotionContract",
-          "typeHash": "af30d85b45540a4a77fe655c176309d99d206a65650b24d7ecc90ac927f5fd5d",
+          "signature": "WhatiuseMotionContract = typeof whatiuseMotionContract",
+          "typeHash": "392dd7de0cbc602b683a09777a38ea837166089c9bd661db53c8e35d24a08c58",
           "description": ""
         },
         {
-          "name": "TeumMotionFrequency",
+          "name": "WhatiuseMotionFrequency",
           "kind": "type",
-          "signature": "TeumMotionFrequency = \"constant\" | \"frequent\" | \"occasional\" | \"rare\"",
-          "typeHash": "cec7fd4062b565abe4432407ac3dbc98829c1424a94ab3fac345c11576000b65",
+          "signature": "WhatiuseMotionFrequency = \"constant\" | \"frequent\" | \"occasional\" | \"rare\"",
+          "typeHash": "ca747bd58089a3ff7fce98f1c0e1886835f29316d628c8045f6073ba3439239c",
           "description": ""
         },
         {
-          "name": "TeumMotionRule",
+          "name": "WhatiuseMotionRule",
           "kind": "type",
-          "signature": "TeumMotionRule = { frequency: TeumMotionFrequency; treatment: \"instant\" | \"tonal\" | \"spatial\" | \"expressive\"; rationale: string; }",
-          "typeHash": "59a0ae5595d9dbac0251509aa955c0260c24267dd307bd7c8297fdae637733b1",
+          "signature": "WhatiuseMotionRule = { frequency: WhatiuseMotionFrequency; treatment: \"instant\" | \"tonal\" | \"spatial\" | \"expressive\"; rationale: string; }",
+          "typeHash": "e3a482af9d6afa5692bc8b2413fefdaa4837b4cefc15782e06fc258874ec94fe",
           "description": ""
         }
       ]
     },
     "data-view-state": {
       "source": "lib/data-view-state.ts",
-      "sourceHash": "9951969832c229e8398fd4333901d231e38f05e7d4591365b17ab8c890256d7a",
+      "sourceHash": "6dc96f7f0f28504a9184592a4332c19c64309c0996770bd42ebb8ee38e54b5c5",
       "declaration": "api/generated/types/lib/data-view-state.d.ts",
       "exports": [
         {
@@ -3199,10 +3851,10 @@
         }
       ]
     },
-    "teum-data-contract": {
-      "source": "lib/teum-data-contract.ts",
-      "sourceHash": "da87f1d4d9e0fab1c0114004a38702aa663d79668c3f0f5e761d190fb439c706",
-      "declaration": "api/generated/types/lib/teum-data-contract.d.ts",
+    "whatiuse-data-contract": {
+      "source": "lib/whatiuse-data-contract.ts",
+      "sourceHash": "8713a84c99aa7ff10569b127461ba46793b77bb0e298307f49abef2d34080872",
+      "declaration": "api/generated/types/lib/whatiuse-data-contract.d.ts",
       "exports": [
         {
           "name": "auditLogContract",
@@ -3226,31 +3878,31 @@
           "description": ""
         },
         {
-          "name": "TeumDataComponentContract",
+          "name": "WhatiuseDataComponentContract",
           "kind": "type",
-          "signature": "TeumDataComponentContract = { id: string; intent: string; useWhen: readonly string[]; avoidWhen: readonly string[]; requires: readonly string[]; states: readonly string[]; compositionRules: readonly string[]; accessibility: readonly string…",
-          "typeHash": "bc1204fa55ee67aa56fcaa72af9aa1df7f8915d83b4966c4993e8c2e503f0232",
+          "signature": "WhatiuseDataComponentContract = { id: string; intent: string; useWhen: readonly string[]; avoidWhen: readonly string[]; requires: readonly string[]; states: readonly string[]; compositionRules: readonly string[]; accessibility: readonly st…",
+          "typeHash": "87e8200505efe740a4093638f2189010818bfd9a6c9e3e1881eb680957b59231",
           "description": ""
         },
         {
-          "name": "teumDataComponentContracts",
+          "name": "whatiuseDataComponentContracts",
           "kind": "const",
-          "signature": "teumDataComponentContracts: readonly [{ readonly id: \"data-table\"; readonly intent: \"Compare and act on structured records without hiding the underlying table semantics.\"; readonly useWhen: readonly [\"Rows share comparable attributes.\", \"S…",
-          "typeHash": "5c8b45005d489700aec599b1de3b6ad61c7c494eb0c2df1282f1edd16b17673e",
+          "signature": "whatiuseDataComponentContracts: readonly [{ readonly id: \"data-table\"; readonly intent: \"Compare and act on structured records without hiding the underlying table semantics.\"; readonly useWhen: readonly [\"Rows share comparable attributes.\"…",
+          "typeHash": "3c0a1319f706c5807e029ac1701a52c399ad12785a657a5f6d2f26bec84d4500",
           "description": ""
         },
         {
-          "name": "teumDataRecipeContracts",
+          "name": "whatiuseDataRecipeContracts",
           "kind": "const",
-          "signature": "teumDataRecipeContracts: readonly [{ readonly id: \"issues-workspace\"; readonly intent: \"Find, compare, inspect, mutate, and recover work from one shared issue collection.\"; readonly taskSequence: readonly [\"Search or filter\", \"Sort and com…",
-          "typeHash": "885365880cbc21b59e1be71ab5e34aad965c7670eb8c5e445c738b0d934fa0d3",
+          "signature": "whatiuseDataRecipeContracts: readonly [{ readonly id: \"issues-workspace\"; readonly intent: \"Find, compare, inspect, mutate, and recover work from one shared issue collection.\"; readonly taskSequence: readonly [\"Search or filter\", \"Sort and…",
+          "typeHash": "03a1d4fa1735afba2fdfece72b68d2fe4244a40b3d6de0aa79e6c2531f7fda59",
           "description": ""
         },
         {
-          "name": "teumDataViewStateContract",
+          "name": "whatiuseDataViewStateContract",
           "kind": "const",
-          "signature": "teumDataViewStateContract: { readonly version: 1; readonly serverOwned: readonly [\"query\", \"filters\", \"sorting\", \"pagination\", \"dateRange\"]; readonly viewOwned: readonly [\"columnVisibility\", \"columnSizing\", \"columnPinning\", \"viewId\"]; read…",
-          "typeHash": "48c4d0ad1f8541c6510816cb00e0339c5abb5396a60d9e3f88ceba4727e9b778",
+          "signature": "whatiuseDataViewStateContract: { readonly version: 1; readonly serverOwned: readonly [\"query\", \"filters\", \"sorting\", \"grouping\", \"pagination\", \"dateRange\"]; readonly viewOwned: readonly [\"columnVisibility\", \"columnSizing\", \"columnPinning\",…",
+          "typeHash": "d39daeb1ba3e60d38b9da5f403e13c2587342ddc91c1cd376be0e8309f36d049",
           "description": ""
         }
       ]
@@ -3402,45 +4054,45 @@
         }
       ]
     },
-    "teum-analytics-contract": {
-      "source": "lib/teum-analytics-contract.ts",
-      "sourceHash": "45f019e3cb21f937614f2a94ef5b96cad169d15f90085b16d291d979c20f7f0a",
-      "declaration": "api/generated/types/lib/teum-analytics-contract.d.ts",
+    "whatiuse-analytics-contract": {
+      "source": "lib/whatiuse-analytics-contract.ts",
+      "sourceHash": "a6b024d8062dc02074c025b35759e27baea7f7e1572d678d0891fb9b87cfc577",
+      "declaration": "api/generated/types/lib/whatiuse-analytics-contract.d.ts",
       "exports": [
         {
-          "name": "TeumAnalyticsComponentContract",
+          "name": "WhatiuseAnalyticsComponentContract",
           "kind": "type",
-          "signature": "TeumAnalyticsComponentContract = { id: string; intent: string; useWhen: readonly string[]; avoidWhen: readonly string[]; requires: readonly string[]; states: readonly string[]; compatibleWith: readonly string[]; dataSchema: string; interac…",
-          "typeHash": "5eec30ab71f33cdf115d482fa246440af807b1718accab551e81e2e26572a352",
+          "signature": "WhatiuseAnalyticsComponentContract = { id: string; intent: string; useWhen: readonly string[]; avoidWhen: readonly string[]; requires: readonly string[]; states: readonly string[]; compatibleWith: readonly string[]; dataSchema: string; int…",
+          "typeHash": "afdd545a930d8be347a7ea25962a076977b121be9e2ba25f56a6eccf9de3969a",
           "description": ""
         },
         {
-          "name": "teumAnalyticsComponentContracts",
+          "name": "whatiuseAnalyticsComponentContracts",
           "kind": "const",
-          "signature": "teumAnalyticsComponentContracts: readonly [{ readonly id: \"metric\"; readonly intent: \"State one important value, its direction, and comparison context without turning a dashboard into a card grid.\"; readonly useWhen: readonly [\"One value c…",
-          "typeHash": "c6eed076ea130dbd2eb2e905b6048e05e0bb82f8ea5794d1abcba36ed93384f2",
+          "signature": "whatiuseAnalyticsComponentContracts: readonly [{ readonly id: \"metric\"; readonly intent: \"State one important value, its direction, and comparison context without turning a dashboard into a card grid.\"; readonly useWhen: readonly [\"One val…",
+          "typeHash": "b4a2d089bf15b9f5e87207c1891fd98f281930419b46fb84d712d24bd5cf40ca",
           "description": ""
         },
         {
-          "name": "teumAnalyticsRecipeContracts",
+          "name": "whatiuseAnalyticsRecipeContracts",
           "kind": "const",
-          "signature": "teumAnalyticsRecipeContracts: readonly [{ readonly id: \"saas-overview\"; readonly intent: \"Review recurring revenue, growth, target progress, and expansion drivers from one calm overview.\"; readonly taskSequence: readonly [\"Choose range\", \"…",
-          "typeHash": "47bb4d4df58e2dd3f2e0ff9b29ddda0f27ba0f4f1436c2b758cb7dc94027075e",
+          "signature": "whatiuseAnalyticsRecipeContracts: readonly [{ readonly id: \"saas-overview\"; readonly intent: \"Review recurring revenue, growth, target progress, and expansion drivers from one calm overview.\"; readonly taskSequence: readonly [\"Choose range…",
+          "typeHash": "716e9a8e993e38ac69993c00ce1873fa93896cf3adeb3b9cb9a0995658024adf",
           "description": ""
         },
         {
-          "name": "teumAnalyticsStateContract",
+          "name": "whatiuseAnalyticsStateContract",
           "kind": "const",
-          "signature": "teumAnalyticsStateContract: { readonly version: 1; readonly controlled: readonly [\"date range\", \"comparison period\", \"visible series\", \"active datum\", \"selected segment\"]; readonly derived: readonly [\"domain\", \"ticks\", \"percent change\", \"c…",
-          "typeHash": "eaaf87d05dddb1d8f53488c09d659e34054b5f20dadea6830cb19d18d25c0780",
+          "signature": "whatiuseAnalyticsStateContract: { readonly version: 1; readonly controlled: readonly [\"date range\", \"comparison period\", \"visible series\", \"active datum\", \"selected segment\", \"active bin\", \"active dimension\", \"active flow\"]; readonly deriv…",
+          "typeHash": "b375021361f18b44687564816a252ead6931d26a776250bd74b7d951728da267",
           "description": ""
         }
       ]
     },
-    "teum-product-patterns-contract": {
-      "source": "lib/teum-product-patterns-contract.ts",
-      "sourceHash": "49803545d44496bd6ba5c67dc405c7db1281c5bec5c3c0e555d1e2d733eab8d3",
-      "declaration": "api/generated/types/lib/teum-product-patterns-contract.d.ts",
+    "whatiuse-product-patterns-contract": {
+      "source": "lib/whatiuse-product-patterns-contract.ts",
+      "sourceHash": "6ffb63792dde586d964f3e3f1031b13997c102f983b66e3fe19eead51ff527e8",
+      "declaration": "api/generated/types/lib/whatiuse-product-patterns-contract.d.ts",
       "exports": [
         {
           "name": "billingUsageContract",
@@ -3464,94 +4116,94 @@
           "description": ""
         },
         {
-          "name": "TeumProductPatternContract",
+          "name": "WhatiuseProductPatternContract",
           "kind": "type",
-          "signature": "TeumProductPatternContract = { id: string; intent: string; roles: readonly string[]; taskSequence: readonly string[]; components: readonly string[]; stateOwnership: { shareable: readonly string[]; persisted: readonly string[]; transient: r…",
-          "typeHash": "ce26ef4c8e87f991048ca9296defc84b0fb02ac19f999855490035f8c8787781",
+          "signature": "WhatiuseProductPatternContract = { id: string; intent: string; roles: readonly string[]; taskSequence: readonly string[]; components: readonly string[]; stateOwnership: { shareable: readonly string[]; persisted: readonly string[]; transien…",
+          "typeHash": "e79dd06d69bd0b17071094193dcc64b4967764c89073f1eb3446d03a38168a7b",
           "description": ""
         },
         {
-          "name": "teumProductPatternContracts",
+          "name": "whatiuseProductPatternContracts",
           "kind": "const",
-          "signature": "teumProductPatternContracts: readonly [{ readonly id: \"customer-workspace\"; readonly intent: \"Find an account, inspect its health and activity, then complete a follow-up without losing the customer list.\"; readonly roles: readonly [\"Custom…",
-          "typeHash": "229f1274a5be907dcac97a4f9107545fdc3f44304c59b95a5e825ff2bbe92c72",
+          "signature": "whatiuseProductPatternContracts: readonly [{ readonly id: \"customer-workspace\"; readonly intent: \"Find an account, inspect its health and activity, then complete a follow-up without losing the customer list.\"; readonly roles: readonly [\"Cu…",
+          "typeHash": "859e450aead636aaaacfaa86f59f2287ef45d1e1e76120c0ffbeabc5fae3c465",
           "description": ""
         },
         {
-          "name": "teumProductPatternSystemContract",
+          "name": "whatiuseProductPatternSystemContract",
           "kind": "const",
-          "signature": "teumProductPatternSystemContract: { readonly version: 1; readonly layers: readonly [\"Core controls\", \"Data state\", \"Analytics context\", \"Product task\"]; readonly rules: readonly [\"Patterns compose public Teum components and keep product st…",
-          "typeHash": "87a48e46befd7c6c64acdf53aaf58706915f6349fe728291d4e93c1aa30ca0b3",
+          "signature": "whatiuseProductPatternSystemContract: { readonly version: 1; readonly layers: readonly [\"Core controls\", \"Data state\", \"Analytics context\", \"Product task\"]; readonly rules: readonly [\"Patterns compose public whatiuse components and keep pr…",
+          "typeHash": "920b4c6e15ea2767e3ac1503e5e206d8e43be33dd665d31d6d1b07542547d6ca",
           "description": ""
         }
       ]
     },
-    "teum-agent-contract": {
-      "source": "lib/teum-agent-contract.ts",
-      "sourceHash": "8b4758a440eb53e31614fcfafe6fb5be6c57aa3a1285392752485d8335d83ba1",
-      "declaration": "api/generated/types/lib/teum-agent-contract.d.ts",
+    "whatiuse-agent-contract": {
+      "source": "lib/whatiuse-agent-contract.ts",
+      "sourceHash": "1f7bc46646c78e35b281c493e0ce4bf5478f8953d8f492b4f8e94a54cfad6d1f",
+      "declaration": "api/generated/types/lib/whatiuse-agent-contract.d.ts",
       "exports": [
         {
-          "name": "selectTeumRecipe",
+          "name": "selectWhatiuseRecipe",
           "kind": "function",
-          "signature": "selectTeumRecipe(task: string): TeumAgentPlan | null",
-          "typeHash": "73dec6de24e158bd2f76abf6d765342400608e016d74b3111701e7d036c69791",
+          "signature": "selectWhatiuseRecipe(task: string): WhatiuseAgentPlan | null",
+          "typeHash": "bb0031aa87ca720c215b953cbd5ef938c5b5d4d5e5d9f625b35e5326f4b2d638",
           "description": ""
         },
         {
-          "name": "teumAgentForbiddenRules",
+          "name": "whatiuseAgentForbiddenRules",
           "kind": "const",
-          "signature": "teumAgentForbiddenRules: readonly [\"Do not invent undocumented props, exports, registry items, or private CSS selectors.\", \"Do not merge components because their closed shapes look similar; preserve task, focus, and recovery boundaries.\", …",
-          "typeHash": "f9f313a8b19ac47a70778adedb3d82411fc2035c67cc063d34cc1099b2a05333",
+          "signature": "whatiuseAgentForbiddenRules: readonly [\"Do not invent undocumented props, exports, registry items, or private CSS selectors.\", \"Do not merge components because their closed shapes look similar; preserve task, focus, and recovery boundaries…",
+          "typeHash": "38752e03ee6fb04dbaf161ff9f08ee22ca6ad2d91a254d76105ed4903df96270",
           "description": ""
         },
         {
-          "name": "TeumAgentPlan",
+          "name": "WhatiuseAgentPlan",
           "kind": "type",
-          "signature": "TeumAgentPlan = { recipe: TeumAgentRecipeContract; score: number; matchedSignals: readonly string[]; }",
-          "typeHash": "6af395bd0abef9c05e70c1f1f9e350e92dfd22834227c121d26aa61af2f92189",
+          "signature": "WhatiuseAgentPlan = { recipe: WhatiuseAgentRecipeContract; score: number; matchedSignals: readonly string[]; }",
+          "typeHash": "eddb8393a9b0faf099f5583ebd8c3ab54c092a09965fbd94a8115f3600f14dab",
           "description": ""
         },
         {
-          "name": "TeumAgentRecipeContract",
+          "name": "WhatiuseAgentRecipeContract",
           "kind": "type",
-          "signature": "TeumAgentRecipeContract = { id: TeumAgentRecipeId; title: string; domain: \"data\" | \"analytics\" | \"product\"; intent: string; signals: readonly string[]; registryItem: \"teum-data\" | \"teum-analytics\" | \"teum-product-patterns\"; modulePath: str…",
-          "typeHash": "c3050009ae0350d0211f2aa76caa2eca352bebd27220d852e5879cee7332146d",
+          "signature": "WhatiuseAgentRecipeContract = { id: WhatiuseAgentRecipeId; title: string; domain: \"data\" | \"analytics\" | \"product\"; intent: string; signals: readonly string[]; registryItem: \"whatiuse-data\" | \"whatiuse-analytics\" | \"whatiuse-product-patter…",
+          "typeHash": "6db9c984a440ed796d6a37f28690fd6c3aa7323538c3b4f5787180e35b294821",
           "description": ""
         },
         {
-          "name": "teumAgentRecipeContracts",
+          "name": "whatiuseAgentRecipeContracts",
           "kind": "const",
-          "signature": "teumAgentRecipeContracts: readonly [{ readonly id: \"issues-workspace\"; readonly title: \"Issues Workspace\"; readonly domain: \"data\"; readonly intent: \"Triage, inspect, mutate, and recover issue work from one shared collection.\"; readonly si…",
-          "typeHash": "f6704967c1d28d834790b9482360b705b0c2a0d19bbb5689a1620c56de36464b",
+          "signature": "whatiuseAgentRecipeContracts: readonly [{ readonly id: \"issues-workspace\"; readonly title: \"Issues Workspace\"; readonly domain: \"data\"; readonly intent: \"Triage, inspect, mutate, and recover issue work from one shared collection.\"; readonl…",
+          "typeHash": "70d27f1b1a8c70c94dd7740e3fb17ec04742b2bdb2e62ea80085ab40af6e3a5a",
           "description": ""
         },
         {
-          "name": "TeumAgentRecipeId",
+          "name": "WhatiuseAgentRecipeId",
           "kind": "type",
-          "signature": "TeumAgentRecipeId = | \"issues-workspace\" | \"customer-directory\" | \"audit-log\" | \"saas-overview\" | \"product-usage\" | \"conversion-retention\" | \"customer-workspace\" | \"billing-usage\" | \"members-permissions\"",
-          "typeHash": "65e5b182855b37c529f00a612c8f4225509685c69ff29dcff593c38edc797248",
+          "signature": "WhatiuseAgentRecipeId = | \"issues-workspace\" | \"customer-directory\" | \"audit-log\" | \"saas-overview\" | \"product-usage\" | \"conversion-retention\" | \"customer-workspace\" | \"billing-usage\" | \"members-permissions\"",
+          "typeHash": "cd85c89b95c600b3018046cd746947dcd9e56363eba91e912db6b6e887d2992e",
           "description": ""
         },
         {
-          "name": "TeumAgentSelectionRule",
+          "name": "WhatiuseAgentSelectionRule",
           "kind": "type",
-          "signature": "TeumAgentSelectionRule = { task: string; choose: string; insteadOf: readonly string[]; when: readonly string[]; rejectWhen: readonly string[]; }",
-          "typeHash": "b5498b254b2d9920a18ebce190161434bf87db2baa2d0e49c892674475571a22",
+          "signature": "WhatiuseAgentSelectionRule = { task: string; choose: string; insteadOf: readonly string[]; when: readonly string[]; rejectWhen: readonly string[]; }",
+          "typeHash": "095e5b21a915c93395fe2e80103af254339e6b0498a33420d16f2f5d40c73aed",
           "description": ""
         },
         {
-          "name": "teumAgentSelectionRules",
+          "name": "whatiuseAgentSelectionRules",
           "kind": "const",
-          "signature": "teumAgentSelectionRules: readonly [{ readonly task: \"Choose one submitted value\"; readonly choose: \"Select\"; readonly insteadOf: readonly [\"Combobox\", \"ContextSwitcher\"]; readonly when: readonly [\"The values are short and predefined.\"]; re…",
-          "typeHash": "e7f0607b0c918433a8a5e6a0c2a5f7768d5732912023942eaa6dee0e04a958ef",
+          "signature": "whatiuseAgentSelectionRules: readonly [{ readonly task: \"Choose one submitted value\"; readonly choose: \"Select\"; readonly insteadOf: readonly [\"Combobox\", \"ContextSwitcher\"]; readonly when: readonly [\"The values are short and predefined.\"]…",
+          "typeHash": "830a32befe4ee7bbc07e6e5fc5dd05f19070ac2ea31aa4f65f6d06e1e3dcf87a",
           "description": ""
         },
         {
-          "name": "teumAgentSystemContract",
+          "name": "whatiuseAgentSystemContract",
           "kind": "const",
-          "signature": "teumAgentSystemContract: { readonly schemaVersion: 1; readonly product: \"Teum\"; readonly principles: readonly [\"stable geometry\", \"shared origin\", \"reversible completion\"]; readonly workflow: readonly [\"inspect project\", \"classify task\", \"…",
-          "typeHash": "b70c83fe311024121d009b55d22dfd649bf531b418026f7f2fea2bdbf4080ce8",
+          "signature": "whatiuseAgentSystemContract: { readonly schemaVersion: 1; readonly product: \"whatiuse\"; readonly principles: readonly [\"stable geometry\", \"shared origin\", \"reversible completion\"]; readonly workflow: readonly [\"inspect project\", \"classify …",
+          "typeHash": "ec943a9e914d80868c0cb3f6bf5c2dddba8586a7be3da7a4744c60875a8c0b5e",
           "description": ""
         }
       ]

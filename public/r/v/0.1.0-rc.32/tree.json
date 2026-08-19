@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tree",
+  "title": "Tree",
+  "description": "Hierarchical navigation and selection with expansion, typeahead, and roving focus.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10",
+    "react-aria-components@1.20.0"
+  ],
+  "registryDependencies": [
+    "@teum-pinned/teum-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/tree.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/teum-base.css\";\nimport \"../../styles/components/tree.css\";\nimport {\n  Button as AriaButton,\n  Tree as AriaTree,\n  TreeItem as AriaTreeItem,\n  TreeItemContent,\n  type Key,\n  type TreeProps as AriaTreeProps,\n} from \"react-aria-components\";\nimport { CaretRight, File, Folder } from \"@phosphor-icons/react\";\nimport type { ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type TreeNode = {\n  id: Key;\n  label: string;\n  description?: string;\n  icon?: ReactNode;\n  children?: readonly TreeNode[];\n  disabled?: boolean;\n};\n\nexport type TreeProps = Omit<AriaTreeProps<TreeNode>, \"children\" | \"className\" | \"items\"> & {\n  items: readonly TreeNode[];\n  className?: string;\n};\n\nfunction TreeNodeItem({ node }: { node: TreeNode }) {\n  const hasChildren = Boolean(node.children?.length);\n  return (\n    <AriaTreeItem id={node.id} textValue={node.label} isDisabled={node.disabled}>\n      <TreeItemContent>\n        {({ isExpanded, level }) => (\n          <div className=\"teum-tree__row\" style={{ \"--teum-tree-indent\": `${Math.max(0, level - 1) * 18}px` } as React.CSSProperties}>\n            {hasChildren ? (\n              <AriaButton slot=\"chevron\" className=\"teum-tree__chevron\" data-visible data-expanded={isExpanded || undefined}>\n                <CaretRight aria-hidden=\"true\" />\n              </AriaButton>\n            ) : <span className=\"teum-tree__chevron\" aria-hidden=\"true\"><CaretRight /></span>}\n            <span className=\"teum-tree__icon\" aria-hidden=\"true\">{node.icon ?? (hasChildren ? <Folder /> : <File />)}</span>\n            <span className=\"teum-tree__copy\">\n              <span className=\"teum-tree__label\">{node.label}</span>\n              {node.description && <span className=\"teum-tree__description\">{node.description}</span>}\n            </span>\n          </div>\n        )}\n      </TreeItemContent>\n      {node.children?.map((child) => <TreeNodeItem key={child.id} node={child} />)}\n    </AriaTreeItem>\n  );\n}\n\nexport function Tree({ items, className, selectionMode = \"single\", ...props }: TreeProps) {\n  return (\n    <AriaTree className={cn(\"teum-tree\", className)} selectionMode={selectionMode} {...props}>\n      {items.map((item) => <TreeNodeItem key={item.id} node={item} />)}\n    </AriaTree>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/tree.tsx"
+    },
+    {
+      "path": "registry/styles/components/tree.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer teum.tokens, teum.base, teum.components;\n\n@layer teum.components {\n.teum-tree { display: grid; width: min(420px, 100%); gap: 1px; outline: 0; color: var(--teum-fg-default); }\n\n.teum-tree[data-focus-visible] { outline: 0; }\n\n.teum-tree [role=\"row\"] { outline: 0; }\n\n.teum-tree__row {\n  display: grid;\n  min-height: 32px;\n  grid-template-columns: 16px 17px minmax(0, 1fr);\n  align-items: center;\n  gap: 6px;\n  padding: 4px 8px 4px calc(8px + var(--teum-tree-indent, 0px));\n  border-radius: 7px;\n  color: var(--teum-fg-muted);\n  cursor: default;\n  transition: background-color var(--teum-hover-duration), color var(--teum-hover-duration), transform var(--teum-press-duration) var(--teum-ease-out);\n}\n\n.teum-tree [role=\"row\"][data-hovered] > .teum-tree__row { background: var(--teum-hover); color: var(--teum-fg-default); }\n\n.teum-tree [role=\"row\"][data-selected] > .teum-tree__row { background: var(--teum-selection); color: var(--teum-fg-default); }\n\n.teum-tree [role=\"row\"][data-focus-visible] > .teum-tree__row { box-shadow: inset 0 0 0 1px var(--teum-focus-control); }\n\n.teum-tree [role=\"row\"][data-pressed] > .teum-tree__row { transform: scale(.995); }\n\n.teum-tree [role=\"row\"][data-disabled] > .teum-tree__row { color: var(--teum-fg-disabled); cursor: not-allowed; }\n\n.teum-tree__chevron { position: relative; display: grid; width: 16px; height: 16px; place-items: center; padding: 0; border: 0; border-radius: 4px; background: transparent; opacity: 0; color: var(--teum-fg-subtle); transition: transform var(--teum-enter-duration) var(--teum-ease-out); }\n\n.teum-tree__chevron[data-visible] { opacity: 1; }\n\n.teum-tree__chevron[data-visible]::after { position: absolute; inset: -4px; content: \"\"; }\n\n.teum-tree__chevron[data-expanded] { transform: rotate(90deg); }\n\n.teum-tree__chevron:focus-visible { outline: 0; box-shadow: inset 0 0 0 1px var(--teum-focus-control); }\n\n.teum-tree__chevron svg,\n.teum-tree__icon svg { width: 13px; height: 13px; }\n\n.teum-tree__icon { display: grid; width: 17px; height: 17px; place-items: center; color: var(--teum-fg-subtle); }\n\n.teum-tree__copy { display: grid; min-width: 0; gap: 1px; }\n\n.teum-tree__label { overflow: hidden; font-size: var(--teum-type-ui); line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }\n\n.teum-tree__description { overflow: hidden; color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }\n\n@media (prefers-reduced-motion: reduce) {\n.teum-tree__chevron { transition-duration: 0.01ms; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/tree.css"
+    }
+  ],
+  "meta": {
+    "teum": {
+      "contract": "/agent/teum-agent.json",
+      "registryItem": "@teum/tree",
+      "useWhen": "The hierarchy itself matters and users need to expand, collapse, navigate, or select nested items.",
+      "avoidWhen": "The content is flat, several branches must be compared at once, or ordinary disclosure sections are sufficient."
+    }
+  },
+  "type": "registry:ui"
+}

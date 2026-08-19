@@ -30,7 +30,7 @@ describe("design system workspace", () => {
     render(<App />);
 
     expect(window.location.hash).toBe("");
-    expect(screen.getByRole("heading", { level: 1, name: "Components for product interfaces." })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: "components i use." })).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2, name: "Library" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Open documentation" })).toHaveAttribute("href", "#installation");
     expect(screen.getByRole("link", { name: "made by minwook" })).toHaveAttribute("href", "https://www.minwookshin.com/");
@@ -50,6 +50,9 @@ describe("design system workspace", () => {
     expect(wordmark).not.toHaveAttribute("href");
     expect(screen.queryByRole("link", { name: "whatiuse home" })).not.toBeInTheDocument();
     expect(container.querySelector(".whatiuse-wordmark svg")).toBeNull();
+    expect(screen.getByRole("link", { name: "@minwook — portfolio" })).toHaveAttribute("href", "https://www.minwookshin.com/");
+    expect(screen.getByRole("link", { name: "@minwook — portfolio" })).toHaveTextContent("@minwook");
+    expect(container.querySelectorAll(".component-index-author__portraits img")).toHaveLength(3);
   });
 
   it("lists every component with an interactive preview and opens a URL-backed code inspector", async () => {
@@ -64,6 +67,9 @@ describe("design system workspace", () => {
     expect(container.querySelector('.component-index-row[data-component="shared-detail"]')).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Copy Button install command" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Open Button code" })).toHaveAttribute("href", "#components/button");
+    expect(screen.getByRole("textbox", { name: "Search components" })).toHaveAttribute("placeholder", "Search components");
+    expect(screen.queryByRole("group", { name: "Filter components by group" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /^Controls$/ })).not.toBeInTheDocument();
     expect(within(container.querySelector<HTMLElement>('.component-index-row[data-component="button"]')!).queryByText("Controls")).not.toBeInTheDocument();
     expect(container.querySelector("a button")).not.toBeInTheDocument();
 
@@ -82,12 +88,36 @@ describe("design system workspace", () => {
     expect(window.location.hash).toBe("#components/table");
     const inspector = screen.getByRole("dialog", { name: "Table" });
     expect(within(inspector).getByRole("tab", { name: "Source" })).toHaveAttribute("aria-selected", "true");
-    expect(within(inspector).getByRole("button", { name: "Copy Table source" })).toBeInTheDocument();
+    expect(within(inspector).getByRole("button", { name: "React" })).toHaveAttribute("aria-pressed", "true");
+    expect(await within(inspector).findByText("table.tsx", { exact: true })).toBeInTheDocument();
+    expect(within(inspector).getByRole("button", { name: "Copy Table React source" })).toBeInTheDocument();
+    await user.click(within(inspector).getByRole("button", { name: "CSS" }));
+    expect(within(inspector).getByText("table.css", { exact: true })).toBeInTheDocument();
+    expect(within(inspector).getByRole("region", { name: "Table CSS source" })).toHaveTextContent(".whatiuse-table");
     expect(within(inspector).getByRole("link", { name: "Accessibility & API" })).toHaveAttribute("href", "#table");
 
     await user.keyboard("{Escape}");
     expect(screen.queryByRole("dialog", { name: "Table" })).not.toBeInTheDocument();
     expect(window.location.hash).toBe("#components");
+  });
+
+  it("keeps Data and Analytics as focused Library collections", async () => {
+    const user = userEvent.setup();
+    window.history.replaceState(null, "", "#components");
+    const { container } = render(<App />);
+
+    await user.click(screen.getByRole("tab", { name: "Data" }));
+    expect(container.querySelectorAll(".component-index-row")).toHaveLength(18);
+    expect(screen.getByRole("link", { name: "Open Data Table code" })).toHaveAttribute("href", "#components/data-table");
+    expect(screen.queryByRole("button", { name: "Controls" })).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole("tab", { name: "Analytics" }));
+    expect(container.querySelectorAll(".component-index-row")).toHaveLength(17);
+    expect(screen.getByRole("link", { name: "Open Chart code" })).toHaveAttribute("href", "#components/chart");
+
+    await user.click(screen.getByRole("link", { name: "Open Chart code" }));
+    expect(window.location.hash).toBe("#components/chart");
+    expect(within(screen.getByRole("dialog", { name: "Chart" })).getByRole("link", { name: "Accessibility & API" })).toHaveAttribute("href", "#analytics");
   });
 
   it("switches the live documentation when a component is selected", async () => {
@@ -216,7 +246,7 @@ describe("design system workspace", () => {
     expect(screen.getAllByText("Tab to focus").length).toBeGreaterThan(0);
     expect(container.querySelectorAll(".guidance-marker")).toHaveLength(6);
     expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("Button");
-    expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("teum");
+    expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("whatiuse");
     expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("Base UI");
     expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("7 states");
     expect(screen.getByRole("table", { name: "Button API" })).toBeInTheDocument();
@@ -236,7 +266,7 @@ describe("design system workspace", () => {
     expect(within(catalog).getByRole("link", { name: "Button" })).toHaveAttribute("aria-current", "page");
     expect(within(catalog).getByRole("link", { name: "Icon Button" })).not.toHaveAttribute("aria-current");
     expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("Base UI");
-    expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("teum");
+    expect(screen.getByLabelText("Button reference summary")).toHaveTextContent("whatiuse");
   });
 
   it("keeps a Library return, centered identity, GitHub, and theme in the documentation header", () => {
@@ -261,7 +291,7 @@ describe("design system workspace", () => {
     expect(document.documentElement).toHaveAttribute("data-theme", "light");
     await user.click(screen.getByRole("button", { name: "Current theme: light. Switch to dark theme" }));
     expect(document.documentElement).toHaveAttribute("data-theme", "dark");
-    expect(window.localStorage.getItem("teum-theme")).toBe("dark");
+    expect(window.localStorage.getItem("whatiuse-theme")).toBe("dark");
     expect(screen.getByRole("button", { name: "Current theme: dark. Switch to light theme" })).toBeInTheDocument();
   });
 
@@ -297,7 +327,7 @@ describe("design system workspace", () => {
     expect(disclosure).not.toHaveAttribute("open");
     await user.click(screen.getByText("Show code"));
     expect(disclosure).toHaveAttribute("open");
-    expect(screen.getByText(/import \{ Button \} from "teum"/)).toBeInTheDocument();
+    expect(await screen.findByText(/import \{ Button \} from "whatiuse"/)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Copy code" })).toBeInTheDocument();
   });
 
@@ -315,7 +345,7 @@ describe("design system workspace", () => {
     const disclosure = screen.getByText("Show code").closest("summary")!;
     disclosure.focus();
     await user.keyboard("{Enter}");
-    expect(screen.getByText(/import \{ Button \} from "teum"/)).toBeInTheDocument();
+    expect(screen.getByText(/import \{ Button \} from "whatiuse"/)).toBeInTheDocument();
   });
 
   it("returns to the preview when the user moves to another component", async () => {
@@ -398,7 +428,7 @@ describe("design system workspace", () => {
     const catalog = screen.getByRole("region", { name: "Component catalog" });
 
     expect(container.querySelectorAll(".state-control-stack > .state-inline-surface")).toHaveLength(3);
-    expect(container.querySelector(".teum-context-switcher__popup")).not.toBeInTheDocument();
+    expect(container.querySelector(".whatiuse-context-switcher__popup")).not.toBeInTheDocument();
 
     await user.click(within(catalog).getByRole("link", { name: "Popover" }));
     expect(container.querySelectorAll('.state-overlay-stack[data-composition="compound"]')).toHaveLength(componentGuidance.popover.states.length);

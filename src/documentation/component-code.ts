@@ -46,13 +46,13 @@ export type ComponentDocId =
   | "undo-stack";
 
 export const componentCode: Record<ComponentDocId, string> = {
-  button: `import { Button } from "teum";
+  button: `import { Button } from "whatiuse";
 
 export function CreateIssueAction() {
   return <Button variant="primary">Create issue</Button>;
 }`,
   "icon-button": `import { Plus } from "@phosphor-icons/react";
-import { IconButton } from "teum";
+import { IconButton } from "whatiuse";
 
 export function AddItemAction() {
   return (
@@ -68,7 +68,7 @@ export function AddItemAction() {
   FieldLabel,
   Fieldset,
   FieldsetLegend,
-} from "teum";
+} from "whatiuse";
 
 export function ProjectMetadata() {
   return (
@@ -83,7 +83,7 @@ export function ProjectMetadata() {
   );
 }`,
   "input-group": `import { Copy } from "@phosphor-icons/react";
-import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "teum";
+import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "whatiuse";
 
 export function RepositoryField() {
   return (
@@ -94,12 +94,12 @@ export function RepositoryField() {
     </InputGroup>
   );
 }`,
-  kbd: `import { Kbd, KbdGroup } from "teum";
+  kbd: `import { Kbd, KbdGroup } from "whatiuse";
 
 export function CommandShortcut() {
   return <KbdGroup><Kbd>⌘</Kbd><Kbd>K</Kbd></KbdGroup>;
 }`,
-  "button-group": `import { Button, ButtonGroup } from "teum";
+  "button-group": `import { Button, ButtonGroup } from "whatiuse";
 
 export function IssueActions() {
   return (
@@ -110,7 +110,7 @@ export function IssueActions() {
   );
 }`,
   toolbar: `import { Plus } from "@phosphor-icons/react";
-import { Toolbar, ToolbarButton, ToolbarInput, ToolbarSeparator } from "teum";
+import { Toolbar, ToolbarButton, ToolbarInput, ToolbarSeparator } from "whatiuse";
 
 export function FormattingToolbar() {
   return (
@@ -122,7 +122,7 @@ export function FormattingToolbar() {
     </Toolbar>
   );
 }`,
-  "text-field": `import { TextField } from "teum";
+  "text-field": `import { TextField } from "whatiuse";
 
 export function ProjectNameField() {
   return (
@@ -133,12 +133,12 @@ export function ProjectNameField() {
     />
   );
 }`,
-  textarea: `import { Textarea } from "teum";
+  textarea: `import { Textarea } from "whatiuse";
 
 export function IssueDescription() {
   return <Textarea label="Description" maxLength={280} showCount />;
 }`,
-  checkbox: `import { Checkbox } from "teum";
+  checkbox: `import { Checkbox } from "whatiuse";
 
 export function ExportOptions() {
   return (
@@ -149,7 +149,7 @@ export function ExportOptions() {
     />
   );
 }`,
-  "radio-group": `import { RadioGroup } from "teum";
+  "radio-group": `import { RadioGroup } from "whatiuse";
 
 export function DeliveryCadence() {
   return <RadioGroup label="Send updates" defaultValue="daily" options={[
@@ -158,7 +158,7 @@ export function DeliveryCadence() {
     { value: "off", label: "Never" },
   ]} />;
 }`,
-  switch: `import { Switch } from "teum";
+  switch: `import { Switch } from "whatiuse";
 
 export function PreviewPreference() {
   return (
@@ -169,7 +169,7 @@ export function PreviewPreference() {
     />
   );
 }`,
-  select: `import { Select } from "teum";
+  select: `import { Select } from "whatiuse";
 
 export function PrioritySelect() {
   return <Select label="Priority" defaultValue="medium" options={[
@@ -179,7 +179,7 @@ export function PrioritySelect() {
   ]} />;
 }`,
   "context-switcher": `import { Monitor, DeviceMobile, TerminalWindow } from "@phosphor-icons/react";
-import { ContextSwitcher } from "teum";
+import { ContextSwitcher } from "whatiuse";
 
 export function PlatformSwitcher() {
   return <ContextSwitcher aria-label="Preview platform" defaultValue="web" options={[
@@ -188,17 +188,17 @@ export function PlatformSwitcher() {
     { value: "terminal", label: "Terminal", description: "Keyboard-first command tools", icon: <TerminalWindow /> },
   ]} />;
 }`,
-  combobox: `import { Combobox } from "teum";
+  combobox: `import { Combobox } from "whatiuse";
 
 export function AssigneeCombobox({ people }) {
   return <Combobox label="Assignee" options={people} placeholder="Search people…" />;
 }`,
-  "search-input": `import { SearchInput } from "teum";
+  "search-input": `import { SearchInput } from "whatiuse";
 
 export function ComponentSearch({ query, setQuery }) {
   return <SearchInput value={query} onChange={(event) => setQuery(event.target.value)} onClear={() => setQuery("")} placeholder="Search components…" />;
 }`,
-  "number-field": `import { NumberField } from "teum";
+  "number-field": `import { NumberField } from "whatiuse";
 
 export function CycleCapacity() {
   return (
@@ -212,7 +212,7 @@ export function CycleCapacity() {
   );
 }`,
   "date-picker": `import { parseDate } from "@internationalized/date";
-import { DatePicker } from "teum";
+import { DatePicker } from "whatiuse";
 
 export function DueDate() {
   return (
@@ -223,7 +223,7 @@ export function DueDate() {
     />
   );
 }`,
-  "segmented-control": `import { SegmentedControl } from "teum";
+  "segmented-control": `import { SegmentedControl } from "whatiuse";
 
 export function IssueView() {
   return (
@@ -238,7 +238,7 @@ export function IssueView() {
     />
   );
 }`,
-  tooltip: `import { Button, Tooltip, TooltipContent, TooltipTrigger } from "teum";
+  tooltip: `import { Button, Tooltip, TooltipContent, TooltipTrigger } from "whatiuse";
 
 export function FavoriteHint() {
   return (
@@ -255,7 +255,7 @@ export function FavoriteHint() {
   PopoverDescription,
   PopoverTitle,
   PopoverTrigger,
-} from "teum";
+} from "whatiuse";
 
 export function ViewOptions() {
   return (
@@ -268,7 +268,7 @@ export function ViewOptions() {
     </Popover>
   );
 }`,
-  menu: `import { Button, Menu, MenuContent, MenuItem, MenuTrigger } from "teum";
+  menu: `import { Button, Menu, MenuContent, MenuItem, MenuTrigger } from "whatiuse";
 
 export function IssueActions() {
   return (
@@ -286,7 +286,7 @@ export function IssueActions() {
   ContextMenuContent,
   ContextMenuItem,
   ContextMenuTrigger,
-} from "teum";
+} from "whatiuse";
 
 export function IssueContextMenu() {
   return (
@@ -309,7 +309,7 @@ export function IssueContextMenu() {
   DialogTitle,
   DialogTrigger,
   TextField,
-} from "teum";
+} from "whatiuse";
 
 export function EditComponentMetadata() {
   return (
@@ -339,7 +339,7 @@ export function EditComponentMetadata() {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "teum";
+} from "whatiuse";
 
 export function IssueProperties() {
   return (
@@ -366,7 +366,7 @@ export function IssueProperties() {
   AlertDialogTitle,
   AlertDialogTrigger,
   Button,
-} from "teum";
+} from "whatiuse";
 
 export function DiscardDraft() {
   return (
@@ -385,7 +385,7 @@ export function DiscardDraft() {
     </AlertDialog>
   );
 }`,
-  tabs: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "teum";
+  tabs: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "whatiuse";
 
 export function IssueViews() {
   return (
@@ -399,7 +399,7 @@ export function IssueViews() {
     </Tabs>
   );
 }`,
-  breadcrumbs: `import { Breadcrumbs } from "teum";
+  breadcrumbs: `import { Breadcrumbs } from "whatiuse";
 
 export function IssueLocation() {
   return <Breadcrumbs items={[
@@ -409,45 +409,45 @@ export function IssueLocation() {
   ]} />;
 }`,
   pagination: `import { useState } from "react";
-import { Pagination } from "teum";
+import { Pagination } from "whatiuse";
 
 export function ResultsPagination() {
   const [page, setPage] = useState(1);
   return <Pagination page={page} totalPages={18} onPageChange={setPage} />;
 }`,
-  collapsible: `import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "teum";
+  collapsible: `import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "whatiuse";
 
 export function AdvancedRules() {
   return (
-    <Collapsible className="teum-collapsible">
+    <Collapsible className="whatiuse-collapsible">
       <CollapsibleTrigger>Advanced filter rules</CollapsibleTrigger>
       <CollapsibleContent>Match state contracts that restore focus.</CollapsibleContent>
     </Collapsible>
   );
 }`,
-  toast: `import { Button, toast } from "teum";
+  toast: `import { Button, toast } from "whatiuse";
 
 export function SaveFeedback() {
   return (
     <Button onClick={() => toast.success("Component saved")}>Save component</Button>
   );
 }`,
-  progress: `import { Progress } from "teum";
+  progress: `import { Progress } from "whatiuse";
 
 export function ExportProgress() {
   return <Progress label="Exporting data" value={68} />;
 }`,
-  spinner: `import { Spinner } from "teum";
+  spinner: `import { Spinner } from "whatiuse";
 
 export function PanelLoading() {
   return <Spinner label="Loading panel" />;
 }`,
-  skeleton: `import { Skeleton, SkeletonText } from "teum";
+  skeleton: `import { Skeleton, SkeletonText } from "whatiuse";
 
 export function IssueSkeleton() {
   return <><Skeleton width={32} height={32} radius="round" /><SkeletonText lines={3} /></>;
 }`,
-  alert: `import { Alert, Button } from "teum";
+  alert: `import { Alert, Button } from "whatiuse";
 
 export function RegistryWarning() {
   return (
@@ -456,7 +456,7 @@ export function RegistryWarning() {
     </Alert>
   );
 }`,
-  "empty-state": `import { Button, EmptyState } from "teum";
+  "empty-state": `import { Button, EmptyState } from "whatiuse";
 
 export function FilteredEmptyState() {
   return (
@@ -467,17 +467,17 @@ export function FilteredEmptyState() {
     />
   );
 }`,
-  badge: `import { Badge } from "teum";
+  badge: `import { Badge } from "whatiuse";
 
 export function IssueStatus() {
   return <Badge variant="strong">In review</Badge>;
 }`,
-  avatar: `import { Avatar, AvatarGroup } from "teum";
+  avatar: `import { Avatar, AvatarGroup } from "whatiuse";
 
 export function ProjectMembers() {
   return <AvatarGroup aria-label="Project members"><Avatar fallback="AS" /><Avatar fallback="MP" status="online" /></AvatarGroup>;
 }`,
-  table: `import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "teum";
+  table: `import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "whatiuse";
 
 export function IssueTable({ issues }) {
   return (
@@ -492,7 +492,7 @@ export function IssueTable({ issues }) {
     </Table>
   );
 }`,
-  tree: `import { Tree } from "teum";
+  tree: `import { Tree } from "whatiuse";
 
 const items = [{
   id: "workspace",
@@ -506,7 +506,7 @@ const items = [{
 export function ProjectTree() {
   return <Tree aria-label="Project structure" items={items} defaultExpandedKeys={["workspace"]} />;
 }`,
-  "reorderable-list": `import { ReorderableList } from "teum";
+  "reorderable-list": `import { ReorderableList } from "whatiuse";
 
 const steps = [
   { id: "capture", label: "Capture intent" },
@@ -518,14 +518,14 @@ export function ReleaseSequence() {
   return <ReorderableList aria-label="Release sequence" defaultItems={steps} />;
 }`,
   "inline-edit": `import { useState } from "react";
-import { InlineEdit } from "teum";
+import { InlineEdit } from "whatiuse";
 
 export function ProjectTitle() {
   const [title, setTitle] = useState("whatiuse");
 
   return <InlineEdit value={title} onSave={setTitle} label="Edit project title" />;
 }`,
-  "action-list": `import { ActionList } from "teum";
+  "action-list": `import { ActionList } from "whatiuse";
 
 const actions = [
   { id: "create", label: "Create component", shortcut: "C" },
@@ -535,7 +535,7 @@ const actions = [
 export function CommandActions() {
   return <ActionList items={actions} onAction={(item) => run(item.id)} />;
 }`,
-  "shared-detail": `import { SharedDetail } from "teum";
+  "shared-detail": `import { SharedDetail } from "whatiuse";
 
 const issues = [
   {
@@ -550,7 +550,7 @@ const issues = [
 export function IssueInspector() {
   return <SharedDetail items={issues} />;
 }`,
-  "undo-stack": `import { Button, UndoBar, useUndoStack } from "teum";
+  "undo-stack": `import { Button, UndoBar, useUndoStack } from "whatiuse";
 
 export function ArchiveAction() {
   const { pushUndo } = useUndoStack();

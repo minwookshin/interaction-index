@@ -1,58 +1,58 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-field__label { color: var(--teum-ink); font-size: 12px; font-weight: 550; }
+@layer whatiuse.components {
+.whatiuse-field__label { color: var(--whatiuse-ink); font-size: 12px; font-weight: 550; }
 
-.teum-field__description,
-.teum-field__error { color: var(--teum-ink-tertiary); font-size: 11.5px; line-height: 1.45; }
+.whatiuse-field__description,
+.whatiuse-field__error { color: var(--whatiuse-ink-tertiary); font-size: 11.5px; line-height: 1.45; }
 
-.teum-field__error { color: var(--teum-fg-danger); font-weight: 520; }
+.whatiuse-field__error { color: var(--whatiuse-fg-danger); font-weight: 520; }
 
-.teum-number-field { display: grid; min-width: 0; gap: 6px; }
+.whatiuse-number-field { display: grid; min-width: 0; gap: 6px; }
 
-.teum-number-field__group {
+.whatiuse-number-field__group {
   display: flex;
   width: 100%;
   min-width: 0;
   height: 32px;
   align-items: center;
   overflow: hidden;
-  border: 1px solid var(--teum-control-border);
-  border-radius: var(--teum-radius-sm);
-  background: var(--teum-bg-control);
-  box-shadow: var(--teum-shadow-control);
-  transition: border-color var(--teum-hover-duration), box-shadow var(--teum-hover-duration);
+  border: 1px solid var(--whatiuse-control-border);
+  border-radius: var(--whatiuse-radius-sm);
+  background: var(--whatiuse-bg-control);
+  box-shadow: var(--whatiuse-shadow-control);
+  transition: border-color var(--whatiuse-hover-duration), box-shadow var(--whatiuse-hover-duration);
 }
 
-.teum-number-field__input { width: 100%; min-width: 0; height: 100%; padding: 0 6px; border: 0; outline: 0; background: transparent; color: var(--teum-fg-default); font-size: var(--teum-type-ui); font-variant-numeric: tabular-nums; }
+.whatiuse-number-field__input { width: 100%; min-width: 0; height: 100%; padding: 0 6px; border: 0; outline: 0; background: transparent; color: var(--whatiuse-fg-default); font-size: var(--whatiuse-type-ui); font-variant-numeric: tabular-nums; }
 
-.teum-number-field__input::placeholder { color: var(--teum-fg-subtle); }
+.whatiuse-number-field__input::placeholder { color: var(--whatiuse-fg-subtle); }
 
-.teum-number-field__step { display: grid; width: 30px; height: 30px; flex: 0 0 30px; padding: 0; place-items: center; border: 0; background: transparent; color: var(--teum-fg-muted); cursor: pointer; transition: color var(--teum-hover-duration), background-color var(--teum-hover-duration), transform var(--teum-press-duration) var(--teum-ease-out); }
+.whatiuse-number-field__step { display: grid; width: 30px; height: 30px; flex: 0 0 30px; padding: 0; place-items: center; border: 0; background: transparent; color: var(--whatiuse-fg-muted); cursor: pointer; transition: color var(--whatiuse-hover-duration), background-color var(--whatiuse-hover-duration), transform var(--whatiuse-press-duration) var(--whatiuse-ease-out); }
 
-.teum-number-field__step svg { width: 12px; height: 12px; }
+.whatiuse-number-field__step svg { width: 12px; height: 12px; }
 
-.teum-number-field__step:focus-visible { z-index: 1; outline: 2px solid var(--teum-focus-control); outline-offset: -2px; }
+.whatiuse-number-field__step:focus-visible { z-index: 1; outline: 2px solid var(--whatiuse-focus-control); outline-offset: -2px; }
 
-.teum-number-field__step:active { transform: scale(.96); }
+.whatiuse-number-field__step:active { transform: scale(.96); }
 
-.teum-number-field__step[data-disabled] { color: var(--teum-fg-disabled); cursor: not-allowed; }
+.whatiuse-number-field__step[data-disabled] { color: var(--whatiuse-fg-disabled); cursor: not-allowed; }
 
-.teum-number-field__suffix { padding-right: 4px; color: var(--teum-fg-subtle); font-size: var(--teum-type-label); }
+.whatiuse-number-field__suffix { padding-right: 4px; color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-label); }
 
-.teum-number-field[data-disabled] .teum-number-field__group { background: var(--teum-bg-subtle); box-shadow: none; }
+.whatiuse-number-field[data-disabled] .whatiuse-number-field__group { background: var(--whatiuse-bg-subtle); box-shadow: none; }
 
-.teum-number-field[data-disabled] .teum-number-field__input { color: var(--teum-fg-disabled); cursor: not-allowed; }
+.whatiuse-number-field[data-disabled] .whatiuse-number-field__input { color: var(--whatiuse-fg-disabled); cursor: not-allowed; }
 
-.teum-number-field[data-invalid] .teum-number-field__group { border-color: color-mix(in oklch, var(--teum-fg-danger) 46%, var(--teum-control-border)); box-shadow: 0 0 0 2px color-mix(in oklch, var(--teum-fg-danger) 11%, transparent); }
+.whatiuse-number-field[data-invalid] .whatiuse-number-field__group { border-color: color-mix(in oklch, var(--whatiuse-fg-danger) 46%, var(--whatiuse-control-border)); box-shadow: 0 0 0 2px color-mix(in oklch, var(--whatiuse-fg-danger) 11%, transparent); }
 
 @media (hover: hover) and (pointer: fine) {
-.teum-number-field__step:not([data-disabled]):hover { background: var(--teum-hover); color: var(--teum-fg-default); }
+.whatiuse-number-field__step:not([data-disabled]):hover { background: var(--whatiuse-hover); color: var(--whatiuse-fg-default); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-number-field__step:active { transform: none; }
+.whatiuse-number-field__step:active { transform: none; }
 }
 }

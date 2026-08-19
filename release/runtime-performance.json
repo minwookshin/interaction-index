@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/verify-runtime-performance.mjs",
-  "generatedAt": "2026-08-18T23:57:23.551Z",
-  "releaseVersion": "0.1.0-rc.30",
+  "generatedAt": "2026-08-19T14:00:58.827Z",
+  "releaseVersion": "0.1.0-rc.38",
   "status": "passed",
   "mode": "local-production-preview",
   "viewport": {
@@ -23,32 +23,32 @@
   },
   "measurements": {
     "landing": {
-      "fcpMs": 140,
-      "lcpMs": 432,
+      "fcpMs": 132,
+      "lcpMs": 440,
       "cls": 0,
       "longestTaskMs": 0,
       "longTaskCount": 0,
-      "domContentLoadedMs": 62,
-      "loadMs": 62,
-      "resourceRequests": 17,
-      "resourceTransferBytes": 457251
+      "domContentLoadedMs": 72,
+      "loadMs": 72,
+      "resourceRequests": 20,
+      "resourceTransferBytes": 612866
     },
     "documentation": {
-      "fcpMs": 144,
-      "lcpMs": 452,
+      "fcpMs": 132,
+      "lcpMs": 448,
       "cls": 0.0024,
-      "longestTaskMs": 56,
-      "longTaskCount": 1,
-      "domContentLoadedMs": 65,
-      "loadMs": 65,
-      "resourceRequests": 15,
-      "resourceTransferBytes": 465457
+      "longestTaskMs": 0,
+      "longTaskCount": 0,
+      "domContentLoadedMs": 70,
+      "loadMs": 70,
+      "resourceRequests": 16,
+      "resourceTransferBytes": 479452
     },
-    "documentationTransitionMs": 870,
+    "documentationTransitionMs": 413,
     "interactions": {
-      "sharedDetailSelectionMs": 6,
+      "sharedDetailSelectionMs": 5,
       "dialogOpenMs": 9,
-      "longestTaskMs": 64
+      "longestTaskMs": 69
     }
   },
   "environment": {

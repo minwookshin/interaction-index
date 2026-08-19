@@ -1,21 +1,21 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-toast { position: absolute; display: flex; width: 326px; max-width: calc(100vw - 32px); min-height: 52px; align-items: center; gap: 10px; padding: 10px 40px 10px 12px; border: 1px solid var(--teum-border-subtle); border-radius: 8px; background: var(--teum-bg-flyout); color: var(--teum-ink); box-shadow: var(--teum-shadow-flyout); font-family: inherit; }
+@layer whatiuse.components {
+.whatiuse-toast { position: absolute; display: flex; width: 326px; max-width: calc(100vw - 32px); min-height: 52px; align-items: center; gap: 10px; padding: 10px 40px 10px 12px; border: 1px solid var(--whatiuse-border-subtle); border-radius: 8px; background: var(--whatiuse-bg-flyout); color: var(--whatiuse-ink); box-shadow: var(--whatiuse-shadow-flyout); font-family: inherit; }
 
-.teum-toast__content { display: grid; flex: 1; gap: 2px; }
+.whatiuse-toast__content { display: grid; flex: 1; gap: 2px; }
 
-.teum-toast__title { font-size: 13.5px; font-weight: 580; }
+.whatiuse-toast__title { font-size: 13.5px; font-weight: 580; }
 
-.teum-toast__description { color: var(--teum-ink-secondary); font-size: 12px; }
+.whatiuse-toast__description { color: var(--whatiuse-ink-secondary); font-size: 12px; }
 
-.teum-toast__action { height: 28px; padding: 0 8px; border: 1px solid var(--teum-border); border-radius: 5px; background: var(--teum-control-surface); color: var(--teum-ink); font-size: 12px; font-weight: 550; }
+.whatiuse-toast__action { height: 28px; padding: 0 8px; border: 1px solid var(--whatiuse-border); border-radius: 5px; background: var(--whatiuse-control-surface); color: var(--whatiuse-ink); font-size: 12px; font-weight: 550; }
 
-.teum-toast__close { position: absolute; top: 8px; right: 8px; display: grid; width: 22px; height: 22px; padding: 0; place-items: center; border: 0; border-radius: 4px; background: transparent; color: var(--teum-fg-subtle); }
+.whatiuse-toast__close { position: absolute; top: 8px; right: 8px; display: grid; width: 22px; height: 22px; padding: 0; place-items: center; border: 0; border-radius: 4px; background: transparent; color: var(--whatiuse-fg-subtle); }
 
 @media (forced-colors: active) {
-.teum-toast { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }
+.whatiuse-toast { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }
 }
 }

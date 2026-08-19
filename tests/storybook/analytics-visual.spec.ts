@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 const stories = [
   ["product-analytics--renderer-family", "Analytics renderer family"],
   ["product-analytics--saa-s-overview", "SaaS Overview recipe"],
-  ["product-analytics--product-usage", "Product Usage recipe"],
+  ["product-analytics--product-usage", "Usage and Adoption Explorer"],
   ["product-analytics--conversion-retention", "Conversion and Retention recipe"],
 ] as const;
 

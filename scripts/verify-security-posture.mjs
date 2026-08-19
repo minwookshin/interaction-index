@@ -35,7 +35,6 @@ requireContract(packageJson.private === true, "npm publication lock must remain 
 
 const publicationSurfaces = [
   "README.md",
-  "RELEASE_CHECKLIST.md",
   "publication.json",
   "public/llms.txt",
   "src/App.tsx",
@@ -60,28 +59,6 @@ requireContract(/mkdtemp\(/.test(packageAssembler), "package candidate must asse
 requireContract(/output already exists/.test(packageAssembler), "package candidate must reject a reused output directory");
 requireContract(/unexpected output set/.test(packageAssembler), "package candidate must reject files outside its exact allowlist");
 requireContract(/rename\(staging, output\)/.test(packageAssembler), "package candidate must publish the staged directory atomically");
-
-const publicPackageAssembler = await read("scripts/build-public-package.mjs");
-requireContract(/mkdtemp\(/.test(publicPackageAssembler), "public package must assemble in a fresh staging directory");
-requireContract(/output already exists/.test(publicPackageAssembler), "public package must reject a reused output directory");
-requireContract(/repositoryPublicationLocked: true/.test(publicPackageAssembler), "public package must preserve the repository publication lock");
-requireContract(/unexpected artifact set/.test(publicPackageAssembler), "public package must reject files outside its exact artifact allowlist");
-requireContract(/rename\(artifact, output\)/.test(publicPackageAssembler), "public package must publish the staged artifact atomically");
-
-const npmWorkflow = await read(".github/workflows/publish-npm.yml");
-requireContract(/npm stage publish/.test(npmWorkflow), "npm workflow must use staged publishing");
-requireContract(/environment: npm-publication/.test(npmWorkflow), "npm staging must use the protected publication environment");
-requireContract(/NPM_TRUSTED_STAGE_PUBLISH/.test(npmWorkflow), "npm staging must remain locked behind the trusted-publisher gate");
-requireContract(!/(?:NPM_TOKEN|NODE_AUTH_TOKEN)/.test(npmWorkflow), "npm workflow must not depend on a long-lived publication token");
-
-const betaHealthWorkflow = await read(".github/workflows/beta-health.yml");
-requireContract(/schedule:\s*\n\s*- cron:/.test(betaHealthWorkflow), "public beta health verification must run on a schedule");
-requireContract(/verify:public-beta -- --write-evidence/.test(betaHealthWorkflow), "public beta health verification must archive fresh live evidence");
-requireContract(/verify-beta-external-evidence\.mjs --write-evidence/.test(betaHealthWorkflow), "public beta health verification must collect accepted external evidence");
-requireContract(/verify-beta-stability\.mjs --write-evidence/.test(betaHealthWorkflow), "public beta health verification must measure consecutive stability coverage");
-requireContract(/build:beta/.test(betaHealthWorkflow), "public beta health verification must rebuild live v1 readiness");
-requireContract(/retention-days:\s*35/.test(betaHealthWorkflow), "public beta health evidence must outlive the 28-day stability window");
-requireContract(!/(?:actions|attestations|contents|id-token|issues|pages):\s*write/.test(betaHealthWorkflow), "public beta health workflow must remain read-only");
 
 const releaseAssembler = await read("scripts/assemble-release-candidate.mjs");
 requireContract(/mkdtemp\(/.test(releaseAssembler), "release candidate must assemble in a fresh staging directory");

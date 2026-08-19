@@ -1,7 +1,7 @@
 import { type ColumnSizingState, type ColumnVisibilityState } from "@tanstack/react-table";
 import { type ReactNode } from "react";
 import type { DataViewColumnPinning, DataViewSort } from "../../lib/data-view-state";
-export declare const teumDataTableFeatures: {
+export declare const whatiuseDataTableFeatures: {
     columnSizingFeature: import("@tanstack/table-core").TableFeature;
     columnResizingFeature: import("@tanstack/table-core").TableFeature;
     columnPinningFeature: import("@tanstack/table-core").TableFeature;

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty-state",
+  "title": "Empty State",
+  "description": "Zero-result explanation with the smallest useful next action.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/empty-state.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/empty-state.css\";\nimport { Package } from \"@phosphor-icons/react\";\nimport { useId, type ComponentPropsWithRef, type ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type EmptyStateProps = Omit<ComponentPropsWithRef<\"div\">, \"title\"> & {\n  title: ReactNode;\n  description?: ReactNode;\n  icon?: ReactNode;\n  primaryAction?: ReactNode;\n  secondaryAction?: ReactNode;\n  size?: \"compact\" | \"default\";\n};\n\nexport function EmptyState({\n  title,\n  description,\n  icon = <Package />,\n  primaryAction,\n  secondaryAction,\n  size = \"default\",\n  className,\n  ...props\n}: EmptyStateProps) {\n  const generatedId = useId();\n  const titleId = props[\"aria-labelledby\"] ?? `${generatedId}-title`;\n  const descriptionId = description ? `${generatedId}-description` : undefined;\n\n  return (\n    <div className={cn(\"whatiuse-empty-state\", className)} data-size={size} aria-labelledby={titleId} aria-describedby={descriptionId} {...props}>\n      <span className=\"whatiuse-empty-state__icon\" aria-hidden=\"true\">{icon}</span>\n      <div className=\"whatiuse-empty-state__copy\">\n        <strong id={titleId}>{title}</strong>\n        {description && <p id={descriptionId}>{description}</p>}\n      </div>\n      {(primaryAction || secondaryAction) && <div className=\"whatiuse-empty-state__actions\">{primaryAction}{secondaryAction}</div>}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/empty-state.tsx"
+    },
+    {
+      "path": "registry/styles/components/empty-state.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-empty-state {\n  display: grid;\n  width: min(460px, 100%);\n  justify-items: center;\n  gap: 14px;\n  padding: 28px;\n  color: var(--whatiuse-fg-default);\n  text-align: center;\n}\n\n.whatiuse-empty-state[data-size=\"compact\"] { gap: 10px; padding: 18px; }\n\n.whatiuse-empty-state__icon { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; background: var(--whatiuse-bg-subtle); color: var(--whatiuse-fg-muted); }\n\n.whatiuse-empty-state__icon svg { width: 17px; height: 17px; }\n\n.whatiuse-empty-state__copy { display: grid; justify-items: center; gap: 5px; }\n\n.whatiuse-empty-state__copy strong { font-size: 15px; font-weight: 590; letter-spacing: -0.018em; }\n\n.whatiuse-empty-state__copy p { max-width: 42ch; margin: 0; color: var(--whatiuse-fg-muted); font-size: var(--whatiuse-type-ui); line-height: 1.55; }\n\n.whatiuse-empty-state__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/empty-state.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/empty-state",
+      "useWhen": "A collection has no content and the reason or next useful action is not otherwise obvious.",
+      "avoidWhen": "Content is still loading or the empty region is too small to justify explanatory UI."
+    }
+  },
+  "type": "registry:ui"
+}

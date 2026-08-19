@@ -20,11 +20,11 @@ describe("priority component previews", () => {
     const button = screen.getByRole("button", { name: "Create item" });
     fireEvent.click(button, { detail: 1 });
     expect(button).toHaveAttribute("aria-busy", "true");
-    expect(button.closest(".teum-icon-action-preview")).toHaveAttribute("data-activation", "pointer");
+    expect(button.closest(".whatiuse-icon-action-preview")).toHaveAttribute("data-activation", "pointer");
 
     act(() => vi.advanceTimersByTime(720));
     expect(button).toHaveAttribute("aria-disabled", "true");
-    expect(button.closest(".teum-icon-action-preview")).toHaveAttribute("data-state", "success");
+    expect(button.closest(".whatiuse-icon-action-preview")).toHaveAttribute("data-state", "success");
     expect(screen.getByRole("status")).toHaveTextContent("Item created");
 
     act(() => vi.advanceTimersByTime(1200));
@@ -33,7 +33,7 @@ describe("priority component previews", () => {
 
     fireEvent.click(button, { detail: 0 });
     expect(button).toHaveAttribute("aria-busy", "true");
-    expect(button.closest(".teum-icon-action-preview")).toHaveAttribute("data-activation", "keyboard");
+    expect(button.closest(".whatiuse-icon-action-preview")).toHaveAttribute("data-activation", "keyboard");
   });
 
   it("updates the select value and returns focus to the trigger", async () => {

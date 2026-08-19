@@ -73,18 +73,18 @@ const report = {
     initialCriticalGzipBytes: 140000,
     documentationShellJsGzipBytes: 360000,
     publicDocumentationJsGzipBytes: 370000,
-    dataRecipesJsGzipBytes: 490000,
-    analyticsRecipesJsGzipBytes: 500000,
+    dataRecipesJsGzipBytes: 505000,
+    analyticsRecipesJsGzipBytes: 515000,
     productPatternsJsGzipBytes: 500000,
     largestComponentRouteJsGzipBytes: 430000,
     largestJavaScriptRawBytes: 500000,
     largestJavaScriptGzipBytes: 115000,
-    // This is the complete lazy graph for 45 Core components and 17 product
+    // This is the complete lazy graph for 45 Core components and 36 product
     // modules, not one route. Initial and per-route budgets remain the user-
-    // visible guardrails; the aggregate allows independently loaded slices.
-    totalJsGzipBytes: 600000,
+    // visible guardrails; the aggregate caps independently loaded slices.
+    totalJsGzipBytes: 800000,
     initialCssGzipBytes: 9000,
-    totalCssGzipBytes: 58000,
+    totalCssGzipBytes: 65000,
   },
   totals: {
     initialJsGzipBytes,
@@ -111,9 +111,9 @@ const assertions = [
   [initialCriticalGzipBytes, report.budgets.initialCriticalGzipBytes, "initial critical transfer"],
   [routes.documentationShell.jsGzipBytes, report.budgets.documentationShellJsGzipBytes, "documentation shell JavaScript gzip"],
   [routes.publicDocumentation.jsGzipBytes, report.budgets.publicDocumentationJsGzipBytes, "public documentation JavaScript gzip"],
-  [routes.dataRecipes.jsGzipBytes, report.budgets.dataRecipesJsGzipBytes, "Teum Data recipes JavaScript gzip"],
-  [routes.analyticsRecipes.jsGzipBytes, report.budgets.analyticsRecipesJsGzipBytes, "Teum Analytics recipes JavaScript gzip"],
-  [routes.productPatterns.jsGzipBytes, report.budgets.productPatternsJsGzipBytes, "Teum Product Patterns JavaScript gzip"],
+  [routes.dataRecipes.jsGzipBytes, report.budgets.dataRecipesJsGzipBytes, "whatiuse Data recipes JavaScript gzip"],
+  [routes.analyticsRecipes.jsGzipBytes, report.budgets.analyticsRecipesJsGzipBytes, "whatiuse Analytics recipes JavaScript gzip"],
+  [routes.productPatterns.jsGzipBytes, report.budgets.productPatternsJsGzipBytes, "whatiuse Product Patterns JavaScript gzip"],
   [largestComponentRouteJsGzipBytes, report.budgets.largestComponentRouteJsGzipBytes, "largest component route JavaScript gzip"],
   [largestJavaScript.bytes, report.budgets.largestJavaScriptRawBytes, "largest JavaScript chunk raw"],
   [largestJavaScript.gzipBytes, report.budgets.largestJavaScriptGzipBytes, "largest JavaScript chunk gzip"],

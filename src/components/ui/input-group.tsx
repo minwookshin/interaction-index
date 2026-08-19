@@ -18,7 +18,7 @@ export function InputGroup({ className, invalid, disabled, ...props }: InputGrou
   return (
     <InputGroupContext.Provider value={{ invalid: Boolean(invalid), disabled: Boolean(disabled) }}>
       <div
-        className={cn("teum-input-group", className)}
+        className={cn("whatiuse-input-group", className)}
         data-invalid={invalid || undefined}
         data-disabled={disabled || undefined}
         {...props}
@@ -33,7 +33,7 @@ export function InputGroupInput({ className, disabled, "aria-invalid": ariaInval
   const group = useContext(InputGroupContext);
   return (
     <input
-      className={cn("teum-input-group__input", className)}
+      className={cn("whatiuse-input-group__input", className)}
       disabled={disabled ?? group.disabled}
       aria-invalid={ariaInvalid ?? (group.invalid || undefined)}
       {...props}
@@ -46,12 +46,12 @@ export type InputGroupAddonProps = ComponentPropsWithRef<"span"> & {
 };
 
 export function InputGroupAddon({ className, side = "start", ...props }: InputGroupAddonProps) {
-  return <span className={cn("teum-input-group__addon", className)} data-side={side} {...props} />;
+  return <span className={cn("whatiuse-input-group__addon", className)} data-side={side} {...props} />;
 }
 
 export type InputGroupButtonProps = ButtonProps;
 
 export function InputGroupButton({ className, variant = "ghost", size = "small", disabled, ...props }: InputGroupButtonProps) {
   const group = useContext(InputGroupContext);
-  return <Button className={cn("teum-input-group__button", className)} variant={variant} size={size} disabled={disabled ?? group.disabled} {...props} />;
+  return <Button className={cn("whatiuse-input-group__button", className)} variant={variant} size={size} disabled={disabled ?? group.disabled} {...props} />;
 }

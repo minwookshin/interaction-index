@@ -108,14 +108,14 @@ export function Heatmap({
   };
 
   return (
-    <div ref={rootRef} className={cn("teum-heatmap", className)} role="region" aria-labelledby={`${id}-title`} {...props}>
-      <header className="teum-heatmap__header">
+    <div ref={rootRef} className={cn("whatiuse-heatmap", className)} role="region" aria-labelledby={`${id}-title`} {...props}>
+      <header className="whatiuse-heatmap__header">
         <div><h3 id={`${id}-title`}>{title}</h3>{description && <p>{description}</p>}</div>
-        <output aria-live="polite">{activeLabel ? <><span>{activeLabel}</span><strong>{typeof activeValue === "number" ? valueFormatter(activeValue) : "No data"}</strong></> : <><span>Range</span><strong>{valueFormatter(resolvedDomain[0])} to {valueFormatter(resolvedDomain[1])}</strong></>}</output>
+        <output aria-live="polite" data-active={activeLabel || undefined}>{activeLabel ? <><span>{activeLabel}</span><strong>{typeof activeValue === "number" ? valueFormatter(activeValue) : "No data"}</strong></> : <span className="whatiuse-sr-only">Range {valueFormatter(resolvedDomain[0])} to {valueFormatter(resolvedDomain[1])}</span>}</output>
       </header>
-      <div className="teum-heatmap__stage">
-        {loading ? <div className="teum-heatmap__state" role="status"><span aria-hidden="true" />Loading heatmap</div> : error ? <div className="teum-heatmap__state teum-heatmap__state--error" role="alert">{error}</div> : !rows.length || !columns.length ? <div className="teum-heatmap__state">{empty}</div> : <table>
-          <caption className="teum-sr-only">{title} data</caption>
+      <div className="whatiuse-heatmap__stage">
+        {loading ? <div className="whatiuse-heatmap__state" role="status"><span aria-hidden="true" />Loading heatmap</div> : error ? <div className="whatiuse-heatmap__state whatiuse-heatmap__state--error" role="alert">{error}</div> : !rows.length || !columns.length ? <div className="whatiuse-heatmap__state">{empty}</div> : <table>
+          <caption className="whatiuse-sr-only">{title} data</caption>
           <thead><tr><th scope="col">Series</th>{columns.map((column) => <th scope="col" key={column}>{column}</th>)}</tr></thead>
           <tbody>{rows.map((row, rowIndex) => <tr key={row.id}><th scope="row">{row.label}</th>{columns.map((column, columnIndex) => {
             const value = row.values[columnIndex] ?? null;
@@ -131,7 +131,7 @@ export function Heatmap({
               aria-pressed={selected}
               aria-label={`${row.label}, ${column}, ${typeof value === "number" ? valueFormatter(value) : "no data"}`}
               tabIndex={selected || isFallbackTabStop ? 0 : -1}
-              style={{ "--teum-heatmap-strength": strength } as CSSProperties}
+              style={{ "--whatiuse-heatmap-strength": strength } as CSSProperties}
               onFocus={() => setCurrentCell(cell)}
               onPointerEnter={() => setCurrentCell(cell)}
               onKeyDown={(event) => handleKeyDown(event, rowIndex, columnIndex)}

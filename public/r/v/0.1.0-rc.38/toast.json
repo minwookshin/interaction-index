@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast",
+  "title": "Toast",
+  "dependencies": [
+    "sonner@2.0.8"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/toast.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/toast.css\";\nimport { Toaster as SonnerToaster, toast as sonnerToast } from \"sonner\";\nimport type { ExternalToast, ToasterProps } from \"sonner\";\nimport type { ReactNode } from \"react\";\n\nexport type ToastId = string | number;\nexport type ToastMessage = ReactNode | (() => ReactNode);\nexport type ToastOptions = ExternalToast;\n\nexport type ToastApi = {\n  (message: ToastMessage, options?: ToastOptions): ToastId;\n  success: (message: ToastMessage, options?: ToastOptions) => ToastId;\n  info: (message: ToastMessage, options?: ToastOptions) => ToastId;\n  warning: (message: ToastMessage, options?: ToastOptions) => ToastId;\n  error: (message: ToastMessage, options?: ToastOptions) => ToastId;\n  loading: (message: ToastMessage, options?: ToastOptions) => ToastId;\n  dismiss: (id?: ToastId) => ToastId;\n};\n\nconst toastClassNames = {\n  toast: \"whatiuse-toast\",\n  content: \"whatiuse-toast__content\",\n  title: \"whatiuse-toast__title\",\n  description: \"whatiuse-toast__description\",\n  actionButton: \"whatiuse-toast__action\",\n  closeButton: \"whatiuse-toast__close\",\n};\n\nexport function Toaster({\n  className,\n  position = \"bottom-center\",\n  visibleToasts = 3,\n  expand = false,\n  closeButton = true,\n  duration = 4000,\n  gap = 14,\n  offset = 20,\n  toastOptions,\n  ...props\n}: ToasterProps) {\n  return (\n    <SonnerToaster\n      {...props}\n      className={[\"whatiuse-toaster\", className].filter(Boolean).join(\" \")}\n      position={position}\n      visibleToasts={visibleToasts}\n      expand={expand}\n      closeButton={closeButton}\n      duration={duration}\n      gap={gap}\n      offset={offset}\n      style={{ \"--width\": \"326px\", ...props.style } as ToasterProps[\"style\"]}\n      toastOptions={{\n        ...toastOptions,\n        unstyled: true,\n        classNames: {\n          ...toastClassNames,\n          ...toastOptions?.classNames,\n        },\n      }}\n    />\n  );\n}\n\nexport const toast: ToastApi = Object.assign(\n  (message: ToastMessage, options?: ToastOptions) => sonnerToast(message, options),\n  {\n    success: (message: ToastMessage, options?: ToastOptions) => sonnerToast.success(message, options),\n    info: (message: ToastMessage, options?: ToastOptions) => sonnerToast.info(message, options),\n    warning: (message: ToastMessage, options?: ToastOptions) => sonnerToast.warning(message, options),\n    error: (message: ToastMessage, options?: ToastOptions) => sonnerToast.error(message, options),\n    loading: (message: ToastMessage, options?: ToastOptions) => sonnerToast.loading(message, options),\n    dismiss: (id?: ToastId) => sonnerToast.dismiss(id),\n  },\n);\n",
+      "type": "registry:ui",
+      "target": "components/ui/toast.tsx"
+    },
+    {
+      "path": "registry/styles/components/toast.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-toast { position: absolute; display: flex; width: 326px; max-width: calc(100vw - 32px); min-height: 52px; align-items: center; gap: 10px; padding: 10px 40px 10px 12px; border: 1px solid var(--whatiuse-border-subtle); border-radius: 8px; background: var(--whatiuse-bg-flyout); color: var(--whatiuse-ink); box-shadow: var(--whatiuse-shadow-flyout); font-family: inherit; }\n\n.whatiuse-toast__content { display: grid; flex: 1; gap: 2px; }\n\n.whatiuse-toast__title { font-size: 13.5px; font-weight: 580; }\n\n.whatiuse-toast__description { color: var(--whatiuse-ink-secondary); font-size: 12px; }\n\n.whatiuse-toast__action { height: 28px; padding: 0 8px; border: 1px solid var(--whatiuse-border); border-radius: 5px; background: var(--whatiuse-control-surface); color: var(--whatiuse-ink); font-size: 12px; font-weight: 550; }\n\n.whatiuse-toast__close { position: absolute; top: 8px; right: 8px; display: grid; width: 22px; height: 22px; padding: 0; place-items: center; border: 0; border-radius: 4px; background: transparent; color: var(--whatiuse-fg-subtle); }\n\n@media (forced-colors: active) {\n.whatiuse-toast { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/toast.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/toast",
+      "useWhen": "The result is useful but should not block the current task.",
+      "avoidWhen": "The user must act before continuing or the error belongs beside a field."
+    }
+  },
+  "type": "registry:ui"
+}

@@ -9,14 +9,14 @@ import { promisify } from "node:util";
 const exec = promisify(execFile);
 const root = process.cwd();
 const packageJson = JSON.parse(await readFile(resolve(root, "package.json"), "utf8"));
-const contract = JSON.parse(await readFile(resolve(root, "agent/generated/teum-agent.json"), "utf8"));
+const contract = JSON.parse(await readFile(resolve(root, "agent/generated/whatiuse-agent.json"), "utf8"));
 const evaluation = JSON.parse(await readFile(resolve(root, "agent/evals/product-tasks.json"), "utf8"));
 const mutableRegistryRoot = resolve(root, "public/r");
 const versionedRegistryRoot = resolve(root, "public/r/v", packageJson.version);
-const hasVersionedAgent = await access(resolve(versionedRegistryRoot, "teum-agent.json")).then(() => true).catch(() => false);
+const hasVersionedAgent = await access(resolve(versionedRegistryRoot, "whatiuse-agent.json")).then(() => true).catch(() => false);
 const registryRoot = hasVersionedAgent ? versionedRegistryRoot : mutableRegistryRoot;
-const registryScope = hasVersionedAgent ? "@teum-pinned" : "@teum";
-const fixture = await mkdtemp(join(tmpdir(), "teum-agent-evaluation-"));
+const registryScope = hasVersionedAgent ? "@whatiuse" : "@whatiuse";
+const fixture = await mkdtemp(join(tmpdir(), "whatiuse-agent-evaluation-"));
 const executable = process.platform === "win32" ? resolve(root, "node_modules/.bin/shadcn.cmd") : resolve(root, "node_modules/.bin/shadcn");
 const evidencePath = resolve(root, "release/agent-evaluation.json");
 let server;
@@ -104,12 +104,12 @@ if (contractViolations) {
 }
 
 try {
-  const template = process.env.TEUM_REGISTRY_TEMPLATE ?? await startRegistryServer();
+  const template = process.env.WHATIUSE_REGISTRY_TEMPLATE ?? await startRegistryServer();
   if (!template.includes("{name}")) throw new Error("[agent-evaluation] registry template must contain {name}");
   await mkdir(resolve(fixture, "src/generated"), { recursive: true });
-  await writeFile(resolve(fixture, "src/index.css"), "/* Teum source registry owns component CSS. */\n");
+  await writeFile(resolve(fixture, "src/index.css"), "/* whatiuse source registry owns component CSS. */\n");
   await writeFile(resolve(fixture, "package.json"), `${JSON.stringify({
-    name: "teum-agent-evaluation", private: true, version: "0.0.0", type: "module",
+    name: "whatiuse-agent-evaluation", private: true, version: "0.0.0", type: "module",
     dependencies: { react: packageJson.devDependencies.react, "react-dom": packageJson.devDependencies["react-dom"] },
     devDependencies: { "@types/react": packageJson.devDependencies["@types/react"], "@types/react-dom": packageJson.devDependencies["@types/react-dom"], typescript: packageJson.devDependencies.typescript, vite: packageJson.devDependencies.vite },
   }, null, 2)}\n`);
@@ -122,14 +122,14 @@ try {
     compilerOptions: { target: "ES2022", lib: ["ES2022", "DOM", "DOM.Iterable"], module: "ESNext", moduleResolution: "Bundler", types: ["vite/client"], jsx: "react-jsx", strict: true, noEmit: true },
     include: ["src/**/*.ts", "src/**/*.tsx"],
   }, null, 2)}\n`);
-  await writeFile(resolve(fixture, "index.html"), '<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><title>Teum agent evaluation</title></head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>\n');
+  await writeFile(resolve(fixture, "index.html"), '<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><title>whatiuse agent evaluation</title></head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>\n');
 
   const startedAt = performance.now();
   await exec(executable, ["registry", "add", `${registryScope}=${template}`, "-c", fixture], { cwd: root, env: { ...process.env, CI: "1" }, maxBuffer: 32 * 1024 * 1024, timeout: 120_000 });
-  const install = await exec(executable, ["add", `${registryScope}/teum-agent`, "-y", "-c", fixture], { cwd: root, env: { ...process.env, CI: "1" }, maxBuffer: 64 * 1024 * 1024, timeout: 240_000 });
+  const install = await exec(executable, ["add", `${registryScope}/whatiuse-agent`, "-y", "-c", fixture], { cwd: root, env: { ...process.env, CI: "1" }, maxBuffer: 64 * 1024 * 1024, timeout: 240_000 });
   process.stdout.write(install.stdout); process.stderr.write(install.stderr);
-  await access(resolve(fixture, "src/lib/teum-agent.json"));
-  await access(resolve(fixture, "src/lib/teum-agent-contract.ts"));
+  await access(resolve(fixture, "src/lib/whatiuse-agent.json"));
+  await access(resolve(fixture, "src/lib/whatiuse-agent-contract.ts"));
 
   const modules = [];
   for (const [index, task] of evaluation.tasks.entries()) {
@@ -160,7 +160,7 @@ try {
     generatedAt: new Date().toISOString(),
     version: packageJson.version,
     status: "passed",
-    scope: "One clean React + TypeScript + Vite consumer installed the Teum agent registry item; 30 generated task modules were collectively type-checked and production-built.",
+    scope: "One clean React + TypeScript + Vite consumer installed the whatiuse agent registry item; 30 generated task modules were collectively type-checked and production-built.",
     taskCount: results.length,
     selectedCorrectly: results.filter(({ status }) => status === "passed").length,
     selectionSuccessRate: 1,
@@ -169,14 +169,14 @@ try {
     cleanInstall: "passed",
     typecheck: "passed",
     productionBuild: "passed",
-    installedItem: `${registryScope}/teum-agent`,
+    installedItem: `${registryScope}/whatiuse-agent`,
     registryChannel: hasVersionedAgent ? "immutable versioned" : "mutable pre-release",
     elapsedMs,
     results,
   };
-  if (process.env.TEUM_AGENT_EVIDENCE === "1") await writeFile(evidencePath, `${JSON.stringify(evidence, null, 2)}\n`, "utf8");
+  if (process.env.WHATIUSE_AGENT_EVIDENCE === "1") await writeFile(evidencePath, `${JSON.stringify(evidence, null, 2)}\n`, "utf8");
   console.log(`[agent-evaluation] ${results.length}/${results.length} tasks selected correctly; clean install and production build passed with ${contractViolations} contract violations in ${elapsedMs} ms`);
 } finally {
   if (server) await new Promise((resolveClose, reject) => server.close((error) => error ? reject(error) : resolveClose()));
-  if (!process.env.TEUM_KEEP_FIXTURE) await rm(fixture, { recursive: true, force: true });
+  if (!process.env.WHATIUSE_KEEP_FIXTURE) await rm(fixture, { recursive: true, force: true });
 }

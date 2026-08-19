@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "data-export-menu",
+  "title": "Data Export Menu",
+  "description": "Export visible or selected records as CSV or JSON through one explicit collection action.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base",
+    "@whatiuse/button",
+    "@whatiuse/data-export",
+    "@whatiuse/menu"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/data-export-menu.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/data-export-menu.css\";\nimport { DownloadSimple, FileCode, FileCsv } from \"@phosphor-icons/react\";\nimport { useState } from \"react\";\nimport {\n  buildDataExport,\n  downloadDataExport,\n  type DataExportArtifact,\n  type DataExportColumn,\n  type DataExportFormat,\n} from \"../../lib/data-export\";\nimport { Button } from \"./button\";\nimport { Menu, MenuContent, MenuItem, MenuLabel, MenuSeparator, MenuTrigger } from \"./menu\";\n\nexport type DataExportMenuProps<TData> = {\n  rows: readonly TData[];\n  selectedRows?: readonly TData[];\n  columns: readonly DataExportColumn<TData>[];\n  fileName: string;\n  label?: string;\n  download?: boolean;\n  disabled?: boolean;\n  onExport?: (artifact: DataExportArtifact, scope: \"visible\" | \"selected\") => void;\n};\n\nexport function DataExportMenu<TData>({\n  rows,\n  selectedRows = [],\n  columns,\n  fileName,\n  label = \"Export\",\n  download = true,\n  disabled = false,\n  onExport,\n}: DataExportMenuProps<TData>) {\n  const [announcement, setAnnouncement] = useState(\"\");\n  const runExport = (format: DataExportFormat, scope: \"visible\" | \"selected\") => {\n    const source = scope === \"selected\" ? selectedRows : rows;\n    const artifact = buildDataExport({\n      rows: source,\n      columns,\n      format,\n      fileName: scope === \"selected\" ? `${fileName}-selected` : fileName,\n    });\n    onExport?.(artifact, scope);\n    if (download) downloadDataExport(artifact);\n    setAnnouncement(`${artifact.rowCount} rows exported as ${format.toUpperCase()}`);\n  };\n\n  return (\n    <>\n      <Menu>\n        <MenuTrigger render={<Button size=\"small\" variant=\"ghost\" leadingIcon={<DownloadSimple />} disabled={disabled || rows.length === 0} />}>{label}</MenuTrigger>\n        <MenuContent className=\"whatiuse-data-export\" align=\"end\">\n          <MenuLabel>All rows</MenuLabel>\n          <MenuItem aria-label=\"Export all rows as CSV\" onClick={() => runExport(\"csv\", \"visible\")}><FileCsv aria-hidden=\"true\" /><span className=\"whatiuse-data-export__copy\"><strong>CSV</strong><small>{rows.length} rows</small></span></MenuItem>\n          <MenuItem aria-label=\"Export all rows as JSON\" onClick={() => runExport(\"json\", \"visible\")}><FileCode aria-hidden=\"true\" /><span className=\"whatiuse-data-export__copy\"><strong>JSON</strong><small>{rows.length} rows</small></span></MenuItem>\n          {selectedRows.length > 0 && (\n            <>\n              <MenuSeparator />\n              <MenuLabel>Selected</MenuLabel>\n              <MenuItem aria-label=\"Export selected rows as CSV\" onClick={() => runExport(\"csv\", \"selected\")}><FileCsv aria-hidden=\"true\" /><span className=\"whatiuse-data-export__copy\"><strong>CSV</strong><small>{selectedRows.length} selected</small></span></MenuItem>\n              <MenuItem aria-label=\"Export selected rows as JSON\" onClick={() => runExport(\"json\", \"selected\")}><FileCode aria-hidden=\"true\" /><span className=\"whatiuse-data-export__copy\"><strong>JSON</strong><small>{selectedRows.length} selected</small></span></MenuItem>\n            </>\n          )}\n        </MenuContent>\n      </Menu>\n      <span className=\"whatiuse-sr-only\" aria-live=\"polite\">{announcement}</span>\n    </>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/data-export-menu.tsx"
+    },
+    {
+      "path": "registry/styles/components/data-export-menu.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-data-export { min-width: 210px; }\n\n.whatiuse-data-export .whatiuse-menu__item svg { width: 14px; height: 14px; color: var(--whatiuse-fg-subtle); }\n\n.whatiuse-data-export { min-width: 188px; }\n\n.whatiuse-data-export .whatiuse-menu__item { min-height: 38px; }\n\n.whatiuse-data-export .whatiuse-menu__item svg { width: 14px; height: 14px; color: var(--whatiuse-fg-subtle); }\n\n.whatiuse-data-export__copy { display: grid; min-width: 0; flex: 1; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; }\n\n.whatiuse-data-export__copy strong { color: var(--whatiuse-fg-default); font-size: var(--whatiuse-type-label); font-weight: 560; }\n\n.whatiuse-data-export__copy small { color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); font-variant-numeric: tabular-nums; white-space: nowrap; }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/data-export-menu.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/data-export-menu"
+    }
+  },
+  "type": "registry:component"
+}

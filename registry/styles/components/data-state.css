@@ -1,0 +1,41 @@
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
+
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
+
+@layer whatiuse.components {
+.whatiuse-data-state {
+  display: grid;
+  min-width: 0;
+  min-height: 176px;
+  place-content: center;
+  justify-items: center;
+  gap: 5px;
+  padding: 24px;
+  border-radius: var(--whatiuse-radius-container);
+  background: color-mix(in oklch, var(--whatiuse-bg-stage) 72%, transparent);
+  text-align: center;
+}
+
+.whatiuse-data-state__icon {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  margin-bottom: 3px;
+  border-radius: 8px;
+  background: var(--whatiuse-bg-subtle);
+  color: var(--whatiuse-fg-muted);
+}
+
+.whatiuse-data-state__icon > svg { width: 15px; height: 15px; }
+
+.whatiuse-data-state__icon .whatiuse-loading-spinner { width: 14px; height: 14px; }
+
+.whatiuse-data-state > strong { color: var(--whatiuse-fg-default); font-size: var(--whatiuse-type-ui); font-weight: 590; }
+
+.whatiuse-data-state > p { max-width: 280px; margin: 0; color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); line-height: 1.45; }
+
+.whatiuse-data-state__action { margin-top: 7px; }
+
+.whatiuse-data-state[data-state="error"] .whatiuse-data-state__icon { background: color-mix(in oklch, var(--whatiuse-fg-danger) 9%, transparent); color: var(--whatiuse-fg-danger); }
+}

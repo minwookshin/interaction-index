@@ -1,33 +1,33 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-tabs { display: grid; gap: 16px; }
+@layer whatiuse.components {
+.whatiuse-tabs { display: grid; gap: 16px; }
 
-.teum-tabs__list { display: inline-flex; width: fit-content; height: 30px; align-items: center; gap: 2px; padding: 2px; border: 1px solid var(--teum-border-subtle); border-radius: 6px; background: var(--teum-subtle); }
+.whatiuse-tabs__list { display: inline-flex; width: fit-content; height: 30px; align-items: center; gap: 2px; padding: 2px; border: 1px solid var(--whatiuse-border-subtle); border-radius: 6px; background: var(--whatiuse-subtle); }
 
-.teum-tabs__trigger { position: relative; height: 24px; padding: 0 8px; border: 0; border-radius: 4px; outline: 0; background: transparent; color: var(--teum-ink-secondary); font-size: 12.5px; cursor: pointer; }
+.whatiuse-tabs__trigger { position: relative; height: 24px; padding: 0 8px; border: 0; border-radius: 4px; outline: 0; background: transparent; color: var(--whatiuse-ink-secondary); font-size: 12.5px; cursor: pointer; }
 
-.teum-tabs__trigger:hover { color: var(--teum-fg-default); }
+.whatiuse-tabs__trigger:hover { color: var(--whatiuse-fg-default); }
 
-.teum-tabs__trigger[data-active] { background: var(--teum-control-surface); color: var(--teum-ink); box-shadow: var(--teum-shadow-control), 0 0 0 1px var(--teum-border-subtle); }
+.whatiuse-tabs__trigger[data-active] { background: var(--whatiuse-control-surface); color: var(--whatiuse-ink); box-shadow: var(--whatiuse-shadow-control), 0 0 0 1px var(--whatiuse-border-subtle); }
 
-.teum-tabs__trigger[data-disabled] { opacity: 0.42; cursor: not-allowed; }
+.whatiuse-tabs__trigger[data-disabled] { opacity: 0.42; cursor: not-allowed; }
 
-.teum-tabs__trigger:focus-visible { outline: 0; box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--teum-focus-control) 48%, transparent); }
+.whatiuse-tabs__trigger:focus-visible { outline: 0; box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--whatiuse-focus-control) 48%, transparent); }
 
-.teum-tabs__trigger[data-active]:focus-visible { box-shadow: var(--teum-shadow-control), inset 0 0 0 1px color-mix(in oklch, var(--teum-focus-control) 54%, transparent); }
+.whatiuse-tabs__trigger[data-active]:focus-visible { box-shadow: var(--whatiuse-shadow-control), inset 0 0 0 1px color-mix(in oklch, var(--whatiuse-focus-control) 54%, transparent); }
 
-.teum-tabs__panel { outline: 0; }
+.whatiuse-tabs__panel { outline: 0; }
 
 @media (forced-colors: active) {
-.teum-tabs__list { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }
+.whatiuse-tabs__list { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }
 
-.teum-tabs__trigger[data-active] { outline: 2px solid Highlight; outline-offset: -2px; }
+.whatiuse-tabs__trigger[data-active] { outline: 2px solid Highlight; outline-offset: -2px; }
 }
 
-:root[data-theme="dark"] .teum-tabs__trigger:hover { color: var(--teum-ink); }
+:root[data-theme="dark"] .whatiuse-tabs__trigger:hover { color: var(--whatiuse-ink); }
 
-.teum-tabs__trigger { transition: color var(--teum-hover-duration), background-color var(--teum-hover-duration), box-shadow var(--teum-hover-duration), transform var(--teum-press-duration) var(--teum-ease-out); }
+.whatiuse-tabs__trigger { transition: color var(--whatiuse-hover-duration), background-color var(--whatiuse-hover-duration), box-shadow var(--whatiuse-hover-duration), transform var(--whatiuse-press-duration) var(--whatiuse-ease-out); }
 }

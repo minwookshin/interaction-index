@@ -51,7 +51,7 @@ import {
   TableRow,
 } from "./table";
 
-export const teumDataTableFeatures = tableFeatures({
+export const whatiuseDataTableFeatures = tableFeatures({
   columnSizingFeature,
   columnResizingFeature,
   columnPinningFeature,
@@ -160,14 +160,14 @@ function fromPinning(value: ColumnPinningState): DataTableColumnPinning {
 }
 
 function renderValue(value: unknown): ReactNode {
-  if (value === null || value === undefined || value === "") return <span className="teum-data-table__empty-value">—</span>;
+  if (value === null || value === undefined || value === "") return <span className="whatiuse-data-table__empty-value">—</span>;
   if (typeof value === "string" || typeof value === "number") return value;
   if (value instanceof Date) return value.toLocaleDateString();
   return String(value);
 }
 
 function resolvedColumnStyle<TData extends object>(
-  column: Column<typeof teumDataTableFeatures, TData, unknown>,
+  column: Column<typeof whatiuseDataTableFeatures, TData, unknown>,
   source: DataTableColumn<TData> | undefined,
   selectionOffset: number,
 ): CSSProperties | undefined {
@@ -274,7 +274,7 @@ export function DataTable<TData extends object>({
   };
 
   const columnsById = useMemo(() => new Map(columns.map((column) => [column.id, column])), [columns]);
-  const tableColumns = useMemo<ColumnDef<typeof teumDataTableFeatures, TData, unknown>[]>(() => columns.map((column) => ({
+  const tableColumns = useMemo<ColumnDef<typeof whatiuseDataTableFeatures, TData, unknown>[]>(() => columns.map((column) => ({
     id: column.id,
     header: typeof column.header === "string" ? column.header : column.id,
     accessorFn: typeof column.accessor === "function"
@@ -333,7 +333,7 @@ export function DataTable<TData extends object>({
   };
 
   const table = useTable({
-    features: teumDataTableFeatures,
+    features: whatiuseDataTableFeatures,
     data: data as TData[],
     columns: tableColumns,
     getRowId,
@@ -415,7 +415,7 @@ export function DataTable<TData extends object>({
     >
       {selectable && (
         <TableCell
-          className="teum-data-table__selection-cell"
+          className="whatiuse-data-table__selection-cell"
           data-pinned={selectionOffset ? "start" : undefined}
         >
           <Checkbox
@@ -447,7 +447,7 @@ export function DataTable<TData extends object>({
       aria-label={ariaLabel}
       aria-busy={loading || isFetching || undefined}
       aria-rowcount={(rowCount ?? data.length) + 1}
-      containerClassName={virtualized ? "teum-data-table__virtual-table" : undefined}
+      containerClassName={virtualized ? "whatiuse-data-table__virtual-table" : undefined}
       style={{ minWidth: Math.max(560, table.getTotalSize() + (selectable ? 40 : 0)) }}
     >
       <TableHeader>
@@ -455,7 +455,7 @@ export function DataTable<TData extends object>({
           <TableRow key={headerGroup.id}>
             {selectable && (
               <TableHead
-                className="teum-data-table__selection-head"
+                className="whatiuse-data-table__selection-head"
                 data-pinned={selectionOffset ? "start" : undefined}
               >
                 <Checkbox
@@ -480,11 +480,11 @@ export function DataTable<TData extends object>({
                   data-pinned={pinned || undefined}
                   style={resolvedColumnStyle(header.column, source, selectionOffset)}
                 >
-                  <div className="teum-data-table__header-content">
+                  <div className="whatiuse-data-table__header-content">
                     {header.column.getCanSort() ? (
                       <button
                         type="button"
-                        className="teum-data-table__sort"
+                        className="whatiuse-data-table__sort"
                         onClick={header.column.getToggleSortingHandler()}
                         aria-label={`Sort ${label}${direction ? direction === "asc" ? ", descending next" : ", clear sorting" : ", ascending"}`}
                       >
@@ -494,7 +494,7 @@ export function DataTable<TData extends object>({
                     ) : <span>{source?.header}</span>}
                     {header.column.getCanResize() && (
                       <div
-                        className="teum-data-table__resize"
+                        className="whatiuse-data-table__resize"
                         data-resizing={header.column.getIsResizing() || undefined}
                         role="separator"
                         aria-label={`Resize ${label} column`}
@@ -526,18 +526,18 @@ export function DataTable<TData extends object>({
       <TableBody>
         {loading ? Array.from({ length: Math.max(1, loadingRows) }, (_, rowIndex) => (
           <TableRow key={`loading-${rowIndex}`} aria-hidden="true">
-            {selectable && <TableCell className="teum-data-table__selection-cell"><Skeleton width={16} height={16} /></TableCell>}
+            {selectable && <TableCell className="whatiuse-data-table__selection-cell"><Skeleton width={16} height={16} /></TableCell>}
             {visibleColumns.map((column, columnIndex) => <TableCell key={column.id} data-align={column.align ?? "start"}><Skeleton width={columnIndex === 0 ? "68%" : "48%"} height={10} /></TableCell>)}
           </TableRow>
         )) : error ? (
-          <TableRow><TableCell className="teum-data-table__state" colSpan={colSpan}><EmptyState size="compact" icon={<WarningCircle />} title="Could not load data" description={error} primaryAction={onRetry ? <Button size="small" onClick={onRetry}>Try again</Button> : undefined} /></TableCell></TableRow>
+          <TableRow><TableCell className="whatiuse-data-table__state" colSpan={colSpan}><EmptyState size="compact" icon={<WarningCircle />} title="Could not load data" description={error} primaryAction={onRetry ? <Button size="small" onClick={onRetry}>Try again</Button> : undefined} /></TableCell></TableRow>
         ) : rows.length === 0 ? (
-          <TableRow><TableCell className="teum-data-table__state" colSpan={colSpan}><EmptyState size="compact" title={emptyTitle} description={emptyDescription} /></TableCell></TableRow>
+          <TableRow><TableCell className="whatiuse-data-table__state" colSpan={colSpan}><EmptyState size="compact" title={emptyTitle} description={emptyDescription} /></TableCell></TableRow>
         ) : virtualized ? (
           <>
-            {topPadding > 0 && <TableRow className="teum-data-table__virtual-spacer" aria-hidden="true"><TableCell colSpan={colSpan} style={{ height: topPadding }} /></TableRow>}
+            {topPadding > 0 && <TableRow className="whatiuse-data-table__virtual-spacer" aria-hidden="true"><TableCell colSpan={colSpan} style={{ height: topPadding }} /></TableRow>}
             {virtualRows.map((virtualRow) => renderRow(rows[virtualRow.index], virtualRow.index))}
-            {bottomPadding > 0 && <TableRow className="teum-data-table__virtual-spacer" aria-hidden="true"><TableCell colSpan={colSpan} style={{ height: bottomPadding }} /></TableRow>}
+            {bottomPadding > 0 && <TableRow className="whatiuse-data-table__virtual-spacer" aria-hidden="true"><TableCell colSpan={colSpan} style={{ height: bottomPadding }} /></TableRow>}
           </>
         ) : rows.map((row) => renderRow(row))}
       </TableBody>
@@ -548,24 +548,24 @@ export function DataTable<TData extends object>({
   const showPagination = paginate && !loading && !error && (knownPageCount ? totalPages > 1 : currentPage > 1 || Boolean(hasNextPage));
   return (
     <div
-      className={cn("teum-data-table", className)}
+      className={cn("whatiuse-data-table", className)}
       data-loading={loading || undefined}
       data-fetching={isFetching || undefined}
       data-virtualized={virtualized || undefined}
     >
       {virtualized ? (
-        <div ref={viewportRef} className="teum-data-table__virtual-viewport" style={{ height: virtualHeight }}>
+        <div ref={viewportRef} className="whatiuse-data-table__virtual-viewport" style={{ height: virtualHeight }}>
           {tableNode}
         </div>
       ) : tableNode}
-      {isFetching && !loading && <div className="teum-data-table__fetching"><Spinner size="small" label="Updating data" /><span>Updating</span></div>}
+      {isFetching && !loading && <div className="whatiuse-data-table__fetching"><Spinner size="small" label="Updating data" /><span>Updating</span></div>}
       {showPagination && (
-        <footer className="teum-data-table__footer">
+        <footer className="whatiuse-data-table__footer">
           <span>{displayedCount} records</span>
           {knownPageCount ? (
             <Pagination page={currentPage} totalPages={Math.max(1, totalPages)} onPageChange={(nextPage) => table.setPageIndex(nextPage - 1)} label={`${ariaLabel} pages`} />
           ) : (
-            <nav className="teum-data-table__unknown-pages" aria-label={`${ariaLabel} pages`}>
+            <nav className="whatiuse-data-table__unknown-pages" aria-label={`${ariaLabel} pages`}>
               <button type="button" aria-label="Previous page" disabled={currentPage <= 1} onClick={() => table.previousPage()}><CaretLeft /></button>
               <span>Page {currentPage}</span>
               <button type="button" aria-label="Next page" disabled={!hasNextPage} onClick={() => table.nextPage()}><CaretRight /></button>
@@ -573,7 +573,7 @@ export function DataTable<TData extends object>({
           )}
         </footer>
       )}
-      <span className="teum-sr-only" aria-live="polite">{Object.values(selectionState).filter(Boolean).length} rows selected</span>
+      <span className="whatiuse-sr-only" aria-live="polite">{Object.values(selectionState).filter(Boolean).length} rows selected</span>
     </div>
   );
 }

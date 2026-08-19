@@ -1,24 +1,24 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-cohort { min-width: 0; overflow: auto; border-radius: var(--teum-radius-container); background: var(--teum-bg-stage); }
+@layer whatiuse.components {
+.whatiuse-cohort { min-width: 0; overflow: auto; border-radius: var(--whatiuse-radius-container); background: var(--whatiuse-bg-stage); }
 
-.teum-cohort:focus { outline: 0; }
+.whatiuse-cohort:focus { outline: 0; }
 
-.teum-cohort table { width: 100%; min-width: 620px; border-collapse: separate; border-spacing: 3px; padding: 7px; font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; }
+.whatiuse-cohort table { width: 100%; min-width: 620px; border-collapse: separate; border-spacing: 3px; padding: 7px; font-size: var(--whatiuse-type-metadata); font-variant-numeric: tabular-nums; }
 
-.teum-cohort caption { padding: 3px 4px 8px; text-align: left; color: var(--teum-fg-default); font-weight: 590; }
+.whatiuse-cohort caption { padding: 3px 4px 8px; text-align: left; color: var(--whatiuse-fg-default); font-weight: 590; }
 
-.teum-cohort th,
-.teum-cohort td { height: 32px; padding: 0 8px; border-radius: 5px; text-align: center; }
+.whatiuse-cohort th,
+.whatiuse-cohort td { height: 32px; padding: 0 8px; border-radius: 5px; text-align: center; }
 
-.teum-cohort thead th { color: var(--teum-fg-subtle); font-weight: 520; }
+.whatiuse-cohort thead th { color: var(--whatiuse-fg-subtle); font-weight: 520; }
 
-.teum-cohort tbody th { min-width: 104px; color: var(--teum-fg-muted); font-weight: 540; text-align: left; white-space: nowrap; }
+.whatiuse-cohort tbody th { min-width: 104px; color: var(--whatiuse-fg-muted); font-weight: 540; text-align: left; white-space: nowrap; }
 
-.teum-cohort td { background: color-mix(in srgb, var(--teum-fg-default) calc(4% + var(--teum-cohort-strength) * 22%), transparent); color: var(--teum-fg-default); }
+.whatiuse-cohort td { background: color-mix(in srgb, var(--whatiuse-fg-default) calc(4% + var(--whatiuse-cohort-strength) * 22%), transparent); color: var(--whatiuse-fg-default); }
 
-.teum-cohort td[data-empty] { background: transparent; color: var(--teum-fg-subtle); }
+.whatiuse-cohort td[data-empty] { background: transparent; color: var(--whatiuse-fg-subtle); }
 }

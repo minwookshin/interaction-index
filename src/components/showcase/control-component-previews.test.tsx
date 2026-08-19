@@ -33,11 +33,11 @@ describe("control component previews", () => {
     render(<ActionButtonGroupPreview />);
 
     await user.click(screen.getByRole("button", { name: "Preview" }));
-    expect(screen.getByRole("status")).toHaveClass("teum-sr-only");
+    expect(screen.getByRole("status")).toHaveClass("whatiuse-sr-only");
     expect(screen.getByRole("status")).toHaveTextContent("Preview opened");
 
     const approve = screen.getByRole("button", { name: "Approve issue" });
-    expect(approve).toHaveClass("teum-icon-button");
+    expect(approve).toHaveClass("whatiuse-icon-button");
     await user.click(approve);
     expect(screen.getByRole("status")).toHaveTextContent("Issue approved");
     expect(screen.getByRole("button", { name: "Remove approval" })).toHaveAttribute("aria-pressed", "true");

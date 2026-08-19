@@ -58,18 +58,37 @@
       "table",
       "tree"
     ],
-    "productComponentCount": 17,
+    "productComponentCount": 36,
     "productComponentIds": [
       "data-table",
       "filter-builder",
       "data-toolbar",
       "bulk-action-bar",
+      "saved-view-menu",
+      "column-visibility-menu",
+      "facet-filter",
+      "data-sort-menu",
+      "data-group-menu",
+      "data-density-control",
+      "data-result-summary",
+      "cursor-pagination",
+      "row-actions-menu",
+      "property-list",
+      "audit-log",
+      "data-state",
       "date-range-filter",
       "data-export-menu",
       "sparkline",
       "metric",
       "chart",
+      "analytics-frame",
+      "histogram",
+      "scatter-chart",
+      "waterfall-chart",
       "donut-chart",
+      "radar-chart",
+      "gauge",
+      "sankey-chart",
       "heatmap",
       "comparison",
       "breakdown",
@@ -78,11 +97,11 @@
       "cohort",
       "timeline"
     ],
-    "registryItemCount": 74
+    "registryItemCount": 93
   },
   "publicApi": {
-    "exportCount": 356,
-    "runtimeExportCount": 201,
+    "exportCount": 418,
+    "runtimeExportCount": 224,
     "indexExports": [
       "ActionList",
       "ActionListItem",
@@ -97,14 +116,23 @@
       "AlertDialogTitle",
       "AlertDialogTrigger",
       "AlertProps",
+      "AnalyticsActiveIndexOptions",
       "AnalyticsBandPosition",
       "AnalyticsDatum",
       "AnalyticsDomainOptions",
+      "AnalyticsFrame",
+      "AnalyticsFrameProps",
+      "AnalyticsInspection",
+      "AnalyticsInspectionItem",
+      "AnalyticsInspectionProps",
       "AnalyticsPlotBox",
       "AnalyticsPointPosition",
       "AnalyticsSeries",
       "AnalyticsSeriesTone",
       "AnalyticsValue",
+      "AuditLog",
+      "AuditLogItem",
+      "AuditLogProps",
       "Avatar",
       "AvatarGroup",
       "AvatarProps",
@@ -142,6 +170,8 @@
       "ColumnManager",
       "ColumnManagerColumn",
       "ColumnManagerProps",
+      "ColumnVisibilityMenu",
+      "ColumnVisibilityMenuProps",
       "Combobox",
       "ComboboxOption",
       "ComboboxProps",
@@ -160,8 +190,13 @@
       "ContextSwitcher",
       "ContextSwitcherOption",
       "ContextSwitcherProps",
+      "CursorPagination",
+      "CursorPaginationProps",
       "DATA_VIEW_STATE_VERSION",
       "DataDateRange",
+      "DataDensity",
+      "DataDensityControl",
+      "DataDensityControlProps",
       "DataExportArtifact",
       "DataExportColumn",
       "DataExportFormat",
@@ -171,8 +206,19 @@
       "DataFilter",
       "DataFilterOperator",
       "DataFilterValue",
+      "DataGroupMenu",
+      "DataGroupMenuProps",
+      "DataGroupOption",
       "DataRequest",
+      "DataResultSummary",
+      "DataResultSummaryProps",
       "DataSavedView",
+      "DataSortMenu",
+      "DataSortMenuProps",
+      "DataSortOption",
+      "DataSortValue",
+      "DataState",
+      "DataStateProps",
       "DataTable",
       "DataTableColumn",
       "DataTableColumnPinning",
@@ -209,6 +255,9 @@
       "DonutChartProps",
       "EmptyState",
       "EmptyStateProps",
+      "FacetFilter",
+      "FacetFilterOption",
+      "FacetFilterProps",
       "Field",
       "FieldControl",
       "FieldControlProps",
@@ -231,12 +280,18 @@
       "Funnel",
       "FunnelProps",
       "FunnelStage",
+      "Gauge",
+      "GaugeMarker",
+      "GaugeProps",
       "Goal",
       "GoalProps",
       "Heatmap",
       "HeatmapCell",
       "HeatmapProps",
       "HeatmapRow",
+      "Histogram",
+      "HistogramBin",
+      "HistogramProps",
       "IconButton",
       "IconButtonProps",
       "InlineEdit",
@@ -278,15 +333,35 @@
       "PopoverTrigger",
       "Progress",
       "ProgressProps",
+      "PropertyList",
+      "PropertyListItem",
+      "PropertyListProps",
+      "RadarAxis",
+      "RadarChart",
+      "RadarChartProps",
+      "RadarSeries",
       "RadioGroup",
       "RadioGroupProps",
       "RadioOption",
       "ReorderableItem",
       "ReorderableList",
       "ReorderableListProps",
+      "RowAction",
+      "RowActionsMenu",
+      "RowActionsMenuProps",
+      "SankeyChart",
+      "SankeyChartProps",
+      "SankeyLink",
+      "SankeyNode",
       "SavedView",
+      "SavedViewMenu",
+      "SavedViewMenuContainerProps",
+      "SavedViewMenuProps",
       "SavedViews",
       "SavedViewsProps",
+      "ScatterChart",
+      "ScatterChartProps",
+      "ScatterPoint",
       "SearchInput",
       "SearchInputProps",
       "SegmentedControl",
@@ -333,16 +408,6 @@
       "TabsContent",
       "TabsList",
       "TabsTrigger",
-      "TeumAgentPlan",
-      "TeumAgentRecipeContract",
-      "TeumAgentRecipeId",
-      "TeumAgentSelectionRule",
-      "TeumAnalyticsComponentContract",
-      "TeumDataComponentContract",
-      "TeumMotionContract",
-      "TeumMotionFrequency",
-      "TeumMotionRule",
-      "TeumProductPatternContract",
       "TextField",
       "TextFieldProps",
       "Textarea",
@@ -382,7 +447,21 @@
       "UseDataViewStateOptions",
       "UseDataViewStateResult",
       "UseSavedViewsOptions",
+      "WaterfallChart",
+      "WaterfallChartProps",
+      "WaterfallDatum",
+      "WhatiuseAgentPlan",
+      "WhatiuseAgentRecipeContract",
+      "WhatiuseAgentRecipeId",
+      "WhatiuseAgentSelectionRule",
+      "WhatiuseAnalyticsComponentContract",
+      "WhatiuseDataComponentContract",
+      "WhatiuseMotionContract",
+      "WhatiuseMotionFrequency",
+      "WhatiuseMotionRule",
+      "WhatiuseProductPatternContract",
       "actionListContract",
+      "analyticsClassNames",
       "auditLogContract",
       "billingUsageContract",
       "buildDataExport",
@@ -403,6 +482,7 @@
       "getAnalyticsDomain",
       "getAnalyticsPointPosition",
       "getDataRequestKey",
+      "getLinearAnalyticsKeyIndex",
       "getPercentChange",
       "getSharedDetailMotionPreset",
       "getStackedAnalyticsDomain",
@@ -413,33 +493,34 @@
       "parseDataViewState",
       "parseSavedViews",
       "patchDataViewState",
-      "selectTeumRecipe",
+      "selectWhatiuseRecipe",
       "selectedSharedDetailMotionPreset",
       "serializeDataViewState",
       "serializeSavedViews",
       "sharedDetailContract",
       "sharedDetailMotionPresets",
       "summarizeAnalyticsSeries",
-      "teumAgentForbiddenRules",
-      "teumAgentRecipeContracts",
-      "teumAgentSelectionRules",
-      "teumAgentSystemContract",
-      "teumAnalyticsComponentContracts",
-      "teumAnalyticsRecipeContracts",
-      "teumAnalyticsStateContract",
-      "teumDataComponentContracts",
-      "teumDataRecipeContracts",
-      "teumDataTableFeatures",
-      "teumDataViewStateContract",
-      "teumMotionContract",
-      "teumProductPatternContracts",
-      "teumProductPatternSystemContract",
       "toDataRequest",
       "toast",
       "undoStackContract",
+      "useAnalyticsActiveIndex",
       "useDataViewState",
       "useSavedViews",
-      "useUndoStack"
+      "useUndoStack",
+      "whatiuseAgentForbiddenRules",
+      "whatiuseAgentRecipeContracts",
+      "whatiuseAgentSelectionRules",
+      "whatiuseAgentSystemContract",
+      "whatiuseAnalyticsComponentContracts",
+      "whatiuseAnalyticsRecipeContracts",
+      "whatiuseAnalyticsStateContract",
+      "whatiuseDataComponentContracts",
+      "whatiuseDataRecipeContracts",
+      "whatiuseDataTableFeatures",
+      "whatiuseDataViewStateContract",
+      "whatiuseMotionContract",
+      "whatiuseProductPatternContracts",
+      "whatiuseProductPatternSystemContract"
     ],
     "indexRuntimeExports": [
       "ActionList",
@@ -452,6 +533,9 @@
       "AlertDialogHeader",
       "AlertDialogTitle",
       "AlertDialogTrigger",
+      "AnalyticsFrame",
+      "AnalyticsInspection",
+      "AuditLog",
       "Avatar",
       "AvatarGroup",
       "Badge",
@@ -469,6 +553,7 @@
       "CollapsibleContent",
       "CollapsibleTrigger",
       "ColumnManager",
+      "ColumnVisibilityMenu",
       "Combobox",
       "Comparison",
       "ContextMenu",
@@ -481,8 +566,14 @@
       "ContextMenuSeparator",
       "ContextMenuTrigger",
       "ContextSwitcher",
+      "CursorPagination",
       "DATA_VIEW_STATE_VERSION",
+      "DataDensityControl",
       "DataExportMenu",
+      "DataGroupMenu",
+      "DataResultSummary",
+      "DataSortMenu",
+      "DataState",
       "DataTable",
       "DataToolbar",
       "DatePicker",
@@ -497,6 +588,7 @@
       "DialogTrigger",
       "DonutChart",
       "EmptyState",
+      "FacetFilter",
       "Field",
       "FieldControl",
       "FieldDescription",
@@ -507,8 +599,10 @@
       "FieldsetLegend",
       "FilterBuilder",
       "Funnel",
+      "Gauge",
       "Goal",
       "Heatmap",
+      "Histogram",
       "IconButton",
       "InlineEdit",
       "InputGroup",
@@ -535,9 +629,15 @@
       "PopoverTitle",
       "PopoverTrigger",
       "Progress",
+      "PropertyList",
+      "RadarChart",
       "RadioGroup",
       "ReorderableList",
+      "RowActionsMenu",
+      "SankeyChart",
+      "SavedViewMenu",
       "SavedViews",
+      "ScatterChart",
       "SearchInput",
       "SegmentedControl",
       "Select",
@@ -585,7 +685,9 @@
       "Tree",
       "UndoBar",
       "UndoStackProvider",
+      "WaterfallChart",
       "actionListContract",
+      "analyticsClassNames",
       "auditLogContract",
       "billingUsageContract",
       "buildDataExport",
@@ -606,6 +708,7 @@
       "getAnalyticsDomain",
       "getAnalyticsPointPosition",
       "getDataRequestKey",
+      "getLinearAnalyticsKeyIndex",
       "getPercentChange",
       "getSharedDetailMotionPreset",
       "getStackedAnalyticsDomain",
@@ -616,33 +719,34 @@
       "parseDataViewState",
       "parseSavedViews",
       "patchDataViewState",
-      "selectTeumRecipe",
+      "selectWhatiuseRecipe",
       "selectedSharedDetailMotionPreset",
       "serializeDataViewState",
       "serializeSavedViews",
       "sharedDetailContract",
       "sharedDetailMotionPresets",
       "summarizeAnalyticsSeries",
-      "teumAgentForbiddenRules",
-      "teumAgentRecipeContracts",
-      "teumAgentSelectionRules",
-      "teumAgentSystemContract",
-      "teumAnalyticsComponentContracts",
-      "teumAnalyticsRecipeContracts",
-      "teumAnalyticsStateContract",
-      "teumDataComponentContracts",
-      "teumDataRecipeContracts",
-      "teumDataTableFeatures",
-      "teumDataViewStateContract",
-      "teumMotionContract",
-      "teumProductPatternContracts",
-      "teumProductPatternSystemContract",
       "toDataRequest",
       "toast",
       "undoStackContract",
+      "useAnalyticsActiveIndex",
       "useDataViewState",
       "useSavedViews",
-      "useUndoStack"
+      "useUndoStack",
+      "whatiuseAgentForbiddenRules",
+      "whatiuseAgentRecipeContracts",
+      "whatiuseAgentSelectionRules",
+      "whatiuseAgentSystemContract",
+      "whatiuseAnalyticsComponentContracts",
+      "whatiuseAnalyticsRecipeContracts",
+      "whatiuseAnalyticsStateContract",
+      "whatiuseDataComponentContracts",
+      "whatiuseDataRecipeContracts",
+      "whatiuseDataTableFeatures",
+      "whatiuseDataViewStateContract",
+      "whatiuseMotionContract",
+      "whatiuseProductPatternContracts",
+      "whatiuseProductPatternSystemContract"
     ],
     "components": {
       "button": [
@@ -1819,9 +1923,9 @@
           "typeHash": "81cf9df216b3d017a666cf132b16b20090a37722380d15ee8990e9802149eb19"
         },
         {
-          "name": "teumDataTableFeatures",
+          "name": "whatiuseDataTableFeatures",
           "kind": "const",
-          "typeHash": "230af307754ba9bdec8a4d4c6351f4ed9ed024b362219ec04a70229e7965d1ee"
+          "typeHash": "5cb01cc8f01260f690dd151f592d67cc086dc2fcbdfb8c86f87b4393d8066208"
         }
       ],
       "filter-builder": [
@@ -1905,6 +2009,195 @@
           "typeHash": "43425363201c2f38582b0870275d27da2e7ef3c4387f4493add51424683253ad"
         }
       ],
+      "saved-view-menu": [
+        {
+          "name": "SavedViewMenu",
+          "kind": "function",
+          "typeHash": "0bb4c462e6ae8f672a35bcf4e4dccb2eff67082c1cc34759ba7d658e701122e0"
+        },
+        {
+          "name": "SavedViewMenuContainerProps",
+          "kind": "type",
+          "typeHash": "602e984cb328fdbf0bff895c611f05bd3f6f7d226a7591dee68564004369c7a2"
+        },
+        {
+          "name": "SavedViewMenuProps",
+          "kind": "type",
+          "typeHash": "b46a1350e7af373036c018fa60f7dfc7db8512609fa6449410af86ff237c217f"
+        }
+      ],
+      "column-visibility-menu": [
+        {
+          "name": "ColumnVisibilityMenu",
+          "kind": "function",
+          "typeHash": "60d8043cccfe129aa8a76b04893aadf22861b24448571b760d92e42ebd3a95b9"
+        },
+        {
+          "name": "ColumnVisibilityMenuProps",
+          "kind": "type",
+          "typeHash": "245092f6671213f0970c16e83dea77672e76fe8bb72ee2b0bf17ff5df44e1925"
+        }
+      ],
+      "facet-filter": [
+        {
+          "name": "FacetFilter",
+          "kind": "function",
+          "typeHash": "ba34832cf2cb297bcaa03eee17c61fa90274b0f68d1757c7f92ca1f54c253d13"
+        },
+        {
+          "name": "FacetFilterOption",
+          "kind": "type",
+          "typeHash": "d133e45519fe08b2dd9a90a7d9f242bb0e1deddf52193c0b717e5e0ecb71039b"
+        },
+        {
+          "name": "FacetFilterProps",
+          "kind": "type",
+          "typeHash": "dfe78373581c7ac6f57719b8ec5198e4d412fade137b2758cbcb89ad7fe212b7"
+        }
+      ],
+      "data-sort-menu": [
+        {
+          "name": "DataSortMenu",
+          "kind": "function",
+          "typeHash": "1bdcabdc18b5b65955277c3f86e6c16075a5a1f0ea9a978e993c721e5f36419c"
+        },
+        {
+          "name": "DataSortMenuProps",
+          "kind": "type",
+          "typeHash": "4b5e78d1e5fcbd31d8f59c4142548ba9303af4cd2cc0f9db426a3864ce8981d3"
+        },
+        {
+          "name": "DataSortOption",
+          "kind": "type",
+          "typeHash": "40232e9f62d256d00549764dd4c7b33be3b1c785708413ac039021cef3007606"
+        },
+        {
+          "name": "DataSortValue",
+          "kind": "type",
+          "typeHash": "0a1483f75b8806ae936198f4ae58e7235c44a336c1981141a665a584f46b012a"
+        }
+      ],
+      "data-group-menu": [
+        {
+          "name": "DataGroupMenu",
+          "kind": "function",
+          "typeHash": "9db42f7bd185f046c363fff9e98471c134fc700d898e9f6c3f99bf93fe29c311"
+        },
+        {
+          "name": "DataGroupMenuProps",
+          "kind": "type",
+          "typeHash": "5c54d9e2c4fc271a725e4f558a794a46ca16bab61a3b87f4911f230407d522c9"
+        },
+        {
+          "name": "DataGroupOption",
+          "kind": "type",
+          "typeHash": "d6aa76b6bffdeb93c216f98815525a7663c903879f526b526ed154da3027f5cb"
+        }
+      ],
+      "data-density-control": [
+        {
+          "name": "DataDensity",
+          "kind": "type",
+          "typeHash": "8e8b67988876ac484687a839cb30d85908940e643965d1af91cf6f1766f7f772"
+        },
+        {
+          "name": "DataDensityControl",
+          "kind": "function",
+          "typeHash": "84d7ec33f4d17cd85a3edbd9e6dab66a0828cf862fe950460b2512e9082030ef"
+        },
+        {
+          "name": "DataDensityControlProps",
+          "kind": "type",
+          "typeHash": "78890d3f894059b3e8eb1ccb6c08e2df55a9316f398a9cc12f4927ae42ac0286"
+        }
+      ],
+      "data-result-summary": [
+        {
+          "name": "DataResultSummary",
+          "kind": "function",
+          "typeHash": "827e862714a1fff93e6c8abc89c838a94355b04deda41d2a6fa37d7c2acdaf90"
+        },
+        {
+          "name": "DataResultSummaryProps",
+          "kind": "type",
+          "typeHash": "8e21a8bef828a105bd0c34d126ad28f7056e16fd09d4be608aa2312577ba637b"
+        }
+      ],
+      "cursor-pagination": [
+        {
+          "name": "CursorPagination",
+          "kind": "function",
+          "typeHash": "501d25f0c2933b269839d6e345f22e80b61ed4fa9de56215326149cca363abe5"
+        },
+        {
+          "name": "CursorPaginationProps",
+          "kind": "type",
+          "typeHash": "3e31feee56a75fd3a732926f0ba2a9c286490e60a8d69b8676e18408a14bb918"
+        }
+      ],
+      "row-actions-menu": [
+        {
+          "name": "RowAction",
+          "kind": "type",
+          "typeHash": "0c2ff608f421c661ad30c55b952268aa7dc368c062802af40dba43599babf3b0"
+        },
+        {
+          "name": "RowActionsMenu",
+          "kind": "function",
+          "typeHash": "7e406b9a36e348c22153daccff7813c96b93c17274f1f32f0fa273d936b8fde1"
+        },
+        {
+          "name": "RowActionsMenuProps",
+          "kind": "type",
+          "typeHash": "3c5407799e6c631e61c6f1f41160313e9b8cd058629c89265e0932d6f73d96b2"
+        }
+      ],
+      "property-list": [
+        {
+          "name": "PropertyList",
+          "kind": "function",
+          "typeHash": "8b04253d8474f9e54b8bf11ba2504926eb2b42c0aa209705b9841379405c5e07"
+        },
+        {
+          "name": "PropertyListItem",
+          "kind": "type",
+          "typeHash": "2c9ca7e48d32fe2108a290e9ef4748a0cb4f96a14845cf7d61d7744a7a2e4764"
+        },
+        {
+          "name": "PropertyListProps",
+          "kind": "type",
+          "typeHash": "2dc39f470c121b99c46b47ac30d413ed21b08515310acd4e7369d5523bc1db70"
+        }
+      ],
+      "audit-log": [
+        {
+          "name": "AuditLog",
+          "kind": "function",
+          "typeHash": "0bda456c2f929199c05023563148076c26a6cfcb57de409dda4af46190036863"
+        },
+        {
+          "name": "AuditLogItem",
+          "kind": "type",
+          "typeHash": "e89778a935f06e6dc6688fce6c76535d7e7e55a8e18a9ca9d9186e5b2f2b9766"
+        },
+        {
+          "name": "AuditLogProps",
+          "kind": "type",
+          "typeHash": "da45ec0aae547a45934dcd87983a2e7fd22f817211e96d68e4392ea1125635ba"
+        }
+      ],
+      "data-state": [
+        {
+          "name": "DataState",
+          "kind": "function",
+          "typeHash": "cef9b91f5f835c896ca206b3233c17c53983a4f095e80b56e515914a3d45d328"
+        },
+        {
+          "name": "DataStateProps",
+          "kind": "type",
+          "typeHash": "bd6b5ec6cdecf453e3f7c07fe395ad29441dd438b187bcd8bf350d13a9de69a6"
+        }
+      ],
       "date-range-filter": [
         {
           "name": "DateRangeFilter",
@@ -1985,6 +2278,104 @@
           "typeHash": "418660da353f510230b60456fbaa2b4dba0629a8c5889ca88d65fd1d13a2b612"
         }
       ],
+      "analytics-frame": [
+        {
+          "name": "AnalyticsActiveIndexOptions",
+          "kind": "type",
+          "typeHash": "169a53359b5ce88b7c7ef8c9ae1cbb9924a9f629916cb1daeeb85a714ce9fe3e"
+        },
+        {
+          "name": "analyticsClassNames",
+          "kind": "const",
+          "typeHash": "d0dc33ff6a63b10e37f945b5cf98f580d89e992dfc9e704b53c332a42b688b1d"
+        },
+        {
+          "name": "AnalyticsFrame",
+          "kind": "function",
+          "typeHash": "fe77eb79ebc5f698cc0ba2071647d07474c84c33ca59c125f2870a0db8e2f1a1"
+        },
+        {
+          "name": "AnalyticsFrameProps",
+          "kind": "type",
+          "typeHash": "db85e8f26bfe5e673771bf8a6543eb076fdbd1eef10433035521b4137fb2e3d1"
+        },
+        {
+          "name": "AnalyticsInspection",
+          "kind": "function",
+          "typeHash": "87d024f3a6b00604aed00863e5de6d17e7ecd77f2cb3fe8fe55887dcf9314747"
+        },
+        {
+          "name": "AnalyticsInspectionItem",
+          "kind": "type",
+          "typeHash": "d4b67e3794e6a4014c2454096cc1ebc08eda420e31f5742e948a62ef4839e887"
+        },
+        {
+          "name": "AnalyticsInspectionProps",
+          "kind": "type",
+          "typeHash": "86c0257f0111cab608530c4717ce45b6b6c17d9f474a467db63c07466ae33819"
+        },
+        {
+          "name": "getLinearAnalyticsKeyIndex",
+          "kind": "function",
+          "typeHash": "491ebb398a8e104a0f3d109f35fd57c2c751f0e65d46a9f4cef2cd25e4c58d32"
+        },
+        {
+          "name": "useAnalyticsActiveIndex",
+          "kind": "function",
+          "typeHash": "662de0764f66fcf04ad4ba62f23c6696bb09d8f3806dc00b005d45ff7c79961e"
+        }
+      ],
+      "histogram": [
+        {
+          "name": "Histogram",
+          "kind": "function",
+          "typeHash": "f89822a30c24af83486862a03a53414ec00890846420c6711f166c2d42e1a2a4"
+        },
+        {
+          "name": "HistogramBin",
+          "kind": "type",
+          "typeHash": "1bc37f17a35b13e65141219fe689ac012af097f9980a712e2003d65464005717"
+        },
+        {
+          "name": "HistogramProps",
+          "kind": "type",
+          "typeHash": "34c94372c9c3af755c2b0fba63c0a46147feea55dda5676ca96cba0b0e8076ec"
+        }
+      ],
+      "scatter-chart": [
+        {
+          "name": "ScatterChart",
+          "kind": "function",
+          "typeHash": "b628edaf05ef2b4e1c3f3f5180acb3b2dc3ef964d3ac4739b506523853abadd1"
+        },
+        {
+          "name": "ScatterChartProps",
+          "kind": "type",
+          "typeHash": "6bcd0e79ed6f178ce39fef4fa8151dafa3af5c6b88ff0407c372dff0f1721b66"
+        },
+        {
+          "name": "ScatterPoint",
+          "kind": "type",
+          "typeHash": "4088e6c225cf201191732921dc3467d49b2a5223fbbd969001583c5db79a42bc"
+        }
+      ],
+      "waterfall-chart": [
+        {
+          "name": "WaterfallChart",
+          "kind": "function",
+          "typeHash": "7df350a6a492323c460015c144dcaf02e3981329dbb7619c89be83fbc5a05ccc"
+        },
+        {
+          "name": "WaterfallChartProps",
+          "kind": "type",
+          "typeHash": "9ea1b30964edca73599f72c9e64ec98d5928275531991f2a8aaba2ec598a9c38"
+        },
+        {
+          "name": "WaterfallDatum",
+          "kind": "type",
+          "typeHash": "42d9ff41d31e29057404f0dd5f0a753f7affc3c24f612507e0cf6e00e816b6d8"
+        }
+      ],
       "donut-chart": [
         {
           "name": "DonutChart",
@@ -2000,6 +2391,67 @@
           "name": "DonutChartProps",
           "kind": "type",
           "typeHash": "6aa251c2e315e6e3d17001d03b2404a5929133bcaf8b663e16833274412db659"
+        }
+      ],
+      "radar-chart": [
+        {
+          "name": "RadarAxis",
+          "kind": "type",
+          "typeHash": "a66450e470700885691fad65772b85b0bd36a3780a27479f13e17f9540ca0197"
+        },
+        {
+          "name": "RadarChart",
+          "kind": "function",
+          "typeHash": "38f6f4be112f90516de2778e39367eb5001cdd6174f57dbb83a08f879fd7e427"
+        },
+        {
+          "name": "RadarChartProps",
+          "kind": "type",
+          "typeHash": "0597804d0e26f9d16ceb0edfa79ee97ccfa745a6ac0f998fad919b1838682116"
+        },
+        {
+          "name": "RadarSeries",
+          "kind": "type",
+          "typeHash": "bb96a176105a9f0879000f3f00c10a88489d178e4298c6aa2716fe894c0b8d09"
+        }
+      ],
+      "gauge": [
+        {
+          "name": "Gauge",
+          "kind": "function",
+          "typeHash": "685b0047bacb808fc100dd4b463f0666d2dfa3917910908986ee34213fb2995d"
+        },
+        {
+          "name": "GaugeMarker",
+          "kind": "type",
+          "typeHash": "a643744d998321a791b6ad02a91a0aeeccc51e57d7734abbf9141efaac4ed251"
+        },
+        {
+          "name": "GaugeProps",
+          "kind": "type",
+          "typeHash": "66ef3ab7e3901482c8d664d9b4501e81bf443643f80c805c62e5f5d7e0fba2e0"
+        }
+      ],
+      "sankey-chart": [
+        {
+          "name": "SankeyChart",
+          "kind": "function",
+          "typeHash": "c3b4cb46dc23ee283bfc02dc9662e597efa19a67df3b1497cdc10c1806df39f5"
+        },
+        {
+          "name": "SankeyChartProps",
+          "kind": "type",
+          "typeHash": "3ef63fbaaf9507b77b53103d037bdbc7cf9ea0f918d2654ce7f75a1776bd72f5"
+        },
+        {
+          "name": "SankeyLink",
+          "kind": "type",
+          "typeHash": "51e4e16c294f3bf579444ae10d24c5c82dc3fcbf897c19570182593ad2393b12"
+        },
+        {
+          "name": "SankeyNode",
+          "kind": "type",
+          "typeHash": "b53378a61c69bb43c09abd1098752493f00857d6eadac4fdd224ffd3bd4cacfb"
         }
       ],
       "heatmap": [
@@ -2120,24 +2572,24 @@
     "contracts": {
       "motion-contract": [
         {
-          "name": "teumMotionContract",
+          "name": "whatiuseMotionContract",
           "kind": "const",
-          "typeHash": "3020894386b90b28039d7da770d2c06a76f12bc34c3517545c4387d790175bcf"
+          "typeHash": "4d7c0fc6e11e06ecb92978a81d50b173cfdfd1b8df3e52099e6a22ebe9dc2a2c"
         },
         {
-          "name": "TeumMotionContract",
+          "name": "WhatiuseMotionContract",
           "kind": "type",
-          "typeHash": "af30d85b45540a4a77fe655c176309d99d206a65650b24d7ecc90ac927f5fd5d"
+          "typeHash": "392dd7de0cbc602b683a09777a38ea837166089c9bd661db53c8e35d24a08c58"
         },
         {
-          "name": "TeumMotionFrequency",
+          "name": "WhatiuseMotionFrequency",
           "kind": "type",
-          "typeHash": "cec7fd4062b565abe4432407ac3dbc98829c1424a94ab3fac345c11576000b65"
+          "typeHash": "ca747bd58089a3ff7fce98f1c0e1886835f29316d628c8045f6073ba3439239c"
         },
         {
-          "name": "TeumMotionRule",
+          "name": "WhatiuseMotionRule",
           "kind": "type",
-          "typeHash": "59a0ae5595d9dbac0251509aa955c0260c24267dd307bd7c8297fdae637733b1"
+          "typeHash": "e3a482af9d6afa5692bc8b2413fefdaa4837b4cefc15782e06fc258874ec94fe"
         }
       ],
       "data-view-state": [
@@ -2329,7 +2781,7 @@
           "typeHash": "142677ccffb5bed6a57228088bd11c08eb473e9360f2f00a165fd7bd0beea5d0"
         }
       ],
-      "teum-data-contract": [
+      "whatiuse-data-contract": [
         {
           "name": "auditLogContract",
           "kind": "const",
@@ -2346,24 +2798,24 @@
           "typeHash": "117adb5d845ae239697a0b561488d11a70e1e38614f5ec1d94f95537e0584b90"
         },
         {
-          "name": "TeumDataComponentContract",
+          "name": "WhatiuseDataComponentContract",
           "kind": "type",
-          "typeHash": "bc1204fa55ee67aa56fcaa72af9aa1df7f8915d83b4966c4993e8c2e503f0232"
+          "typeHash": "87e8200505efe740a4093638f2189010818bfd9a6c9e3e1881eb680957b59231"
         },
         {
-          "name": "teumDataComponentContracts",
+          "name": "whatiuseDataComponentContracts",
           "kind": "const",
-          "typeHash": "5c8b45005d489700aec599b1de3b6ad61c7c494eb0c2df1282f1edd16b17673e"
+          "typeHash": "3c0a1319f706c5807e029ac1701a52c399ad12785a657a5f6d2f26bec84d4500"
         },
         {
-          "name": "teumDataRecipeContracts",
+          "name": "whatiuseDataRecipeContracts",
           "kind": "const",
-          "typeHash": "885365880cbc21b59e1be71ab5e34aad965c7670eb8c5e445c738b0d934fa0d3"
+          "typeHash": "03a1d4fa1735afba2fdfece72b68d2fe4244a40b3d6de0aa79e6c2531f7fda59"
         },
         {
-          "name": "teumDataViewStateContract",
+          "name": "whatiuseDataViewStateContract",
           "kind": "const",
-          "typeHash": "48c4d0ad1f8541c6510816cb00e0339c5abb5396a60d9e3f88ceba4727e9b778"
+          "typeHash": "d39daeb1ba3e60d38b9da5f403e13c2587342ddc91c1cd376be0e8309f36d049"
         }
       ],
       "analytics": [
@@ -2468,29 +2920,29 @@
           "typeHash": "e3e3241737a25395fc854e1eeab93132538a1cce653aab2c5b72a32d60f63dde"
         }
       ],
-      "teum-analytics-contract": [
+      "whatiuse-analytics-contract": [
         {
-          "name": "TeumAnalyticsComponentContract",
+          "name": "WhatiuseAnalyticsComponentContract",
           "kind": "type",
-          "typeHash": "5eec30ab71f33cdf115d482fa246440af807b1718accab551e81e2e26572a352"
+          "typeHash": "afdd545a930d8be347a7ea25962a076977b121be9e2ba25f56a6eccf9de3969a"
         },
         {
-          "name": "teumAnalyticsComponentContracts",
+          "name": "whatiuseAnalyticsComponentContracts",
           "kind": "const",
-          "typeHash": "c6eed076ea130dbd2eb2e905b6048e05e0bb82f8ea5794d1abcba36ed93384f2"
+          "typeHash": "b4a2d089bf15b9f5e87207c1891fd98f281930419b46fb84d712d24bd5cf40ca"
         },
         {
-          "name": "teumAnalyticsRecipeContracts",
+          "name": "whatiuseAnalyticsRecipeContracts",
           "kind": "const",
-          "typeHash": "47bb4d4df58e2dd3f2e0ff9b29ddda0f27ba0f4f1436c2b758cb7dc94027075e"
+          "typeHash": "716e9a8e993e38ac69993c00ce1873fa93896cf3adeb3b9cb9a0995658024adf"
         },
         {
-          "name": "teumAnalyticsStateContract",
+          "name": "whatiuseAnalyticsStateContract",
           "kind": "const",
-          "typeHash": "eaaf87d05dddb1d8f53488c09d659e34054b5f20dadea6830cb19d18d25c0780"
+          "typeHash": "b375021361f18b44687564816a252ead6931d26a776250bd74b7d951728da267"
         }
       ],
-      "teum-product-patterns-contract": [
+      "whatiuse-product-patterns-contract": [
         {
           "name": "billingUsageContract",
           "kind": "const",
@@ -2507,66 +2959,66 @@
           "typeHash": "9cf58431a51ba3e502c54a5c648200d22d2ad238067a54489cae2aa77b1db1c3"
         },
         {
-          "name": "TeumProductPatternContract",
+          "name": "WhatiuseProductPatternContract",
           "kind": "type",
-          "typeHash": "ce26ef4c8e87f991048ca9296defc84b0fb02ac19f999855490035f8c8787781"
+          "typeHash": "e79dd06d69bd0b17071094193dcc64b4967764c89073f1eb3446d03a38168a7b"
         },
         {
-          "name": "teumProductPatternContracts",
+          "name": "whatiuseProductPatternContracts",
           "kind": "const",
-          "typeHash": "229f1274a5be907dcac97a4f9107545fdc3f44304c59b95a5e825ff2bbe92c72"
+          "typeHash": "859e450aead636aaaacfaa86f59f2287ef45d1e1e76120c0ffbeabc5fae3c465"
         },
         {
-          "name": "teumProductPatternSystemContract",
+          "name": "whatiuseProductPatternSystemContract",
           "kind": "const",
-          "typeHash": "87a48e46befd7c6c64acdf53aaf58706915f6349fe728291d4e93c1aa30ca0b3"
+          "typeHash": "920b4c6e15ea2767e3ac1503e5e206d8e43be33dd665d31d6d1b07542547d6ca"
         }
       ],
-      "teum-agent-contract": [
+      "whatiuse-agent-contract": [
         {
-          "name": "selectTeumRecipe",
+          "name": "selectWhatiuseRecipe",
           "kind": "function",
-          "typeHash": "73dec6de24e158bd2f76abf6d765342400608e016d74b3111701e7d036c69791"
+          "typeHash": "bb0031aa87ca720c215b953cbd5ef938c5b5d4d5e5d9f625b35e5326f4b2d638"
         },
         {
-          "name": "teumAgentForbiddenRules",
+          "name": "whatiuseAgentForbiddenRules",
           "kind": "const",
-          "typeHash": "f9f313a8b19ac47a70778adedb3d82411fc2035c67cc063d34cc1099b2a05333"
+          "typeHash": "38752e03ee6fb04dbaf161ff9f08ee22ca6ad2d91a254d76105ed4903df96270"
         },
         {
-          "name": "TeumAgentPlan",
+          "name": "WhatiuseAgentPlan",
           "kind": "type",
-          "typeHash": "6af395bd0abef9c05e70c1f1f9e350e92dfd22834227c121d26aa61af2f92189"
+          "typeHash": "eddb8393a9b0faf099f5583ebd8c3ab54c092a09965fbd94a8115f3600f14dab"
         },
         {
-          "name": "TeumAgentRecipeContract",
+          "name": "WhatiuseAgentRecipeContract",
           "kind": "type",
-          "typeHash": "c3050009ae0350d0211f2aa76caa2eca352bebd27220d852e5879cee7332146d"
+          "typeHash": "6db9c984a440ed796d6a37f28690fd6c3aa7323538c3b4f5787180e35b294821"
         },
         {
-          "name": "teumAgentRecipeContracts",
+          "name": "whatiuseAgentRecipeContracts",
           "kind": "const",
-          "typeHash": "f6704967c1d28d834790b9482360b705b0c2a0d19bbb5689a1620c56de36464b"
+          "typeHash": "70d27f1b1a8c70c94dd7740e3fb17ec04742b2bdb2e62ea80085ab40af6e3a5a"
         },
         {
-          "name": "TeumAgentRecipeId",
+          "name": "WhatiuseAgentRecipeId",
           "kind": "type",
-          "typeHash": "65e5b182855b37c529f00a612c8f4225509685c69ff29dcff593c38edc797248"
+          "typeHash": "cd85c89b95c600b3018046cd746947dcd9e56363eba91e912db6b6e887d2992e"
         },
         {
-          "name": "TeumAgentSelectionRule",
+          "name": "WhatiuseAgentSelectionRule",
           "kind": "type",
-          "typeHash": "b5498b254b2d9920a18ebce190161434bf87db2baa2d0e49c892674475571a22"
+          "typeHash": "095e5b21a915c93395fe2e80103af254339e6b0498a33420d16f2f5d40c73aed"
         },
         {
-          "name": "teumAgentSelectionRules",
+          "name": "whatiuseAgentSelectionRules",
           "kind": "const",
-          "typeHash": "e7f0607b0c918433a8a5e6a0c2a5f7768d5732912023942eaa6dee0e04a958ef"
+          "typeHash": "830a32befe4ee7bbc07e6e5fc5dd05f19070ac2ea31aa4f65f6d06e1e3dcf87a"
         },
         {
-          "name": "teumAgentSystemContract",
+          "name": "whatiuseAgentSystemContract",
           "kind": "const",
-          "typeHash": "b70c83fe311024121d009b55d22dfd649bf531b418026f7f2fea2bdbf4080ce8"
+          "typeHash": "ec943a9e914d80868c0cb3f6bf5c2dddba8586a7be3da7a4744c60875a8c0b5e"
         }
       ]
     }
@@ -2582,871 +3034,871 @@
       {
         "path": "foundation.system.neutral-h",
         "type": "number",
-        "cssVariable": "--teum-neutral-h",
+        "cssVariable": "--whatiuse-neutral-h",
         "deprecated": false
       },
       {
         "path": "foundation.system.neutral-c",
         "type": "number",
-        "cssVariable": "--teum-neutral-c",
+        "cssVariable": "--whatiuse-neutral-c",
         "deprecated": false
       },
       {
         "path": "foundation.system.sidebar-l",
         "type": "number",
-        "cssVariable": "--teum-sidebar-l",
+        "cssVariable": "--whatiuse-sidebar-l",
         "deprecated": false
       },
       {
         "path": "foundation.system.stage-l",
         "type": "number",
-        "cssVariable": "--teum-stage-l",
+        "cssVariable": "--whatiuse-stage-l",
         "deprecated": false
       },
       {
         "path": "foundation.system.border-alpha",
         "type": "number",
-        "cssVariable": "--teum-border-alpha",
+        "cssVariable": "--whatiuse-border-alpha",
         "deprecated": false
       },
       {
         "path": "foundation.typography.font-ui",
         "type": "fontFamily",
-        "cssVariable": "--teum-font-ui",
+        "cssVariable": "--whatiuse-font-ui",
         "deprecated": false
       },
       {
         "path": "foundation.typography.font-code",
         "type": "fontFamily",
-        "cssVariable": "--teum-font-code",
+        "cssVariable": "--whatiuse-font-code",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.type-metadata",
         "type": "dimension",
-        "cssVariable": "--teum-type-metadata",
+        "cssVariable": "--whatiuse-type-metadata",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.type-label",
         "type": "dimension",
-        "cssVariable": "--teum-type-label",
+        "cssVariable": "--whatiuse-type-label",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.type-ui",
         "type": "dimension",
-        "cssVariable": "--teum-type-ui",
+        "cssVariable": "--whatiuse-type-ui",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.type-body",
         "type": "dimension",
-        "cssVariable": "--teum-type-body",
+        "cssVariable": "--whatiuse-type-body",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.type-row",
         "type": "dimension",
-        "cssVariable": "--teum-type-row",
+        "cssVariable": "--whatiuse-type-row",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.type-section",
         "type": "dimension",
-        "cssVariable": "--teum-type-section",
+        "cssVariable": "--whatiuse-type-section",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.type-title",
         "type": "dimension",
-        "cssVariable": "--teum-type-title",
+        "cssVariable": "--whatiuse-type-title",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.line-metadata",
         "type": "dimension",
-        "cssVariable": "--teum-line-metadata",
+        "cssVariable": "--whatiuse-line-metadata",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.line-label",
         "type": "dimension",
-        "cssVariable": "--teum-line-label",
+        "cssVariable": "--whatiuse-line-label",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.line-ui",
         "type": "dimension",
-        "cssVariable": "--teum-line-ui",
+        "cssVariable": "--whatiuse-line-ui",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.line-row",
         "type": "dimension",
-        "cssVariable": "--teum-line-row",
+        "cssVariable": "--whatiuse-line-row",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.line-body",
         "type": "dimension",
-        "cssVariable": "--teum-line-body",
+        "cssVariable": "--whatiuse-line-body",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.line-section",
         "type": "dimension",
-        "cssVariable": "--teum-line-section",
+        "cssVariable": "--whatiuse-line-section",
         "deprecated": false
       },
       {
         "path": "foundation.typography.sizes.line-title",
         "type": "dimension",
-        "cssVariable": "--teum-line-title",
+        "cssVariable": "--whatiuse-line-title",
         "deprecated": false
       },
       {
         "path": "foundation.typography.ui-weight",
         "type": "fontWeight",
-        "cssVariable": "--teum-ui-weight",
+        "cssVariable": "--whatiuse-ui-weight",
         "deprecated": false
       },
       {
         "path": "foundation.typography.label-weight",
         "type": "fontWeight",
-        "cssVariable": "--teum-label-weight",
+        "cssVariable": "--whatiuse-label-weight",
         "deprecated": false
       },
       {
         "path": "foundation.typography.heading-weight",
         "type": "fontWeight",
-        "cssVariable": "--teum-heading-weight",
+        "cssVariable": "--whatiuse-heading-weight",
         "deprecated": false
       },
       {
         "path": "foundation.typography.ui-tracking",
         "type": "number",
-        "cssVariable": "--teum-ui-tracking",
+        "cssVariable": "--whatiuse-ui-tracking",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-0",
         "type": "dimension",
-        "cssVariable": "--teum-space-0",
+        "cssVariable": "--whatiuse-space-0",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-1",
         "type": "dimension",
-        "cssVariable": "--teum-space-1",
+        "cssVariable": "--whatiuse-space-1",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-2",
         "type": "dimension",
-        "cssVariable": "--teum-space-2",
+        "cssVariable": "--whatiuse-space-2",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-3",
         "type": "dimension",
-        "cssVariable": "--teum-space-3",
+        "cssVariable": "--whatiuse-space-3",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-4",
         "type": "dimension",
-        "cssVariable": "--teum-space-4",
+        "cssVariable": "--whatiuse-space-4",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-5",
         "type": "dimension",
-        "cssVariable": "--teum-space-5",
+        "cssVariable": "--whatiuse-space-5",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-6",
         "type": "dimension",
-        "cssVariable": "--teum-space-6",
+        "cssVariable": "--whatiuse-space-6",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-7",
         "type": "dimension",
-        "cssVariable": "--teum-space-7",
+        "cssVariable": "--whatiuse-space-7",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-8",
         "type": "dimension",
-        "cssVariable": "--teum-space-8",
+        "cssVariable": "--whatiuse-space-8",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-10",
         "type": "dimension",
-        "cssVariable": "--teum-space-10",
+        "cssVariable": "--whatiuse-space-10",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-12",
         "type": "dimension",
-        "cssVariable": "--teum-space-12",
+        "cssVariable": "--whatiuse-space-12",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-16",
         "type": "dimension",
-        "cssVariable": "--teum-space-16",
+        "cssVariable": "--whatiuse-space-16",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-page-x",
         "type": "dimension",
-        "cssVariable": "--teum-space-page-x",
+        "cssVariable": "--whatiuse-space-page-x",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-page-y",
         "type": "dimension",
-        "cssVariable": "--teum-space-page-y",
+        "cssVariable": "--whatiuse-space-page-y",
         "deprecated": false
       },
       {
         "path": "foundation.layout.space-section",
         "type": "dimension",
-        "cssVariable": "--teum-space-section",
+        "cssVariable": "--whatiuse-space-section",
         "deprecated": false
       },
       {
         "path": "foundation.layout.icon-size",
         "type": "dimension",
-        "cssVariable": "--teum-icon-size",
+        "cssVariable": "--whatiuse-icon-size",
         "deprecated": false
       },
       {
         "path": "foundation.layout.icon-offset-y",
         "type": "dimension",
-        "cssVariable": "--teum-icon-offset-y",
+        "cssVariable": "--whatiuse-icon-offset-y",
         "deprecated": false
       },
       {
         "path": "foundation.layout.control-height-sm",
         "type": "dimension",
-        "cssVariable": "--teum-control-height-sm",
+        "cssVariable": "--whatiuse-control-height-sm",
         "deprecated": false
       },
       {
         "path": "foundation.layout.control-height-md",
         "type": "dimension",
-        "cssVariable": "--teum-control-height-md",
+        "cssVariable": "--whatiuse-control-height-md",
         "deprecated": false
       },
       {
         "path": "foundation.layout.control-height-lg",
         "type": "dimension",
-        "cssVariable": "--teum-control-height-lg",
+        "cssVariable": "--whatiuse-control-height-lg",
         "deprecated": false
       },
       {
         "path": "foundation.layout.control-padding-sm",
         "type": "dimension",
-        "cssVariable": "--teum-control-padding-sm",
+        "cssVariable": "--whatiuse-control-padding-sm",
         "deprecated": false
       },
       {
         "path": "foundation.layout.control-padding-md",
         "type": "dimension",
-        "cssVariable": "--teum-control-padding-md",
+        "cssVariable": "--whatiuse-control-padding-md",
         "deprecated": false
       },
       {
         "path": "foundation.layout.control-padding-lg",
         "type": "dimension",
-        "cssVariable": "--teum-control-padding-lg",
+        "cssVariable": "--whatiuse-control-padding-lg",
         "deprecated": false
       },
       {
         "path": "foundation.layout.radius-control",
         "type": "dimension",
-        "cssVariable": "--teum-radius-control",
+        "cssVariable": "--whatiuse-radius-control",
         "deprecated": false
       },
       {
         "path": "foundation.layout.radius-container",
         "type": "dimension",
-        "cssVariable": "--teum-radius-container",
+        "cssVariable": "--whatiuse-radius-container",
         "deprecated": false
       },
       {
         "path": "foundation.layout.radius-overlay",
         "type": "dimension",
-        "cssVariable": "--teum-radius-overlay",
+        "cssVariable": "--whatiuse-radius-overlay",
         "deprecated": false
       },
       {
         "path": "foundation.layout.radius-pill",
         "type": "dimension",
-        "cssVariable": "--teum-radius-pill",
+        "cssVariable": "--whatiuse-radius-pill",
         "deprecated": false
       },
       {
         "path": "foundation.layout.row-height-menu",
         "type": "dimension",
-        "cssVariable": "--teum-row-height-menu",
+        "cssVariable": "--whatiuse-row-height-menu",
         "deprecated": false
       },
       {
         "path": "foundation.layout.row-height-table",
         "type": "dimension",
-        "cssVariable": "--teum-row-height-table",
+        "cssVariable": "--whatiuse-row-height-table",
         "deprecated": false
       },
       {
         "path": "foundation.layout.focus-width",
         "type": "dimension",
-        "cssVariable": "--teum-focus-width",
+        "cssVariable": "--whatiuse-focus-width",
         "deprecated": false
       },
       {
         "path": "foundation.layout.focus-offset",
         "type": "dimension",
-        "cssVariable": "--teum-focus-offset",
+        "cssVariable": "--whatiuse-focus-offset",
         "deprecated": false
       },
       {
         "path": "foundation.layout.radius-xs",
         "type": "dimension",
-        "cssVariable": "--teum-radius-xs",
+        "cssVariable": "--whatiuse-radius-xs",
         "deprecated": false
       },
       {
         "path": "foundation.layout.radius-sm",
         "type": "dimension",
-        "cssVariable": "--teum-radius-sm",
+        "cssVariable": "--whatiuse-radius-sm",
         "deprecated": false
       },
       {
         "path": "foundation.layout.radius-md",
         "type": "dimension",
-        "cssVariable": "--teum-radius-md",
+        "cssVariable": "--whatiuse-radius-md",
         "deprecated": false
       },
       {
         "path": "foundation.layout.radius-lg",
         "type": "dimension",
-        "cssVariable": "--teum-radius-lg",
+        "cssVariable": "--whatiuse-radius-lg",
         "deprecated": false
       },
       {
         "path": "foundation.motion.duration.hover-duration",
         "type": "duration",
-        "cssVariable": "--teum-hover-duration",
+        "cssVariable": "--whatiuse-hover-duration",
         "deprecated": false
       },
       {
         "path": "foundation.motion.duration.press-duration",
         "type": "duration",
-        "cssVariable": "--teum-press-duration",
+        "cssVariable": "--whatiuse-press-duration",
         "deprecated": false
       },
       {
         "path": "foundation.motion.duration.enter-duration",
         "type": "duration",
-        "cssVariable": "--teum-enter-duration",
+        "cssVariable": "--whatiuse-enter-duration",
         "deprecated": false
       },
       {
         "path": "foundation.motion.duration.exit-duration",
         "type": "duration",
-        "cssVariable": "--teum-exit-duration",
+        "cssVariable": "--whatiuse-exit-duration",
         "deprecated": false
       },
       {
         "path": "foundation.motion.duration.fast",
         "type": "duration",
-        "cssVariable": "--teum-fast",
+        "cssVariable": "--whatiuse-fast",
         "deprecated": false
       },
       {
         "path": "foundation.motion.duration.medium",
         "type": "duration",
-        "cssVariable": "--teum-medium",
+        "cssVariable": "--whatiuse-medium",
         "deprecated": false
       },
       {
         "path": "foundation.motion.easing.ease-out",
         "type": "cubicBezier",
-        "cssVariable": "--teum-ease-out",
+        "cssVariable": "--whatiuse-ease-out",
         "deprecated": false
       },
       {
         "path": "foundation.motion.easing.ease-in-out",
         "type": "cubicBezier",
-        "cssVariable": "--teum-ease-in-out",
+        "cssVariable": "--whatiuse-ease-in-out",
         "deprecated": false
       },
       {
         "path": "foundation.motion.easing.ease-drawer",
         "type": "cubicBezier",
-        "cssVariable": "--teum-ease-drawer",
+        "cssVariable": "--whatiuse-ease-drawer",
         "deprecated": false
       },
       {
         "path": "foundation.motion.easing.ease",
         "type": "cubicBezier",
-        "cssVariable": "--teum-ease",
+        "cssVariable": "--whatiuse-ease",
         "deprecated": false
       },
       {
         "path": "foundation.layers.layer-sticky",
         "type": "number",
-        "cssVariable": "--teum-layer-sticky",
+        "cssVariable": "--whatiuse-layer-sticky",
         "deprecated": false
       },
       {
         "path": "foundation.layers.layer-modal-backdrop",
         "type": "number",
-        "cssVariable": "--teum-layer-modal-backdrop",
+        "cssVariable": "--whatiuse-layer-modal-backdrop",
         "deprecated": false
       },
       {
         "path": "foundation.layers.layer-modal",
         "type": "number",
-        "cssVariable": "--teum-layer-modal",
+        "cssVariable": "--whatiuse-layer-modal",
         "deprecated": false
       },
       {
         "path": "foundation.layers.layer-flyout",
         "type": "number",
-        "cssVariable": "--teum-layer-flyout",
+        "cssVariable": "--whatiuse-layer-flyout",
         "deprecated": false
       },
       {
         "path": "foundation.layers.layer-toast",
         "type": "number",
-        "cssVariable": "--teum-layer-toast",
+        "cssVariable": "--whatiuse-layer-toast",
         "deprecated": false
       },
       {
         "path": "foundation.layers.layer-navigation",
         "type": "number",
-        "cssVariable": "--teum-layer-navigation",
+        "cssVariable": "--whatiuse-layer-navigation",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-50",
         "type": "color",
-        "cssVariable": "--teum-gray-50",
+        "cssVariable": "--whatiuse-gray-50",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-100",
         "type": "color",
-        "cssVariable": "--teum-gray-100",
+        "cssVariable": "--whatiuse-gray-100",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-200",
         "type": "color",
-        "cssVariable": "--teum-gray-200",
+        "cssVariable": "--whatiuse-gray-200",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-300",
         "type": "color",
-        "cssVariable": "--teum-gray-300",
+        "cssVariable": "--whatiuse-gray-300",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-400",
         "type": "color",
-        "cssVariable": "--teum-gray-400",
+        "cssVariable": "--whatiuse-gray-400",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-500",
         "type": "color",
-        "cssVariable": "--teum-gray-500",
+        "cssVariable": "--whatiuse-gray-500",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-600",
         "type": "color",
-        "cssVariable": "--teum-gray-600",
+        "cssVariable": "--whatiuse-gray-600",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-700",
         "type": "color",
-        "cssVariable": "--teum-gray-700",
+        "cssVariable": "--whatiuse-gray-700",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-800",
         "type": "color",
-        "cssVariable": "--teum-gray-800",
+        "cssVariable": "--whatiuse-gray-800",
         "deprecated": false
       },
       {
         "path": "theme.palette.gray-900",
         "type": "color",
-        "cssVariable": "--teum-gray-900",
+        "cssVariable": "--whatiuse-gray-900",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-canvas",
         "type": "color",
-        "cssVariable": "--teum-bg-canvas",
+        "cssVariable": "--whatiuse-bg-canvas",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-sidebar",
         "type": "color",
-        "cssVariable": "--teum-bg-sidebar",
+        "cssVariable": "--whatiuse-bg-sidebar",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-stage",
         "type": "color",
-        "cssVariable": "--teum-bg-stage",
+        "cssVariable": "--whatiuse-bg-stage",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-subtle",
         "type": "color",
-        "cssVariable": "--teum-bg-subtle",
+        "cssVariable": "--whatiuse-bg-subtle",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-surface",
         "type": "color",
-        "cssVariable": "--teum-bg-surface",
+        "cssVariable": "--whatiuse-bg-surface",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-control",
         "type": "color",
-        "cssVariable": "--teum-bg-control",
+        "cssVariable": "--whatiuse-bg-control",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-raised",
         "type": "color",
-        "cssVariable": "--teum-bg-raised",
+        "cssVariable": "--whatiuse-bg-raised",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-overlay",
         "type": "color",
-        "cssVariable": "--teum-bg-overlay",
+        "cssVariable": "--whatiuse-bg-overlay",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-float",
         "type": "color",
-        "cssVariable": "--teum-bg-float",
+        "cssVariable": "--whatiuse-bg-float",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-flyout",
         "type": "color",
-        "cssVariable": "--teum-bg-flyout",
+        "cssVariable": "--whatiuse-bg-flyout",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-modal",
         "type": "color",
-        "cssVariable": "--teum-bg-modal",
+        "cssVariable": "--whatiuse-bg-modal",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-scrim",
         "type": "color",
-        "cssVariable": "--teum-bg-scrim",
+        "cssVariable": "--whatiuse-bg-scrim",
         "deprecated": false
       },
       {
         "path": "theme.surface.bg-code",
         "type": "color",
-        "cssVariable": "--teum-bg-code",
+        "cssVariable": "--whatiuse-bg-code",
         "deprecated": false
       },
       {
         "path": "theme.surface.canvas",
         "type": "color",
-        "cssVariable": "--teum-canvas",
+        "cssVariable": "--whatiuse-canvas",
         "deprecated": false
       },
       {
         "path": "theme.surface.sidebar",
         "type": "color",
-        "cssVariable": "--teum-sidebar",
+        "cssVariable": "--whatiuse-sidebar",
         "deprecated": false
       },
       {
         "path": "theme.surface.surface",
         "type": "color",
-        "cssVariable": "--teum-surface",
+        "cssVariable": "--whatiuse-surface",
         "deprecated": false
       },
       {
         "path": "theme.surface.control-surface",
         "type": "color",
-        "cssVariable": "--teum-control-surface",
+        "cssVariable": "--whatiuse-control-surface",
         "deprecated": false
       },
       {
         "path": "theme.surface.elevated-surface",
         "type": "color",
-        "cssVariable": "--teum-elevated-surface",
+        "cssVariable": "--whatiuse-elevated-surface",
         "deprecated": false
       },
       {
         "path": "theme.surface.overlay-surface",
         "type": "color",
-        "cssVariable": "--teum-overlay-surface",
+        "cssVariable": "--whatiuse-overlay-surface",
         "deprecated": false
       },
       {
         "path": "theme.surface.code-surface",
         "type": "color",
-        "cssVariable": "--teum-code-surface",
+        "cssVariable": "--whatiuse-code-surface",
         "deprecated": false
       },
       {
         "path": "theme.surface.stage",
         "type": "color",
-        "cssVariable": "--teum-stage",
+        "cssVariable": "--whatiuse-stage",
         "deprecated": false
       },
       {
         "path": "theme.surface.subtle",
         "type": "color",
-        "cssVariable": "--teum-subtle",
+        "cssVariable": "--whatiuse-subtle",
         "deprecated": false
       },
       {
         "path": "theme.surface.hover",
         "type": "color",
-        "cssVariable": "--teum-hover",
+        "cssVariable": "--whatiuse-hover",
         "deprecated": false
       },
       {
         "path": "theme.surface.active",
         "type": "color",
-        "cssVariable": "--teum-active",
+        "cssVariable": "--whatiuse-active",
         "deprecated": false
       },
       {
         "path": "theme.surface.selected",
         "type": "color",
-        "cssVariable": "--teum-selected",
+        "cssVariable": "--whatiuse-selected",
         "deprecated": false
       },
       {
         "path": "theme.surface.inverse",
         "type": "color",
-        "cssVariable": "--teum-inverse",
+        "cssVariable": "--whatiuse-inverse",
         "deprecated": false
       },
       {
         "path": "theme.surface.inverse-hover",
         "type": "color",
-        "cssVariable": "--teum-inverse-hover",
+        "cssVariable": "--whatiuse-inverse-hover",
         "deprecated": false
       },
       {
         "path": "theme.surface.on-inverse",
         "type": "color",
-        "cssVariable": "--teum-on-inverse",
+        "cssVariable": "--whatiuse-on-inverse",
         "deprecated": false
       },
       {
         "path": "theme.surface.scrollbar-thumb",
         "type": "color",
-        "cssVariable": "--teum-scrollbar-thumb",
+        "cssVariable": "--whatiuse-scrollbar-thumb",
         "deprecated": false
       },
       {
         "path": "theme.surface.scrollbar-thumb-hover",
         "type": "color",
-        "cssVariable": "--teum-scrollbar-thumb-hover",
+        "cssVariable": "--whatiuse-scrollbar-thumb-hover",
         "deprecated": false
       },
       {
         "path": "theme.foreground.fg-default",
         "type": "color",
-        "cssVariable": "--teum-fg-default",
+        "cssVariable": "--whatiuse-fg-default",
         "deprecated": false
       },
       {
         "path": "theme.foreground.fg-muted",
         "type": "color",
-        "cssVariable": "--teum-fg-muted",
+        "cssVariable": "--whatiuse-fg-muted",
         "deprecated": false
       },
       {
         "path": "theme.foreground.fg-subtle",
         "type": "color",
-        "cssVariable": "--teum-fg-subtle",
+        "cssVariable": "--whatiuse-fg-subtle",
         "deprecated": false
       },
       {
         "path": "theme.foreground.fg-disabled",
         "type": "color",
-        "cssVariable": "--teum-fg-disabled",
+        "cssVariable": "--whatiuse-fg-disabled",
         "deprecated": false
       },
       {
         "path": "theme.foreground.fg-danger",
         "type": "color",
-        "cssVariable": "--teum-fg-danger",
+        "cssVariable": "--whatiuse-fg-danger",
         "deprecated": false
       },
       {
         "path": "theme.foreground.ink",
         "type": "color",
-        "cssVariable": "--teum-ink",
+        "cssVariable": "--whatiuse-ink",
         "deprecated": false
       },
       {
         "path": "theme.foreground.ink-secondary",
         "type": "color",
-        "cssVariable": "--teum-ink-secondary",
+        "cssVariable": "--whatiuse-ink-secondary",
         "deprecated": false
       },
       {
         "path": "theme.foreground.ink-tertiary",
         "type": "color",
-        "cssVariable": "--teum-ink-tertiary",
+        "cssVariable": "--whatiuse-ink-tertiary",
         "deprecated": false
       },
       {
         "path": "theme.foreground.ink-disabled",
         "type": "color",
-        "cssVariable": "--teum-ink-disabled",
+        "cssVariable": "--whatiuse-ink-disabled",
         "deprecated": false
       },
       {
         "path": "theme.border.separator",
         "type": "color",
-        "cssVariable": "--teum-separator",
+        "cssVariable": "--whatiuse-separator",
         "deprecated": false
       },
       {
         "path": "theme.border.control-border",
         "type": "color",
-        "cssVariable": "--teum-control-border",
+        "cssVariable": "--whatiuse-control-border",
         "deprecated": false
       },
       {
         "path": "theme.border.control-border-hover",
         "type": "color",
-        "cssVariable": "--teum-control-border-hover",
+        "cssVariable": "--whatiuse-control-border-hover",
         "deprecated": false
       },
       {
         "path": "theme.border.border-subtle",
         "type": "color",
-        "cssVariable": "--teum-border-subtle",
+        "cssVariable": "--whatiuse-border-subtle",
         "deprecated": false
       },
       {
         "path": "theme.border.border",
         "type": "color",
-        "cssVariable": "--teum-border",
+        "cssVariable": "--whatiuse-border",
         "deprecated": false
       },
       {
         "path": "theme.border.border-strong",
         "type": "color",
-        "cssVariable": "--teum-border-strong",
+        "cssVariable": "--whatiuse-border-strong",
         "deprecated": false
       },
       {
         "path": "theme.focus.focus-control",
         "type": "color",
-        "cssVariable": "--teum-focus-control",
+        "cssVariable": "--whatiuse-focus-control",
         "deprecated": false
       },
       {
         "path": "theme.focus.focus-navigation",
         "type": "color",
-        "cssVariable": "--teum-focus-navigation",
+        "cssVariable": "--whatiuse-focus-navigation",
         "deprecated": false
       },
       {
         "path": "theme.focus.focus-documentation",
         "type": "color",
-        "cssVariable": "--teum-focus-documentation",
+        "cssVariable": "--whatiuse-focus-documentation",
         "deprecated": false
       },
       {
         "path": "theme.focus.focus-halo",
         "type": "color",
-        "cssVariable": "--teum-focus-halo",
+        "cssVariable": "--whatiuse-focus-halo",
         "deprecated": false
       },
       {
         "path": "theme.focus.switch-track",
         "type": "color",
-        "cssVariable": "--teum-switch-track",
+        "cssVariable": "--whatiuse-switch-track",
         "deprecated": false
       },
       {
         "path": "theme.focus.switch-thumb",
         "type": "color",
-        "cssVariable": "--teum-switch-thumb",
+        "cssVariable": "--whatiuse-switch-thumb",
         "deprecated": false
       },
       {
         "path": "theme.focus.focus",
         "type": "color",
-        "cssVariable": "--teum-focus",
+        "cssVariable": "--whatiuse-focus",
         "deprecated": false
       },
       {
         "path": "theme.elevation.shadow-control",
         "type": "shadow",
-        "cssVariable": "--teum-shadow-control",
+        "cssVariable": "--whatiuse-shadow-control",
         "deprecated": false
       },
       {
         "path": "theme.elevation.shadow-float",
         "type": "shadow",
-        "cssVariable": "--teum-shadow-float",
+        "cssVariable": "--whatiuse-shadow-float",
         "deprecated": false
       },
       {
         "path": "theme.elevation.shadow-float-focus",
         "type": "shadow",
-        "cssVariable": "--teum-shadow-float-focus",
+        "cssVariable": "--whatiuse-shadow-float-focus",
         "deprecated": false
       },
       {
         "path": "theme.elevation.shadow-flyout",
         "type": "shadow",
-        "cssVariable": "--teum-shadow-flyout",
+        "cssVariable": "--whatiuse-shadow-flyout",
         "deprecated": false
       },
       {
         "path": "theme.elevation.shadow-popover",
         "type": "shadow",
-        "cssVariable": "--teum-shadow-popover",
+        "cssVariable": "--whatiuse-shadow-popover",
         "deprecated": false
       },
       {
         "path": "theme.elevation.shadow-modal",
         "type": "shadow",
-        "cssVariable": "--teum-shadow-modal",
+        "cssVariable": "--whatiuse-shadow-modal",
         "deprecated": false
       },
       {
         "path": "theme.elevation.shadow-dialog",
         "type": "shadow",
-        "cssVariable": "--teum-shadow-dialog",
+        "cssVariable": "--whatiuse-shadow-dialog",
         "deprecated": false
       }
     ]

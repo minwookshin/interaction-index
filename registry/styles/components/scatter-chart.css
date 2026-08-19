@@ -1,0 +1,25 @@
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
+
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
+
+@layer whatiuse.components {
+.whatiuse-scatter-chart__grid line { stroke: color-mix(in oklch, var(--whatiuse-separator) 70%, transparent); stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+.whatiuse-scatter-chart__grid text { fill: var(--whatiuse-fg-subtle); font-size: 9px; dominant-baseline: middle; }
+
+.whatiuse-scatter-chart__axis-label { fill: var(--whatiuse-fg-muted); font-size: 9px; font-weight: 540; letter-spacing: .01em; }
+
+.whatiuse-scatter-chart__points circle {
+  fill: var(--whatiuse-fg-default);
+  opacity: .72;
+  stroke: var(--whatiuse-bg-surface);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.whatiuse-scatter-chart__points circle[data-tone="secondary"] { opacity: .48; }
+
+.whatiuse-scatter-chart__points circle[data-tone="tertiary"] { opacity: .28; }
+
+.whatiuse-scatter-chart__points circle[data-active] { opacity: 1; }
+}

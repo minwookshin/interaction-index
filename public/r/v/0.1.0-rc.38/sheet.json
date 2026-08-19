@@ -1,0 +1,37 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sheet",
+  "title": "Sheet",
+  "description": "Edge-aligned focused panel with modal focus and spatial context.",
+  "dependencies": [
+    "@base-ui/react@1.7.0",
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base",
+    "@whatiuse/icon-button"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/sheet.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/sheet.css\";\nimport { Dialog as DialogPrimitive } from \"@base-ui/react/dialog\";\nimport { X } from \"@phosphor-icons/react\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\nimport { IconButton } from \"./icon-button\";\n\nexport const Sheet = DialogPrimitive.Root;\nexport const SheetTrigger = DialogPrimitive.Trigger;\nexport const SheetClose = DialogPrimitive.Close;\nexport const SheetTitle = DialogPrimitive.Title;\nexport const SheetDescription = DialogPrimitive.Description;\n\nexport type SheetSide = \"top\" | \"right\" | \"bottom\" | \"left\";\nexport type SheetContentProps = DialogPrimitive.Popup.Props & {\n  side?: SheetSide;\n  showClose?: boolean;\n};\n\nexport function SheetContent({ className, children, side = \"right\", showClose = true, ...props }: SheetContentProps) {\n  return (\n    <DialogPrimitive.Portal>\n      <DialogPrimitive.Backdrop className=\"whatiuse-sheet__backdrop\" />\n      <DialogPrimitive.Viewport className=\"whatiuse-sheet__viewport\" data-side={side}>\n        <DialogPrimitive.Popup className={cn(\"whatiuse-sheet\", className)} data-side={side} data-layer=\"modal\" {...props}>\n          {children}\n          {showClose && (\n            <DialogPrimitive.Close render={<IconButton className=\"whatiuse-sheet__close\" variant=\"ghost\" size=\"small\" aria-label=\"Close panel\" />}>\n              <X />\n            </DialogPrimitive.Close>\n          )}\n        </DialogPrimitive.Popup>\n      </DialogPrimitive.Viewport>\n    </DialogPrimitive.Portal>\n  );\n}\n\nexport function SheetHeader({ className, ...props }: ComponentPropsWithRef<\"div\">) {\n  return <div className={cn(\"whatiuse-sheet__header\", className)} {...props} />;\n}\n\nexport function SheetBody({ className, ...props }: ComponentPropsWithRef<\"div\">) {\n  return <div className={cn(\"whatiuse-sheet__body\", className)} {...props} />;\n}\n\nexport function SheetFooter({ className, ...props }: ComponentPropsWithRef<\"div\">) {\n  return <div className={cn(\"whatiuse-sheet__footer\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/sheet.tsx"
+    },
+    {
+      "path": "registry/styles/components/sheet.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-sheet__backdrop {\n  position: fixed;\n  inset: 0;\n  z-index: var(--whatiuse-layer-modal-backdrop);\n  background: var(--whatiuse-bg-scrim);\n  backdrop-filter: blur(1.5px);\n  transition: opacity var(--whatiuse-enter-duration) var(--whatiuse-ease-out);\n}\n\n.whatiuse-sheet__backdrop[data-starting-style],\n.whatiuse-sheet__backdrop[data-ending-style] { opacity: 0; }\n\n.whatiuse-sheet__backdrop[data-ending-style] { transition-duration: var(--whatiuse-exit-duration); }\n\n.whatiuse-sheet__viewport {\n  position: fixed;\n  inset: 0;\n  z-index: var(--whatiuse-layer-modal);\n  display: flex;\n  pointer-events: none;\n}\n\n.whatiuse-sheet__viewport[data-side=\"right\"] { justify-content: flex-end; }\n\n.whatiuse-sheet__viewport[data-side=\"left\"] { justify-content: flex-start; }\n\n.whatiuse-sheet__viewport[data-side=\"top\"] { align-items: flex-start; }\n\n.whatiuse-sheet__viewport[data-side=\"bottom\"] { align-items: flex-end; }\n\n.whatiuse-sheet {\n  position: relative;\n  display: flex;\n  width: min(380px, calc(100vw - 16px));\n  height: 100%;\n  flex-direction: column;\n  overflow: hidden;\n  outline: 0;\n  background: var(--whatiuse-bg-modal);\n  box-shadow: var(--whatiuse-shadow-modal);\n  pointer-events: auto;\n  transition: opacity var(--whatiuse-enter-duration) var(--whatiuse-ease-out), transform var(--whatiuse-enter-duration) var(--whatiuse-ease-drawer);\n}\n\n.whatiuse-sheet[data-side=\"right\"] { border-radius: 12px 0 0 12px; }\n\n.whatiuse-sheet[data-side=\"left\"] { border-radius: 0 12px 12px 0; }\n\n.whatiuse-sheet[data-side=\"top\"],\n.whatiuse-sheet[data-side=\"bottom\"] { width: 100%; height: min(360px, 70vh); }\n\n.whatiuse-sheet[data-side=\"top\"] { border-radius: 0 0 12px 12px; }\n\n.whatiuse-sheet[data-side=\"bottom\"] { border-radius: 12px 12px 0 0; }\n\n.whatiuse-sheet[data-side=\"right\"][data-starting-style],\n.whatiuse-sheet[data-side=\"right\"][data-ending-style] { opacity: .72; transform: translateX(18px); }\n\n.whatiuse-sheet[data-side=\"left\"][data-starting-style],\n.whatiuse-sheet[data-side=\"left\"][data-ending-style] { opacity: .72; transform: translateX(-18px); }\n\n.whatiuse-sheet[data-side=\"top\"][data-starting-style],\n.whatiuse-sheet[data-side=\"top\"][data-ending-style] { opacity: .72; transform: translateY(-18px); }\n\n.whatiuse-sheet[data-side=\"bottom\"][data-starting-style],\n.whatiuse-sheet[data-side=\"bottom\"][data-ending-style] { opacity: .72; transform: translateY(18px); }\n\n.whatiuse-sheet[data-ending-style] { transition-duration: var(--whatiuse-exit-duration); transition-timing-function: var(--whatiuse-ease-out); }\n\n.whatiuse-sheet__close { position: absolute; top: 14px; right: 14px; }\n\n.whatiuse-sheet__header { display: grid; gap: 6px; padding: 20px 52px 16px 20px; }\n\n.whatiuse-sheet__header [data-slot=\"dialog-title\"],\n.whatiuse-sheet__header h2 { margin: 0; font-size: 17px; font-weight: 600; letter-spacing: -.018em; }\n\n.whatiuse-sheet__header [data-slot=\"dialog-description\"],\n.whatiuse-sheet__header p { margin: 0; color: var(--whatiuse-fg-muted); font-size: var(--whatiuse-type-ui); line-height: 1.5; }\n\n.whatiuse-sheet__body { display: grid; min-height: 0; flex: 1 1 auto; align-content: start; gap: 16px; overflow: auto; padding: 8px 20px 24px; }\n\n.whatiuse-sheet__footer { display: flex; flex: 0 0 auto; justify-content: flex-end; gap: 6px; padding: 14px 20px 16px; background: color-mix(in oklch, var(--whatiuse-bg-modal) 92%, transparent); box-shadow: 0 -1px 0 var(--whatiuse-separator); }\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-sheet,\n.whatiuse-sheet__backdrop { transition-duration: 0.01ms; }\n\n.whatiuse-sheet[data-starting-style],\n.whatiuse-sheet[data-ending-style] { transform: none; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/sheet.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/sheet",
+      "useWhen": "A focused task needs more room than a Popover but the originating page should remain spatially legible.",
+      "avoidWhen": "The task is a short anchored choice, a full destination, or a gesture-driven drawer with snap points."
+    }
+  },
+  "type": "registry:ui"
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "title": "Alert",
+  "description": "Persistent neutral or critical feedback with opt-in live announcement.",
+  "dependencies": [
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/icon-button",
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/alert.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/alert.css\";\nimport { Info, WarningCircle, X } from \"@phosphor-icons/react\";\nimport type { ComponentPropsWithRef, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\nimport { IconButton } from \"./icon-button\";\n\nexport type AlertProps = Omit<ComponentPropsWithRef<\"div\">, \"title\"> & {\n  variant?: \"neutral\" | \"critical\";\n  title: ReactNode;\n  icon?: ReactNode;\n  action?: ReactNode;\n  live?: \"polite\" | \"assertive\";\n  dismissLabel?: string;\n  onDismiss?: () => void;\n};\n\nexport function Alert({\n  variant = \"neutral\",\n  title,\n  icon,\n  action,\n  live,\n  dismissLabel = \"Dismiss notification\",\n  onDismiss,\n  className,\n  children,\n  role,\n  ...props\n}: AlertProps) {\n  const fallbackIcon = variant === \"critical\" ? <WarningCircle weight=\"fill\" /> : <Info weight=\"fill\" />;\n\n  return (\n    <div\n      className={cn(\"whatiuse-alert\", className)}\n      data-variant={variant}\n      role={role ?? (live === \"assertive\" ? \"alert\" : live === \"polite\" ? \"status\" : undefined)}\n      aria-live={live}\n      {...props}\n    >\n      <span className=\"whatiuse-alert__icon\" aria-hidden=\"true\">{icon ?? fallbackIcon}</span>\n      <span className=\"whatiuse-alert__content\">\n        <strong>{title}</strong>\n        {children && <span>{children}</span>}\n      </span>\n      {action && <span className=\"whatiuse-alert__action\">{action}</span>}\n      {onDismiss && <IconButton className=\"whatiuse-alert__dismiss\" variant=\"ghost\" size=\"small\" aria-label={dismissLabel} onClick={onDismiss}><X /></IconButton>}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/alert.tsx"
+    },
+    {
+      "path": "registry/styles/components/alert.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-alert {\n  display: grid;\n  width: min(560px, 100%);\n  min-height: 54px;\n  grid-template-columns: 18px minmax(0, 1fr) auto auto;\n  align-items: center;\n  gap: 10px;\n  padding: 10px 10px 10px 12px;\n  border-radius: var(--whatiuse-radius-md);\n  background: var(--whatiuse-bg-subtle);\n  color: var(--whatiuse-fg-default);\n}\n\n.whatiuse-alert[data-variant=\"critical\"] { background: color-mix(in oklch, var(--whatiuse-fg-danger) 7%, var(--whatiuse-bg-subtle)); box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--whatiuse-fg-danger) 24%, transparent); }\n\n.whatiuse-alert[data-variant=\"critical\"] .whatiuse-alert__icon { color: var(--whatiuse-fg-danger); }\n\n.whatiuse-alert__icon { display: grid; width: 18px; height: 18px; place-items: center; color: var(--whatiuse-fg-muted); }\n\n.whatiuse-alert__icon svg { width: 16px; height: 16px; }\n\n.whatiuse-alert__content { display: grid; min-width: 0; gap: 2px; }\n\n.whatiuse-alert__content strong { font-size: var(--whatiuse-type-ui); font-weight: 580; letter-spacing: -0.01em; }\n\n.whatiuse-alert__content > span { color: var(--whatiuse-fg-muted); font-size: var(--whatiuse-type-label); line-height: 1.45; }\n\n.whatiuse-alert__action { display: inline-flex; align-items: center; }\n\n.whatiuse-alert__dismiss { color: var(--whatiuse-fg-subtle); }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/alert.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/alert",
+      "useWhen": "Feedback should remain visible beside the affected work until it is understood or resolved.",
+      "avoidWhen": "The message is transient, belongs to one field, or blocks progress until a response is chosen."
+    }
+  },
+  "type": "registry:ui"
+}

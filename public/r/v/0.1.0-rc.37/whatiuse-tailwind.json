@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "whatiuse-tailwind",
+  "title": "whatiuse Tailwind Bridge",
+  "description": "Optional Tailwind CSS v4 semantic utility mapping backed by the same whatiuse tokens.",
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/styles/whatiuse-tailwind.css",
+      "content": "/*\n * Optional Tailwind CSS v4 bridge for whatiuse.\n * Import after `tailwindcss` and `whatiuse/tokens.css`.\n * whatiuse's CSS variables remain the source of truth; this file only maps them\n * to semantic Tailwind utilities such as bg-background and shadow-flyout.\n */\n\n@theme inline {\n  --color-background: var(--whatiuse-bg-canvas);\n  --color-foreground: var(--whatiuse-fg-default);\n  --color-card: var(--whatiuse-bg-surface);\n  --color-card-foreground: var(--whatiuse-fg-default);\n  --color-popover: var(--whatiuse-bg-flyout);\n  --color-popover-foreground: var(--whatiuse-fg-default);\n  --color-primary: var(--whatiuse-inverse);\n  --color-primary-foreground: var(--whatiuse-on-inverse);\n  --color-secondary: var(--whatiuse-bg-control);\n  --color-secondary-foreground: var(--whatiuse-fg-default);\n  --color-muted: var(--whatiuse-bg-subtle);\n  --color-muted-foreground: var(--whatiuse-fg-muted);\n  --color-accent: var(--whatiuse-hover);\n  --color-accent-foreground: var(--whatiuse-fg-default);\n  --color-destructive: var(--whatiuse-fg-danger);\n  --color-border: var(--whatiuse-control-border);\n  --color-input: var(--whatiuse-control-border);\n  --color-ring: var(--whatiuse-focus-control);\n\n  --color-canvas: var(--whatiuse-bg-canvas);\n  --color-stage: var(--whatiuse-bg-stage);\n  --color-float: var(--whatiuse-bg-float);\n  --color-flyout: var(--whatiuse-bg-flyout);\n  --color-modal: var(--whatiuse-bg-modal);\n\n  --radius-xs: var(--whatiuse-radius-xs);\n  --radius-sm: var(--whatiuse-radius-sm);\n  --radius-md: var(--whatiuse-radius-md);\n  --radius-lg: var(--whatiuse-radius-lg);\n  --radius-control: var(--whatiuse-radius-control);\n  --radius-container: var(--whatiuse-radius-container);\n  --radius-overlay: var(--whatiuse-radius-overlay);\n\n  --shadow-control: var(--whatiuse-shadow-control);\n  --shadow-float: var(--whatiuse-shadow-float);\n  --shadow-flyout: var(--whatiuse-shadow-flyout);\n  --shadow-modal: var(--whatiuse-shadow-modal);\n\n  --font-sans: var(--whatiuse-font-ui);\n  --font-mono: var(--whatiuse-font-code);\n  --text-metadata: var(--whatiuse-type-metadata);\n  --text-label: var(--whatiuse-type-label);\n  --text-ui: var(--whatiuse-type-ui);\n  --text-body: var(--whatiuse-type-body);\n\n  --ease-whatiuse-out: var(--whatiuse-ease-out);\n  --ease-whatiuse-in-out: var(--whatiuse-ease-in-out);\n  --ease-whatiuse-drawer: var(--whatiuse-ease-drawer);\n}\n",
+      "type": "registry:style",
+      "target": "styles/whatiuse-tailwind.css"
+    }
+  ],
+  "type": "registry:style"
+}

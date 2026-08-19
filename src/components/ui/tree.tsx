@@ -30,16 +30,16 @@ function TreeNodeItem({ node }: { node: TreeNode }) {
     <AriaTreeItem id={node.id} textValue={node.label} isDisabled={node.disabled}>
       <TreeItemContent>
         {({ isExpanded, level }) => (
-          <div className="teum-tree__row" style={{ "--teum-tree-indent": `${Math.max(0, level - 1) * 18}px` } as React.CSSProperties}>
+          <div className="whatiuse-tree__row" style={{ "--whatiuse-tree-indent": `${Math.max(0, level - 1) * 18}px` } as React.CSSProperties}>
             {hasChildren ? (
-              <AriaButton slot="chevron" className="teum-tree__chevron" data-visible data-expanded={isExpanded || undefined}>
+              <AriaButton slot="chevron" className="whatiuse-tree__chevron" data-visible data-expanded={isExpanded || undefined}>
                 <CaretRight aria-hidden="true" />
               </AriaButton>
-            ) : <span className="teum-tree__chevron" aria-hidden="true"><CaretRight /></span>}
-            <span className="teum-tree__icon" aria-hidden="true">{node.icon ?? (hasChildren ? <Folder /> : <File />)}</span>
-            <span className="teum-tree__copy">
-              <span className="teum-tree__label">{node.label}</span>
-              {node.description && <span className="teum-tree__description">{node.description}</span>}
+            ) : <span className="whatiuse-tree__chevron" aria-hidden="true"><CaretRight /></span>}
+            <span className="whatiuse-tree__icon" aria-hidden="true">{node.icon ?? (hasChildren ? <Folder /> : <File />)}</span>
+            <span className="whatiuse-tree__copy">
+              <span className="whatiuse-tree__label">{node.label}</span>
+              {node.description && <span className="whatiuse-tree__description">{node.description}</span>}
             </span>
           </div>
         )}
@@ -51,7 +51,7 @@ function TreeNodeItem({ node }: { node: TreeNode }) {
 
 export function Tree({ items, className, selectionMode = "single", ...props }: TreeProps) {
   return (
-    <AriaTree className={cn("teum-tree", className)} selectionMode={selectionMode} {...props}>
+    <AriaTree className={cn("whatiuse-tree", className)} selectionMode={selectionMode} {...props}>
       {items.map((item) => <TreeNodeItem key={item.id} node={item} />)}
     </AriaTree>
   );

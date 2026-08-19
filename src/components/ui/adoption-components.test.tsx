@@ -41,7 +41,7 @@ describe("product adoption components", () => {
 
   it("names an empty composition from its visible title and keeps actions discoverable", () => {
     render(<EmptyState title="No matching issues" description="Clear the current filter." primaryAction={<Button>Clear filter</Button>} />);
-    const region = screen.getByText("No matching issues").closest(".teum-empty-state");
+    const region = screen.getByText("No matching issues").closest(".whatiuse-empty-state");
     expect(region).toHaveAccessibleName("No matching issues");
     expect(within(region as HTMLElement).getByRole("button", { name: "Clear filter" })).toBeInTheDocument();
   });
@@ -96,7 +96,7 @@ describe("product adoption components", () => {
 
   it("discloses supporting content without changing destination", async () => {
     const user = userEvent.setup();
-    render(<Collapsible className="teum-collapsible"><CollapsibleTrigger>Compatibility details</CollapsibleTrigger><CollapsibleContent>React 19 and Base UI 1.</CollapsibleContent></Collapsible>);
+    render(<Collapsible className="whatiuse-collapsible"><CollapsibleTrigger>Compatibility details</CollapsibleTrigger><CollapsibleContent>React 19 and Base UI 1.</CollapsibleContent></Collapsible>);
     const trigger = screen.getByRole("button", { name: "Compatibility details" });
     expect(trigger).toHaveAttribute("aria-expanded", "false");
     await user.click(trigger);

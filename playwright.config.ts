@@ -8,9 +8,9 @@ export default defineConfig({
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 2 : undefined,
-  reporter: process.env.TEUM_ACCESSIBILITY_EVIDENCE
+  reporter: process.env.WHATIUSE_ACCESSIBILITY_EVIDENCE
     ? [["line"], ["./scripts/playwright-accessibility-reporter.mjs"]]
-    : process.env.TEUM_BROWSER_EVIDENCE
+    : process.env.WHATIUSE_BROWSER_EVIDENCE
       ? [["line"], ["./scripts/playwright-evidence-reporter.mjs"]]
     : process.env.CI
       ? [["line"], ["html", { open: "never" }]]

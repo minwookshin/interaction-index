@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/components/popover.css";
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import { cn } from "../../lib/cn";
@@ -26,8 +26,8 @@ export function PopoverContent({
 }: PopoverContentProps) {
   return (
     <PopoverPrimitive.Portal>
-      <PopoverPrimitive.Positioner className="teum-positioner" side={side} sideOffset={sideOffset} align={align} alignOffset={alignOffset}>
-        <PopoverPrimitive.Popup className={cn("teum-popover", className)} {...props} data-layer="flyout" />
+      <PopoverPrimitive.Positioner className="whatiuse-positioner" side={side} sideOffset={sideOffset} align={align} alignOffset={alignOffset}>
+        <PopoverPrimitive.Popup className={cn("whatiuse-popover", className)} {...props} data-layer="flyout" />
       </PopoverPrimitive.Positioner>
     </PopoverPrimitive.Portal>
   );

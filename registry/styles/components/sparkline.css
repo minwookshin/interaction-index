@@ -1,23 +1,23 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-sparkline {
+@layer whatiuse.components {
+.whatiuse-sparkline {
   display: block;
   flex: none;
-  width: var(--teum-sparkline-width);
-  height: var(--teum-sparkline-height);
+  width: var(--whatiuse-sparkline-width);
+  height: var(--whatiuse-sparkline-height);
   overflow: visible;
-  color: var(--teum-fg-default);
+  color: var(--whatiuse-fg-default);
 }
 
-.teum-sparkline[data-tone="secondary"] { color: var(--teum-fg-muted); }
+.whatiuse-sparkline[data-tone="secondary"] { color: var(--whatiuse-fg-muted); }
 
-.teum-sparkline[data-tone="tertiary"] { color: var(--teum-fg-subtle); }
+.whatiuse-sparkline[data-tone="tertiary"] { color: var(--whatiuse-fg-subtle); }
 
-.teum-sparkline__line,
-.teum-sparkline__empty {
+.whatiuse-sparkline__line,
+.whatiuse-sparkline__empty {
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
@@ -26,7 +26,7 @@
   vector-effect: non-scaling-stroke;
 }
 
-.teum-sparkline__area { fill: currentColor; opacity: .075; }
+.whatiuse-sparkline__area { fill: currentColor; opacity: .075; }
 
-.teum-sparkline__empty { opacity: .24; stroke-dasharray: 2 3; }
+.whatiuse-sparkline__empty { opacity: .24; stroke-dasharray: 2 3; }
 }

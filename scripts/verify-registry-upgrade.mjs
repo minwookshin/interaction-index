@@ -21,13 +21,17 @@ if (currentIndex < 1) throw new Error(`[registry-upgrade] ${packageJson.version}
 const fromVersion = ledger.versions[currentIndex - 1].version;
 const fromRegistry = await startRegistryServer(fromVersion);
 const toRegistry = await startRegistryServer(packageJson.version);
-const fixture = await createExampleFixture("quickstart-vite", "teum-upgrade-");
+const fixture = await createExampleFixture("quickstart-vite", "whatiuse-upgrade-");
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
+const registryScope = "@whatiuse";
 
 try {
   const startedAt = performance.now();
-  await run(shadcnExecutable, ["registry", "add", `@teum-pinned=${fromRegistry.template}`, "-c", fixture]);
-  await run(shadcnExecutable, ["add", "@teum-pinned/button", "-y", "-c", fixture]);
+  // Immutable candidates before rc.37 remain byte-for-byte historical inputs.
+  // This fixture gives the prior URL a temporary alias; current documentation
+  // and artifacts use the single @whatiuse scope.
+  await run(shadcnExecutable, ["registry", "add", `${registryScope}=${fromRegistry.template}`, "-c", fixture]);
+  await run(shadcnExecutable, ["add", `${registryScope}/button`, "-y", "-c", fixture]);
   await run("npm", ["run", "build"], { cwd: fixture });
 
   const buttonPath = resolve(fixture, "src/components/ui/button.tsx");
@@ -36,8 +40,8 @@ try {
   const customizedSource = await readFile(buttonPath, "utf8");
   const customizedHash = sha256(customizedSource);
 
-  await run(shadcnExecutable, ["registry", "add", `@teum-pinned=${toRegistry.template}`, "-c", fixture]);
-  const dryRun = await run(shadcnExecutable, ["add", "@teum-pinned/button", "--dry-run", "-c", fixture]);
+  await run(shadcnExecutable, ["registry", "add", `${registryScope}=${toRegistry.template}`, "-c", fixture]);
+  const dryRun = await run(shadcnExecutable, ["add", "@whatiuse/button", "--dry-run", "-c", fixture]);
   if (sha256(await readFile(buttonPath, "utf8")) !== customizedHash) {
     throw new Error("[registry-upgrade] dry-run changed locally customized source");
   }
@@ -45,7 +49,7 @@ try {
     throw new Error("[registry-upgrade] dry-run did not describe the Button candidate");
   }
 
-  const diff = await run(shadcnExecutable, ["add", "@teum-pinned/button", "--diff", "src/components/ui/button.tsx", "-c", fixture]);
+  const diff = await run(shadcnExecutable, ["add", "@whatiuse/button", "--diff", "src/components/ui/button.tsx", "-c", fixture]);
   const diffOutput = `${diff.stdout}\n${diff.stderr}`;
   if (!diffOutput.includes(localMarker) && !/local adopter customization/i.test(diffOutput)) {
     throw new Error("[registry-upgrade] reviewed diff did not expose the local customization");
@@ -54,7 +58,7 @@ try {
     throw new Error("[registry-upgrade] diff review changed locally customized source");
   }
 
-  await run(shadcnExecutable, ["add", "@teum-pinned/button", "--overwrite", "--yes", "-c", fixture]);
+  await run(shadcnExecutable, ["add", "@whatiuse/button", "--overwrite", "--yes", "-c", fixture]);
   const acceptedSource = await readFile(buttonPath, "utf8");
   if (acceptedSource.includes(localMarker)) {
     throw new Error("[registry-upgrade] explicit acceptance did not replace the reviewed local source");
@@ -65,7 +69,7 @@ try {
   const elapsedMs = Math.round(performance.now() - startedAt);
   if (elapsedMs >= maxJourneyMs) throw new Error("[registry-upgrade] reviewed update journey exceeded ten minutes");
 
-  if (process.env.TEUM_UPGRADE_EVIDENCE === "1") {
+  if (process.env.WHATIUSE_UPGRADE_EVIDENCE === "1") {
     await writeFile(evidencePath, `${JSON.stringify({
       schemaVersion: 1,
       generatedBy: "scripts/verify-registry-upgrade.mjs",
@@ -81,9 +85,9 @@ try {
       explicitOverwriteRequired: true,
       acceptedBuild: true,
       commands: [
-        `npx ${shadcnCli} add @teum-pinned/button --dry-run`,
-        `npx ${shadcnCli} add @teum-pinned/button --diff src/components/ui/button.tsx`,
-        `npx ${shadcnCli} add @teum-pinned/button --overwrite --yes`,
+        `npx ${shadcnCli} add @whatiuse/button --dry-run`,
+        `npx ${shadcnCli} add @whatiuse/button --diff src/components/ui/button.tsx`,
+        `npx ${shadcnCli} add @whatiuse/button --overwrite --yes`,
         "npm run typecheck",
         "npm run build",
       ],

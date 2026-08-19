@@ -1,0 +1,38 @@
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
+
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
+
+@layer whatiuse.components {
+.whatiuse-gauge__plot { position: relative; width: 100%; height: 100%; color: var(--whatiuse-fg-default); }
+
+.whatiuse-gauge__plot svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+.whatiuse-gauge__track,
+.whatiuse-gauge__value { fill: none; stroke-linecap: round; stroke-width: 14; vector-effect: non-scaling-stroke; }
+
+.whatiuse-gauge__track { stroke: color-mix(in oklch, var(--whatiuse-fg-default) 8%, transparent); }
+
+.whatiuse-gauge__value { stroke: var(--whatiuse-fg-default); }
+
+.whatiuse-gauge__plot[data-tone="danger"] .whatiuse-gauge__value { stroke: var(--whatiuse-fg-danger); }
+
+.whatiuse-gauge__marker { stroke: var(--whatiuse-fg-muted); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+
+.whatiuse-gauge__value-label { position: absolute; top: 50%; left: 50%; display: grid; justify-items: center; gap: 2px; transform: translate(-50%, -50%); }
+
+.whatiuse-gauge__value-label strong { color: var(--whatiuse-fg-default); font-size: 25px; font-variant-numeric: tabular-nums; font-weight: 620; letter-spacing: -.03em; }
+
+.whatiuse-gauge__value-label span,
+.whatiuse-gauge__minimum,
+.whatiuse-gauge__maximum,
+.whatiuse-gauge__marker-label { color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); font-variant-numeric: tabular-nums; }
+
+.whatiuse-gauge__minimum,
+.whatiuse-gauge__maximum { position: absolute; top: 72%; }
+
+.whatiuse-gauge__minimum { left: calc(50% - 92px); }
+
+.whatiuse-gauge__maximum { right: calc(50% - 92px); }
+
+.whatiuse-gauge__marker-label { position: absolute; bottom: 8px; left: 50%; white-space: nowrap; transform: translateX(-50%); }
+}

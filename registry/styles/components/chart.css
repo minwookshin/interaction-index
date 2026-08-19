@@ -1,215 +1,219 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-chart { display: grid; width: 100%; min-width: 0; margin: 0; gap: 12px; }
+@layer whatiuse.components {
+.whatiuse-chart { display: grid; width: 100%; min-width: 0; margin: 0; gap: 12px; }
 
-.teum-chart__header { display: flex; min-width: 0; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.whatiuse-chart__header { display: flex; min-width: 0; align-items: flex-start; justify-content: space-between; gap: 20px; }
 
-.teum-chart__header > div { display: grid; min-width: 0; gap: 3px; }
+.whatiuse-chart__header > div { display: grid; min-width: 0; gap: 3px; }
 
-.teum-chart__header h3 { margin: 0; color: var(--teum-fg-default); font-size: var(--teum-type-section); font-weight: 610; letter-spacing: -.022em; }
+.whatiuse-chart__header h3 { margin: 0; color: var(--whatiuse-fg-default); font-size: var(--whatiuse-type-section); font-weight: 610; letter-spacing: -.022em; }
 
-.teum-chart__header p { margin: 0; color: var(--teum-fg-muted); font-size: var(--teum-type-metadata); line-height: 1.45; }
+.whatiuse-chart__header p { margin: 0; color: var(--whatiuse-fg-muted); font-size: var(--whatiuse-type-metadata); line-height: 1.45; }
 
-.teum-chart__data-toggle {
+.whatiuse-chart__data-toggle {
   min-height: 28px;
   flex: none;
   padding: 0 8px;
   border: 0;
-  border-radius: var(--teum-radius-control);
+  border-radius: var(--whatiuse-radius-control);
   background: transparent;
-  color: var(--teum-fg-muted);
+  color: var(--whatiuse-fg-muted);
   font: inherit;
-  font-size: var(--teum-type-metadata);
+  font-size: var(--whatiuse-type-metadata);
   cursor: pointer;
-  transition: background-color var(--teum-hover-duration) var(--teum-ease), color var(--teum-hover-duration) var(--teum-ease);
+  transition: background-color var(--whatiuse-hover-duration) var(--whatiuse-ease), color var(--whatiuse-hover-duration) var(--whatiuse-ease);
 }
 
-.teum-chart__legend { display: flex; min-width: 0; flex-wrap: wrap; gap: 4px; }
+.whatiuse-chart__legend { display: flex; min-width: 0; flex-wrap: wrap; gap: 4px; }
 
-.teum-chart__legend button {
+.whatiuse-chart__legend button {
   display: inline-flex;
   min-height: 26px;
   align-items: center;
   gap: 6px;
   padding: 0 7px;
   border: 0;
-  border-radius: var(--teum-radius-control);
+  border-radius: var(--whatiuse-radius-control);
   background: transparent;
-  color: var(--teum-fg-muted);
+  color: var(--whatiuse-fg-muted);
   font: inherit;
-  font-size: var(--teum-type-metadata);
+  font-size: var(--whatiuse-type-metadata);
   cursor: pointer;
-  transition: background-color var(--teum-hover-duration) var(--teum-ease), color var(--teum-hover-duration) var(--teum-ease), opacity var(--teum-hover-duration) var(--teum-ease);
+  transition: background-color var(--whatiuse-hover-duration) var(--whatiuse-ease), color var(--whatiuse-hover-duration) var(--whatiuse-ease), opacity var(--whatiuse-hover-duration) var(--whatiuse-ease);
 }
 
-.teum-chart__legend button > span { width: 16px; height: 2px; border-radius: 999px; background: var(--teum-fg-default); }
+.whatiuse-chart__legend button > span { width: 16px; height: 2px; border-radius: 999px; background: var(--whatiuse-fg-default); }
 
-.teum-chart__legend button[data-tone="secondary"] > span { opacity: .56; }
+.whatiuse-chart__legend button[data-tone="secondary"] > span { opacity: .56; }
 
-.teum-chart__legend button[data-tone="tertiary"] > span { opacity: .32; }
+.whatiuse-chart__legend button[data-tone="tertiary"] > span { opacity: .32; }
 
-.teum-chart__legend button[data-line-style="dashed"] > span { background: repeating-linear-gradient(90deg, currentColor 0 5px, transparent 5px 8px); }
+.whatiuse-chart__legend button[data-line-style="dashed"] > span { background: repeating-linear-gradient(90deg, currentColor 0 5px, transparent 5px 8px); }
 
-.teum-chart__legend button[data-line-style="dotted"] > span { background: repeating-linear-gradient(90deg, currentColor 0 2px, transparent 2px 5px); }
+.whatiuse-chart__legend button[data-line-style="dotted"] > span { background: repeating-linear-gradient(90deg, currentColor 0 2px, transparent 2px 5px); }
 
-.teum-chart__legend button[aria-pressed="false"] > span { opacity: .28; }
+.whatiuse-chart__legend button[aria-pressed="false"] > span { opacity: .28; }
 
-.teum-chart__legend button[aria-disabled="true"] { cursor: default; }
+.whatiuse-chart__legend button[aria-disabled="true"] { cursor: default; }
 
-.teum-chart__plot {
+.whatiuse-chart__stage { position: relative; min-width: 0; min-height: var(--whatiuse-chart-height); }
+
+.whatiuse-chart__stage > [hidden] { display: none; }
+
+.whatiuse-chart__plot {
   position: relative;
   min-width: 0;
-  height: var(--teum-chart-height);
+  height: var(--whatiuse-chart-height);
   overflow: hidden;
-  border-radius: var(--teum-radius-container);
-  background: color-mix(in srgb, var(--teum-bg-stage) 76%, transparent);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--teum-fg-default) 7%, transparent);
+  border-radius: var(--whatiuse-radius-container);
+  background: color-mix(in srgb, var(--whatiuse-bg-stage) 76%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--whatiuse-fg-default) 7%, transparent);
 }
 
-.teum-chart__plot:focus { outline: 0; }
+.whatiuse-chart__plot:focus { outline: 0; }
 
-.teum-chart__plot:focus-visible { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--teum-fg-default) 32%, transparent); }
+.whatiuse-chart__plot:focus-visible { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--whatiuse-focus-control) 30%, transparent); }
 
-.teum-chart__plot svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.whatiuse-chart__plot svg { display: block; width: 100%; height: 100%; overflow: visible; }
 
-.teum-chart__grid line { stroke: var(--teum-separator); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.whatiuse-chart__grid line { stroke: var(--whatiuse-separator); stroke-width: 1; vector-effect: non-scaling-stroke; }
 
-.teum-chart__grid text,
-.teum-chart__x-axis text { fill: var(--teum-fg-subtle); font-family: var(--teum-font-ui); font-size: 10px; font-variant-numeric: tabular-nums; }
+.whatiuse-chart__grid text,
+.whatiuse-chart__x-axis text { fill: var(--whatiuse-fg-subtle); font-family: var(--whatiuse-font-ui); font-size: 10px; font-variant-numeric: tabular-nums; }
 
-.teum-chart__grid text { text-anchor: end; dominant-baseline: middle; }
+.whatiuse-chart__grid text { text-anchor: end; dominant-baseline: middle; }
 
-.teum-chart__area { fill: var(--teum-fg-default); opacity: .06; }
+.whatiuse-chart__area { fill: var(--whatiuse-fg-default); opacity: .06; }
 
-.teum-chart__series path { fill: none; stroke: var(--teum-fg-default); stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.65; vector-effect: non-scaling-stroke; transition: opacity var(--teum-fast) var(--teum-ease); }
+.whatiuse-chart__series path { fill: none; stroke: var(--whatiuse-fg-default); stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.65; vector-effect: non-scaling-stroke; transition: opacity var(--whatiuse-fast) var(--whatiuse-ease); }
 
-.teum-chart__series path[data-tone="secondary"] { opacity: .58; }
+.whatiuse-chart__series path[data-tone="secondary"] { opacity: .58; }
 
-.teum-chart__series path[data-tone="tertiary"] { opacity: .34; }
+.whatiuse-chart__series path[data-tone="tertiary"] { opacity: .34; }
 
-.teum-chart__series path[data-line-style="dashed"] { stroke-dasharray: 6 5; }
+.whatiuse-chart__series path[data-line-style="dashed"] { stroke-dasharray: 6 5; }
 
-.teum-chart__series path[data-line-style="dotted"] { stroke-dasharray: 1.5 4; }
+.whatiuse-chart__series path[data-line-style="dotted"] { stroke-dasharray: 1.5 4; }
 
-.teum-chart__bars rect {
-  fill: var(--teum-fg-default);
+.whatiuse-chart__bars rect {
+  fill: var(--whatiuse-fg-default);
   shape-rendering: geometricPrecision;
-  transition: opacity var(--teum-hover-duration) var(--teum-ease);
+  transition: opacity var(--whatiuse-hover-duration) var(--whatiuse-ease);
 }
 
-.teum-chart__bars rect[data-tone="secondary"] { opacity: .58; }
+.whatiuse-chart__bars rect[data-tone="secondary"] { opacity: .58; }
 
-.teum-chart__bars rect[data-tone="tertiary"] { opacity: .32; }
+.whatiuse-chart__bars rect[data-tone="tertiary"] { opacity: .32; }
 
-.teum-chart__annotations line { stroke: var(--teum-fg-subtle); stroke-dasharray: 2 4; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.whatiuse-chart__annotations line { stroke: var(--whatiuse-fg-subtle); stroke-dasharray: 2 4; stroke-width: 1; vector-effect: non-scaling-stroke; }
 
-.teum-chart__annotations text { fill: var(--teum-fg-subtle); font-family: var(--teum-font-ui); font-size: 9px; }
+.whatiuse-chart__annotations text { fill: var(--whatiuse-fg-subtle); font-family: var(--whatiuse-font-ui); font-size: 9px; }
 
-.teum-chart__annotations [data-tone="danger"] line { stroke: var(--teum-fg-danger); }
+.whatiuse-chart__annotations [data-tone="danger"] line { stroke: var(--whatiuse-fg-danger); }
 
-.teum-chart__annotations [data-tone="danger"] text { fill: var(--teum-fg-danger); }
+.whatiuse-chart__annotations [data-tone="danger"] text { fill: var(--whatiuse-fg-danger); }
 
-.teum-chart__active line { stroke: color-mix(in srgb, var(--teum-fg-default) 22%, transparent); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.whatiuse-chart__active line { stroke: color-mix(in srgb, var(--whatiuse-fg-default) 22%, transparent); stroke-width: 1; vector-effect: non-scaling-stroke; }
 
-.teum-chart__active .teum-chart__active-band { fill: color-mix(in srgb, var(--teum-fg-default) 4%, transparent); stroke: none; }
+.whatiuse-chart__active .whatiuse-chart__active-band { fill: color-mix(in srgb, var(--whatiuse-fg-default) 4%, transparent); stroke: none; }
 
-.teum-chart__active circle { fill: var(--teum-bg-surface); stroke: var(--teum-fg-default); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.whatiuse-chart__active circle { fill: var(--whatiuse-bg-surface); stroke: var(--whatiuse-fg-default); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
 
-.teum-chart__active circle[data-tone="secondary"] { opacity: .65; }
+.whatiuse-chart__active circle[data-tone="secondary"] { opacity: .65; }
 
-.teum-chart__active circle[data-tone="tertiary"] { opacity: .45; }
+.whatiuse-chart__active circle[data-tone="tertiary"] { opacity: .45; }
 
-.teum-chart__tooltip {
-  position: absolute;
-  top: 12px;
-  left: clamp(82px, var(--teum-chart-active-x), calc(100% - 82px));
-  z-index: 2;
-  display: grid;
-  min-width: 144px;
-  gap: 6px;
-  padding: 9px 10px;
-  border-radius: 8px;
-  background: var(--teum-bg-flyout);
-  box-shadow: var(--teum-shadow-flyout);
-  color: var(--teum-fg-default);
-  pointer-events: none;
-  transform: translateX(-50%);
-}
+.whatiuse-chart__loading,
+.whatiuse-chart__empty,
+.whatiuse-chart__error { display: grid; width: 100%; height: 100%; place-content: center; color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-ui); }
 
-.teum-chart__tooltip > strong { font-size: var(--teum-type-metadata); font-weight: 590; }
+.whatiuse-chart__error { color: var(--whatiuse-fg-danger); }
 
-.teum-chart__tooltip > span { display: grid; grid-template-columns: 7px minmax(0, 1fr) auto; align-items: center; gap: 6px; font-size: var(--teum-type-metadata); }
+.whatiuse-chart__loading { grid-auto-flow: column; align-items: center; gap: 8px; }
 
-.teum-chart__tooltip i { width: 6px; height: 6px; border-radius: 50%; background: var(--teum-fg-default); }
+.whatiuse-chart__loading > span { width: 12px; height: 12px; border: 1.5px solid var(--whatiuse-separator-strong); border-top-color: var(--whatiuse-fg-default); border-radius: 50%; animation: whatiuse-spinner .7s linear infinite; }
 
-.teum-chart__tooltip i[data-tone="secondary"] { opacity: .58; }
+.whatiuse-chart__table { width: 100%; min-width: 0; height: var(--whatiuse-chart-height, 264px); overflow: auto; border-radius: var(--whatiuse-radius-container); background: var(--whatiuse-bg-stage); }
 
-.teum-chart__tooltip i[data-tone="tertiary"] { opacity: .34; }
+.whatiuse-chart__table--visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
 
-.teum-chart__tooltip em { overflow: hidden; color: var(--teum-fg-muted); font-style: normal; text-overflow: ellipsis; white-space: nowrap; }
+.whatiuse-chart__table table { width: 100%; border-collapse: collapse; font-size: var(--whatiuse-type-metadata); font-variant-numeric: tabular-nums; }
 
-.teum-chart__tooltip b { font-variant-numeric: tabular-nums; font-weight: 580; }
+.whatiuse-chart__table caption { padding: 10px 12px; text-align: left; color: var(--whatiuse-fg-default); font-weight: 590; }
 
-.teum-chart__loading,
-.teum-chart__empty,
-.teum-chart__error { display: grid; width: 100%; height: 100%; place-content: center; color: var(--teum-fg-subtle); font-size: var(--teum-type-ui); }
+.whatiuse-chart__table th,
+.whatiuse-chart__table td { padding: 8px 12px; border-top: 1px solid var(--whatiuse-separator); text-align: right; white-space: nowrap; }
 
-.teum-chart__error { color: var(--teum-fg-danger); }
+.whatiuse-chart__table th:first-child { text-align: left; }
 
-.teum-chart__loading { grid-auto-flow: column; align-items: center; gap: 8px; }
+.whatiuse-chart__table thead th { color: var(--whatiuse-fg-subtle); font-weight: 540; }
 
-.teum-chart__loading > span { width: 12px; height: 12px; border: 1.5px solid var(--teum-separator-strong); border-top-color: var(--teum-fg-default); border-radius: 50%; animation: teum-spinner .7s linear infinite; }
+.whatiuse-chart__table tbody th { color: var(--whatiuse-fg-muted); font-weight: 520; }
 
-.teum-chart__table { min-width: 0; overflow: auto; border-radius: var(--teum-radius-container); background: var(--teum-bg-stage); }
+.whatiuse-chart__data-toggle:focus,
+.whatiuse-chart__legend button:focus { outline: 0; }
 
-.teum-chart__table--visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
-
-.teum-chart__table table { width: 100%; border-collapse: collapse; font-size: var(--teum-type-metadata); font-variant-numeric: tabular-nums; }
-
-.teum-chart__table caption { padding: 10px 12px; text-align: left; color: var(--teum-fg-default); font-weight: 590; }
-
-.teum-chart__table th,
-.teum-chart__table td { padding: 8px 12px; border-top: 1px solid var(--teum-separator); text-align: right; white-space: nowrap; }
-
-.teum-chart__table th:first-child { text-align: left; }
-
-.teum-chart__table thead th { color: var(--teum-fg-subtle); font-weight: 540; }
-
-.teum-chart__table tbody th { color: var(--teum-fg-muted); font-weight: 520; }
-
-.teum-chart__data-toggle:focus,
-.teum-chart__legend button:focus { outline: 0; }
-
-.teum-chart__data-toggle:focus-visible,
-.teum-chart__legend button:focus-visible {
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--teum-focus-control) 42%, transparent);
+.whatiuse-chart__data-toggle:focus-visible,
+.whatiuse-chart__legend button:focus-visible {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--whatiuse-focus-control) 42%, transparent);
 }
 
 @media (hover: hover) and (pointer: fine) {
-.teum-chart__data-toggle:hover,
-.teum-chart__legend button:not([aria-disabled="true"]):hover { background: var(--teum-hover); color: var(--teum-fg-default); }
+.whatiuse-chart__data-toggle:hover,
+.whatiuse-chart__legend button:not([aria-disabled="true"]):hover { background: var(--whatiuse-hover); color: var(--whatiuse-fg-default); }
 }
 
-.teum-chart__data-toggle:active,
-.teum-chart__legend button:not([aria-disabled="true"]):active { transform: scale(.985); }
+.whatiuse-chart__data-toggle:active,
+.whatiuse-chart__legend button:not([aria-disabled="true"]):active { transform: scale(.985); }
 
 @media (max-width: 640px) {
-.teum-chart__header { align-items: center; }
+.whatiuse-chart__header { align-items: center; }
 
-.teum-chart__plot { height: min(var(--teum-chart-height), 230px); }
-
-.teum-chart__tooltip { min-width: 128px; }
+.whatiuse-chart__plot { height: min(var(--whatiuse-chart-height), 230px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-chart__loading > span { animation: none; }
+.whatiuse-chart__loading > span { animation: none; }
 
-.teum-chart__series path,
-.teum-chart__bars rect { transition-duration: 0ms; }
+.whatiuse-chart__series path,
+.whatiuse-chart__bars rect { transition-duration: 0ms; }
 }
 
-@keyframes teum-spin { to { transform: rotate(360deg); } }
+.whatiuse-chart { gap: 9px; }
+
+.whatiuse-chart__header { align-items: center; }
+
+.whatiuse-chart__header h3 {
+    font-size: var(--whatiuse-type-ui);
+    font-weight: 600;
+    letter-spacing: -.014em;
+  }
+
+.whatiuse-chart__header p { line-height: 1.35; }
+
+.whatiuse-chart__data-toggle {
+    min-height: 26px;
+    padding-inline: 6px;
+  }
+
+.whatiuse-chart__legend { gap: 2px; }
+
+.whatiuse-chart__legend button { min-height: 24px; padding-inline: 6px; }
+
+.whatiuse-chart__plot {
+    border-radius: 9px;
+    background: var(--whatiuse-bg-surface);
+    box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--whatiuse-control-border) 58%, transparent), 0 1px 2px rgb(17 17 19 / .025);
+  }
+
+.whatiuse-chart__grid line { stroke: color-mix(in oklch, var(--whatiuse-separator) 68%, transparent); }
+
+.whatiuse-chart__area { opacity: .055; }
+
+.whatiuse-chart__series path { stroke-width: 1.55; }
+
+@keyframes whatiuse-spin { to { transform: rotate(360deg); } }
 }

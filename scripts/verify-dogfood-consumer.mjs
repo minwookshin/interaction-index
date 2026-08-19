@@ -8,7 +8,7 @@ const exec = promisify(execFile);
 const npm = process.platform === "win32" ? "npm.cmd" : "npm";
 const root = process.cwd();
 const bin = (name) => resolve(root, `node_modules/.bin/${name}${process.platform === "win32" ? ".cmd" : ""}`);
-const work = await mkdtemp(join(tmpdir(), "teum-dogfood-"));
+const work = await mkdtemp(join(tmpdir(), "whatiuse-dogfood-"));
 const tarballs = resolve(work, "tarballs");
 const fixture = resolve(work, "issue-workspace");
 
@@ -22,14 +22,14 @@ try {
   const filename = JSON.parse(packed.stdout)[0].filename;
   const tarball = resolve(tarballs, filename);
 
-  await cp(resolve(root, "examples/issue-workspace"), fixture, { recursive: true });
+  await cp(resolve(root, "tests/fixtures/issue-workspace"), fixture, { recursive: true });
   const manifestPath = resolve(fixture, "package.json");
   const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
-  manifest.dependencies["teum"] = `file:${tarball}`;
+  manifest.dependencies["whatiuse"] = `file:${tarball}`;
   await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 
   const appSource = await readFile(resolve(fixture, "src/App.tsx"), "utf8");
-  if (!appSource.includes('from "teum"')) {
+  if (!appSource.includes('from "whatiuse"')) {
     throw new Error("[dogfood] the product must import the component contract from the public package entry point");
   }
   if (/from\s+["'][.]{1,2}\//.test(appSource) || appSource.includes("/src/components")) {
@@ -47,7 +47,7 @@ try {
   const assets = await readdir(resolve(fixture, "dist/assets"));
   const css = (await Promise.all(assets.filter((file) => file.endsWith(".css")).map((file) => readFile(resolve(fixture, "dist/assets", file), "utf8")))).join("\n");
   const js = (await Promise.all(assets.filter((file) => file.endsWith(".js")).map((file) => readFile(resolve(fixture, "dist/assets", file), "utf8")))).join("\n");
-  for (const selector of [".teum-action-list", ".teum-dialog", ".teum-shared-detail", ".teum-undo-bar", ".teum-toast"]) {
+  for (const selector of [".whatiuse-action-list", ".whatiuse-dialog", ".whatiuse-shared-detail", ".whatiuse-undo-bar", ".whatiuse-toast"]) {
     if (!css.includes(selector)) throw new Error(`[dogfood] production CSS omitted ${selector}`);
   }
   for (const proof of ["Interface quality", "Issue archived", "Create issue"]) {

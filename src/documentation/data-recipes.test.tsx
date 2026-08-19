@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it } from "vitest";
 import { AuditLogRecipe, CustomerDirectoryRecipe } from "./data-recipes";
 
-describe("Teum Data recipes", () => {
+describe("whatiuse Data recipes", () => {
   beforeEach(() => {
     window.localStorage.clear();
     window.history.replaceState(null, "", "/docs");
@@ -28,7 +28,7 @@ describe("Teum Data recipes", () => {
     await user.type(screen.getByRole("textbox", { name: "View name" }), "Renewal watch");
     await user.click(screen.getByRole("button", { name: "Save view" }));
 
-    await waitFor(() => expect(window.localStorage.getItem("teum:data:customer-views:v1")).toContain("Renewal watch"));
+    await waitFor(() => expect(window.localStorage.getItem("whatiuse:data:customer-views:v1")).toContain("Renewal watch"));
     expect(window.location.search).toContain("customers-view=");
     await user.click(screen.getByRole("button", { name: "Saved views: Renewal watch" }));
     expect(await screen.findByRole("menuitemradio", { name: /Renewal watch/ })).toBeChecked();

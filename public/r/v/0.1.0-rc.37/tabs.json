@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs",
+  "title": "Tabs",
+  "dependencies": [
+    "@base-ui/react@1.7.0"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/tabs.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/tabs.css\";\nimport { Tabs as TabsPrimitive } from \"@base-ui/react/tabs\";\nimport { cn } from \"../../lib/cn\";\n\nexport function Tabs({ className, ...props }: TabsPrimitive.Root.Props) {\n  return <TabsPrimitive.Root className={cn(\"whatiuse-tabs\", className)} {...props} />;\n}\n\nexport function TabsList({ className, activateOnFocus = true, ...props }: TabsPrimitive.List.Props) {\n  return <TabsPrimitive.List className={cn(\"whatiuse-tabs__list\", className)} activateOnFocus={activateOnFocus} {...props} />;\n}\n\nexport function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {\n  return <TabsPrimitive.Tab className={cn(\"whatiuse-tabs__trigger\", className)} {...props} />;\n}\n\nexport function TabsContent({ className, ...props }: TabsPrimitive.Panel.Props) {\n  return <TabsPrimitive.Panel className={cn(\"whatiuse-tabs__panel\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/tabs.tsx"
+    },
+    {
+      "path": "registry/styles/components/tabs.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-tabs { display: grid; gap: 16px; }\n\n.whatiuse-tabs__list { display: inline-flex; width: fit-content; height: 30px; align-items: center; gap: 2px; padding: 2px; border: 1px solid var(--whatiuse-border-subtle); border-radius: 6px; background: var(--whatiuse-subtle); }\n\n.whatiuse-tabs__trigger { position: relative; height: 24px; padding: 0 8px; border: 0; border-radius: 4px; outline: 0; background: transparent; color: var(--whatiuse-ink-secondary); font-size: 12.5px; cursor: pointer; }\n\n.whatiuse-tabs__trigger:hover { color: var(--whatiuse-fg-default); }\n\n.whatiuse-tabs__trigger[data-active] { background: var(--whatiuse-control-surface); color: var(--whatiuse-ink); box-shadow: var(--whatiuse-shadow-control), 0 0 0 1px var(--whatiuse-border-subtle); }\n\n.whatiuse-tabs__trigger[data-disabled] { opacity: 0.42; cursor: not-allowed; }\n\n.whatiuse-tabs__trigger:focus-visible { outline: 0; box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--whatiuse-focus-control) 48%, transparent); }\n\n.whatiuse-tabs__trigger[data-active]:focus-visible { box-shadow: var(--whatiuse-shadow-control), inset 0 0 0 1px color-mix(in oklch, var(--whatiuse-focus-control) 54%, transparent); }\n\n.whatiuse-tabs__panel { outline: 0; }\n\n@media (forced-colors: active) {\n.whatiuse-tabs__list { forced-color-adjust: none; border-color: CanvasText; background: Canvas; color: CanvasText; }\n\n.whatiuse-tabs__trigger[data-active] { outline: 2px solid Highlight; outline-offset: -2px; }\n}\n\n:root[data-theme=\"dark\"] .whatiuse-tabs__trigger:hover { color: var(--whatiuse-ink); }\n\n.whatiuse-tabs__trigger { transition: color var(--whatiuse-hover-duration), background-color var(--whatiuse-hover-duration), box-shadow var(--whatiuse-hover-duration), transform var(--whatiuse-press-duration) var(--whatiuse-ease-out); }\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/tabs.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/tabs",
+      "useWhen": "Peer views of the same object can switch without navigation.",
+      "avoidWhen": "The sections form a sequence or users need to compare them simultaneously."
+    }
+  },
+  "type": "registry:ui"
+}

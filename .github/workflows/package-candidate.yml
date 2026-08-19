@@ -37,12 +37,12 @@ jobs:
       - run: npm run check:security
       - name: Assemble exact package candidate
         env:
-          TEUM_PACKAGE_CANDIDATE_DIR: ${{ runner.temp }}/teum-package-candidate
+          WHATIUSE_PACKAGE_CANDIDATE_DIR: ${{ runner.temp }}/whatiuse-package-candidate
         run: npm run assemble:package-candidate
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: teum-package-${{ inputs.version }}
-          path: ${{ runner.temp }}/teum-package-candidate
+          name: whatiuse-package-${{ inputs.version }}
+          path: ${{ runner.temp }}/whatiuse-package-candidate
           if-no-files-found: error
 
   attest:
@@ -57,13 +57,13 @@ jobs:
     steps:
       - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
         with:
-          name: teum-package-${{ inputs.version }}
-          path: ${{ runner.temp }}/teum-package-candidate
+          name: whatiuse-package-${{ inputs.version }}
+          path: ${{ runner.temp }}/whatiuse-package-candidate
       - name: Verify exact attestation subject
         id: subject
         shell: bash
         env:
-          CANDIDATE_DIR: ${{ runner.temp }}/teum-package-candidate
+          CANDIDATE_DIR: ${{ runner.temp }}/whatiuse-package-candidate
         run: |
           set -euo pipefail
           mapfile -d '' subjects < <(find "$CANDIDATE_DIR" -maxdepth 1 -type f -name '*.tgz' -print0)

@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/components/donut-chart.css";
 import {
   useId,
@@ -109,16 +109,17 @@ export function DonutChart({
 
   let offset = 0;
   return (
-    <figure className={cn("teum-donut-chart", className)} aria-labelledby={`${id}-title`} aria-describedby={summaryId}>
-      <figcaption className="teum-donut-chart__header">
+    <figure className={cn("whatiuse-donut-chart", className)} aria-labelledby={`${id}-title`} aria-describedby={summaryId}>
+      <figcaption className="whatiuse-donut-chart__header">
         <div><h3 id={`${id}-title`}>{title}</h3>{description && <p>{description}</p>}</div>
-        <button type="button" className="teum-donut-chart__data-toggle" aria-expanded={showData} aria-controls={tableId} onClick={() => setShowData((current) => !current)}>{showData ? "Hide data" : "View data"}</button>
+        <button type="button" className="whatiuse-donut-chart__data-toggle" aria-pressed={showData} aria-controls={tableId} onClick={() => setShowData((current) => !current)}>{showData ? "View chart" : "View data"}</button>
       </figcaption>
-      <p id={summaryId} className="teum-sr-only">{validData.map((datum) => `${datum.label} ${valueFormatter(datum.value, datum)}`).join(", ") || "No values."}</p>
-      <p id={instructionsId} className="teum-sr-only">Use Arrow keys to inspect segments. Use Home and End to jump. Press Escape to clear.{onDatumActivate ? " Press Enter to open the active segment." : ""}</p>
-      <div className="teum-donut-chart__content">
+      <p id={summaryId} className="whatiuse-sr-only">{validData.map((datum) => `${datum.label} ${valueFormatter(datum.value, datum)}`).join(", ") || "No values."}</p>
+      <p id={instructionsId} className="whatiuse-sr-only">Use Arrow keys to inspect segments. Use Home and End to jump. Press Escape to clear.{onDatumActivate ? " Press Enter to open the active segment." : ""}</p>
+      <div className="whatiuse-donut-chart__stage" data-view={showData ? "table" : "chart"}>
+      <div className="whatiuse-donut-chart__content" hidden={showData}>
         <div
-          className="teum-donut-chart__plot"
+          className="whatiuse-donut-chart__plot"
           role="group"
           aria-roledescription="interactive donut chart"
           aria-label={`${title}. ${validData.length} segments.`}
@@ -127,9 +128,9 @@ export function DonutChart({
           onKeyDown={handleKeyDown}
           onPointerLeave={() => moveTo(null)}
         >
-          {loading ? <div className="teum-donut-chart__state" role="status"><span aria-hidden="true" />Loading chart</div> : error ? <div className="teum-donut-chart__state teum-donut-chart__state--error" role="alert">{error}</div> : !validData.length ? <div className="teum-donut-chart__state">{empty}</div> : <>
+          {loading ? <div className="whatiuse-donut-chart__state" role="status"><span aria-hidden="true" />Loading chart</div> : error ? <div className="whatiuse-donut-chart__state whatiuse-donut-chart__state--error" role="alert">{error}</div> : !validData.length ? <div className="whatiuse-donut-chart__state">{empty}</div> : <>
             <svg viewBox="0 0 220 220" aria-hidden="true" focusable="false">
-              <circle className="teum-donut-chart__track" cx="110" cy="110" r={radius} />
+              <circle className="whatiuse-donut-chart__track" cx="110" cy="110" r={radius} />
               {validData.map((datum, index) => {
                 const segment = datum.value / total * circumference;
                 const dash = Math.max(0, segment - gap);
@@ -137,7 +138,7 @@ export function DonutChart({
                 offset += segment;
                 return <circle
                   key={datum.id}
-                  className="teum-donut-chart__segment"
+                  className="whatiuse-donut-chart__segment"
                   data-tone={datum.tone ?? (["primary", "secondary", "tertiary"] as const)[index % 3]}
                   data-active={activeDatum ? datum.id === activeDatum.id : undefined}
                   data-muted={activeDatum && datum.id !== activeDatum.id ? true : undefined}
@@ -152,13 +153,13 @@ export function DonutChart({
                 />;
               })}
             </svg>
-            <div className="teum-donut-chart__center">
+            <div className="whatiuse-donut-chart__center">
               <strong>{activeDatum ? valueFormatter(activeDatum.value, activeDatum) : centerValue ?? valueFormatter(total, { id: "total", label: centerLabel, value: total })}</strong>
               <span>{activeDatum?.label ?? centerLabel}</span>
             </div>
           </>}
         </div>
-        <div className="teum-donut-chart__legend" aria-label={`${title} segments`}>
+        <div className="whatiuse-donut-chart__legend" aria-label={`${title} segments`}>
           {validData.map((datum, index) => {
             const selected = datum.id === activeDatum?.id;
             const tone = datum.tone ?? (["primary", "secondary", "tertiary"] as const)[index % 3];
@@ -166,10 +167,11 @@ export function DonutChart({
           })}
         </div>
       </div>
-      <span className="teum-sr-only" aria-live="polite" aria-atomic="true">{activeDatum ? `${activeDatum.label}. ${valueFormatter(activeDatum.value, activeDatum)}. ${(activeDatum.value / total * 100).toFixed(1)} percent.` : ""}</span>
-      <div id={tableId} className={cn("teum-chart__table", !showData && "teum-chart__table--visually-hidden")}>
+      <div id={tableId} className={cn("whatiuse-chart__table", !showData && "whatiuse-chart__table--visually-hidden")}>
         <table><caption>{title} data</caption><thead><tr><th scope="col">Segment</th><th scope="col">Value</th><th scope="col">Share</th></tr></thead><tbody>{validData.map((datum) => <tr key={datum.id}><th scope="row">{datum.label}</th><td>{valueFormatter(datum.value, datum)}</td><td>{total ? `${(datum.value / total * 100).toFixed(1)}%` : "0%"}</td></tr>)}</tbody></table>
       </div>
+      </div>
+      <span className="whatiuse-sr-only" aria-live="polite" aria-atomic="true">{activeDatum ? `${activeDatum.label}. ${valueFormatter(activeDatum.value, activeDatum)}. ${(activeDatum.value / total * 100).toFixed(1)} percent.` : ""}</span>
     </figure>
   );
 }

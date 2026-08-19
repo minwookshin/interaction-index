@@ -206,7 +206,7 @@ export const componentApi: Record<ComponentDocId, readonly ApiRow[]> = {
     { name: "duration", type: "number", defaultValue: "4000", description: "Visible duration in milliseconds." },
     { name: "id", type: "string | number", defaultValue: "generated", description: "Updates or dismisses a specific notification." },
     { name: "position", type: "ToasterProps['position']", defaultValue: '"bottom-center"', description: "Keeps transient feedback inside the primary workspace instead of a contextual side rail." },
-    { name: "visibleToasts", type: "number", defaultValue: "1", description: "Caps visual interruption while the live region continues to announce distinct outcomes." },
+    { name: "visibleToasts", type: "number", defaultValue: "3", description: "Caps visual interruption while the live region continues to announce distinct outcomes." },
     { name: "expand", type: "boolean", defaultValue: "false", description: "Prevents a hover gesture from turning feedback into a stacked surface." },
   ],
   progress: [

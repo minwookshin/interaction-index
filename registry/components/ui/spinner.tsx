@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/components/spinner.css";
 import type { ComponentPropsWithRef } from "react";
 import { cn } from "../../lib/cn";
@@ -11,5 +11,5 @@ export type SpinnerProps = ComponentPropsWithRef<"span"> & {
 };
 
 export function Spinner({ className, size = "medium", label = "Loading", ...props }: SpinnerProps) {
-  return <span className={cn("teum-loading-spinner", `teum-loading-spinner--${size}`, className)} role="status" aria-label={label} {...props}><span aria-hidden="true" /></span>;
+  return <span className={cn("whatiuse-loading-spinner", `whatiuse-loading-spinner--${size}`, className)} role="status" aria-label={label} {...props}><span aria-hidden="true" /></span>;
 }

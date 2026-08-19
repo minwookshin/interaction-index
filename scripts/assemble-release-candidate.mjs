@@ -27,22 +27,16 @@ await mkdir(dirname(output), { recursive: true });
 const staging = await mkdtemp(resolve(dirname(output), `.${version}-`));
 
 const required = [
-  "COMPATIBILITY.md",
-  "RELEASE_CHECKLIST.md",
-  "RELEASE_FREEZE.md",
-  "RELEASE_QA.md",
-  "RC_EXTERNAL_GATES.md",
   "performance-report.json",
   "release/runtime-performance.json",
   "release/public-surface.freeze.json",
   "release/evidence.json",
-  "release/evidence.md",
   "release/quickstart.json",
   "release/package-contract.json",
   "release/accessibility.json",
-  "release/teum-data-install.json",
-  "release/teum-analytics-install.json",
-  "release/teum-product-patterns-install.json",
+  "release/whatiuse-data-install.json",
+  "release/whatiuse-analytics-install.json",
+  "release/whatiuse-product-patterns-install.json",
   `public/r/v/${version}/release.json`,
   "dist/package/integrity.json",
 ];
@@ -83,7 +77,7 @@ const candidate = {
     fileCount: packReport.entryCount,
     unpackedBytes: packReport.unpackedSize,
   },
-  externalGates: "RC_EXTERNAL_GATES.md",
+  claimBoundary: "Pre-release; external adoption, physical-device coverage, and npm publication are not claimed.",
 };
 await writeFile(resolve(staging, "candidate.json"), `${JSON.stringify(candidate, null, 2)}\n`, "utf8");
 

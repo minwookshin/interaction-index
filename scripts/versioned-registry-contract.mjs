@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 
-export const mutableRegistryScope = "@teum";
-export const pinnedRegistryScope = "@teum-pinned";
+export const mutableRegistryScope = "@whatiuse";
+export const pinnedRegistryScope = "@whatiuse";
 
 export const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 export const integrity256 = (value) => `sha256-${createHash("sha256").update(value).digest("base64")}`;

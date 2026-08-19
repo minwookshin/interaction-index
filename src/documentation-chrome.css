@@ -1,8 +1,8 @@
 /* Keep persistent documentation chrome on the same coordinates as the public
    header. This file loads after the full workbench stylesheet by design. */
-.system-window--consolidated { grid-template-rows: var(--teum-public-header-height) minmax(0, 1fr); }
+.system-window--consolidated { grid-template-rows: var(--whatiuse-public-header-height) minmax(0, 1fr); }
 .system-nav--consolidated { grid-column: 1; }
-.system-nav--consolidated .system-brand { height: var(--teum-public-header-height); flex-basis: var(--teum-public-header-height); padding: 0 11px 0 var(--teum-public-header-gutter-start); }
+.system-nav--consolidated .system-brand { height: var(--whatiuse-public-header-height); flex-basis: var(--whatiuse-public-header-height); padding: 0 11px 0 var(--whatiuse-public-header-gutter-start); }
 .system-brand__home { gap: 9px; }
 .system-brand__home .system-brand__mark { width: 26px; height: 26px; border-radius: 7px; }
 .system-brand__home .system-brand__mark svg { width: 14px; height: 14px; }
@@ -17,11 +17,11 @@
   grid-column: 1 / 4;
   display: grid;
   width: 100vw;
-  min-height: var(--teum-public-header-height);
-  height: var(--teum-public-header-height);
+  min-height: var(--whatiuse-public-header-height);
+  height: var(--whatiuse-public-header-height);
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  padding: 0 var(--teum-public-header-gutter-end) 0 var(--teum-public-header-gutter-start);
+  padding: 0 var(--whatiuse-public-header-gutter-end) 0 var(--whatiuse-public-header-gutter-start);
 }
 
 .system-topbar__location { grid-column: 1; min-width: 0; padding-left: 0; }
@@ -29,7 +29,7 @@
   position: static;
   grid-column: 2;
   justify-self: center;
-  color: var(--teum-fg-default);
+  color: var(--whatiuse-fg-default);
   font-size: 15px;
   font-weight: 640;
   letter-spacing: -.052em;

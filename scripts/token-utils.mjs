@@ -1,12 +1,11 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
-export const TOKEN_EXTENSION = "dev.teum";
-export const TOKEN_SOURCE = "tokens/teum.tokens.json";
+export const TOKEN_EXTENSION = "dev.whatiuse";
+export const TOKEN_SOURCE = "tokens/whatiuse.tokens.json";
 export const TOKEN_OUTPUTS = {
   css: "src/tokens/generated.css",
   typescript: "src/tokens/generated.ts",
-  figma: "tokens/generated/figma-variables.json",
   manifest: "tokens/generated/token-manifest.json",
 };
 
@@ -124,7 +123,7 @@ export function collectTokens(document) {
         const childExtension = { ...extension, ...tokenExtension(child) };
         const tokenType = child.$type ?? type;
         assert(typeof tokenType === "string", `${nextPath.join(".")}: token type is required or must be inherited.`);
-        const cssVariable = childExtension.cssVariable ?? `${childExtension.cssPrefix ?? "--teum-"}${name}`;
+        const cssVariable = childExtension.cssVariable ?? `${childExtension.cssPrefix ?? "--whatiuse-"}${name}`;
         assert(/^--[a-z0-9-]+$/.test(cssVariable), `${nextPath.join(".")}: invalid CSS variable ${cssVariable}.`);
         tokens.push({
           path: nextPath.join("."),
@@ -252,11 +251,11 @@ export function generateCss(model) {
     .filter((token) => Object.hasOwn(token.modes, "dark"))
     .map((token) => `  ${token.cssVariable}: ${formatCssValue(token, token.modes.dark, model.byPath)};`);
   return [
-    "/* Generated from tokens/teum.tokens.json. Do not edit directly. */",
+    "/* Generated from tokens/whatiuse.tokens.json. Do not edit directly. */",
     "",
     ":root {",
     "  color-scheme: light;",
-    "  font-family: var(--teum-font-ui);",
+    "  font-family: var(--whatiuse-font-ui);",
     "  font-synthesis: none;",
     "  font-optical-sizing: auto;",
     "  text-rendering: optimizeLegibility;",
@@ -284,7 +283,7 @@ export function generateTypescript(model) {
   }));
   const paths = manifest.map((token) => token.path);
   return [
-    "/* Generated from tokens/teum.tokens.json. Do not edit directly. */",
+    "/* Generated from tokens/whatiuse.tokens.json. Do not edit directly. */",
     "",
     `export const tokenModes = ${JSON.stringify(model.modes)} as const;`,
     "export type TokenMode = (typeof tokenModes)[number];",
@@ -297,214 +296,6 @@ export function generateTypescript(model) {
     "}",
     "",
   ].join("\n");
-}
-
-function figmaType(token) {
-  if (token.type === "color") return "COLOR";
-  if (["dimension", "duration", "number", "fontWeight"].includes(token.type)) return "FLOAT";
-  return "STRING";
-}
-
-function titleCase(value) {
-  return value
-    .split("-")
-    .map((part) => part ? `${part[0].toUpperCase()}${part.slice(1)}` : part)
-    .join(" ");
-}
-
-function linearToSrgb(value) {
-  const encoded = value <= 0.0031308 ? 12.92 * value : 1.055 * Math.pow(value, 1 / 2.4) - 0.055;
-  return Math.min(1, Math.max(0, encoded));
-}
-
-function oklchToSrgb([lightness, chroma, hue]) {
-  const angle = hue * Math.PI / 180;
-  const a = chroma * Math.cos(angle);
-  const b = chroma * Math.sin(angle);
-  const lPrime = lightness + 0.3963377774 * a + 0.2158037573 * b;
-  const mPrime = lightness - 0.1055613458 * a - 0.0638541728 * b;
-  const sPrime = lightness - 0.0894841775 * a - 1.291485548 * b;
-  const l = lPrime ** 3;
-  const m = mPrime ** 3;
-  const s = sPrime ** 3;
-  return [
-    linearToSrgb(4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s),
-    linearToSrgb(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s),
-    linearToSrgb(-0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s),
-  ];
-}
-
-function figmaColor(value) {
-  const alpha = value.alpha ?? 1;
-  if (value.colorSpace === "srgb") {
-    const [r, g, b] = value.components;
-    return { r, g, b, a: alpha };
-  }
-  if (value.colorSpace === "oklch" && !value.hex) {
-    const [r, g, b] = oklchToSrgb(value.components);
-    return { r, g, b, a: alpha };
-  }
-  assert(value.hex, `Figma color conversion requires an sRGB hex fallback for ${value.colorSpace}.`);
-  const normalized = value.hex.slice(1);
-  const r = Number.parseInt(normalized.slice(0, 2), 16) / 255;
-  const g = Number.parseInt(normalized.slice(2, 4), 16) / 255;
-  const b = Number.parseInt(normalized.slice(4, 6), 16) / 255;
-  const hexAlpha = normalized.length === 8 ? Number.parseInt(normalized.slice(6, 8), 16) / 255 : 1;
-  return { r, g, b, a: alpha * hexAlpha };
-}
-
-function figmaFontFamily(value) {
-  const families = Array.isArray(value) ? value : [value];
-  if (families.includes("Inter Variable") || families.includes("Inter")) return "Inter";
-  if (families.includes("SFMono-Regular")) return "SF Mono";
-  return families.find((family) => !GENERIC_FONT_FAMILIES.has(family)) ?? families[0];
-}
-
-function figmaValue(token, mode, model) {
-  const raw = token.modes[mode] ?? token.value;
-  if (isAlias(raw)) return { alias: aliasPath(raw).replaceAll(".", "/") };
-  if (token.type === "color") return figmaColor(raw);
-  if (token.type === "dimension") return raw.unit === "rem" ? raw.value * 16 : raw.value;
-  if (token.type === "duration") return raw.unit === "s" ? raw.value * 1000 : raw.value;
-  if (token.type === "number" || token.type === "fontWeight") return raw;
-  if (token.type === "fontFamily") return figmaFontFamily(raw);
-  return formatCssValue(token, raw, model.byPath);
-}
-
-function figmaScopes(token) {
-  if (token.type === "color") {
-    if (token.path.includes(".palette.")) return [];
-    if (token.path.includes(".foreground.")) return ["TEXT_FILL", "SHAPE_FILL"];
-    if (token.path.includes(".border.")) return ["STROKE_COLOR"];
-    if (token.path.endsWith("switch-track") || token.path.endsWith("switch-thumb")) return ["FRAME_FILL", "SHAPE_FILL"];
-    if (token.path.includes(".focus.")) return ["STROKE_COLOR"];
-    return ["FRAME_FILL", "SHAPE_FILL"];
-  }
-  if (token.type === "fontFamily") return ["FONT_FAMILY"];
-  if (token.type === "fontWeight") return ["FONT_WEIGHT"];
-  if (token.type === "dimension") {
-    if (token.path.includes(".typography.sizes.type-")) return ["FONT_SIZE"];
-    if (token.path.includes(".typography.sizes.line-")) return ["LINE_HEIGHT"];
-    if (token.path.includes("radius")) return ["CORNER_RADIUS"];
-    if (token.path.includes("focus-width")) return ["STROKE_FLOAT"];
-    if (token.path.includes("space-") || token.path.includes("padding")) return ["GAP"];
-    return ["WIDTH_HEIGHT"];
-  }
-  return [];
-}
-
-function figmaCollection(token) {
-  return token.scope === "foundation" ? "Teum / Foundation" : "Teum / Theme";
-}
-
-function figmaVariable(token, model) {
-  const foundation = token.scope === "foundation";
-  const sourceModes = foundation ? [model.modes[0]] : model.modes;
-  const scopes = figmaScopes(token);
-  return {
-    name: token.path.replaceAll(".", "/"),
-    collection: figmaCollection(token),
-    type: figmaType(token),
-    description: token.description,
-    scopes,
-    hiddenFromPublishing: scopes.length === 0 && !token.path.includes(".palette."),
-    codeSyntax: { WEB: `var(${token.cssVariable})` },
-    values: Object.fromEntries(sourceModes.map((mode) => [foundation ? "Value" : titleCase(mode), figmaValue(token, mode, model)])),
-    sourceType: token.type,
-  };
-}
-
-function resolvedFigmaColor(value, mode, model) {
-  if (!isAlias(value)) return figmaColor(value);
-  const target = model.byPath.get(aliasPath(value));
-  return figmaColor(model.resolveToken(target, mode));
-}
-
-function figmaEffectStyles(model) {
-  return model.tokens
-    .filter((token) => token.type === "shadow")
-    .flatMap((token) => model.modes.map((mode) => {
-      const resolved = model.resolveToken(token, mode);
-      const layers = Array.isArray(resolved) ? resolved : [resolved];
-      return {
-        name: `Elevation/${titleCase(mode)}/${titleCase(token.name.replace(/^shadow-/, ""))}`,
-        mode: titleCase(mode),
-        sourceToken: token.path,
-        description: token.description,
-        effects: layers.map((layer) => ({
-          type: layer.inset ? "INNER_SHADOW" : "DROP_SHADOW",
-          color: resolvedFigmaColor(layer.color, mode, model),
-          offset: { x: layer.offsetX.value, y: layer.offsetY.value },
-          radius: layer.blur.value,
-          spread: layer.spread.value,
-          visible: true,
-          blendMode: "NORMAL",
-        })),
-      };
-    }));
-}
-
-function tokenNumber(model, path) {
-  const token = model.byPath.get(path);
-  assert(token, `Missing typography token ${path}.`);
-  const resolved = model.resolveToken(token, model.modes[0]);
-  return isObject(resolved) && "value" in resolved ? resolved.value : resolved;
-}
-
-function figmaTextStyles(model) {
-  const tracking = tokenNumber(model, "foundation.typography.ui-tracking") * 100;
-  const definitions = [
-    ["Metadata", "metadata", "ui-weight", "Persistent metadata and supporting labels."],
-    ["Label", "label", "label-weight", "Navigation, field, and control labels."],
-    ["UI", "ui", "ui-weight", "Default dense product interface text."],
-    ["Body", "body", "ui-weight", "Readable documentation and supporting copy."],
-    ["Row", "row", "ui-weight", "Dense list and table row content."],
-    ["Section", "section", "heading-weight", "Documentation section heading."],
-    ["Title", "title", "heading-weight", "Page and component title."],
-  ];
-  return definitions.map(([name, sizeName, weightName, description]) => {
-    const fontWeight = tokenNumber(model, `foundation.typography.${weightName}`);
-    return {
-      name: `Typography/${name}`,
-      description,
-      fontFamilyCandidates: ["Inter", "Inter Variable"],
-      fontStyleCandidates: fontWeight >= 550 ? ["Semi Bold", "Medium", "Regular"] : ["Medium", "Regular"],
-      fontWeight,
-      fontSize: tokenNumber(model, `foundation.typography.sizes.type-${sizeName}`),
-      lineHeight: tokenNumber(model, `foundation.typography.sizes.line-${sizeName}`),
-      letterSpacing: { value: tracking, unit: "PERCENT" },
-      codeSyntax: {
-        fontFamily: "var(--teum-font-ui)",
-        fontSize: `var(--teum-type-${sizeName})`,
-        lineHeight: `var(--teum-line-${sizeName})`,
-      },
-    };
-  });
-}
-
-export function generateFigmaManifest(model) {
-  const variableTokens = model.tokens.filter((token) => token.type !== "shadow");
-  const variables = variableTokens.map((token) => figmaVariable(token, model));
-  const effectStyles = figmaEffectStyles(model);
-  const textStyles = figmaTextStyles(model);
-  return generatedJson({
-    schemaVersion: 2,
-    $description: "Figma library handoff generated from the DTCG source. It is deterministic input for the Figma build, not evidence that a library is published.",
-    source: TOKEN_SOURCE,
-    collections: [
-      { name: "Teum / Foundation", modes: ["Value"] },
-      { name: "Teum / Theme", modes: model.modes.map(titleCase) },
-    ],
-    variables,
-    textStyles,
-    effectStyles,
-    counts: {
-      sourceTokens: model.tokens.length,
-      variables: variables.length,
-      textStyles: textStyles.length,
-      effectStyles: effectStyles.length,
-    },
-  });
 }
 
 export function generateTokenManifest(model) {
@@ -540,7 +331,6 @@ export function generateOutputs(document) {
     outputs: new Map([
       [TOKEN_OUTPUTS.css, generateCss(model)],
       [TOKEN_OUTPUTS.typescript, generateTypescript(model)],
-      [TOKEN_OUTPUTS.figma, generateFigmaManifest(model)],
       [TOKEN_OUTPUTS.manifest, generateTokenManifest(model)],
     ]),
   };

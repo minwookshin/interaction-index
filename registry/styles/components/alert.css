@@ -1,9 +1,9 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-alert {
+@layer whatiuse.components {
+.whatiuse-alert {
   display: grid;
   width: min(560px, 100%);
   min-height: 54px;
@@ -11,26 +11,26 @@
   align-items: center;
   gap: 10px;
   padding: 10px 10px 10px 12px;
-  border-radius: var(--teum-radius-md);
-  background: var(--teum-bg-subtle);
-  color: var(--teum-fg-default);
+  border-radius: var(--whatiuse-radius-md);
+  background: var(--whatiuse-bg-subtle);
+  color: var(--whatiuse-fg-default);
 }
 
-.teum-alert[data-variant="critical"] { background: color-mix(in oklch, var(--teum-fg-danger) 7%, var(--teum-bg-subtle)); box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--teum-fg-danger) 24%, transparent); }
+.whatiuse-alert[data-variant="critical"] { background: color-mix(in oklch, var(--whatiuse-fg-danger) 7%, var(--whatiuse-bg-subtle)); box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--whatiuse-fg-danger) 24%, transparent); }
 
-.teum-alert[data-variant="critical"] .teum-alert__icon { color: var(--teum-fg-danger); }
+.whatiuse-alert[data-variant="critical"] .whatiuse-alert__icon { color: var(--whatiuse-fg-danger); }
 
-.teum-alert__icon { display: grid; width: 18px; height: 18px; place-items: center; color: var(--teum-fg-muted); }
+.whatiuse-alert__icon { display: grid; width: 18px; height: 18px; place-items: center; color: var(--whatiuse-fg-muted); }
 
-.teum-alert__icon svg { width: 16px; height: 16px; }
+.whatiuse-alert__icon svg { width: 16px; height: 16px; }
 
-.teum-alert__content { display: grid; min-width: 0; gap: 2px; }
+.whatiuse-alert__content { display: grid; min-width: 0; gap: 2px; }
 
-.teum-alert__content strong { font-size: var(--teum-type-ui); font-weight: 580; letter-spacing: -0.01em; }
+.whatiuse-alert__content strong { font-size: var(--whatiuse-type-ui); font-weight: 580; letter-spacing: -0.01em; }
 
-.teum-alert__content > span { color: var(--teum-fg-muted); font-size: var(--teum-type-label); line-height: 1.45; }
+.whatiuse-alert__content > span { color: var(--whatiuse-fg-muted); font-size: var(--whatiuse-type-label); line-height: 1.45; }
 
-.teum-alert__action { display: inline-flex; align-items: center; }
+.whatiuse-alert__action { display: inline-flex; align-items: center; }
 
-.teum-alert__dismiss { color: var(--teum-fg-subtle); }
+.whatiuse-alert__dismiss { color: var(--whatiuse-fg-subtle); }
 }

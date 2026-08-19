@@ -1,0 +1,27 @@
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
+
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
+
+@layer whatiuse.components {
+.whatiuse-radar-chart__grid polygon { fill: none; stroke: color-mix(in oklch, var(--whatiuse-separator) 76%, transparent); stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+.whatiuse-radar-chart__grid line { stroke: color-mix(in oklch, var(--whatiuse-separator) 68%, transparent); stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+.whatiuse-radar-chart__grid text { fill: var(--whatiuse-fg-subtle); font-size: 9px; dominant-baseline: middle; }
+
+.whatiuse-radar-chart__grid g[data-active] text { fill: var(--whatiuse-fg-default); font-weight: 590; }
+
+.whatiuse-radar-chart__grid g[data-active] line { stroke: color-mix(in oklch, var(--whatiuse-fg-default) 36%, transparent); }
+
+.whatiuse-radar-chart__series polygon { fill: color-mix(in oklch, var(--whatiuse-fg-default) 8%, transparent); stroke: var(--whatiuse-fg-default); stroke-linejoin: round; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+
+.whatiuse-radar-chart__series polygon[data-tone="secondary"] { fill-opacity: .62; stroke-opacity: .62; stroke-dasharray: 4 3; }
+
+.whatiuse-radar-chart__series polygon[data-tone="tertiary"] { fill-opacity: .34; stroke-opacity: .38; stroke-dasharray: 1 3; }
+
+.whatiuse-radar-chart__series circle { fill: var(--whatiuse-bg-surface); stroke: var(--whatiuse-fg-default); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+
+.whatiuse-radar-chart__series circle[data-tone="secondary"] { stroke-opacity: .62; }
+
+.whatiuse-radar-chart__series circle[data-tone="tertiary"] { stroke-opacity: .38; }
+}

@@ -44,9 +44,9 @@ const publication = {
   issueTracker: `${repositoryUrl}/issues`,
   securityAdvisories: `${repositoryUrl}/security/advisories/new`,
   homepage,
-  registryNamespace: "@teum",
-  packageCandidate: "teum",
-  registryInstall: `npx shadcn@${packageJson.devDependencies.shadcn} add ${repository}/teum#v${packageJson.version}`,
+  registryNamespace: "@whatiuse",
+  packageCandidate: "whatiuse",
+  registryInstall: `npx shadcn@${packageJson.devDependencies.shadcn} add ${repository}/whatiuse#v${packageJson.version}`,
 };
 await writeFile(resolve(root, "publication.json"), `${JSON.stringify(publication, null, 2)}\n`);
 

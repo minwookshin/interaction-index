@@ -1,31 +1,31 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-button-group { display: inline-flex; min-width: 0; align-items: center; gap: 4px; }
+@layer whatiuse.components {
+.whatiuse-button-group { display: inline-flex; min-width: 0; align-items: center; gap: 4px; }
 
-.teum-button-group[data-orientation="vertical"] { flex-direction: column; align-items: stretch; }
+.whatiuse-button-group[data-orientation="vertical"] { flex-direction: column; align-items: stretch; }
 
-.teum-button-group[data-attached] { gap: 0; }
+.whatiuse-button-group[data-attached] { gap: 0; }
 
-.teum-button-group[data-attached][data-orientation="horizontal"] > .teum-button:not(:first-child) { margin-left: -1px; }
+.whatiuse-button-group[data-attached][data-orientation="horizontal"] > .whatiuse-button:not(:first-child) { margin-left: -1px; }
 
-.teum-button-group[data-attached][data-orientation="horizontal"] > .teum-button:not(:first-child):not(:last-child) { border-radius: 0; }
+.whatiuse-button-group[data-attached][data-orientation="horizontal"] > .whatiuse-button:not(:first-child):not(:last-child) { border-radius: 0; }
 
-.teum-button-group[data-attached][data-orientation="horizontal"] > .teum-button:first-child:not(:last-child) { border-radius: var(--teum-radius-control) 0 0 var(--teum-radius-control); }
+.whatiuse-button-group[data-attached][data-orientation="horizontal"] > .whatiuse-button:first-child:not(:last-child) { border-radius: var(--whatiuse-radius-control) 0 0 var(--whatiuse-radius-control); }
 
-.teum-button-group[data-attached][data-orientation="horizontal"] > .teum-button:last-child:not(:first-child) { border-radius: 0 var(--teum-radius-control) var(--teum-radius-control) 0; }
+.whatiuse-button-group[data-attached][data-orientation="horizontal"] > .whatiuse-button:last-child:not(:first-child) { border-radius: 0 var(--whatiuse-radius-control) var(--whatiuse-radius-control) 0; }
 
-.teum-button-group[data-attached][data-orientation="vertical"] > .teum-button:not(:first-child) { margin-top: -1px; }
+.whatiuse-button-group[data-attached][data-orientation="vertical"] > .whatiuse-button:not(:first-child) { margin-top: -1px; }
 
-.teum-button-group[data-attached][data-orientation="vertical"] > .teum-button:first-child:not(:last-child) { border-radius: var(--teum-radius-control) var(--teum-radius-control) 0 0; }
+.whatiuse-button-group[data-attached][data-orientation="vertical"] > .whatiuse-button:first-child:not(:last-child) { border-radius: var(--whatiuse-radius-control) var(--whatiuse-radius-control) 0 0; }
 
-.teum-button-group[data-attached][data-orientation="vertical"] > .teum-button:last-child:not(:first-child) { border-radius: 0 0 var(--teum-radius-control) var(--teum-radius-control); }
+.whatiuse-button-group[data-attached][data-orientation="vertical"] > .whatiuse-button:last-child:not(:first-child) { border-radius: 0 0 var(--whatiuse-radius-control) var(--whatiuse-radius-control); }
 
-.teum-button-group__separator { display: block; align-self: stretch; flex: 0 0 auto; background: var(--teum-separator); }
+.whatiuse-button-group__separator { display: block; align-self: stretch; flex: 0 0 auto; background: var(--whatiuse-separator); }
 
-.teum-button-group__separator[aria-orientation="vertical"] { width: 1px; min-height: 20px; margin: 4px 2px; }
+.whatiuse-button-group__separator[aria-orientation="vertical"] { width: 1px; min-height: 20px; margin: 4px 2px; }
 
-.teum-button-group__separator[aria-orientation="horizontal"] { height: 1px; min-width: 20px; margin: 2px 4px; }
+.whatiuse-button-group__separator[aria-orientation="horizontal"] { height: 1px; min-width: 20px; margin: 2px 4px; }
 }

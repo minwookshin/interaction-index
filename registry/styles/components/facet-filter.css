@@ -1,0 +1,63 @@
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
+
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
+
+@layer whatiuse.components {
+.whatiuse-facet-filter {
+  display: inline-flex;
+  min-width: 0;
+  vertical-align: middle;
+}
+
+.whatiuse-facet-filter__count {
+  display: grid;
+  min-width: 16px;
+  height: 16px;
+  place-items: center;
+  flex: 0 0 auto;
+  padding-inline: 4px;
+  border-radius: 999px;
+  background: var(--whatiuse-bg-subtle);
+  color: var(--whatiuse-fg-muted);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.whatiuse-facet-filter__trigger-content {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.whatiuse-facet-filter__trigger-content > span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.whatiuse-facet-filter__menu { min-width: 208px; }
+
+.whatiuse-facet-filter__option {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.whatiuse-facet-filter__option > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.whatiuse-facet-filter__option small {
+  color: var(--whatiuse-fg-subtle);
+  font-size: var(--whatiuse-type-metadata);
+  font-variant-numeric: tabular-nums;
+}
+}

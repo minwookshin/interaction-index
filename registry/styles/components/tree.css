@@ -1,59 +1,59 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-tree { display: grid; width: min(420px, 100%); gap: 1px; outline: 0; color: var(--teum-fg-default); }
+@layer whatiuse.components {
+.whatiuse-tree { display: grid; width: min(420px, 100%); gap: 1px; outline: 0; color: var(--whatiuse-fg-default); }
 
-.teum-tree[data-focus-visible] { outline: 0; }
+.whatiuse-tree[data-focus-visible] { outline: 0; }
 
-.teum-tree [role="row"] { outline: 0; }
+.whatiuse-tree [role="row"] { outline: 0; }
 
-.teum-tree__row {
+.whatiuse-tree__row {
   display: grid;
   min-height: 32px;
   grid-template-columns: 16px 17px minmax(0, 1fr);
   align-items: center;
   gap: 6px;
-  padding: 4px 8px 4px calc(8px + var(--teum-tree-indent, 0px));
+  padding: 4px 8px 4px calc(8px + var(--whatiuse-tree-indent, 0px));
   border-radius: 7px;
-  color: var(--teum-fg-muted);
+  color: var(--whatiuse-fg-muted);
   cursor: default;
-  transition: background-color var(--teum-hover-duration), color var(--teum-hover-duration), transform var(--teum-press-duration) var(--teum-ease-out);
+  transition: background-color var(--whatiuse-hover-duration), color var(--whatiuse-hover-duration), transform var(--whatiuse-press-duration) var(--whatiuse-ease-out);
 }
 
-.teum-tree [role="row"][data-hovered] > .teum-tree__row { background: var(--teum-hover); color: var(--teum-fg-default); }
+.whatiuse-tree [role="row"][data-hovered] > .whatiuse-tree__row { background: var(--whatiuse-hover); color: var(--whatiuse-fg-default); }
 
-.teum-tree [role="row"][data-selected] > .teum-tree__row { background: var(--teum-selection); color: var(--teum-fg-default); }
+.whatiuse-tree [role="row"][data-selected] > .whatiuse-tree__row { background: var(--whatiuse-selection); color: var(--whatiuse-fg-default); }
 
-.teum-tree [role="row"][data-focus-visible] > .teum-tree__row { box-shadow: inset 0 0 0 1px var(--teum-focus-control); }
+.whatiuse-tree [role="row"][data-focus-visible] > .whatiuse-tree__row { box-shadow: inset 0 0 0 1px var(--whatiuse-focus-control); }
 
-.teum-tree [role="row"][data-pressed] > .teum-tree__row { transform: scale(.995); }
+.whatiuse-tree [role="row"][data-pressed] > .whatiuse-tree__row { transform: scale(.995); }
 
-.teum-tree [role="row"][data-disabled] > .teum-tree__row { color: var(--teum-fg-disabled); cursor: not-allowed; }
+.whatiuse-tree [role="row"][data-disabled] > .whatiuse-tree__row { color: var(--whatiuse-fg-disabled); cursor: not-allowed; }
 
-.teum-tree__chevron { position: relative; display: grid; width: 16px; height: 16px; place-items: center; padding: 0; border: 0; border-radius: 4px; background: transparent; opacity: 0; color: var(--teum-fg-subtle); transition: transform var(--teum-enter-duration) var(--teum-ease-out); }
+.whatiuse-tree__chevron { position: relative; display: grid; width: 16px; height: 16px; place-items: center; padding: 0; border: 0; border-radius: 4px; background: transparent; opacity: 0; color: var(--whatiuse-fg-subtle); transition: transform var(--whatiuse-enter-duration) var(--whatiuse-ease-out); }
 
-.teum-tree__chevron[data-visible] { opacity: 1; }
+.whatiuse-tree__chevron[data-visible] { opacity: 1; }
 
-.teum-tree__chevron[data-visible]::after { position: absolute; inset: -4px; content: ""; }
+.whatiuse-tree__chevron[data-visible]::after { position: absolute; inset: -4px; content: ""; }
 
-.teum-tree__chevron[data-expanded] { transform: rotate(90deg); }
+.whatiuse-tree__chevron[data-expanded] { transform: rotate(90deg); }
 
-.teum-tree__chevron:focus-visible { outline: 0; box-shadow: inset 0 0 0 1px var(--teum-focus-control); }
+.whatiuse-tree__chevron:focus-visible { outline: 0; box-shadow: inset 0 0 0 1px var(--whatiuse-focus-control); }
 
-.teum-tree__chevron svg,
-.teum-tree__icon svg { width: 13px; height: 13px; }
+.whatiuse-tree__chevron svg,
+.whatiuse-tree__icon svg { width: 13px; height: 13px; }
 
-.teum-tree__icon { display: grid; width: 17px; height: 17px; place-items: center; color: var(--teum-fg-subtle); }
+.whatiuse-tree__icon { display: grid; width: 17px; height: 17px; place-items: center; color: var(--whatiuse-fg-subtle); }
 
-.teum-tree__copy { display: grid; min-width: 0; gap: 1px; }
+.whatiuse-tree__copy { display: grid; min-width: 0; gap: 1px; }
 
-.teum-tree__label { overflow: hidden; font-size: var(--teum-type-ui); line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
+.whatiuse-tree__label { overflow: hidden; font-size: var(--whatiuse-type-ui); line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
 
-.teum-tree__description { overflow: hidden; color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
+.whatiuse-tree__description { overflow: hidden; color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-tree__chevron { transition-duration: 0.01ms; }
+.whatiuse-tree__chevron { transition-duration: 0.01ms; }
 }
 }

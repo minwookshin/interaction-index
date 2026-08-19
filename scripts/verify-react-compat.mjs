@@ -8,7 +8,7 @@ const exec = promisify(execFile);
 const npm = process.platform === "win32" ? "npm.cmd" : "npm";
 const root = process.cwd();
 const bin = (name) => resolve(root, `node_modules/.bin/${name}${process.platform === "win32" ? ".cmd" : ""}`);
-const work = await mkdtemp(join(tmpdir(), "teum-react-compat-"));
+const work = await mkdtemp(join(tmpdir(), "whatiuse-react-compat-"));
 const tarballs = resolve(work, "tarballs");
 const matrix = [
   { label: "react-18", react: "18.3.1", types: "^18.3.0" },
@@ -28,11 +28,11 @@ try {
     const fixture = resolve(work, target.label);
     await mkdir(fixture, { recursive: true });
     await writeFile(resolve(fixture, "package.json"), `${JSON.stringify({
-      name: `teum-${target.label}-consumer`,
+      name: `whatiuse-${target.label}-consumer`,
       private: true,
       type: "module",
       dependencies: {
-        teum: `file:${tarball}`,
+        whatiuse: `file:${tarball}`,
         react: target.react,
         "react-dom": target.react,
       },
@@ -55,7 +55,7 @@ try {
       include: ["main.tsx"],
     }, null, 2)}\n`);
     await writeFile(resolve(fixture, "index.html"), '<div id="root"></div><script type="module" src="/main.tsx"></script>\n');
-    await writeFile(resolve(fixture, "main.tsx"), `import { createRoot } from "react-dom/client";\nimport { Button, SharedDetail } from "teum";\nimport "teum/styles.css";\nconst items = [{ id: "one", title: "Compatibility proof", meta: "RC3", description: "Fresh React ${target.react} consumer" }];\ncreateRoot(document.getElementById("root")!).render(<main><Button>React ${target.react}</Button><SharedDetail items={items} defaultSelectedId="one" /></main>);\n`);
+    await writeFile(resolve(fixture, "main.tsx"), `import { createRoot } from "react-dom/client";\nimport { Button, SharedDetail } from "whatiuse";\nimport "whatiuse/styles.css";\nconst items = [{ id: "one", title: "Compatibility proof", meta: "RC3", description: "Fresh React ${target.react} consumer" }];\ncreateRoot(document.getElementById("root")!).render(<main><Button>React ${target.react}</Button><SharedDetail items={items} defaultSelectedId="one" /></main>);\n`);
 
     await exec(npm, ["install", "--ignore-scripts", "--no-audit", "--no-fund", "--prefer-offline"], {
       cwd: fixture,

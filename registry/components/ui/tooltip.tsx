@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/components/tooltip.css";
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
 import { cn } from "../../lib/cn";
@@ -32,15 +32,15 @@ export function TooltipContent({
   return (
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Positioner
-        className="teum-positioner"
+        className="whatiuse-positioner"
         side={side}
         sideOffset={sideOffset}
         align={align}
         alignOffset={alignOffset}
       >
-        <TooltipPrimitive.Popup className={cn("teum-tooltip", className)} {...props}>
+        <TooltipPrimitive.Popup className={cn("whatiuse-tooltip", className)} {...props}>
           {children}
-          <TooltipPrimitive.Arrow className="teum-tooltip__arrow" />
+          <TooltipPrimitive.Arrow className="whatiuse-tooltip__arrow" />
         </TooltipPrimitive.Popup>
       </TooltipPrimitive.Positioner>
     </TooltipPrimitive.Portal>

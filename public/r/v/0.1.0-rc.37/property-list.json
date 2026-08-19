@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "property-list",
+  "title": "Property List",
+  "description": "Dense semantic label-value metadata for inspectors and detail views.",
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/property-list.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/property-list.css\";\nimport type { HTMLAttributes, ReactNode } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type PropertyListItem = {\n  id: string;\n  label: ReactNode;\n  value: ReactNode;\n  description?: ReactNode;\n};\n\nexport type PropertyListProps = HTMLAttributes<HTMLDListElement> & {\n  items: readonly PropertyListItem[];\n  columns?: 1 | 2;\n};\n\nexport function PropertyList({ items, columns = 1, className, ...props }: PropertyListProps) {\n  return (\n    <dl className={cn(\"whatiuse-property-list\", className)} data-columns={columns} {...props}>\n      {items.map((item) => (\n        <div key={item.id} className=\"whatiuse-property-list__item\">\n          <dt>{item.label}</dt>\n          <dd>{item.value}{item.description && <small>{item.description}</small>}</dd>\n        </div>\n      ))}\n    </dl>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "components/ui/property-list.tsx"
+    },
+    {
+      "path": "registry/styles/components/property-list.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-property-list {\n  display: grid;\n  min-width: 0;\n  grid-template-columns: minmax(0, 1fr);\n  gap: 0;\n  margin: 0;\n}\n\n.whatiuse-property-list[data-columns=\"2\"] { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; }\n\n.whatiuse-property-list__item {\n  display: grid;\n  min-width: 0;\n  grid-template-columns: minmax(88px, .48fr) minmax(0, 1fr);\n  align-items: baseline;\n  gap: 12px;\n  min-height: 38px;\n  padding: 9px 4px;\n  border-bottom: 1px solid color-mix(in oklch, var(--whatiuse-separator) 68%, transparent);\n}\n\n.whatiuse-property-list__item:last-child,\n.whatiuse-property-list[data-columns=\"2\"] .whatiuse-property-list__item:nth-last-child(-n + 2) { border-bottom-color: transparent; }\n\n.whatiuse-property-list dt { color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); }\n\n.whatiuse-property-list dd { display: grid; min-width: 0; gap: 2px; margin: 0; color: var(--whatiuse-fg-default); font-size: var(--whatiuse-type-label); font-weight: 540; }\n\n.whatiuse-property-list dd small { color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); font-weight: 450; line-height: 1.4; }\n\n@media (max-width: 700px) {\n.whatiuse-property-list[data-columns=\"2\"] { grid-template-columns: minmax(0, 1fr); }\n\n.whatiuse-property-list[data-columns=\"2\"] .whatiuse-property-list__item:nth-last-child(2) { border-bottom-color: color-mix(in oklch, var(--whatiuse-separator) 68%, transparent); }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/property-list.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/property-list"
+    }
+  },
+  "type": "registry:component"
+}

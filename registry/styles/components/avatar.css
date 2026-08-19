@@ -1,50 +1,50 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-avatar {
+@layer whatiuse.components {
+.whatiuse-avatar {
   position: relative;
   display: inline-grid;
   flex: 0 0 auto;
   isolation: isolate;
   place-items: center;
   overflow: visible;
-  border: 1px solid color-mix(in oklch, var(--teum-control-border) 82%, transparent);
+  border: 1px solid color-mix(in oklch, var(--whatiuse-control-border) 82%, transparent);
   border-radius: 50%;
-  background: var(--teum-gray-100);
-  color: var(--teum-gray-700);
+  background: var(--whatiuse-gray-100);
+  color: var(--whatiuse-gray-700);
   box-shadow: 0 1px 2px rgb(17 17 19 / .045), inset 0 1px 0 rgb(255 255 255 / .5);
   font-weight: 620;
   letter-spacing: -0.035em;
 }
 
-.teum-avatar[data-tone="0"] { background: var(--teum-gray-50); }
+.whatiuse-avatar[data-tone="0"] { background: var(--whatiuse-gray-50); }
 
-.teum-avatar[data-tone="1"] { background: var(--teum-gray-100); }
+.whatiuse-avatar[data-tone="1"] { background: var(--whatiuse-gray-100); }
 
-.teum-avatar[data-tone="2"] { background: var(--teum-gray-200); color: var(--teum-gray-800); }
+.whatiuse-avatar[data-tone="2"] { background: var(--whatiuse-gray-200); color: var(--whatiuse-gray-800); }
 
-.teum-avatar[data-tone="3"] { border-color: var(--teum-gray-800); background: var(--teum-gray-800); color: var(--teum-gray-50); box-shadow: 0 1px 2px rgb(17 17 19 / .12), inset 0 1px 0 rgb(255 255 255 / .1); }
+.whatiuse-avatar[data-tone="3"] { border-color: var(--whatiuse-gray-800); background: var(--whatiuse-gray-800); color: var(--whatiuse-gray-50); box-shadow: 0 1px 2px rgb(17 17 19 / .12), inset 0 1px 0 rgb(255 255 255 / .1); }
 
-.teum-avatar img,
-.teum-avatar__fallback { width: 100%; height: 100%; border-radius: inherit; object-fit: cover; display: grid; place-items: center; }
+.whatiuse-avatar img,
+.whatiuse-avatar__fallback { width: 100%; height: 100%; border-radius: inherit; object-fit: cover; display: grid; place-items: center; }
 
-.teum-avatar__fallback { line-height: 1; text-align: center; transform: translateY(.25px); }
+.whatiuse-avatar__fallback { line-height: 1; text-align: center; transform: translateY(.25px); }
 
-.teum-avatar__status { position: absolute; z-index: 2; right: -2px; bottom: -2px; width: 12px; height: 12px; border: 2px solid var(--teum-bg-canvas); border-radius: 50%; background: var(--teum-gray-700); box-shadow: 0 0 0 1px color-mix(in oklch, var(--teum-control-border) 70%, transparent); }
+.whatiuse-avatar__status { position: absolute; z-index: 2; right: -2px; bottom: -2px; width: 12px; height: 12px; border: 2px solid var(--whatiuse-bg-canvas); border-radius: 50%; background: var(--whatiuse-gray-700); box-shadow: 0 0 0 1px color-mix(in oklch, var(--whatiuse-control-border) 70%, transparent); }
 
-.teum-avatar__status[data-status="away"] { background: var(--teum-gray-400); }
+.whatiuse-avatar__status[data-status="away"] { background: var(--whatiuse-gray-400); }
 
-.teum-avatar__status[data-status="busy"] { background: var(--teum-gray-900); }
+.whatiuse-avatar__status[data-status="busy"] { background: var(--whatiuse-gray-900); }
 
-.teum-avatar__status[data-status="offline"] { background: var(--teum-bg-control); box-shadow: inset 0 0 0 1px var(--teum-gray-400); }
+.whatiuse-avatar__status[data-status="offline"] { background: var(--whatiuse-bg-control); box-shadow: inset 0 0 0 1px var(--whatiuse-gray-400); }
 
-.teum-avatar-group { display: flex; align-items: center; isolation: isolate; }
+.whatiuse-avatar-group { display: flex; align-items: center; isolation: isolate; }
 
-.teum-avatar-group .teum-avatar { box-shadow: 0 0 0 2px var(--teum-bg-canvas), 0 2px 5px rgb(17 17 19 / .06), inset 0 1px 0 rgb(255 255 255 / .48); }
+.whatiuse-avatar-group .whatiuse-avatar { box-shadow: 0 0 0 2px var(--whatiuse-bg-canvas), 0 2px 5px rgb(17 17 19 / .06), inset 0 1px 0 rgb(255 255 255 / .48); }
 
-.teum-avatar-group .teum-avatar + .teum-avatar { margin-left: -6px; }
+.whatiuse-avatar-group .whatiuse-avatar + .whatiuse-avatar { margin-left: -6px; }
 
-.teum-avatar-group .teum-avatar[data-status] { z-index: 1; }
+.whatiuse-avatar-group .whatiuse-avatar[data-status] { z-index: 1; }
 }

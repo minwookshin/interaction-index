@@ -390,7 +390,7 @@ function ComponentApiPanel({ id }: { id: ComponentId }) {
   const component = components.find((item) => item.id === id)!;
   const guidance = componentGuidance[id];
   const primaryExport = publicExports.find((item) => item.kind === "function")?.name ?? publicExports[0]?.name ?? component.name;
-  const registryItem = `@teum-pinned/${id}`;
+  const registryItem = `@whatiuse/${id}`;
   const installCommand = `npx shadcn@${packageManifest.devDependencies.shadcn} add ${registryItem}`;
   const [installCopied, setInstallCopied] = useState(false);
   const copyInstall = () => void copyText(installCommand).then((result) => {
@@ -537,7 +537,7 @@ function InputGroupDemo() {
           <label htmlFor="repository-path">Repository</label>
           <InputGroup>
             <InputGroupAddon>github.com/</InputGroupAddon>
-            <InputGroupInput id="repository-path" defaultValue="minwook/teum" />
+            <InputGroupInput id="repository-path" defaultValue="minwook/whatiuse" />
             <InputGroupButton aria-label="Copy repository path"><Copy /></InputGroupButton>
           </InputGroup>
           <span>Use a repository you can publish from this workspace.</span>
@@ -716,7 +716,7 @@ function MenuDemo() {
               <MenuItem><Archive />Archive <kbd>E</kbd></MenuItem>
               <MenuCheckboxItem checked={contracts} onCheckedChange={setContracts}>Show contracts</MenuCheckboxItem>
               <MenuSeparator />
-              <MenuItem className="teum-menu__item--danger"><Trash />Delete</MenuItem>
+              <MenuItem className="whatiuse-menu__item--danger"><Trash />Delete</MenuItem>
             </MenuContent>
           </Menu>
         </div>
@@ -743,7 +743,7 @@ function ContextMenuDemo() {
             <ContextMenuItem><Archive />Archive</ContextMenuItem>
             <ContextMenuCheckboxItem checked={contracts} onCheckedChange={setContracts}>Show contracts</ContextMenuCheckboxItem>
             <ContextMenuSeparator />
-            <ContextMenuItem className="teum-menu__item--danger"><Trash />Delete</ContextMenuItem>
+            <ContextMenuItem className="whatiuse-menu__item--danger"><Trash />Delete</ContextMenuItem>
           </ContextMenuContent>
         </ContextMenu>
       </Specimen>
@@ -1045,8 +1045,8 @@ function CollapsibleDemo() {
   return <>
     <Specimen label="Product recipe" note="Supporting detail without navigation">
       <div className="demo-stack demo-stack--wide">
-        <Collapsible className="teum-collapsible" defaultOpen><CollapsibleTrigger>Advanced filter rules</CollapsibleTrigger><CollapsibleContent>Matches components whose state contract includes focus restoration, keyboard dismissal, and a reduced-motion fallback.</CollapsibleContent></Collapsible>
-        <Collapsible className="teum-collapsible"><CollapsibleTrigger>Compatibility details</CollapsibleTrigger><CollapsibleContent>Tested with React {currentCompatibility[0].value}, TypeScript {currentCompatibility[1].value}, Base UI {currentCompatibility[2].value}, and React Aria {currentCompatibility[3].value}.</CollapsibleContent></Collapsible>
+        <Collapsible className="whatiuse-collapsible" defaultOpen><CollapsibleTrigger>Advanced filter rules</CollapsibleTrigger><CollapsibleContent>Matches components whose state contract includes focus restoration, keyboard dismissal, and a reduced-motion fallback.</CollapsibleContent></Collapsible>
+        <Collapsible className="whatiuse-collapsible"><CollapsibleTrigger>Compatibility details</CollapsibleTrigger><CollapsibleContent>Tested with React {currentCompatibility[0].value}, TypeScript {currentCompatibility[1].value}, Base UI {currentCompatibility[2].value}, and React Aria {currentCompatibility[3].value}.</CollapsibleContent></Collapsible>
       </div>
     </Specimen>
     <ApiStrip values={["closed", "open", "Enter / Space", "focus remains", "disabled", "hidden until found", "reduced motion"]} />
@@ -1087,7 +1087,7 @@ function DataTableRecipe({ compact = false }: { compact?: boolean }) {
   return <div className="data-table-recipe" data-compact={compact || undefined}>
     <div className="data-table-recipe__toolbar"><SearchInput aria-label="Filter issues" value={query} onChange={(event) => updateQuery(event.target.value)} onClear={() => updateQuery("")} placeholder="Filter issues…" /><Badge variant="outline">{rows.length} results</Badge></div>
     <Table aria-label="Interaction quality issues">
-      <TableHeader><TableRow><TableHead className="data-table-recipe__select"><Checkbox aria-label="Select every visible issue" checked={allSelected} indeterminate={!allSelected && visibleRows.some((row) => selected.includes(row.id))} onCheckedChange={(checked) => toggleAll(Boolean(checked))} /></TableHead><TableHead aria-sort={ascending ? "ascending" : "descending"}><button className="teum-table-sort" type="button" aria-label={`Sort issues ${ascending ? "descending" : "ascending"}`} onClick={() => setAscending((value) => !value)}>Issue <ArrowsDownUp /></button></TableHead><TableHead>Status</TableHead><TableHead>Owner</TableHead><TableHead>Updated</TableHead></TableRow></TableHeader>
+      <TableHeader><TableRow><TableHead className="data-table-recipe__select"><Checkbox aria-label="Select every visible issue" checked={allSelected} indeterminate={!allSelected && visibleRows.some((row) => selected.includes(row.id))} onCheckedChange={(checked) => toggleAll(Boolean(checked))} /></TableHead><TableHead aria-sort={ascending ? "ascending" : "descending"}><button className="whatiuse-table-sort" type="button" aria-label={`Sort issues ${ascending ? "descending" : "ascending"}`} onClick={() => setAscending((value) => !value)}>Issue <ArrowsDownUp /></button></TableHead><TableHead>Status</TableHead><TableHead>Owner</TableHead><TableHead>Updated</TableHead></TableRow></TableHeader>
       <TableBody>{visibleRows.map((row) => <TableRow key={row.id} data-selected={selected.includes(row.id) || undefined}><TableCell className="data-table-recipe__select"><Checkbox aria-label={`Select ${row.name}`} checked={selected.includes(row.id)} onCheckedChange={(checked) => toggleRow(row.id, Boolean(checked))} /></TableCell><TableCell><span className="data-table-recipe__identity"><strong>{row.name}</strong><small>{row.id}</small></span></TableCell><TableCell><Badge className="data-table-recipe__status" variant="outline" data-status={row.status.toLocaleLowerCase().replaceAll(" ", "-")}>{row.status}</Badge></TableCell><TableCell>{row.owner}</TableCell><TableCell>{row.updated}</TableCell></TableRow>)}</TableBody>
     </Table>
     {!rows.length && <EmptyState size="compact" title="No matching issues" description="Try another title, identifier, owner, or status." secondaryAction={<Button size="small" variant="ghost" onClick={() => updateQuery("")}>Clear search</Button>} />}
@@ -1369,13 +1369,13 @@ function PrimaryInputGroupPreview() {
   useEffect(() => () => window.clearTimeout(resetTimer.current), []);
 
   const copyRepository = async () => {
-    if (!await copyText("minwook/teum")) return;
+    if (!await copyText("minwook/whatiuse")) return;
     setCopied(true);
     window.clearTimeout(resetTimer.current);
     resetTimer.current = window.setTimeout(() => setCopied(false), 1200);
   };
 
-  return <div className="primary-field-preview"><InputGroup><InputGroupAddon>github.com/</InputGroupAddon><InputGroupInput aria-label="Repository path" defaultValue="minwook/teum" /><InputGroupButton aria-label={copied ? "Repository path copied" : "Copy repository path"} onClick={() => void copyRepository()}>{copied ? <Check weight="bold" /> : <Copy />}</InputGroupButton></InputGroup><span className="teum-sr-only" role="status" aria-live="polite">{copied ? "Repository path copied" : ""}</span></div>;
+  return <div className="primary-field-preview"><InputGroup><InputGroupAddon>github.com/</InputGroupAddon><InputGroupInput aria-label="Repository path" defaultValue="minwook/whatiuse" /><InputGroupButton aria-label={copied ? "Repository path copied" : "Copy repository path"} onClick={() => void copyRepository()}>{copied ? <Check weight="bold" /> : <Copy />}</InputGroupButton></InputGroup><span className="whatiuse-sr-only" role="status" aria-live="polite">{copied ? "Repository path copied" : ""}</span></div>;
 }
 
 function PrimaryToolbarPreview() {
@@ -1667,7 +1667,7 @@ function ConsolidatedDesignSystemMode({ view, onSelect, onHome, theme, onThemeCh
 
   const focusDocumentOnCompactNavigation = () => {
     if (!window.matchMedia("(max-width: 820px)").matches) return;
-    window.requestAnimationFrame(() => window.requestAnimationFrame(() => document.getElementById("teum-documentation-content")?.focus({ preventScroll: true })));
+    window.requestAnimationFrame(() => window.requestAnimationFrame(() => document.getElementById("whatiuse-documentation-content")?.focus({ preventScroll: true })));
   };
   const openComponent = (id: ComponentId = activeId) => {
     setNavigationOpen(false);
@@ -1715,8 +1715,8 @@ function ConsolidatedDesignSystemMode({ view, onSelect, onHome, theme, onThemeCh
   return (
     <div className="system-stage system-stage--consolidated">
       <div className="system-window system-window--consolidated">
-        <a className="teum-skip-link" href="#teum-documentation-content" onClick={(event) => { event.preventDefault(); document.getElementById("teum-documentation-content")?.focus({ preventScroll: true }); }}>Skip to documentation</a>
-        <span className="teum-sr-only" role="status" aria-live="polite" aria-atomic="true">{pageTitle} page loaded</span>
+        <a className="whatiuse-skip-link" href="#whatiuse-documentation-content" onClick={(event) => { event.preventDefault(); document.getElementById("whatiuse-documentation-content")?.focus({ preventScroll: true }); }}>Skip to documentation</a>
+        <span className="whatiuse-sr-only" role="status" aria-live="polite" aria-atomic="true">{pageTitle} page loaded</span>
         <aside className="system-nav system-nav--consolidated" aria-label="Design system navigation" data-open={navigationOpen || undefined}>
           <div className="system-brand"><button type="button" className="system-nav__close" aria-label="Close navigation" onClick={() => setNavigationOpen(false)}><X aria-hidden="true" /></button></div>
           <label className="system-component-search system-component-search--global"><MagnifyingGlass aria-hidden="true" /><input value={filter} onChange={(event) => setFilter(event.target.value)} placeholder="Search docs…" aria-label="Search documentation" /><kbd>⌘K</kbd></label>
@@ -1734,19 +1734,22 @@ function ConsolidatedDesignSystemMode({ view, onSelect, onHome, theme, onThemeCh
                   <div className="system-component-list" role="region" aria-label="Getting started documentation"><div className="system-component-group">{publicDocItems.filter((doc) => doc.group === "Getting started").map((doc) => <NavigationLeaf key={doc.id} id={doc.id} label={doc.label} selected={doc.id === publicDoc?.id} onSelect={() => navigate(doc.id)} />)}</div></div>
                 </NavigationSection>
 
-                <NavigationSection label="Foundations" count={foundationItems.length} expanded={expandedSections.foundations} active={activeSection === "foundations"} onToggle={() => toggleSection("foundations")}>
+                <NavigationSection label="Foundations" expanded={expandedSections.foundations} active={activeSection === "foundations"} onToggle={() => toggleSection("foundations")}>
                   <div className="system-component-list" role="region" aria-label="Foundation catalog"><div className="system-component-group"><NavigationLeaf id="foundations" label="Overview" selected={view === "foundations"} onSelect={() => navigate("foundations")} />{foundationItems.map((foundation) => <NavigationLeaf key={foundation.id} id={`foundation-${foundation.id}`} label={foundation.label} selected={foundation.id === foundationId} onSelect={() => openFoundation(foundation.id)} />)}</div></div>
                 </NavigationSection>
 
-                <NavigationSection label="Components" count={libraryComponents.length} expanded={expandedSections.components} active={activeSection === "components"} onToggle={() => toggleSection("components")}>
+                <NavigationSection label="Components" expanded={expandedSections.components} active={activeSection === "components"} onToggle={() => toggleSection("components")}>
                   <div className="system-component-list system-component-list--catalog" role="region" aria-label="Component catalog">
                     <div className="system-component-group system-component-group--collections"><span>Collections</span>{publicDocItems.filter((doc) => doc.group === "Components").map((doc) => <NavigationLeaf key={doc.id} id={doc.id} label={doc.label} selected={doc.id === publicDoc?.id} onSelect={() => navigate(doc.id)} />)}</div>
                     {libraryComponentGroups.map((group) => <div className="system-component-group" key={group}><span>{group}</span>{libraryComponents.filter((component) => component.group === group).map((component) => <a href={`#${component.id}`} key={component.id} data-selected={component.id === activeId && componentsMode || undefined} aria-current={component.id === activeId && componentsMode ? "page" : undefined} onClick={(event) => { event.preventDefault(); openComponent(component.id); }}><strong>{component.name}</strong></a>)}</div>)}
                   </div>
                 </NavigationSection>
 
-                <NavigationSection label="Patterns" count={patterns.length} expanded={expandedSections.patterns} active={activeSection === "patterns"} onToggle={() => toggleSection("patterns")}>
-                  <div className="system-component-list" role="region" aria-label="Pattern catalog"><div className="system-component-group"><NavigationLeaf id="patterns" label="Overview" selected={view === "patterns"} onSelect={() => navigate("patterns")} />{patterns.map((pattern) => <NavigationLeaf key={pattern.id} id={pattern.id} label={pattern.name} selected={pattern.id === activePattern?.id} onSelect={() => openPattern(pattern.id)} />)}{publicDocItems.filter((doc) => doc.group === "Patterns").map((doc) => <NavigationLeaf key={doc.id} id={doc.id} label={doc.label} selected={doc.id === publicDoc?.id} onSelect={() => navigate(doc.id)} />)}</div></div>
+                <NavigationSection label="Patterns" expanded={expandedSections.patterns} active={activeSection === "patterns"} onToggle={() => toggleSection("patterns")}>
+                  <div className="system-component-list" role="region" aria-label="Pattern catalog">
+                    <div className="system-component-group"><NavigationLeaf id="patterns" label="Overview" selected={view === "patterns"} onSelect={() => navigate("patterns")} />{publicDocItems.filter((doc) => doc.group === "Patterns").map((doc) => <NavigationLeaf key={doc.id} id={doc.id} label={doc.label} selected={doc.id === publicDoc?.id} onSelect={() => navigate(doc.id)} />)}</div>
+                    <div className="system-component-group"><span>Interaction</span>{patterns.map((pattern) => <NavigationLeaf key={pattern.id} id={pattern.id} label={pattern.name} selected={pattern.id === activePattern?.id} onSelect={() => openPattern(pattern.id)} />)}</div>
+                  </div>
                 </NavigationSection>
 
                 {publicDocGroups.filter((group) => group.id === "project").map((group) => <NavigationSection key={group.id} label={group.label} expanded={expandedSections[group.id]} active={activeSection === group.id} onToggle={() => toggleSection(group.id)}><div className="system-component-list" role="region" aria-label={`${group.label} documentation`}><div className="system-component-group">{publicDocItems.filter((doc) => doc.group === group.label).map((doc) => <NavigationLeaf key={doc.id} id={doc.id} label={doc.label} selected={doc.id === publicDoc?.id} onSelect={() => navigate(doc.id)} />)}</div></div></NavigationSection>)}
@@ -1768,8 +1771,8 @@ function ConsolidatedDesignSystemMode({ view, onSelect, onHome, theme, onThemeCh
         </header>
 
         <main className="system-detail system-detail--consolidated">
-          <div id="teum-documentation-content" className="system-detail__scroll" tabIndex={0} role="region" aria-label="Documentation content">
-            {publicDoc ? <Suspense fallback={<div className="system-detail__content public-doc-page system-reference-page public-doc-loading" aria-hidden="true">Loading documentation…</div>}><PublicDocPage id={publicDoc.id} onNavigate={(id) => navigate(id as ViewId)} /></Suspense> : foundations ? foundationId ? <FoundationDetail id={foundationId} onBack={() => navigate("foundations")} /> : <FoundationOverview onSelect={onSelect} /> : patternsMode ? activePattern ? <PatternDetail pattern={activePattern} /> : <PatternsOverview onSelect={openPattern} /> : <div className="system-detail__content system-reference-page system-component-page">
+          <div id="whatiuse-documentation-content" className="system-detail__scroll" tabIndex={0} role="region" aria-label="Documentation content">
+            {publicDoc ? <Suspense fallback={<div className="system-detail__content public-doc-page system-reference-page public-doc-loading" aria-hidden="true">Loading documentation…</div>}><PublicDocPage id={publicDoc.id} onNavigate={(id) => navigate(id as ViewId)} /></Suspense> : foundations ? foundationId ? <FoundationDetail id={foundationId} onBack={() => navigate("foundations")} /> : <FoundationOverview onSelect={onSelect} /> : patternsMode ? activePattern ? <PatternDetail pattern={activePattern} /> : <PatternsOverview onSelect={(id) => navigate(id as ViewId)} /> : <div className="system-detail__content system-reference-page system-component-page">
               <section className="system-overview" id="system-overview">
                 <h1>{activeComponent.name}</h1>
                 <p>{activeComponent.description}</p>
@@ -1798,13 +1801,18 @@ function ConsolidatedDesignSystemMode({ view, onSelect, onHome, theme, onThemeCh
   );
 }
 
-function PatternsOverview({ onSelect }: { onSelect: (id: PatternId) => void }) {
+function PatternsOverview({ onSelect }: { onSelect: (id: string) => void }) {
   return (
     <div className="system-detail__content system-patterns system-editorial-page">
       <section className="system-overview">
         <h1>Patterns</h1>
-        <p>Reusable product behaviors that connect components, state, motion, and recovery around a recurring user goal.</p>
+        <p>Complete product workflows and focused interaction patterns.</p>
       </section>
+
+      <nav className="pattern-collection-index" aria-label="Pattern collections">
+        <a href="#product-patterns" onClick={(event) => { event.preventDefault(); onSelect("product-patterns"); }}><span><strong>Workflow</strong><small>Customer and billing work</small></span><ArrowRight aria-hidden="true" /></a>
+        <a href="#collaboration-patterns" onClick={(event) => { event.preventDefault(); onSelect("collaboration-patterns"); }}><span><strong>Collaboration</strong><small>Members, roles, and access</small></span><ArrowRight aria-hidden="true" /></a>
+      </nav>
 
       <SystemSignature />
 

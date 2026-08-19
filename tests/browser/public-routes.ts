@@ -7,7 +7,8 @@ const documentationRoutes: readonly PublicRoute[] = [
   ["choosing-components", "Core", "docs"],
   ["product-pilot", "Data", "docs"],
   ["analytics", "Analytics", "docs"],
-  ["product-patterns", "Recipes", "docs"],
+  ["product-patterns", "Workflow", "docs"],
+  ["collaboration-patterns", "Collaboration", "docs"],
   ["agent-native", "For coding agents", "docs"],
   ["component-status", "Status", "docs"],
   ["accessibility", "Accessibility", "docs"],
@@ -49,8 +50,8 @@ export const publicRoutes: readonly PublicRoute[] = [
   ...patternRoutes,
 ];
 
-if (publicRoutes.length !== 68) {
-  throw new Error(`The public route matrix must contain 68 routes; found ${publicRoutes.length}`);
+if (publicRoutes.length !== 69) {
+  throw new Error(`The public route matrix must contain 69 routes; found ${publicRoutes.length}`);
 }
 
 export const publicRouteGroups = {

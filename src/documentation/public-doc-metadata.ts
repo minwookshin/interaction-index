@@ -4,7 +4,8 @@ export const publicDocItems = [
   { id: "choosing-components", label: "Core", group: "Components", description: "Choose interface primitives by task, focus, and recovery." },
   { id: "product-pilot", label: "Data", group: "Components", description: "Tables, filters, bulk actions, and product data workflows." },
   { id: "analytics", label: "Analytics", group: "Components", description: "Metrics, charts, comparison views, and analytic workflows." },
-  { id: "product-patterns", label: "Recipes", group: "Patterns", description: "Working product compositions built from public whatiuse components." },
+  { id: "product-patterns", label: "Workflow", group: "Patterns", description: "Customer and billing workflows." },
+  { id: "collaboration-patterns", label: "Collaboration", group: "Patterns", description: "People, roles, and access." },
   { id: "component-status", label: "Status", group: "Project", description: "Maturity and release status for every component." },
   { id: "accessibility", label: "Accessibility", group: "Project", description: "Keyboard, focus, motion, contrast, and assistive technology." },
   { id: "browser-support", label: "Browser support", group: "Project", description: "Tested browsers, viewports, and release requirements." },
@@ -45,7 +46,7 @@ export const publicDocOutlines: Record<PublicDocId, readonly { id: string; label
   analytics: [
     { id: "renderer-family", label: "Primitives" },
     { id: "saas-overview", label: "SaaS Overview" },
-    { id: "product-usage", label: "Product Usage" },
+    { id: "product-usage", label: "Usage & Adoption" },
     { id: "conversion-retention", label: "Conversion & Retention" },
     { id: "analytics-layer", label: "Product primitives" },
     { id: "analytics-contract", label: "Composition contract" },
@@ -54,9 +55,13 @@ export const publicDocOutlines: Record<PublicDocId, readonly { id: string; label
   "product-patterns": [
     { id: "customer-workspace", label: "Customer Workspace" },
     { id: "billing-usage", label: "Billing & Usage" },
-    { id: "members-permissions", label: "Members & Permissions" },
     { id: "product-pattern-contract", label: "Composition contract" },
     { id: "product-pattern-install", label: "Install" },
+  ],
+  "collaboration-patterns": [
+    { id: "members-permissions", label: "Members & Permissions" },
+    { id: "collaboration-contract", label: "Composition contract" },
+    { id: "collaboration-install", label: "Install" },
   ],
   "agent-native": [
     { id: "agent-contract", label: "Machine contract" },
@@ -96,6 +101,7 @@ export const publicDocOutlines: Record<PublicDocId, readonly { id: string; label
     { id: "change-boundaries", label: "Change boundaries" },
   ],
   releases: [
+    { id: "current-candidate", label: "Current candidate" },
     { id: "version-policy", label: "Version policy" },
     { id: "release-evidence", label: "Release evidence" },
     { id: "package-candidate", label: "Package candidate" },

@@ -1,42 +1,42 @@
-.teum-project-field-preview,
-.teum-textarea-preview,
-.teum-assignee-preview {
+.whatiuse-project-field-preview,
+.whatiuse-textarea-preview,
+.whatiuse-assignee-preview {
   width: min(320px, 100%);
 }
 
-.teum-button-group-preview {
+.whatiuse-button-group-preview {
   display: flex;
   justify-content: center;
 }
 
-.teum-button-group-preview .teum-button:last-child {
+.whatiuse-button-group-preview .whatiuse-button:last-child {
   width: 30px;
   padding-inline: 0;
 }
 
-.teum-text-field-preview {
+.whatiuse-text-field-preview {
   width: min(280px, 100%);
 }
 
-.teum-text-field-preview__prefix {
-  color: var(--teum-fg-subtle);
+.whatiuse-text-field-preview__prefix {
+  color: var(--whatiuse-fg-subtle);
   font-variant-numeric: tabular-nums;
 }
 
-.teum-text-field-preview__valid {
+.whatiuse-text-field-preview__valid {
   width: 13px;
   height: 13px;
-  color: var(--teum-fg-muted);
+  color: var(--whatiuse-fg-muted);
 }
 
-.teum-textarea-preview .teum-textarea-field__meta { justify-content: flex-end; }
+.whatiuse-textarea-preview .whatiuse-textarea-field__meta { justify-content: flex-end; }
 
-.teum-component-search-preview {
+.whatiuse-component-search-preview {
   width: min(280px, 100%);
 }
 
 @media (max-width: 540px) {
-  .teum-text-field-preview {
+  .whatiuse-text-field-preview {
     gap: 10px;
   }
 }

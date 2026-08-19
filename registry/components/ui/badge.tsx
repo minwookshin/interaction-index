@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/components/badge.css";
 import { X } from "@phosphor-icons/react";
 import type { ComponentPropsWithRef, ReactNode } from "react";
@@ -25,11 +25,11 @@ export function Badge({
   ...props
 }: BadgeProps) {
   return (
-    <span className={cn("teum-badge", `teum-badge--${variant}`, className)} {...props}>
-      {leadingIcon && <span className="teum-badge__icon" aria-hidden="true">{leadingIcon}</span>}
-      <span className="teum-badge__label">{children}</span>
+    <span className={cn("whatiuse-badge", `whatiuse-badge--${variant}`, className)} {...props}>
+      {leadingIcon && <span className="whatiuse-badge__icon" aria-hidden="true">{leadingIcon}</span>}
+      <span className="whatiuse-badge__label">{children}</span>
       {removable && (
-        <button type="button" className="teum-badge__remove" aria-label={removeLabel} onClick={onRemove}>
+        <button type="button" className="whatiuse-badge__remove" aria-label={removeLabel} onClick={onRemove}>
           <X aria-hidden="true" />
         </button>
       )}

@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/patterns/product-pattern-recipes.css";
 import {
   ArrowSquareOut,
@@ -97,8 +97,8 @@ export function CustomerWorkspaceRecipe() {
   }));
 
   return (
-    <section className="teum-product-pattern" aria-label="Customer Workspace recipe">
-      <header className="teum-product-pattern__header">
+    <section className="whatiuse-product-pattern" aria-label="Customer Workspace recipe">
+      <header className="whatiuse-product-pattern__header">
         <div><span>Customer success</span><h3>Customer Workspace</h3><p>Account health, usage, and follow-up stay attached to one customer.</p></div>
         <Badge variant="outline">{visible.length} {visible.length === 1 ? "account" : "accounts"}</Badge>
       </header>
@@ -111,7 +111,7 @@ export function CustomerWorkspaceRecipe() {
       />
       {items.length ? (
         <SharedDetail
-          className="teum-product-pattern__customer-detail"
+          className="whatiuse-product-pattern__customer-detail"
           items={items}
           selectedId={items.some((item) => item.id === selectedId) ? selectedId : null}
           onSelectedIdChange={setSelectedId}
@@ -120,25 +120,25 @@ export function CustomerWorkspaceRecipe() {
           renderDetail={(item) => {
             const customer = customers.find((candidate) => candidate.id === item.id)!;
             const actionComplete = completedActions.includes(customer.id);
-            return <div className="teum-product-pattern__customer-body">
-              <div className="teum-product-pattern__customer-meta"><Badge variant={healthVariant(customer.health)}>{customer.health}</Badge><span>{customer.plan}</span><span>Renews {customer.renewal}</span></div>
-              <div className="teum-product-pattern__compact-metrics">
+            return <div className="whatiuse-product-pattern__customer-body">
+              <div className="whatiuse-product-pattern__customer-meta"><Badge variant={healthVariant(customer.health)}>{customer.health}</Badge><span>{customer.plan}</span><span>Renews {customer.renewal}</span></div>
+              <div className="whatiuse-product-pattern__compact-metrics">
                 <Metric label="Annual value" value={compactCurrency.format(customer.arr)} />
                 <Metric label="Adoption" value={`${customer.adoption}%`} context={`${Math.max(3, Math.round(customer.adoption / 8))} active teams`} />
               </div>
               <Progress label="Workspace adoption" value={customer.adoption} />
-              <Tabs defaultValue="overview" className="teum-product-pattern__inner-tabs">
+              <Tabs defaultValue="overview" className="whatiuse-product-pattern__inner-tabs">
                 <TabsList aria-label={`${customer.name} detail views`}><TabsTrigger value="overview">Overview</TabsTrigger><TabsTrigger value="activity">Activity</TabsTrigger></TabsList>
-                <TabsContent value="overview" className="teum-product-pattern__customer-panel">
-                  <dl className="teum-product-pattern__facts"><div><dt>Owner</dt><dd>{customer.owner}</dd></div><div><dt>Segment</dt><dd>{customer.segment}</dd></div><div><dt>Next action</dt><dd>{actionComplete ? "Complete" : customer.nextAction}</dd></div></dl>
+                <TabsContent value="overview" className="whatiuse-product-pattern__customer-panel">
+                  <dl className="whatiuse-product-pattern__facts"><div><dt>Owner</dt><dd>{customer.owner}</dd></div><div><dt>Segment</dt><dd>{customer.segment}</dd></div><div><dt>Next action</dt><dd>{actionComplete ? "Complete" : customer.nextAction}</dd></div></dl>
                   <Button size="small" variant={actionComplete ? "secondary" : "primary"} disabled={actionComplete} onClick={() => { setCompletedActions((current) => [...current, customer.id]); toast("Follow-up completed", { id: "product-pattern-feedback" }); }}>{actionComplete ? "Follow-up complete" : "Complete follow-up"}</Button>
                 </TabsContent>
-                <TabsContent value="activity" className="teum-product-pattern__customer-panel"><Timeline label={`${customer.name} activity`} items={customerEvents[customer.id]} /></TabsContent>
+                <TabsContent value="activity" className="whatiuse-product-pattern__customer-panel"><Timeline label={`${customer.name} activity`} items={customerEvents[customer.id]} /></TabsContent>
               </Tabs>
             </div>;
           }}
         />
-      ) : <div className="teum-product-pattern__empty" role="status"><strong>No matching accounts</strong><span>Change the query or customer filters.</span><Button size="small" variant="secondary" onClick={() => { setQuery(""); setFilters([]); }}>Clear filters</Button></div>}
+      ) : <div className="whatiuse-product-pattern__empty" role="status"><strong>No matching accounts</strong><span>Change the query or customer filters.</span><Button size="small" variant="secondary" onClick={() => { setQuery(""); setFilters([]); }}>Clear filters</Button></div>}
     </section>
   );
 }
@@ -169,27 +169,27 @@ export function BillingUsageRecipe() {
     { id: "date", header: "Date", accessor: "date", width: 160 },
     { id: "status", header: "Status", width: 96, cell: (invoice) => <Badge variant={invoice.status === "Paid" ? "success" : "warning"}>{invoice.status}</Badge> },
     { id: "amount", header: "Amount", accessor: "amount", align: "end", width: 110, cell: (invoice) => exactCurrency.format(invoice.amount) },
-    { id: "action", header: <span className="teum-sr-only">Download</span>, align: "end", width: 88, cell: (invoice) => <Button size="small" variant="ghost" leadingIcon={<DownloadSimple />} onClick={() => toast(`${invoice.id} downloaded`, { id: "product-pattern-feedback" })}>PDF</Button> },
+    { id: "action", header: <span className="whatiuse-sr-only">Download</span>, align: "end", width: 88, cell: (invoice) => <Button size="small" variant="ghost" leadingIcon={<DownloadSimple />} onClick={() => toast(`${invoice.id} downloaded`, { id: "product-pattern-feedback" })}>PDF</Button> },
   ], []);
 
   return (
-    <section className="teum-product-pattern" aria-label="Billing and Usage recipe">
-      <header className="teum-product-pattern__header">
+    <section className="whatiuse-product-pattern" aria-label="Billing and Usage recipe">
+      <header className="whatiuse-product-pattern__header">
         <div><span>Workspace billing</span><h3>Billing &amp; Usage</h3><p>Plan cost, product usage, and invoices share one billing period.</p></div>
         <SegmentedControl size="small" label="Billing period" value={period} onValueChange={(value) => value && setPeriod(value)} options={[{ value: "30d", label: "30D" }, { value: "90d", label: "90D" }]} />
       </header>
-      <div className="teum-product-pattern__billing-summary">
-        <div className="teum-product-pattern__plan"><span className="teum-product-pattern__plan-icon"><CreditCard aria-hidden="true" /></span><div><strong>Scale plan</strong><span>$2,400 base · Renews Sep 1</span></div><Button size="small" variant="secondary" onClick={() => setManageOpen(true)}>Manage plan</Button></div>
-        <div className="teum-product-pattern__compact-metrics teum-product-pattern__compact-metrics--three">
+      <div className="whatiuse-product-pattern__billing-summary">
+        <div className="whatiuse-product-pattern__plan"><span className="whatiuse-product-pattern__plan-icon"><CreditCard aria-hidden="true" /></span><div><strong>Scale plan</strong><span>$2,400 base · Renews Sep 1</span></div><Button size="small" variant="secondary" onClick={() => setManageOpen(true)}>Manage plan</Button></div>
+        <div className="whatiuse-product-pattern__compact-metrics whatiuse-product-pattern__compact-metrics--three">
           <Metric label="Current spend" value="$2,840" trend={{ value: "+4.6%", label: "vs last period", direction: "up" }} />
           <Metric label="API requests" value="4.2M" context="87% of included usage" visual={<Sparkline values={data.map((datum) => datum.values.requests)} decorative fill />} />
           <Metric label="Active seats" value="68 / 80" context="12 seats available" />
         </div>
       </div>
-      <Alert className="teum-product-pattern__usage-alert" title="API usage is at 87%" action={<Button size="small" variant="ghost" onClick={() => setManageOpen(true)}>Review limits</Button>}><span>Current growth reaches the included limit in about six days.</span></Alert>
-      <div className="teum-product-pattern__billing-grid">
+      <Alert className="whatiuse-product-pattern__usage-alert" title="API usage is at 87%" action={<Button size="small" variant="ghost" onClick={() => setManageOpen(true)}>Review limits</Button>}><span>Current growth reaches the included limit in about six days.</span></Alert>
+      <div className="whatiuse-product-pattern__billing-grid">
         <Chart title="API usage" description={`${period === "30d" ? "Thirty-day" : "Ninety-day"} usage against the included baseline.`} data={data} series={usageSeries} includeZero valueFormatter={(value) => `${value.toFixed(1)}M`} />
-        <aside className="teum-product-pattern__limits" aria-label="Plan limits">
+        <aside className="whatiuse-product-pattern__limits" aria-label="Plan limits">
           <strong>Plan limits</strong>
           <Progress label="API requests · 4.2M / 4.8M" value={4.2} max={4.8} />
           <Progress label="Seats · 68 / 80" value={68} max={80} />
@@ -197,8 +197,8 @@ export function BillingUsageRecipe() {
           <Goal label="Annual commitment" value={27_480} target={32_000} formatter={(value) => compactCurrency.format(value)} />
         </aside>
       </div>
-      <div className="teum-product-pattern__table-block"><div><strong>Invoices</strong><span>Paid by card ending 4242</span></div><DataTable ariaLabel="Billing invoices" data={invoices} columns={invoiceColumns} getRowId={(invoice) => invoice.id} paginate={false} /></div>
-      <Dialog open={manageOpen} onOpenChange={setManageOpen}><DialogContent><DialogHeader><DialogTitle>Review Scale plan</DialogTitle><DialogDescription>Compare the current limits before requesting a plan change.</DialogDescription></DialogHeader><dl className="teum-product-pattern__dialog-facts"><div><dt>Current</dt><dd>$2,400 / month</dd></div><div><dt>Included</dt><dd>4.8M requests · 80 seats</dd></div><div><dt>Renews</dt><dd>Sep 1, 2026</dd></div></dl><DialogFooter><Button variant="ghost" onClick={() => setManageOpen(false)}>Cancel</Button><Button variant="primary" leadingIcon={<ArrowSquareOut />} onClick={() => { setManageOpen(false); toast("Plan request opened", { id: "product-pattern-feedback" }); }}>Contact sales</Button></DialogFooter></DialogContent></Dialog>
+      <div className="whatiuse-product-pattern__table-block"><div><strong>Invoices</strong><span>Paid by card ending 4242</span></div><DataTable ariaLabel="Billing invoices" data={invoices} columns={invoiceColumns} getRowId={(invoice) => invoice.id} paginate={false} /></div>
+      <Dialog open={manageOpen} onOpenChange={setManageOpen}><DialogContent><DialogHeader><DialogTitle>Review Scale plan</DialogTitle><DialogDescription>Compare the current limits before requesting a plan change.</DialogDescription></DialogHeader><dl className="whatiuse-product-pattern__dialog-facts"><div><dt>Current</dt><dd>$2,400 / month</dd></div><div><dt>Included</dt><dd>4.8M requests · 80 seats</dd></div><div><dt>Renews</dt><dd>Sep 1, 2026</dd></div></dl><DialogFooter><Button variant="ghost" onClick={() => setManageOpen(false)}>Cancel</Button><Button variant="primary" leadingIcon={<ArrowSquareOut />} onClick={() => { setManageOpen(false); toast("Plan request opened", { id: "product-pattern-feedback" }); }}>Contact sales</Button></DialogFooter></DialogContent></Dialog>
     </section>
   );
 }
@@ -233,7 +233,7 @@ export function MembersPermissionsRecipe() {
     toast("Member role updated", { id: "product-pattern-feedback" });
   }, []);
   const memberColumns = useMemo<readonly DataTableColumn<Member>[]>(() => [
-    { id: "member", header: "Member", width: 250, cell: (member) => <span className="teum-product-pattern__member"><Avatar fallback={member.initials} size="small" status={member.status === "Active" ? "online" : "offline"} /><span><strong>{member.name}</strong><small>{member.email}</small></span></span> },
+    { id: "member", header: "Member", width: 250, cell: (member) => <span className="whatiuse-product-pattern__member"><Avatar fallback={member.initials} size="small" status={member.status === "Active" ? "online" : "offline"} /><span><strong>{member.name}</strong><small>{member.email}</small></span></span> },
     { id: "status", header: "Status", width: 100, cell: (member) => <Badge variant={member.status === "Active" ? "success" : "neutral"}>{member.status}</Badge> },
     { id: "role", header: "Role", width: 150, cell: (member) => <Select aria-label={`Role for ${member.name}`} options={roleOptions} value={member.role} onValueChange={(value) => value && updateRole(member.id, value as Member["role"])} /> },
   ], [updateRole]);
@@ -246,21 +246,21 @@ export function MembersPermissionsRecipe() {
   };
 
   return (
-    <section className="teum-product-pattern" aria-label="Members and Permissions recipe">
-      <header className="teum-product-pattern__header"><div><span>Workspace access</span><h3>Members &amp; Permissions</h3><p>Membership and role policy stay in one administrative task.</p></div><Badge variant="outline"><Users aria-hidden="true" /> {members.length} people</Badge></header>
-      <Tabs value={tab} onValueChange={(value) => setTab(value)} className="teum-product-pattern__admin-tabs">
-        <div className="teum-product-pattern__tabs-bar"><TabsList aria-label="Access management views"><TabsTrigger value="members">Members</TabsTrigger><TabsTrigger value="permissions">Permissions</TabsTrigger></TabsList><Button size="small" variant="primary" leadingIcon={<UserPlus />} onClick={() => setInviteOpen(true)}>Invite member</Button></div>
-        <TabsContent value="members" className="teum-product-pattern__stable-panel">
+    <section className="whatiuse-product-pattern" aria-label="Members and Permissions recipe">
+      <header className="whatiuse-product-pattern__header"><div><span>Workspace access</span><h3>Members &amp; Permissions</h3><p>Membership and role policy stay in one administrative task.</p></div><Badge variant="outline"><Users aria-hidden="true" /> {members.length} people</Badge></header>
+      <Tabs value={tab} onValueChange={(value) => setTab(value)} className="whatiuse-product-pattern__admin-tabs">
+        <div className="whatiuse-product-pattern__tabs-bar"><TabsList aria-label="Access management views"><TabsTrigger value="members">Members</TabsTrigger><TabsTrigger value="permissions">Permissions</TabsTrigger></TabsList><Button size="small" variant="primary" leadingIcon={<UserPlus />} onClick={() => setInviteOpen(true)}>Invite member</Button></div>
+        <TabsContent value="members" className="whatiuse-product-pattern__stable-panel">
           <DataToolbar label="Member controls" start={<><SearchInput label="Search members" placeholder="Search people…" value={query} onChange={(event) => setQuery(event.target.value)} onClear={() => setQuery("")} /><FilterBuilder fields={memberFilterFields} filters={filters} onFiltersChange={setFilters} /></>} />
           <DataTable ariaLabel="Workspace members" data={visibleMembers} columns={memberColumns} getRowId={(member) => member.id} paginate={false} emptyTitle="No matching members" emptyDescription="Change the query or role filters." />
         </TabsContent>
-        <TabsContent value="permissions" className="teum-product-pattern__stable-panel">
-          <div className="teum-product-pattern__permission-heading"><div><strong>Role permissions</strong><span>Changes apply to everyone with that role.</span></div><Badge variant="outline"><ShieldCheck aria-hidden="true" /> Workspace policy</Badge></div>
-          <div className="teum-product-pattern__permission-scroll" role="region" aria-label="Role permissions table" tabIndex={0}><table><thead><tr><th scope="col">Capability</th>{roleOptions.map((role) => <th scope="col" key={role.value}>{role.label}</th>)}</tr></thead><tbody>{permissionLabels.map((permission, permissionIndex) => <tr key={permission}><th scope="row">{permission}</th>{roleOptions.map((role) => { const roleName = role.value as Member["role"]; const locked = roleName === "Owner"; return <td key={role.value}><Checkbox aria-label={`${permission} for ${role.label}`} checked={permissions[roleName][permissionIndex]} disabled={locked} onCheckedChange={(checked) => setPermissions((current) => ({ ...current, [roleName]: current[roleName].map((value, index) => index === permissionIndex ? checked === true : value) }))} /></td>; })}</tr>)}</tbody></table></div>
+        <TabsContent value="permissions" className="whatiuse-product-pattern__stable-panel">
+          <div className="whatiuse-product-pattern__permission-heading"><div><strong>Role permissions</strong><span>Changes apply to everyone with that role.</span></div><Badge variant="outline"><ShieldCheck aria-hidden="true" /> Workspace policy</Badge></div>
+          <div className="whatiuse-product-pattern__permission-scroll" role="region" aria-label="Role permissions table" tabIndex={0}><table><thead><tr><th scope="col">Capability</th>{roleOptions.map((role) => <th scope="col" key={role.value}>{role.label}</th>)}</tr></thead><tbody>{permissionLabels.map((permission, permissionIndex) => <tr key={permission}><th scope="row">{permission}</th>{roleOptions.map((role) => { const roleName = role.value as Member["role"]; const locked = roleName === "Owner"; return <td key={role.value}><Checkbox aria-label={`${permission} for ${role.label}`} checked={permissions[roleName][permissionIndex]} disabled={locked} onCheckedChange={(checked) => setPermissions((current) => ({ ...current, [roleName]: current[roleName].map((value, index) => index === permissionIndex ? checked === true : value) }))} /></td>; })}</tr>)}</tbody></table></div>
           <Alert title="Owner access is protected" icon={<ShieldCheck weight="fill" />}><span>Owner permissions stay enabled so the workspace always has a recoverable administrator.</span></Alert>
         </TabsContent>
       </Tabs>
-      <Dialog open={inviteOpen} onOpenChange={(open) => { setInviteOpen(open); if (!open) setInviteEmail(""); }}><DialogContent><DialogHeader><DialogTitle>Invite a workspace member</DialogTitle><DialogDescription>Choose a role before the invitation is sent.</DialogDescription></DialogHeader><div className="teum-product-pattern__invite-form"><TextField label="Work email" type="email" value={inviteEmail} leading={<EnvelopeSimple />} placeholder="name@company.com" onChange={(event) => setInviteEmail(event.target.value)} error={inviteEmail && members.some((member) => member.email.toLocaleLowerCase() === inviteEmail.toLocaleLowerCase()) ? "This person is already in the workspace." : undefined} /><Select label="Role" options={roleOptions} value={inviteRole} onValueChange={(value) => value && setInviteRole(value as Member["role"])} /></div><DialogFooter><Button variant="ghost" onClick={() => setInviteOpen(false)}>Cancel</Button><Button variant="primary" leadingIcon={<Plus />} disabled={!inviteEmail.includes("@") || members.some((member) => member.email.toLocaleLowerCase() === inviteEmail.toLocaleLowerCase())} onClick={invite}>Send invitation</Button></DialogFooter></DialogContent></Dialog>
+      <Dialog open={inviteOpen} onOpenChange={(open) => { setInviteOpen(open); if (!open) setInviteEmail(""); }}><DialogContent><DialogHeader><DialogTitle>Invite a workspace member</DialogTitle><DialogDescription>Choose a role before the invitation is sent.</DialogDescription></DialogHeader><div className="whatiuse-product-pattern__invite-form"><TextField label="Work email" type="email" value={inviteEmail} leading={<EnvelopeSimple />} placeholder="name@company.com" onChange={(event) => setInviteEmail(event.target.value)} error={inviteEmail && members.some((member) => member.email.toLocaleLowerCase() === inviteEmail.toLocaleLowerCase()) ? "This person is already in the workspace." : undefined} /><Select label="Role" options={roleOptions} value={inviteRole} onValueChange={(value) => value && setInviteRole(value as Member["role"])} /></div><DialogFooter><Button variant="ghost" onClick={() => setInviteOpen(false)}>Cancel</Button><Button variant="primary" leadingIcon={<Plus />} disabled={!inviteEmail.includes("@") || members.some((member) => member.email.toLocaleLowerCase() === inviteEmail.toLocaleLowerCase())} onClick={invite}>Send invitation</Button></DialogFooter></DialogContent></Dialog>
     </section>
   );
 }

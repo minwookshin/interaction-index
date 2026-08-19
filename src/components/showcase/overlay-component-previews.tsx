@@ -83,7 +83,7 @@ export function FavoriteTooltipPreview() {
   const label = favorite ? "Remove from favorites" : "Add to favorites";
 
   return (
-    <div className="teum-tooltip-preview" data-favorite={favorite || undefined}>
+    <div className="whatiuse-tooltip-preview" data-favorite={favorite || undefined}>
       <Tooltip>
         <TooltipTrigger
           render={(
@@ -99,7 +99,7 @@ export function FavoriteTooltipPreview() {
         />
         <TooltipContent>{label} <kbd>F</kbd></TooltipContent>
       </Tooltip>
-      <span className="teum-sr-only" role="status" aria-live="polite">
+      <span className="whatiuse-sr-only" role="status" aria-live="polite">
         {favorite ? "Added to favorites" : ""}
       </span>
     </div>
@@ -110,7 +110,7 @@ export function ViewOptionsPopoverPreview() {
   const [showContracts, setShowContracts] = useState(true);
 
   return (
-    <section className="product-context product-context--toolbar teum-view-options-preview" aria-label="Component view options example">
+    <section className="product-context product-context--toolbar whatiuse-view-options-preview" aria-label="Component view options example">
       <div className="product-context__identity">
         <span className="product-context__icon"><Rows aria-hidden="true" /></span>
         <div>
@@ -120,9 +120,9 @@ export function ViewOptionsPopoverPreview() {
       </div>
       <Popover>
         <PopoverTrigger render={<Button variant="secondary" size="small" trailingIcon={<CaretDown />}>View</Button>} />
-        <PopoverContent className="teum-popover--compact teum-view-options-preview__popover" side="bottom" align="end">
+        <PopoverContent className="whatiuse-popover--compact whatiuse-view-options-preview__popover" side="bottom" align="end">
           <div className="popover-copy"><PopoverTitle>View options</PopoverTitle></div>
-          <div className="teum-view-options-preview__setting">
+          <div className="whatiuse-view-options-preview__setting">
             <Switch label="Show contracts" checked={showContracts} onCheckedChange={setShowContracts} />
           </div>
         </PopoverContent>
@@ -138,14 +138,14 @@ export function IssueContextMenuPreview() {
 
   return (
     <ContextMenu>
-      <ContextMenuTrigger className="context-menu-demo-card context-menu-demo-card--primary teum-context-menu-preview">
+      <ContextMenuTrigger className="context-menu-demo-card context-menu-demo-card--primary whatiuse-context-menu-preview">
         <span className="product-context__icon"><Rows aria-hidden="true" /></span>
         <span>
           <strong>Motion contract</strong>
           <small>{message || (archived ? "Archived" : following ? "Following · Shift + F10" : "Shift + F10")}</small>
         </span>
         {archived && <Check aria-label="Archived" weight="bold" />}
-        <span className="teum-sr-only" role="status" aria-live="polite">{message}</span>
+        <span className="whatiuse-sr-only" role="status" aria-live="polite">{message}</span>
       </ContextMenuTrigger>
       <ContextMenuContent aria-label="Issue context menu">
         <ContextMenuLabel>Issue</ContextMenuLabel>
@@ -154,7 +154,7 @@ export function IssueContextMenuPreview() {
           closeOnClick={false}
           onCheckedChange={(checked) => setFollowing(checked === true)}
         >
-          <span className="teum-overlay-preview__menu-copy"><Bell />Follow</span>
+          <span className="whatiuse-overlay-preview__menu-copy"><Bell />Follow</span>
         </ContextMenuCheckboxItem>
         <ContextMenuSeparator />
         <ContextMenuItem onClick={() => showMessage("Issue duplicated")}><Copy />Duplicate</ContextMenuItem>
@@ -162,7 +162,7 @@ export function IssueContextMenuPreview() {
           <Archive />{archived ? "Restore" : "Archive"}
         </ContextMenuItem>
         <ContextMenuSeparator />
-        <ContextMenuItem className="teum-menu__item--danger" onClick={() => showMessage("Delete requires confirmation")}><Trash />Delete</ContextMenuItem>
+        <ContextMenuItem className="whatiuse-menu__item--danger" onClick={() => showMessage("Delete requires confirmation")}><Trash />Delete</ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
   );
@@ -192,7 +192,7 @@ export function IssuePropertiesSheetPreview() {
   };
 
   return (
-    <section className="product-context product-context--toolbar teum-sheet-preview" aria-label="Issue property panel example">
+    <section className="product-context product-context--toolbar whatiuse-sheet-preview" aria-label="Issue property panel example">
       <div className="product-context__identity">
         <span className="product-context__icon"><Rows aria-hidden="true" /></span>
         <div>
@@ -221,7 +221,7 @@ export function IssuePropertiesSheetPreview() {
           </SheetFooter>
         </SheetContent>
       </Sheet>
-      <span className="teum-sr-only" role="status" aria-live="polite">{message}</span>
+      <span className="whatiuse-sr-only" role="status" aria-live="polite">{message}</span>
     </section>
   );
 }
@@ -232,19 +232,19 @@ export function DiscardDraftAlertPreview() {
 
   if (!draftPresent) {
     return (
-      <section className="product-context product-context--toolbar teum-alert-dialog-preview" aria-label="Discarded draft example">
+      <section className="product-context product-context--toolbar whatiuse-alert-dialog-preview" aria-label="Discarded draft example">
         <div className="product-context__identity">
           <span className="product-context__icon"><Package aria-hidden="true" /></span>
           <div><strong>Component draft</strong><span>{message || "Discarded"}</span></div>
         </div>
         <Button variant="secondary" size="small" onClick={() => { setDraftPresent(true); showMessage("Draft restored"); }}>Restore</Button>
-        <span className="teum-sr-only" role="status" aria-live="polite">{message}</span>
+        <span className="whatiuse-sr-only" role="status" aria-live="polite">{message}</span>
       </section>
     );
   }
 
   return (
-    <section className="product-context product-context--toolbar teum-alert-dialog-preview" aria-label="Component draft example">
+    <section className="product-context product-context--toolbar whatiuse-alert-dialog-preview" aria-label="Component draft example">
       <div className="product-context__identity">
         <span className="product-context__icon"><Package aria-hidden="true" /></span>
         <div><strong>Component draft</strong><span>{message || "Unpublished changes"}</span></div>
@@ -259,7 +259,7 @@ export function DiscardDraftAlertPreview() {
           <AlertDialogFooter>
             <AlertDialogClose render={<Button variant="ghost" />}>Keep draft</AlertDialogClose>
             <AlertDialogClose
-              render={<Button className="teum-overlay-preview__danger-button" variant="primary" />}
+              render={<Button className="whatiuse-overlay-preview__danger-button" variant="primary" />}
               onClick={() => { setDraftPresent(false); showMessage("Draft discarded"); }}
             >
               Discard
@@ -267,7 +267,7 @@ export function DiscardDraftAlertPreview() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-      <span className="teum-sr-only" role="status" aria-live="polite">{message}</span>
+      <span className="whatiuse-sr-only" role="status" aria-live="polite">{message}</span>
     </section>
   );
 }

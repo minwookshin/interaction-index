@@ -1,0 +1,17 @@
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
+
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
+
+@layer whatiuse.components {
+.whatiuse-data-group-menu {
+  display: inline-flex;
+  min-width: 0;
+  vertical-align: middle;
+}
+
+.whatiuse-data-group-menu__menu { min-width: 208px; }
+
+.whatiuse-data-group-menu__menu .whatiuse-menu__item > span:first-child { gap: 7px; }
+
+.whatiuse-data-group-menu__menu .whatiuse-menu__item svg { width: 13px; height: 13px; color: var(--whatiuse-fg-subtle); }
+}

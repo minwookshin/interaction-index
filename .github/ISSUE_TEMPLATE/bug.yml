@@ -5,12 +5,12 @@ labels: [bug, needs-triage]
 body:
   - type: markdown
     attributes:
-      value: Thanks for helping improve Teum. Security issues must use a private repository advisory.
+      value: Thanks for helping improve whatiuse. Security issues must use a private repository advisory.
   - type: input
     id: component
     attributes:
       label: Component or area
-      placeholder: Shared Detail, registry install, documentation shell…
+      placeholder: Button, registry install, documentation…
     validations:
       required: true
   - type: textarea

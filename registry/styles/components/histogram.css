@@ -1,0 +1,26 @@
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
+
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
+
+@layer whatiuse.components {
+.whatiuse-histogram { min-width: 0; }
+
+.whatiuse-histogram__plot { position: relative; width: 100%; height: 100%; outline: 0; }
+
+.whatiuse-histogram__plot:focus-visible { box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--whatiuse-focus-control) 42%, transparent); }
+
+.whatiuse-histogram__plot svg { display: block; width: 100%; height: 100%; overflow: visible; }
+
+.whatiuse-histogram__grid line { stroke: color-mix(in oklch, var(--whatiuse-separator) 72%, transparent); stroke-width: 1; vector-effect: non-scaling-stroke; }
+
+.whatiuse-histogram__grid text,
+.whatiuse-histogram__x-axis text { fill: var(--whatiuse-fg-subtle); font-size: 9px; }
+
+.whatiuse-histogram__grid text { text-anchor: end; dominant-baseline: middle; }
+
+.whatiuse-histogram__bars rect { fill: color-mix(in oklch, var(--whatiuse-fg-default) 72%, var(--whatiuse-bg-surface)); }
+
+.whatiuse-histogram__bars rect:not([data-active]) { opacity: .48; }
+
+.whatiuse-histogram__bars rect[data-active] { opacity: 1; }
+}

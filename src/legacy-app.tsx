@@ -16,7 +16,7 @@ function readView(): ViewId {
 export default function LegacyApp() {
   const [view, setView] = useState<ViewId>(readView);
   const [theme, setTheme] = useState<Theme>(() => {
-    const storedTheme = window.localStorage.getItem("teum-theme") ?? window.localStorage.getItem("index-ui-theme");
+    const storedTheme = window.localStorage.getItem("whatiuse-theme") ?? window.localStorage.getItem("index-ui-theme");
     return storedTheme === "dark" ? "dark" : "light";
   });
 
@@ -40,7 +40,7 @@ export default function LegacyApp() {
   useLayoutEffect(() => {
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
-    window.localStorage.setItem("teum-theme", theme);
+    window.localStorage.setItem("whatiuse-theme", theme);
   }, [theme]);
 
   useEffect(() => {

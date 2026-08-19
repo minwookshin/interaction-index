@@ -1,0 +1,23 @@
+/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
+
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
+
+@layer whatiuse.components {
+.whatiuse-cursor-pagination {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: auto minmax(48px, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.whatiuse-cursor-pagination__range {
+  overflow: hidden;
+  color: var(--whatiuse-fg-subtle);
+  font-size: var(--whatiuse-type-metadata);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+}

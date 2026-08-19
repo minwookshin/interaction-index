@@ -1,9 +1,9 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-filter-builder {
+@layer whatiuse.components {
+.whatiuse-filter-builder {
   display: flex;
   min-width: 0;
   flex-wrap: wrap;
@@ -11,47 +11,48 @@
   gap: 6px;
 }
 
-.teum-filter-builder__count {
-  display: grid;
+.whatiuse-filter-builder__count {
+  display: inline-grid;
   min-width: 17px;
   height: 17px;
   place-items: center;
+  margin-inline-start: 4px;
   padding-inline: 4px;
   border-radius: 999px;
-  background: var(--teum-selected);
-  color: var(--teum-fg-default);
+  background: var(--whatiuse-selected);
+  color: var(--whatiuse-fg-default);
   font-size: 10px;
   font-variant-numeric: tabular-nums;
 }
 
-.teum-filter-builder__popover { width: min(360px, calc(100vw - 24px)); }
+.whatiuse-filter-builder__popover { width: min(360px, calc(100vw - 24px)); }
 
-.teum-filter-builder__heading {
+.whatiuse-filter-builder__heading {
   display: grid;
   gap: 2px;
   margin-bottom: 12px;
 }
 
-.teum-filter-builder__heading strong { font-size: var(--teum-type-ui); font-weight: 600; }
+.whatiuse-filter-builder__heading strong { font-size: var(--whatiuse-type-ui); font-weight: 600; }
 
-.teum-filter-builder__heading span { color: var(--teum-fg-subtle); font-size: var(--teum-type-metadata); }
+.whatiuse-filter-builder__heading span { color: var(--whatiuse-fg-subtle); font-size: var(--whatiuse-type-metadata); }
 
-.teum-filter-builder__form {
+.whatiuse-filter-builder__form {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(88px, .72fr);
   gap: 9px;
 }
 
-.teum-filter-builder__form .teum-field:last-child { grid-column: 1 / -1; }
+.whatiuse-filter-builder__form .whatiuse-field:last-child { grid-column: 1 / -1; }
 
-.teum-filter-builder__actions {
+.whatiuse-filter-builder__actions {
   display: flex;
   justify-content: flex-end;
   gap: 6px;
   margin-top: 14px;
 }
 
-.teum-filter-builder__clear {
+.whatiuse-filter-builder__clear {
   display: inline-flex;
   height: 26px;
   align-items: center;
@@ -60,16 +61,53 @@
   border: 0;
   border-radius: 5px;
   background: transparent;
-  color: var(--teum-fg-subtle);
+  color: var(--whatiuse-fg-subtle);
   font: inherit;
-  font-size: var(--teum-type-metadata);
+  font-size: var(--whatiuse-type-metadata);
   cursor: pointer;
-  transition: color var(--teum-hover-duration), background-color var(--teum-hover-duration);
+  transition: color var(--whatiuse-hover-duration), background-color var(--whatiuse-hover-duration);
 }
 
-.teum-filter-builder__clear svg { width: 11px; height: 11px; }
+.whatiuse-filter-builder__clear svg { width: 11px; height: 11px; }
 
 @media (hover: hover) and (pointer: fine) {
-.teum-filter-builder__clear:hover { background: var(--teum-hover); color: var(--teum-fg-default); }
+.whatiuse-filter-builder__clear:hover { background: var(--whatiuse-hover); color: var(--whatiuse-fg-default); }
 }
+
+.whatiuse-filter-builder { gap: 5px; }
+
+.whatiuse-filter-builder__count {
+    min-width: 15px;
+    height: 15px;
+    padding-inline: 3px;
+    background: color-mix(in oklch, var(--whatiuse-fg-default) 8%, transparent);
+    font-size: 9.5px;
+  }
+
+.whatiuse-filter-builder__popover { width: min(332px, calc(100vw - 24px)); }
+
+.whatiuse-filter-builder__heading { margin-bottom: 9px; }
+
+.whatiuse-filter-builder__heading strong { font-size: var(--whatiuse-type-label); font-weight: 600; }
+
+.whatiuse-filter-builder__heading span { color: var(--whatiuse-fg-danger); }
+
+.whatiuse-filter-builder__form {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+.whatiuse-filter-builder__form .whatiuse-field:last-child { grid-column: auto; }
+
+.whatiuse-filter-builder__actions { gap: 4px; margin-top: 10px; }
+
+.whatiuse-filter-builder > .whatiuse-badge {
+    height: 28px;
+    padding-inline: 8px 6px;
+    border-color: transparent;
+    border-radius: 7px;
+    background: color-mix(in oklch, var(--whatiuse-fg-default) 6%, transparent);
+    color: var(--whatiuse-fg-default);
+    font-weight: 500;
+  }
 }

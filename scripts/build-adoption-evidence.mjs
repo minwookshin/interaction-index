@@ -4,7 +4,6 @@ import { resolve } from "node:path";
 const root = process.cwd();
 const checkOnly = process.argv.includes("--check");
 const jsonPath = resolve(root, "release/adoption-dx.json");
-const markdownPath = resolve(root, "release/adoption-dx.md");
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), "utf8"));
 const packageJson = await readJson("package.json");
 const vite = await readJson("release/quickstart.json");
@@ -48,21 +47,17 @@ const value = {
   },
   claimBoundary: "Repository-owned automated journeys are under ten minutes. No independent first-time-user timing, external adoption, deployment, or publication is claimed.",
 };
-const markdown = `# Teum Adoption DX\n\nCandidate: \`${value.version}\`\n\nStatus: locally verified; unpublished and not deployed\n\n## Verified journeys\n\n| Journey | Result | Elapsed |\n| --- | --- | ---: |\n| Vite + React 18 | install, semantic override, theme, typecheck, build | ${(value.journeys.viteReact18.elapsedMs / 1000).toFixed(1)}s |\n| Vite + React 19 | install, semantic override, theme, typecheck, build | ${(value.journeys.viteReact19.elapsedMs / 1000).toFixed(1)}s |\n| Next.js ${value.journeys.nextAppRouter.version} App Router | install, client boundary, theme, typecheck, build | ${(value.journeys.nextAppRouter.elapsedMs / 1000).toFixed(1)}s |\n| Reviewed registry update | dry-run, file diff, explicit acceptance, rebuild | ${(value.journeys.reviewedUpdate.elapsedMs / 1000).toFixed(1)}s |\n\n## Claim boundary\n\n${value.claimBoundary}\n`;
-
 const stable = (input) => {
   const { generatedAt: _generatedAt, ...rest } = input;
   return rest;
 };
 if (checkOnly) {
   const current = await readJson("release/adoption-dx.json").catch(() => null);
-  const currentMarkdown = await readFile(markdownPath, "utf8").catch(() => null);
-  if (!current || JSON.stringify(stable(current)) !== JSON.stringify(stable(value)) || currentMarkdown !== markdown) {
+  if (!current || JSON.stringify(stable(current)) !== JSON.stringify(stable(value))) {
     fail("generated adoption evidence is stale; run npm run build:adoption");
   }
   console.log(`[adoption-evidence] verified ${packageJson.version}`);
 } else {
   await writeFile(jsonPath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
-  await writeFile(markdownPath, markdown, "utf8");
   console.log(`[adoption-evidence] wrote ${packageJson.version}`);
 }

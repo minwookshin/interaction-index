@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/patterns/data-recipes.css";
 import { ArrowsClockwise } from "@phosphor-icons/react";
 import { useEffect, useMemo, useState } from "react";
@@ -199,7 +199,7 @@ export function CustomerDirectoryRecipe() {
     parameterPrefix: "customers-",
   });
   const { views, saveView, updateView, removeView } = useSavedViews({
-    storageKey: "teum:data:customer-views:v1",
+    storageKey: "whatiuse:data:customer-views:v1",
     systemViews: customerSystemViews,
     onStorageError: () => toast("Saved views are unavailable", { id: "customer-view-storage" }),
   });
@@ -229,8 +229,8 @@ export function CustomerDirectoryRecipe() {
   };
 
   return (
-    <section className="teum-data-recipe" aria-label="Customer Directory recipe">
-      <header className="teum-data-recipe__header"><div><h3>Customer Directory</h3><p>Accounts and renewals</p></div><small>{result.rowCount.toLocaleString()} matches</small></header>
+    <section className="whatiuse-data-recipe" aria-label="Customer Directory recipe">
+      <header className="whatiuse-data-recipe__header"><div><h3>Customer Directory</h3><p>Accounts and renewals</p></div><small>{result.rowCount.toLocaleString()} matches</small></header>
       <DataToolbar
         label="Customer data controls"
         start={<>
@@ -285,7 +285,7 @@ export function CustomerDirectoryRecipe() {
         emptyTitle="No customers match"
         emptyDescription="Change the query, filters, or renewal range."
       />
-      <div className="teum-data-recipe__bulk-slot">
+      <div className="whatiuse-data-recipe__bulk-slot">
         <BulkActionBar
           count={selectedRowIds.length}
           noun="customer"
@@ -354,8 +354,8 @@ export function AuditLogRecipe() {
   };
 
   return (
-    <section className="teum-data-recipe" aria-label="Audit Log recipe">
-      <header className="teum-data-recipe__header"><div><h3>Audit Log</h3><p>Workspace activity</p></div><small>{filtered.length.toLocaleString()} events</small></header>
+    <section className="whatiuse-data-recipe" aria-label="Audit Log recipe">
+      <header className="whatiuse-data-recipe__header"><div><h3>Audit Log</h3><p>Workspace activity</p></div><small>{filtered.length.toLocaleString()} events</small></header>
       <DataToolbar
         label="Audit log controls"
         start={<>

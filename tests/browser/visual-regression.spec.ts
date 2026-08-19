@@ -13,7 +13,7 @@ async function choosePreviewState(page: Page, label: string) {
 
 test("public entry remains visually stable in light and dark", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1, name: "Components for product interfaces." })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "components i use." })).toBeVisible();
   await expect(page).toHaveScreenshot("landing-light.png", { animations: "disabled", fullPage: false });
 
   await page.getByRole("button", { name: "Switch to dark theme" }).click();

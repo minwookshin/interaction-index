@@ -1,45 +1,45 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-search { display: flex; width: 100%; min-width: 220px; height: 32px; align-items: center; gap: 7px; padding: 0 8px; border: 1px solid var(--teum-border); border-radius: var(--teum-radius-sm); background: var(--teum-control-surface); box-shadow: var(--teum-shadow-control); transition: border-color var(--teum-hover-duration) ease, box-shadow var(--teum-hover-duration) ease; }
+@layer whatiuse.components {
+.whatiuse-search { display: flex; width: 100%; min-width: 220px; height: 32px; align-items: center; gap: 7px; padding: 0 8px; border: 1px solid var(--whatiuse-border); border-radius: var(--whatiuse-radius-sm); background: var(--whatiuse-control-surface); box-shadow: var(--whatiuse-shadow-control); transition: border-color var(--whatiuse-hover-duration) ease, box-shadow var(--whatiuse-hover-duration) ease; }
 
-.teum-search__icon { width: 14px; height: 14px; color: var(--teum-ink-tertiary); }
+.whatiuse-search__icon { width: 14px; height: 14px; color: var(--whatiuse-ink-tertiary); }
 
-.teum-search__spinner { width: 13px; height: 13px; }
+.whatiuse-search__spinner { width: 13px; height: 13px; }
 
-.teum-search input { min-width: 0; height: 100%; flex: 1; border: 0; outline: 0; background: transparent; color: var(--teum-ink); font: inherit; font-size: var(--teum-type-ui); -webkit-appearance: none; appearance: none; }
+.whatiuse-search input { min-width: 0; height: 100%; flex: 1; border: 0; outline: 0; background: transparent; color: var(--whatiuse-ink); font: inherit; font-size: var(--whatiuse-type-ui); -webkit-appearance: none; appearance: none; }
 
-.teum-search input::-webkit-search-cancel-button { display: none; }
+.whatiuse-search input::-webkit-search-cancel-button { display: none; }
 
-.teum-search input::placeholder { color: var(--teum-ink-tertiary); }
+.whatiuse-search input::placeholder { color: var(--whatiuse-ink-tertiary); }
 
-.teum-search button { display: grid; width: 24px; height: 24px; flex: 0 0 24px; place-items: center; border: 0; border-radius: 5px; background: transparent; color: var(--teum-ink-tertiary); cursor: pointer; }
+.whatiuse-search button { display: grid; width: 24px; height: 24px; flex: 0 0 24px; place-items: center; border: 0; border-radius: 5px; background: transparent; color: var(--whatiuse-ink-tertiary); cursor: pointer; }
 
-.teum-search button svg { width: 12px; height: 12px; }
+.whatiuse-search button svg { width: 12px; height: 12px; }
 
-.teum-search kbd { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; color: var(--teum-ink-tertiary); font-size: 10px; line-height: 1; white-space: nowrap; }
+.whatiuse-search kbd { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; color: var(--whatiuse-ink-tertiary); font-size: 10px; line-height: 1; white-space: nowrap; }
 
 @media (hover: hover) and (pointer: fine) {
-.teum-search button:hover { background: var(--teum-hover); color: var(--teum-ink); }
+.whatiuse-search button:hover { background: var(--whatiuse-hover); color: var(--whatiuse-ink); }
 
-.teum-search:hover { border-color: var(--teum-border-strong); }
+.whatiuse-search:hover { border-color: var(--whatiuse-border-strong); }
 }
 
-.teum-search input:focus-visible { outline: 0; }
+.whatiuse-search input:focus-visible { outline: 0; }
 
-.teum-spinner { width: 13px; height: 13px; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: teum-spin 0.75s linear infinite; }
+.whatiuse-spinner { width: 13px; height: 13px; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: whatiuse-spin 0.75s linear infinite; }
 
-.teum-search button { transition: color var(--teum-hover-duration), background-color var(--teum-hover-duration), transform var(--teum-press-duration) var(--teum-ease-out); }
+.whatiuse-search button { transition: color var(--whatiuse-hover-duration), background-color var(--whatiuse-hover-duration), transform var(--whatiuse-press-duration) var(--whatiuse-ease-out); }
 
-.teum-search button:active { transform: scale(.96); }
+.whatiuse-search button:active { transform: scale(.96); }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-search button:active { transform: none; }
+.whatiuse-search button:active { transform: none; }
 
-.teum-spinner { animation-duration: 2.4s; }
+.whatiuse-spinner { animation-duration: 2.4s; }
 }
 
-@keyframes teum-spin { to { transform: rotate(360deg); } }
+@keyframes whatiuse-spin { to { transform: rotate(360deg); } }
 }

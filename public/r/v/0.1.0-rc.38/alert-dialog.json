@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-dialog",
+  "title": "Alert Dialog",
+  "description": "Explicit modal response for consequential or irreversible actions.",
+  "dependencies": [
+    "@base-ui/react@1.7.0"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/alert-dialog.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/alert-dialog.css\";\nimport { AlertDialog as AlertDialogPrimitive } from \"@base-ui/react/alert-dialog\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport const AlertDialog = AlertDialogPrimitive.Root;\nexport const AlertDialogTrigger = AlertDialogPrimitive.Trigger;\nexport const AlertDialogClose = AlertDialogPrimitive.Close;\nexport const AlertDialogTitle = AlertDialogPrimitive.Title;\nexport const AlertDialogDescription = AlertDialogPrimitive.Description;\n\nexport function AlertDialogContent({ className, children, ...props }: AlertDialogPrimitive.Popup.Props) {\n  return (\n    <AlertDialogPrimitive.Portal>\n      <AlertDialogPrimitive.Backdrop className=\"whatiuse-dialog__backdrop\" />\n      <AlertDialogPrimitive.Viewport className=\"whatiuse-alert-dialog__viewport\">\n        <AlertDialogPrimitive.Popup className={cn(\"whatiuse-dialog\", \"whatiuse-alert-dialog\", className)} {...props} data-layer=\"modal\">\n          {children}\n        </AlertDialogPrimitive.Popup>\n      </AlertDialogPrimitive.Viewport>\n    </AlertDialogPrimitive.Portal>\n  );\n}\n\nexport function AlertDialogHeader({ className, ...props }: ComponentPropsWithRef<\"div\">) {\n  return <div className={cn(\"whatiuse-dialog__header\", className)} {...props} />;\n}\n\nexport function AlertDialogFooter({ className, ...props }: ComponentPropsWithRef<\"div\">) {\n  return <div className={cn(\"whatiuse-dialog__footer\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/alert-dialog.tsx"
+    },
+    {
+      "path": "registry/styles/components/alert-dialog.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-dialog__backdrop { position: fixed; inset: 0; z-index: var(--whatiuse-layer-modal-backdrop); background: var(--whatiuse-bg-scrim); backdrop-filter: blur(1.5px); transition: opacity var(--whatiuse-enter-duration) var(--whatiuse-ease-out); }\n\n.whatiuse-dialog__backdrop[data-starting-style],\n.whatiuse-dialog__backdrop[data-ending-style] { opacity: 0; }\n\n.whatiuse-dialog__backdrop[data-ending-style] { transition-duration: var(--whatiuse-exit-duration); }\n\n.whatiuse-dialog { position: fixed; z-index: var(--whatiuse-layer-modal); top: 50%; left: 50%; width: min(390px, calc(100vw - 32px)); padding: 16px; border-radius: var(--whatiuse-radius-overlay); background: var(--whatiuse-bg-modal); box-shadow: var(--whatiuse-shadow-modal); outline: 0; transform: translate(-50%, -50%); transition: opacity var(--whatiuse-enter-duration) var(--whatiuse-ease-out), transform var(--whatiuse-enter-duration) var(--whatiuse-ease-out); }\n\n.whatiuse-dialog[data-starting-style] { opacity: 0; transform: translate(-50%, calc(-50% + 2px)) scale(0.99); }\n\n.whatiuse-dialog[data-ending-style] { opacity: 0; transform: translate(-50%, calc(-50% + 1px)) scale(0.995); transition-duration: var(--whatiuse-exit-duration); }\n\n.whatiuse-dialog__header { display: grid; gap: 7px; padding-right: 28px; }\n\n.whatiuse-dialog__header [data-slot=\"dialog-title\"],\n.whatiuse-dialog__header h2 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.015em; }\n\n.whatiuse-dialog__header [data-slot=\"dialog-description\"],\n.whatiuse-dialog__header p { margin: 0; color: var(--whatiuse-ink-secondary); font-size: 13px; line-height: 1.55; }\n\n.whatiuse-dialog__footer { display: flex; justify-content: flex-end; gap: 6px; margin-top: 20px; padding-top: 0; border-top: 0; }\n\n.whatiuse-dialog,\n.whatiuse-alert-dialog { background: var(--whatiuse-bg-modal); }\n\n.whatiuse-alert-dialog__viewport { position: fixed; z-index: var(--whatiuse-layer-modal); inset: 0; display: grid; place-items: center; padding: 16px; pointer-events: none; }\n\n.whatiuse-alert-dialog {\n  position: relative;\n  top: auto;\n  left: auto;\n  width: min(410px, calc(100vw - 32px));\n  background: var(--whatiuse-bg-modal);\n  pointer-events: auto;\n  transform: translateY(0) scale(1);\n}\n\n.whatiuse-alert-dialog .whatiuse-dialog__header { padding-right: 0; }\n\n.whatiuse-alert-dialog[data-starting-style] { opacity: 0; transform: translateY(6px) scale(.985); }\n\n.whatiuse-alert-dialog[data-ending-style] { opacity: 0; transform: translateY(3px) scale(.992); transition-duration: var(--whatiuse-exit-duration); }\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-dialog,\n.whatiuse-dialog__backdrop,\n.whatiuse-alert-dialog {\n    transition-property: opacity;\n    transition-duration: var(--whatiuse-exit-duration);\n  }\n\n.whatiuse-alert-dialog[data-starting-style],\n.whatiuse-alert-dialog[data-ending-style] { transform: none; }\n\n.whatiuse-dialog[data-starting-style],\n.whatiuse-dialog[data-ending-style] { transform: translate(-50%, -50%); }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/alert-dialog.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/alert-dialog",
+      "useWhen": "A consequential action must interrupt the task and requires an explicit response.",
+      "avoidWhen": "The action is safely reversible with Undo or ordinary information is being displayed."
+    }
+  },
+  "type": "registry:ui"
+}

@@ -22,12 +22,12 @@ export type BreakdownProps = Omit<HTMLAttributes<HTMLOListElement>, "onSelect"> 
 export function Breakdown({ label, items, formatter = (value) => formatAnalyticsValue(value), max, selectedId, onSelect, className, ...props }: BreakdownProps) {
   const maximum = Math.max(1, max ?? Math.max(0, ...items.map((item) => item.value)));
   return (
-    <ol className={cn("teum-breakdown", className)} aria-label={label} {...props}>
+    <ol className={cn("whatiuse-breakdown", className)} aria-label={label} {...props}>
       {items.map((item) => {
         const ratio = Math.min(1, Math.max(0, item.value / maximum));
         const content = <>
-          <span className="teum-breakdown__label">{item.label}</span>
-          <span className="teum-breakdown__bar" aria-hidden="true"><span data-tone={item.tone ?? "primary"} style={{ "--teum-breakdown-progress": ratio } as CSSProperties} /></span>
+          <span className="whatiuse-breakdown__label">{item.label}</span>
+          <span className="whatiuse-breakdown__bar" aria-hidden="true"><span data-tone={item.tone ?? "primary"} style={{ "--whatiuse-breakdown-progress": ratio } as CSSProperties} /></span>
           <strong>{formatter(item.value, item)}</strong>
           {item.detail && <small>{item.detail}</small>}
         </>;

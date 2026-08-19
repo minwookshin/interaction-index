@@ -1,6 +1,6 @@
 "use client";
 
-import "../../styles/teum-base.css";
+import "../../styles/whatiuse-base.css";
 import "../../styles/components/sheet.css";
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { X } from "@phosphor-icons/react";
@@ -23,12 +23,12 @@ export type SheetContentProps = DialogPrimitive.Popup.Props & {
 export function SheetContent({ className, children, side = "right", showClose = true, ...props }: SheetContentProps) {
   return (
     <DialogPrimitive.Portal>
-      <DialogPrimitive.Backdrop className="teum-sheet__backdrop" />
-      <DialogPrimitive.Viewport className="teum-sheet__viewport" data-side={side}>
-        <DialogPrimitive.Popup className={cn("teum-sheet", className)} data-side={side} data-layer="modal" {...props}>
+      <DialogPrimitive.Backdrop className="whatiuse-sheet__backdrop" />
+      <DialogPrimitive.Viewport className="whatiuse-sheet__viewport" data-side={side}>
+        <DialogPrimitive.Popup className={cn("whatiuse-sheet", className)} data-side={side} data-layer="modal" {...props}>
           {children}
           {showClose && (
-            <DialogPrimitive.Close render={<IconButton className="teum-sheet__close" variant="ghost" size="small" aria-label="Close panel" />}>
+            <DialogPrimitive.Close render={<IconButton className="whatiuse-sheet__close" variant="ghost" size="small" aria-label="Close panel" />}>
               <X />
             </DialogPrimitive.Close>
           )}
@@ -39,13 +39,13 @@ export function SheetContent({ className, children, side = "right", showClose = 
 }
 
 export function SheetHeader({ className, ...props }: ComponentPropsWithRef<"div">) {
-  return <div className={cn("teum-sheet__header", className)} {...props} />;
+  return <div className={cn("whatiuse-sheet__header", className)} {...props} />;
 }
 
 export function SheetBody({ className, ...props }: ComponentPropsWithRef<"div">) {
-  return <div className={cn("teum-sheet__body", className)} {...props} />;
+  return <div className={cn("whatiuse-sheet__body", className)} {...props} />;
 }
 
 export function SheetFooter({ className, ...props }: ComponentPropsWithRef<"div">) {
-  return <div className={cn("teum-sheet__footer", className)} {...props} />;
+  return <div className={cn("whatiuse-sheet__footer", className)} {...props} />;
 }

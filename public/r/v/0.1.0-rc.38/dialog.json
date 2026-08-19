@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dialog",
+  "title": "Dialog",
+  "dependencies": [
+    "@base-ui/react@1.7.0",
+    "@phosphor-icons/react@2.1.10"
+  ],
+  "registryDependencies": [
+    "@whatiuse/icon-button"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/dialog.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/dialog.css\";\nimport { Dialog as DialogPrimitive } from \"@base-ui/react/dialog\";\nimport { X } from \"@phosphor-icons/react\";\nimport { useRef, type ComponentPropsWithRef, type MutableRefObject, type Ref } from \"react\";\nimport { cn } from \"../../lib/cn\";\nimport { IconButton } from \"./icon-button\";\n\nexport const Dialog = DialogPrimitive.Root;\nexport const DialogTrigger = DialogPrimitive.Trigger;\nexport const DialogClose = DialogPrimitive.Close;\nexport const DialogTitle = DialogPrimitive.Title;\nexport const DialogDescription = DialogPrimitive.Description;\n\nexport type DialogContentProps = DialogPrimitive.Popup.Props & { showClose?: boolean };\n\nfunction assignRef<T>(ref: Ref<T> | undefined, value: T | null) {\n  if (typeof ref === \"function\") ref(value);\n  else if (ref) (ref as MutableRefObject<T | null>).current = value;\n}\n\nexport function DialogContent({ className, children, showClose = true, initialFocus, ref, ...props }: DialogContentProps) {\n  const popupRef = useRef<HTMLDivElement | null>(null);\n  const setPopupRef = (node: HTMLDivElement | null) => {\n    popupRef.current = node;\n    assignRef(ref, node);\n  };\n\n  return (\n    <DialogPrimitive.Portal>\n      <DialogPrimitive.Backdrop className=\"whatiuse-dialog__backdrop\" />\n      <DialogPrimitive.Popup\n        ref={setPopupRef}\n        className={cn(\"whatiuse-dialog\", className)}\n        initialFocus={initialFocus ?? ((openType) => openType === \"keyboard\" ? true : popupRef.current)}\n        {...props}\n        data-layer=\"modal\"\n      >\n        {children}\n        {showClose && (\n          <DialogPrimitive.Close render={<IconButton className=\"whatiuse-dialog__close\" variant=\"ghost\" size=\"small\" aria-label=\"Close dialog\" />}>\n            <X />\n          </DialogPrimitive.Close>\n        )}\n      </DialogPrimitive.Popup>\n    </DialogPrimitive.Portal>\n  );\n}\n\nexport function DialogHeader({ className, ...props }: ComponentPropsWithRef<\"div\">) {\n  return <div className={cn(\"whatiuse-dialog__header\", className)} {...props} />;\n}\n\nexport function DialogFooter({ className, ...props }: ComponentPropsWithRef<\"div\">) {\n  return <div className={cn(\"whatiuse-dialog__footer\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/dialog.tsx"
+    },
+    {
+      "path": "registry/styles/components/dialog.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-dialog__backdrop { position: fixed; inset: 0; z-index: var(--whatiuse-layer-modal-backdrop); background: var(--whatiuse-bg-scrim); backdrop-filter: blur(1.5px); transition: opacity var(--whatiuse-enter-duration) var(--whatiuse-ease-out); }\n\n.whatiuse-dialog__backdrop[data-starting-style],\n.whatiuse-dialog__backdrop[data-ending-style] { opacity: 0; }\n\n.whatiuse-dialog__backdrop[data-ending-style] { transition-duration: var(--whatiuse-exit-duration); }\n\n.whatiuse-dialog { position: fixed; z-index: var(--whatiuse-layer-modal); top: 50%; left: 50%; width: min(390px, calc(100vw - 32px)); padding: 16px; border-radius: var(--whatiuse-radius-overlay); background: var(--whatiuse-bg-modal); box-shadow: var(--whatiuse-shadow-modal); outline: 0; transform: translate(-50%, -50%); transition: opacity var(--whatiuse-enter-duration) var(--whatiuse-ease-out), transform var(--whatiuse-enter-duration) var(--whatiuse-ease-out); }\n\n.whatiuse-dialog[data-starting-style] { opacity: 0; transform: translate(-50%, calc(-50% + 2px)) scale(0.99); }\n\n.whatiuse-dialog[data-ending-style] { opacity: 0; transform: translate(-50%, calc(-50% + 1px)) scale(0.995); transition-duration: var(--whatiuse-exit-duration); }\n\n.whatiuse-dialog__close { position: absolute; top: 8px; right: 8px; }\n\n.whatiuse-dialog__header { display: grid; gap: 7px; padding-right: 28px; }\n\n.whatiuse-dialog__header [data-slot=\"dialog-title\"],\n.whatiuse-dialog__header h2 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.015em; }\n\n.whatiuse-dialog__header [data-slot=\"dialog-description\"],\n.whatiuse-dialog__header p { margin: 0; color: var(--whatiuse-ink-secondary); font-size: 13px; line-height: 1.55; }\n\n.whatiuse-dialog__footer { display: flex; justify-content: flex-end; gap: 6px; margin-top: 20px; padding-top: 0; border-top: 0; }\n\n.whatiuse-dialog { background: var(--whatiuse-bg-modal); }\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-dialog,\n.whatiuse-dialog__backdrop {\n    transition-property: opacity;\n    transition-duration: var(--whatiuse-exit-duration);\n  }\n\n.whatiuse-dialog[data-starting-style],\n.whatiuse-dialog[data-ending-style] { transform: translate(-50%, -50%); }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/dialog.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/dialog",
+      "useWhen": "A short, reversible task needs focused attention and a clear completion point.",
+      "avoidWhen": "The work can be completed inline, requires a long workflow, or demands an explicit consequential response. Use Alert Dialog for the latter."
+    }
+  },
+  "type": "registry:ui"
+}

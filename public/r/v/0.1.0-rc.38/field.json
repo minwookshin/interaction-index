@@ -1,0 +1,35 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field",
+  "title": "Field & Fieldset",
+  "description": "Accessible labels, guidance, validation, and grouped form semantics.",
+  "dependencies": [
+    "@base-ui/react@1.7.0"
+  ],
+  "registryDependencies": [
+    "@whatiuse/whatiuse-base"
+  ],
+  "files": [
+    {
+      "path": "registry/components/ui/field.tsx",
+      "content": "\"use client\";\n\nimport \"../../styles/whatiuse-base.css\";\nimport \"../../styles/components/field.css\";\nimport { Field as FieldPrimitive } from \"@base-ui/react/field\";\nimport { Fieldset as FieldsetPrimitive } from \"@base-ui/react/fieldset\";\nimport type { ComponentPropsWithRef } from \"react\";\nimport { cn } from \"../../lib/cn\";\n\nexport type FieldProps = FieldPrimitive.Root.Props;\nexport type FieldLabelProps = FieldPrimitive.Label.Props;\nexport type FieldDescriptionProps = FieldPrimitive.Description.Props;\nexport type FieldErrorProps = FieldPrimitive.Error.Props;\nexport type FieldControlProps = FieldPrimitive.Control.Props;\nexport type FieldsetProps = FieldsetPrimitive.Root.Props;\nexport type FieldsetLegendProps = FieldsetPrimitive.Legend.Props;\n\nexport function Field({ className, ...props }: FieldProps) {\n  return <FieldPrimitive.Root className={cn(\"whatiuse-field-layout\", className)} {...props} />;\n}\n\nexport function FieldLabel({ className, ...props }: FieldLabelProps) {\n  return <FieldPrimitive.Label className={cn(\"whatiuse-field-layout__label\", className)} {...props} />;\n}\n\nexport function FieldDescription({ className, ...props }: FieldDescriptionProps) {\n  return <FieldPrimitive.Description className={cn(\"whatiuse-field-layout__description\", className)} {...props} />;\n}\n\nexport function FieldError({ className, match = true, ...props }: FieldErrorProps) {\n  return <FieldPrimitive.Error className={cn(\"whatiuse-field-layout__error\", className)} match={match} {...props} />;\n}\n\nexport function FieldControl({ className, ...props }: FieldControlProps) {\n  return <FieldPrimitive.Control className={cn(\"whatiuse-field-layout__control\", className)} {...props} />;\n}\n\nexport function Fieldset({ className, ...props }: FieldsetProps) {\n  return <FieldsetPrimitive.Root className={cn(\"whatiuse-fieldset\", className)} {...props} />;\n}\n\nexport function FieldsetLegend({ className, ...props }: FieldsetLegendProps) {\n  return <FieldsetPrimitive.Legend className={cn(\"whatiuse-fieldset__legend\", className)} {...props} />;\n}\n\nexport function FieldGroup({ className, ...props }: ComponentPropsWithRef<\"div\">) {\n  return <div className={cn(\"whatiuse-field-group\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/field.tsx"
+    },
+    {
+      "path": "registry/styles/components/field.css",
+      "content": "/* Generated from src/foundation.css and src/styles.css. Do not edit directly. */\n\n@layer whatiuse.tokens, whatiuse.base, whatiuse.components;\n\n@layer whatiuse.components {\n.whatiuse-field-layout {\n  display: grid;\n  min-width: 0;\n  gap: 6px;\n}\n\n.whatiuse-field-layout__label,\n.whatiuse-fieldset__legend {\n  color: var(--whatiuse-fg-default);\n  font-size: var(--whatiuse-type-label);\n  font-weight: var(--whatiuse-label-weight);\n  line-height: var(--whatiuse-line-label);\n}\n\n.whatiuse-field-layout__description,\n.whatiuse-field-layout__error {\n  color: var(--whatiuse-fg-muted);\n  font-size: var(--whatiuse-type-metadata);\n  line-height: var(--whatiuse-line-metadata);\n}\n\n.whatiuse-field-layout__error { color: var(--whatiuse-fg-danger); }\n\n.whatiuse-field-layout__control {\n  width: 100%;\n  min-width: 0;\n  height: var(--whatiuse-control-height-md);\n  padding: 0 9px;\n  border: 1px solid var(--whatiuse-control-border);\n  border-radius: var(--whatiuse-radius-control);\n  outline: 0;\n  background: var(--whatiuse-bg-control);\n  box-shadow: var(--whatiuse-shadow-control);\n  color: var(--whatiuse-fg-default);\n  font: inherit;\n  font-size: var(--whatiuse-type-ui);\n  transition: background-color var(--whatiuse-hover-duration), border-color var(--whatiuse-hover-duration), box-shadow var(--whatiuse-hover-duration);\n}\n\n.whatiuse-field-layout__control::placeholder { color: var(--whatiuse-fg-subtle); }\n\n.whatiuse-field-layout__control:hover:not(:disabled):not(:read-only) { border-color: var(--whatiuse-control-border-hover); }\n\n.whatiuse-field-layout__control:focus-visible {\n  border-color: var(--whatiuse-control-border-hover);\n  box-shadow: var(--whatiuse-shadow-control), 0 0 0 2px var(--whatiuse-focus-halo);\n}\n\n.whatiuse-field-layout[data-invalid] .whatiuse-field-layout__control,\n.whatiuse-field-layout__control[aria-invalid=\"true\"] {\n  border-color: color-mix(in oklch, var(--whatiuse-fg-danger) 42%, var(--whatiuse-control-border));\n  box-shadow: var(--whatiuse-shadow-control), 0 0 0 2px color-mix(in oklch, var(--whatiuse-fg-danger) 10%, transparent);\n}\n\n.whatiuse-field-layout[data-disabled] .whatiuse-field-layout__control,\n.whatiuse-field-layout__control:disabled { background: var(--whatiuse-bg-subtle); box-shadow: none; color: var(--whatiuse-fg-disabled); cursor: not-allowed; }\n\n.whatiuse-field-layout__control:read-only { color: var(--whatiuse-fg-muted); }\n\n.whatiuse-fieldset {\n  min-width: 0;\n  margin: 0;\n  padding: 0;\n  border: 0;\n}\n\n.whatiuse-fieldset__legend { margin: 0 0 8px; padding: 0; }\n\n.whatiuse-field-group { display: grid; gap: 4px; }\n\n@media (prefers-reduced-motion: reduce) {\n.whatiuse-field-layout__control { transition-duration: 0.01ms; }\n}\n}\n",
+      "type": "registry:style",
+      "target": "styles/components/field.css"
+    }
+  ],
+  "meta": {
+    "whatiuse": {
+      "contract": "/agent/whatiuse-agent.json",
+      "registryItem": "@whatiuse/field",
+      "useWhen": "A control needs a persistent label, supporting guidance, validation, or grouping semantics.",
+      "avoidWhen": "The content is not form input or the label would only repeat nearby visible context."
+    }
+  },
+  "type": "registry:ui"
+}

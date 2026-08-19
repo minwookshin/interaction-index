@@ -33,16 +33,16 @@ export function NumberField({
   const accessibleLabel = label ?? inputProps?.["aria-label"] ?? "Value";
 
   return (
-    <NumberFieldPrimitive.Root id={id} className={cn("teum-number-field", className)} data-invalid={Boolean(error) || undefined} {...props}>
-      {label && <label className="teum-field__label" htmlFor={id}>{label}</label>}
-      <NumberFieldPrimitive.Group className="teum-number-field__group">
-        <NumberFieldPrimitive.Decrement className="teum-number-field__step" aria-label={`Decrease ${accessibleLabel}`}><Minus /></NumberFieldPrimitive.Decrement>
-        <NumberFieldPrimitive.Input className={cn("teum-number-field__input", inputClassName)} aria-invalid={Boolean(error) || undefined} aria-describedby={describedBy} {...inputProps} />
-        {suffix && <span className="teum-number-field__suffix" aria-hidden="true">{suffix}</span>}
-        <NumberFieldPrimitive.Increment className="teum-number-field__step" aria-label={`Increase ${accessibleLabel}`}><Plus /></NumberFieldPrimitive.Increment>
+    <NumberFieldPrimitive.Root id={id} className={cn("whatiuse-number-field", className)} data-invalid={Boolean(error) || undefined} {...props}>
+      {label && <label className="whatiuse-field__label" htmlFor={id}>{label}</label>}
+      <NumberFieldPrimitive.Group className="whatiuse-number-field__group">
+        <NumberFieldPrimitive.Decrement className="whatiuse-number-field__step" aria-label={`Decrease ${accessibleLabel}`}><Minus /></NumberFieldPrimitive.Decrement>
+        <NumberFieldPrimitive.Input className={cn("whatiuse-number-field__input", inputClassName)} aria-invalid={Boolean(error) || undefined} aria-describedby={describedBy} {...inputProps} />
+        {suffix && <span className="whatiuse-number-field__suffix" aria-hidden="true">{suffix}</span>}
+        <NumberFieldPrimitive.Increment className="whatiuse-number-field__step" aria-label={`Increase ${accessibleLabel}`}><Plus /></NumberFieldPrimitive.Increment>
       </NumberFieldPrimitive.Group>
-      {description && <div id={descriptionId} className="teum-field__description">{description}</div>}
-      {error && <div id={errorId} className="teum-field__error">{error}</div>}
+      {description && <div id={descriptionId} className="whatiuse-field__description">{description}</div>}
+      {error && <div id={errorId} className="whatiuse-field__error">{error}</div>}
     </NumberFieldPrimitive.Root>
   );
 }

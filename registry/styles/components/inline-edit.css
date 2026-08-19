@@ -1,37 +1,37 @@
 /* Generated from src/foundation.css and src/styles.css. Do not edit directly. */
 
-@layer teum.tokens, teum.base, teum.components;
+@layer whatiuse.tokens, whatiuse.base, whatiuse.components;
 
-@layer teum.components {
-.teum-spinner { width: 13px; height: 13px; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: teum-spin 0.75s linear infinite; }
+@layer whatiuse.components {
+.whatiuse-spinner { width: 13px; height: 13px; border: 1.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: whatiuse-spin 0.75s linear infinite; }
 
-.teum-inline-edit { width: min(420px, 100%); min-height: 44px; }
+.whatiuse-inline-edit { width: min(420px, 100%); min-height: 44px; }
 
-.teum-inline-edit__value,
-.teum-inline-edit__input { width: 100%; height: 44px; padding: 0 10px; border: 1px solid transparent; border-radius: 7px; background: transparent; color: var(--teum-ink); font-size: 22px; font-weight: 570; letter-spacing: -0.035em; text-align: left; }
+.whatiuse-inline-edit__value,
+.whatiuse-inline-edit__input { width: 100%; height: 44px; padding: 0 10px; border: 1px solid transparent; border-radius: 7px; background: transparent; color: var(--whatiuse-ink); font-size: 22px; font-weight: 570; letter-spacing: -0.035em; text-align: left; }
 
-.teum-inline-edit__value { display: flex; align-items: center; justify-content: space-between; cursor: text; transition: background var(--teum-fast), border-color var(--teum-fast); }
+.whatiuse-inline-edit__value { display: flex; align-items: center; justify-content: space-between; cursor: text; transition: background var(--whatiuse-fast), border-color var(--whatiuse-fast); }
 
-.teum-inline-edit__value:hover { border-color: var(--teum-border-subtle); background: var(--teum-hover); }
+.whatiuse-inline-edit__value:hover { border-color: var(--whatiuse-border-subtle); background: var(--whatiuse-hover); }
 
-.teum-inline-edit__value svg { width: 15px; height: 15px; color: var(--teum-fg-subtle); opacity: 0; transition: opacity var(--teum-fast); }
+.whatiuse-inline-edit__value svg { width: 15px; height: 15px; color: var(--whatiuse-fg-subtle); opacity: 0; transition: opacity var(--whatiuse-fast); }
 
-.teum-inline-edit__value:hover svg,
-.teum-inline-edit__value:focus-visible svg { opacity: 1; }
+.whatiuse-inline-edit__value:hover svg,
+.whatiuse-inline-edit__value:focus-visible svg { opacity: 1; }
 
-.teum-inline-edit__control { position: relative; }
+.whatiuse-inline-edit__control { position: relative; }
 
-.teum-inline-edit__input { border-color: var(--teum-border-strong); outline: 0; background: var(--teum-control-surface); box-shadow: 0 0 0 2px var(--teum-border-subtle); }
+.whatiuse-inline-edit__input { border-color: var(--whatiuse-border-strong); outline: 0; background: var(--whatiuse-control-surface); box-shadow: 0 0 0 2px var(--whatiuse-border-subtle); }
 
-.teum-inline-edit[data-status="error"] .teum-inline-edit__input { border-color: color-mix(in oklch, var(--teum-fg-danger) 46%, var(--teum-control-border)); box-shadow: 0 0 0 2px color-mix(in oklch, var(--teum-fg-danger) 11%, transparent); }
+.whatiuse-inline-edit[data-status="error"] .whatiuse-inline-edit__input { border-color: color-mix(in oklch, var(--whatiuse-fg-danger) 46%, var(--whatiuse-control-border)); box-shadow: 0 0 0 2px color-mix(in oklch, var(--whatiuse-fg-danger) 11%, transparent); }
 
-.teum-inline-edit__saving { position: absolute; top: 0; right: 10px; display: grid; height: 44px; place-items: center; color: var(--teum-fg-muted); }
+.whatiuse-inline-edit__saving { position: absolute; top: 0; right: 10px; display: grid; height: 44px; place-items: center; color: var(--whatiuse-fg-muted); }
 
-.teum-inline-edit__error { display: block; padding: 6px 10px 0; color: var(--teum-fg-danger); font-size: 11.5px; font-weight: 520; }
+.whatiuse-inline-edit__error { display: block; padding: 6px 10px 0; color: var(--whatiuse-fg-danger); font-size: 11.5px; font-weight: 520; }
 
 @media (prefers-reduced-motion: reduce) {
-.teum-spinner { animation-duration: 2.4s; }
+.whatiuse-spinner { animation-duration: 2.4s; }
 }
 
-@keyframes teum-spin { to { transform: rotate(360deg); } }
+@keyframes whatiuse-spin { to { transform: rotate(360deg); } }
 }

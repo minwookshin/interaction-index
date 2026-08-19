@@ -70,7 +70,7 @@ export async function run(command, args, options = {}) {
   return result;
 }
 
-export async function configureAndInstall(fixture, template, item = "button", namespace = "@teum-pinned") {
+export async function configureAndInstall(fixture, template, item = "button", namespace = "@whatiuse") {
   await run(shadcnExecutable, ["registry", "add", `${namespace}=${template}`, "-c", fixture]);
   const configured = JSON.parse(await readFile(resolve(fixture, "components.json"), "utf8"));
   if (configured.registries?.[namespace] !== template) {
