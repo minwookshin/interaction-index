@@ -8,7 +8,7 @@ Components for product interfaces.
 
 ```bash
 npx shadcn@4.18.0 registry add \
-  @teum-pinned=https://whatiuse.minwookshin.com/r/v/0.1.0-rc.29/{name}.json
+  @teum-pinned=https://whatiuse.minwookshin.com/r/v/0.1.0-rc.30/{name}.json
 
 npx shadcn@4.18.0 add @teum-pinned/button
 ```

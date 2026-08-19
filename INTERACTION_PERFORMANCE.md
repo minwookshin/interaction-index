@@ -24,13 +24,13 @@ The heaviest Core component route is Date Picker. Date Picker, Tree, Reorderable
 
 | Path | Latest observed | Release budget | Machine-readable record |
 | --- | ---: | ---: | --- |
-| Library FCP / LCP | 92 ms / 412 ms | < 1,500 ms / < 2,500 ms | `release/runtime-performance.json` |
-| Documentation FCP / LCP | 92 ms / 424 ms | < 1,800 ms / < 2,500 ms | `release/runtime-performance.json` |
+| Library FCP / LCP | 140 ms / 432 ms | < 1,500 ms / < 2,500 ms | `release/runtime-performance.json` |
+| Documentation FCP / LCP | 144 ms / 452 ms | < 1,800 ms / < 2,500 ms | `release/runtime-performance.json` |
 | Maximum landing/docs CLS | 0.0024 | < 0.05 | `release/runtime-performance.json` |
-| Library to documentation | 888 ms | < 1,500 ms | `release/runtime-performance.json` |
-| Select another issue and render Shared Detail | 5 ms | < 750 ms | `release/runtime-performance.json` |
-| Open the New issue dialog | 8 ms | < 750 ms | `release/runtime-performance.json` |
+| Library to documentation | 870 ms | < 1,500 ms | `release/runtime-performance.json` |
+| Select another issue and render Shared Detail | 6 ms | < 750 ms | `release/runtime-performance.json` |
+| Open the New issue dialog | 9 ms | < 750 ms | `release/runtime-performance.json` |
 
-The longest observed interaction task was 63 ms, below the 250 ms release budget. `npm run measure` rebuilds both the route-aware bundle report and runtime evidence; `npm run check:runtime-performance` rejects stale-version or failing runtime evidence.
+The longest observed interaction task was 64 ms, below the 250 ms release budget. `npm run measure` rebuilds both the route-aware bundle report and runtime evidence; `npm run check:runtime-performance` rejects stale-version or failing runtime evidence.
 
 These are repeatable local lab measurements, not field Core Web Vitals, real-device latency, or production RUM. Production p75 data, physical devices, and real-network conditions remain explicit external gates.

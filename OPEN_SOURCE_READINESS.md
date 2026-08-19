@@ -44,7 +44,7 @@ Required before asking strangers to install it:
 
 ### Public beta
 
-The verified `0.1.0-rc.29` local candidate may be offered for real evaluation only after an approved GitHub prerelease, live site, and immutable registry all point to the same reviewed commit. npm is a separate channel and must remain described as unpublished until its public beta is verifiably available.
+The verified `0.1.0-rc.30` local candidate may be offered for real evaluation only after an approved GitHub prerelease, live site, and immutable registry all point to the same reviewed commit. npm is a separate channel and must remain described as unpublished until its public beta is verifiably available.
 
 Promotion beyond the initial beta requires repeated real use, external API feedback, resolved composition problems, and a measured stability period. Component count is not a beta criterion. The machine-readable gate is [`release/beta-readiness.json`](./release/beta-readiness.json).
 

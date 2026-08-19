@@ -80,12 +80,12 @@ The source is available under MIT. Package publication, browser support, and pro
 - [x] Complete the local `0.1.0-rc.22` security, package, registry, browser, accessibility, and performance evidence refresh without deploying or publishing.
 - [x] Rehearse `0.1.0-rc.22` assembly from an isolated synthetic local commit and verify every checksum, the CycloneDX SBOM, exact package subject, and evidence bundle.
 - [ ] Assemble `0.1.0-rc.22` from one clean commit after the complete Goal 7 matrix passes; keep the dirty-worktree result explicitly non-distributable until then.
-- [x] Complete the local `0.1.0-rc.29` catalog, Analytics, registry, package, browser, accessibility, and performance gates without deploying or publishing.
-- [ ] Assemble `0.1.0-rc.29` only from one clean reviewed commit; the current dirty-worktree result is a local candidate, not a distributable release.
+- [x] Complete the local `0.1.0-rc.30` catalog, Analytics, registry, package, browser, accessibility, and performance gates without deploying or publishing.
+- [ ] Assemble `0.1.0-rc.30` only from one clean reviewed commit; the current dirty-worktree result is a local candidate, not a distributable release.
 
 ## Public beta to v1
 
-- [ ] Publish one clean `0.1.0-rc.29` commit as a GitHub prerelease and deploy the same commit to the canonical site.
+- [ ] Publish one clean `0.1.0-rc.30` commit as a GitHub prerelease and deploy the same commit to the canonical site.
 - [ ] Fetch the live immutable registry and match its bytes, cache policy, and manifest to the tagged candidate.
 - [ ] Bootstrap and verify the `teum` npm beta, then move future publishing to a stage-only OIDC trusted publisher.
 - [ ] Record at least one independently maintained install with typecheck and production-build evidence.

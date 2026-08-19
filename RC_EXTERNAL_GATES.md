@@ -1,6 +1,6 @@
 # RC external gates
 
-The local `0.1.0-rc.29` artifact may be assembled from a clean commit when automated verification passes. A stable compatibility promise or npm publication remains blocked until the applicable external gates below have dated evidence.
+The local `0.1.0-rc.30` artifact may be assembled from a clean commit when automated verification passes. A stable compatibility promise or npm publication remains blocked until the applicable external gates below have dated evidence.
 
 These are environment gates, not hidden implementation TODOs. Each gate names what local automation already proves and what still requires the real platform.
 
@@ -71,7 +71,7 @@ Copy this block for every external run:
 
 ```text
 Gate:
-Candidate version: 0.1.0-rc.29
+Candidate version: 0.1.0-rc.30
 Candidate SHA-256:
 Date:
 Tester:

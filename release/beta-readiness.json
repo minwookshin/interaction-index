@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/build-beta-readiness.mjs",
-  "generatedAt": "2026-08-18T17:27:08.174Z",
-  "candidate": "0.1.0-rc.29",
+  "generatedAt": "2026-08-19T00:11:27.101Z",
+  "candidate": "0.1.0-rc.30",
   "programStage": "local-candidate",
   "localCandidate": {
     "status": "passed",

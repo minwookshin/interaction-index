@@ -1,6 +1,6 @@
 {
   "name": "teum",
-  "version": "0.1.0-rc.29",
+  "version": "0.1.0-rc.30",
   "description": "Interaction-first React components, semantic tokens, and source-owned UI patterns for compact product interfaces.",
   "keywords": [
     "react",

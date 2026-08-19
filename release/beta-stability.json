@@ -1,16 +1,18 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/verify-beta-stability.mjs",
-  "generatedAt": "2026-08-18T17:27:07.969Z",
-  "candidate": "0.1.0-rc.29",
+  "generatedAt": "2026-08-19T00:10:15.451Z",
+  "candidate": "0.1.0-rc.30",
   "repository": "minwookshin/whatiuse",
   "workflow": "beta-health.yml",
   "startedAt": "2026-08-18T17:01:06Z",
   "minimumDays": 28,
   "targetEndsOn": "2026-09-14",
-  "expectedCompletedDays": 0,
+  "expectedCompletedDays": 1,
   "consecutiveCompletedDays": 0,
-  "missingDates": [],
+  "missingDates": [
+    "2026-08-18"
+  ],
   "verifiedThrough": null,
   "status": "collecting",
   "creditedRuns": [],

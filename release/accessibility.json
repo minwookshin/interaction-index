@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/playwright-accessibility-reporter.mjs",
-  "generatedAt": "2026-08-18T17:25:13.531Z",
+  "generatedAt": "2026-08-19T00:00:05.597Z",
   "command": "npm run test:a11y:evidence",
-  "releaseVersion": "0.1.0-rc.29",
+  "releaseVersion": "0.1.0-rc.30",
   "status": "passed",
-  "durationMs": 152817,
+  "durationMs": 156462,
   "total": 85,
   "passed": 55,
   "skipped": 30,
@@ -126,7 +126,7 @@
     "node": "v22.14.0"
   },
   "source": {
-    "commit": "051e1702c1a1a3204949a7d5660c7b482065ce13",
+    "commit": "19fb589bd51dc956325e3fa6fb75191ca0506cf0",
     "workingTreeDirty": true
   },
   "externalGates": [

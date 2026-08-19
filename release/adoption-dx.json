@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/build-adoption-evidence.mjs",
-  "generatedAt": "2026-08-18T17:03:24.978Z",
-  "version": "0.1.0-rc.29",
+  "generatedAt": "2026-08-18T23:55:37.983Z",
+  "version": "0.1.0-rc.30",
   "status": "passed",
   "targetMs": 600000,
-  "longestAutomatedJourneyMs": 15864,
+  "longestAutomatedJourneyMs": 15764,
   "journeys": {
     "viteReact18": {
-      "elapsedMs": 7230,
+      "elapsedMs": 15764,
       "typecheck": true,
       "productionBuild": true,
       "themeCustomization": true
     },
     "viteReact19": {
-      "elapsedMs": 8748,
+      "elapsedMs": 9445,
       "typecheck": true,
       "productionBuild": true,
       "themeCustomization": true,
@@ -22,15 +22,15 @@
     },
     "nextAppRouter": {
       "version": "16.3.1",
-      "elapsedMs": 12490,
+      "elapsedMs": 15067,
       "typecheck": true,
       "productionBuild": true,
       "themeCustomization": true,
       "clientBoundary": true
     },
     "reviewedUpdate": {
-      "fromVersion": "0.1.0-rc.28",
-      "elapsedMs": 15864,
+      "fromVersion": "0.1.0-rc.29",
+      "elapsedMs": 13432,
       "dryRun": true,
       "fileDiff": true,
       "localSourcePreserved": true,

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/evaluate-agent-layer.mjs",
-  "generatedAt": "2026-08-18T17:04:45.501Z",
-  "version": "0.1.0-rc.29",
+  "generatedAt": "2026-08-18T23:57:10.364Z",
+  "version": "0.1.0-rc.30",
   "status": "passed",
   "scope": "One clean React + TypeScript + Vite consumer installed the Teum agent registry item; 30 generated task modules were collectively type-checked and production-built.",
   "taskCount": 30,
@@ -15,7 +15,7 @@
   "productionBuild": "passed",
   "installedItem": "@teum-pinned/teum-agent",
   "registryChannel": "immutable versioned",
-  "elapsedMs": 16043,
+  "elapsedMs": 15264,
   "results": [
     {
       "id": "issues-triage-backlog",

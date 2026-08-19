@@ -1,6 +1,6 @@
 # Release QA
 
-This document records the reviewed visual, interaction, and distribution evidence for the unpublished npm `0.1.0-rc.29` candidate. It is a release record, not a production-adoption claim.
+This document records the reviewed visual, interaction, and distribution evidence for the unpublished npm `0.1.0-rc.30` candidate. It is a release record, not a production-adoption claim.
 
 ## Frozen scope
 
@@ -16,7 +16,7 @@ This document records the reviewed visual, interaction, and distribution evidenc
 
 The canonical viewport is 1280 x 720 CSS pixels in Chromium with Inter loaded, animation disabled for capture, and reduced motion enabled for deterministic screenshots.
 
-The complete `rc.29` candidate has platform-specific macOS and Linux visual sets. Each platform owns 332 release-level baselines, plus eight focused browser captures outside the release-level count. The Linux images were generated in the reviewed Linux CI image and inspected as Linux output; macOS raster files were not reused as Linux evidence.
+The complete `rc.30` candidate has platform-specific macOS and Linux visual sets. Each platform owns 332 release-level baselines, plus eight focused browser captures outside the release-level count. The Linux images were generated in the reviewed Linux CI image and inspected as Linux output; macOS raster files were not reused as Linux evidence.
 
 | Surface | Coverage | Evidence |
 | --- | ---: | --- |
@@ -50,25 +50,25 @@ The generated baselines live beside their Playwright specifications in `tests/br
 
 ## Local candidate evidence
 
-- The `0.1.0-rc.29` local gates cover frozen contracts, 238 unit tests, 104 Storybook interaction tests, all 332 visual baselines, registry install and upgrade checks, private package consumers, the public-API-only dogfood app, the Sites build contract, and performance budgets.
+- The `0.1.0-rc.30` local gates cover frozen contracts, 238 unit tests, 104 Storybook interaction tests, all 332 visual baselines, registry install and upgrade checks, private package consumers, the public-API-only dogfood app, the Sites build contract, and performance budgets.
 - `npm run test:browsers:evidence` passed all 353 applicable checks across desktop Chromium, Firefox, WebKit, mobile Chromium, and mobile WebKit; 352 project-inapplicable combinations were explicitly skipped.
 - `npm run test:clean-room` reproduced the current candidate snapshot after a fresh `npm ci`, then repeated build, registry, package, consumer, upgrade, dogfood, Sites, and performance gates without workspace caches. A clean commit is still required before assembling a distributable RC artifact.
 - `npm audit` reported zero known vulnerabilities for the verified lockfile on 2026-08-17.
 - The private npm candidate remains blocked from publication by `private: true`; its exact allowlisted contents and packed sizes are verified dynamically instead of copied into this package-owned document.
 - Fresh package consumers pass against React 18.3.1 and React 19.2.8, and the optional Tailwind CSS 4.3.3 bridge compiles semantic utilities from the same Teum variables used by plain CSS.
 - The private package entry preserves its React `use client` boundary; a fresh ESM consumer matched all 201 runtime exports derived from the compiler-owned surface, rendered a representative tree through Node SSR, and hydrated it with zero recoverable mismatch errors. `release/package-contract.json` is the machine-readable record.
-- `release/accessibility.json` is the machine-readable `0.1.0-rc.29` accessibility record for all five configured browser projects and ten required contract groups.
+- `release/accessibility.json` is the machine-readable `0.1.0-rc.30` accessibility record for all five configured browser projects and ten required contract groups.
 - `performance-report.json` records route-aware bundle graphs: 63,141 bytes of Library JavaScript, 337,647 bytes for the documentation shell, 417,419 bytes for the heaviest Core component route, 487,235 bytes for Teum Data, 404,932 bytes for Teum Analytics, and 409,308 bytes for Product Patterns after gzip. The largest emitted JavaScript chunk remains below 500,000 raw bytes.
-- `release/runtime-performance.json` records the latest local production-preview pass: 412 / 424 ms Library/documentation LCP, 0.0024 maximum CLS, an 888 ms Library-to-documentation transition, 5 ms Shared Detail selection, 8 ms Dialog open, and a 63 ms longest observed interaction task. These values are local lab evidence, not field Core Web Vitals.
-- A fresh React + TypeScript + Vite plain-CSS fixture executes the documented namespace command, installs Button through `@teum-pinned`, type-checks, and completes a production build. The current React 18 / React 19 runs passed in 7.2 / 8.7 seconds locally and are preserved in `release/quickstart.json`; network and package-manager cache variance make the outcome—not the exact duration—the release gate.
+- `release/runtime-performance.json` records the latest local production-preview pass: 432 / 452 ms Library/documentation LCP, 0.0024 maximum CLS, an 870 ms Library-to-documentation transition, 6 ms Shared Detail selection, 9 ms Dialog open, and a 64 ms longest observed interaction task. These values are local lab evidence, not field Core Web Vitals.
+- A fresh React + TypeScript + Vite plain-CSS fixture executes the documented namespace command, installs Button through `@teum-pinned`, type-checks, and completes a production build. The current React 18 / React 19 runs passed in 15.8 / 9.4 seconds locally and are preserved in `release/quickstart.json`; network and package-manager cache variance make the outcome—not the exact duration—the release gate.
 - The same fixture resolves Button's same-version base dependency and optional Tailwind bridge without installing Tailwind CSS.
 
 ## Public candidate endpoint
 
-- `https://whatiuse.minwookshin.com` has managed TLS and an existing public deployment, but the local `0.1.0-rc.29` candidate has not been promoted in this verification pass.
+- `https://whatiuse.minwookshin.com` has managed TLS and an existing public deployment, but the local `0.1.0-rc.30` candidate has not been promoted in this verification pass.
 - The public HTML declares `https://whatiuse.minwookshin.com` as canonical.
 - Root, Documentation, Component, and Pattern entry URLs return the SPA shell with HTTP 200; built JavaScript, CSS, mutable registry JSON, and immutable registry JSON retain their expected content types.
-- The live mutable manifest and `0.1.0-rc.29` immutable endpoint must be fetched and matched to this candidate after any approved deployment; the immutable endpoint must respond with `cache-control: public, max-age=31536000, immutable`.
+- The live mutable manifest and `0.1.0-rc.30` immutable endpoint must be fetched and matched to this candidate after any approved deployment; the immutable endpoint must respond with `cache-control: public, max-age=31536000, immutable`.
 - `https://interactions.minwookshin.com` remains available as a compatibility host. This is release-candidate access evidence, not npm publication or independent adoption evidence.
 
 ## Manual review boundary
