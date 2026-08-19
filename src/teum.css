@@ -265,7 +265,7 @@ button,
 .teum-button--quiet { min-height: var(--teum-control-height-sm); }
 }
 
-.teum-button__content { display: inline-flex; align-items: center; justify-content: center; gap: inherit; opacity: 1; transform: translateY(0); transition: opacity 100ms var(--teum-ease-out), transform 140ms var(--teum-ease-out); }
+.teum-button__content { display: inline-flex; align-items: center; justify-content: center; gap: inherit; opacity: 1; transition: opacity 120ms var(--teum-ease-out); }
 
 .teum-button__icon { display: inline-flex; }
 
@@ -273,11 +273,11 @@ button,
 
 .teum-button[data-loading] { opacity: 1; cursor: wait; }
 
-.teum-button[data-loading] .teum-button__content { opacity: 0; transform: translateY(-2px); }
+.teum-button[data-loading] .teum-button__content { opacity: 0; }
 
-.teum-button__loader { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: inherit; opacity: 0; pointer-events: none; transform: translateY(2px); transition: opacity 100ms var(--teum-ease-out), transform 140ms var(--teum-ease-out); }
+.teum-button__loader { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: inherit; opacity: 0; pointer-events: none; transition: opacity 120ms var(--teum-ease-out); }
 
-.teum-button__loader[data-visible] { opacity: 1; transform: translateY(0); }
+.teum-button__loader[data-visible] { opacity: 1; }
 
 .teum-button__loading-label { line-height: 1; }
 
@@ -755,13 +755,17 @@ button,
 
 .teum-field__error { color: var(--teum-fg-danger); font-weight: 520; }
 
-.teum-date-picker { display: grid; width: min(240px, 100%); gap: 6px; color: var(--teum-fg-default); }
+.teum-date-picker { display: grid; width: min(208px, 100%); gap: 6px; color: var(--teum-fg-default); }
 
 .teum-date-picker__group {
   display: flex;
+  box-sizing: border-box;
   width: 100%;
   height: 32px;
   align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding-left: 8px;
   border: 1px solid var(--teum-control-border);
   border-radius: var(--teum-radius-sm);
   background: var(--teum-bg-control);
@@ -779,7 +783,7 @@ button,
 
 .teum-date-picker[data-disabled] .teum-date-picker__group { background: var(--teum-bg-subtle); box-shadow: none; }
 
-.teum-date-picker__input { display: flex; min-width: 0; flex: 1; align-items: center; padding-left: 10px; font-size: var(--teum-type-ui); }
+.teum-date-picker__input { display: flex; min-width: 0; flex: 0 1 auto; align-items: center; padding: 0; font-size: var(--teum-type-ui); }
 
 .teum-date-picker__segment { min-width: .65ch; border-radius: 3px; outline: 0; color: inherit; font-variant-numeric: tabular-nums; }
 
@@ -789,7 +793,7 @@ button,
 
 .teum-date-picker__segment[data-focused] { background: var(--teum-selection); color: var(--teum-fg-default); }
 
-.teum-date-picker__button { display: grid; width: 30px; height: 30px; place-items: center; border: 0; border-radius: 5px; background: transparent; color: var(--teum-fg-muted); cursor: pointer; }
+.teum-date-picker__button { display: grid; width: 30px; height: 30px; flex: 0 0 auto; place-items: center; border: 0; border-radius: 5px; background: transparent; color: var(--teum-fg-muted); cursor: pointer; }
 
 .teum-date-picker__button:hover { background: var(--teum-hover); color: var(--teum-fg-default); }
 

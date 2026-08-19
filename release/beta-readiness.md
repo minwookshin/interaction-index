@@ -1,6 +1,6 @@
 # Teum beta readiness
 
-Candidate: `0.1.0-rc.29`
+Candidate: `0.1.0-rc.30`
 
 Local candidate: passed
 

@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/verify-beta-external-evidence.mjs",
-  "generatedAt": "2026-08-18T17:27:07.441Z",
-  "candidate": "0.1.0-rc.29",
-  "repository": "minwookshin/teum",
+  "generatedAt": "2026-08-19T00:10:14.530Z",
+  "candidate": "0.1.0-rc.30",
+  "repository": "minwookshin/whatiuse",
   "reviewedIssues": 1,
   "verifiedFeedback": [],
   "verifiedInstallations": [],
   "candidates": [
     {
       "issue": 15,
-      "url": "https://github.com/minwookshin/teum/issues/15",
+      "url": "https://github.com/minwookshin/whatiuse/issues/15",
       "author": "minwookshin",
       "createdAt": "2026-08-17T09:45:16Z",
       "candidate": null,

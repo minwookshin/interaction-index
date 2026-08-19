@@ -31,7 +31,6 @@ type CatalogFilter = "All" | LibraryComponentGroup;
 type ComponentIndexPageProps = {
   theme: Theme;
   onThemeChange: (theme: Theme) => void;
-  onHome: () => void;
 };
 
 const spaciousPreviews = new Set<ComponentId>([
@@ -72,10 +71,8 @@ function readWordmarkGeometry(): WordmarkGeometry {
 
 function ScrollDockedWordmark({
   pageRef,
-  onHome,
 }: {
   pageRef: RefObject<HTMLDivElement | null>;
-  onHome: () => void;
 }) {
   const reduceMotion = useReducedMotion();
   const [geometry, setGeometry] = useState(readWordmarkGeometry);
@@ -103,21 +100,13 @@ function ScrollDockedWordmark({
   }, []);
 
   return (
-    <motion.a
+    <motion.div
       className="whatiuse-wordmark whatiuse-wordmark--scroll-docked"
-      href="/"
-      aria-label="whatiuse home"
+      aria-hidden="true"
       style={{ transform: reduceMotion ? "translate3d(0, 0, 0) scale(1)" : transform }}
-      onClick={(event) => {
-        event.preventDefault();
-        if (typeof pageRef.current?.scrollTo === "function") {
-          pageRef.current.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
-        }
-        onHome();
-      }}
     >
       <strong>whatiuse</strong>
-    </motion.a>
+    </motion.div>
   );
 }
 
@@ -198,7 +187,6 @@ function CatalogRow({
 export function ComponentIndexPage({
   theme,
   onThemeChange,
-  onHome,
 }: ComponentIndexPageProps) {
   const pageRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState<CatalogFilter>("All");
@@ -209,7 +197,7 @@ export function ComponentIndexPage({
 
   useEffect(() => {
     document.title = "whatiuse";
-    document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute("content", "Browse, try, and install Teum components.");
+    document.querySelector<HTMLMetaElement>('meta[name="description"]')?.setAttribute("content", "Browse, try, and install whatiuse components.");
     return () => window.clearTimeout(copyTimer.current);
   }, []);
 
@@ -272,7 +260,7 @@ export function ComponentIndexPage({
           }}>Skip to main content</a>
 
           <header className="landing-header component-index-header">
-            <ScrollDockedWordmark pageRef={pageRef} onHome={onHome} />
+            <ScrollDockedWordmark pageRef={pageRef} />
             <PublicHeaderActions theme={theme} onThemeChange={onThemeChange} />
           </header>
 

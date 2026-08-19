@@ -64,9 +64,8 @@ export function ComponentCodeInspector({ id, open, onOpenChange }: ComponentCode
             <TabsContent value="source" className="component-code-inspector__panel">
               <div className="component-code-inspector__filebar">
                 <span>{id}.tsx</span>
-                <button type="button" onClick={() => void copy("source", source)} aria-label={copied === "source" ? `${component.name} source copied` : `Copy ${component.name} source`}>
+                <button type="button" title={copied === "source" ? "Copied" : "Copy source"} onClick={() => void copy("source", source)} aria-label={copied === "source" ? `${component.name} source copied` : `Copy ${component.name} source`}>
                   {copied === "source" ? <Check weight="bold" aria-hidden="true" /> : <Copy aria-hidden="true" />}
-                  <span>{copied === "source" ? "Copied" : "Copy"}</span>
                 </button>
               </div>
               <pre tabIndex={0}><code>{source}</code></pre>
@@ -75,9 +74,8 @@ export function ComponentCodeInspector({ id, open, onOpenChange }: ComponentCode
             <TabsContent value="install" className="component-code-inspector__panel component-code-inspector__panel--install">
               <div className="component-code-inspector__install-copy">
                 <code>{install}</code>
-                <button type="button" onClick={() => void copy("install", install)} aria-label={copied === "install" ? `${component.name} install command copied` : `Copy ${component.name} install command`}>
+                <button type="button" title={copied === "install" ? "Copied" : "Copy install command"} onClick={() => void copy("install", install)} aria-label={copied === "install" ? `${component.name} install command copied` : `Copy ${component.name} install command`}>
                   {copied === "install" ? <Check weight="bold" aria-hidden="true" /> : <Copy aria-hidden="true" />}
-                  <span>{copied === "install" ? "Copied" : "Copy"}</span>
                 </button>
               </div>
             </TabsContent>

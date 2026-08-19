@@ -1,11 +1,11 @@
 {
   "status": "configured",
-  "repository": "minwookshin/teum",
-  "repositoryUrl": "https://github.com/minwookshin/teum",
-  "issueTracker": "https://github.com/minwookshin/teum/issues",
-  "securityAdvisories": "https://github.com/minwookshin/teum/security/advisories/new",
+  "repository": "minwookshin/whatiuse",
+  "repositoryUrl": "https://github.com/minwookshin/whatiuse",
+  "issueTracker": "https://github.com/minwookshin/whatiuse/issues",
+  "securityAdvisories": "https://github.com/minwookshin/whatiuse/security/advisories/new",
   "homepage": "https://whatiuse.minwookshin.com",
   "registryNamespace": "@teum",
   "packageCandidate": "teum",
-  "registryInstall": "npx shadcn@4.18.0 add minwookshin/teum/teum#v0.1.0-rc.29"
+  "registryInstall": "npx shadcn@4.18.0 add minwookshin/whatiuse/teum#v0.1.0-rc.30"
 }

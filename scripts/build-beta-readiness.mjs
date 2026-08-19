@@ -28,7 +28,7 @@ if (releaseEvidence.automation?.accessibility?.status !== "passed" || releaseEvi
 }
 if (adoption.version !== packageJson.version || adoption.status !== "passed") fail("Adoption DX evidence is stale");
 if (packageJson.private !== true) fail("the repository package lock must remain enabled until the publication step");
-if (publication.repository !== "minwookshin/teum" || publication.homepage !== packageJson.homepage) fail("canonical publication metadata drifted");
+if (publication.repository !== "minwookshin/whatiuse" || publication.homepage !== packageJson.homepage) fail("canonical publication metadata drifted");
 if (externalEvidence.schemaVersion !== 1
   || externalEvidence.generatedBy !== "scripts/verify-beta-external-evidence.mjs"
   || externalEvidence.candidate !== packageJson.version

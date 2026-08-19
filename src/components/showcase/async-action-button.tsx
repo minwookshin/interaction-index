@@ -92,7 +92,7 @@ export function AsyncActionButton({
         aria-label={idleLabel}
         layout={shouldMorphWidth ? "size" : false}
         layoutDependency={state}
-        transition={shouldMorphWidth ? { type: "spring", visualDuration: 0.18, bounce: 0 } : { duration: 0 }}
+        transition={shouldMorphWidth ? { type: "spring", visualDuration: 0.16, bounce: 0 } : { duration: 0 }}
         loading={state === "loading"}
         loadingLabel={loadingLabel}
         disabled={state === "success"}

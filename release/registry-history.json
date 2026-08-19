@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "currentCandidate": "0.1.0-rc.29",
+  "currentCandidate": "0.1.0-rc.30",
   "policy": "Versioned registry directories are append-only. Anchored releases must match their source commit byte-for-byte; legacy previews and the current candidate are locked by this reviewed content ledger until a release commit exists.",
   "versions": [
     {
@@ -205,9 +205,15 @@
     },
     {
       "version": "0.1.0-rc.29",
-      "status": "candidate",
+      "status": "legacy-preview",
       "fileCount": 77,
       "treeSha256": "13a3cf9c66e2f0905939a4cbdb879a5ea26212fc4de72c6ce2bcbb9d9ea918df"
+    },
+    {
+      "version": "0.1.0-rc.30",
+      "status": "candidate",
+      "fileCount": 77,
+      "treeSha256": "0a8181b320b4c8a215c9fa56fdbba1d8d90a70c8cf2b2cd26f5644804c10aefb"
     }
   ]
 }

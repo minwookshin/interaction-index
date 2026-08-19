@@ -36,6 +36,17 @@
   width: min(520px, 100%);
 }
 
+.teum-metadata-dialog-preview .product-context__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+}
+
+.teum-metadata-dialog-preview .product-context__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
 .teum-product-context__status {
   min-height: 14px;
   font-variant-numeric: tabular-nums;

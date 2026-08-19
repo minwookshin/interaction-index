@@ -9,12 +9,8 @@ type Theme = "light" | "dark";
 
 const LandingCollectionPreview = lazy(() => import("./landing-preview").then((module) => ({ default: module.LandingCollectionPreview })));
 
-function Brand({ onHome }: { onHome?: () => void }) {
-  return <a className="whatiuse-wordmark" href="/" aria-label="whatiuse home" onClick={(event) => {
-    if (!onHome) return;
-    event.preventDefault();
-    onHome();
-  }}><strong>whatiuse</strong></a>;
+function Brand() {
+  return <div className="whatiuse-wordmark" aria-hidden="true"><strong>whatiuse</strong></div>;
 }
 
 export type LandingPageProps = {
@@ -43,7 +39,7 @@ export function LandingPage({
       <section className="landing-hero" aria-labelledby="landing-title">
         <div className="landing-hero__intro">
           <div className="landing-hero__mark" aria-hidden="true"><Command weight="bold" /></div>
-          <h1 id="landing-title">Teum</h1>
+          <h1 id="landing-title">whatiuse</h1>
           <p>Components for product interfaces.</p>
           <button className="landing-hero__primary" type="button" onClick={onOpenComponents}>
             <span>Browse components</span>
@@ -60,7 +56,7 @@ export function LandingPage({
     <footer className="landing-footer">
       <a href="https://www.minwookshin.com/" target="_blank" rel="noreferrer">made by minwook</a>
       <nav aria-label="Project links">
-        <a href="https://github.com/minwookshin/teum" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://github.com/minwookshin/whatiuse" target="_blank" rel="noreferrer">GitHub</a>
         <a href="#licensing">MIT License</a>
       </nav>
     </footer>

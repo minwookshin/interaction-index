@@ -108,7 +108,7 @@ export default function PublicRoot() {
 
   if (view === "components") {
     return <Suspense fallback={<RouteFallback />}>
-      <LazyComponentIndexPage theme={theme} onThemeChange={setTheme} onHome={() => select("home")} />
+      <LazyComponentIndexPage theme={theme} onThemeChange={setTheme} />
     </Suspense>;
   }
 

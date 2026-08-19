@@ -1,7 +1,7 @@
 {
   "$schema": "https://whatiuse.minwookshin.com/agent/teum-agent.schema.json",
   "schemaVersion": 1,
-  "version": "0.1.0-rc.29",
+  "version": "0.1.0-rc.30",
   "generatedBy": "scripts/build-agent-contract.mjs",
   "system": {
     "schemaVersion": 1,

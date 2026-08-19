@@ -16,7 +16,7 @@ The machine-readable source for current counts is [`release/evidence.json`](./re
 | Component breadth | 45 documented components across controls, overlays, navigation, feedback, data, and interaction | Enough for alpha |
 | Documentation | Preview, code, recipes, states, usage, accessibility, API, public project guidance | Strong alpha candidate |
 | Distribution | Public GitHub source, granular shadcn artifacts, an adopter-side quickstart, and a private package candidate with client-boundary, Node SSR, and clean hydration evidence | Public path configured; npm remains private and unpublished |
-| Automated behavior | 237 Vitest checks plus a five-project desktop and mobile Playwright matrix and a nested modal/flyout stack assertion | Strong baseline |
+| Automated behavior | 238 Vitest checks plus a five-project desktop and mobile Playwright matrix and a nested modal/flyout stack assertion | Strong baseline |
 | Accessibility | Versioned five-project evidence for 69 routes, skip paths, route announcements, focus handoff, axe, RTL, forced colors, reduced motion, reflow, and content expansion; Chrome/Safari and VoiceOver anchors | Edge, physical touch, manual OS contrast/transparency modes, human translation/RTL, independent review, and full-catalog manual coverage remain |
 | Visual stability | 332 release-level visual baselines per platform across all public routes, every Core Product/State contract, four Analytics surfaces, and three Product Patterns | macOS and Linux complete |
 | Adoption | Internal Product pilot composes the public API; no shipped external consumer | Composition proven, adoption unproven |
@@ -32,7 +32,7 @@ The repository and documentation may be shown as an unfinished system if the sta
 
 Required before asking strangers to install it:
 
-1. **Complete** — canonical GitHub repository, issue tracker, Pages homepage/HTTPS registry workflow, and private vulnerability-reporting path are configured for `minwookshin/teum`.
+1. **Complete** — canonical GitHub repository, issue tracker, Pages homepage/HTTPS registry workflow, and private vulnerability-reporting path are configured for `minwookshin/whatiuse`.
 2. **Complete** — generated complete-system and individual registry artifacts plus Button-only and complete-system clean-consumer TypeScript/production builds.
    The documented pinned-registry quickstart is executed against a fresh React + TypeScript + Vite fixture and preserved in `release/quickstart.json`; elapsed time is reported as local observation rather than a universal promise.
    The private package candidate also preserves its React client boundary, server-renders a representative tree, and hydrates with zero recoverable mismatches in the recorded ESM consumer. This is package-contract evidence, not proof of every framework runtime.
@@ -44,7 +44,7 @@ Required before asking strangers to install it:
 
 ### Public beta
 
-The verified `0.1.0-rc.29` local candidate may be offered for real evaluation only after an approved GitHub prerelease, live site, and immutable registry all point to the same reviewed commit. npm is a separate channel and must remain described as unpublished until its public beta is verifiably available.
+The verified `0.1.0-rc.30` local candidate may be offered for real evaluation only after an approved GitHub prerelease, live site, and immutable registry all point to the same reviewed commit. npm is a separate channel and must remain described as unpublished until its public beta is verifiably available.
 
 Promotion beyond the initial beta requires repeated real use, external API feedback, resolved composition problems, and a measured stability period. Component count is not a beta criterion. The machine-readable gate is [`release/beta-readiness.json`](./release/beta-readiness.json).
 

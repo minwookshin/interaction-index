@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/verify-package-consumer.mjs",
-  "generatedAt": "2026-08-18T17:05:07.240Z",
-  "version": "0.1.0-rc.29",
+  "generatedAt": "2026-08-18T23:56:03.389Z",
+  "version": "0.1.0-rc.30",
   "status": "passed",
   "fixture": "Fresh ESM consumer with TypeScript, Vite, Node SSR, and jsdom hydration",
   "clientBoundary": "use client",

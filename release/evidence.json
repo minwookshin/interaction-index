@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/build-evidence.mjs",
-  "generatedAt": "2026-08-18T18:40:08.253Z",
+  "generatedAt": "2026-08-19T00:11:18.683Z",
   "release": {
     "name": "teum",
-    "version": "0.1.0-rc.29",
+    "version": "0.1.0-rc.30",
     "status": "pre-release",
     "npmPublished": false,
     "publicationLocked": true
@@ -25,7 +25,7 @@
     "patterns": 5
   },
   "automation": {
-    "sourceTests": 237,
+    "sourceTests": 238,
     "storybookContractRuns": 104,
     "browserProjects": [
       "chromium",
@@ -35,7 +35,7 @@
       "mobile-webkit"
     ],
     "browserMatrix": {
-      "generatedAt": "2026-08-18T17:22:34.443Z",
+      "generatedAt": "2026-08-19T00:09:14.722Z",
       "status": "passed",
       "passed": 353,
       "skipped": 352,
@@ -43,17 +43,17 @@
       "flaky": 0
     },
     "quickstart": {
-      "generatedAt": "2026-08-18T17:02:55.153Z",
+      "generatedAt": "2026-08-18T23:55:07.973Z",
       "status": "passed",
-      "elapsedMs": 8748,
+      "elapsedMs": 15764,
       "fixture": "examples/quickstart-vite",
       "optionalTailwindBridgeVerified": true
     },
     "adoptionDx": {
-      "generatedAt": "2026-08-18T17:03:24.978Z",
+      "generatedAt": "2026-08-18T23:55:37.983Z",
       "status": "passed",
       "targetMs": 600000,
-      "longestAutomatedJourneyMs": 15864,
+      "longestAutomatedJourneyMs": 15764,
       "journeys": [
         "viteReact18",
         "viteReact19",
@@ -62,7 +62,7 @@
       ]
     },
     "packageContract": {
-      "generatedAt": "2026-08-18T17:05:07.240Z",
+      "generatedAt": "2026-08-18T23:56:03.389Z",
       "status": "passed",
       "fixture": "Fresh ESM consumer with TypeScript, Vite, Node SSR, and jsdom hydration",
       "clientBoundary": "use client",
@@ -73,7 +73,7 @@
       "hydrationRecoverableErrors": 0
     },
     "analyticsInstall": {
-      "generatedAt": "2026-08-18T17:04:04.820Z",
+      "generatedAt": "2026-08-18T23:56:40.418Z",
       "status": "passed",
       "fixture": "Fresh React + TypeScript + Vite application using the source registry",
       "recipes": [
@@ -94,12 +94,12 @@
         "Cohort",
         "Timeline"
       ],
-      "elapsedMs": 10526,
+      "elapsedMs": 10933,
       "externalChartRuntime": false,
       "semanticDataTable": true
     },
     "productPatternsInstall": {
-      "generatedAt": "2026-08-18T17:04:24.633Z",
+      "generatedAt": "2026-08-18T23:56:53.556Z",
       "status": "passed",
       "fixture": "Fresh React + TypeScript + Vite application using the source registry",
       "recipes": [
@@ -116,10 +116,10 @@
         "src/components/ui/chart.tsx",
         "src/components/ui/dialog.tsx"
       ],
-      "elapsedMs": 13408
+      "elapsedMs": 12324
     },
     "accessibility": {
-      "generatedAt": "2026-08-18T17:25:13.531Z",
+      "generatedAt": "2026-08-19T00:00:05.597Z",
       "status": "passed",
       "passed": 55,
       "skipped": 30,
@@ -129,15 +129,15 @@
       "publicRoutes": 69
     },
     "runtimePerformance": {
-      "generatedAt": "2026-08-18T17:52:32.855Z",
+      "generatedAt": "2026-08-18T23:57:23.551Z",
       "status": "passed",
       "mode": "local-production-preview",
-      "landingLcpMs": 412,
-      "documentationLcpMs": 424,
+      "landingLcpMs": 432,
+      "documentationLcpMs": 452,
       "maximumCls": 0.0024,
-      "documentationTransitionMs": 888,
-      "sharedDetailSelectionMs": 5,
-      "dialogOpenMs": 8
+      "documentationTransitionMs": 870,
+      "sharedDetailSelectionMs": 6,
+      "dialogOpenMs": 9
     }
   },
   "visuals": {
@@ -612,8 +612,8 @@
     "runtime": {
       "schemaVersion": 1,
       "generatedBy": "scripts/verify-runtime-performance.mjs",
-      "generatedAt": "2026-08-18T17:52:32.855Z",
-      "releaseVersion": "0.1.0-rc.29",
+      "generatedAt": "2026-08-18T23:57:23.551Z",
+      "releaseVersion": "0.1.0-rc.30",
       "status": "passed",
       "mode": "local-production-preview",
       "viewport": {
@@ -634,32 +634,32 @@
       },
       "measurements": {
         "landing": {
-          "fcpMs": 92,
-          "lcpMs": 412,
+          "fcpMs": 140,
+          "lcpMs": 432,
           "cls": 0,
           "longestTaskMs": 0,
           "longTaskCount": 0,
-          "domContentLoadedMs": 48,
-          "loadMs": 48,
+          "domContentLoadedMs": 62,
+          "loadMs": 62,
           "resourceRequests": 17,
-          "resourceTransferBytes": 457106
+          "resourceTransferBytes": 457251
         },
         "documentation": {
-          "fcpMs": 92,
-          "lcpMs": 424,
+          "fcpMs": 144,
+          "lcpMs": 452,
           "cls": 0.0024,
-          "longestTaskMs": 0,
-          "longTaskCount": 0,
-          "domContentLoadedMs": 49,
-          "loadMs": 49,
+          "longestTaskMs": 56,
+          "longTaskCount": 1,
+          "domContentLoadedMs": 65,
+          "loadMs": 65,
           "resourceRequests": 15,
-          "resourceTransferBytes": 465910
+          "resourceTransferBytes": 465457
         },
-        "documentationTransitionMs": 888,
+        "documentationTransitionMs": 870,
         "interactions": {
-          "sharedDetailSelectionMs": 5,
-          "dialogOpenMs": 8,
-          "longestTaskMs": 63
+          "sharedDetailSelectionMs": 6,
+          "dialogOpenMs": 9,
+          "longestTaskMs": 64
         }
       },
       "environment": {

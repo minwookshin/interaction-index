@@ -197,7 +197,7 @@
   display: grid;
   min-width: 0;
   grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-rows: auto 32px;
+  grid-template-rows: auto 36px;
   gap: 0;
   padding: 8px;
   border-radius: 14px;
@@ -211,6 +211,8 @@
 .component-index-row__identity {
   display: flex;
   min-width: 0;
+  height: 32px;
+  align-self: end;
   align-items: center;
   padding: 0 8px;
 }
@@ -338,15 +340,14 @@
 }
 
 .component-index-preview[data-component="date-picker"] .primary-field-preview {
-  width: min(188px, 100%);
+  width: min(176px, 100%);
   justify-self: center;
 }
 
 .component-index-preview[data-component="date-picker"] .teum-date-picker { width: 100%; }
 
 .component-index-preview[data-component="date-picker"] .teum-date-picker__input {
-  justify-content: center;
-  padding-left: 6px;
+  padding: 0;
 }
 
 .component-index-preview[data-component="date-picker"] .teum-date-picker__segment:not([data-type="literal"]) {
@@ -410,6 +411,8 @@
   display: flex;
   grid-column: 2;
   grid-row: 2;
+  height: 32px;
+  align-self: end;
   align-items: center;
   justify-content: flex-end;
   gap: 4px;
@@ -557,12 +560,6 @@
   min-height: 0;
   grid-template-rows: 40px minmax(0, 1fr);
   margin: 0;
-  animation: teum-code-panel-enter 160ms var(--teum-ease-out) both;
-}
-
-@keyframes teum-code-panel-enter {
-  from { opacity: .72; transform: translateY(3px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .component-code-inspector__filebar {
@@ -578,11 +575,11 @@
 
 .component-code-inspector__filebar button,
 .component-code-inspector__install-copy button {
-  display: inline-flex;
-  min-height: 28px;
-  align-items: center;
-  gap: 6px;
-  padding: 0 8px;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  padding: 0;
   border: 0;
   border-radius: 7px;
   background: transparent;

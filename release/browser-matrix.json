@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/playwright-evidence-reporter.mjs",
-  "generatedAt": "2026-08-18T17:22:34.443Z",
+  "generatedAt": "2026-08-19T00:09:14.722Z",
   "command": "npm run test:browsers:evidence -- --workers=4",
-  "releaseVersion": "0.1.0-rc.29",
+  "releaseVersion": "0.1.0-rc.30",
   "status": "passed",
-  "durationMs": 470706,
+  "durationMs": 542649,
   "total": 705,
   "passed": 353,
   "skipped": 352,
@@ -24,7 +24,7 @@
     "node": "v22.14.0"
   },
   "source": {
-    "commit": "051e1702c1a1a3204949a7d5660c7b482065ce13",
+    "commit": "19fb589bd51dc956325e3fa6fb75191ca0506cf0",
     "workingTreeDirty": true
   }
 }

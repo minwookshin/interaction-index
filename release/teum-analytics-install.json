@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "generatedBy": "scripts/verify-teum-analytics-consumer.mjs",
-  "generatedAt": "2026-08-18T17:04:04.820Z",
-  "version": "0.1.0-rc.29",
+  "generatedAt": "2026-08-18T23:56:40.418Z",
+  "version": "0.1.0-rc.30",
   "status": "passed",
   "fixture": "Fresh React + TypeScript + Vite application using the source registry",
   "item": "teum-analytics",
@@ -45,5 +45,5 @@
   "semanticDataTable": true,
   "typecheck": "passed",
   "productionBuild": "passed",
-  "elapsedMs": 10526
+  "elapsedMs": 10933
 }

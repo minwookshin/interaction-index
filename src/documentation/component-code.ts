@@ -76,7 +76,7 @@ export function ProjectMetadata() {
       <FieldsetLegend>Project metadata</FieldsetLegend>
       <Field>
         <FieldLabel>Project name</FieldLabel>
-        <FieldControl defaultValue="Teum" />
+        <FieldControl defaultValue="whatiuse" />
         <FieldDescription>Visible to everyone in the workspace.</FieldDescription>
       </Field>
     </Fieldset>
@@ -128,7 +128,7 @@ export function ProjectNameField() {
   return (
     <TextField
       label="Project name"
-      defaultValue="Teum"
+      defaultValue="whatiuse"
       description="Shown to everyone in the workspace."
     />
   );
@@ -496,7 +496,7 @@ export function IssueTable({ issues }) {
 
 const items = [{
   id: "workspace",
-  label: "Teum",
+  label: "whatiuse",
   children: [
     { id: "foundations", label: "Foundations" },
     { id: "components", label: "Components" },
@@ -521,7 +521,7 @@ export function ReleaseSequence() {
 import { InlineEdit } from "teum";
 
 export function ProjectTitle() {
-  const [title, setTitle] = useState("Teum");
+  const [title, setTitle] = useState("whatiuse");
 
   return <InlineEdit value={title} onSave={setTitle} label="Edit project title" />;
 }`,

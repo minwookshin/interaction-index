@@ -1,6 +1,6 @@
 {
   "name": "teum",
-  "version": "0.1.0-rc.29",
+  "version": "0.1.0-rc.30",
   "description": "Interaction-first React components, semantic tokens, and source-owned UI patterns for compact product interfaces.",
   "keywords": [
     "react",
@@ -210,10 +210,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/minwookshin/teum.git"
+    "url": "git+https://github.com/minwookshin/whatiuse.git"
   },
   "bugs": {
-    "url": "https://github.com/minwookshin/teum/issues"
+    "url": "https://github.com/minwookshin/whatiuse/issues"
   },
   "homepage": "https://whatiuse.minwookshin.com",
   "engines": {

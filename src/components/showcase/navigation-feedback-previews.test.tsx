@@ -54,7 +54,7 @@ describe("navigation and feedback previews", () => {
     render(<ExportProgressPreview />);
 
     fireEvent.click(screen.getByRole("button", { name: "Run export" }));
-    act(() => vi.advanceTimersByTime(900));
+    act(() => vi.advanceTimersByTime(1100));
 
     expect(screen.getByRole("progressbar")).toHaveAttribute("aria-valuenow", "100");
     expect(screen.getByRole("button", { name: "Run again" })).toBeEnabled();

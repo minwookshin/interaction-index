@@ -14,9 +14,9 @@
     "exactCandidateBytes": true
   },
   "github": {
-    "repository": "https://github.com/minwookshin/teum",
+    "repository": "https://github.com/minwookshin/whatiuse",
     "public": true,
-    "release": "https://github.com/minwookshin/teum/releases/tag/v0.1.0-rc.22",
+    "release": "https://github.com/minwookshin/whatiuse/releases/tag/v0.1.0-rc.22",
     "prerelease": true,
     "assetsVerified": true,
     "assetDigests": {

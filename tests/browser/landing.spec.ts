@@ -5,17 +5,18 @@ test("public root opens directly into the component Library", async ({ page }) =
 
   await expect(page.getByRole("heading", { level: 1, name: "Components for product interfaces." })).toBeVisible();
   await expect(page.getByRole("heading", { level: 2, name: "Library" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "View Teum on GitHub" })).toHaveAttribute("href", "https://github.com/minwookshin/teum");
-  await expect(page.getByRole("button", { name: "Copy Teum install command" })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "View whatiuse on GitHub" })).toHaveAttribute("href", "https://github.com/minwookshin/whatiuse");
+  await expect(page.getByRole("button", { name: "Copy whatiuse install command" })).toHaveCount(0);
   await expect(page.getByRole("link", { name: "made by minwook" })).toHaveAttribute("href", "https://www.minwookshin.com/");
   await expect(page.locator(".component-index-row")).toHaveCount(39);
   await expect(page.locator('.component-index-row[data-component="kbd"]')).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Introduction" })).toHaveCount(0);
-  const wordmark = page.getByRole("link", { name: "whatiuse home" });
+  const wordmark = page.locator(".whatiuse-wordmark");
   await expect(wordmark).toHaveText("whatiuse");
   await expect(wordmark.locator("svg")).toHaveCount(0);
-  await wordmark.click();
-  await expect(page).not.toHaveURL(/#/);
+  await expect(wordmark).toHaveAttribute("aria-hidden", "true");
+  await expect(wordmark).toHaveCSS("pointer-events", "none");
+  await expect(page.getByRole("link", { name: "whatiuse home" })).toHaveCount(0);
 });
 
 test("component catalog filters, previews, and opens code without nesting controls", async ({ page }) => {
@@ -70,8 +71,12 @@ test("component catalog keeps compact 16:10 previews in a two-column desktop gri
   const buttonCard = page.locator('.component-index-row[data-component="button"]');
   const cardBox = await buttonCard.boundingBox();
   const copyBox = await buttonCard.getByRole("button", { name: "Copy Button install command" }).boundingBox();
+  const actionBox = await buttonCard.locator(".component-index-row__actions").boundingBox();
+  const previewBottom = previewBox!.y + previewBox!.height;
   expect(cardBox).not.toBeNull();
   expect(copyBox).not.toBeNull();
+  expect(actionBox).not.toBeNull();
+  expect(actionBox!.y - previewBottom).toBeGreaterThanOrEqual(3.5);
   const trailingInset = cardBox!.x + cardBox!.width - (copyBox!.x + copyBox!.width);
   const bottomInset = cardBox!.y + cardBox!.height - (copyBox!.y + copyBox!.height);
   expect(trailingInset).toBeCloseTo(bottomInset, 1);
@@ -102,6 +107,36 @@ test("compact form and tree previews stay bounded in their card stages", async (
   const numberBox = await numberField.boundingBox();
   expect(numberBox).not.toBeNull();
   expect(numberBox!.width).toBeLessThanOrEqual(116);
+
+  const datePickerCard = page.locator('.component-index-row[data-component="date-picker"]');
+  await datePickerCard.scrollIntoViewIfNeeded();
+  const dateGeometry = await datePickerCard.locator(".teum-date-picker").evaluate((element) => {
+    const group = element.querySelector<HTMLElement>(".teum-date-picker__group")!;
+    const icon = element.querySelector<SVGElement>(".teum-date-picker__button svg")!;
+    const segments = Array.from(element.querySelectorAll<HTMLElement>(".teum-date-picker__segment"));
+    const groupBox = group.getBoundingClientRect();
+    const iconBox = icon.getBoundingClientRect();
+    const firstVisibleEdge = Math.min(...segments.map((segment) => segment.getBoundingClientRect().left));
+    return {
+      width: element.getBoundingClientRect().width,
+      leftInset: firstVisibleEdge - groupBox.left,
+      rightInset: groupBox.right - iconBox.right,
+    };
+  });
+  expect(dateGeometry.width).toBeCloseTo(176, 1);
+  expect(Math.abs(dateGeometry.leftInset - dateGeometry.rightInset)).toBeLessThanOrEqual(0.5);
+
+  for (const component of ["dialog", "sheet", "alert-dialog"]) {
+    const overlayCard = page.locator(`.component-index-row[data-component="${component}"]`);
+    await overlayCard.scrollIntoViewIfNeeded();
+    const iconBox = await overlayCard.locator(".product-context__icon").boundingBox();
+    const copyBox = await overlayCard.locator(".product-context__identity > div").boundingBox();
+    expect(iconBox).not.toBeNull();
+    expect(copyBox).not.toBeNull();
+    expect(iconBox!.width).toBeCloseTo(36, 1);
+    expect(iconBox!.height).toBeCloseTo(36, 1);
+    expect(Math.abs((iconBox!.y + iconBox!.height / 2) - (copyBox!.y + copyBox!.height / 2))).toBeLessThanOrEqual(0.5);
+  }
 
   const textareaCard = page.locator('.component-index-row[data-component="textarea"]');
   await textareaCard.scrollIntoViewIfNeeded();
@@ -230,20 +265,28 @@ test("desktop public header centers the text wordmark and keeps action geometry 
     wordmark: await rect(".landing-header .whatiuse-wordmark"),
     actions: await rect(".landing-header__actions"),
   };
+  const documentationAction = await page.getByRole("link", { name: "Open documentation" }).boundingBox();
   expect(Math.abs(landing.wordmark.center - 1766 / 2), "wordmark is not centered in the viewport").toBeLessThanOrEqual(0.5);
   await expect(page.locator(".whatiuse-wordmark svg")).toHaveCount(0);
+  expect(documentationAction).not.toBeNull();
 
   await page.getByRole("link", { name: "Open documentation" }).click();
   await expect(page).toHaveURL(/#installation$/);
   const documentation = {
     actions: await rect(".system-topbar__actions"),
   };
+  const libraryReturn = await page.getByRole("link", { name: "Back to component library" }).boundingBox();
+  expect(libraryReturn).not.toBeNull();
 
   expect(Math.abs(documentation.actions.x - landing.actions.x), "actions x coordinate moved").toBeLessThanOrEqual(0.5);
   expect(Math.abs(documentation.actions.y - landing.actions.y), "actions y coordinate moved").toBeLessThanOrEqual(0.5);
   expect(Math.abs(documentation.actions.width - landing.actions.width), "actions width changed").toBeLessThanOrEqual(0.5);
   expect(Math.abs(documentation.actions.height - landing.actions.height), "actions height changed").toBeLessThanOrEqual(0.5);
   expect(Math.abs(documentation.actions.right - landing.actions.right), "actions trailing edge moved").toBeLessThanOrEqual(0.5);
+  expect(Math.abs(libraryReturn!.x - documentationAction!.x), "Library return moved out of the Documentation action slot").toBeLessThanOrEqual(0.5);
+  expect(Math.abs(libraryReturn!.y - documentationAction!.y), "Library return changed the Documentation action y coordinate").toBeLessThanOrEqual(0.5);
+  expect(Math.abs(libraryReturn!.width - documentationAction!.width), "Library return changed the Documentation action width").toBeLessThanOrEqual(0.5);
+  expect(Math.abs(libraryReturn!.height - documentationAction!.height), "Library return changed the Documentation action height").toBeLessThanOrEqual(0.5);
 });
 
 test("component preview and theme controls expose working states", async ({ page }) => {
@@ -295,7 +338,7 @@ test("public Library has no horizontal overflow at a compact mobile viewport", a
 
   const overflow = await page.locator(".component-index-page").evaluate((element) => element.scrollWidth - element.clientWidth);
   expect(overflow).toBeLessThanOrEqual(1);
-  await expect(page.getByRole("link", { name: "View Teum on GitHub" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "View whatiuse on GitHub" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Switch to dark theme" })).toBeVisible();
 });
 
